@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Converted from the original ROS 1 package 'S3-60 Eco 2024' for ROS 2.
+     Changes: robot name -> s3_60_eco_2024, package:// URIs updated,
+     joint limits taken from the Codroid controller config (base.yaml / S3-60-PRO.yaml).
+     Original URDF was created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="s3_60_eco_2024">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0 -0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.78541" />
+      <inertia
+        ixx="0.0010933"
+        ixy="3.2853E-08"
+        ixz="-1.7363E-07"
+        iyy="0.0010241"
+        iyz="1.1425E-06"
+        izz="0.0014616" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://s3_60_eco_2024/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://s3_60_eco_2024/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="link1">
+    <inertial>
+      <origin
+        xyz="0 0.01736 -0.03468"
+        rpy="0 0 0" />
+      <mass
+        value="2.68" />
+      <inertia
+        ixx="0.0063062"
+        ixy="1E-13"
+        ixz="4E-14"
+        iyy="0.0063062"
+        iyz="-5.47E-12"
+        izz="3.8604E-09" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://s3_60_eco_2024/meshes/link1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://s3_60_eco_2024/meshes/link1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint1"
+    type="revolute">
+    <origin
+      xyz="0 0 0.1612"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="link1" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-3.490659"
+      upper="3.490659"
+      effort="80"
+      velocity="2.617994" />
+  </joint>
+  <link
+    name="link2">
+    <inertial>
+      <origin
+        xyz="0.164358816 -0.003811846 -0.036830158"
+        rpy="0 0 0" />
+      <mass
+        value="4.91000729" />
+      <inertia
+        ixx="0.03174634313"
+        ixy="-0.0133850739"
+        ixz="0.02099061606"
+        iyy="0.04209164764"
+        iyz="0.01439168907"
+        izz="0.0286995883" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://s3_60_eco_2024/meshes/link2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://s3_60_eco_2024/meshes/link2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint2"
+    type="revolute">
+    <origin
+      xyz="0 0.1625 0"
+      rpy="-1.5708 -1.5708 -0" />
+    <parent
+      link="link1" />
+    <child
+      link="link2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.490659"
+      upper="3.490659"
+      effort="100"
+      velocity="2.617994" />
+  </joint>
+  <link
+    name="link3">
+    <inertial>
+      <origin
+        xyz="0.14259 0.0041909 0.019663"
+        rpy="0 0 0" />
+      <mass
+        value="2.8189" />
+      <inertia
+        ixx="0.010113"
+        ixy="-0.004051"
+        ixz="0.013325"
+        iyy="0.028438"
+        iyz="0.0028144"
+        izz="0.020036" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://s3_60_eco_2024/meshes/link3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://s3_60_eco_2024/meshes/link3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint3"
+    type="revolute">
+    <origin
+      xyz="0.249 0 -0.158"
+      rpy="0 0 0" />
+    <parent
+      link="link2" />
+    <child
+      link="link3" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-2.844887"
+      upper="2.844887"
+      effort="80"
+      velocity="2.617994" />
+  </joint>
+  <link
+    name="link4">
+    <inertial>
+      <origin
+        xyz="0.003938771 0.011270604 0.011220216"
+        rpy="0 0 0" />
+      <mass
+        value="1.6405" />
+      <inertia
+        ixx="0.004198595"
+        ixy="-0.001233426"
+        ixz="-0.00171508"
+        iyy="0.00383027"
+        iyz="-0.00199017"
+        izz="0.002494199" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://s3_60_eco_2024/meshes/link4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://s3_60_eco_2024/meshes/link4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint4"
+    type="revolute">
+    <origin
+      xyz="0.2208 0 0.106"
+      rpy="3.1416 0 1.5708" />
+    <parent
+      link="link3" />
+    <child
+      link="link4" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.490659"
+      upper="3.490659"
+      effort="50"
+      velocity="3.141593" />
+  </joint>
+  <link
+    name="link5">
+    <inertial>
+      <origin
+        xyz="-0.006333829 -0.011334075 0.005137465"
+        rpy="0 0 0" />
+      <mass
+        value="1.64157902" />
+      <inertia
+        ixx="0.00011746"
+        ixy="0.000351853"
+        ixz="-0.000369981"
+        iyy="0.0022811"
+        iyz="5.8655E-05"
+        izz="0.002275203" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://s3_60_eco_2024/meshes/link5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://s3_60_eco_2024/meshes/link5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint5"
+    type="revolute">
+    <origin
+      xyz="0 0.106 0"
+      rpy="1.5708 0 0" />
+    <parent
+      link="link4" />
+    <child
+      link="link5" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-3.490659"
+      upper="3.490659"
+      effort="50"
+      velocity="3.141593" />
+  </joint>
+  <link
+    name="link6">
+    <inertial>
+      <origin
+        xyz="0.010096671 -0.013004453 -0.030448264"
+        rpy="0 0 0" />
+      <mass
+        value="0.53289427" />
+      <inertia
+        ixx="0.000181326"
+        ixy="0.000407975"
+        ixz="-3.9175E-05"
+        iyy="0.000928056"
+        iyz="1.7252E-05"
+        izz="0.001106067" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://s3_60_eco_2024/meshes/link6.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://s3_60_eco_2024/meshes/link6.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint6"
+    type="revolute">
+    <origin
+      xyz="0 -0.1385 -0.00039444"
+      rpy="1.5708 0 0" />
+    <parent
+      link="link5" />
+    <child
+      link="link6" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-3.490659"
+      upper="3.490659"
+      effort="50"
+      velocity="3.141593" />
+  </joint>
+</robot>

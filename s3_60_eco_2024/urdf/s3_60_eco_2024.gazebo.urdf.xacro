@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!--
+  Gazebo Classic + ros2_control variant of the S3-60 Eco 2024 description.
+
+  The kinematic description is included unchanged from s3_60_eco_2024.urdf,
+  so RViz and other tools keep using the same source of truth. This file only
+  adds what the simulator needs:
+    * a massless 'world' link and fixed joint, so the arm stays bolted down
+      instead of toppling over under gravity;
+    * gravity switched off for the arm links (see the `gravity` argument), so
+      the arm keeps the pose the controller commanded the way a servo-held
+      brake would, instead of sagging to the floor between two goals;
+    * a ros2_control system exposing position commands and position/velocity
+      state for the six joints;
+    * the gazebo_ros2_control plugin, which loads config/controllers.yaml.
+
+  Preview with:
+    xacro $(find s3_60_eco_2024)/urdf/s3_60_eco_2024.gazebo.urdf.xacro
+  and re-enable gravity for dynamics work with:
+    xacro $(find s3_60_eco_2024)/urdf/s3_60_eco_2024.gazebo.urdf.xacro gravity:=true
+-->
+<robot name="s3_60_eco_2024" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:arg name="gravity" default="false"/>
+  <xacro:include filename="$(find s3_60_eco_2024)/urdf/s3_60_eco_2024.urdf"/>
+
+  <link name="world"/>
+  <joint name="world_joint" type="fixed">
+    <parent link="world"/>
+    <child link="base_link"/>
+  </joint>
+
+  <xacro:macro name="arm_link" params="name">
+    <gazebo reference="${name}">
+      <gravity>$(arg gravity)</gravity>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:arm_link name="link1"/>
+  <xacro:arm_link name="link2"/>
+  <xacro:arm_link name="link3"/>
+  <xacro:arm_link name="link4"/>
+  <xacro:arm_link name="link5"/>
+  <xacro:arm_link name="link6"/>
+
+  <xacro:macro name="sim_joint" params="name">
+    <joint name="${name}">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+  </xacro:macro>
+
+  <ros2_control name="GazeboSystem" type="system">
+    <hardware>
+      <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+    </hardware>
+    <xacro:sim_joint name="joint1"/>
+    <xacro:sim_joint name="joint2"/>
+    <xacro:sim_joint name="joint3"/>
+    <xacro:sim_joint name="joint4"/>
+    <xacro:sim_joint name="joint5"/>
+    <xacro:sim_joint name="joint6"/>
+  </ros2_control>
+
+  <gazebo>
+    <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+      <parameters>$(find s3_60_eco_2024)/config/controllers.yaml</parameters>
+    </plugin>
+  </gazebo>
+
+</robot>

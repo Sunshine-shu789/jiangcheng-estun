@@ -1,0 +1,47 @@
+# ros2_control configuration loaded by the gazebo_ros2_control plugin.
+# See launch/gazebo.launch.py and urdf/s3_60_eco_2024.gazebo.urdf.xacro.
+gazebo_ros2_control:
+  ros__parameters:
+    # Hold every joint at its spawn position until a controller claims it,
+    # otherwise the arm drops before joint_trajectory_controller activates.
+    hold_joints: true
+    # The position command interface is written directly (no PID gains are
+    # configured), which makes the joints follow a position goal exactly.
+    # Note that joint_trajectory_controller stops applying a holding torque once
+    # a goal is finished, so the arm only stays put because the arm links have
+    # gravity switched off (see urdf/s3_60_eco_2024.gazebo.urdf.xacro). Running
+    # that file with gravity:=true turns the sim into a real dynamics problem
+    # and needs gravity compensation or a hold controller of your own.
+
+controller_manager:
+  ros__parameters:
+    use_sim_time: true
+    update_rate: 100  # Hz, only used by controller_manager nodes outside Gazebo
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    joint_trajectory_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+joint_trajectory_controller:
+  ros__parameters:
+    joints:
+      - joint1
+      - joint2
+      - joint3
+      - joint4
+      - joint5
+      - joint6
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    # Closed loop: the controller checks the measured position against the
+    # commanded trajectory, so a goal failure means the robot did not move.
+    open_loop_control: false
+    allow_integration_in_goal_trajectories: true
+    constraints:
+      stopped_velocity_tolerance: 0.01
+      goal_time: 1.0
