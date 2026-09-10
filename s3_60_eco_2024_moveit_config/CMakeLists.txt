@@ -11,6 +11,8 @@ install(DIRECTORY
 
 install(PROGRAMS
   scripts/load_track1_items.py
+  scripts/check_reachability.py
+  scripts/workspace_map.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
