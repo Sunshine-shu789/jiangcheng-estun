@@ -1,0 +1,64 @@
+# 位置/速度/力矩限位来自 URDF（URDF 里的值又来自控制器配置 base.yaml）。
+# max_acceleration 没有官方数据，按"保守估计"填的占位值，只影响轨迹时间参数化：
+# 值越小，规划出来的轨迹走得越慢。正式用之前请按真机实测修正。
+joint_limits:
+  joint1:
+    has_position_limits: true
+    min_position: -3.490659
+    max_position: 3.490659
+    has_velocity_limits: true
+    max_velocity: 2.617994
+    has_acceleration_limits: true
+    max_acceleration: 5.0   # 估计
+    has_effort_limits: true
+    max_effort: 80.0
+  joint2:
+    has_position_limits: true
+    min_position: -3.490659
+    max_position: 3.490659
+    has_velocity_limits: true
+    max_velocity: 2.617994
+    has_acceleration_limits: true
+    max_acceleration: 5.0   # 估计
+    has_effort_limits: true
+    max_effort: 100.0
+  joint3:
+    has_position_limits: true
+    min_position: -2.844887
+    max_position: 2.844887
+    has_velocity_limits: true
+    max_velocity: 2.617994
+    has_acceleration_limits: true
+    max_acceleration: 5.0   # 估计
+    has_effort_limits: true
+    max_effort: 80.0
+  joint4:
+    has_position_limits: true
+    min_position: -3.490659
+    max_position: 3.490659
+    has_velocity_limits: true
+    max_velocity: 3.141593
+    has_acceleration_limits: true
+    max_acceleration: 8.0   # 估计
+    has_effort_limits: true
+    max_effort: 50.0
+  joint5:
+    has_position_limits: true
+    min_position: -3.490659
+    max_position: 3.490659
+    has_velocity_limits: true
+    max_velocity: 3.141593
+    has_acceleration_limits: true
+    max_acceleration: 8.0   # 估计
+    has_effort_limits: true
+    max_effort: 50.0
+  joint6:
+    has_position_limits: true
+    min_position: -3.490659
+    max_position: 3.490659
+    has_velocity_limits: true
+    max_velocity: 3.141593
+    has_acceleration_limits: true
+    max_acceleration: 8.0   # 估计
+    has_effort_limits: true
+    max_effort: 50.0

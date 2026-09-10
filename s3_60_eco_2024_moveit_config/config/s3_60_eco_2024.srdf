@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!--
+  MoveIt 语义描述（SRDF），手写版本。
+
+  规划组 arm = base_link -> link6 的运动链；机器人焊在 world 上（Gazebo 里也是
+  用一个 fixed joint 固定到 world），所以虚拟关节是 fixed。
+
+  只显式列出了相邻连杆的 disable_collisions。SolidWorks 导出的碰撞网格之间可能
+  还有其它"永远接触"的组合，实测发现后（规划时一直报 self-collision）再按需补，
+  不要预先乱关——那会把真实的碰撞也一起屏蔽掉。
+-->
+<robot name="s3_60_eco_2024">
+  <virtual_joint name="fixed_base" type="fixed" parent_frame="world" child_link="base_link"/>
+
+  <group name="arm">
+    <chain base_link="base_link" tip_link="link6"/>
+  </group>
+
+  <group_state name="home" group="arm">
+    <joint name="joint1" value="0"/>
+    <joint name="joint2" value="0"/>
+    <joint name="joint3" value="0"/>
+    <joint name="joint4" value="0"/>
+    <joint name="joint5" value="0"/>
+    <joint name="joint6" value="0"/>
+  </group_state>
+
+  <group_state name="demo" group="arm">
+    <joint name="joint1" value="0.4"/>
+    <joint name="joint2" value="-0.5"/>
+    <joint name="joint3" value="0.7"/>
+    <joint name="joint4" value="0"/>
+    <joint name="joint5" value="0.5"/>
+    <joint name="joint6" value="0"/>
+  </group_state>
+
+  <disable_collisions link1="base_link" link2="link1" reason="Adjacent"/>
+  <disable_collisions link1="link1" link2="link2" reason="Adjacent"/>
+  <disable_collisions link1="link2" link2="link3" reason="Adjacent"/>
+  <disable_collisions link1="link3" link2="link4" reason="Adjacent"/>
+  <disable_collisions link1="link4" link2="link5" reason="Adjacent"/>
+  <disable_collisions link1="link5" link2="link6" reason="Adjacent"/>
+</robot>
