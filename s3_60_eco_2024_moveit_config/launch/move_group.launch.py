@@ -49,7 +49,9 @@ def generate_launch_description():
             {"robot_description_kinematics": load_yaml(os.path.join(config_dir, "kinematics.yaml"))},
             # joint_limits.yaml 在 MoveIt 里是通过 robot_description_planning 传的
             {"robot_description_planning": load_yaml(os.path.join(config_dir, "joint_limits.yaml"))},
-            load_yaml(os.path.join(config_dir, "ompl_planning.yaml")),
+            # 规划流水线的参数必须挂在流水线名下面（ompl.planning_plugin 等），
+            # 平铺传进去 move_group 是读不到的（会退回 CHOMP、且不做时间参数化）。
+            {"ompl": load_yaml(os.path.join(config_dir, "ompl_planning.yaml"))},
             {
                 "planning_pipelines": ["ompl"],
                 "default_planning_pipeline": "ompl",

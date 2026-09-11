@@ -1,34 +1,42 @@
-# OMPL 规划器配置（按 MoveIt 2 的标准模板精简）。
-planning_plugins:
-  - ompl_interface/OMPLPlanner
-request_adapters:
-  - default_planning_request_adapters/ResolveConstraintFrames
-  - default_planning_request_adapters/ValidateWorkspaceBounds
-  - default_planning_request_adapters/CheckStartStateBounds
-  - default_planning_request_adapters/CheckStartStateCollision
-response_adapters:
-  - default_planning_response_adapters/AddTimeOptimalParameterization
-  - default_planning_response_adapters/ValidateSolution
-  - default_planning_response_adapters/DisplayMotionPath
+# OMPL 规划器配置（MoveIt 2 / Humble 布局，moveit_configs_utils 的同款写法）。
+#
+# 加载方式：move_group.launch.py 里用 {"ompl": <本文件内容>} 挂到 ompl 命名空间，
+# 所以实际参数名是 ompl.planning_plugin / ompl.request_adapters / ompl.arm.*。
+# 如果直接平铺加载（没有 "ompl" 这层），move_group 找不到 ompl.* 参数，会退回
+# "多个插件里随便挑一个"（实测挑中 CHOMP），规划结果不带时间戳。
+#
+# request_adapters 里的 AddTimeOptimalParameterization 是必需的：OMPL 只给出
+# 几何路径（没有时间信息），少了它，轨迹里所有 time_from_start 都是 0，
+# joint_trajectory_controller 会以 "Time between points 0 and 1 is not strictly
+# increasing" 拒收，MoveIt 这边表现为 CONTROL_FAILED(-4)。
+planning_plugin: ompl_interface/OMPLPlanner
+request_adapters: >-
+  default_planner_request_adapters/ResolveConstraintFrames
+  default_planner_request_adapters/FixWorkspaceBounds
+  default_planner_request_adapters/FixStartStateBounds
+  default_planner_request_adapters/FixStartStateCollision
+  default_planner_request_adapters/FixStartStatePathConstraints
+  default_planner_request_adapters/AddTimeOptimalParameterization
+
 planner_configs:
-  RRTConnectkConfigDefault:
+  RRTConnect:
     type: geometric::RRTConnect
     range: 0.0
-  RRTstarkConfigDefault:
+  RRTstar:
     type: geometric::RRTstar
     range: 0.0
     goal_bias: 0.05
-  BKPIECEkConfigDefault:
+  BKPIECE:
     type: geometric::BKPIECE
     range: 0.0
     border_fraction: 0.9
     failed_expansion_score_factor: 0.5
     min_valid_path_fraction: 0.5
 arm:
-  default_planner_config: RRTConnectkConfigDefault
+  default_planner_config: RRTConnect
   planner_configs:
-    - RRTConnectkConfigDefault
-    - RRTstarkConfigDefault
-    - BKPIECEkConfigDefault
+    - RRTConnect
+    - RRTstar
+    - BKPIECE
   projection_evaluator: joints(joint1,joint2)
   longest_valid_segment_fraction: 0.05

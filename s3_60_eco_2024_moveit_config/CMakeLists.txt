@@ -13,6 +13,7 @@ install(PROGRAMS
   scripts/load_track1_items.py
   scripts/check_reachability.py
   scripts/workspace_map.py
+  scripts/plan_execute_demo.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

@@ -8,6 +8,10 @@ to plan approaches and check clearances, not to simulate grasping.
     ros2 run s3_60_eco_2024_moveit_config load_track1_items.py --subset 3
     ros2 run s3_60_eco_2024_moveit_config load_track1_items.py --all
     ros2 run s3_60_eco_2024_moveit_config load_track1_items.py --clear    # 只删除
+
+``--all`` 会把 4 个 Subset 摆成 2x2 的展台（每个 Subset 一块桌面），只用于一次
+看全 40 件模型；后排离底座 1 m 以上，机器人够不到。逐件可达性检查请用
+``check_reachability.py --all``，它是每个 Subset 单独摆、单独检查。
 """
 
 import argparse
@@ -76,12 +80,18 @@ def half_height(item):
     return float(size[0]) / 2.0
 
 
-def build_scene(config, items, with_table):
-    """Return (collision_objects, table_id) for the requested items."""
+def build_scene(config, items, with_table, layout_offset=(0.0, 0.0)):
+    """Return (collision_objects, table_id) for the requested items.
+
+    ``layout_offset`` 把桌面和物品整体平移 (dx, dy)：单个 Subset 用默认的
+    (0, 0)；一次摆多个 Subset（``--all``）时每个 Subset 给一个不同的偏移，
+    摆成互不重叠的"展台"。
+    """
     objects = []
     frame = config["frame_id"]
     table = config["table"]
     table_id = "track1_table"
+    offset_x, offset_y = layout_offset
 
     if with_table:
         obj = CollisionObject()
@@ -94,8 +104,8 @@ def build_scene(config, items, with_table):
         obj.primitives = [primitive]
         obj.primitive_poses = [
             make_pose(
-                table["center_xy"][0],
-                table["center_xy"][1],
+                table["center_xy"][0] + offset_x,
+                table["center_xy"][1] + offset_y,
                 float(table["top_z"]) - float(table["size"][2]) / 2.0,
             )
         ]
@@ -105,8 +115,8 @@ def build_scene(config, items, with_table):
     for index, item in enumerate(items):
         column = index % int(layout["columns"])
         row = index // int(layout["columns"])
-        x = float(layout["x_start"]) + column * float(layout["x_step"])
-        y = float(layout["y_start"]) + row * float(layout["y_step"])
+        x = float(layout["x_start"]) + column * float(layout["x_step"]) + offset_x
+        y = float(layout["y_start"]) + row * float(layout["y_step"]) + offset_y
         z = float(table["top_z"]) + half_height(item)
 
         obj = CollisionObject()
@@ -161,24 +171,49 @@ def main(argv=None):
         rclpy.shutdown()
         return 0
 
-    objects, table_id = build_scene(config, items, not args.no_table)
+    # 40 件物品的布局是"每 10 件摆一块桌面"，一次全摆会同位置重叠，
+    # 所以 --all 时给 4 个 Subset 各一个偏移，摆成 2x2 的展台
+    # （后排离底座 1 m 以上，机器人够不到，只用于一次看全模型）。
+    all_offsets = {1: (0.0, 0.0), 2: (1.3, 0.0), 3: (0.0, 0.9), 4: (1.3, 0.9)}
+    if args.all:
+        objects = []
+        for subset, offset in all_offsets.items():
+            subset_items = [item for item in config["items"] if item["subset"] == subset]
+            subset_objects, table_id = build_scene(
+                config, subset_items, not args.no_table, offset
+            )
+            objects.extend(subset_objects)
+    else:
+        objects, table_id = build_scene(config, items, not args.no_table)
     scene = PlanningScene()
     scene.is_diff = True
     scene.world.collision_objects = objects
     publish(scene)
 
-    node.get_logger().info(
-        f"已加载 Subset {args.subset}：{len(items)} 件物品"
-        + (f" + 桌面（{table_id}）" if not args.no_table else "")
-    )
-    for index, item in enumerate(items):
-        layout = config["layout"]
-        x = float(layout["x_start"]) + (index % int(layout["columns"])) * float(layout["x_step"])
-        y = float(layout["y_start"]) + (index // int(layout["columns"])) * float(layout["y_step"])
+    if args.all:
         node.get_logger().info(
-            f"  {item['id']:2d} {item['name_cn']:<10s} {item['shape']:<8s} "
-            f"size={item['size']} @ ({x:+.2f}, {y:+.2f}) [{item['source']}]"
+            f"已加载全部 {len(items)} 件物品"
+            + (f"（{len(all_offsets)} 块桌面，2x2 展台）" if not args.no_table else "（没有桌面）")
         )
+        for subset, (offset_x, offset_y) in all_offsets.items():
+            count = len([item for item in items if item["subset"] == subset])
+            node.get_logger().info(
+                f"  Subset {subset}：{count} 件 @ 桌面偏移 ({offset_x:+.2f}, {offset_y:+.2f})"
+            )
+        node.get_logger().info("提示：逐件可达性检查用 check_reachability.py --all，它每个 Subset 单独摆。")
+    else:
+        node.get_logger().info(
+            f"已加载 Subset {args.subset}：{len(items)} 件物品"
+            + (f" + 桌面（{table_id}）" if not args.no_table else "")
+        )
+        for index, item in enumerate(items):
+            layout = config["layout"]
+            x = float(layout["x_start"]) + (index % int(layout["columns"])) * float(layout["x_step"])
+            y = float(layout["y_start"]) + (index // int(layout["columns"])) * float(layout["y_step"])
+            node.get_logger().info(
+                f"  {item['id']:2d} {item['name_cn']:<10s} {item['shape']:<8s} "
+                f"size={item['size']} @ ({x:+.2f}, {y:+.2f}) [{item['source']}]"
+            )
 
     node.destroy_node()
     rclpy.shutdown()
