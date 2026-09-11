@@ -80,17 +80,18 @@ def half_height(item):
     return float(size[0]) / 2.0
 
 
-def build_scene(config, items, with_table, layout_offset=(0.0, 0.0)):
+def build_scene(config, items, with_table, layout_offset=(0.0, 0.0),
+                table_id="track1_table"):
     """Return (collision_objects, table_id) for the requested items.
 
     ``layout_offset`` 把桌面和物品整体平移 (dx, dy)：单个 Subset 用默认的
     (0, 0)；一次摆多个 Subset（``--all``）时每个 Subset 给一个不同的偏移，
-    摆成互不重叠的"展台"。
+    摆成互不重叠的"展台"；``table_id`` 也要跟着变，否则多块桌面同 id 会互相
+    覆盖，只剩下最后一块。
     """
     objects = []
     frame = config["frame_id"]
     table = config["table"]
-    table_id = "track1_table"
     offset_x, offset_y = layout_offset
 
     if with_table:
@@ -155,12 +156,42 @@ def main(argv=None):
             rclpy.spin_once(node, timeout_sec=0.2)
         time.sleep(0.5)
 
+    # 40 件物品的布局是"每 10 件摆一块桌面"，一次全摆会同位置重叠，
+    # 所以 --all 时给 4 个 Subset 各一个偏移，摆成 2x2 的展台
+    # （后排离底座 1 m 以上，机器人够不到，只用于一次看全模型）。
+    all_offsets = {1: (0.0, 0.0), 2: (1.3, 0.0), 3: (0.0, 0.9), 4: (1.3, 0.9)}
+
+    def scene_objects():
+        """本次要加载的碰撞体。--all 时每个 Subset 一块桌面，id 带 Subset 后缀。"""
+        if not args.all:
+            return build_scene(config, items, not args.no_table)
+        objects = []
+        for subset, offset in all_offsets.items():
+            subset_items = [item for item in config["items"] if item["subset"] == subset]
+            subset_objects, _ = build_scene(
+                config,
+                subset_items,
+                not args.no_table,
+                offset,
+                table_id=f"track1_table_{subset}",
+            )
+            objects.extend(subset_objects)
+        return objects, "track1_table_1..4"
+
+    objects, table_id = scene_objects()
+
+    # 先清掉上一次加载的物体（不存在的会告警，无副作用）；一并处理旧版 --all
+    # 留下的单块 track1_table。
+    removal_ids = {obj.id for obj in objects}
+    removal_ids.add("track1_table")
+    removal_ids.update(f"track1_table_{subset}" for subset in all_offsets)
+
     clearing = PlanningScene()
     clearing.is_diff = True
-    for obj in build_scene(config, config["items"] if args.all else items, True)[0]:
+    for object_id in sorted(removal_ids):
         removal = CollisionObject()
         removal.header.frame_id = config["frame_id"]
-        removal.id = obj.id
+        removal.id = object_id
         removal.operation = CollisionObject.REMOVE
         clearing.world.collision_objects.append(removal)
     publish(clearing)
@@ -171,20 +202,6 @@ def main(argv=None):
         rclpy.shutdown()
         return 0
 
-    # 40 件物品的布局是"每 10 件摆一块桌面"，一次全摆会同位置重叠，
-    # 所以 --all 时给 4 个 Subset 各一个偏移，摆成 2x2 的展台
-    # （后排离底座 1 m 以上，机器人够不到，只用于一次看全模型）。
-    all_offsets = {1: (0.0, 0.0), 2: (1.3, 0.0), 3: (0.0, 0.9), 4: (1.3, 0.9)}
-    if args.all:
-        objects = []
-        for subset, offset in all_offsets.items():
-            subset_items = [item for item in config["items"] if item["subset"] == subset]
-            subset_objects, table_id = build_scene(
-                config, subset_items, not args.no_table, offset
-            )
-            objects.extend(subset_objects)
-    else:
-        objects, table_id = build_scene(config, items, not args.no_table)
     scene = PlanningScene()
     scene.is_diff = True
     scene.world.collision_objects = objects

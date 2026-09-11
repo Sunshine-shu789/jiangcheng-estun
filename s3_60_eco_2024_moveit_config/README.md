@@ -25,8 +25,8 @@ source install/setup.bash
 # 1) 仿真 + 控制器
 ros2 launch s3_60_eco_2024 gazebo.launch.py gui:=true
 
-# 2) MoveIt
-ros2 launch s3_60_eco_2024_moveit_config move_group.launch.py
+# 2) MoveIt（rviz:=true 会同时打开带 MotionPlanning 显示的 RViz）
+ros2 launch s3_60_eco_2024_moveit_config move_group.launch.py rviz:=true
 
 # 3) 规划 + 执行闭环（给了目标就真的在 Gazebo 里动）
 ros2 run s3_60_eco_2024_moveit_config plan_execute_demo.py --named demo
@@ -42,8 +42,13 @@ ros2 run s3_60_eco_2024_moveit_config plan_execute_demo.py --sweep-all \
     --out src/s3_60_eco_2024_moveit_config/docs/track1_plan_execute_all.md
 ```
 
-只想在 RViz 里看 40 件物品怎么摆（不进 Gazebo）：`load_track1_items.py --all`
-会把 4 个 Subset 摆成 2x2 展台，后排机器人够不到，只为一次看全。
+看 40 件物品怎么摆：move_group 跑起来后执行 `load_track1_items.py --all`，
+它会把 4 个 Subset 摆成 2x2 展台（后排机器人够不到，只为一次看全），物品在
+RViz 的 MotionPlanning → Scene Geometry 里显示。`rviz:=true` 用的配置是
+`rviz/moveit.rviz`，Fixed Frame 是 `base_link`，Planning Group 是 `arm`。
+
+只想看在 RViz 里看物品、不需要机器人真动，可以不跑 Gazebo；但要按 Gazebo
+里的真实摆位看，就还是先起 `gazebo.launch.py`，否则 RViz 没有当前关节状态。
 
 工作空间扫描（决定桌子摆哪、物品放哪）：
 
@@ -65,7 +70,8 @@ ros2 run s3_60_eco_2024_moveit_config workspace_map.py --z 0.35 --x-step 0.1 --y
 | `scripts/check_reachability.py` | 逐件检查"从上方抓"的位姿能否解出 IK（`--all` 逐 Subset 换场景后汇总） |
 | `scripts/plan_execute_demo.py` | 规划+执行闭环：IK → OMPL → 控制器 → Gazebo，量跟踪误差；`--sweep-all` 逐件跑完 40 件并汇总 |
 | `scripts/workspace_map.py` | 扫描 x-y 平面，输出可达区域图 |
-| `launch/move_group.launch.py` | 起 move_group（`use_sim_time:=false` 可接真机） |
+| `launch/move_group.launch.py` | 起 move_group（`use_sim_time:=false` 可接真机，`rviz:=true` 同开 RViz） |
+| `rviz/moveit.rviz` | RViz 配置：RobotModel + MotionPlanning（Scene Geometry 显示 40 件物品） |
 | `docs/track1_reachability.md` | Subset 1 的可达性结果（单独报告） |
 | `docs/track1_reachability_all.md` | 4 个 Subset 共 40 件的总表 |
 | `docs/plan_execute_verification.md` | 规划→执行闭环的实测记录和踩过的坑 |

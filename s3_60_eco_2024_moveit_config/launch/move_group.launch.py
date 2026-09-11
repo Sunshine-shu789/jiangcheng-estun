@@ -3,10 +3,14 @@
 配合仿真是这样用的（两个终端）：
 
     ros2 launch s3_60_eco_2024 gazebo.launch.py           # 仿真 + 控制器
-    ros2 launch s3_60_eco_2024_moveit_config move_group.launch.py
+    ros2 launch s3_60_eco_2024_moveit_config move_group.launch.py rviz:=true
 
 move_group 从 Gazebo 的 joint_states / TF 里拿当前状态，规划结果通过
 joint_trajectory_controller 的 action 执行（配置见 config/moveit_controllers.yaml）。
+
+rviz:=true 额外打开带 MotionPlanning 显示的 RViz（rviz/moveit.rviz）：
+规划场景里的碰撞体——包括 load_track1_items.py 加载的 40 件物品——都在
+MotionPlanning -> Scene Geometry 里显示。
 """
 
 import os
@@ -15,6 +19,7 @@ import yaml
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
+from launch.conditions import IfCondition
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 
@@ -30,10 +35,10 @@ def read_text(path):
 
 
 def generate_launch_description():
-    config_dir = os.path.join(
-        get_package_share_directory("s3_60_eco_2024_moveit_config"), "config"
-    )
+    share_dir = get_package_share_directory("s3_60_eco_2024_moveit_config")
+    config_dir = os.path.join(share_dir, "config")
     robot_dir = get_package_share_directory("s3_60_eco_2024")
+    rviz_config = os.path.join(share_dir, "rviz", "moveit.rviz")
 
     move_group = Node(
         package="moveit_ros_move_group",
@@ -66,6 +71,17 @@ def generate_launch_description():
         ],
     )
 
+    rviz = Node(
+        package="rviz2",
+        executable="rviz2",
+        name="rviz2",
+        output="screen",
+        arguments=["-d", rviz_config],
+        # 和 Gazebo 一起用时必须跟仿真时钟走，否则 TF/规划场景的时间戳对不上。
+        parameters=[{"use_sim_time": LaunchConfiguration("use_sim_time")}],
+        condition=IfCondition(LaunchConfiguration("rviz")),
+    )
+
     return LaunchDescription(
         [
             DeclareLaunchArgument(
@@ -73,6 +89,12 @@ def generate_launch_description():
                 default_value="true",
                 description="和 Gazebo 一起跑时用仿真时钟；接真机时设成 false",
             ),
+            DeclareLaunchArgument(
+                "rviz",
+                default_value="false",
+                description="同时打开带 MotionPlanning 显示的 RViz2（看 40 件物品）",
+            ),
             move_group,
+            rviz,
         ]
     )
