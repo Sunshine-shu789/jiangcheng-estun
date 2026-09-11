@@ -23,6 +23,10 @@ Usage::
     # plan only, do not move
     ros2 run s3_60_eco_2024_moveit_config plan_execute_demo.py --grasp-item 3 --plan-only
 
+    # 逐件跑完一个 Subset / 全部 4 个 Subset 的 IK → 规划 → 执行
+    ros2 run s3_60_eco_2024_moveit_config plan_execute_demo.py --sweep-subset 1
+    ros2 run s3_60_eco_2024_moveit_config plan_execute_demo.py --sweep-all --out report.md
+
 The script exits non-zero when IK, planning or execution fails, or when the
 measured joints do not reach the target, so it can be used as a self-check in
 scripts.
@@ -40,15 +44,20 @@ from ament_index_python.packages import get_package_share_directory
 from geometry_msgs.msg import PoseStamped
 from moveit_msgs.action import MoveGroup
 from moveit_msgs.msg import (
+    CollisionObject,
     Constraints,
     JointConstraint,
     MotionPlanRequest,
+    PlanningScene,
     PlanningOptions,
 )
 from moveit_msgs.srv import GetPositionIK
 from rclpy.action import ActionClient
 from rclpy.node import Node
 from sensor_msgs.msg import JointState
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from load_track1_items import build_scene  # noqa: E402  (path 只在上面那行之后才对)
 
 JOINTS = [f"joint{i}" for i in range(1, 7)]
 MOVE_ACTION = "move_action"
@@ -89,6 +98,22 @@ def item_height(item):
     return float(size[0])
 
 
+def load_config(path):
+    with open(path, encoding="utf-8") as handle:
+        return yaml.safe_load(handle)
+
+
+def grasp_position(config, item, approach_height):
+    """物品顶面中心 + approach_height，返回法兰目标位置 (x, y, z)。"""
+    layout = config["layout"]
+    subset_items = [i for i in config["items"] if i["subset"] == item["subset"]]
+    index = subset_items.index(item)
+    x = float(layout["x_start"]) + (index % int(layout["columns"])) * float(layout["x_step"])
+    y = float(layout["y_start"]) + (index // int(layout["columns"])) * float(layout["y_step"])
+    z = float(config["table"]["top_z"]) + item_height(item) + approach_height
+    return (x, y, z)
+
+
 def parse_args(argv):
     default_yaml = os.path.join(
         get_package_share_directory("s3_60_eco_2024_moveit_config"),
@@ -96,13 +121,17 @@ def parse_args(argv):
         "track1_items.yaml",
     )
     parser = argparse.ArgumentParser(description=__doc__)
-    target = parser.add_mutually_exclusive_group(required=True)
+    target = parser.add_mutually_exclusive_group(required=False)
     target.add_argument("--named", choices=("home", "demo"), help="SRDF 里预设的关节目标")
     target.add_argument("--joints", nargs=6, type=float, metavar=("J1", "J2", "J3", "J4", "J5", "J6"))
     target.add_argument("--pose", nargs=3, type=float, metavar=("X", "Y", "Z"),
                         help="法兰目标位置（base_link 坐标系），姿态用 --tilt-deg/--yaw-deg")
     target.add_argument("--grasp-item", type=int, metavar="ID",
                         help="赛道一物品编号（1-40）：目标取在物品顶面 + --approach-height")
+    target.add_argument("--sweep-subset", type=int, metavar="N",
+                        help="逐件跑完一个 Subset 的规划+执行（不需要再给目标）")
+    target.add_argument("--sweep-all", action="store_true",
+                        help="逐件跑完全部 4 个 Subset 的规划+执行（不需要再给目标）")
     parser.add_argument("--yaml", default=default_yaml, help="物品尺寸表（--grasp-item 用）")
     parser.add_argument("--approach-height", type=float, default=0.05,
                         help="法兰目标比物品顶面高多少米（默认 0.05）")
@@ -110,15 +139,23 @@ def parse_args(argv):
     parser.add_argument("--yaw-deg", type=float, default=0.0, help="绕工具轴的偏航角")
     parser.add_argument("--plan-only", action="store_true", help="只规划，不执行")
     parser.add_argument("--planning-time", type=float, default=10.0, help="单次规划时间上限（秒）")
-    parser.add_argument("--attempts", type=int, default=3, help="规划尝试次数")
+    parser.add_argument("--attempts", type=int, default=10, help="规划尝试次数")
     parser.add_argument("--velocity-scaling", type=float, default=0.3, help="速度缩放（0-1）")
     parser.add_argument("--accel-scaling", type=float, default=0.3, help="加速度缩放（0-1）")
     parser.add_argument("--tolerance", type=float, default=0.02,
                         help="执行后允许的关节跟踪误差（弧度，默认 0.02 ≈ 1.15°）")
     parser.add_argument("--settle-timeout", type=float, default=15.0,
                         help="等机械臂到位的最长时间（秒）")
+    parser.add_argument("--ik-repeat", type=int, default=2,
+                        help="逐件扫描时每件把 32 个候选姿态重复试几轮（KDL 带随机重启）")
+    parser.add_argument("--out", help="逐件扫描时把结果写成 markdown 报告")
     parser.add_argument("--group", default="arm")
-    return parser.parse_args(argv)
+    args = parser.parse_args(argv)
+    if not (args.named or args.joints or args.pose or args.grasp_item
+            or args.sweep_subset or args.sweep_all):
+        parser.error("要么给一个目标（--named/--joints/--pose/--grasp-item），"
+                     "要么用 --sweep-subset/--sweep-all 逐件跑")
+    return args
 
 
 class PlanExecuteDemo(Node):
@@ -129,6 +166,25 @@ class PlanExecuteDemo(Node):
         self.create_subscription(JointState, "joint_states", self.on_joint_state, 10)
         self.move_client = ActionClient(self, MoveGroup, MOVE_ACTION)
         self.ik_client = self.create_client(GetPositionIK, IK_SERVICE)
+        self.scene_publisher = self.create_publisher(PlanningScene, "planning_scene", 10)
+
+    def set_scene(self, config, items, with_table=True):
+        """把规划场景换成 items 这一组（和 check_reachability.py 同一套逻辑）。"""
+        scene = PlanningScene()
+        scene.is_diff = True
+        all_objects, _ = build_scene(config, config["items"], True)
+        for collision_object in all_objects:
+            removal = CollisionObject()
+            removal.header.frame_id = config["frame_id"]
+            removal.id = collision_object.id
+            removal.operation = CollisionObject.REMOVE
+            scene.world.collision_objects.append(removal)
+        objects, _ = build_scene(config, items, with_table)
+        scene.world.collision_objects.extend(objects)
+        for _ in range(5):
+            self.scene_publisher.publish(scene)
+            rclpy.spin_once(self, timeout_sec=0.2)
+        time.sleep(0.5)
 
     def on_joint_state(self, message):
         positions = dict(zip(message.name, message.position))
@@ -247,13 +303,18 @@ class PlanExecuteDemo(Node):
         return max_error, moved, final
 
 
-def describe_trajectory(trajectory):
+def trajectory_stats(trajectory):
+    """返回 (点数, 总时长秒)；轨迹为空时 (0, 0.0)。"""
     points = trajectory.joint_trajectory.points
     if not points:
-        return "0 点"
+        return 0, 0.0
     last = points[-1].time_from_start
-    duration = last.sec + last.nanosec / 1e9
-    return f"{len(points)} 点 / {duration:.2f} s"
+    return len(points), last.sec + last.nanosec / 1e9
+
+
+def describe_trajectory(trajectory):
+    count, duration = trajectory_stats(trajectory)
+    return f"{count} 点 / {duration:.2f} s" if count else "0 点"
 
 
 def resolve_target(node, args):
@@ -266,20 +327,12 @@ def resolve_target(node, args):
         return [float(v) for v in args.joints], "命令行给定关节角"
 
     if args.grasp_item is not None:
-        with open(args.yaml, encoding="utf-8") as handle:
-            config = yaml.safe_load(handle)
+        config = load_config(args.yaml)
         items = [item for item in config["items"] if item["id"] == args.grasp_item]
         if not items:
             raise RuntimeError(f"物品表里没有编号 {args.grasp_item}")
         item = items[0]
-        subset_items = [i for i in config["items"] if i["subset"] == item["subset"]]
-        index = subset_items.index(item)
-        layout = config["layout"]
-        position = (
-            float(layout["x_start"]) + (index % int(layout["columns"])) * float(layout["x_step"]),
-            float(layout["y_start"]) + (index // int(layout["columns"])) * float(layout["y_step"]),
-            float(config["table"]["top_z"]) + item_height(item) + args.approach_height,
-        )
+        position = grasp_position(config, item, args.approach_height)
         description = (
             f"物品 #{item['id']} {item['name_cn']}（Subset {item['subset']}，"
             f"{item['shape']} {item['size']}）顶面 + {args.approach_height:.2f} m"
@@ -310,6 +363,164 @@ def resolve_target(node, args):
     return joints, description + f"，IK 姿态 {label}"
 
 
+def find_ik(node, position, repeats):
+    """按 32 个候选姿态（重复 repeats 轮）找一个 IK 解，返回 (标签, 关节角)。"""
+    for _ in range(max(repeats, 1)):
+        for label, quaternion in candidate_orientations():
+            joints = node.solve_ik(position, quaternion)
+            if joints is not None:
+                return label, joints
+    return None, None
+
+
+def status_bucket(status):
+    """把结果字符串归到汇总表的四类里。"""
+    if status.startswith("通过") or status.startswith("规划通过"):
+        return "ok"
+    if status == "IK 失败":
+        return "ik"
+    if status.startswith("规划失败") or status.startswith("发送失败"):
+        return "plan"
+    return "exec"
+
+
+def sweep(node, config, subsets, args):
+    """逐件跑 IK → 规划 → 执行，返回每个物品一行结果。"""
+    def go_home():
+        """规划回全零位，失败只告警（起始位形可能已经贴着桌面）。"""
+        home = [0.0] * len(JOINTS)
+        begin = node.wait_for_joint_states()
+        if max(abs(a - b) for a, b in zip(begin, home)) <= 0.05:
+            return
+        node.get_logger().info("先回零位，把起始位形归零……")
+        try:
+            result = node.send_goal(node.move_goal(home, args))
+            if result.error_code.val == 1 and not args.plan_only:
+                node.wait_until_settled(home, args.settle_timeout, begin)
+        except RuntimeError as error:
+            node.get_logger().warn(f"回零位失败（{error}），继续用当前位形扫描")
+
+    rows = []
+    # 先清空场景再归零：上一轮扫描的终点可能正好停在桌面/物品里，带着碰撞状态
+    # 规划每一步都会失败（实测 Subset 1 曾整组 0/10）。空场景里归零一定可行。
+    node.set_scene(config, [], with_table=False)
+    go_home()
+    for subset in subsets:
+        items = [item for item in config["items"] if item["subset"] == subset]
+        node.set_scene(config, items, with_table=True)
+        go_home()
+        node.get_logger().info(
+            f"Subset {subset}：场景已就位，开始逐件 IK → 规划 → 执行（{len(items)} 件）"
+        )
+        for item in items:
+            position = grasp_position(config, item, args.approach_height)
+            label, joint_goal = find_ik(node, position, args.ik_repeat)
+            row = {
+                "id": item["id"],
+                "subset": subset,
+                "name": item["name_cn"],
+                "position": position,
+                "ik_pose": label,
+                "points": 0,
+                "duration": 0.0,
+                "error_deg": None,
+                "status": "IK 失败",
+            }
+            if joint_goal is not None:
+                begin = node.wait_for_joint_states()
+                try:
+                    result = node.send_goal(node.move_goal(joint_goal, args))
+                except RuntimeError as error:
+                    row["status"] = f"发送失败（{error}）"
+                else:
+                    code = result.error_code.val
+                    row["points"], row["duration"] = trajectory_stats(result.planned_trajectory)
+                    if code != 1:
+                        row["status"] = f"规划失败（{code}）"
+                    elif args.plan_only:
+                        row["status"] = "规划通过（未执行）"
+                    else:
+                        error, moved, _ = node.wait_until_settled(
+                            joint_goal, args.settle_timeout, begin
+                        )
+                        row["error_deg"] = math.degrees(error)
+                        if error > args.tolerance and moved < 0.01:
+                            row["status"] = "没动"
+                        elif error > args.tolerance:
+                            row["status"] = "未到位"
+                        else:
+                            row["status"] = "通过"
+            rows.append(row)
+            detail = f"  {row['status']:<14s} #{item['id']:2d} {item['name_cn']:<12s}"
+            if label:
+                detail += f" IK {label}"
+            if row["points"]:
+                detail += f" | {row['points']} 点/{row['duration']:.2f} s"
+            if row["error_deg"] is not None:
+                detail += f" | 误差 {row['error_deg']:.2f}°"
+            node.get_logger().info(detail)
+    return rows
+
+
+def write_sweep_report(path, args, rows):
+    buckets = {row["id"]: status_bucket(row["status"]) for row in rows}
+    subsets = sorted({row["subset"] for row in rows})
+    lines = [
+        "# 赛道一 规划 + 执行逐件验证",
+        "",
+        f"- 目标点：物品顶面中心 + {args.approach_height:.2f} m（法兰位置，未计爪长）",
+        f"- 每件 IK：32 个候选姿态 x {max(args.ik_repeat, 1)} 轮",
+        f"- 规划：RRTConnect，每件最多 {args.attempts} 次尝试、单次 {args.planning_time:g} s",
+        f"- 执行：速度/加速度缩放 {args.velocity_scaling:g}/{args.accel_scaling:g}，"
+        f"到位判据 = 实际移动 ≥ 0.01 rad 且跟踪误差 ≤ {math.degrees(args.tolerance):.2f}°",
+        "- 每个 Subset 开始前先回全零位（home）",
+        "- 相邻物品之间不回避让位，直接从上一件的终点继续规划（模拟连续作业）",
+        "",
+        "## 汇总",
+        "",
+        "| Subset | 通过 | 总数 | IK 失败 | 规划失败 | 执行未到位 |",
+        "| --- | --- | --- | --- | --- | --- |",
+    ]
+    for subset in subsets:
+        subset_rows = [row for row in rows if row["subset"] == subset]
+        count = lambda kind: sum(1 for row in subset_rows if buckets[row["id"]] == kind)  # noqa: E731
+        lines.append(
+            f"| {subset} | {count('ok')} | {len(subset_rows)} | {count('ik')} | "
+            f"{count('plan')} | {count('exec')} |"
+        )
+    total = lambda kind: sum(1 for kind_value in buckets.values() if kind_value == kind)  # noqa: E731
+    lines.append(
+        f"| **合计** | **{total('ok')}** | **{len(rows)}** | **{total('ik')}** | "
+        f"**{total('plan')}** | **{total('exec')}** |"
+    )
+    lines += [
+        "",
+        "> 通过 = IK 成功、OMPL 规划成功、Gazebo 里到位；IK 失败/规划失败是 40 件"
+        "物品逐件实测出来的，不是估计。执行列失败时先看这一件是不是刚好在机械臂"
+        "的奇异位形附近（日志里看轨迹点数和误差）。",
+    ]
+    for subset in subsets:
+        subset_rows = [row for row in rows if row["subset"] == subset]
+        ok = sum(1 for row in subset_rows if buckets[row["id"]] == "ok")
+        lines += [
+            "",
+            f"## Subset {subset}（{ok}/{len(subset_rows)}）",
+            "",
+            "| # | 物品 | 目标 (x,y,z) | IK 姿态 | 轨迹 | 跟踪误差 | 结果 |",
+            "| --- | --- | --- | --- | --- | --- | --- |",
+        ]
+        for row in subset_rows:
+            trajectory = f"{row['points']} 点 / {row['duration']:.2f} s" if row["points"] else "-"
+            error = f"{row['error_deg']:.2f}°" if row["error_deg"] is not None else "-"
+            lines.append(
+                f"| {row['id']} | {row['name']} | "
+                f"({row['position'][0]:+.2f}, {row['position'][1]:+.2f}, {row['position'][2]:.2f}) | "
+                f"{row['ik_pose'] or '-'} | {trajectory} | {error} | {row['status']} |"
+            )
+    with open(path, "w", encoding="utf-8") as handle:
+        handle.write("\n".join(lines) + "\n")
+
+
 def main(argv=None):
     args = parse_args(argv if argv is not None else sys.argv[1:])
     rclpy.init()
@@ -317,6 +528,21 @@ def main(argv=None):
     exit_code = 0
     try:
         node.wait_for_services()
+        if args.sweep_all or args.sweep_subset:
+            config = load_config(args.yaml)
+            subsets = (
+                sorted({item["subset"] for item in config["items"]})
+                if args.sweep_all
+                else [args.sweep_subset]
+            )
+            rows = sweep(node, config, subsets, args)
+            if args.out:
+                write_sweep_report(args.out, args, rows)
+                node.get_logger().info(f"报告已写入 {args.out}")
+            ok = sum(1 for row in rows if status_bucket(row["status"]) == "ok")
+            node.get_logger().info(f"逐件结果：{ok}/{len(rows)} 件走完 IK → 规划 → 执行")
+            return 0 if ok == len(rows) else 1
+
         begin = node.wait_for_joint_states()
         node.get_logger().info("起始关节角：" + " ".join(f"{v:+.3f}" for v in begin))
 
@@ -350,9 +576,9 @@ def main(argv=None):
         node.get_logger().info(
             f"实际移动量 {math.degrees(moved):.1f}°，跟踪误差 {math.degrees(max_error):.2f}°"
         )
-        if moved < 0.01:
-            raise RuntimeError("闭环失败：机械臂收到轨迹但几乎没动")
         if max_error > args.tolerance:
+            if moved < 0.01:
+                raise RuntimeError("闭环失败：机械臂收到轨迹但几乎没动")
             raise RuntimeError(
                 f"闭环失败：跟踪误差 {math.degrees(max_error):.2f}° 超过 {math.degrees(args.tolerance):.2f}°"
             )

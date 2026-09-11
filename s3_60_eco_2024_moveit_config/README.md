@@ -36,6 +36,10 @@ ros2 run s3_60_eco_2024_moveit_config plan_execute_demo.py --grasp-item 3
 ros2 run s3_60_eco_2024_moveit_config check_reachability.py --subset 1
 ros2 run s3_60_eco_2024_moveit_config check_reachability.py --all \
     --out src/s3_60_eco_2024_moveit_config/docs/track1_reachability_all.md
+
+# 5) 40 件逐件跑 IK → 规划 → 执行（约 8 分钟，自动换场景并写报告）
+ros2 run s3_60_eco_2024_moveit_config plan_execute_demo.py --sweep-all \
+    --out src/s3_60_eco_2024_moveit_config/docs/track1_plan_execute_all.md
 ```
 
 只想在 RViz 里看 40 件物品怎么摆（不进 Gazebo）：`load_track1_items.py --all`
@@ -59,12 +63,13 @@ ros2 run s3_60_eco_2024_moveit_config workspace_map.py --z 0.35 --x-step 0.1 --y
 | `config/track1_items.yaml` | 40 件物品（4 个 Subset）的包围尺寸 + 商品链接 + 桌子/摆放 |
 | `scripts/load_track1_items.py` | 把物品（含桌面）加载进规划场景 |
 | `scripts/check_reachability.py` | 逐件检查"从上方抓"的位姿能否解出 IK（`--all` 逐 Subset 换场景后汇总） |
-| `scripts/plan_execute_demo.py` | 规划+执行闭环：IK → OMPL → 控制器 → Gazebo，量跟踪误差，失败非零退出 |
+| `scripts/plan_execute_demo.py` | 规划+执行闭环：IK → OMPL → 控制器 → Gazebo，量跟踪误差；`--sweep-all` 逐件跑完 40 件并汇总 |
 | `scripts/workspace_map.py` | 扫描 x-y 平面，输出可达区域图 |
 | `launch/move_group.launch.py` | 起 move_group（`use_sim_time:=false` 可接真机） |
 | `docs/track1_reachability.md` | Subset 1 的可达性结果（单独报告） |
 | `docs/track1_reachability_all.md` | 4 个 Subset 共 40 件的总表 |
 | `docs/plan_execute_verification.md` | 规划→执行闭环的实测记录和踩过的坑 |
+| `docs/track1_plan_execute_all.md` | 40 件逐件"IK → 规划 → 执行"的结果表 |
 | `docs/workspace_map_z035.md` | z=0.35 m 平面的可达区域图 |
 
 ## 实测结论（2026-09-11，Humble + MoveIt 2.5.9）
@@ -99,6 +104,16 @@ ros2 run s3_60_eco_2024_moveit_config workspace_map.py --z 0.35 --x-step 0.1 --y
 
    细节见 `docs/plan_execute_verification.md`。
 
+8. **40 件逐件跑通了"IK → 规划 → 执行"**（`plan_execute_demo.py --sweep-all`）：
+   **27/40 通过**，13 件失败全部卡在 IK（够不到）；凡是 IK 有解的都规划成功、
+   在 Gazebo 里到位（跟踪误差 0.33°~0.60°）。明细见
+   `docs/track1_plan_execute_all.md`。扫描过程中又修掉两个坑：
+   - 碰撞检查步长 `longest_valid_segment_fraction` 0.05 太粗，会规划出
+     "插值会撞"的路径，被流水线判 `INVALID_MOTION_PLAN(-2)`；改成默认的
+     0.005 后消失；
+   - 连续作业时如果上一件终点停在桌面里，新场景一加载起始状态就在碰撞中，
+     整组规划全灭；改成每组开始前先回零位。
+
 ## 限制与注意
 
 - **没有爪子**：IK 目标是"法兰 link6 位于物品顶面 + 5 cm"，真装上爪后目标要再抬高
@@ -106,8 +121,8 @@ ros2 run s3_60_eco_2024_moveit_config workspace_map.py --z 0.35 --x-step 0.1 --y
 - **尺寸多为估计**：`track1_items.yaml` 里每件都有 `source` 字段
   （`ycb近似` 11 件 / `估计` 18 件 / `待实测` 11 件），正式用之前按实物或商品页核对。
 - **IK 成功 ≠ 轨迹能走**：IK 只说明那一瞬间的位姿可达，实际还要过 OMPL 规划与
-  执行；这两步现在有 `plan_execute_demo.py` 验证，但只对 4 个目标逐件跑过，
-  40 件没有全跑。
+  执行；这两步现在有 `plan_execute_demo.py` 验证，40 件逐件跑过（27/40 通过，
+  13 件卡在 IK）。注意物品还是估计尺寸的包围盒，不是真实物体。
 - 物品只是 MoveIt 规划场景里的碰撞体，**没有摆进 Gazebo**（Gazebo 里只有机器人）。
 
 ## 下一步
@@ -115,7 +130,7 @@ ros2 run s3_60_eco_2024_moveit_config workspace_map.py --z 0.35 --x-step 0.1 --y
 1. 用实测尺寸替换 `估计/待实测`；
 2. 演示抓取流程：加简化两指夹爪 + 假抓取（接触后把物体固定到 link6），
    把"接近 → 下爪 → 合爪 → 抬起"串成一条完整演示；
-3. 40 件里可达的那些逐件跑"规划 + 执行"，把规划/执行失败的挑出来；
-4. 视觉接入：现在物品位姿是写死的布局，比赛要用相机给位姿；
-5. 远排可达率低（7/20），可以换 IK 插件（pick_ik / TRAC-IK）或调整桌面距离后
+3. 视觉接入：现在物品位姿是写死的布局，比赛要用相机给位姿；
+4. 远排可达率低（7/20），可以换 IK 插件（pick_ik / TRAC-IK）或调整桌面距离后
    重跑总表。
+5. 比赛节拍：现在的扫描用 0.3 速度缩放，用更高缩放重跑一遍，统计每件耗时。

@@ -19,6 +19,29 @@ Gazebo 里真的走一遍"整条链路跑通，执行完再读 `/joint_states` �
 跟踪误差 0.3°~0.6° 是 Gazebo 位置控制器的稳态误差（`demo_trajectory.py` 单独发轨迹时
 也是这个量级），不是规划问题。
 
+## 40 件物品逐件扫描（`--sweep-all`）
+
+```bash
+ros2 run s3_60_eco_2024_moveit_config plan_execute_demo.py --sweep-all \
+    --out src/s3_60_eco_2024_moveit_config/docs/track1_plan_execute_all.md
+```
+
+做法：每个 Subset 先清空场景、回全零位，再摆该组物品；逐件 IK（32 个姿态 x 2 轮）
+→ OMPL 规划 → 控制器执行 → 量跟踪误差；件与件之间直接从上一件的终点继续规划，
+模拟连续作业。
+
+| Subset | 通过 | IK 失败 | 规划失败 | 执行未到位 |
+| --- | --- | --- | --- | --- |
+| 1 | 7/10 | 3 | 0 | 0 |
+| 2 | 6/10 | 4 | 0 | 0 |
+| 3 | 6/10 | 4 | 0 | 0 |
+| 4 | 8/10 | 2 | 0 | 0 |
+| **合计** | **27/40** | 13 | 0 | 0 |
+
+和只做 IK 的可达性检查（`track1_reachability_all.md`，也是 27/40）完全一致：
+**13 件够不到的全部卡在 IK；凡是 IK 有解的都能规划出来并在 Gazebo 里到位**
+（跟踪误差 0.33°~0.60°）。逐件明细见 `track1_plan_execute_all.md`。
+
 ## 过程中修掉的两个配置问题
 
 这两个问题都只在"真去执行"的时候才暴露：只做 IK/工作空间检查时看不出来。
@@ -61,6 +84,27 @@ MoveIt 侧的表象是 `MoveGroup` 返回 `-4`（`CONTROL_FAILED`），容易误
 修法：把 `AddTimeOptimalParameterization` 挪进 `request_adapters`，用正确的前缀
 `default_planner_request_adapters/`，并去掉不存在的 `response_adapters`。
 
+## 逐件扫描又暴露的两个坑
+
+### 3. 碰撞检查步长太粗：轨迹看着能走，其实撞了
+
+`ompl.arm.longest_valid_segment_fraction` 原来是 `0.05`。步长太粗时 OMPL 会接受
+"两个状态之间插值会撞上"的近路，规划流水线用更细的分辨率复算后判定
+`INVALID_MOTION_PLAN(-2)`，MoveGroup 就返回 -2——但轨迹点数、时长都正常，
+很容易误判成控制器的问题。实测 Subset 4 的 #31 某物品、#38 某物品都这样失败。
+改成 MoveIt 默认的 `0.005` 后两件一次通过。
+
+### 4. 起始位形停在桌面里：一整组规划全灭
+
+连续扫描时，上一件的终点就是下一件的起点。如果终点停在桌面/物品上方很低的位置，
+新场景一加载，起始状态就在碰撞里，OMPL 直接报
+`Motion planning start tree could not be initialized!`，整组 10 件全部
+`FAILURE(99999)`（实测 Subset 1 出现过 0/10）。
+
+修法：每个 Subset 开始前先清空场景 → 回全零位 → 再摆该组物品。
+手动跑单件时也会遇到同样的现象（机械臂停在奇怪的位置还接着规划下一个目标），
+先回 `--named home` 就好了。
+
 ## 复现
 
 ```bash
@@ -73,6 +117,8 @@ ros2 run s3_60_eco_2024_moveit_config plan_execute_demo.py --named demo
 ros2 run s3_60_eco_2024_moveit_config load_track1_items.py --subset 1
 ros2 run s3_60_eco_2024_moveit_config plan_execute_demo.py --grasp-item 3
 ros2 run s3_60_eco_2024_moveit_config plan_execute_demo.py --grasp-item 7
+# 40 件逐件扫描（约 8 分钟，自动换场景并汇总）
+ros2 run s3_60_eco_2024_moveit_config plan_execute_demo.py --sweep-all --out report.md
 ```
 
 `--plan-only` 只规划不执行；`--tilt-deg/--yaw-deg` 可以手动指定接近姿态；
@@ -82,7 +128,7 @@ ros2 run s3_60_eco_2024_moveit_config plan_execute_demo.py --grasp-item 7
 
 - 链路终点是"法兰到达抓取位姿上方"，**没有爪子、没有合爪、没有把物品拎起来**；
   抓取动作要等简化两指夹爪 + 假抓取（接触后把物体固定到 `link6`）做出来再验证；
-- 只对上面 4 个目标做过实测，40 件物品没有逐件跑规划+执行（IK 层的结果见
-  `track1_reachability_all.md`）；
+- 40 件都跑过"IK → 规划 → 执行"，但用的还是估计尺寸的包围盒，不是真实物体；
+- 扫描用的速度缩放是 0.3，比赛节拍要另测（`--velocity-scaling/--accel-scaling`）；
 - 规划出的轨迹只避开规划场景里的碰撞体（桌面 + 物品包围盒），和真实物体的
   形状差异还是有的。
