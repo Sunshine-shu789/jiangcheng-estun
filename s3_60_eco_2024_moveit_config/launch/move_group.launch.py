@@ -77,8 +77,24 @@ def generate_launch_description():
         name="rviz2",
         output="screen",
         arguments=["-d", rviz_config],
-        # 和 Gazebo 一起用时必须跟仿真时钟走，否则 TF/规划场景的时间戳对不上。
-        parameters=[{"use_sim_time": LaunchConfiguration("use_sim_time")}],
+        parameters=[
+            # 和 Gazebo 一起用时必须跟仿真时钟走，否则 TF/规划场景的时间戳对不上。
+            {"use_sim_time": LaunchConfiguration("use_sim_time")},
+            # MotionPlanning 显示从 RViz 节点自己的参数里读 URDF/SRDF：只靠
+            # robot_description 话题不够，缺 robot_description_semantic 时插件会
+            # 报 "Unable to parse SRDF"、robot model 加载不了，规划场景里的
+            # 碰撞体（40 件物品）就完全不会显示。
+            {
+                "robot_description": read_text(
+                    os.path.join(robot_dir, "urdf", "s3_60_eco_2024.urdf")
+                )
+            },
+            {
+                "robot_description_semantic": read_text(
+                    os.path.join(config_dir, "s3_60_eco_2024.srdf")
+                )
+            },
+        ],
         condition=IfCondition(LaunchConfiguration("rviz")),
     )
 
