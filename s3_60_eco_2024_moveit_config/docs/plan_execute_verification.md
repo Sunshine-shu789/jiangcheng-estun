@@ -40,7 +40,7 @@ ros2 run s3_60_eco_2024_moveit_config plan_execute_demo.py --sweep-all \
 
 和只做 IK 的可达性检查（`track1_reachability_all.md`，也是 27/40）完全一致：
 **13 件够不到的全部卡在 IK；凡是 IK 有解的都能规划出来并在 Gazebo 里到位**
-（跟踪误差 0.33°~0.60°）。逐件明细见 `track1_plan_execute_all.md`。
+（跟踪误差 0.38°~0.56°）。逐件明细见 `track1_plan_execute_all.md`。
 
 ## 过程中修掉的两个配置问题
 

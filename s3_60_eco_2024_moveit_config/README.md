@@ -106,7 +106,7 @@ ros2 run s3_60_eco_2024_moveit_config workspace_map.py --z 0.35 --x-step 0.1 --y
 
 8. **40 件逐件跑通了"IK → 规划 → 执行"**（`plan_execute_demo.py --sweep-all`）：
    **27/40 通过**，13 件失败全部卡在 IK（够不到）；凡是 IK 有解的都规划成功、
-   在 Gazebo 里到位（跟踪误差 0.33°~0.60°）。明细见
+   在 Gazebo 里到位（跟踪误差 0.38°~0.56°）。明细见
    `docs/track1_plan_execute_all.md`。扫描过程中又修掉两个坑：
    - 碰撞检查步长 `longest_valid_segment_fraction` 0.05 太粗，会规划出
      "插值会撞"的路径，被流水线判 `INVALID_MOTION_PLAN(-2)`；改成默认的
