@@ -131,8 +131,22 @@ def build_scene(config, items, with_table, layout_offset=(0.0, 0.0),
 
 
 def load_config(path):
+    check_config(path)
     with open(path, encoding="utf-8") as handle:
         return yaml.safe_load(handle)
+
+
+def check_config(path):
+    """默认配置不存在时给出明确指引（仓库不附带真实物品清单）。"""
+    if os.path.exists(path):
+        return
+    example = os.path.join(os.path.dirname(path), "track1_items.example.yaml")
+    raise SystemExit(
+        f"找不到物品尺寸表：{path}\n"
+        "本仓库不附带物品清单，请先复制模板、按自己的清单填好 items：\n"
+        f"  cp {example} {path}\n"
+        "（如果改的是 src 里的文件，改完要重新 colcon build 并 source install/setup.bash）"
+    )
 
 
 def main(argv=None):

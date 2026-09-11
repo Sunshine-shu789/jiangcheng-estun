@@ -33,7 +33,7 @@ from rclpy.node import Node
 
 # 场景构建逻辑和 load_track1_items.py 共用，避免两边摆位规则走偏。
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from load_track1_items import build_scene  # noqa: E402  (path 只在上面那行之后才对)
+from load_track1_items import build_scene, check_config  # noqa: E402  (path 只在上面那行之后才对)
 
 # 工具轴向下、绕 z 转 yaw、再往机器人这一侧倾 tilt 的候选姿态。KDL 是局部求解器，
 # 候选给太少会把"其实够得着"的目标误判成不可达，所以宁可多试几个。
@@ -328,6 +328,7 @@ def write_all_report(path, args, rows_by_subset):
 
 def main(argv=None):
     args = parse_args(argv if argv is not None else sys.argv[1:])
+    check_config(args.yaml)
     with open(args.yaml, encoding="utf-8") as handle:
         config = yaml.safe_load(handle)
     subsets = sorted({item["subset"] for item in config["items"]}) if args.all else [args.subset]

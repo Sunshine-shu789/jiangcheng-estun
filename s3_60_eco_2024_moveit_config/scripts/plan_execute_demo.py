@@ -57,7 +57,7 @@ from rclpy.node import Node
 from sensor_msgs.msg import JointState
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from load_track1_items import build_scene  # noqa: E402  (path 只在上面那行之后才对)
+from load_track1_items import build_scene, check_config  # noqa: E402  (path 只在上面那行之后才对)
 
 JOINTS = [f"joint{i}" for i in range(1, 7)]
 MOVE_ACTION = "move_action"
@@ -99,6 +99,7 @@ def item_height(item):
 
 
 def load_config(path):
+    check_config(path)
     with open(path, encoding="utf-8") as handle:
         return yaml.safe_load(handle)
 
