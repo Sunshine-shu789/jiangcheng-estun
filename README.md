@@ -65,3 +65,15 @@ ros2 run s3_60_eco_2024_moveit_config workspace_map.py --z 0.35
 - URDF 和 meshes 来自厂家 SolidWorks 导出，版权归埃斯顿酷卓所有，此处仅用于
   兼容性开发；请勿用于商业用途。
 - 仿真用 Gazebo Classic（Gazebo 11），未在 Gazebo Sim / Ignition 上验证。
+
+## 第三届埃斯顿比赛 2026 自研资料归档
+
+仓库中的 [`competition_2026/`](competition_2026/) 保存正式比赛程序、配置、标定文本、
+报告清单、历史源码备份和自训练模型。数据集、全部训练轮次、完整日志/报告媒体、
+现场照片和历史快照体积较大，按分类压缩并附逐文件 SHA256 后放在：
+
+**https://github.com/Sunshine-shu789/jiangcheng-estun/releases/tag/competition-2026-self-developed**
+
+归档只包含团队自行开发、采集、标注、训练和记录的资料；官方任务资料、厂家 CAD/mesh、
+厂家 ROS 包、运行镜像及第三方基础权重不包含在内。分类说明、排除项、断链记录和还原
+命令见 [`competition_2026/README.md`](competition_2026/README.md) 与 Release 说明。
