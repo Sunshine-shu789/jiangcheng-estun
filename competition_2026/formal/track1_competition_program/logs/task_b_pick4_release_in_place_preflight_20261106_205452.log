@@ -1,0 +1,13 @@
+[start] mode=preflight; log=/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/task_b_pick4_release_in_place_preflight_20261106_205452.log
+[authorization] 只读预检；不会发布机械臂运动或夹爪动作命令
+[gripper:ms42dc] /dev/serial/by-id/usb-1a86_USB_Single_Serial_5CF0022496-if00 @ 115200 id=1 subdivide=32
+[preflight] robot: controller state=AutoReady; fault=False; joints_deg=[70.9854, 93.9454, -75.5989, -71.6535, 90.0027, -41.7741]; tcp_xyz_m=(0.036969, 0.435561, 0.24491); tcp_rpy_rad=(3.141561, -3.5e-05, 0.397228) lift_position_error=0.006 mm lift_orientation_error=0.000049 rad
+[preflight] gripper: id=1 arrived=True angle=1978.8 deg speed=0.0 rad/s
+[targets] release_xyz=(0.036983, 0.435557, 0.169903) release_rpy=(3.141593, 0.0, 0.397242); retreat_xyz=(0.036971, 0.435557, 0.244906) retreat_rpy=(3.141593, 0.0, 0.397242)
+[motion:plan-timing] target 1: total_s=0.065, attempts=1, waypoints=38, planning_step_mm=2.000, max_joint_step=0.443 deg, max_joint_accel=0.010 deg, min_sigma=0.065920
+[motion:cartesian-precheck] target 1: 38 waypoint(s), planning_step=2.000 mm, max_joint_step=0.443 deg, max_joint_accel=0.010 deg, min_sigma=0.06592, axis_step_deg=0.001,0.443,0.401,0.176,0.002,0.001, axis_travel_deg=0.004,16.371,12.234,4.130,0.005,0.005
+[motion:plan-timing] target 2: total_s=0.066, attempts=1, waypoints=38, planning_step_mm=2.000, max_joint_step=0.444 deg, max_joint_accel=0.021 deg, min_sigma=0.065700
+[motion:cartesian-precheck] target 2: 38 waypoint(s), planning_step=2.000 mm, max_joint_step=0.444 deg, max_joint_accel=0.021 deg, min_sigma=0.06570, axis_step_deg=0.001,0.444,0.405,0.173,0.002,0.001, axis_travel_deg=0.002,16.361,12.215,4.129,0.003,0.002
+[motion:linear-precheck] validated 2 segment(s), 76 Cartesian waypoint(s), min_sigma=0.06569, total_s=0.133
+[preflight] IK PASS: segments=2 waypoints=76 descent=75.007 mm retreat=75.003 mm min_sigma=0.06570 max_joint_step=0.444 deg max_joint_accel=0.021 deg
+[RESULT] 预检通过：当前姿态、夹持状态和两段恢复路径均安全；未发送运动命令

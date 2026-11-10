@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -o pipefail
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+export TRACK1_CONFIG="${TRACK1_CONFIG:-$ROOT/config/track1_task_b_box_relative_mock.yaml}"
+exec "$ROOT/bin/track1_task_runner" "B" "$@"

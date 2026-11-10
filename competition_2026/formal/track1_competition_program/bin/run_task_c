@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Compatibility entry point.  Formal C/D desktop shortcuts use bin/run_task_cd.
+set -o pipefail
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+exec "$ROOT/bin/run_task_cd" C "$@"

@@ -1,0 +1,510 @@
+{
+  "created_at": "2026-10-29T23:22:01+08:00",
+  "mode": "offline_front10_acceptance",
+  "weights": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_train_40class_v3/track1_40class_20261029_230844/weights/last.pt",
+  "weights_sha256": "9ca3ece47217fa43fe3058effe4990c65788257bd6934d2e03adb86e947ef388",
+  "dataset_yaml": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v3/dataset.yaml",
+  "split": "val",
+  "image_count_total": 103,
+  "image_count_with_front10_gt": 23,
+  "conf_threshold": 0.15,
+  "nms_iou": 0.6,
+  "match_iou": 0.5,
+  "imgsz": 640,
+  "device": "0",
+  "class_count": 40,
+  "front10_gt": 25,
+  "front10_tp": 23,
+  "front10_fn": 2,
+  "missing": 0,
+  "wrong_class": 2,
+  "localization": 0,
+  "false_positive_predictions": 7,
+  "error_count": 2,
+  "front10_recall": 0.92,
+  "accepted": false,
+  "acceptance_rule": "无漏检、无错类、无定位错误、无未匹配预测，且前10类验证集每类至少一个 GT；该规则偏严格，用于现场前验收。",
+  "classes": [
+    {
+      "class_id": 0,
+      "official_id": 1,
+      "name": "1-Cheez-it",
+      "gt": 2,
+      "tp": 2,
+      "fp": 0,
+      "recall": 1.0,
+      "precision": 1.0,
+      "missing": 0,
+      "wrong_class": 0,
+      "localization": 0
+    },
+    {
+      "class_id": 1,
+      "official_id": 2,
+      "name": "2-Starkist_Tuna",
+      "gt": 3,
+      "tp": 3,
+      "fp": 1,
+      "recall": 1.0,
+      "precision": 0.75,
+      "missing": 0,
+      "wrong_class": 0,
+      "localization": 0
+    },
+    {
+      "class_id": 2,
+      "official_id": 3,
+      "name": "3-Scissors",
+      "gt": 3,
+      "tp": 3,
+      "fp": 0,
+      "recall": 1.0,
+      "precision": 1.0,
+      "missing": 0,
+      "wrong_class": 0,
+      "localization": 0
+    },
+    {
+      "class_id": 3,
+      "official_id": 4,
+      "name": "4-Frenchs_Mustard",
+      "gt": 2,
+      "tp": 2,
+      "fp": 0,
+      "recall": 1.0,
+      "precision": 1.0,
+      "missing": 0,
+      "wrong_class": 0,
+      "localization": 0
+    },
+    {
+      "class_id": 4,
+      "official_id": 5,
+      "name": "5-Tomato_Soup",
+      "gt": 4,
+      "tp": 2,
+      "fp": 1,
+      "recall": 0.5,
+      "precision": 0.66667,
+      "missing": 0,
+      "wrong_class": 2,
+      "localization": 0
+    },
+    {
+      "class_id": 5,
+      "official_id": 6,
+      "name": "6-Foam_Brick",
+      "gt": 2,
+      "tp": 2,
+      "fp": 0,
+      "recall": 1.0,
+      "precision": 1.0,
+      "missing": 0,
+      "wrong_class": 0,
+      "localization": 0
+    },
+    {
+      "class_id": 6,
+      "official_id": 7,
+      "name": "7-Clamp",
+      "gt": 2,
+      "tp": 2,
+      "fp": 0,
+      "recall": 1.0,
+      "precision": 1.0,
+      "missing": 0,
+      "wrong_class": 0,
+      "localization": 0
+    },
+    {
+      "class_id": 7,
+      "official_id": 8,
+      "name": "8-Plastic_Banana",
+      "gt": 2,
+      "tp": 2,
+      "fp": 0,
+      "recall": 1.0,
+      "precision": 1.0,
+      "missing": 0,
+      "wrong_class": 0,
+      "localization": 0
+    },
+    {
+      "class_id": 8,
+      "official_id": 9,
+      "name": "9-Mug",
+      "gt": 1,
+      "tp": 1,
+      "fp": 0,
+      "recall": 1.0,
+      "precision": 1.0,
+      "missing": 0,
+      "wrong_class": 0,
+      "localization": 0
+    },
+    {
+      "class_id": 9,
+      "official_id": 10,
+      "name": "10-meat_can",
+      "gt": 4,
+      "tp": 4,
+      "fp": 0,
+      "recall": 1.0,
+      "precision": 1.0,
+      "missing": 0,
+      "wrong_class": 0,
+      "localization": 0
+    }
+  ],
+  "errors": [
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v3/images/val/front10__front10-review-unit-0025__001382.png",
+      "gt_index": 0,
+      "gt_class_id": 4,
+      "gt_name": "5-Tomato_Soup",
+      "gt_xyxy": [
+        182.1,
+        286.0,
+        302.1,
+        411.3
+      ],
+      "reason": "wrong_class",
+      "prediction_class_id": 1,
+      "prediction_name": "2-Starkist_Tuna",
+      "prediction_score": 0.66714,
+      "prediction_xyxy": [
+        174.49,
+        289.67,
+        297.1,
+        415.38
+      ],
+      "iou": 0.8497
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v3/images/val/front10__front10-review-unit-0031__001404.png",
+      "gt_index": 0,
+      "gt_class_id": 4,
+      "gt_name": "5-Tomato_Soup",
+      "gt_xyxy": [
+        242.8,
+        148.9,
+        396.1,
+        248.1
+      ],
+      "reason": "wrong_class",
+      "prediction_class_id": 39,
+      "prediction_name": "40-Pringles",
+      "prediction_score": 0.38459,
+      "prediction_xyxy": [
+        243.2,
+        151.84,
+        399.83,
+        254.22
+      ],
+      "iou": 0.8906
+    }
+  ],
+  "images": [
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v3/images/val/front10__front10-review-unit-0002__001294.png",
+      "width": 640,
+      "height": 480,
+      "front10_gt": 1,
+      "all_gt": 1,
+      "predictions": 1,
+      "matched": 1,
+      "unmatched_predictions": 0,
+      "errors": []
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v3/images/val/front10__front10-review-unit-0005__001303.png",
+      "width": 640,
+      "height": 480,
+      "front10_gt": 1,
+      "all_gt": 1,
+      "predictions": 1,
+      "matched": 1,
+      "unmatched_predictions": 0,
+      "errors": []
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v3/images/val/front10__front10-review-unit-0011__001321.png",
+      "width": 640,
+      "height": 480,
+      "front10_gt": 1,
+      "all_gt": 1,
+      "predictions": 2,
+      "matched": 1,
+      "unmatched_predictions": 1,
+      "errors": []
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v3/images/val/front10__front10-review-unit-0013__001333.png",
+      "width": 640,
+      "height": 480,
+      "front10_gt": 1,
+      "all_gt": 1,
+      "predictions": 1,
+      "matched": 1,
+      "unmatched_predictions": 0,
+      "errors": []
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v3/images/val/front10__front10-review-unit-0015__001351.png",
+      "width": 640,
+      "height": 480,
+      "front10_gt": 1,
+      "all_gt": 1,
+      "predictions": 2,
+      "matched": 1,
+      "unmatched_predictions": 1,
+      "errors": []
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v3/images/val/front10__front10-review-unit-0018__001361.png",
+      "width": 640,
+      "height": 480,
+      "front10_gt": 1,
+      "all_gt": 1,
+      "predictions": 1,
+      "matched": 1,
+      "unmatched_predictions": 0,
+      "errors": []
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v3/images/val/front10__front10-review-unit-0020__001369.png",
+      "width": 640,
+      "height": 480,
+      "front10_gt": 1,
+      "all_gt": 1,
+      "predictions": 1,
+      "matched": 1,
+      "unmatched_predictions": 0,
+      "errors": []
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v3/images/val/front10__front10-review-unit-0025__001382.png",
+      "width": 640,
+      "height": 480,
+      "front10_gt": 1,
+      "all_gt": 1,
+      "predictions": 2,
+      "matched": 0,
+      "unmatched_predictions": 2,
+      "errors": [
+        {
+          "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v3/images/val/front10__front10-review-unit-0025__001382.png",
+          "gt_index": 0,
+          "gt_class_id": 4,
+          "gt_name": "5-Tomato_Soup",
+          "gt_xyxy": [
+            182.1,
+            286.0,
+            302.1,
+            411.3
+          ],
+          "reason": "wrong_class",
+          "prediction_class_id": 1,
+          "prediction_name": "2-Starkist_Tuna",
+          "prediction_score": 0.66714,
+          "prediction_xyxy": [
+            174.49,
+            289.67,
+            297.1,
+            415.38
+          ],
+          "iou": 0.8497
+        }
+      ]
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v3/images/val/front10__front10-review-unit-0028__001396.png",
+      "width": 640,
+      "height": 480,
+      "front10_gt": 1,
+      "all_gt": 1,
+      "predictions": 3,
+      "matched": 1,
+      "unmatched_predictions": 2,
+      "errors": []
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v3/images/val/front10__front10-review-unit-0031__001404.png",
+      "width": 640,
+      "height": 480,
+      "front10_gt": 1,
+      "all_gt": 1,
+      "predictions": 1,
+      "matched": 0,
+      "unmatched_predictions": 1,
+      "errors": [
+        {
+          "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v3/images/val/front10__front10-review-unit-0031__001404.png",
+          "gt_index": 0,
+          "gt_class_id": 4,
+          "gt_name": "5-Tomato_Soup",
+          "gt_xyxy": [
+            242.8,
+            148.9,
+            396.1,
+            248.1
+          ],
+          "reason": "wrong_class",
+          "prediction_class_id": 39,
+          "prediction_name": "40-Pringles",
+          "prediction_score": 0.38459,
+          "prediction_xyxy": [
+            243.2,
+            151.84,
+            399.83,
+            254.22
+          ],
+          "iou": 0.8906
+        }
+      ]
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v3/images/val/front10__front10-review-unit-0035__001416.png",
+      "width": 640,
+      "height": 480,
+      "front10_gt": 1,
+      "all_gt": 1,
+      "predictions": 1,
+      "matched": 1,
+      "unmatched_predictions": 0,
+      "errors": []
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v3/images/val/front10__front10-review-unit-0038__001424.png",
+      "width": 640,
+      "height": 480,
+      "front10_gt": 1,
+      "all_gt": 1,
+      "predictions": 1,
+      "matched": 1,
+      "unmatched_predictions": 0,
+      "errors": []
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v3/images/val/front10__front10-review-unit-0044__001443.png",
+      "width": 640,
+      "height": 480,
+      "front10_gt": 1,
+      "all_gt": 1,
+      "predictions": 1,
+      "matched": 1,
+      "unmatched_predictions": 0,
+      "errors": []
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v3/images/val/front10__front10-review-unit-0046__001453.png",
+      "width": 640,
+      "height": 480,
+      "front10_gt": 1,
+      "all_gt": 1,
+      "predictions": 1,
+      "matched": 1,
+      "unmatched_predictions": 0,
+      "errors": []
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v3/images/val/front10__front10-review-unit-0049__001464.png",
+      "width": 640,
+      "height": 480,
+      "front10_gt": 1,
+      "all_gt": 1,
+      "predictions": 1,
+      "matched": 1,
+      "unmatched_predictions": 0,
+      "errors": []
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v3/images/val/front10__front10-review-unit-0050__001475.png",
+      "width": 640,
+      "height": 480,
+      "front10_gt": 1,
+      "all_gt": 1,
+      "predictions": 1,
+      "matched": 1,
+      "unmatched_predictions": 0,
+      "errors": []
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v3/images/val/front10__front10-review-unit-0058__001508.png",
+      "width": 640,
+      "height": 480,
+      "front10_gt": 1,
+      "all_gt": 1,
+      "predictions": 1,
+      "matched": 1,
+      "unmatched_predictions": 0,
+      "errors": []
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v3/images/val/front10__front10-review-unit-0065__001538.png",
+      "width": 640,
+      "height": 480,
+      "front10_gt": 1,
+      "all_gt": 1,
+      "predictions": 1,
+      "matched": 1,
+      "unmatched_predictions": 0,
+      "errors": []
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v3/images/val/front10__front10-review-unit-0068__001535.png",
+      "width": 640,
+      "height": 480,
+      "front10_gt": 1,
+      "all_gt": 1,
+      "predictions": 1,
+      "matched": 1,
+      "unmatched_predictions": 0,
+      "errors": []
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v3/images/val/front10__front10-review-unit-0069__001544.png",
+      "width": 640,
+      "height": 480,
+      "front10_gt": 1,
+      "all_gt": 1,
+      "predictions": 1,
+      "matched": 1,
+      "unmatched_predictions": 0,
+      "errors": []
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v3/images/val/front10__front10-review-unit-0070__001551.png",
+      "width": 640,
+      "height": 480,
+      "front10_gt": 3,
+      "all_gt": 3,
+      "predictions": 3,
+      "matched": 3,
+      "unmatched_predictions": 0,
+      "errors": []
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v3/images/val/scissors_v3__g6__001349.png",
+      "width": 640,
+      "height": 480,
+      "front10_gt": 1,
+      "all_gt": 1,
+      "predictions": 1,
+      "matched": 1,
+      "unmatched_predictions": 0,
+      "errors": []
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v3/images/val/scissors_v3__g6__001350.png",
+      "width": 640,
+      "height": 480,
+      "front10_gt": 1,
+      "all_gt": 1,
+      "predictions": 1,
+      "matched": 1,
+      "unmatched_predictions": 0,
+      "errors": []
+    }
+  ]
+}

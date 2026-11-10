@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Build the v10 all-class human-reviewed dataset with train-only offline augmentation.
+set -euo pipefail
+ROOT="/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序"
+PYTHON="${TRACK1_PREP_PYTHON:-/usr/bin/python3}"
+SITE_PACKAGES="${TRACK1_PREP_SITE_PACKAGES:-/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages}"
+APP_DIR="$ROOT/app/track1_training_prep"
+exec env \
+  TRACK1_PROJECT_ROOT="$ROOT" \
+  PYTHONNOUSERSITE=1 \
+  PYTHONDONTWRITEBYTECODE=1 \
+  PYTHONPATH="$SITE_PACKAGES:$APP_DIR" \
+  "$PYTHON" "$APP_DIR/build_track1_training_v10_all_multiclass_augmented.py" "$@"

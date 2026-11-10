@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-31T02:13:34+08:00",
+  "status": "REJECTED",
+  "do_not_deploy": true,
+  "candidate_name": "v5_plus_v7_classification_rows",
+  "candidate_weights": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_candidate_v8_v5_plus_v7rows/track1_candidate_v8_v5_plus_v7rows_20261031_014643/weights/best.pt",
+  "candidate_weights_sha256": "ff107252af77a9d98fc4810bf05e40e971ec1b7fe6b00819ebc55a9a96dcc6aa",
+  "candidate_audit": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_candidate_v8_v5_plus_v7rows/track1_candidate_v8_v5_plus_v7rows_20261031_014643/post_train_audit.json",
+  "candidate_audit_sha256": "5fdf77d589790abcf090e10ae63362e815412cfa6dae98ec8d451c7eba1ae556",
+  "candidate_accepted": false,
+  "candidate_map50": 0.8854940426928348,
+  "candidate_map50_95": 0.6807942464759796,
+  "rejection_reason": "v7 分类行是在 v6 特征上训练的，直接移植到 v5 特征后必需新增类识别失效。",
+  "required_class_results": {
+    "16": {
+      "internal_index": 16,
+      "official_id": 17,
+      "name": "17-Eggs_Plush",
+      "minimum_ap50": 0.3,
+      "ap50": 0.0,
+      "ok": false
+    },
+    "25": {
+      "internal_index": 25,
+      "official_id": 26,
+      "name": "26-Plastic_Strawberry",
+      "minimum_ap50": 0.3,
+      "ap50": 0.10227272727272727,
+      "ok": false
+    }
+  },
+  "errors": [
+    "必需新增类未通过：17-Eggs_Plush AP50=0.0，要求 >= 0.300",
+    "必需新增类未通过：26-Plastic_Strawberry AP50=0.10227272727272727，要求 >= 0.300"
+  ],
+  "conclusion": "禁止部署此候选；v8 必须从 v5 特征重新训练分类行，不能复制 v7 行。",
+  "superseded_by_plan": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/track1_train_40class_v8_v5rowfix.yaml"
+}

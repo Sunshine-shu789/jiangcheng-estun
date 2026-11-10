@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Validate the Task B static box-clearance measurement record.
+# This validator never constructs a ROS node or sends robot/gripper commands.
+set -eo pipefail
+
+ROOT="${TRACK1_ROOT:-/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序}"
+RUNTIME="${TRACK1_RUNTIME_MOUNT:-/media/sunshine/ESTUN_RUNTIME}"
+
+"$ROOT/bin/ensure_runtime"
+# shellcheck disable=SC1091
+source /opt/ros/humble/setup.bash
+# shellcheck disable=SC1091
+source "$RUNTIME/ros2_ws/install/setup.bash"
+set -u
+export PYTHONDONTWRITEBYTECODE=1
+export PYTHONPATH="$ROOT/app/track1_grasp${PYTHONPATH:+:$PYTHONPATH}"
+
+exec python3 -m track1_grasp.tools.validate_task_b_box_clearance_measurement "$@"

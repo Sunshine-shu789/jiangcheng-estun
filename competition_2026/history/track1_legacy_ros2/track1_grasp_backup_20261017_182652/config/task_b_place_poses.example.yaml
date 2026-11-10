@@ -1,0 +1,16 @@
+# Task B place slots: the bin's four corners plus its centre.
+#
+# Replace the example coordinates with the calibrated bin after the camera and
+# gripper are mounted.  Every pose is [x, y, z, rx, ry, rz] in the ROBOT BASE
+# frame: metres for xyz, radians for the rpy triple.
+places:
+  - name: corner_front_left
+    pose: [0.30, -0.30, 0.08, 3.14159265, 0.0, 0.0]
+  - name: corner_front_right
+    pose: [0.30, 0.30, 0.08, 3.14159265, 0.0, 0.0]
+  - name: corner_back_right
+    pose: [-0.30, 0.30, 0.08, 3.14159265, 0.0, 0.0]
+  - name: corner_back_left
+    pose: [-0.30, -0.30, 0.08, 3.14159265, 0.0, 0.0]
+  - name: centre
+    pose: [0.00, 0.00, 0.08, 3.14159265, 0.0, 0.0]

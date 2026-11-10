@@ -1,0 +1,30 @@
+[start] one-shot pick_4 grasp; log=/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/task_b_pick4_grasp_once_20261106_204605.log
+[authorization] exactly one pick_4 grasp at 0.12 m/s; no automatic retry; no release; no retreat; no continuation
+[gates] target=8-Plastic_Banana imgsz=640 padding=80 speed=0.120 grasp_z=0.169903174 approach=0.075
+ROBOT state=AutoReady fault=0 xyz=(0.038596, 0.440596, 0.256352) rpy=(-3.121073, 0.049621, -0.522534)
+JOINTS_DEG=[70.252, 92.064, -73.739, -70.013, 87.411, 10.258]
+START_CHECK position_error=0.003 mm rotation_error=0.000017 rad
+[preflight] existing /RobotMove bridge subscriber confirmed
+[camera] D405 started 640x480@15 fx=392.7 fy=391.7 cx=314.4 cy=246.7
+[yolo] loading /media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/models/best.pt
+[vision:realsense_yolo] model input size verified imgsz=640
+[vision:realsense_yolo] ready 640x480 rotate180=True anchor=top_center cx=324.6 cy=232.3 inference_padding_px=80 stabilizer=on unknown_proposer=off
+FRAME 01 frame=realsense-000001 banana_count=0 all_detections=0 formal=False image=/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/vision_banana_center_diagnostics/frame_000001.jpg
+FRAME 02 frame=realsense-000002 banana_count=0 all_detections=0 formal=False image=
+[pose] loaded camera transform from /media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/config/camera_to_flange.d405_calibrated_20261025.yaml
+FORMAL 03 frame=realsense-000003 conf=0.9367 pose_conf=0.5697 center_base=(0.037310,0.436211,-0.034888) short_deg=20.391 nearest=pick_4:0.026663 margin=0.023935 tcp_distance=0.004569 image=
+FORMAL 04 frame=realsense-000004 conf=0.9366 pose_conf=0.5702 center_base=(0.037231,0.436081,-0.034274) short_deg=20.950 nearest=pick_4:0.026632 margin=0.024091 tcp_distance=0.004713 image=
+FORMAL 05 frame=realsense-000005 conf=0.9370 pose_conf=0.5686 center_base=(0.037565,0.435747,-0.033682) short_deg=22.835 nearest=pick_4:0.026160 margin=0.024917 tcp_distance=0.004956 image=
+FORMAL 06 frame=realsense-000006 conf=0.9375 pose_conf=0.5688 center_base=(0.037468,0.435550,-0.034005) short_deg=23.206 nearest=pick_4:0.026097 margin=0.025170 tcp_distance=0.005168 image=
+FORMAL 07 frame=realsense-000007 conf=0.9379 pose_conf=0.5678 center_base=(0.037494,0.435735,-0.032549) short_deg=23.586 nearest=pick_4:0.026204 margin=0.024880 tcp_distance=0.004983 image=
+FORMAL 08 frame=realsense-000008 conf=0.9379 pose_conf=0.5692 center_base=(0.037476,0.435654,-0.032236) short_deg=24.445 nearest=pick_4:0.026162 margin=0.025001 tcp_distance=0.005063 image=
+FORMAL 09 frame=realsense-000009 conf=0.9378 pose_conf=0.5694 center_base=(0.037488,0.435815,-0.032713) short_deg=22.962 nearest=pick_4:0.026263 margin=0.024741 tcp_distance=0.004906 image=
+FORMAL 10 frame=realsense-000010 conf=0.9386 pose_conf=0.5687 center_base=(0.037616,0.435293,-0.033360) short_deg=24.394 nearest=pick_4:0.025814 margin=0.025719 tcp_distance=0.005390 image=
+FORMAL 11 frame=realsense-000011 conf=0.9388 pose_conf=0.5671 center_base=(0.037845,0.435219,-0.032888) short_deg=24.530 nearest=pick_4:0.025596 margin=0.026027 tcp_distance=0.005427 image=
+FORMAL 12 frame=realsense-000012 conf=0.9386 pose_conf=0.5667 center_base=(0.038187,0.435119,-0.032195) short_deg=25.136 nearest=pick_4:0.025277 margin=0.026471 tcp_distance=0.005490 image=
+VISION_SUMMARY stable=10/12 formal=10 median_xy=(0.037491,0.435695) center_spread=0.000903 short_axis_spread_deg=2.853 assignment=pick_4 min_margin=0.023935 selected_tcp_center_distance=0.005490 max_observed_tcp_center_distance=0.005490
+VISION_CHECKS stable_frames=1 formal_frames=1 pick_4_only=1 assignment_margin=1 center_spread=1 short_axis_stable=1 short_axis_orthogonal=1 tcp_center_aligned=0
+[ABORT] stage=PRE_MOTION RuntimeError: fresh pick_4 vision gate failed: tcp_center_aligned
+SAFETY_STOP close_attempted=0 lift_attempted=0; no retry, release or retreat sent
+VERDICT=ABORTED_NO_RETRY
+LOG=/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/task_b_pick4_grasp_once_20261106_204605.log

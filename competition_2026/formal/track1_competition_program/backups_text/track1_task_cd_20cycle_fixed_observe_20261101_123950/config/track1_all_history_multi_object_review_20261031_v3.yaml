@@ -1,0 +1,28 @@
+schema_version: 2
+title: '赛道一 全历史多物品 bbox 复核 v3（当前照片）'
+description: >-
+  按当前仍保留的全部历史自采照片重新筛选多物品复核组；采集类别和模型结果只作提示，不是训练标签。
+
+paths:
+  project_root: '/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序'
+  source_root: '/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_all_history_multi_object_review_20261031_v3'
+  review_root: '/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_all_history_multi_object_review_20261031_v3'
+  export_root: '/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_all_history_multi_object_bbox_export_20261031_v3'
+  class_map: '/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_selfcollected_v1/manifests/class_map.yaml'
+
+review_policy:
+  label_all_visible_known_objects: true
+  allow_multiple_classes_per_image: true
+  allow_multiple_instances_per_class: true
+  empty_background_uses_empty_label_file: true
+  background_is_not_a_yolo_class: true
+  missing_spots_class_ids: []
+  expected_known_class_count: 40
+  class_99_is_capture_hint_only: true
+  unresolved_use_skipped_with_notes: true
+
+safety:
+  camera: false
+  robot_control: false
+  ros: false
+  motion: false

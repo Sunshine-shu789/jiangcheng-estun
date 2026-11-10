@@ -1,0 +1,120 @@
+{
+  "status": "pass",
+  "safety": {
+    "trajectory_execution": "disabled",
+    "robot_motion_commands_sent": false,
+    "gripper_commands_sent": false
+  },
+  "model_scope": {
+    "planning_group": "arm_with_tool",
+    "tcp_link": "grasp_tcp",
+    "finger_joints": [
+      "gripper_left_finger_joint",
+      "gripper_right_finger_joint"
+    ],
+    "finger_travel_m": 0.0362745,
+    "finger_rigid_envelope_m": [
+      -0.016,
+      -0.016
+    ]
+  },
+  "fk_known_pose": {
+    "joints_rad": [
+      1.5707963267948966,
+      0.0,
+      0.0,
+      0.0,
+      1.5707963267948966,
+      0.0
+    ],
+    "fingers_m": [
+      0.0,
+      0.0
+    ],
+    "flange_position_m": [
+      -0.10696400000000195,
+      0.1235000000000002,
+      0.7517259999999998
+    ],
+    "flange_position_error_m": 1.9665858540435016e-15,
+    "tcp_position_m": [
+      -0.10696400000000163,
+      0.2652519240000002,
+      0.7517259999999998
+    ],
+    "tcp_mount_error_m": 1.942890293094024e-16
+  },
+  "ik_round_trip": {
+    "group_name": "arm_with_tool",
+    "ik_link_name": "grasp_tcp",
+    "solution_rad": [
+      1.5707963267948966,
+      0.0,
+      0.0,
+      0.0,
+      1.5707963267948966,
+      0.0
+    ],
+    "returned_joint_names": [
+      "joint1",
+      "joint2",
+      "joint3",
+      "joint4",
+      "joint5",
+      "joint6",
+      "gripper_left_finger_joint",
+      "gripper_right_finger_joint"
+    ],
+    "position_error_m": 0.0,
+    "orientation_error_rad": 0.0
+  },
+  "collision_check": {
+    "states": {
+      "start_open": {
+        "valid": true,
+        "contacts": []
+      },
+      "start_rigid_close_envelope": {
+        "valid": true,
+        "contacts": []
+      },
+      "goal_open": {
+        "valid": true,
+        "contacts": []
+      },
+      "goal_rigid_close_envelope": {
+        "valid": true,
+        "contacts": []
+      }
+    },
+    "full_closed_rigid_cad_diagnostic": {
+      "valid": false,
+      "contacts": [
+        {
+          "body_1": "gripper_left_finger_link",
+          "body_2": "gripper_right_finger_link",
+          "depth_m": 0.0012820039604335993,
+          "position_m": [
+            0.23143261144873714,
+            0.2883787044907492,
+            0.7354726287935641
+          ]
+        }
+      ]
+    }
+  },
+  "planning": {
+    "planning_time_s": 0.020432668,
+    "trajectory_points": 50,
+    "duration_s": 4.898876249,
+    "joint_names": [
+      "joint1",
+      "joint2",
+      "joint3",
+      "joint4",
+      "joint5",
+      "joint6"
+    ]
+  },
+  "modeling_caveat": "The full closed prismatic finger state is a jaw-profile/TCP reference, not a valid rigid-CAD collision state. Candidate filtering must use the jaw profile and flexible-link calibration."
+}

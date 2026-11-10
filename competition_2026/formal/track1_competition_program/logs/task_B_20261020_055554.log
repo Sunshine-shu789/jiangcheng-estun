@@ -1,0 +1,691 @@
+
+===== 任务B 五点位拾放 =====
+配置：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/track1_task_b_point5_live_once.yaml
+视觉后端：realsense_yolo
+模式：真机执行
+日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/task_B_20261020_055554.log
+
+夹爪 ROS 节点已在运行（PID=49232），不重复启动。
+机械臂状态桥接已在运行（PID=48121），不重复启动。
+[bridge] RobotInfo 已就绪：state=AutoReady fault_flag=0 xyz=(0.0433, 0.5220, 0.2415)
+[INFO] [1792446955.484039790] [track1_grasp]: [gripper:ms42dc_ros] control=/motor_control state=/motor_state id=1
+[INFO] [1792446955.485331573] [track1_grasp]: [task_b_initial_pose] no initial pose file configured; keeping the current arm posture
+[INFO] [1792446955.587051138] [track1_grasp]: [scan] round 1/1: waiting for 8-Plastic_Banana at 'pick_5' xy=(0.034, 0.506) within 0.080 m, completed_points_excluded=0 (wait attempt 1)
+[INFO] [1792446955.587661410] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792446955.827499601] [track1_grasp]: [camera] D405 started 640x480@15 fx=392.7 fy=391.7 cx=314.4 cy=246.7
+[INFO] [1792446958.746765515] [track1_grasp]: [yolo] loading /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/models/best.pt
+[INFO] [1792446958.782654036] [track1_grasp]: [vision:realsense_yolo] ready 640x480 rotate180=True anchor=top_center cx=324.6 cy=232.3 stabilizer=on
+[INFO] [1792446959.663170069] [track1_grasp]: [detect] frame 'realsense-000001': 0 detection(s), no confirmed target
+[INFO] [1792446959.713734808] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792446959.750193233] [track1_grasp]: [detect] frame 'realsense-000002': 0 detection(s), no confirmed target
+[INFO] [1792446959.800697419] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792446959.835967358] [track1_grasp]: [detect] frame 'realsense-000003': 0 detection(s), no confirmed target
+[INFO] [1792446959.886339753] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792446959.922311386] [track1_grasp]: [detect] frame 'realsense-000004': 0 detection(s), no confirmed target
+[INFO] [1792446959.972816759] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792446960.008650665] [track1_grasp]: [detect] frame 'realsense-000005': 0 detection(s), no confirmed target
+[INFO] [1792446960.059165537] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792446960.095219093] [track1_grasp]: [detect] frame 'realsense-000006': 0 detection(s), no confirmed target
+[INFO] [1792446960.145558244] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792446960.180940976] [track1_grasp]: [detect] frame 'realsense-000007': 0 detection(s), no confirmed target
+[INFO] [1792446960.231479594] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792446960.274076361] [track1_grasp]: [detect] frame 'realsense-000008': 0 detection(s), no confirmed target
+[INFO] [1792446960.274362500] [track1_grasp]: [scan] target not yet confirmed at 'pick_5'; 25.3 s remaining; no pick motion will be issued
+[INFO] [1792446960.775386538] [track1_grasp]: [scan] round 1/1: waiting for 8-Plastic_Banana at 'pick_5' xy=(0.034, 0.506) within 0.080 m, completed_points_excluded=0 (wait attempt 2)
+[INFO] [1792446960.775752227] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792446960.814093710] [track1_grasp]: [detect] frame 'realsense-000009': 0 detection(s), no confirmed target
+[INFO] [1792446960.864546842] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792446960.911758645] [track1_grasp]: [pose] loaded camera transform from /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/camera_to_flange.d405_assumed.yaml
+[INFO] [1792446960.912114835] [track1_grasp]: [detect] frame 'realsense-000010': 1 detection(s), no confirmed target
+[INFO] [1792446960.962576279] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792446961.002810318] [track1_grasp]: [detect] frame 'realsense-000011': 1 detection(s), no confirmed target
+[INFO] [1792446961.053283635] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792446961.091818648] [track1_grasp]: [detect] frame 'realsense-000012': 1 detection(s), no confirmed target
+[INFO] [1792446961.142312149] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792446961.179836770] [track1_grasp]: [detect] frame 'realsense-000013': 1 detection(s), no confirmed target
+[INFO] [1792446961.230381324] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792446961.267452396] [track1_grasp]: [detect] frame 'realsense-000014': 1 detection(s), no confirmed target
+[INFO] [1792446961.317956583] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792446961.362556325] [track1_grasp]: [detect] frame 'realsense-000015': 1 detection(s), no confirmed target
+[INFO] [1792446961.413067635] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792446961.453834773] [track1_grasp]: [detect] frame 'realsense-000016': 1 detection(s), no confirmed target
+[INFO] [1792446961.454088855] [track1_grasp]: [scan] target not yet confirmed at 'pick_5'; 24.1 s remaining; no pick motion will be issued
+[INFO] [1792446961.955007223] [track1_grasp]: [scan] round 1/1: waiting for 8-Plastic_Banana at 'pick_5' xy=(0.034, 0.506) within 0.080 m, completed_points_excluded=0 (wait attempt 3)
+[INFO] [1792446961.955220937] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792446961.996343078] [track1_grasp]: [detect] frame 'realsense-000017': 1 detection(s), no confirmed target
+[INFO] [1792446962.046844889] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792446962.085085452] [track1_grasp]: [detect] frame 'realsense-000018': 1 detection(s), no confirmed target
+[INFO] [1792446962.135562330] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792446962.177048972] [track1_grasp]: [detect] frame 'realsense-000019': 1 detection(s), no confirmed target
+[INFO] [1792446962.227411869] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792446962.267611478] [track1_grasp]: [detect] frame 'realsense-000020': 1 detection(s), no confirmed target
+[INFO] [1792446962.318072921] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792446962.356660176] [track1_grasp]: [detect] frame 'realsense-000021': 1 detection(s), no confirmed target
+[INFO] [1792446962.407150114] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792446962.443420946] [track1_grasp]: [detect] frame 'realsense-000022': 1 detection(s), no confirmed target
+[INFO] [1792446962.493937005] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792446962.531972166] [track1_grasp]: [detect] frame 'realsense-000023': 1 detection(s), no confirmed target
+[INFO] [1792446962.582542840] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792446962.618772117] [track1_grasp]: [detect] frame 'realsense-000024': 1 detection(s), no confirmed target
+[INFO] [1792446962.619072504] [track1_grasp]: [scan] target not yet confirmed at 'pick_5'; 23.0 s remaining; no pick motion will be issued
+[INFO] [1792446963.120087043] [track1_grasp]: [scan] round 1/1: waiting for 8-Plastic_Banana at 'pick_5' xy=(0.034, 0.506) within 0.080 m, completed_points_excluded=0 (wait attempt 4)
+[INFO] [1792446963.120459856] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792446963.165836093] [track1_grasp]: [detect] frame 'realsense-000025': 1 detection(s), no confirmed target
+[INFO] [1792446963.216337904] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792446963.271123495] [track1_grasp]: [detect] frame 'realsense-000026': 1 detection(s), no confirmed target
+[INFO] [1792446963.321676360] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792446963.368292138] [track1_grasp]: [detect] frame 'realsense-000027': 1 detection(s), no confirmed target
+[INFO] [1792446963.418827194] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792446963.464628485] [track1_grasp]: [detect] frame 'realsense-000028': 1 detection(s), no confirmed target
+[INFO] [1792446963.515107737] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792446963.561717579] [track1_grasp]: [detect] frame 'realsense-000029': 1 detection(s), no confirmed target
+[INFO] [1792446963.612173086] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792446963.657140892] [track1_grasp]: [detect] frame 'realsense-000030': 1 detection(s), no confirmed target
+[INFO] [1792446963.707640328] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792446963.755902892] [track1_grasp]: [detect] frame 'realsense-000031': 1 detection(s), no confirmed target
+[INFO] [1792446963.806332278] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792446963.846176884] [track1_grasp]: [detect] frame 'realsense-000032': 1 detection(s), no confirmed target
+[INFO] [1792446963.846511702] [track1_grasp]: [scan] target not yet confirmed at 'pick_5'; 21.7 s remaining; no pick motion will be issued
+[INFO] [1792446964.348099708] [track1_grasp]: [scan] round 1/1: waiting for 8-Plastic_Banana at 'pick_5' xy=(0.034, 0.506) within 0.080 m, completed_points_excluded=0 (wait attempt 5)
+[INFO] [1792446964.348458272] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792446964.392578346] [track1_grasp]: [detect] frame 'realsense-000033': 1 detection(s), no confirmed target
+[INFO] [1792446964.443087281] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792446964.489276819] [track1_grasp]: [detect] frame 'realsense-000034': 1 detection(s), no confirmed target
+[INFO] [1792446964.539674148] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792446964.585589419] [track1_grasp]: [detect] frame 'realsense-000035': 1 detection(s), no confirmed target
+[INFO] [1792446964.636119726] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792446964.681712051] [track1_grasp]: [detect] frame 'realsense-000036': 1 detection(s), no confirmed target
+[INFO] [1792446964.732266104] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792446964.777146049] [track1_grasp]: [detect] frame 'realsense-000037': 1 detection(s), no confirmed target
+[INFO] [1792446964.827668045] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792446964.871805928] [track1_grasp]: [detect] frame 'realsense-000038': 1 detection(s), no confirmed target
+[INFO] [1792446964.922367104] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792446964.969014939] [track1_grasp]: [detect] frame 'realsense-000039': 1 detection(s), no confirmed target
+[INFO] [1792446965.019487069] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792446965.068054768] [track1_grasp]: [detect] frame 'realsense-000040': 1 detection(s), no confirmed target
+[INFO] [1792446965.068460825] [track1_grasp]: [scan] target not yet confirmed at 'pick_5'; 20.5 s remaining; no pick motion will be issued
+[INFO] [1792446965.569309142] [track1_grasp]: [scan] round 1/1: waiting for 8-Plastic_Banana at 'pick_5' xy=(0.034, 0.506) within 0.080 m, completed_points_excluded=0 (wait attempt 6)
+[INFO] [1792446965.569717574] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792446965.617270132] [track1_grasp]: [detect] frame 'realsense-000041': 1 detection(s), no confirmed target
+[INFO] [1792446965.667770756] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792446965.714964749] [track1_grasp]: [detect] frame 'realsense-000042': 1 detection(s), no confirmed target
+[INFO] [1792446965.765514053] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792446965.810009313] [track1_grasp]: [detect] frame 'realsense-000043': 1 detection(s), no confirmed target
+[INFO] [1792446965.860547931] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792446965.907570953] [track1_grasp]: [detect] frame 'realsense-000044': 1 detection(s), no confirmed target
+[INFO] [1792446965.958107196] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792446966.004708727] [track1_grasp]: [detect] frame 'realsense-000045': 1 detection(s), no confirmed target
+[INFO] [1792446966.055269903] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792446966.101220793] [track1_grasp]: [detect] frame 'realsense-000046': 1 detection(s), no confirmed target
+[INFO] [1792446966.151689361] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792446966.203606434] [track1_grasp]: [detect] frame 'realsense-000047': 1 detection(s), no confirmed target
+[INFO] [1792446966.254071439] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792446966.317082645] [track1_grasp]: [detect] frame 'realsense-000048': 1 detection(s), no confirmed target
+[INFO] [1792446966.317457832] [track1_grasp]: [scan] target not yet confirmed at 'pick_5'; 19.3 s remaining; no pick motion will be issued
+[INFO] [1792446966.818462873] [track1_grasp]: [scan] round 1/1: waiting for 8-Plastic_Banana at 'pick_5' xy=(0.034, 0.506) within 0.080 m, completed_points_excluded=0 (wait attempt 7)
+[INFO] [1792446966.818822625] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792446966.864220233] [track1_grasp]: [detect] frame 'realsense-000049': 1 detection(s), no confirmed target
+[INFO] [1792446966.914779035] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792446966.961296267] [track1_grasp]: [detect] frame 'realsense-000050': 1 detection(s), no confirmed target
+[INFO] [1792446967.011821825] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792446967.058143153] [track1_grasp]: [detect] frame 'realsense-000051': 1 detection(s), no confirmed target
+[INFO] [1792446967.108693644] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792446967.154458128] [track1_grasp]: [detect] frame 'realsense-000052': 1 detection(s), no confirmed target
+[INFO] [1792446967.204911260] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792446967.250076157] [track1_grasp]: [detect] frame 'realsense-000053': 1 detection(s), no confirmed target
+[INFO] [1792446967.300570845] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792446967.348695682] [track1_grasp]: [detect] frame 'realsense-000054': 1 detection(s), no confirmed target
+[INFO] [1792446967.399206992] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792446967.445102079] [track1_grasp]: [detect] frame 'realsense-000055': 1 detection(s), no confirmed target
+[INFO] [1792446967.495657319] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792446967.542474938] [track1_grasp]: [detect] frame 'realsense-000056': 1 detection(s), no confirmed target
+[INFO] [1792446967.542833503] [track1_grasp]: [scan] target not yet confirmed at 'pick_5'; 18.0 s remaining; no pick motion will be issued
+[INFO] [1792446968.043728125] [track1_grasp]: [scan] round 1/1: waiting for 8-Plastic_Banana at 'pick_5' xy=(0.034, 0.506) within 0.080 m, completed_points_excluded=0 (wait attempt 8)
+[INFO] [1792446968.044097375] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792446968.089492609] [track1_grasp]: [detect] frame 'realsense-000057': 1 detection(s), no confirmed target
+[INFO] [1792446968.140021728] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792446968.185960745] [track1_grasp]: [detect] frame 'realsense-000058': 1 detection(s), no confirmed target
+[INFO] [1792446968.236533795] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792446968.284292943] [track1_grasp]: [detect] frame 'realsense-000059': 1 detection(s), no confirmed target
+[INFO] [1792446968.334849370] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792446968.381480584] [track1_grasp]: [detect] frame 'realsense-000060': 1 detection(s), no confirmed target
+[INFO] [1792446968.432028700] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792446968.475654856] [track1_grasp]: [detect] frame 'realsense-000061': 1 detection(s), no confirmed target
+[INFO] [1792446968.526230280] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792446968.572523113] [track1_grasp]: [detect] frame 'realsense-000062': 1 detection(s), no confirmed target
+[INFO] [1792446968.622973871] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792446968.670337648] [track1_grasp]: [detect] frame 'realsense-000063': 1 detection(s), no confirmed target
+[INFO] [1792446968.720822837] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792446968.767436241] [track1_grasp]: [detect] frame 'realsense-000064': 1 detection(s), no confirmed target
+[INFO] [1792446968.767797180] [track1_grasp]: [scan] target not yet confirmed at 'pick_5'; 16.8 s remaining; no pick motion will be issued
+[INFO] [1792446969.268670431] [track1_grasp]: [scan] round 1/1: waiting for 8-Plastic_Banana at 'pick_5' xy=(0.034, 0.506) within 0.080 m, completed_points_excluded=0 (wait attempt 9)
+[INFO] [1792446969.268969630] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792446969.314362490] [track1_grasp]: [detect] frame 'realsense-000065': 1 detection(s), no confirmed target
+[INFO] [1792446969.364823933] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792446969.412014364] [track1_grasp]: [detect] frame 'realsense-000066': 1 detection(s), no confirmed target
+[INFO] [1792446969.462573166] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792446969.508161930] [track1_grasp]: [detect] frame 'realsense-000067': 1 detection(s), no confirmed target
+[INFO] [1792446969.558643557] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792446969.603065205] [track1_grasp]: [detect] frame 'realsense-000068': 1 detection(s), no confirmed target
+[INFO] [1792446969.653518337] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792446969.700138864] [track1_grasp]: [detect] frame 'realsense-000069': 1 detection(s), no confirmed target
+[INFO] [1792446969.750605057] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792446969.799032655] [track1_grasp]: [detect] frame 'realsense-000070': 1 detection(s), no confirmed target
+[INFO] [1792446969.849627076] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792446969.904090908] [track1_grasp]: [detect] frame 'realsense-000071': 1 detection(s), no confirmed target
+[INFO] [1792446969.954668707] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792446970.010069319] [track1_grasp]: [detect] frame 'realsense-000072': 1 detection(s), no confirmed target
+[INFO] [1792446970.010444506] [track1_grasp]: [scan] target not yet confirmed at 'pick_5'; 15.6 s remaining; no pick motion will be issued
+[INFO] [1792446970.511424614] [track1_grasp]: [scan] round 1/1: waiting for 8-Plastic_Banana at 'pick_5' xy=(0.034, 0.506) within 0.080 m, completed_points_excluded=0 (wait attempt 10)
+[INFO] [1792446970.511749934] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792446970.557534602] [track1_grasp]: [detect] frame 'realsense-000073': 1 detection(s), no confirmed target
+[INFO] [1792446970.608087468] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792446970.652658715] [track1_grasp]: [detect] frame 'realsense-000074': 1 detection(s), no confirmed target
+[INFO] [1792446970.703091663] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792446970.749142286] [track1_grasp]: [detect] frame 'realsense-000075': 1 detection(s), no confirmed target
+[INFO] [1792446970.799613228] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792446970.843410356] [track1_grasp]: [detect] frame 'realsense-000076': 1 detection(s), no confirmed target
+[INFO] [1792446970.893933539] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792446970.938571275] [track1_grasp]: [detect] frame 'realsense-000077': 1 detection(s), no confirmed target
+[INFO] [1792446970.989016096] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792446971.033266772] [track1_grasp]: [detect] frame 'realsense-000078': 1 detection(s), no confirmed target
+[INFO] [1792446971.083740089] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792446971.126607560] [track1_grasp]: [detect] frame 'realsense-000079': 1 detection(s), no confirmed target
+[INFO] [1792446971.177059505] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792446971.222770561] [track1_grasp]: [detect] frame 'realsense-000080': 1 detection(s), no confirmed target
+[INFO] [1792446971.223132687] [track1_grasp]: [scan] target not yet confirmed at 'pick_5'; 14.4 s remaining; no pick motion will be issued
+[INFO] [1792446971.724086674] [track1_grasp]: [scan] round 1/1: waiting for 8-Plastic_Banana at 'pick_5' xy=(0.034, 0.506) within 0.080 m, completed_points_excluded=0 (wait attempt 11)
+[INFO] [1792446971.724495106] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792446971.769796543] [track1_grasp]: [detect] frame 'realsense-000081': 1 detection(s), no confirmed target
+[INFO] [1792446971.820352970] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792446971.868608410] [track1_grasp]: [detect] frame 'realsense-000082': 1 detection(s), no confirmed target
+[INFO] [1792446971.919073415] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792446971.964431842] [track1_grasp]: [detect] frame 'realsense-000083': 1 detection(s), no confirmed target
+[INFO] [1792446972.014975209] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792446972.062107463] [track1_grasp]: [detect] frame 'realsense-000084': 1 detection(s), no confirmed target
+[INFO] [1792446972.112621148] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792446972.158488927] [track1_grasp]: [detect] frame 'realsense-000085': 1 detection(s), no confirmed target
+[INFO] [1792446972.208999049] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792446972.253717522] [track1_grasp]: [detect] frame 'realsense-000086': 1 detection(s), no confirmed target
+[INFO] [1792446972.304234768] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792446972.348998358] [track1_grasp]: [detect] frame 'realsense-000087': 1 detection(s), no confirmed target
+[INFO] [1792446972.399529853] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792446972.448026314] [track1_grasp]: [detect] frame 'realsense-000088': 1 detection(s), no confirmed target
+[INFO] [1792446972.448382504] [track1_grasp]: [scan] target not yet confirmed at 'pick_5'; 13.1 s remaining; no pick motion will be issued
+[INFO] [1792446972.949235571] [track1_grasp]: [scan] round 1/1: waiting for 8-Plastic_Banana at 'pick_5' xy=(0.034, 0.506) within 0.080 m, completed_points_excluded=0 (wait attempt 12)
+[INFO] [1792446972.949511024] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792446972.993322400] [track1_grasp]: [detect] frame 'realsense-000089': 1 detection(s), no confirmed target
+[INFO] [1792446973.043840833] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792446973.080554528] [track1_grasp]: [detect] frame 'realsense-000090': 1 detection(s), no confirmed target
+[INFO] [1792446973.131070588] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792446973.167290366] [track1_grasp]: [detect] frame 'realsense-000091': 1 detection(s), no confirmed target
+[INFO] [1792446973.217781492] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792446973.256420987] [track1_grasp]: [detect] frame 'realsense-000092': 1 detection(s), no confirmed target
+[INFO] [1792446973.306768450] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792446973.344233706] [track1_grasp]: [detect] frame 'realsense-000093': 1 detection(s), no confirmed target
+[INFO] [1792446973.394699899] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792446973.431684298] [track1_grasp]: [detect] frame 'realsense-000094': 1 detection(s), no confirmed target
+[INFO] [1792446973.482207481] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792446973.520871910] [track1_grasp]: [detect] frame 'realsense-000095': 1 detection(s), no confirmed target
+[INFO] [1792446973.571220560] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792446973.608218020] [track1_grasp]: [detect] frame 'realsense-000096': 1 detection(s), no confirmed target
+[INFO] [1792446973.608502972] [track1_grasp]: [scan] target not yet confirmed at 'pick_5'; 12.0 s remaining; no pick motion will be issued
+[INFO] [1792446974.109354851] [track1_grasp]: [scan] round 1/1: waiting for 8-Plastic_Banana at 'pick_5' xy=(0.034, 0.506) within 0.080 m, completed_points_excluded=0 (wait attempt 13)
+[INFO] [1792446974.109588749] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792446974.151734342] [track1_grasp]: [detect] frame 'realsense-000097': 1 detection(s), no confirmed target
+[INFO] [1792446974.202218344] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792446974.238622154] [track1_grasp]: [detect] frame 'realsense-000098': 1 detection(s), no confirmed target
+[INFO] [1792446974.288973179] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792446974.330552430] [track1_grasp]: [detect] frame 'realsense-000099': 1 detection(s), no confirmed target
+[INFO] [1792446974.380915327] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792446974.419542950] [track1_grasp]: [detect] frame 'realsense-000100': 1 detection(s), no confirmed target
+[INFO] [1792446974.470049511] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792446974.507809217] [track1_grasp]: [detect] frame 'realsense-000101': 1 detection(s), no confirmed target
+[INFO] [1792446974.558293219] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792446974.594953486] [track1_grasp]: [detect] frame 'realsense-000102': 1 detection(s), no confirmed target
+[INFO] [1792446974.645455297] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792446974.694525225] [track1_grasp]: [detect] frame 'realsense-000103': 1 detection(s), no confirmed target
+[INFO] [1792446974.745024662] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792446974.786873430] [track1_grasp]: [detect] frame 'realsense-000104': 1 detection(s), no confirmed target
+[INFO] [1792446974.787723537] [track1_grasp]: [scan] target not yet confirmed at 'pick_5'; 10.8 s remaining; no pick motion will be issued
+[INFO] [1792446975.288691771] [track1_grasp]: [scan] round 1/1: waiting for 8-Plastic_Banana at 'pick_5' xy=(0.034, 0.506) within 0.080 m, completed_points_excluded=0 (wait attempt 14)
+[INFO] [1792446975.289047962] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792446975.337861432] [track1_grasp]: [detect] frame 'realsense-000105': 1 detection(s), no confirmed target
+[INFO] [1792446975.388332374] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792446975.438052942] [track1_grasp]: [detect] frame 'realsense-000106': 1 detection(s), no confirmed target
+[INFO] [1792446975.488539319] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792446975.538448668] [track1_grasp]: [detect] frame 'realsense-000107': 1 detection(s), no confirmed target
+[INFO] [1792446975.588910111] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792446975.650668715] [track1_grasp]: [detect] frame 'realsense-000108': 1 detection(s), no confirmed target
+[INFO] [1792446975.701252450] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792446975.753187333] [track1_grasp]: [detect] frame 'realsense-000109': 1 detection(s), no confirmed target
+[INFO] [1792446975.803774630] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792446975.858819052] [track1_grasp]: [detect] frame 'realsense-000110': 1 detection(s), no confirmed target
+[INFO] [1792446975.909193823] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792446975.952555211] [track1_grasp]: [detect] frame 'realsense-000111': 1 detection(s), no confirmed target
+[INFO] [1792446976.002976286] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792446976.050293759] [track1_grasp]: [detect] frame 'realsense-000112': 1 detection(s), no confirmed target
+[INFO] [1792446976.050556152] [track1_grasp]: [scan] target not yet confirmed at 'pick_5'; 9.5 s remaining; no pick motion will be issued
+[INFO] [1792446976.551558819] [track1_grasp]: [scan] round 1/1: waiting for 8-Plastic_Banana at 'pick_5' xy=(0.034, 0.506) within 0.080 m, completed_points_excluded=0 (wait attempt 15)
+[INFO] [1792446976.551947066] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792446976.597509709] [track1_grasp]: [detect] frame 'realsense-000113': 1 detection(s), no confirmed target
+[INFO] [1792446976.648066136] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792446976.699483356] [track1_grasp]: [detect] frame 'realsense-000114': 1 detection(s), no confirmed target
+[INFO] [1792446976.749909181] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792446976.797791808] [track1_grasp]: [detect] frame 'realsense-000115': 1 detection(s), no confirmed target
+[INFO] [1792446976.848280559] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792446976.902029637] [track1_grasp]: [detect] frame 'realsense-000116': 1 detection(s), no confirmed target
+[INFO] [1792446976.952487518] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792446976.993513487] [track1_grasp]: [detect] frame 'realsense-000117': 1 detection(s), no confirmed target
+[INFO] [1792446977.043850264] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792446977.081864053] [track1_grasp]: [detect] frame 'realsense-000118': 1 detection(s), no confirmed target
+[INFO] [1792446977.132383674] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792446977.169547356] [track1_grasp]: [detect] frame 'realsense-000119': 1 detection(s), no confirmed target
+[INFO] [1792446977.220051542] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792446977.256475536] [track1_grasp]: [detect] frame 'realsense-000120': 1 detection(s), no confirmed target
+[INFO] [1792446977.256733180] [track1_grasp]: [scan] target not yet confirmed at 'pick_5'; 8.3 s remaining; no pick motion will be issued
+[INFO] [1792446977.757696665] [track1_grasp]: [scan] round 1/1: waiting for 8-Plastic_Banana at 'pick_5' xy=(0.034, 0.506) within 0.080 m, completed_points_excluded=0 (wait attempt 16)
+[INFO] [1792446977.758030297] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792446977.810022170] [track1_grasp]: [detect] frame 'realsense-000121': 1 detection(s), no confirmed target
+[INFO] [1792446977.860621340] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792446977.925925222] [track1_grasp]: [detect] frame 'realsense-000122': 1 detection(s), no confirmed target
+[INFO] [1792446977.976494710] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792446978.024408207] [track1_grasp]: [detect] frame 'realsense-000123': 1 detection(s), no confirmed target
+[INFO] [1792446978.074945638] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792446978.113616004] [track1_grasp]: [detect] frame 'realsense-000124': 1 detection(s), no confirmed target
+[INFO] [1792446978.164130875] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792446978.200922932] [track1_grasp]: [detect] frame 'realsense-000125': 1 detection(s), no confirmed target
+[INFO] [1792446978.251326198] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792446978.296019737] [track1_grasp]: [detect] frame 'realsense-000126': 1 detection(s), no confirmed target
+[INFO] [1792446978.346389758] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792446978.382905174] [track1_grasp]: [detect] frame 'realsense-000127': 1 detection(s), no confirmed target
+[INFO] [1792446978.433447354] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792446978.470039944] [track1_grasp]: [detect] frame 'realsense-000128': 1 detection(s), no confirmed target
+[INFO] [1792446978.470332020] [track1_grasp]: [scan] target not yet confirmed at 'pick_5'; 7.1 s remaining; no pick motion will be issued
+[INFO] [1792446978.971182712] [track1_grasp]: [scan] round 1/1: waiting for 8-Plastic_Banana at 'pick_5' xy=(0.034, 0.506) within 0.080 m, completed_points_excluded=0 (wait attempt 17)
+[INFO] [1792446978.971432045] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792446979.008839124] [track1_grasp]: [detect] frame 'realsense-000129': 1 detection(s), no confirmed target
+[INFO] [1792446979.059210332] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792446979.096973601] [track1_grasp]: [detect] frame 'realsense-000130': 1 detection(s), no confirmed target
+[INFO] [1792446979.147899278] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792446979.185724286] [track1_grasp]: [detect] frame 'realsense-000131': 1 detection(s), no confirmed target
+[INFO] [1792446979.236259342] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792446979.273306668] [track1_grasp]: [detect] frame 'realsense-000132': 1 detection(s), no confirmed target
+[INFO] [1792446979.323816791] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792446979.361120574] [track1_grasp]: [detect] frame 'realsense-000133': 1 detection(s), no confirmed target
+[INFO] [1792446979.411656818] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792446979.449084080] [track1_grasp]: [detect] frame 'realsense-000134': 1 detection(s), no confirmed target
+[INFO] [1792446979.499423231] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792446979.535519530] [track1_grasp]: [detect] frame 'realsense-000135': 1 detection(s), no confirmed target
+[INFO] [1792446979.585856307] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792446979.622068961] [track1_grasp]: [detect] frame 'realsense-000136': 1 detection(s), no confirmed target
+[INFO] [1792446979.622346790] [track1_grasp]: [scan] target not yet confirmed at 'pick_5'; 6.0 s remaining; no pick motion will be issued
+[INFO] [1792446980.123279406] [track1_grasp]: [scan] round 1/1: waiting for 8-Plastic_Banana at 'pick_5' xy=(0.034, 0.506) within 0.080 m, completed_points_excluded=0 (wait attempt 18)
+[INFO] [1792446980.123613037] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792446980.175012447] [track1_grasp]: [detect] frame 'realsense-000137': 1 detection(s), no confirmed target
+[INFO] [1792446980.225513072] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792446980.276546794] [track1_grasp]: [detect] frame 'realsense-000138': 1 detection(s), no confirmed target
+[INFO] [1792446980.327023672] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792446980.378177311] [track1_grasp]: [detect] frame 'realsense-000139': 2 detection(s), 8-Plastic_Banana conf=0.52, confirmation 1/2
+[INFO] [1792446980.428724240] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792446980.479374464] [track1_grasp]: [detect] frame 'realsense-000140': 1 detection(s), 8-Plastic_Banana conf=0.60, confirmation 2/2
+[INFO] [1792446980.479733029] [track1_grasp]: [scan] round 1/1: target confirmed at expected point 'pick_5'
+[INFO] [1792446980.480021543] [track1_grasp]: [select] selected '8-Plastic_Banana' conf=0.60 graspability=1.00: 8-Plastic_Banana confirmed in 2 consecutive frames
+[INFO] [1792446980.480491714] [track1_grasp]: [plan] planned 6 waypoint(s)
+[INFO] [1792446980.574357288] [track1_grasp]: [motion:cartesian-precheck] target 1: 6 waypoint(s), planning_step=1.000 mm, max_joint_step=0.412 deg, max_joint_accel=0.041 deg, min_sigma=0.02796, axis_step_deg=0.001,0.306,0.412,0.103,0.002,0.001, axis_travel_deg=0.003,1.775,2.330,0.553,0.003,0.005
+[INFO] [1792446981.133914036] [track1_grasp]: [motion:cartesian-precheck] target 2: 80 waypoint(s), planning_step=1.000 mm, max_joint_step=0.403 deg, max_joint_accel=0.077 deg, min_sigma=0.02828, axis_step_deg=0.001,0.302,0.403,0.101,0.004,0.001, axis_travel_deg=0.004,19.224,20.372,2.794,0.011,0.002
+[INFO] [1792446981.694957283] [track1_grasp]: [motion:cartesian-precheck] target 3: 80 waypoint(s), planning_step=1.000 mm, max_joint_step=0.408 deg, max_joint_accel=0.048 deg, min_sigma=0.02796, axis_step_deg=0.002,0.304,0.408,0.104,0.005,0.001, axis_travel_deg=0.004,19.224,20.372,2.806,0.011,0.002
+[INFO] [1792446981.696190888] [track1_grasp]: [motion:cartesian-precheck] target 4: 0 waypoint(s), planning_step=1.000 mm, max_joint_step=0.000 deg, max_joint_accel=0.000 deg, min_sigma=0.02796, axis_step_deg=0.000,0.000,0.000,0.000,0.000,0.000, axis_travel_deg=0.000,0.000,0.000,0.000,0.000,0.000
+[INFO] [1792446982.253374223] [track1_grasp]: [motion:cartesian-precheck] target 5: 80 waypoint(s), planning_step=1.000 mm, max_joint_step=0.403 deg, max_joint_accel=0.077 deg, min_sigma=0.02828, axis_step_deg=0.001,0.302,0.403,0.101,0.004,0.001, axis_travel_deg=0.004,19.224,20.372,2.794,0.011,0.002
+[INFO] [1792446982.812182971] [track1_grasp]: [motion:cartesian-precheck] target 6: 80 waypoint(s), planning_step=1.000 mm, max_joint_step=0.408 deg, max_joint_accel=0.048 deg, min_sigma=0.02796, axis_step_deg=0.002,0.304,0.408,0.104,0.005,0.001, axis_travel_deg=0.004,19.224,20.372,2.806,0.011,0.002
+[INFO] [1792446982.812862107] [track1_grasp]: [motion:linear-precheck] validated 6 segment(s), 326 Cartesian waypoint(s), min_sigma=0.02796
+[INFO] [1792446982.813408265] [track1_grasp]: [plan] full-route precheck passed: 6 segment(s)
+[INFO] [1792446982.813826195] [track1_grasp]: [open_gripper] opening jaws before entering approach corridor
+[INFO] [1792446982.814121833] [track1_grasp]: [gripper:ms42dc_ros] open: dir=0 angle_wire=30000 speed_wire=100
+[INFO] [1792446985.126755736] [track1_grasp]: [approach] move to pregrasp: xyz=(0.0433, 0.522, 0.2475)
+[INFO] [1792446985.127460992] [track1_grasp]: [motion:robotmove] sent pregrasp_p001: joints=[72.97, 79.79, -31.93, -43.48, 87.92, 12.42] deg
+[INFO] [1792446985.478924393] [track1_grasp]: [motion:robotmove] sent pregrasp_p002: joints=[72.97, 79.5, -31.55, -43.39, 87.92, 12.43] deg
+[INFO] [1792446985.830469717] [track1_grasp]: [motion:robotmove] sent pregrasp_p003: joints=[72.97, 79.2, -31.16, -43.3, 87.92, 12.43] deg
+[INFO] [1792446986.181910559] [track1_grasp]: [motion:robotmove] sent pregrasp_p004: joints=[72.97, 78.9, -30.76, -43.2, 87.92, 12.43] deg
+[INFO] [1792446986.533444011] [track1_grasp]: [motion:robotmove] sent pregrasp_p005: joints=[72.97, 78.6, -30.35, -43.1, 87.92, 12.43] deg
+[INFO] [1792446986.935058970] [track1_grasp]: [motion:robotmove] sent pregrasp_p006: joints=[72.97, 78.29, -29.94, -43.0, 87.92, 12.43] deg
+[INFO] [1792446987.336571821] [track1_grasp]: [motion:linear] pregrasp: completed 0.006 m with 6 waypoint(s), max_joint_step=0.412 deg
+[INFO] [1792446987.336909014] [track1_grasp]: [grasp] move to grasp: xyz=(0.0433, 0.522, 0.1675)
+[INFO] [1792446987.337462296] [track1_grasp]: [motion:robotmove] sent grasp_p001: joints=[72.98, 78.56, -30.27, -43.08, 87.93, 12.43] deg
+[INFO] [1792446987.688907887] [track1_grasp]: [motion:robotmove] sent grasp_p002: joints=[72.98, 78.86, -30.67, -43.18, 87.93, 12.43] deg
+[INFO] [1792446988.090607145] [track1_grasp]: [motion:robotmove] sent grasp_p003: joints=[72.98, 79.16, -31.06, -43.28, 87.93, 12.43] deg
+[INFO] [1792446988.492267221] [track1_grasp]: [motion:robotmove] sent grasp_p004: joints=[72.98, 79.45, -31.45, -43.37, 87.93, 12.43] deg
+[INFO] [1792446988.893953418] [track1_grasp]: [motion:robotmove] sent grasp_p005: joints=[72.98, 79.75, -31.83, -43.46, 87.93, 12.43] deg
+[INFO] [1792446989.295523259] [track1_grasp]: [motion:robotmove] sent grasp_p006: joints=[72.98, 80.04, -32.21, -43.55, 87.93, 12.43] deg
+[INFO] [1792446989.697099037] [track1_grasp]: [motion:robotmove] sent grasp_p007: joints=[72.98, 80.33, -32.58, -43.63, 87.93, 12.43] deg
+[INFO] [1792446990.048894882] [track1_grasp]: [motion:robotmove] sent grasp_p008: joints=[72.98, 80.61, -32.95, -43.71, 87.93, 12.43] deg
+[INFO] [1792446990.400349972] [track1_grasp]: [motion:robotmove] sent grasp_p009: joints=[72.98, 80.9, -33.31, -43.79, 87.93, 12.43] deg
+[INFO] [1792446990.752036585] [track1_grasp]: [motion:robotmove] sent grasp_p010: joints=[72.98, 81.18, -33.66, -43.86, 87.93, 12.43] deg
+[INFO] [1792446991.103530856] [track1_grasp]: [motion:robotmove] sent grasp_p011: joints=[72.98, 81.46, -34.01, -43.93, 87.93, 12.43] deg
+[INFO] [1792446991.455093990] [track1_grasp]: [motion:robotmove] sent grasp_p012: joints=[72.98, 81.73, -34.36, -44.0, 87.93, 12.43] deg
+[INFO] [1792446991.806627441] [track1_grasp]: [motion:robotmove] sent grasp_p013: joints=[72.98, 82.01, -34.7, -44.06, 87.93, 12.43] deg
+[INFO] [1792446992.158082531] [track1_grasp]: [motion:robotmove] sent grasp_p014: joints=[72.98, 82.28, -35.03, -44.13, 87.93, 12.43] deg
+[INFO] [1792446992.509564929] [track1_grasp]: [motion:robotmove] sent grasp_p015: joints=[72.98, 82.55, -35.36, -44.18, 87.93, 12.43] deg
+[INFO] [1792446992.861117377] [track1_grasp]: [motion:robotmove] sent grasp_p016: joints=[72.98, 82.82, -35.69, -44.24, 87.93, 12.43] deg
+[INFO] [1792446993.212551096] [track1_grasp]: [motion:robotmove] sent grasp_p017: joints=[72.98, 83.09, -36.01, -44.3, 87.93, 12.43] deg
+[INFO] [1792446993.563857773] [track1_grasp]: [motion:robotmove] sent grasp_p018: joints=[72.98, 83.35, -36.32, -44.35, 87.93, 12.43] deg
+[INFO] [1792446993.915378164] [track1_grasp]: [motion:robotmove] sent grasp_p019: joints=[72.98, 83.62, -36.64, -44.4, 87.93, 12.43] deg
+[INFO] [1792446994.266817819] [track1_grasp]: [motion:robotmove] sent grasp_p020: joints=[72.98, 83.88, -36.95, -44.44, 87.93, 12.43] deg
+[INFO] [1792446994.568234144] [track1_grasp]: [motion:robotmove] sent grasp_p021: joints=[72.98, 84.14, -37.25, -44.49, 87.93, 12.43] deg
+[INFO] [1792446994.919790155] [track1_grasp]: [motion:robotmove] sent grasp_p022: joints=[72.98, 84.4, -37.55, -44.53, 87.93, 12.43] deg
+[INFO] [1792446995.271198940] [track1_grasp]: [motion:robotmove] sent grasp_p023: joints=[72.98, 84.65, -37.85, -44.57, 87.93, 12.43] deg
+[INFO] [1792446995.622866556] [track1_grasp]: [motion:robotmove] sent grasp_p024: joints=[72.98, 84.91, -38.14, -44.61, 87.93, 12.43] deg
+[INFO] [1792446995.974604223] [track1_grasp]: [motion:robotmove] sent grasp_p025: joints=[72.98, 85.16, -38.44, -44.65, 87.93, 12.43] deg
+[INFO] [1792446996.276008675] [track1_grasp]: [motion:robotmove] sent grasp_p026: joints=[72.98, 85.42, -38.72, -44.68, 87.93, 12.43] deg
+[INFO] [1792446996.627634736] [track1_grasp]: [motion:robotmove] sent grasp_p027: joints=[72.98, 85.67, -39.0, -44.71, 87.93, 12.43] deg
+[INFO] [1792446996.928962014] [track1_grasp]: [motion:robotmove] sent grasp_p028: joints=[72.98, 85.92, -39.29, -44.74, 87.93, 12.43] deg
+[INFO] [1792446997.280573828] [track1_grasp]: [motion:robotmove] sent grasp_p029: joints=[72.98, 86.17, -39.56, -44.77, 87.93, 12.43] deg
+[INFO] [1792446997.632104905] [track1_grasp]: [motion:robotmove] sent grasp_p030: joints=[72.98, 86.41, -39.83, -44.8, 87.93, 12.43] deg
+[INFO] [1792446997.983741651] [track1_grasp]: [motion:robotmove] sent grasp_p031: joints=[72.98, 86.66, -40.1, -44.82, 87.93, 12.43] deg
+[INFO] [1792446998.335094633] [track1_grasp]: [motion:robotmove] sent grasp_p032: joints=[72.98, 86.9, -40.37, -44.85, 87.93, 12.43] deg
+[INFO] [1792446998.686644707] [track1_grasp]: [motion:robotmove] sent grasp_p033: joints=[72.98, 87.15, -40.64, -44.87, 87.93, 12.43] deg
+[INFO] [1792446998.988259311] [track1_grasp]: [motion:robotmove] sent grasp_p034: joints=[72.98, 87.39, -40.9, -44.88, 87.93, 12.43] deg
+[INFO] [1792446999.289761122] [track1_grasp]: [motion:robotmove] sent grasp_p035: joints=[72.98, 87.63, -41.16, -44.9, 87.93, 12.43] deg
+[INFO] [1792446999.591198819] [track1_grasp]: [motion:robotmove] sent grasp_p036: joints=[72.98, 87.87, -41.41, -44.92, 87.93, 12.43] deg
+[INFO] [1792446999.892876350] [track1_grasp]: [motion:robotmove] sent grasp_p037: joints=[72.98, 88.11, -41.67, -44.93, 87.93, 12.43] deg
+[INFO] [1792447000.194500453] [track1_grasp]: [motion:robotmove] sent grasp_p038: joints=[72.98, 88.35, -41.92, -44.94, 87.93, 12.43] deg
+[INFO] [1792447000.495660321] [track1_grasp]: [motion:robotmove] sent grasp_p039: joints=[72.98, 88.58, -42.16, -44.95, 87.93, 12.43] deg
+[INFO] [1792447000.796978101] [track1_grasp]: [motion:robotmove] sent grasp_p040: joints=[72.98, 88.82, -42.4, -44.96, 87.93, 12.43] deg
+[INFO] [1792447001.098580832] [track1_grasp]: [motion:robotmove] sent grasp_p041: joints=[72.98, 89.05, -42.65, -44.97, 87.93, 12.43] deg
+[INFO] [1792447001.400056522] [track1_grasp]: [motion:robotmove] sent grasp_p042: joints=[72.98, 89.29, -42.89, -44.98, 87.93, 12.43] deg
+[INFO] [1792447001.701545273] [track1_grasp]: [motion:robotmove] sent grasp_p043: joints=[72.98, 89.52, -43.12, -44.98, 87.93, 12.43] deg
+[INFO] [1792447002.002902233] [track1_grasp]: [motion:robotmove] sent grasp_p044: joints=[72.98, 89.75, -43.35, -44.98, 87.93, 12.43] deg
+[INFO] [1792447002.304299562] [track1_grasp]: [motion:robotmove] sent grasp_p045: joints=[72.98, 89.98, -43.59, -44.98, 87.93, 12.43] deg
+[INFO] [1792447002.605780001] [track1_grasp]: [motion:robotmove] sent grasp_p046: joints=[72.98, 90.21, -43.81, -44.98, 87.93, 12.43] deg
+[INFO] [1792447002.907170206] [track1_grasp]: [motion:robotmove] sent grasp_p047: joints=[72.98, 90.44, -44.04, -44.98, 87.93, 12.43] deg
+[INFO] [1792447003.208585344] [track1_grasp]: [motion:robotmove] sent grasp_p048: joints=[72.98, 90.66, -44.27, -44.98, 87.93, 12.43] deg
+[INFO] [1792447003.509913809] [track1_grasp]: [motion:robotmove] sent grasp_p049: joints=[72.98, 90.89, -44.49, -44.97, 87.93, 12.43] deg
+[INFO] [1792447003.811461924] [track1_grasp]: [motion:robotmove] sent grasp_p050: joints=[72.98, 91.12, -44.7, -44.96, 87.93, 12.43] deg
+[INFO] [1792447004.112861627] [track1_grasp]: [motion:robotmove] sent grasp_p051: joints=[72.98, 91.34, -44.92, -44.96, 87.93, 12.43] deg
+[INFO] [1792447004.414218588] [track1_grasp]: [motion:robotmove] sent grasp_p052: joints=[72.98, 91.56, -45.14, -44.95, 87.93, 12.43] deg
+[INFO] [1792447004.715696652] [track1_grasp]: [motion:robotmove] sent grasp_p053: joints=[72.98, 91.79, -45.35, -44.94, 87.93, 12.43] deg
+[INFO] [1792447005.016974064] [track1_grasp]: [motion:robotmove] sent grasp_p054: joints=[72.98, 92.01, -45.56, -44.92, 87.93, 12.43] deg
+[INFO] [1792447005.318225354] [track1_grasp]: [motion:robotmove] sent grasp_p055: joints=[72.98, 92.23, -45.77, -44.91, 87.93, 12.43] deg
+[INFO] [1792447005.619479019] [track1_grasp]: [motion:robotmove] sent grasp_p056: joints=[72.98, 92.45, -45.98, -44.9, 87.93, 12.43] deg
+[INFO] [1792447005.920755243] [track1_grasp]: [motion:robotmove] sent grasp_p057: joints=[72.98, 92.67, -46.18, -44.88, 87.93, 12.43] deg
+[INFO] [1792447006.222025530] [track1_grasp]: [motion:robotmove] sent grasp_p058: joints=[72.98, 92.89, -46.38, -44.86, 87.93, 12.43] deg
+[INFO] [1792447006.523150967] [track1_grasp]: [motion:robotmove] sent grasp_p059: joints=[72.98, 93.11, -46.58, -44.84, 87.93, 12.43] deg
+[INFO] [1792447006.824555419] [track1_grasp]: [motion:robotmove] sent grasp_p060: joints=[72.98, 93.33, -46.77, -44.82, 87.93, 12.43] deg
+[INFO] [1792447007.126066729] [track1_grasp]: [motion:robotmove] sent grasp_p061: joints=[72.98, 93.54, -46.97, -44.8, 87.93, 12.43] deg
+[INFO] [1792447007.427481867] [track1_grasp]: [motion:robotmove] sent grasp_p062: joints=[72.98, 93.76, -47.16, -44.78, 87.93, 12.43] deg
+[INFO] [1792447007.728920751] [track1_grasp]: [motion:robotmove] sent grasp_p063: joints=[72.98, 93.97, -47.36, -44.76, 87.93, 12.43] deg
+[INFO] [1792447008.030237343] [track1_grasp]: [motion:robotmove] sent grasp_p064: joints=[72.98, 94.19, -47.55, -44.73, 87.93, 12.43] deg
+[INFO] [1792447008.331654855] [track1_grasp]: [motion:robotmove] sent grasp_p065: joints=[72.98, 94.4, -47.73, -44.71, 87.93, 12.43] deg
+[INFO] [1792447008.633020127] [track1_grasp]: [motion:robotmove] sent grasp_p066: joints=[72.98, 94.61, -47.91, -44.68, 87.93, 12.43] deg
+[INFO] [1792447008.934568242] [track1_grasp]: [motion:robotmove] sent grasp_p067: joints=[72.98, 94.82, -48.1, -44.65, 87.93, 12.43] deg
+[INFO] [1792447009.236034434] [track1_grasp]: [motion:robotmove] sent grasp_p068: joints=[72.98, 95.04, -48.28, -44.62, 87.93, 12.43] deg
+[INFO] [1792447009.537457883] [track1_grasp]: [motion:robotmove] sent grasp_p069: joints=[72.98, 95.25, -48.46, -44.59, 87.93, 12.43] deg
+[INFO] [1792447009.788639539] [track1_grasp]: [motion:robotmove] sent grasp_p070: joints=[72.98, 95.46, -48.64, -44.56, 87.93, 12.43] deg
+[INFO] [1792447010.089883706] [track1_grasp]: [motion:robotmove] sent grasp_p071: joints=[72.98, 95.67, -48.81, -44.52, 87.93, 12.43] deg
+[INFO] [1792447010.391351085] [track1_grasp]: [motion:robotmove] sent grasp_p072: joints=[72.98, 95.87, -48.99, -44.49, 87.93, 12.43] deg
+[INFO] [1792447010.692864769] [track1_grasp]: [motion:robotmove] sent grasp_p073: joints=[72.98, 96.08, -49.16, -44.45, 87.93, 12.43] deg
+[INFO] [1792447010.994275158] [track1_grasp]: [motion:robotmove] sent grasp_p074: joints=[72.98, 96.29, -49.33, -44.41, 87.93, 12.43] deg
+[INFO] [1792447011.295497953] [track1_grasp]: [motion:robotmove] sent grasp_p075: joints=[72.98, 96.5, -49.5, -44.38, 87.93, 12.43] deg
+[INFO] [1792447011.596782488] [track1_grasp]: [motion:robotmove] sent grasp_p076: joints=[72.98, 96.7, -49.67, -44.34, 87.93, 12.43] deg
+[INFO] [1792447011.848612410] [track1_grasp]: [motion:robotmove] sent grasp_p077: joints=[72.98, 96.91, -49.83, -44.3, 87.93, 12.43] deg
+[INFO] [1792447012.099985222] [track1_grasp]: [motion:robotmove] sent grasp_p078: joints=[72.98, 97.11, -49.99, -44.26, 87.93, 12.43] deg
+[INFO] [1792447012.351171627] [track1_grasp]: [motion:robotmove] sent grasp_p079: joints=[72.98, 97.31, -50.15, -44.21, 87.93, 12.43] deg
+[INFO] [1792447012.602494572] [track1_grasp]: [motion:robotmove] sent grasp_p080: joints=[72.98, 97.52, -50.31, -44.17, 87.93, 12.43] deg
+[INFO] [1792447012.853724908] [track1_grasp]: [motion:linear] grasp: completed 0.080 m with 80 waypoint(s), max_joint_step=0.403 deg
+[INFO] [1792447012.854114342] [track1_grasp]: [grasp] reached grasp pose; closing jaws
+[INFO] [1792447012.854519211] [track1_grasp]: [gripper:ms42dc_ros] close: dir=1 angle_wire=30000 speed_wire=100
+[INFO] [1792447015.166880036] [track1_grasp]: [verify_hold] checking whether the object is held
+[INFO] [1792447016.877904207] [track1_grasp]: [verify_hold] jaws settled at 20.9 deg
+[INFO] [1792447016.878282956] [track1_grasp]: [lift] move to lift: xyz=(0.0433, 0.522, 0.2475)
+[INFO] [1792447016.878937158] [track1_grasp]: [motion:robotmove] sent lift_p001: joints=[72.97, 97.34, -50.2, -44.21, 87.92, 12.43] deg
+[INFO] [1792447017.181471920] [track1_grasp]: [motion:robotmove] sent lift_p002: joints=[72.97, 97.14, -50.04, -44.26, 87.92, 12.43] deg
+[INFO] [1792447017.482911992] [track1_grasp]: [motion:robotmove] sent lift_p003: joints=[72.97, 96.93, -49.88, -44.3, 87.92, 12.43] deg
+[INFO] [1792447017.784544406] [track1_grasp]: [motion:robotmove] sent lift_p004: joints=[72.97, 96.72, -49.71, -44.34, 87.92, 12.43] deg
+[INFO] [1792447018.086020096] [track1_grasp]: [motion:robotmove] sent lift_p005: joints=[72.97, 96.52, -49.54, -44.38, 87.92, 12.43] deg
+[INFO] [1792447018.387954084] [track1_grasp]: [motion:robotmove] sent lift_p006: joints=[72.97, 96.31, -49.37, -44.42, 87.92, 12.43] deg
+[INFO] [1792447018.689301546] [track1_grasp]: [motion:robotmove] sent lift_p007: joints=[72.97, 96.11, -49.2, -44.45, 87.92, 12.43] deg
+[INFO] [1792447018.990624074] [track1_grasp]: [motion:robotmove] sent lift_p008: joints=[72.97, 95.9, -49.03, -44.49, 87.92, 12.43] deg
+[INFO] [1792447019.291878927] [track1_grasp]: [motion:robotmove] sent lift_p009: joints=[72.97, 95.69, -48.86, -44.52, 87.92, 12.43] deg
+[INFO] [1792447019.593126655] [track1_grasp]: [motion:robotmove] sent lift_p010: joints=[72.97, 95.48, -48.69, -44.56, 87.92, 12.43] deg
+[INFO] [1792447019.894429000] [track1_grasp]: [motion:robotmove] sent lift_p011: joints=[72.97, 95.27, -48.51, -44.59, 87.92, 12.43] deg
+[INFO] [1792447020.195737281] [track1_grasp]: [motion:robotmove] sent lift_p012: joints=[72.97, 95.06, -48.33, -44.62, 87.92, 12.43] deg
+[INFO] [1792447020.497159543] [track1_grasp]: [motion:robotmove] sent lift_p013: joints=[72.97, 94.85, -48.15, -44.65, 87.92, 12.43] deg
+[INFO] [1792447020.748588157] [track1_grasp]: [motion:robotmove] sent lift_p014: joints=[72.97, 94.64, -47.97, -44.68, 87.92, 12.43] deg
+[INFO] [1792447020.999756753] [track1_grasp]: [motion:robotmove] sent lift_p015: joints=[72.97, 94.42, -47.78, -44.71, 87.92, 12.43] deg
+[INFO] [1792447021.250886168] [track1_grasp]: [motion:robotmove] sent lift_p016: joints=[72.97, 94.21, -47.59, -44.73, 87.92, 12.43] deg
+[INFO] [1792447021.502067824] [track1_grasp]: [motion:robotmove] sent lift_p017: joints=[72.97, 94.0, -47.4, -44.76, 87.92, 12.43] deg
+[INFO] [1792447021.753476255] [track1_grasp]: [motion:robotmove] sent lift_p018: joints=[72.97, 93.78, -47.21, -44.78, 87.92, 12.43] deg
+[INFO] [1792447022.004858565] [track1_grasp]: [motion:robotmove] sent lift_p019: joints=[72.97, 93.57, -47.02, -44.81, 87.92, 12.43] deg
+[INFO] [1792447022.306276078] [track1_grasp]: [motion:robotmove] sent lift_p020: joints=[72.97, 93.35, -46.83, -44.83, 87.92, 12.43] deg
+[INFO] [1792447022.557456546] [track1_grasp]: [motion:robotmove] sent lift_p021: joints=[72.97, 93.14, -46.63, -44.85, 87.92, 12.43] deg
+[INFO] [1792447022.808724876] [track1_grasp]: [motion:robotmove] sent lift_p022: joints=[72.97, 92.92, -46.43, -44.87, 87.92, 12.43] deg
+[INFO] [1792447023.110113893] [track1_grasp]: [motion:robotmove] sent lift_p023: joints=[72.97, 92.7, -46.23, -44.88, 87.92, 12.43] deg
+[INFO] [1792447023.411613329] [track1_grasp]: [motion:robotmove] sent lift_p024: joints=[72.97, 92.48, -46.02, -44.9, 87.92, 12.43] deg
+[INFO] [1792447023.713010658] [track1_grasp]: [motion:robotmove] sent lift_p025: joints=[72.97, 92.26, -45.82, -44.92, 87.92, 12.43] deg
+[INFO] [1792447024.014487535] [track1_grasp]: [motion:robotmove] sent lift_p026: joints=[72.97, 92.04, -45.61, -44.93, 87.92, 12.43] deg
+[INFO] [1792447024.315979848] [track1_grasp]: [motion:robotmove] sent lift_p027: joints=[72.97, 91.81, -45.4, -44.94, 87.92, 12.43] deg
+[INFO] [1792447024.617410421] [track1_grasp]: [motion:robotmove] sent lift_p028: joints=[72.97, 91.59, -45.19, -44.95, 87.92, 12.43] deg
+[INFO] [1792447024.919034523] [track1_grasp]: [motion:robotmove] sent lift_p029: joints=[72.97, 91.37, -44.98, -44.96, 87.92, 12.43] deg
+[INFO] [1792447025.220455598] [track1_grasp]: [motion:robotmove] sent lift_p030: joints=[72.97, 91.14, -44.76, -44.97, 87.92, 12.43] deg
+[INFO] [1792447025.521762691] [track1_grasp]: [motion:robotmove] sent lift_p031: joints=[72.97, 90.92, -44.54, -44.98, 87.92, 12.43] deg
+[INFO] [1792447025.823143398] [track1_grasp]: [motion:robotmove] sent lift_p032: joints=[72.97, 90.69, -44.32, -44.98, 87.92, 12.43] deg
+[INFO] [1792447026.124470675] [track1_grasp]: [motion:robotmove] sent lift_p033: joints=[72.97, 90.46, -44.09, -44.99, 87.92, 12.43] deg
+[INFO] [1792447026.425803890] [track1_grasp]: [motion:robotmove] sent lift_p034: joints=[72.97, 90.24, -43.87, -44.99, 87.92, 12.43] deg
+[INFO] [1792447026.727251085] [track1_grasp]: [motion:robotmove] sent lift_p035: joints=[72.97, 90.01, -43.64, -44.99, 87.92, 12.43] deg
+[INFO] [1792447027.028597359] [track1_grasp]: [motion:robotmove] sent lift_p036: joints=[72.97, 89.78, -43.41, -44.99, 87.92, 12.43] deg
+[INFO] [1792447027.329924637] [track1_grasp]: [motion:robotmove] sent lift_p037: joints=[72.97, 89.54, -43.18, -44.99, 87.92, 12.43] deg
+[INFO] [1792447027.631427635] [track1_grasp]: [motion:robotmove] sent lift_p038: joints=[72.97, 89.31, -42.94, -44.98, 87.92, 12.43] deg
+[INFO] [1792447027.932986436] [track1_grasp]: [motion:robotmove] sent lift_p039: joints=[72.97, 89.08, -42.7, -44.98, 87.92, 12.43] deg
+[INFO] [1792447028.234337460] [track1_grasp]: [motion:robotmove] sent lift_p040: joints=[72.97, 88.85, -42.46, -44.97, 87.92, 12.43] deg
+[INFO] [1792447028.535693233] [track1_grasp]: [motion:robotmove] sent lift_p041: joints=[72.97, 88.61, -42.22, -44.96, 87.92, 12.43] deg
+[INFO] [1792447028.837095311] [track1_grasp]: [motion:robotmove] sent lift_p042: joints=[72.97, 88.38, -41.97, -44.95, 87.92, 12.43] deg
+[INFO] [1792447029.088785132] [track1_grasp]: [motion:robotmove] sent lift_p043: joints=[72.97, 88.14, -41.72, -44.94, 87.92, 12.43] deg
+[INFO] [1792447029.390193146] [track1_grasp]: [motion:robotmove] sent lift_p044: joints=[72.97, 87.9, -41.47, -44.92, 87.92, 12.43] deg
+[INFO] [1792447029.691622531] [track1_grasp]: [motion:robotmove] sent lift_p045: joints=[72.97, 87.66, -41.21, -44.91, 87.92, 12.43] deg
+[INFO] [1792447029.993045980] [track1_grasp]: [motion:robotmove] sent lift_p046: joints=[72.97, 87.42, -40.96, -44.89, 87.92, 12.43] deg
+[INFO] [1792447030.294522858] [track1_grasp]: [motion:robotmove] sent lift_p047: joints=[72.97, 87.17, -40.69, -44.87, 87.92, 12.43] deg
+[INFO] [1792447030.596027043] [track1_grasp]: [motion:robotmove] sent lift_p048: joints=[72.97, 86.93, -40.43, -44.85, 87.92, 12.43] deg
+[INFO] [1792447030.897620276] [track1_grasp]: [motion:robotmove] sent lift_p049: joints=[72.97, 86.69, -40.17, -44.83, 87.92, 12.43] deg
+[INFO] [1792447031.199112589] [track1_grasp]: [motion:robotmove] sent lift_p050: joints=[72.97, 86.44, -39.9, -44.81, 87.92, 12.43] deg
+[INFO] [1792447031.500654768] [track1_grasp]: [motion:robotmove] sent lift_p051: joints=[72.97, 86.2, -39.63, -44.78, 87.92, 12.43] deg
+[INFO] [1792447031.802251563] [track1_grasp]: [motion:robotmove] sent lift_p052: joints=[72.97, 85.95, -39.35, -44.75, 87.92, 12.43] deg
+[INFO] [1792447032.103519475] [track1_grasp]: [motion:robotmove] sent lift_p053: joints=[72.97, 85.7, -39.07, -44.72, 87.92, 12.43] deg
+[INFO] [1792447032.404893058] [track1_grasp]: [motion:robotmove] sent lift_p054: joints=[72.97, 85.45, -38.79, -44.69, 87.92, 12.43] deg
+[INFO] [1792447032.706463732] [track1_grasp]: [motion:robotmove] sent lift_p055: joints=[72.97, 85.19, -38.5, -44.66, 87.92, 12.43] deg
+[INFO] [1792447033.007890743] [track1_grasp]: [motion:robotmove] sent lift_p056: joints=[72.97, 84.94, -38.21, -44.62, 87.92, 12.43] deg
+[INFO] [1792447033.309394929] [track1_grasp]: [motion:robotmove] sent lift_p057: joints=[72.97, 84.69, -37.92, -44.58, 87.92, 12.43] deg
+[INFO] [1792447033.610772073] [track1_grasp]: [motion:robotmove] sent lift_p058: joints=[72.97, 84.43, -37.62, -44.54, 87.92, 12.43] deg
+[INFO] [1792447033.912226392] [track1_grasp]: [motion:robotmove] sent lift_p059: joints=[72.97, 84.17, -37.32, -44.5, 87.92, 12.43] deg
+[INFO] [1792447034.213515676] [track1_grasp]: [motion:robotmove] sent lift_p060: joints=[72.97, 83.91, -37.01, -44.46, 87.92, 12.43] deg
+[INFO] [1792447034.515012738] [track1_grasp]: [motion:robotmove] sent lift_p061: joints=[72.97, 83.65, -36.7, -44.41, 87.92, 12.43] deg
+[INFO] [1792447034.816567977] [track1_grasp]: [motion:robotmove] sent lift_p062: joints=[72.97, 83.38, -36.39, -44.36, 87.92, 12.43] deg
+[INFO] [1792447035.168183352] [track1_grasp]: [motion:robotmove] sent lift_p063: joints=[72.97, 83.12, -36.08, -44.31, 87.92, 12.43] deg
+[INFO] [1792447035.519755985] [track1_grasp]: [motion:robotmove] sent lift_p064: joints=[72.97, 82.85, -35.75, -44.25, 87.92, 12.43] deg
+[INFO] [1792447035.871383233] [track1_grasp]: [motion:robotmove] sent lift_p065: joints=[72.97, 82.59, -35.43, -44.2, 87.92, 12.43] deg
+[INFO] [1792447036.222878691] [track1_grasp]: [motion:robotmove] sent lift_p066: joints=[72.97, 82.31, -35.1, -44.14, 87.92, 12.43] deg
+[INFO] [1792447036.574593799] [track1_grasp]: [motion:robotmove] sent lift_p067: joints=[72.97, 82.04, -34.77, -44.08, 87.92, 12.43] deg
+[INFO] [1792447036.926452571] [track1_grasp]: [motion:robotmove] sent lift_p068: joints=[72.97, 81.77, -34.43, -44.01, 87.92, 12.43] deg
+[INFO] [1792447037.278281661] [track1_grasp]: [motion:robotmove] sent lift_p069: joints=[72.97, 81.49, -34.08, -43.95, 87.92, 12.43] deg
+[INFO] [1792447037.630043074] [track1_grasp]: [motion:robotmove] sent lift_p070: joints=[72.97, 81.21, -33.73, -43.88, 87.92, 12.43] deg
+[INFO] [1792447037.981803300] [track1_grasp]: [motion:robotmove] sent lift_p071: joints=[72.97, 80.93, -33.38, -43.8, 87.92, 12.43] deg
+[INFO] [1792447038.333482789] [track1_grasp]: [motion:robotmove] sent lift_p072: joints=[72.97, 80.65, -33.02, -43.73, 87.92, 12.43] deg
+[INFO] [1792447038.685226393] [track1_grasp]: [motion:robotmove] sent lift_p073: joints=[72.97, 80.36, -32.66, -43.65, 87.92, 12.43] deg
+[INFO] [1792447039.036869076] [track1_grasp]: [motion:robotmove] sent lift_p074: joints=[72.97, 80.08, -32.29, -43.57, 87.92, 12.43] deg
+[INFO] [1792447039.388681543] [track1_grasp]: [motion:robotmove] sent lift_p075: joints=[72.97, 79.79, -31.91, -43.48, 87.92, 12.43] deg
+[INFO] [1792447039.690165545] [track1_grasp]: [motion:robotmove] sent lift_p076: joints=[72.97, 79.49, -31.53, -43.39, 87.92, 12.43] deg
+[INFO] [1792447040.091864802] [track1_grasp]: [motion:robotmove] sent lift_p077: joints=[72.97, 79.2, -31.14, -43.3, 87.92, 12.43] deg
+[INFO] [1792447040.493534376] [track1_grasp]: [motion:robotmove] sent lift_p078: joints=[72.97, 78.9, -30.75, -43.2, 87.92, 12.43] deg
+[INFO] [1792447040.895342865] [track1_grasp]: [motion:robotmove] sent lift_p079: joints=[72.97, 78.6, -30.35, -43.1, 87.92, 12.43] deg
+[INFO] [1792447041.297078929] [track1_grasp]: [motion:robotmove] sent lift_p080: joints=[72.97, 78.29, -29.94, -43.0, 87.92, 12.43] deg
+[INFO] [1792447041.648911580] [track1_grasp]: [motion:linear] lift: completed 0.080 m with 80 waypoint(s), max_joint_step=0.408 deg
+[INFO] [1792447041.649342570] [track1_grasp]: [lift] lift pose reached; holding for 2.0 s before return
+[INFO] [1792447043.651924914] [track1_grasp]: [transfer] move to transfer: xyz=(0.0433, 0.522, 0.2475)
+[INFO] [1792447043.652493631] [track1_grasp]: [motion:linear] transfer: completed 0.000 m with 0 waypoint(s), max_joint_step=0.000 deg
+[INFO] [1792447043.652827262] [track1_grasp]: [release] move to release: xyz=(0.0433, 0.522, 0.1675)
+[INFO] [1792447043.653477902] [track1_grasp]: [motion:robotmove] sent release_p001: joints=[72.98, 78.56, -30.27, -43.08, 87.93, 12.43] deg
+[INFO] [1792447044.005191824] [track1_grasp]: [motion:robotmove] sent release_p002: joints=[72.98, 78.86, -30.67, -43.18, 87.93, 12.43] deg
+[INFO] [1792447044.356866564] [track1_grasp]: [motion:robotmove] sent release_p003: joints=[72.98, 79.16, -31.06, -43.28, 87.93, 12.43] deg
+[INFO] [1792447044.708606606] [track1_grasp]: [motion:robotmove] sent release_p004: joints=[72.98, 79.45, -31.45, -43.37, 87.93, 12.43] deg
+[INFO] [1792447045.060248101] [track1_grasp]: [motion:robotmove] sent release_p005: joints=[72.98, 79.75, -31.83, -43.46, 87.93, 12.43] deg
+[INFO] [1792447045.412072442] [track1_grasp]: [motion:robotmove] sent release_p006: joints=[72.98, 80.04, -32.21, -43.55, 87.93, 12.43] deg
+[INFO] [1792447045.763783988] [track1_grasp]: [motion:robotmove] sent release_p007: joints=[72.98, 80.33, -32.58, -43.63, 87.93, 12.43] deg
+[INFO] [1792447046.115432608] [track1_grasp]: [motion:robotmove] sent release_p008: joints=[72.98, 80.61, -32.95, -43.71, 87.93, 12.43] deg
+[INFO] [1792447046.466922129] [track1_grasp]: [motion:robotmove] sent release_p009: joints=[72.98, 80.9, -33.31, -43.79, 87.93, 12.43] deg
+[INFO] [1792447046.818702539] [track1_grasp]: [motion:robotmove] sent release_p010: joints=[72.98, 81.18, -33.66, -43.86, 87.93, 12.43] deg
+[INFO] [1792447047.170417648] [track1_grasp]: [motion:robotmove] sent release_p011: joints=[72.98, 81.46, -34.01, -43.93, 87.93, 12.43] deg
+[INFO] [1792447047.522124445] [track1_grasp]: [motion:robotmove] sent release_p012: joints=[72.98, 81.73, -34.36, -44.0, 87.93, 12.43] deg
+[INFO] [1792447047.873942849] [track1_grasp]: [motion:robotmove] sent release_p013: joints=[72.98, 82.01, -34.7, -44.06, 87.93, 12.43] deg
+[INFO] [1792447048.225577221] [track1_grasp]: [motion:robotmove] sent release_p014: joints=[72.98, 82.28, -35.03, -44.13, 87.93, 12.43] deg
+[INFO] [1792447048.577050120] [track1_grasp]: [motion:robotmove] sent release_p015: joints=[72.98, 82.55, -35.36, -44.18, 87.93, 12.43] deg
+[INFO] [1792447048.928828156] [track1_grasp]: [motion:robotmove] sent release_p016: joints=[72.98, 82.82, -35.69, -44.24, 87.93, 12.43] deg
+[INFO] [1792447049.280384166] [track1_grasp]: [motion:robotmove] sent release_p017: joints=[72.98, 83.09, -36.01, -44.3, 87.93, 12.43] deg
+[INFO] [1792447049.631968671] [track1_grasp]: [motion:robotmove] sent release_p018: joints=[72.98, 83.35, -36.32, -44.35, 87.93, 12.43] deg
+[INFO] [1792447049.983706338] [track1_grasp]: [motion:robotmove] sent release_p019: joints=[72.98, 83.62, -36.64, -44.4, 87.93, 12.43] deg
+[INFO] [1792447050.335262349] [track1_grasp]: [motion:robotmove] sent release_p020: joints=[72.98, 83.88, -36.95, -44.44, 87.93, 12.43] deg
+[INFO] [1792447050.686725750] [track1_grasp]: [motion:robotmove] sent release_p021: joints=[72.98, 84.14, -37.25, -44.49, 87.93, 12.43] deg
+[INFO] [1792447050.988139700] [track1_grasp]: [motion:robotmove] sent release_p022: joints=[72.98, 84.4, -37.55, -44.53, 87.93, 12.43] deg
+[INFO] [1792447051.289409988] [track1_grasp]: [motion:robotmove] sent release_p023: joints=[72.98, 84.65, -37.85, -44.57, 87.93, 12.43] deg
+[INFO] [1792447051.590690961] [track1_grasp]: [motion:robotmove] sent release_p024: joints=[72.98, 84.91, -38.14, -44.61, 87.93, 12.43] deg
+[INFO] [1792447051.891994492] [track1_grasp]: [motion:robotmove] sent release_p025: joints=[72.98, 85.16, -38.44, -44.65, 87.93, 12.43] deg
+[INFO] [1792447052.193336018] [track1_grasp]: [motion:robotmove] sent release_p026: joints=[72.98, 85.42, -38.72, -44.68, 87.93, 12.43] deg
+[INFO] [1792447052.494669232] [track1_grasp]: [motion:robotmove] sent release_p027: joints=[72.98, 85.67, -39.0, -44.71, 87.93, 12.43] deg
+[INFO] [1792447052.796032129] [track1_grasp]: [motion:robotmove] sent release_p028: joints=[72.98, 85.92, -39.29, -44.74, 87.93, 12.43] deg
+[INFO] [1792447053.097364156] [track1_grasp]: [motion:robotmove] sent release_p029: joints=[72.98, 86.17, -39.56, -44.77, 87.93, 12.43] deg
+[INFO] [1792447053.398766233] [track1_grasp]: [motion:robotmove] sent release_p030: joints=[72.98, 86.41, -39.83, -44.8, 87.93, 12.43] deg
+[INFO] [1792447053.700093511] [track1_grasp]: [motion:robotmove] sent release_p031: joints=[72.98, 86.66, -40.1, -44.82, 87.93, 12.43] deg
+[INFO] [1792447054.001565639] [track1_grasp]: [motion:robotmove] sent release_p032: joints=[72.98, 86.9, -40.37, -44.85, 87.93, 12.43] deg
+[INFO] [1792447054.303044892] [track1_grasp]: [motion:robotmove] sent release_p033: joints=[72.98, 87.15, -40.64, -44.87, 87.93, 12.43] deg
+[INFO] [1792447054.604477839] [track1_grasp]: [motion:robotmove] sent release_p034: joints=[72.98, 87.39, -40.9, -44.88, 87.93, 12.43] deg
+[INFO] [1792447054.906023580] [track1_grasp]: [motion:robotmove] sent release_p035: joints=[72.98, 87.63, -41.16, -44.9, 87.93, 12.43] deg
+[INFO] [1792447055.207399537] [track1_grasp]: [motion:robotmove] sent release_p036: joints=[72.98, 87.87, -41.41, -44.92, 87.93, 12.43] deg
+[INFO] [1792447055.508754123] [track1_grasp]: [motion:robotmove] sent release_p037: joints=[72.98, 88.11, -41.67, -44.93, 87.93, 12.43] deg
+[INFO] [1792447055.810285616] [track1_grasp]: [motion:robotmove] sent release_p038: joints=[72.98, 88.35, -41.92, -44.94, 87.93, 12.43] deg
+[INFO] [1792447056.111756557] [track1_grasp]: [motion:robotmove] sent release_p039: joints=[72.98, 88.58, -42.16, -44.95, 87.93, 12.43] deg
+[INFO] [1792447056.413037530] [track1_grasp]: [motion:robotmove] sent release_p040: joints=[72.98, 88.82, -42.4, -44.96, 87.93, 12.43] deg
+[INFO] [1792447056.714431297] [track1_grasp]: [motion:robotmove] sent release_p041: joints=[72.98, 89.05, -42.65, -44.97, 87.93, 12.43] deg
+[INFO] [1792447057.015901051] [track1_grasp]: [motion:robotmove] sent release_p042: joints=[72.98, 89.29, -42.89, -44.98, 87.93, 12.43] deg
+[INFO] [1792447057.317284131] [track1_grasp]: [motion:robotmove] sent release_p043: joints=[72.98, 89.52, -43.12, -44.98, 87.93, 12.43] deg
+[INFO] [1792447057.618695707] [track1_grasp]: [motion:robotmove] sent release_p044: joints=[72.98, 89.75, -43.35, -44.98, 87.93, 12.43] deg
+[INFO] [1792447057.920214140] [track1_grasp]: [motion:robotmove] sent release_p045: joints=[72.98, 89.98, -43.59, -44.98, 87.93, 12.43] deg
+[INFO] [1792447058.221629278] [track1_grasp]: [motion:robotmove] sent release_p046: joints=[72.98, 90.21, -43.81, -44.98, 87.93, 12.43] deg
+[INFO] [1792447058.522968429] [track1_grasp]: [motion:robotmove] sent release_p047: joints=[72.98, 90.44, -44.04, -44.98, 87.93, 12.43] deg
+[INFO] [1792447058.824504672] [track1_grasp]: [motion:robotmove] sent release_p048: joints=[72.98, 90.66, -44.27, -44.98, 87.93, 12.43] deg
+[INFO] [1792447059.125852134] [track1_grasp]: [motion:robotmove] sent release_p049: joints=[72.98, 90.89, -44.49, -44.97, 87.93, 12.43] deg
+[INFO] [1792447059.427223341] [track1_grasp]: [motion:robotmove] sent release_p050: joints=[72.98, 91.12, -44.7, -44.96, 87.93, 12.43] deg
+[INFO] [1792447059.728757209] [track1_grasp]: [motion:robotmove] sent release_p051: joints=[72.98, 91.34, -44.92, -44.96, 87.93, 12.43] deg
+[INFO] [1792447060.030306512] [track1_grasp]: [motion:robotmove] sent release_p052: joints=[72.98, 91.56, -45.14, -44.95, 87.93, 12.43] deg
+[INFO] [1792447060.331788139] [track1_grasp]: [motion:robotmove] sent release_p053: joints=[72.98, 91.79, -45.35, -44.94, 87.93, 12.43] deg
+[INFO] [1792447060.633246020] [track1_grasp]: [motion:robotmove] sent release_p054: joints=[72.98, 92.01, -45.56, -44.92, 87.93, 12.43] deg
+[INFO] [1792447060.934760891] [track1_grasp]: [motion:robotmove] sent release_p055: joints=[72.98, 92.23, -45.77, -44.91, 87.93, 12.43] deg
+[INFO] [1792447061.236160594] [track1_grasp]: [motion:robotmove] sent release_p056: joints=[72.98, 92.45, -45.98, -44.9, 87.93, 12.43] deg
+[INFO] [1792447061.537532989] [track1_grasp]: [motion:robotmove] sent release_p057: joints=[72.98, 92.67, -46.18, -44.88, 87.93, 12.43] deg
+[INFO] [1792447061.788739579] [track1_grasp]: [motion:robotmove] sent release_p058: joints=[72.98, 92.89, -46.38, -44.86, 87.93, 12.43] deg
+[INFO] [1792447062.090103663] [track1_grasp]: [motion:robotmove] sent release_p059: joints=[72.98, 93.11, -46.58, -44.84, 87.93, 12.43] deg
+[INFO] [1792447062.391587664] [track1_grasp]: [motion:robotmove] sent release_p060: joints=[72.98, 93.33, -46.77, -44.82, 87.93, 12.43] deg
+[INFO] [1792447062.693031297] [track1_grasp]: [motion:robotmove] sent release_p061: joints=[72.98, 93.54, -46.97, -44.8, 87.93, 12.43] deg
+[INFO] [1792447062.994510549] [track1_grasp]: [motion:robotmove] sent release_p062: joints=[72.98, 93.76, -47.16, -44.78, 87.93, 12.43] deg
+[INFO] [1792447063.295960119] [track1_grasp]: [motion:robotmove] sent release_p063: joints=[72.98, 93.97, -47.36, -44.76, 87.93, 12.43] deg
+[INFO] [1792447063.597394254] [track1_grasp]: [motion:robotmove] sent release_p064: joints=[72.98, 94.19, -47.55, -44.73, 87.93, 12.43] deg
+[INFO] [1792447063.848848989] [track1_grasp]: [motion:robotmove] sent release_p065: joints=[72.98, 94.4, -47.73, -44.71, 87.93, 12.43] deg
+[INFO] [1792447064.100119693] [track1_grasp]: [motion:robotmove] sent release_p066: joints=[72.98, 94.61, -47.91, -44.68, 87.93, 12.43] deg
+[INFO] [1792447064.351395146] [track1_grasp]: [motion:robotmove] sent release_p067: joints=[72.98, 94.82, -48.1, -44.65, 87.93, 12.43] deg
+[INFO] [1792447064.602567304] [track1_grasp]: [motion:robotmove] sent release_p068: joints=[72.98, 95.04, -48.28, -44.62, 87.93, 12.43] deg
+[INFO] [1792447064.853961487] [track1_grasp]: [motion:robotmove] sent release_p069: joints=[72.98, 95.25, -48.46, -44.59, 87.93, 12.43] deg
+[INFO] [1792447065.105257124] [track1_grasp]: [motion:robotmove] sent release_p070: joints=[72.98, 95.46, -48.64, -44.56, 87.93, 12.43] deg
+[INFO] [1792447065.356586005] [track1_grasp]: [motion:robotmove] sent release_p071: joints=[72.98, 95.67, -48.81, -44.52, 87.93, 12.43] deg
+[INFO] [1792447065.657954838] [track1_grasp]: [motion:robotmove] sent release_p072: joints=[72.98, 95.87, -48.99, -44.49, 87.93, 12.43] deg
+[INFO] [1792447065.909195860] [track1_grasp]: [motion:robotmove] sent release_p073: joints=[72.98, 96.08, -49.16, -44.45, 87.93, 12.43] deg
+[INFO] [1792447066.160372767] [track1_grasp]: [motion:robotmove] sent release_p074: joints=[72.98, 96.29, -49.33, -44.41, 87.93, 12.43] deg
+[INFO] [1792447066.461607435] [track1_grasp]: [motion:robotmove] sent release_p075: joints=[72.98, 96.5, -49.5, -44.38, 87.93, 12.43] deg
+[INFO] [1792447066.713014678] [track1_grasp]: [motion:robotmove] sent release_p076: joints=[72.98, 96.7, -49.67, -44.34, 87.93, 12.43] deg
+[INFO] [1792447067.014394197] [track1_grasp]: [motion:robotmove] sent release_p077: joints=[72.98, 96.91, -49.83, -44.3, 87.93, 12.43] deg
+[INFO] [1792447067.315761843] [track1_grasp]: [motion:robotmove] sent release_p078: joints=[72.98, 97.11, -49.99, -44.26, 87.93, 12.43] deg
+[INFO] [1792447067.617133051] [track1_grasp]: [motion:robotmove] sent release_p079: joints=[72.98, 97.31, -50.15, -44.21, 87.93, 12.43] deg
+[INFO] [1792447067.918544627] [track1_grasp]: [motion:robotmove] sent release_p080: joints=[72.98, 97.52, -50.31, -44.17, 87.93, 12.43] deg
+[INFO] [1792447068.219769797] [track1_grasp]: [motion:linear] release: completed 0.080 m with 80 waypoint(s), max_joint_step=0.403 deg
+[INFO] [1792447068.220158044] [track1_grasp]: [release] opening jaws to release the object
+[INFO] [1792447068.220556977] [track1_grasp]: [gripper:ms42dc_ros] open: dir=0 angle_wire=30000 speed_wire=100
+[INFO] [1792447070.532826379] [track1_grasp]: [retreat] move to retreat: xyz=(0.0433, 0.522, 0.2475)
+[INFO] [1792447070.533566067] [track1_grasp]: [motion:robotmove] sent retreat_p001: joints=[72.97, 97.34, -50.2, -44.21, 87.92, 12.43] deg
+[INFO] [1792447070.835056005] [track1_grasp]: [motion:robotmove] sent retreat_p002: joints=[72.97, 97.14, -50.04, -44.26, 87.92, 12.43] deg
+[INFO] [1792447071.136130388] [track1_grasp]: [motion:robotmove] sent retreat_p003: joints=[72.97, 96.93, -49.88, -44.3, 87.92, 12.43] deg
+[INFO] [1792447071.437375742] [track1_grasp]: [motion:robotmove] sent retreat_p004: joints=[72.97, 96.72, -49.71, -44.34, 87.92, 12.43] deg
+[INFO] [1792447071.688581144] [track1_grasp]: [motion:robotmove] sent retreat_p005: joints=[72.97, 96.52, -49.54, -44.38, 87.92, 12.43] deg
+[INFO] [1792447071.990084142] [track1_grasp]: [motion:robotmove] sent retreat_p006: joints=[72.97, 96.31, -49.37, -44.42, 87.92, 12.43] deg
+[INFO] [1792447072.291469597] [track1_grasp]: [motion:robotmove] sent retreat_p007: joints=[72.97, 96.11, -49.2, -44.45, 87.92, 12.43] deg
+[INFO] [1792447072.592766005] [track1_grasp]: [motion:robotmove] sent retreat_p008: joints=[72.97, 95.9, -49.03, -44.49, 87.92, 12.43] deg
+[INFO] [1792447072.894227448] [track1_grasp]: [motion:robotmove] sent retreat_p009: joints=[72.97, 95.69, -48.86, -44.52, 87.92, 12.43] deg
+[INFO] [1792447073.195648523] [track1_grasp]: [motion:robotmove] sent retreat_p010: joints=[72.97, 95.48, -48.69, -44.56, 87.92, 12.43] deg
+[INFO] [1792447073.496814327] [track1_grasp]: [motion:robotmove] sent retreat_p011: joints=[72.97, 95.27, -48.51, -44.59, 87.92, 12.43] deg
+[INFO] [1792447073.748803348] [track1_grasp]: [motion:robotmove] sent retreat_p012: joints=[72.97, 95.06, -48.33, -44.62, 87.92, 12.43] deg
+[INFO] [1792447074.000012312] [track1_grasp]: [motion:robotmove] sent retreat_p013: joints=[72.97, 94.85, -48.15, -44.65, 87.92, 12.43] deg
+[INFO] [1792447074.251179721] [track1_grasp]: [motion:robotmove] sent retreat_p014: joints=[72.97, 94.64, -47.97, -44.68, 87.92, 12.43] deg
+[INFO] [1792447074.502325758] [track1_grasp]: [motion:robotmove] sent retreat_p015: joints=[72.97, 94.42, -47.78, -44.71, 87.92, 12.43] deg
+[INFO] [1792447074.753684322] [track1_grasp]: [motion:robotmove] sent retreat_p016: joints=[72.97, 94.21, -47.59, -44.73, 87.92, 12.43] deg
+[INFO] [1792447075.005287470] [track1_grasp]: [motion:robotmove] sent retreat_p017: joints=[72.97, 94.0, -47.4, -44.76, 87.92, 12.43] deg
+[INFO] [1792447075.306974499] [track1_grasp]: [motion:robotmove] sent retreat_p018: joints=[72.97, 93.78, -47.21, -44.78, 87.92, 12.43] deg
+[INFO] [1792447075.608490558] [track1_grasp]: [motion:robotmove] sent retreat_p019: joints=[72.97, 93.57, -47.02, -44.81, 87.92, 12.43] deg
+[INFO] [1792447075.859945293] [track1_grasp]: [motion:robotmove] sent retreat_p020: joints=[72.97, 93.35, -46.83, -44.83, 87.92, 12.43] deg
+[INFO] [1792447076.161502907] [track1_grasp]: [motion:robotmove] sent retreat_p021: joints=[72.97, 93.14, -46.63, -44.85, 87.92, 12.43] deg
+[INFO] [1792447076.463042711] [track1_grasp]: [motion:robotmove] sent retreat_p022: joints=[72.97, 92.92, -46.43, -44.87, 87.92, 12.43] deg
+[INFO] [1792447076.764529087] [track1_grasp]: [motion:robotmove] sent retreat_p023: joints=[72.97, 92.7, -46.23, -44.88, 87.92, 12.43] deg
+[INFO] [1792447077.065893171] [track1_grasp]: [motion:robotmove] sent retreat_p024: joints=[72.97, 92.48, -46.02, -44.9, 87.92, 12.43] deg
+[INFO] [1792447077.367254881] [track1_grasp]: [motion:robotmove] sent retreat_p025: joints=[72.97, 92.26, -45.82, -44.92, 87.92, 12.43] deg
+[INFO] [1792447077.668658146] [track1_grasp]: [motion:robotmove] sent retreat_p026: joints=[72.97, 92.04, -45.61, -44.93, 87.92, 12.43] deg
+[INFO] [1792447077.970021043] [track1_grasp]: [motion:robotmove] sent retreat_p027: joints=[72.97, 91.81, -45.4, -44.94, 87.92, 12.43] deg
+[INFO] [1792447078.271387501] [track1_grasp]: [motion:robotmove] sent retreat_p028: joints=[72.97, 91.59, -45.19, -44.95, 87.92, 12.43] deg
+[INFO] [1792447078.572935617] [track1_grasp]: [motion:robotmove] sent retreat_p029: joints=[72.97, 91.37, -44.98, -44.96, 87.92, 12.43] deg
+[INFO] [1792447078.874430304] [track1_grasp]: [motion:robotmove] sent retreat_p030: joints=[72.97, 91.14, -44.76, -44.97, 87.92, 12.43] deg
+[INFO] [1792447079.175955861] [track1_grasp]: [motion:robotmove] sent retreat_p031: joints=[72.97, 90.92, -44.54, -44.98, 87.92, 12.43] deg
+[INFO] [1792447079.477338942] [track1_grasp]: [motion:robotmove] sent retreat_p032: joints=[72.97, 90.69, -44.32, -44.98, 87.92, 12.43] deg
+[INFO] [1792447079.778798010] [track1_grasp]: [motion:robotmove] sent retreat_p033: joints=[72.97, 90.46, -44.09, -44.99, 87.92, 12.43] deg
+[INFO] [1792447080.080171592] [track1_grasp]: [motion:robotmove] sent retreat_p034: joints=[72.97, 90.24, -43.87, -44.99, 87.92, 12.43] deg
+[INFO] [1792447080.381614038] [track1_grasp]: [motion:robotmove] sent retreat_p035: joints=[72.97, 90.01, -43.64, -44.99, 87.92, 12.43] deg
+[INFO] [1792447080.683087354] [track1_grasp]: [motion:robotmove] sent retreat_p036: joints=[72.97, 89.78, -43.41, -44.99, 87.92, 12.43] deg
+[INFO] [1792447080.984487057] [track1_grasp]: [motion:robotmove] sent retreat_p037: joints=[72.97, 89.54, -43.18, -44.99, 87.92, 12.43] deg
+[INFO] [1792447081.285814334] [track1_grasp]: [motion:robotmove] sent retreat_p038: joints=[72.97, 89.31, -42.94, -44.98, 87.92, 12.43] deg
+[INFO] [1792447081.587751884] [track1_grasp]: [motion:robotmove] sent retreat_p039: joints=[72.97, 89.08, -42.7, -44.98, 87.92, 12.43] deg
+[INFO] [1792447081.889099346] [track1_grasp]: [motion:robotmove] sent retreat_p040: joints=[72.97, 88.85, -42.46, -44.97, 87.92, 12.43] deg
+[INFO] [1792447082.190651024] [track1_grasp]: [motion:robotmove] sent retreat_p041: joints=[72.97, 88.61, -42.22, -44.96, 87.92, 12.43] deg
+[INFO] [1792447082.492138587] [track1_grasp]: [motion:robotmove] sent retreat_p042: joints=[72.97, 88.38, -41.97, -44.95, 87.92, 12.43] deg
+[INFO] [1792447082.793565598] [track1_grasp]: [motion:robotmove] sent retreat_p043: joints=[72.97, 88.14, -41.72, -44.94, 87.92, 12.43] deg
+[INFO] [1792447083.095070971] [track1_grasp]: [motion:robotmove] sent retreat_p044: joints=[72.97, 87.9, -41.47, -44.92, 87.92, 12.43] deg
+[INFO] [1792447083.396497982] [track1_grasp]: [motion:robotmove] sent retreat_p045: joints=[72.97, 87.66, -41.21, -44.91, 87.92, 12.43] deg
+[INFO] [1792447083.698156516] [track1_grasp]: [motion:robotmove] sent retreat_p046: joints=[72.97, 87.42, -40.96, -44.89, 87.92, 12.43] deg
+[INFO] [1792447083.999619146] [track1_grasp]: [motion:robotmove] sent retreat_p047: joints=[72.97, 87.17, -40.69, -44.87, 87.92, 12.43] deg
+[INFO] [1792447084.301120957] [track1_grasp]: [motion:robotmove] sent retreat_p048: joints=[72.97, 86.93, -40.43, -44.85, 87.92, 12.43] deg
+[INFO] [1792447084.602595460] [track1_grasp]: [motion:robotmove] sent retreat_p049: joints=[72.97, 86.69, -40.17, -44.83, 87.92, 12.43] deg
+[INFO] [1792447084.904116268] [track1_grasp]: [motion:robotmove] sent retreat_p050: joints=[72.97, 86.44, -39.9, -44.81, 87.92, 12.43] deg
+[INFO] [1792447085.205529031] [track1_grasp]: [motion:robotmove] sent retreat_p051: joints=[72.97, 86.2, -39.63, -44.78, 87.92, 12.43] deg
+[INFO] [1792447085.506878867] [track1_grasp]: [motion:robotmove] sent retreat_p052: joints=[72.97, 85.95, -39.35, -44.75, 87.92, 12.43] deg
+[INFO] [1792447085.808356932] [track1_grasp]: [motion:robotmove] sent retreat_p053: joints=[72.97, 85.7, -39.07, -44.72, 87.92, 12.43] deg
+[INFO] [1792447086.109775632] [track1_grasp]: [motion:robotmove] sent retreat_p054: joints=[72.97, 85.45, -38.79, -44.69, 87.92, 12.43] deg
+[INFO] [1792447086.411220453] [track1_grasp]: [motion:robotmove] sent retreat_p055: joints=[72.97, 85.19, -38.5, -44.66, 87.92, 12.43] deg
+[INFO] [1792447086.712787565] [track1_grasp]: [motion:robotmove] sent retreat_p056: joints=[72.97, 84.94, -38.21, -44.62, 87.92, 12.43] deg
+[INFO] [1792447087.014163522] [track1_grasp]: [motion:robotmove] sent retreat_p057: joints=[72.97, 84.69, -37.92, -44.58, 87.92, 12.43] deg
+[INFO] [1792447087.315584597] [track1_grasp]: [motion:robotmove] sent retreat_p058: joints=[72.97, 84.43, -37.62, -44.54, 87.92, 12.43] deg
+[INFO] [1792447087.616881004] [track1_grasp]: [motion:robotmove] sent retreat_p059: joints=[72.97, 84.17, -37.32, -44.5, 87.92, 12.43] deg
+[INFO] [1792447087.918399438] [track1_grasp]: [motion:robotmove] sent retreat_p060: joints=[72.97, 83.91, -37.01, -44.46, 87.92, 12.43] deg
+[INFO] [1792447088.269917454] [track1_grasp]: [motion:robotmove] sent retreat_p061: joints=[72.97, 83.65, -36.7, -44.41, 87.92, 12.43] deg
+[INFO] [1792447088.621467528] [track1_grasp]: [motion:robotmove] sent retreat_p062: joints=[72.97, 83.38, -36.39, -44.36, 87.92, 12.43] deg
+[INFO] [1792447088.973079341] [track1_grasp]: [motion:robotmove] sent retreat_p063: joints=[72.97, 83.12, -36.08, -44.31, 87.92, 12.43] deg
+[INFO] [1792447089.324714901] [track1_grasp]: [motion:robotmove] sent retreat_p064: joints=[72.97, 82.85, -35.75, -44.25, 87.92, 12.43] deg
+[INFO] [1792447089.676338587] [track1_grasp]: [motion:robotmove] sent retreat_p065: joints=[72.97, 82.59, -35.43, -44.2, 87.92, 12.43] deg
+[INFO] [1792447090.027803175] [track1_grasp]: [motion:robotmove] sent retreat_p066: joints=[72.97, 82.31, -35.1, -44.14, 87.92, 12.43] deg
+[INFO] [1792447090.379238081] [track1_grasp]: [motion:robotmove] sent retreat_p067: joints=[72.97, 82.04, -34.77, -44.08, 87.92, 12.43] deg
+[INFO] [1792447090.730908072] [track1_grasp]: [motion:robotmove] sent retreat_p068: joints=[72.97, 81.77, -34.43, -44.01, 87.92, 12.43] deg
+[INFO] [1792447091.082459333] [track1_grasp]: [motion:robotmove] sent retreat_p069: joints=[72.97, 81.49, -34.08, -43.95, 87.92, 12.43] deg
+[INFO] [1792447091.433965477] [track1_grasp]: [motion:robotmove] sent retreat_p070: joints=[72.97, 81.21, -33.73, -43.88, 87.92, 12.43] deg
+[INFO] [1792447091.785637842] [track1_grasp]: [motion:robotmove] sent retreat_p071: joints=[72.97, 80.93, -33.38, -43.8, 87.92, 12.43] deg
+[INFO] [1792447092.137275776] [track1_grasp]: [motion:robotmove] sent retreat_p072: joints=[72.97, 80.65, -33.02, -43.73, 87.92, 12.43] deg
+[INFO] [1792447092.488926771] [track1_grasp]: [motion:robotmove] sent retreat_p073: joints=[72.97, 80.36, -32.66, -43.65, 87.92, 12.43] deg
+[INFO] [1792447092.790372778] [track1_grasp]: [motion:robotmove] sent retreat_p074: joints=[72.97, 80.08, -32.29, -43.57, 87.92, 12.43] deg
+[INFO] [1792447093.091761796] [track1_grasp]: [motion:robotmove] sent retreat_p075: joints=[72.97, 79.79, -31.91, -43.48, 87.92, 12.43] deg
+[INFO] [1792447093.493399313] [track1_grasp]: [motion:robotmove] sent retreat_p076: joints=[72.97, 79.49, -31.53, -43.39, 87.92, 12.43] deg
+[INFO] [1792447093.895072450] [track1_grasp]: [motion:robotmove] sent retreat_p077: joints=[72.97, 79.2, -31.14, -43.3, 87.92, 12.43] deg
+[INFO] [1792447094.296789517] [track1_grasp]: [motion:robotmove] sent retreat_p078: joints=[72.97, 78.9, -30.75, -43.2, 87.92, 12.43] deg
+[INFO] [1792447094.648852504] [track1_grasp]: [motion:robotmove] sent retreat_p079: joints=[72.97, 78.6, -30.35, -43.1, 87.92, 12.43] deg
+[INFO] [1792447095.000548616] [track1_grasp]: [motion:robotmove] sent retreat_p080: joints=[72.97, 78.29, -29.94, -43.0, 87.92, 12.43] deg
+[INFO] [1792447095.351988271] [track1_grasp]: [motion:linear] retreat: completed 0.080 m with 80 waypoint(s), max_joint_step=0.408 deg
+[INFO] [1792447095.352389578] [track1_grasp]: [done] pick_5: object returned at its pick point and arm retreated; all expected points completed
+[INFO] [1792447095.352787324] [track1_grasp]: [run] requested=1 attempts=1 successes=1 rate=100.00%

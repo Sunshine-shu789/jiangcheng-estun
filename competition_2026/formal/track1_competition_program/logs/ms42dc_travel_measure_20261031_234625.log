@@ -1,0 +1,35 @@
+MS42DC travel measurement: probe=3600 deg, speed=4 rad/s
+Assumption confirmed: gripper empty, fingers and full travel clear.
+Started: 2026-10-31T23:46:25+08:00
+
+[gripper:ms42dc] /dev/serial/by-id/usb-1a86_USB_Single_Serial_5CF0022496-if00 @ 115200 id=1 subdivide=32
+[bench] driving to each hard stop with a 3600 deg probe;
+        the 堵转保护 will stop the motor, expect a short stall at each end
+[gripper:ms42dc] open: 7b 01 02 00 20 8c a0 00 28 5c 7d
+[gripper:ms42dc] no status reply
+[gripper:ms42dc] no status reply
+[gripper:ms42dc] arrived, angle=20.9 deg
+[gripper:ms42dc] close: 7b 01 02 01 20 8c a0 00 28 5d 7d
+[gripper:ms42dc] no status reply
+[gripper:ms42dc] no status reply
+[gripper:ms42dc] arrived, angle=1978.8 deg
+
+[bench] open  hard stop: angle=20.9 deg
+[bench] close hard stop: angle=1978.8 deg
+[bench] measured travel = 1957.9 deg = 5.44 turns
+
+        nearest shipped firmware:
+          5.3 turns (1908 deg)
+          5.5 turns (1980 deg)
+
+        put the measured value in the gripper config:
+          open_angle_deg: 1957.9
+          close_angle_deg: 1957.9
+        then re-run `close --really` on an empty gripper and use that
+        angle for hold_min_angle_deg (slightly below it)
+
+--- Post-measure status ---
+[gripper:ms42dc] /dev/serial/by-id/usb-1a86_USB_Single_Serial_5CF0022496-if00 @ 115200 id=1 subdivide=32
+[bench] id=1 arrived=True angle=1978.8 deg speed=0.0 rad/s
+
+Finished measurement: 2026-10-31T23:46:37+08:00

@@ -1,0 +1,23 @@
+# Offline-only multi-frame grasp consensus.
+#
+# SAFETY: this is an additional fail-closed stability gate.  It does not relax
+# contact, collision, clearance, workspace, NMS or IK thresholds, and it never
+# authorizes motion.  All candidates must already be final-feasible, NMS-kept
+# and IK-successful before this gate is applied.
+schema_version: 1
+name: offline_multiframe_grasp_consensus_v1
+validated: false
+status: offline_research_only
+motion_authorized: false
+
+consensus:
+  # Require the same TCP pose geometry to recur in independent captures.
+  minimum_distinct_frames: 4
+  translation_tolerance_m: 0.025
+  jaw_rotation_tolerance_deg: 15.0
+
+notes:
+  - Clustering uses complete linkage, so every member pair must satisfy both pose tolerances.
+  - Rotation comparison uses 180-degree parallel-jaw symmetry about the approach axis.
+  - Consensus is not a grasp-success probability and is not an execution authorization.
+  - The representative is an actual member candidate selected as the pose medoid.

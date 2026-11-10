@@ -1,0 +1,11 @@
+[start] mode=preflight; log=/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/task_b_point4_recovery_preflight_20261020_013513.log
+[authorization] 只读预检；不会发布机械臂运动或夹爪动作命令
+[gripper:ms42dc_ros] control=/motor_control state=/motor_state id=1
+[preflight] robot: controller state=AutoReady; fault=False; joints_deg=[67.7279, 91.7701, -69.6175, -71.1172, 82.9014, 13.0854]; tcp_xyz_m=(0.050209, 0.445084, 0.244416); tcp_rpy_rad=(3.05752, 0.107465, -0.625169) lift_position_error=0.345 mm lift_orientation_error=0.000150 rad
+[preflight] gripper: id=1 arrived=True angle=2159.0 deg speed=0.0 rad/s
+[targets] release_xyz=(0.049884856, 0.445201479, 0.164424007) release_rpy=(3.057380772, 0.107412163, -0.625207713); retreat_xyz=(0.049884856, 0.445201479, 0.244424007) retreat_rpy=(3.057380772, 0.107412163, -0.625207713)
+[motion:cartesian-precheck] target 1: 80 waypoint(s), planning_step=1.000 mm, max_joint_step=0.226 deg, max_joint_accel=0.013 deg, min_sigma=0.06146, axis_step_deg=0.001,0.226,0.215,0.085,0.002,0.001, axis_travel_deg=0.046,17.314,13.417,3.885,0.010,0.046
+[motion:cartesian-precheck] target 2: 80 waypoint(s), planning_step=1.000 mm, max_joint_step=0.227 deg, max_joint_accel=0.023 deg, min_sigma=0.06130, axis_step_deg=0.001,0.227,0.218,0.084,0.004,0.002, axis_travel_deg=0.003,17.317,13.437,3.862,0.009,0.003
+[motion:linear-precheck] validated 2 segment(s), 160 Cartesian waypoint(s), min_sigma=0.06130
+[preflight] IK PASS: segments=2 waypoints=160 descent=79.993 mm retreat=80.000 mm min_sigma=0.06130 max_joint_step=0.227 deg max_joint_accel=0.023 deg
+[RESULT] 预检通过：当前姿态、夹持状态和两段恢复路径均安全；未发送运动命令

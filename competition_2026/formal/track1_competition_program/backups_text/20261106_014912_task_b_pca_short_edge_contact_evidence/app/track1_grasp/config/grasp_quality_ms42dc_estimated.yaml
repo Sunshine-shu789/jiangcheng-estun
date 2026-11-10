@@ -1,0 +1,53 @@
+# GraspNet-style offline parallel-jaw ranking for the MS42DC gripper.
+#
+# SAFETY: this geometry is an estimate assembled from the current bench notes,
+# not from MS42DC CAD or a calibrated finger/frame transform.  It must not be
+# used to authorize live motion or as a substitute for the existing collision
+# and dry-run guards.
+name: ms42dc_estimated_offline_v1
+validated: false
+geometry_source: estimated_not_cad_or_measured
+
+gripper:
+  # Jaw opening between the two finger inner faces, metres.
+  max_opening_m: 0.140
+  min_opening_m: 0.005
+  # Conservative envelope retained from GraspNet's model-free detector:
+  # 50 mm of usable finger length and 10 mm finger thickness.
+  finger_length_m: 0.050
+  finger_thickness_m: 0.010
+  finger_height_m: 0.025
+  palm_length_m: 0.025
+  palm_height_m: 0.035
+  # Clear space required between the palm and scene before approach.
+  approach_distance_m: 0.050
+  # Target points within this distance of a jaw plane count as contact.
+  contact_band_m: 0.008
+  collision_skin_m: 0.001
+  closure_clearance_m: 0.002
+  opening_reserve_m: 0.005
+
+scoring:
+  # 2 mm matches GraspNet's point-cloud downsampling scale more closely than
+  # the official detector's 5 mm default because D405 clouds are relatively small.
+  voxel_size_m: 0.002
+  collision_iou_threshold: 0.010
+  collision_voxel_hits: 1
+  target_penetration_iou_threshold: 0.010
+  target_penetration_voxel_hits: 3
+  min_inner_points: 8
+  min_contact_points: 3
+  width_tolerance_m: 0.008
+  good_tolerance_m: 0.020
+  desired_obstacle_clearance_m: 0.008
+  # Borrowed from GraspNet NMS defaults: 30 mm and 30 degrees.
+  nms_translation_m: 0.030
+  nms_rotation_deg: 30.0
+  max_results: 50
+  contact_weight: 0.30
+  width_weight: 0.20
+  engagement_weight: 0.15
+  collision_weight: 0.15
+  obstacle_clearance_weight: 0.10
+  tolerance_weight: 0.05
+  opening_margin_weight: 0.05

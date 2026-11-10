@@ -1,0 +1,44 @@
+recovery log: /media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/task_b_recovery_lift_home_20261106_004426.log
+bridge log: /media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/codroid_bridge_recovery_lift_home_20261106_004426.log
+[gripper:ms42dc] /dev/serial/by-id/usb-1a86_USB_Single_Serial_5CF0022496-if00 @ 115200 id=1 subdivide=32
+[preflight] gripper arrived=True angle=20.8 deg speed=0.00 rad/s
+[preflight] robot controller state=AutoReady xyz=(-0.011289, 0.492860, 0.166548) rpy=(-3.097922, -0.058892, 1.551565)
+[preflight] joints_deg=[77.986, 106.464, -70.705, -51.401, 86.905, -100.909]
+[preflight] initial_target_deg=[82.657, 54.31, -32.193, -53.453, 84.446, -2.058] max_delta_deg=98.852
+[preflight] /RobotMove bridge subscriber confirmed
+[plan] vertical lift z 0.166548 -> 0.300000 m distance=0.133452 m; XY/RPY unchanged
+[motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.02, iterations=4, step=0.541 deg, pos_err=0.0121 mm, rot_err=0.000182 rad, min_sigma=0.047076
+[motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.02, iterations=4, step=0.549 deg, pos_err=0.0126 mm, rot_err=0.000190 rad, min_sigma=0.046565
+[motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.02, iterations=4, step=0.558 deg, pos_err=0.0132 mm, rot_err=0.000198 rad, min_sigma=0.046043
+[motion:ik-restart-selected] target 1 path waypoint: seed=13, source=offset[10], damping=0.02, iterations=4, step=0.571 deg, pos_err=0.0123 mm, rot_err=0.000184 rad, min_sigma=0.045507
+[motion:ik-restart-selected] target 1 path waypoint: seed=13, source=offset[10], damping=0.02, iterations=4, step=0.580 deg, pos_err=0.0129 mm, rot_err=0.000193 rad, min_sigma=0.044962
+[motion:ik-restart-selected] target 1 path waypoint: seed=4, source=offset[1], damping=0.02, iterations=4, step=0.603 deg, pos_err=0.0128 mm, rot_err=0.000191 rad, min_sigma=0.043834
+[motion:ik-restart-selected] target 1 path waypoint: seed=10, source=offset[7], damping=0.02, iterations=4, step=0.614 deg, pos_err=0.0133 mm, rot_err=0.000198 rad, min_sigma=0.043252
+[motion:ik-restart-selected] target 1 path waypoint: seed=1, source=absolute[0], damping=0.01, iterations=7, step=0.569 deg, pos_err=0.1348 mm, rot_err=0.000171 rad, min_sigma=0.042707
+[motion:ik-restart-selected] target 1 path waypoint: seed=1, source=absolute[0], damping=0.01, iterations=7, step=0.608 deg, pos_err=0.0903 mm, rot_err=0.000112 rad, min_sigma=0.042074
+[motion:ik-restart-selected] target 1 path waypoint: seed=1, source=absolute[0], damping=0.01, iterations=7, step=0.638 deg, pos_err=0.0619 mm, rot_err=0.000071 rad, min_sigma=0.041436
+[motion:ik-restart-selected] target 1 path waypoint: seed=1, source=absolute[0], damping=0.01, iterations=7, step=0.657 deg, pos_err=0.0559 mm, rot_err=0.000052 rad, min_sigma=0.040792
+[motion:ik-restart-selected] target 1 path waypoint: seed=1, source=absolute[0], damping=0.01, iterations=7, step=0.679 deg, pos_err=0.0466 mm, rot_err=0.000050 rad, min_sigma=0.040132
+[motion:ik-restart-selected] target 1 path waypoint: seed=1, source=absolute[0], damping=0.01, iterations=7, step=0.701 deg, pos_err=0.0378 mm, rot_err=0.000048 rad, min_sigma=0.039456
+[motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.05, iterations=5, step=0.721 deg, pos_err=0.0105 mm, rot_err=0.000150 rad, min_sigma=0.038766
+[motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.05, iterations=5, step=0.736 deg, pos_err=0.0112 mm, rot_err=0.000161 rad, min_sigma=0.038062
+[motion:plan-timing] target 1: total_s=2.519, attempts=1, waypoints=88, planning_step_mm=2.000, max_joint_step=0.500 deg, max_joint_accel=0.229 deg, min_sigma=0.038044
+[motion:cartesian-precheck] target 1: 88 waypoint(s), planning_step=2.000 mm, max_joint_step=0.500 deg, max_joint_accel=0.229 deg, min_sigma=0.03804, axis_step_deg=0.001,0.472,0.500,0.150,0.002,0.000, axis_travel_deg=0.004,30.588,29.730,5.559,0.011,0.001
+[motion:linear-precheck] validated 1 segment(s), 88 Cartesian waypoint(s), min_sigma=0.03804, total_s=2.520
+[preflight] lift route PASS waypoints=88 max_joint_step=0.500 deg max_joint_accel=0.229 deg min_sigma=0.038044
+[preflight:post-ik] robot remained within 0.008 mm
+[motion:robotmove] task_b_recovery_vertical_lift: split 88 points into 3 controller-safe chunks points=[38, 38, 12] max_points=40 max_payload_bytes=7600
+[motion:robotmove] sent continuous task_b_recovery_vertical_lift chunk 1/3: points=38 payload_bytes=7570 joint_velocity=0.399 rad/s endpoint_deg=[77.99, 90.44, -57.89, -54.61, 86.9, -100.91]
+[motion:robotmove] sent continuous task_b_recovery_vertical_lift chunk 2/3: points=38 payload_bytes=7571 joint_velocity=0.399 rad/s endpoint_deg=[77.99, 79.19, -45.27, -53.23, 86.9, -100.91]
+[motion:robotmove] sent continuous task_b_recovery_vertical_lift chunk 3/3: points=12 payload_bytes=2450 joint_velocity=0.399 rad/s endpoint_deg=[77.99, 75.88, -40.97, -52.26, 86.9, -100.91]
+[motion:linear] task_b_recovery_vertical_lift: completed 0.133 m with 88 waypoint(s), cartesian_speed=0.060 m/s, speed_scale=1.00, joint_velocity=0.399 rad/s, max_joint_step=0.500 deg
+[post-lift] xyz=(-0.011287, 0.492859, 0.300010) rpy=(-3.097955, -0.058997, 1.551591) z_error=0.010 mm
+[motion] moving six axes to recorded Task B initial pose
+[motion:robotmove] task_b_recovery_return_initial: 99 step(s), max_delta=98.85 deg, joint_velocity=0.600 rad/s, speed_scale=1.00
+[motion:robotmove] task_b_recovery_return_initial: split 99 points into 3 controller-safe chunks points=[40, 40, 19] max_points=40 max_payload_bytes=7600
+[motion:robotmove] sent continuous task_b_recovery_return_initial chunk 1/3: points=40 payload_bytes=7280 joint_velocity=0.600 rad/s endpoint_deg=[79.87, 67.16, -37.43, -52.74, 85.91, -60.97]
+[motion:robotmove] sent continuous task_b_recovery_return_initial chunk 2/3: points=40 payload_bytes=7251 joint_velocity=0.600 rad/s endpoint_deg=[81.76, 58.45, -33.88, -53.22, 84.92, -21.03]
+[motion:robotmove] sent continuous task_b_recovery_return_initial chunk 3/3: points=19 payload_bytes=3473 joint_velocity=0.600 rad/s endpoint_deg=[82.66, 54.31, -32.19, -53.45, 84.45, -2.06]
+[final] xyz=(-0.064459, 0.430291, 0.433304) rpy=(-2.885452, 0.084803, -0.068962) joints_deg=[82.658, 54.31, -32.193, -53.451, 84.446, -2.061] residual_deg=0.003
+[success] vertical lift and Task B initial-pose return verified
+[recovery] exit=0

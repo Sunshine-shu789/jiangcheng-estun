@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT='/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序'
+PID_FILE="$ROOT/state/track1_acceptance_web/server.pid"
+UNIT='track1-40class-acceptance.service'
+STOPPED=0
+
+if command -v systemctl >/dev/null 2>&1 && systemctl --user is-active --quiet "$UNIT" 2>/dev/null; then
+  systemctl --user stop "$UNIT"
+  STOPPED=1
+fi
+systemctl --user reset-failed "$UNIT" >/dev/null 2>&1 || true
+
+if [[ -f "$PID_FILE" ]]; then
+  PID="$(cat "$PID_FILE" 2>/dev/null || true)"
+  if [[ "$PID" =~ ^[0-9]+$ ]] && kill -0 "$PID" 2>/dev/null; then
+    kill "$PID"
+    for _ in $(seq 1 20); do
+      kill -0 "$PID" 2>/dev/null || break
+      sleep 0.2
+    done
+    STOPPED=1
+  fi
+  rm -f "$PID_FILE"
+fi
+
+if [[ "$STOPPED" -eq 1 ]]; then
+  echo '40 类视觉验收已停止。'
+else
+  echo '40 类视觉验收未运行。'
+fi

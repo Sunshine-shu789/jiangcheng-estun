@@ -1,0 +1,87 @@
+
+===== 任务B 任意摆放抓取 =====
+配置：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/track1_task_b_arbitrary_single_preflight.yaml
+视觉后端：realsense_yolo
+模式：任意摆放抓取离线试运行（仅使用当前画面识别与 PCA 位姿，逐轮生成候选并完成整条路径逆解预检，机械臂和夹爪不会动作）
+日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/task_B_20261025_202330.log
+
+机械臂状态桥接已在运行（PID=5726），不重复启动。
+[bridge] RobotInfo 已就绪：state=AutoReady fault_flag=0 xyz=(-0.0562, 0.5295, 0.2150)
+[INFO] [1792931012.028080640] [track1_grasp]: [camera] D405 started 640x480@15 fx=392.7 fy=391.7 cx=314.4 cy=246.7
+[INFO] [1792931012.028971100] [track1_grasp]: [task_b_initial_pose] no initial pose file configured; keeping the current arm posture
+[INFO] [1792931012.030222492] [track1_grasp]: [scan] arbitrary_round_1: acquiring the current arbitrary-placement target; no remembered point or previous release XY is used
+[INFO] [1792931012.031391961] [track1_grasp]: [detect] observation 1/5: waiting for a fresh frame
+[INFO] [1792931016.808739022] [track1_grasp]: [yolo] loading /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/models/best.pt
+[INFO] [1792931016.846800813] [track1_grasp]: [vision:realsense_yolo] ready 640x480 rotate180=True anchor=top_center cx=324.6 cy=232.3 stabilizer=on
+[INFO] [1792931019.300790288] [track1_grasp]: [detect] frame 'realsense-000001': 0 detection(s), no confirmed target
+[INFO] [1792931019.352544971] [track1_grasp]: [detect] observation 2/5: waiting for a fresh frame
+[INFO] [1792931019.414119639] [track1_grasp]: [detect] frame 'realsense-000002': 0 detection(s), no confirmed target
+[INFO] [1792931019.465774591] [track1_grasp]: [detect] observation 3/5: waiting for a fresh frame
+[INFO] [1792931019.541940919] [track1_grasp]: [detect] frame 'realsense-000003': 1 detection(s), 8-Plastic_Banana conf=0.92, confirmation 1/3
+[INFO] [1792931019.593682542] [track1_grasp]: [detect] observation 4/5: waiting for a fresh frame
+[INFO] [1792931019.671553804] [track1_grasp]: [detect] frame 'realsense-000004': 1 detection(s), 8-Plastic_Banana conf=0.92, confirmation 2/3
+[INFO] [1792931019.723219441] [track1_grasp]: [detect] observation 5/5: waiting for a fresh frame
+[INFO] [1792931019.798767197] [track1_grasp]: [detect] frame 'realsense-000005': 1 detection(s), 8-Plastic_Banana conf=0.91, confirmation 3/3
+[INFO] [1792931019.800626476] [track1_grasp]: [select] selected '8-Plastic_Banana' conf=0.91 graspability=1.00: 8-Plastic_Banana confirmed in 3 consecutive frames
+[INFO] [1792931019.805151197] [track1_grasp]: [pose] loaded camera transform from /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/camera_to_flange.d405_calibrated_20261025.yaml
+[INFO] [1792931019.806864441] [track1_grasp]: [adaptive-plan] yaw_offset=82.392 deg pitch_offset=0.000 deg support_tip_base=(-0.050127, 0.556734, -0.036542) m; commanded_tip_base=(-0.050127, 0.556734, -0.021542) m; flange_target=(-0.050127, 0.556734, 0.143458) m; tip_offset_base=(0.000000, -0.000000, -0.165000) m
+[INFO] [1792931019.808382970] [track1_grasp]: [adaptive-plan] yaw_offset=82.392 deg pitch_offset=20.000 deg support_tip_base=(-0.050127, 0.556734, -0.036542) m; commanded_tip_base=(-0.050127, 0.556734, -0.021542) m; flange_target=(-0.042655, 0.612671, 0.133508) m; tip_offset_base=(-0.007472, -0.055937, -0.155049) m
+[INFO] [1792931019.809945430] [track1_grasp]: [adaptive-plan] yaw_offset=82.392 deg pitch_offset=-20.000 deg support_tip_base=(-0.050127, 0.556734, -0.036542) m; commanded_tip_base=(-0.050127, 0.556734, -0.021542) m; flange_target=(-0.057599, 0.500798, 0.133508) m; tip_offset_base=(0.007472, 0.055937, -0.155049) m
+[INFO] [1792931019.811361854] [track1_grasp]: [adaptive-plan] yaw_offset=82.392 deg pitch_offset=16.000 deg support_tip_base=(-0.050127, 0.556734, -0.036542) m; commanded_tip_base=(-0.050127, 0.556734, -0.021542) m; flange_target=(-0.044106, 0.601814, 0.137066) m; tip_offset_base=(-0.006021, -0.045080, -0.158608) m
+[INFO] [1792931019.812728412] [track1_grasp]: [adaptive-plan] yaw_offset=82.392 deg pitch_offset=-16.000 deg support_tip_base=(-0.050127, 0.556734, -0.036542) m; commanded_tip_base=(-0.050127, 0.556734, -0.021542) m; flange_target=(-0.056148, 0.511654, 0.137066) m; tip_offset_base=(0.006021, 0.045080, -0.158608) m
+[INFO] [1792931019.814116341] [track1_grasp]: [adaptive-plan] yaw_offset=82.392 deg pitch_offset=30.000 deg support_tip_base=(-0.050127, 0.556734, -0.036542) m; commanded_tip_base=(-0.050127, 0.556734, -0.021542) m; flange_target=(-0.039204, 0.638508, 0.121352) m; tip_offset_base=(-0.010923, -0.081774, -0.142894) m
+[INFO] [1792931019.815614687] [track1_grasp]: [adaptive-plan] yaw_offset=82.392 deg pitch_offset=-30.000 deg support_tip_base=(-0.050127, 0.556734, -0.036542) m; commanded_tip_base=(-0.050127, 0.556734, -0.021542) m; flange_target=(-0.061050, 0.474960, 0.121352) m; tip_offset_base=(0.010923, 0.081774, -0.142894) m
+[INFO] [1792931019.817397981] [track1_grasp]: [adaptive-plan] yaw_offset=37.392 deg pitch_offset=0.000 deg support_tip_base=(-0.050127, 0.556734, -0.036542) m; commanded_tip_base=(-0.050127, 0.556734, -0.021542) m; flange_target=(-0.050127, 0.556734, 0.143458) m; tip_offset_base=(0.000000, -0.000000, -0.165000) m
+[INFO] [1792931019.818839337] [track1_grasp]: [adaptive-plan] yaw_offset=37.392 deg pitch_offset=20.000 deg support_tip_base=(-0.050127, 0.556734, -0.036542) m; commanded_tip_base=(-0.050127, 0.556734, -0.021542) m; flange_target=(-0.005291, 0.591004, 0.133508) m; tip_offset_base=(-0.044836, -0.034270, -0.155049) m
+[INFO] [1792931019.820342433] [track1_grasp]: [adaptive-plan] yaw_offset=37.392 deg pitch_offset=-20.000 deg support_tip_base=(-0.050127, 0.556734, -0.036542) m; commanded_tip_base=(-0.050127, 0.556734, -0.021542) m; flange_target=(-0.094963, 0.522464, 0.133508) m; tip_offset_base=(0.044836, 0.034270, -0.155049) m
+[INFO] [1792931019.821839592] [track1_grasp]: [adaptive-plan] yaw_offset=37.392 deg pitch_offset=16.000 deg support_tip_base=(-0.050127, 0.556734, -0.036542) m; commanded_tip_base=(-0.050127, 0.556734, -0.021542) m; flange_target=(-0.013993, 0.584353, 0.137066) m; tip_offset_base=(-0.036134, -0.027618, -0.158608) m
+[INFO] [1792931019.823302320] [track1_grasp]: [adaptive-plan] yaw_offset=37.392 deg pitch_offset=-16.000 deg support_tip_base=(-0.050127, 0.556734, -0.036542) m; commanded_tip_base=(-0.050127, 0.556734, -0.021542) m; flange_target=(-0.086261, 0.529116, 0.137066) m; tip_offset_base=(0.036134, 0.027618, -0.158608) m
+[INFO] [1792931019.824798291] [track1_grasp]: [adaptive-plan] yaw_offset=37.392 deg pitch_offset=30.000 deg support_tip_base=(-0.050127, 0.556734, -0.036542) m; commanded_tip_base=(-0.050127, 0.556734, -0.021542) m; flange_target=(0.015419, 0.606833, 0.121352) m; tip_offset_base=(-0.065546, -0.050099, -0.142894) m
+[INFO] [1792931019.827077867] [track1_grasp]: [adaptive-plan] yaw_offset=37.392 deg pitch_offset=-30.000 deg support_tip_base=(-0.050127, 0.556734, -0.036542) m; commanded_tip_base=(-0.050127, 0.556734, -0.021542) m; flange_target=(-0.115673, 0.506635, 0.121352) m; tip_offset_base=(0.065546, 0.050099, -0.142894) m
+[INFO] [1792931019.829152044] [track1_grasp]: [adaptive-plan] yaw_offset=-7.608 deg pitch_offset=0.000 deg support_tip_base=(-0.050127, 0.556734, -0.036542) m; commanded_tip_base=(-0.050127, 0.556734, -0.021542) m; flange_target=(-0.050127, 0.556734, 0.143458) m; tip_offset_base=(-0.000000, -0.000000, -0.165000) m
+[INFO] [1792931019.830889033] [track1_grasp]: [adaptive-plan] yaw_offset=-7.608 deg pitch_offset=20.000 deg support_tip_base=(-0.050127, 0.556734, -0.036542) m; commanded_tip_base=(-0.050127, 0.556734, -0.021542) m; flange_target=(0.005810, 0.549263, 0.133508) m; tip_offset_base=(-0.055937, 0.007472, -0.155049) m
+[INFO] [1792931019.832540538] [track1_grasp]: [adaptive-plan] yaw_offset=-7.608 deg pitch_offset=-20.000 deg support_tip_base=(-0.050127, 0.556734, -0.036542) m; commanded_tip_base=(-0.050127, 0.556734, -0.021542) m; flange_target=(-0.106063, 0.564206, 0.133508) m; tip_offset_base=(0.055937, -0.007472, -0.155049) m
+[INFO] [1792931019.834161174] [track1_grasp]: [adaptive-plan] yaw_offset=-7.608 deg pitch_offset=16.000 deg support_tip_base=(-0.050127, 0.556734, -0.036542) m; commanded_tip_base=(-0.050127, 0.556734, -0.021542) m; flange_target=(-0.005047, 0.550713, 0.137066) m; tip_offset_base=(-0.045080, 0.006021, -0.158608) m
+[INFO] [1792931019.835955153] [track1_grasp]: [adaptive-plan] yaw_offset=-7.608 deg pitch_offset=-16.000 deg support_tip_base=(-0.050127, 0.556734, -0.036542) m; commanded_tip_base=(-0.050127, 0.556734, -0.021542) m; flange_target=(-0.095207, 0.562756, 0.137066) m; tip_offset_base=(0.045080, -0.006021, -0.158608) m
+[INFO] [1792931019.837801372] [track1_grasp]: [adaptive-plan] yaw_offset=-7.608 deg pitch_offset=30.000 deg support_tip_base=(-0.050127, 0.556734, -0.036542) m; commanded_tip_base=(-0.050127, 0.556734, -0.021542) m; flange_target=(0.031647, 0.545811, 0.121352) m; tip_offset_base=(-0.081774, 0.010923, -0.142894) m
+[INFO] [1792931019.839604849] [track1_grasp]: [adaptive-plan] yaw_offset=-7.608 deg pitch_offset=-30.000 deg support_tip_base=(-0.050127, 0.556734, -0.036542) m; commanded_tip_base=(-0.050127, 0.556734, -0.021542) m; flange_target=(-0.131901, 0.567657, 0.121352) m; tip_offset_base=(0.081774, -0.010923, -0.142894) m
+[INFO] [1792931019.841276538] [track1_grasp]: [plan] arbitrary_round_1: generated 21 object-relative grasp candidate(s)
+[INFO] [1792931022.332190528] [track1_grasp]: [plan] candidate 1: pregrasp endpoint condition check rejected: IK failed for adaptive candidate 1 candidate endpoint: pose IK did not converge for any damping: damping=0.005: pose IK did not converge (position=0.001426 m, rotation=0.021516 rad)
+[INFO] [1792931024.832642044] [track1_grasp]: [plan] candidate 2: pregrasp endpoint condition check rejected: IK failed for adaptive candidate 2 candidate endpoint: pose IK did not converge for any damping: damping=0.005: pose IK did not converge (position=0.034161 m, rotation=0.477660 rad)
+[INFO] [1792931025.111348716] [track1_grasp]: [plan] adaptive candidate 3/21 passed pregrasp endpoint condition: min_sigma=0.068246
+[INFO] [1792931040.549036728] [track1_grasp]: [motion:cartesian-precheck] target 1: 211 waypoint(s), planning_step=2.000 mm, max_joint_step=0.500 deg, max_joint_accel=0.249 deg, min_sigma=0.03507, axis_step_deg=0.021,0.138,0.283,0.054,0.090,0.500, axis_travel_deg=1.967,21.075,39.590,4.526,8.129,84.714
+[INFO] [1792931040.701223407] [track1_grasp]: [motion:cartesian-precheck] target 2: 40 waypoint(s), planning_step=2.000 mm, max_joint_step=0.405 deg, max_joint_accel=0.007 deg, min_sigma=0.06836, axis_step_deg=0.002,0.405,0.249,0.277,0.006,0.007, axis_travel_deg=0.002,15.339,6.570,8.768,0.008,0.008
+[INFO] [1792931040.702768058] [track1_grasp]: [motion:cartesian-precheck-reuse] target 3: exact endpoint and joint posture match
+[INFO] [1792931040.704197543] [track1_grasp]: [motion:cartesian-precheck] target 3: 40 waypoint(s), planning_step=2.000 mm, max_joint_step=0.405 deg, max_joint_accel=0.007 deg, min_sigma=0.06836, axis_step_deg=0.002,0.405,0.249,0.277,0.006,0.007, axis_travel_deg=0.002,15.339,6.570,8.768,0.008,0.008
+[INFO] [1792931040.706346519] [track1_grasp]: [motion:cartesian-precheck] target 4: 0 waypoint(s), planning_step=2.000 mm, max_joint_step=0.000 deg, max_joint_accel=0.000 deg, min_sigma=0.06825, axis_step_deg=0.000,0.000,0.000,0.000,0.000,0.000, axis_travel_deg=0.000,0.000,0.000,0.000,0.000,0.000
+[INFO] [1792931040.707842491] [track1_grasp]: [motion:cartesian-precheck-reuse] target 5: exact endpoint and joint posture match
+[INFO] [1792931040.709345587] [track1_grasp]: [motion:cartesian-precheck] target 5: 40 waypoint(s), planning_step=2.000 mm, max_joint_step=0.405 deg, max_joint_accel=0.007 deg, min_sigma=0.06836, axis_step_deg=0.002,0.405,0.249,0.277,0.006,0.007, axis_travel_deg=0.002,15.339,6.570,8.768,0.008,0.008
+[INFO] [1792931040.710871241] [track1_grasp]: [motion:cartesian-precheck-reuse] target 6: exact endpoint and joint posture match
+[INFO] [1792931040.712437263] [track1_grasp]: [motion:cartesian-precheck] target 6: 40 waypoint(s), planning_step=2.000 mm, max_joint_step=0.405 deg, max_joint_accel=0.007 deg, min_sigma=0.06836, axis_step_deg=0.002,0.405,0.249,0.277,0.006,0.007, axis_travel_deg=0.002,15.339,6.570,8.768,0.008,0.008
+[INFO] [1792931040.713961730] [track1_grasp]: [motion:linear-precheck] validated 6 segment(s), 371 Cartesian waypoint(s), min_sigma=0.03482
+[INFO] [1792931040.715593052] [track1_grasp]: [plan] adaptive candidate 3/21 passed full-route precheck: yaw_offset=82.39 deg, pitch_offset=-20.00 deg, min_sigma=0.035065, joint_travel=282.78 deg, orientation_change=84.36 deg
+[INFO] [1792931040.717187568] [track1_grasp]: [plan] adaptive winner: yaw_offset=82.39 deg, pitch_offset=-20.00 deg, selection=first_safe_candidate, min_sigma=0.035065, joint_travel=282.78 deg
+[INFO] [1792931040.718816516] [track1_grasp]: [plan] arbitrary_round_1: vertical grasp column locked; xy=(-0.0576, 0.5008), straight_descent=0.0800 m, lateral=0.0000 m, rotation=0.0000 rad
+[INFO] [1792931040.720288742] [track1_grasp]: [plan] selected adaptive full-route candidate; planned 6 waypoint(s)
+[INFO] [1792931040.721874948] [track1_grasp]: [open_gripper] opening jaws before entering approach corridor
+[INFO] [1792931040.723319867] [track1_grasp]: [gripper:mock] open
+[INFO] [1792931040.724935754] [track1_grasp]: [approach] move to pregrasp: xyz=(-0.0576, 0.5008, 0.2135)
+[INFO] [1792931040.728839530] [track1_grasp]: [motion:robotmove:dry-run-linear] pregrasp: distance=0.029 m waypoints=211 target_xyz=(-0.05759859604229666, 0.5007976655036371, 0.21350752403923196) v=0.010 joint_velocity=0.200 rad/s max_joint_step=0.500 deg max_joint_accel=0.249 deg min_sigma=0.03507 axis_step_deg=0.021,0.138,0.283,0.054,0.090,0.500 axis_travel_deg=1.967,21.075,39.590,4.526,8.129,84.714
+[INFO] [1792931040.730413862] [track1_grasp]: [grasp] move to grasp: xyz=(-0.0576, 0.5008, 0.1335)
+[INFO] [1792931040.732198343] [track1_grasp]: [motion:robotmove:dry-run-linear] grasp: distance=0.080 m waypoints=40 target_xyz=(-0.05759859604229666, 0.5007976655036371, 0.13350752403923194) v=0.010 joint_velocity=0.035 rad/s max_joint_step=0.405 deg max_joint_accel=0.007 deg min_sigma=0.06836 axis_step_deg=0.002,0.405,0.249,0.277,0.006,0.007 axis_travel_deg=0.002,15.339,6.570,8.768,0.008,0.008
+[INFO] [1792931040.733722810] [track1_grasp]: [grasp] reached grasp pose; closing jaws
+[INFO] [1792931040.735244903] [track1_grasp]: [gripper:mock] close
+[INFO] [1792931040.736726628] [track1_grasp]: [verify_hold] checking whether the object is held
+[INFO] [1792931040.738175109] [track1_grasp]: [verify_hold] mock hold verifier accepted
+[INFO] [1792931040.739640212] [track1_grasp]: [lift] move to lift: xyz=(-0.0576, 0.5008, 0.2135)
+[INFO] [1792931040.741399760] [track1_grasp]: [motion:robotmove:dry-run-linear] lift: distance=0.080 m waypoints=40 target_xyz=(-0.05759859604229666, 0.5007976655036371, 0.21350752403923196) v=0.010 joint_velocity=0.035 rad/s max_joint_step=0.405 deg max_joint_accel=0.007 deg min_sigma=0.06836 axis_step_deg=0.002,0.405,0.249,0.277,0.006,0.007 axis_travel_deg=0.002,15.339,6.570,8.768,0.008,0.008
+[INFO] [1792931040.742877923] [track1_grasp]: [transfer] move to transfer: xyz=(-0.0576, 0.5008, 0.2135)
+[INFO] [1792931040.744315718] [track1_grasp]: [motion:robotmove:dry-run-linear] transfer: distance=0.000 m waypoints=0 target_xyz=(-0.05759859604229666, 0.5007976655036371, 0.21350752403923196) v=0.010 joint_velocity=0.100 rad/s max_joint_step=0.000 deg max_joint_accel=0.000 deg min_sigma=0.06825 axis_step_deg=0.000,0.000,0.000,0.000,0.000,0.000 axis_travel_deg=0.000,0.000,0.000,0.000,0.000,0.000
+[INFO] [1792931040.745741641] [track1_grasp]: [release] move to release: xyz=(-0.0576, 0.5008, 0.1335)
+[INFO] [1792931040.747460822] [track1_grasp]: [motion:robotmove:dry-run-linear] release: distance=0.080 m waypoints=40 target_xyz=(-0.05759859604229666, 0.5007976655036371, 0.13350752403923194) v=0.010 joint_velocity=0.035 rad/s max_joint_step=0.405 deg max_joint_accel=0.007 deg min_sigma=0.06836 axis_step_deg=0.002,0.405,0.249,0.277,0.006,0.007 axis_travel_deg=0.002,15.339,6.570,8.768,0.008,0.008
+[INFO] [1792931040.748928299] [track1_grasp]: [release] opening jaws to release the object
+[INFO] [1792931040.750442081] [track1_grasp]: [gripper:mock] open
+[INFO] [1792931040.752163636] [track1_grasp]: [retreat] move to retreat: xyz=(-0.0576, 0.5008, 0.2135)
+[INFO] [1792931040.754165389] [track1_grasp]: [motion:robotmove:dry-run-linear] retreat: distance=0.080 m waypoints=40 target_xyz=(-0.05759859604229666, 0.5007976655036371, 0.21350752403923196) v=0.010 joint_velocity=0.035 rad/s max_joint_step=0.405 deg max_joint_accel=0.007 deg min_sigma=0.06836 axis_step_deg=0.002,0.405,0.249,0.277,0.006,0.007 axis_travel_deg=0.002,15.339,6.570,8.768,0.008,0.008
+[INFO] [1792931040.755819270] [track1_grasp]: [done] arbitrary_round_1: arbitrary-placement target returned in place and the arm retreated; all rounds completed without retaining any object-position history
+[INFO] [1792931040.757480274] [track1_grasp]: [run] requested=1 attempts=1 successes=1 rate=100.00%

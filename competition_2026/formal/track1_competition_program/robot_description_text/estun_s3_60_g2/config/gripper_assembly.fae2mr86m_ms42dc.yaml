@@ -1,0 +1,108 @@
+# Offline assembly authority for the WHEELTEC FAE2MR86M-D gripper.
+#
+# Status is deliberately provisional: the official S3 flange pattern and the
+# official gripper STEP prove mechanical compatibility, while the four possible
+# 90-degree clockings and any installed shim stack have not been measured on the
+# physical arm.  This file is suitable for offline collision/IK development only.
+schema_version: 1
+status: provisional_offline
+model:
+  name: FAE2MR86M-D
+  description: WHEELTEC two-finger electric flexible gripper with silicone pads and MS42DC controller
+
+source:
+  step_path: source/FAE2MR86M-D.STEP
+  step_sha256: cc741bfeae3200598ffaed9b9a15ce9891f527f534ae668febdceca3a14b24ee
+  component_dir: mesh/gripper/components
+  component_report: mesh/gripper/components/step_report.json
+  mesh_generation_report_sha256: b12c8da04c232b63c85f4f062505f53dd21ca451115f0b683a6e845039412d5c
+  dimensions_file: config/fae2mr86m_ms42dc_dimensions.json
+  jaw_profile_file: config/fae2mr86m_ms42dc_jaw_profile.json
+
+mounting:
+  flange_link: flange_link
+  body_link: gripper_body_link
+  flange_standard: GB/T 14468.1-50-4-M6
+  flange_evidence: Estun Codroid beginner training PDF, page 14
+  flange_geometry:
+    bolt_circle_diameter_m: 0.050
+    locating_circle_diameter_m: 0.063
+    center_bore_diameter_m: 0.0315
+    screw_count: 4
+    screw_thread: M6-6H
+    screw_depth_m: 0.010
+    maximum_screw_engagement_m: 0.008
+  gripper_rear_face_x_m: -0.091751924
+  # Maps coordinates in the gripper-local frame to flange_link coordinates.
+  # Gripper +X (approach) -> flange +Z; gripper +/-Y -> flange +/-Y;
+  # gripper +Z -> flange -X.  Translation places the gripper rear mounting
+  # face exactly on the flange plane.
+  flange_from_body:
+    matrix:
+      - [0.0, 0.0, -1.0, 0.0]
+      - [0.0, 1.0, 0.0, 0.0]
+      - [1.0, 0.0, 0.0, 0.091751924]
+      - [0.0, 0.0, 0.0, 1.0]
+    status: provisional_offline
+    basis:
+      - official Estun GB/T 14468.1-50-4-M6 flange dimensions
+      - FAE2MR86M-D 63 mm rear plate with four M6 clearance holes on a 50 mm bolt circle
+      - side/rear D405 installation photos used only to reject implausible clockings
+  clocking:
+    canonical_model_variant_deg: 0
+    installed_variant_status: unmeasured
+    equivalent_variants_deg: [0, 90, 180, 270]
+    shim_thickness_m: null
+    caveat: The kinematic chain uses canonical 0-degree clocking only for offline development.
+
+mesh:
+  visual_dir: mesh/gripper/visual
+  collision_dir: mesh/gripper/collision
+  visual_voxel_mm: 0.8
+  collision_voxel_mm: 2.0
+  body_components: [NAUO1, NAUO2, NAUO5, NAUO6, NAUO7, NAUO8, NAUO9]
+  left_finger_components: [NAUO4]
+  right_finger_components: [NAUO3]
+
+finger_joints:
+  joint_type: prismatic
+  default_position_m: 0.0
+  # Negative positions move both finger meshes toward the centre line.
+  left:
+    name: gripper_left_finger_joint
+    parent: gripper_body_link
+    child: gripper_left_finger_link
+    axis: [0.0, 1.0, 0.0]
+  right:
+    name: gripper_right_finger_joint
+    parent: gripper_body_link
+    child: gripper_right_finger_link
+    axis: [0.0, -1.0, 0.0]
+  # Representative collision envelope, derived at the TCP cross-section:
+  # (open 0.072549 m - closed 0.000000 m) / 2 = 0.0362745 m per finger.
+  # This rigid prismatic model is an offline collision approximation, not the
+  # real flexible linkage or a jaw-width calibration.
+  limit_m: 0.0362745
+  velocity_mps: 0.020
+  effort_n: 30.0
+
+tcp:
+  link: grasp_tcp
+  parent: gripper_body_link
+  xyz_m: [0.050, 0.0, 0.0]
+  rpy_rad: [0.0, 0.0, 0.0]
+  approach_axis: [1.0, 0.0, 0.0]
+  closure_axis: [0.0, 1.0, 0.0]
+  finger_height_axis: [0.0, 0.0, 1.0]
+  derivation:
+    rule: nominal contact plane is the first sampled cross-section at which the geometric closed jaw profile reaches zero
+    profile_depth_m: 0.050
+    open_opening_at_tcp_m: 0.072549
+    closed_opening_at_tcp_m: 0.0
+    caveat: Contact depth remains object-width dependent; use the jaw-profile lookup for candidate filtering.
+
+caveats:
+  - No physical arm or gripper command is authorized by this assembly file.
+  - Clocking and shim stack must be measured before installing this transform in a live controller.
+  - Finger meshes are the CAD open state; prismatic closure is an offline approximation.
+  - The jaw profile, not a single maximum-width scalar, governs width acceptance.

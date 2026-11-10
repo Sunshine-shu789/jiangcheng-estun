@@ -1,0 +1,1167 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>赛道一 全历史多物品 bbox 复核 v2</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: Inter, "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+      background: #0a1016;
+      color: #edf4fa;
+      --panel: #121b23;
+      --panel-2: #17232d;
+      --line: #2e4050;
+      --muted: #9db0c0;
+      --accent: #35d0a1;
+      --blue: #5aa9ff;
+      --warn: #ffd166;
+      --danger: #ff7684;
+      --purple: #d889ff;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: radial-gradient(circle at 12% -10%, #17374d 0, #0a1016 40%); }
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; }
+    button:disabled { opacity: .45; cursor: not-allowed; }
+    main { width: min(100%, 1560px); margin: 0 auto; padding: 16px 18px 30px; }
+    .top { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; margin-bottom: 12px; }
+    h1 { margin: 0 0 5px; font-size: clamp(21px, 2vw, 29px); }
+    h2 { margin: 0 0 11px; font-size: 16px; }
+    .sub { color: var(--muted); font-size: 13px; line-height: 1.55; }
+    .top-actions { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; justify-content: flex-end; }
+    .progress-mini { width: 230px; }
+    .progress-label { display: flex; justify-content: space-between; color: var(--muted); font-size: 12px; margin-bottom: 5px; }
+    .progress-track { height: 8px; border-radius: 999px; overflow: hidden; background: #071017; border: 1px solid var(--line); }
+    .progress-fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--accent), var(--blue)); transition: width .2s ease; }
+    .policy { margin: 0 0 13px; padding: 10px 12px; border: 1px solid rgba(255,209,102,.34); border-radius: 9px; background: rgba(255,209,102,.075); color: #f4df9c; font-size: 13px; line-height: 1.6; }
+    .policy strong { color: #ffe9a6; }
+    .error { display: none; margin: 0 0 12px; padding: 10px 12px; border: 1px solid rgba(255,118,132,.55); border-radius: 9px; background: rgba(255,118,132,.12); color: #ffd9dd; white-space: pre-wrap; }
+    .error.visible { display: block; }
+    .layout { display: grid; grid-template-columns: minmax(0, 1.75fr) minmax(390px, .88fr); gap: 14px; align-items: start; }
+    .card { border: 1px solid var(--line); border-radius: 12px; background: rgba(18,27,35,.95); box-shadow: 0 14px 36px rgba(0,0,0,.16); }
+    .viewer { padding: 10px; position: sticky; top: 10px; }
+    .toolbar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 1px 1px 10px; }
+    .toolbar .spacer { flex: 1; }
+    .canvas-wrap { position: relative; border: 1px solid #34495b; border-radius: 8px; overflow: auto; background: #020508; aspect-ratio: 4 / 3; touch-action: none; }
+    #canvas { display: block; width: 100%; height: auto; max-width: none; object-fit: contain; cursor: crosshair; }
+    .zoom-controls { display: inline-flex; align-items: center; gap: 4px; }
+    .zoom-controls button { min-height: 29px; padding: 3px 8px; }
+    .zoom-label { min-width: 48px; text-align: center; color: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+    #canvas.move { cursor: move; }
+    .canvas-hint { position: absolute; left: 9px; bottom: 9px; padding: 5px 8px; border-radius: 6px; color: #dce8f2; background: rgba(4,9,13,.72); border: 1px solid rgba(120,150,175,.3); font-size: 11px; pointer-events: none; }
+    .nav { display: flex; align-items: center; gap: 8px; padding: 10px 2px 1px; flex-wrap: wrap; }
+    .nav .position { color: #cedae4; font-size: 13px; font-variant-numeric: tabular-nums; margin-left: auto; }
+    aside { display: grid; gap: 12px; }
+    .side-card { padding: 14px; }
+    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 10px; }
+    .info-cell { min-width: 0; padding: 8px; border-radius: 7px; background: #0e171f; border: 1px solid #263846; }
+    .info-cell span { display: block; color: var(--muted); font-size: 10px; letter-spacing: .04em; margin-bottom: 3px; }
+    .info-cell strong { display: block; font-size: 12px; overflow-wrap: anywhere; }
+    .status-badge { display: inline-flex; align-items: center; min-height: 25px; padding: 3px 8px; border-radius: 999px; border: 1px solid var(--line); background: #101b24; color: #cbd8e3; font-size: 11px; }
+    .field { display: grid; gap: 5px; margin-bottom: 10px; }
+    .field > span { color: #c7d4df; font-size: 11px; font-weight: 650; }
+    input, select, textarea { width: 100%; border: 1px solid #405466; border-radius: 7px; background: #0d161e; color: #edf4fa; padding: 7px 8px; outline: none; }
+    input:focus, select:focus, textarea:focus { border-color: var(--blue); box-shadow: 0 0 0 2px rgba(90,169,255,.13); }
+    textarea { min-height: 54px; resize: vertical; }
+    .class-row { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 7px; }
+    .hint-note { margin: -2px 0 10px; color: var(--muted); font-size: 11px; line-height: 1.5; }
+    button { min-height: 34px; border-radius: 7px; border: 1px solid #3d5263; padding: 6px 10px; color: #eef5fa; background: #1a2732; }
+    button:hover:not(:disabled) { filter: brightness(1.12); }
+    button.primary { border-color: #35d0a1; background: linear-gradient(135deg, #1da57f, #17745e); font-weight: 700; }
+    button.blue { border-color: #5aa9ff; background: #225d96; }
+    button.warn { border-color: #a98a3d; color: #ffe9a6; background: #44391e; }
+    button.danger { border-color: #a94c58; color: #ffd8dd; background: #4b232a; }
+    button.small { min-height: 27px; padding: 3px 7px; font-size: 11px; }
+    button.active { border-color: var(--accent); box-shadow: inset 0 0 0 1px rgba(53,208,161,.25); background: #173f36; }
+    .button-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+    .button-row { display: flex; gap: 7px; flex-wrap: wrap; }
+    .box-list, .candidate-list { display: grid; gap: 7px; max-height: 310px; overflow: auto; padding-right: 2px; }
+    .box-row { border: 1px solid #314554; border-radius: 8px; padding: 7px; background: #0d171f; }
+    .box-row.selected { border-color: var(--accent); background: #11251f; }
+    .box-head { display: flex; align-items: center; gap: 7px; margin-bottom: 6px; }
+    .box-index { font-size: 11px; color: var(--muted); }
+    .box-source { margin-left: auto; font-size: 10px; color: var(--muted); }
+    .box-class { min-width: 0; flex: 1; }
+    .coord-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; }
+    .coord-grid label { color: var(--muted); font-size: 9px; }
+    .coord-grid input { padding: 4px 5px; font-size: 11px; }
+    .empty-list { color: var(--muted); font-size: 12px; padding: 8px; border: 1px dashed #34495a; border-radius: 7px; text-align: center; }
+    .candidate-row { display: grid; grid-template-columns: auto minmax(0,1fr) auto; align-items: center; gap: 7px; border: 1px solid #2d414f; border-radius: 7px; padding: 6px 7px; background: #0d171f; }
+    .candidate-code { font-size: 10px; color: var(--muted); min-width: 31px; }
+    .candidate-main { min-width: 0; }
+    .candidate-title { font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .candidate-meta { color: var(--muted); font-size: 9px; margin-top: 2px; }
+    .candidate-row.depth { border-left: 3px solid var(--blue); }
+    .candidate-row.world { border-left: 3px solid var(--purple); }
+    .candidate-toolbar { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .candidate-toolbar select { width: auto; min-width: 112px; padding: 5px 7px; }
+    .candidate-toolbar label { display: flex; gap: 5px; align-items: center; color: var(--muted); font-size: 11px; }
+    .candidate-toolbar input[type=checkbox] { width: auto; }
+    .filters { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; }
+    .filters .field { margin-bottom: 0; }
+    .progress-stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin: 10px 0 0; }
+    .stat { text-align: center; padding: 7px 3px; border: 1px solid #2b3e4c; border-radius: 7px; background: #0d171f; }
+    .stat strong { display: block; font-size: 16px; }
+    .stat span { color: var(--muted); font-size: 9px; }
+    .message { min-height: 20px; color: var(--muted); font-size: 11px; line-height: 1.45; margin-top: 8px; overflow-wrap: anywhere; }
+    .message.ok { color: #a9e9d4; }
+    .message.bad { color: #ffbdc4; }
+    .draft-banner { display: none; margin-bottom: 9px; padding: 7px 8px; border: 1px solid #9a7b35; border-radius: 7px; color: #ffe6a0; background: rgba(255,209,102,.09); font-size: 11px; }
+    .draft-banner.visible { display: block; }
+    .overlay-link { display: none; font-size: 11px; margin-top: 7px; }
+    .overlay-link.visible { display: block; }
+    a { color: #8bc4ff; }
+    @media (max-width: 1050px) {
+      .layout { grid-template-columns: 1fr; }
+      .viewer { position: static; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header class="top">
+    <div>
+      <h1>赛道一 · 全历史多物品 bbox 复核 v2</h1>
+      <div class="sub">已有 RGB-D 照片离线复核；不打开相机，不连接机器人。每张图可保存多个类别、多个实例。</div>
+    </div>
+    <div class="top-actions">
+      <div class="progress-mini">
+        <div class="progress-label"><span>已复核</span><strong id="progress-text">0 / 0</strong></div>
+        <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+      </div>
+      <button id="btn-export" class="blue" type="button">导出 YOLO 标签</button>
+    </div>
+  </header>
+
+  <div class="policy">
+    <strong>多物品同框规则：</strong>文件名/采集时选择的类别只是“本组照片放入了什么”的提示，不是本图唯一标签。
+    一张图里所有能辨认的已知物品都要分别框出；同类有多个就画多个框。整个画面确实没有已知物品时才标记“空背景”。
+    官方 1–40 类全部可以作为逐框类别，17、26 也必须正常选择。99“多物品混放”只用于采集提示，不会出现在逐框类别中。看不清或无法确认的物品不要猜标签，请使用“跳过本图”并在备注中写明原因。
+  </div>
+  <div id="error" class="error"></div>
+
+  <div class="layout">
+    <section class="card viewer">
+      <div class="toolbar">
+        <button id="tool-draw" class="active" type="button">框选 [F]</button>
+        <button id="tool-move" type="button">移动/调整 [V]</button>
+        <button id="btn-undo" type="button">撤销当前框</button>
+        <div class="zoom-controls">
+          <button id="btn-zoom-out" type="button" title="缩小">−</button>
+          <span id="zoom-label" class="zoom-label">100%</span>
+          <button id="btn-zoom-in" type="button" title="放大">+</button>
+          <button id="btn-zoom-reset" type="button">适应</button>
+        </div>
+        <label style="display:flex;align-items:center;gap:5px;color:var(--muted);font-size:11px"><input id="show-candidates" type="checkbox" checked style="width:auto"> 显示候选框</label>
+        <div class="spacer"></div>
+        <span id="image-size" class="sub">640 × 480</span>
+      </div>
+      <div id="canvas-wrap" class="canvas-wrap">
+        <canvas id="canvas" width="640" height="480"></canvas>
+        <div class="canvas-hint">框选：拖动画新框；移动：拖动框或右下角调整大小；Ctrl+滚轮缩放</div>
+      </div>
+      <div class="nav">
+        <button id="btn-prev" type="button">← 上一张 [A]</button>
+        <button id="btn-next" type="button">下一张 [D] →</button>
+        <span id="position" class="position">0 / 0</span>
+      </div>
+    </section>
+
+    <aside>
+      <section class="card side-card">
+        <div class="filters">
+          <label class="field"><span>进度筛选</span>
+            <select id="filter-status">
+              <option value="pending">未复核</option>
+              <option value="all">全部</option>
+              <option value="reviewed">已复核（有框/空）</option>
+              <option value="labeled">有目标</option>
+              <option value="empty">空背景</option>
+              <option value="skipped">已跳过</option>
+            </select>
+          </label>
+          <label class="field"><span>数据划分</span>
+            <select id="filter-split"><option value="all">全部</option><option value="train">train</option><option value="val">val</option></select>
+          </label>
+          <label class="field"><span>采集提示类别</span><select id="filter-hint"><option value="all">全部</option></select></label>
+        </div>
+        <div class="progress-stats">
+          <div class="stat"><strong id="stat-reviewed">0</strong><span>已复核</span></div>
+          <div class="stat"><strong id="stat-pending">0</strong><span>未复核</span></div>
+          <div class="stat"><strong id="stat-labeled">0</strong><span>有目标</span></div>
+          <div class="stat"><strong id="stat-empty">0</strong><span>空背景</span></div>
+          <div class="stat"><strong id="stat-skipped">0</strong><span>跳过</span></div>
+        </div>
+      </section>
+
+      <section class="card side-card">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px">
+          <h2 style="margin:0">当前图片</h2><span id="item-status" class="status-badge">未复核</span>
+        </div>
+        <div class="draft-banner" id="draft-banner">已恢复本机未保存草稿；点击保存后写入正式复核文件。</div>
+        <div class="info-grid">
+          <div class="info-cell"><span>复核 ID</span><strong id="info-review-id">-</strong></div>
+          <div class="info-cell"><span>划分</span><strong id="info-split">-</strong></div>
+          <div class="info-cell"><span>代表帧</span><strong id="info-frame">-</strong></div>
+          <div class="info-cell"><span>同组帧数</span><strong id="info-frames">-</strong></div>
+          <div class="info-cell" style="grid-column:1/-1"><span>采集提示（不是唯一标签）</span><strong id="info-hint">-</strong></div>
+        </div>
+        <div class="message" id="info-message"></div>
+      </section>
+
+      <section class="card side-card">
+        <h2>标注框</h2>
+        <label class="field"><span>新框默认类别</span>
+          <div class="class-row">
+            <select id="class-select"></select>
+            <button id="btn-draw-class" class="primary" type="button">开始框选</button>
+          </div>
+        </label>
+        <div class="hint-note">先选类别再拖框。同图有其他物品时继续选择它们的类别并加框。框列表中的类别和坐标都可以修改。</div>
+        <div id="box-list" class="box-list"></div>
+        <div class="button-grid" style="margin-top:10px">
+          <button id="btn-save-next" class="primary" type="button">保存并下一张 [Ctrl+S]</button>
+          <button id="btn-save-only" type="button">仅保存</button>
+          <button id="btn-empty" class="warn" type="button">本图无已知物品（空标签）</button>
+          <button id="btn-skip" class="danger" type="button">跳过本图</button>
+        </div>
+        <label class="field" style="margin-top:10px"><span>复核备注（可选）</span><textarea id="notes" placeholder="例如：右上方小物体遮挡严重；本图包含 3 类物品"></textarea></label>
+        <div class="overlay-link" id="overlay-link"><a id="overlay-anchor" target="_blank" rel="noopener">查看最近一次保存的复核预览</a></div>
+        <div class="message" id="save-message"></div>
+      </section>
+
+      <section class="card side-card">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px">
+          <h2 style="margin:0">候选框（只作提示）</h2><span id="candidate-count" class="status-badge">0</span>
+        </div>
+        <div class="candidate-toolbar">
+          <select id="candidate-source">
+            <option value="all">全部候选</option>
+            <option value="depth">仅深度</option>
+            <option value="yolo_world">仅 YOLO-World</option>
+          </select>
+          <label><input id="candidate-hide-weak" type="checkbox" checked> 隐藏低置信</label>
+        </div>
+        <div id="candidate-list" class="candidate-list"></div>
+        <div class="message">深度框适合找盒内物体；YOLO-World 只给类别提示，误检和漏检都很多。候选不是标签，必须逐框确认。</div>
+      </section>
+    </aside>
+  </div>
+</main>
+
+<script>
+(() => {
+  const canvas = document.getElementById("canvas");
+  const ctx = canvas.getContext("2d");
+  const els = {
+    error: document.getElementById("error"),
+    progressText: document.getElementById("progress-text"),
+    progressFill: document.getElementById("progress-fill"),
+    statReviewed: document.getElementById("stat-reviewed"),
+    statPending: document.getElementById("stat-pending"),
+    statLabeled: document.getElementById("stat-labeled"),
+    statEmpty: document.getElementById("stat-empty"),
+    statSkipped: document.getElementById("stat-skipped"),
+    filterStatus: document.getElementById("filter-status"),
+    filterSplit: document.getElementById("filter-split"),
+    filterHint: document.getElementById("filter-hint"),
+    position: document.getElementById("position"),
+    prev: document.getElementById("btn-prev"),
+    next: document.getElementById("btn-next"),
+    toolDraw: document.getElementById("tool-draw"),
+    toolMove: document.getElementById("tool-move"),
+    undo: document.getElementById("btn-undo"),
+    canvasWrap: document.getElementById("canvas-wrap"),
+    zoomOut: document.getElementById("btn-zoom-out"),
+    zoomIn: document.getElementById("btn-zoom-in"),
+    zoomReset: document.getElementById("btn-zoom-reset"),
+    zoomLabel: document.getElementById("zoom-label"),
+    showCandidates: document.getElementById("show-candidates"),
+    imageSize: document.getElementById("image-size"),
+    itemStatus: document.getElementById("item-status"),
+    draftBanner: document.getElementById("draft-banner"),
+    infoReviewId: document.getElementById("info-review-id"),
+    infoSplit: document.getElementById("info-split"),
+    infoFrame: document.getElementById("info-frame"),
+    infoFrames: document.getElementById("info-frames"),
+    infoHint: document.getElementById("info-hint"),
+    infoMessage: document.getElementById("info-message"),
+    classSelect: document.getElementById("class-select"),
+    drawClass: document.getElementById("btn-draw-class"),
+    boxList: document.getElementById("box-list"),
+    saveNext: document.getElementById("btn-save-next"),
+    saveOnly: document.getElementById("btn-save-only"),
+    empty: document.getElementById("btn-empty"),
+    skip: document.getElementById("btn-skip"),
+    notes: document.getElementById("notes"),
+    saveMessage: document.getElementById("save-message"),
+    overlayLink: document.getElementById("overlay-link"),
+    overlayAnchor: document.getElementById("overlay-anchor"),
+    candidateCount: document.getElementById("candidate-count"),
+    candidateList: document.getElementById("candidate-list"),
+    candidateSource: document.getElementById("candidate-source"),
+    candidateHideWeak: document.getElementById("candidate-hide-weak"),
+    exportButton: document.getElementById("btn-export"),
+  };
+
+  const state = {
+    bootstrap: null,
+    classes: [],
+    classById: new Map(),
+    summary: null,
+    item: null,
+    review: null,
+    candidates: [],
+    candidateMeta: null,
+    boxes: [],
+    notes: "",
+    image: null,
+    imageToken: 0,
+    tool: "draw",
+    selectedIndex: null,
+    pointer: null,
+    draftRect: null,
+    zoom: 1,
+    loadFiltered: [],
+  };
+
+  function setError(message) {
+    if (!message) {
+      els.error.textContent = "";
+      els.error.classList.remove("visible");
+      return;
+    }
+    els.error.textContent = message;
+    els.error.classList.add("visible");
+  }
+
+  function setSaveMessage(message, kind = "") {
+    els.saveMessage.textContent = message || "";
+    els.saveMessage.className = `message ${kind}`;
+  }
+
+  async function api(url, options = {}) {
+    const response = await fetch(url, options);
+    let payload;
+    try {
+      payload = await response.json();
+    } catch (_) {
+      throw new Error(`服务返回非 JSON 内容（HTTP ${response.status}）`);
+    }
+    if (!response.ok || !payload.ok) {
+      throw new Error(payload.error || `请求失败（HTTP ${response.status}）`);
+    }
+    return payload;
+  }
+
+  function classOptions(includeAll = false) {
+    const options = [];
+    if (includeAll) options.push({value: "all", label: "全部"});
+    for (const entry of state.classes) {
+      options.push({
+        value: String(entry.class_id),
+        label: `${entry.class_id} · ${entry.display_name} · ${entry.english_name}`,
+      });
+    }
+    return options;
+  }
+
+  function fillSelect(select, options, value) {
+    select.innerHTML = "";
+    for (const option of options) {
+      const node = document.createElement("option");
+      node.value = option.value;
+      node.textContent = option.label;
+      select.appendChild(node);
+    }
+    if (value !== undefined) select.value = String(value);
+  }
+
+  function boxColor(classId) {
+    const hue = (Number(classId) * 47 + 18) % 360;
+    return `hsl(${hue} 78% 61%)`;
+  }
+
+  function summaryItem(reviewId) {
+    return state.summary.items.find(item => item.review_id === reviewId) || null;
+  }
+
+  function filteredItems() {
+    const status = els.filterStatus.value;
+    const split = els.filterSplit.value;
+    const hint = els.filterHint.value;
+    return state.summary.items.filter(item => {
+      if (split !== "all" && item.split !== split) return false;
+      if (hint !== "all" && String(item.hint_class_id) !== hint) return false;
+      if (status === "all") return true;
+      if (status === "reviewed") return item.status === "labeled" || item.status === "empty";
+      return item.status === status;
+    });
+  }
+
+  function currentFilterPosition() {
+    return state.loadFiltered.findIndex(item => item.review_id === state.item?.review_id);
+  }
+
+  function renderProgress() {
+    const summary = state.summary;
+    const total = summary.total || 0;
+    const reviewed = summary.reviewed || 0;
+    const percent = total ? 100 * reviewed / total : 0;
+    els.progressText.textContent = `${reviewed} / ${total}`;
+    els.progressFill.style.width = `${percent.toFixed(1)}%`;
+    els.statReviewed.textContent = reviewed;
+    els.statPending.textContent = summary.pending || 0;
+    els.statLabeled.textContent = summary.labeled || 0;
+    els.statEmpty.textContent = summary.empty || 0;
+    els.statSkipped.textContent = summary.skipped || 0;
+    const filtered = filteredItems();
+    if (state.item) {
+      const position = filtered.findIndex(item => item.review_id === state.item.review_id);
+      els.position.textContent = position >= 0 ? `${position + 1} / ${filtered.length}` : `0 / ${filtered.length}`;
+    } else {
+      els.position.textContent = `0 / ${filtered.length}`;
+    }
+    els.prev.disabled = filtered.length === 0 || currentFilterPosition() <= 0;
+    els.next.disabled = filtered.length === 0 || currentFilterPosition() < 0 || currentFilterPosition() >= filtered.length - 1;
+  }
+
+  function statusLabel(status) {
+    return ({pending: "未复核", labeled: "有目标", empty: "空背景", skipped: "已跳过"})[status] || status;
+  }
+
+  function updateItemStatusBadge() {
+    const status = state.review?.status || "pending";
+    els.itemStatus.textContent = statusLabel(status);
+    els.itemStatus.style.color = status === "labeled" ? "#a9e9d4" : status === "empty" ? "#ffe6a0" : status === "skipped" ? "#ffbdc4" : "#cbd8e3";
+  }
+
+  function draftKey() {
+    return state.item ? `track1_bbox_draft_${state.item.review_id}` : "";
+  }
+
+  function persistDraft() {
+    if (!state.item) return;
+    try {
+      localStorage.setItem(draftKey(), JSON.stringify({
+        boxes: state.boxes,
+        notes: state.notes,
+        saved_at: new Date().toISOString(),
+      }));
+    } catch (_) {}
+  }
+
+  function clearDraft() {
+    if (!state.item) return;
+    try { localStorage.removeItem(draftKey()); } catch (_) {}
+  }
+
+  function restoreDraft() {
+    if (!state.item) return false;
+    try {
+      const raw = localStorage.getItem(draftKey());
+      if (!raw) return false;
+      const draft = JSON.parse(raw);
+      if (!draft || !Array.isArray(draft.boxes)) return false;
+      state.boxes = draft.boxes;
+      state.notes = String(draft.notes || state.notes);
+      els.notes.value = state.notes;
+      els.draftBanner.classList.add("visible");
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  function updateDraftRect() {
+    if (!state.pointer || state.pointer.mode !== "new" || !state.draftRect) return;
+    const [x1, y1, x2, y2] = state.draftRect;
+    ctx.save();
+    ctx.setLineDash([6, 4]);
+    ctx.strokeStyle = "#e8f5ff";
+    ctx.lineWidth = 2;
+    ctx.strokeRect(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x2 - x1), Math.abs(y2 - y1));
+    ctx.restore();
+  }
+
+  function drawLabel(text, x, y, color) {
+    ctx.save();
+    ctx.font = "600 12px Inter, 'Noto Sans SC', sans-serif";
+    const padding = 4;
+    const metrics = ctx.measureText(text);
+    const width = metrics.width + padding * 2;
+    const height = 18;
+    const top = Math.max(0, y - height);
+    ctx.fillStyle = color;
+    ctx.globalAlpha = .9;
+    ctx.fillRect(x, top, width, height);
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = "#081016";
+    ctx.fillText(text, x + padding, top + 13);
+    ctx.restore();
+  }
+
+  function drawScene() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (state.image) ctx.drawImage(state.image, 0, 0, canvas.width, canvas.height);
+    else {
+      ctx.fillStyle = "#020508";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+    if (els.showCandidates.checked) {
+      for (const candidate of state.candidates) {
+        if (els.candidateHideWeak.checked && candidate.source === "yolo_world" && Number(candidate.confidence || 0) < 0.03) continue;
+        const [x1, y1, x2, y2] = candidate.bbox_xyxy;
+        ctx.save();
+        ctx.setLineDash([5, 4]);
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = candidate.source === "depth" ? "rgba(99,183,255,.64)" : "rgba(222,150,255,.54)";
+        ctx.strokeRect(x1, y1, x2 - x1, y2 - y1);
+        if (candidate.source === "depth") {
+          ctx.fillStyle = "rgba(99,183,255,.88)";
+          ctx.font = "10px sans-serif";
+          ctx.fillText(candidate.candidate_id, x1 + 2, Math.max(10, y1 - 3));
+        }
+        ctx.restore();
+      }
+    }
+
+    state.boxes.forEach((box, index) => {
+      const [x1, y1, x2, y2] = box.bbox_xyxy;
+      const color = boxColor(box.class_id);
+      const selected = index === state.selectedIndex;
+      ctx.save();
+      ctx.strokeStyle = color;
+      ctx.lineWidth = selected ? 3 : 2;
+      ctx.fillStyle = color;
+      ctx.globalAlpha = .13;
+      ctx.fillRect(x1, y1, x2 - x1, y2 - y1);
+      ctx.globalAlpha = 1;
+      ctx.strokeRect(x1, y1, x2 - x1, y2 - y1);
+      const entry = state.classById.get(Number(box.class_id));
+      drawLabel(`${box.class_id} ${entry ? entry.english_name : ""}`, x1, y1, color);
+      if (selected) {
+        const size = 7;
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(x2 - size / 2, y2 - size / 2, size, size);
+      }
+      ctx.restore();
+    });
+    updateDraftRect();
+  }
+
+  function clamp(value, min, max) { return Math.max(min, Math.min(max, value)); }
+
+  function canvasPoint(event) {
+    const rect = canvas.getBoundingClientRect();
+    return [
+      clamp((event.clientX - rect.left) * canvas.width / rect.width, 0, canvas.width),
+      clamp((event.clientY - rect.top) * canvas.height / rect.height, 0, canvas.height),
+    ];
+  }
+
+  function hitTest(x, y) {
+    for (let index = state.boxes.length - 1; index >= 0; index -= 1) {
+      const [x1, y1, x2, y2] = state.boxes[index].bbox_xyxy;
+      if (Math.abs(x - x2) <= 9 && Math.abs(y - y2) <= 9) return {index, mode: "resize"};
+      if (x >= x1 && x <= x2 && y >= y1 && y <= y2) return {index, mode: "move"};
+    }
+    return null;
+  }
+
+  function setZoom(value, preserveCenter = true) {
+    const wrap = els.canvasWrap;
+    const oldScrollWidth = wrap.scrollWidth || 1;
+    const oldScrollHeight = wrap.scrollHeight || 1;
+    const centerX = (wrap.scrollLeft + wrap.clientWidth / 2) / oldScrollWidth;
+    const centerY = (wrap.scrollTop + wrap.clientHeight / 2) / oldScrollHeight;
+    state.zoom = clamp(Number(value), 1, 4);
+    canvas.style.width = `${state.zoom * 100}%`;
+    canvas.style.height = "auto";
+    els.zoomLabel.textContent = `${Math.round(state.zoom * 100)}%`;
+    if (!preserveCenter) {
+      wrap.scrollLeft = 0;
+      wrap.scrollTop = 0;
+      return;
+    }
+    requestAnimationFrame(() => {
+      wrap.scrollLeft = centerX * wrap.scrollWidth - wrap.clientWidth / 2;
+      wrap.scrollTop = centerY * wrap.scrollHeight - wrap.clientHeight / 2;
+    });
+  }
+
+  function setTool(tool) {
+    state.tool = tool;
+    els.toolDraw.classList.toggle("active", tool === "draw");
+    els.toolMove.classList.toggle("active", tool === "move");
+    canvas.classList.toggle("move", tool === "move");
+  }
+
+  function addBox(bbox, classId, source = "manual") {
+    const x1 = clamp(Number(bbox[0]), 0, canvas.width);
+    const y1 = clamp(Number(bbox[1]), 0, canvas.height);
+    const x2 = clamp(Number(bbox[2]), 0, canvas.width);
+    const y2 = clamp(Number(bbox[3]), 0, canvas.height);
+    if (x2 - x1 < 2 || y2 - y1 < 2) return false;
+    state.boxes.push({
+      class_id: Number(classId),
+      bbox_xyxy: [x1, y1, x2, y2].map(value => Math.round(value * 10) / 10),
+      source,
+    });
+    state.selectedIndex = state.boxes.length - 1;
+    persistDraft();
+    renderBoxes();
+    drawScene();
+    return true;
+  }
+
+  function renderBoxes() {
+    els.boxList.innerHTML = "";
+    if (!state.boxes.length) {
+      const empty = document.createElement("div");
+      empty.className = "empty-list";
+      empty.textContent = "还没有标注框。选择类别后在图片上拖动框选。";
+      els.boxList.appendChild(empty);
+      return;
+    }
+    state.boxes.forEach((box, index) => {
+      const row = document.createElement("div");
+      row.className = `box-row${index === state.selectedIndex ? " selected" : ""}`;
+
+      const head = document.createElement("div");
+      head.className = "box-head";
+      const code = document.createElement("span");
+      code.className = "box-index";
+      code.textContent = `#${index + 1}`;
+      const select = document.createElement("select");
+      select.className = "box-class";
+      fillSelect(select, classOptions(false), box.class_id);
+      select.addEventListener("change", () => {
+        box.class_id = Number(select.value);
+        state.selectedIndex = index;
+        persistDraft();
+        renderBoxes();
+        drawScene();
+      });
+      const source = document.createElement("span");
+      source.className = "box-source";
+      source.textContent = box.source || "manual";
+      const del = document.createElement("button");
+      del.type = "button";
+      del.className = "small danger";
+      del.textContent = "删除";
+      del.addEventListener("click", () => {
+        state.boxes.splice(index, 1);
+        state.selectedIndex = null;
+        persistDraft();
+        renderBoxes();
+        drawScene();
+      });
+      head.append(code, select, source, del);
+
+      const coords = document.createElement("div");
+      coords.className = "coord-grid";
+      ["x1", "y1", "x2", "y2"].forEach((name, coordIndex) => {
+        const label = document.createElement("label");
+        label.textContent = name.toUpperCase();
+        const input = document.createElement("input");
+        input.type = "number";
+        input.step = "1";
+        input.value = Number(box.bbox_xyxy[coordIndex]).toFixed(1);
+        input.addEventListener("change", () => {
+          const values = [...box.bbox_xyxy];
+          values[coordIndex] = Number(input.value);
+          let [x1, y1, x2, y2] = values;
+          x1 = clamp(x1, 0, canvas.width);
+          y1 = clamp(y1, 0, canvas.height);
+          x2 = clamp(x2, 0, canvas.width);
+          y2 = clamp(y2, 0, canvas.height);
+          if (x2 - x1 < 2 || y2 - y1 < 2) {
+            setSaveMessage("框的宽高必须至少 2 像素。", "bad");
+            renderBoxes();
+            return;
+          }
+          box.bbox_xyxy = [x1, y1, x2, y2].map(value => Math.round(value * 10) / 10);
+          state.selectedIndex = index;
+          persistDraft();
+          renderBoxes();
+          drawScene();
+        });
+        label.appendChild(input);
+        coords.appendChild(label);
+      });
+      row.addEventListener("click", event => {
+        if (event.target.closest("button,select,input")) return;
+        state.selectedIndex = index;
+        renderBoxes();
+        drawScene();
+      });
+      row.append(head, coords);
+      els.boxList.appendChild(row);
+    });
+  }
+
+  function candidateVisible(candidate) {
+    const source = els.candidateSource.value;
+    if (source !== "all" && candidate.source !== source) return false;
+    if (els.candidateHideWeak.checked && candidate.source === "yolo_world" && Number(candidate.confidence || 0) < 0.03) return false;
+    return true;
+  }
+
+  function renderCandidates() {
+    els.candidateList.innerHTML = "";
+    const visible = state.candidates.filter(candidateVisible);
+    els.candidateCount.textContent = String(visible.length);
+    if (!visible.length) {
+      const empty = document.createElement("div");
+      empty.className = "empty-list";
+      empty.textContent = state.candidates.length ? "当前筛选没有候选；可切换筛选或直接手动画框。" : "本图没有预生成候选；请直接手动画框。";
+      els.candidateList.appendChild(empty);
+      return;
+    }
+    for (const candidate of visible) {
+      const row = document.createElement("div");
+      row.className = `candidate-row ${candidate.source}`;
+      const code = document.createElement("div");
+      code.className = "candidate-code";
+      code.textContent = candidate.candidate_id || "";
+      const main = document.createElement("div");
+      main.className = "candidate-main";
+      const title = document.createElement("div");
+      title.className = "candidate-title";
+      let titleText;
+      if (candidate.source === "depth") {
+        titleText = `深度候选 · 高度 ${Number(candidate.height_median_m || 0).toFixed(3)} m`;
+      } else {
+        const entry = state.classById.get(Number(candidate.class_id));
+        titleText = `${candidate.class_id} ${entry ? entry.display_name : candidate.prompt} · ${(Number(candidate.confidence || 0) * 100).toFixed(1)}%`;
+      }
+      title.textContent = titleText;
+      const meta = document.createElement("div");
+      meta.className = "candidate-meta";
+      meta.textContent = candidate.bbox_xyxy.map(value => Number(value).toFixed(0)).join(", ");
+      main.append(title, meta);
+      const add = document.createElement("button");
+      add.type = "button";
+      add.className = "small blue";
+      add.textContent = "加框";
+      add.addEventListener("click", () => {
+        const classId = candidate.class_id ? Number(candidate.class_id) : Number(els.classSelect.value);
+        if (addBox(candidate.bbox_xyxy, classId, candidate.source)) {
+          setSaveMessage(`已加入候选 ${candidate.candidate_id}；请核对类别和边界。`, "ok");
+        }
+      });
+      row.append(code, main, add);
+      els.candidateList.appendChild(row);
+    }
+  }
+
+  function renderInfo() {
+    const item = state.item;
+    if (!item) {
+      els.infoReviewId.textContent = "-";
+      els.infoSplit.textContent = "-";
+      els.infoFrame.textContent = "-";
+      els.infoFrames.textContent = "-";
+      els.infoHint.textContent = "-";
+      return;
+    }
+    els.infoReviewId.textContent = item.review_id;
+    els.infoSplit.textContent = item.split;
+    els.infoFrame.textContent = item.selected_frame_id;
+    els.infoFrames.textContent = String(item.frame_count);
+    els.infoHint.textContent = `${item.hint_class_id} · ${item.hint_display_name} · ${item.hint_class_label}`;
+    els.imageSize.textContent = `${item.width} × ${item.height}`;
+    const candidateCount = state.candidates.length;
+    const depthCount = state.candidates.filter(candidate => candidate.source === "depth").length;
+    const worldCount = state.candidates.filter(candidate => candidate.source === "yolo_world").length;
+    els.infoMessage.textContent = candidateCount
+      ? `候选：深度 ${depthCount} 个，YOLO-World ${worldCount} 个。文件名类别只是提示，不是唯一标签。`
+      : "本图没有预生成候选，请手动逐个画框；不要只标文件名对应物品。";
+    const hintEntry = state.classById.get(Number(item.hint_class_id));
+    if (hintEntry) els.classSelect.value = String(item.hint_class_id);
+    updateItemStatusBadge();
+    if (state.review) {
+      els.overlayLink.classList.add("visible");
+      els.overlayAnchor.href = `/api/review-overlay?id=${encodeURIComponent(item.review_id)}&t=${Date.now()}`;
+    } else {
+      els.overlayLink.classList.remove("visible");
+    }
+  }
+
+  async function loadItem(reviewId) {
+    if (!reviewId) return;
+    setError("");
+    setSaveMessage("");
+    els.draftBanner.classList.remove("visible");
+    const token = ++state.imageToken;
+    try {
+      const payload = await api(`/api/item?id=${encodeURIComponent(reviewId)}`);
+      if (token !== state.imageToken) return;
+      state.item = payload.item;
+      state.review = payload.review;
+      state.candidates = payload.candidates?.candidates || [];
+      state.candidateMeta = payload.candidates;
+      state.boxes = (payload.review?.boxes || []).map(box => ({
+        class_id: Number(box.class_id),
+        bbox_xyxy: box.bbox_xyxy.map(Number),
+        source: box.source || "manual",
+      }));
+      state.notes = payload.review?.notes || "";
+      state.selectedIndex = null;
+      state.pointer = null;
+      state.draftRect = null;
+      canvas.width = Number(payload.item.width);
+      canvas.height = Number(payload.item.height);
+      setZoom(1, false);
+      els.notes.value = state.notes;
+      const restored = restoreDraft();
+      state.loadFiltered = filteredItems();
+      renderInfo();
+      renderBoxes();
+      renderCandidates();
+      renderProgress();
+
+      const image = new Image();
+      image.onload = () => {
+        if (token !== state.imageToken) return;
+        state.image = image;
+        drawScene();
+      };
+      image.onerror = () => {
+        if (token !== state.imageToken) return;
+        state.image = null;
+        setError("代表帧图片加载失败。请检查数据盘文件和复核索引。");
+        drawScene();
+      };
+      image.src = `${payload.image_url}&t=${Date.now()}`;
+      setTool("draw");
+      if (restored) setSaveMessage("已恢复本机草稿；还未写入正式复核文件。", "");
+    } catch (error) {
+      setError(error.message);
+    }
+  }
+
+  function remapDraftClassIds() {
+    for (const box of state.boxes) {
+      if (!state.classById.has(Number(box.class_id))) box.class_id = Number(els.classSelect.value);
+    }
+  }
+
+  async function refreshSummary() {
+    const payload = await api("/api/summary");
+    state.summary = payload.summary;
+    renderProgress();
+  }
+
+  async function saveCurrent(status, autoNext = false) {
+    if (!state.item) return;
+    if (status === "labeled" && state.boxes.length === 0) {
+      setSaveMessage("当前没有框。若要保存空画面，请使用“本图无已知物品（空标签）”。", "bad");
+      return;
+    }
+    if (status === "empty" && state.boxes.length > 0) {
+      setSaveMessage("当前已有标注框，不能同时标记为空背景。请先删除全部框，或保存为有目标。", "bad");
+      return;
+    }
+    if (status === "empty") {
+      const confirmed = window.confirm("确认整张图片中没有任何可辨认的已知物品？\n保存后会生成空 .txt 负样本，不会增加空背景类别。");
+      if (!confirmed) return;
+    }
+    if (status === "skipped") {
+      const confirmed = window.confirm("确认跳过本图？跳过项不会进入本轮 YOLO 导出，完整训练审计会保持未完成。");
+      if (!confirmed) return;
+    }
+    const beforePosition = currentFilterPosition();
+    const savedReviewId = state.item.review_id;
+    els.saveNext.disabled = true;
+    els.saveOnly.disabled = true;
+    try {
+      const payload = await api("/api/save", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+          review_id: state.item.review_id,
+          status,
+          boxes: status === "labeled" ? state.boxes : [],
+          notes: state.notes,
+        }),
+      });
+      state.review = payload.review;
+      state.summary = payload.summary;
+      clearDraft();
+      els.draftBanner.classList.remove("visible");
+      updateItemStatusBadge();
+      renderProgress();
+      setSaveMessage(`已保存：${statusLabel(status)}，${payload.review.boxes.length} 个框。`, "ok");
+      if (autoNext) {
+        state.loadFiltered = filteredItems();
+        // In the "all" or "reviewed" filter the saved image remains in the list,
+        // so advance to the following item. In the "pending" filter it
+        // disappears, so the old position is already the next item.
+        const savedPosition = state.loadFiltered.findIndex(
+          item => item.review_id === savedReviewId
+        );
+        let nextPosition = savedPosition >= 0 ? savedPosition + 1 : beforePosition;
+        if (nextPosition < 0) nextPosition = 0;
+        const next = state.loadFiltered[nextPosition];
+        if (next) {
+          await loadItem(next.review_id);
+        } else {
+          setSaveMessage("当前筛选下已经全部处理完成。", "ok");
+          renderProgress();
+        }
+      }
+    } catch (error) {
+      setSaveMessage(error.message, "bad");
+    } finally {
+      els.saveNext.disabled = false;
+      els.saveOnly.disabled = false;
+    }
+  }
+
+  function moveRelative(delta) {
+    const filtered = filteredItems();
+    if (!filtered.length) return;
+    let position = filtered.findIndex(item => item.review_id === state.item?.review_id);
+    if (position < 0) position = 0;
+    else position = clamp(position + delta, 0, filtered.length - 1);
+    loadItem(filtered[position].review_id);
+  }
+
+  function setFilterAndReload() {
+    const filtered = filteredItems();
+    if (!filtered.length) {
+      state.item = null;
+      state.review = null;
+      state.candidates = [];
+      state.boxes = [];
+      state.image = null;
+      renderInfo();
+      renderBoxes();
+      renderCandidates();
+      drawScene();
+      renderProgress();
+      setError("当前筛选条件下没有图片。");
+      return;
+    }
+    setError("");
+    loadItem(filtered[0].review_id);
+  }
+
+  async function exportLabels() {
+    const remaining = state.summary ? state.summary.total - state.summary.reviewed : 0;
+    const message = remaining > 0
+      ? `还有 ${remaining} 张未复核。现在可以导出部分数据，但训练审计会标记为未完成。继续导出？`
+      : "全部图片已复核。现在导出 YOLO 标签？";
+    if (!window.confirm(message)) return;
+    els.exportButton.disabled = true;
+    try {
+      const payload = await api("/api/export", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({}),
+      });
+      const audit = payload.audit;
+      window.alert(
+        `导出完成：\n${payload.export_root}\n\n` +
+        `图片 ${audit.exported_image_count} 张\n` +
+        `框 ${audit.box_count} 个\n` +
+        `空标签 ${audit.empty_background_count} 张\n` +
+        `未复核/未导出 ${audit.unreviewed_count} 张\n` +
+        `跳过 ${audit.skipped_count || 0} 张\n` +
+        `本次复核导出可用：${audit.review_export_valid}\n` +
+        `最终训练就绪：${audit.training_ready}\n\n` +
+        `本次仅导出全历史多物品候选复核，不是完整训练集，也不会自动训练或修改 Task A/B。`
+      );
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      els.exportButton.disabled = false;
+    }
+  }
+
+  function canvasMouseDown(event) {
+    if (!state.item) return;
+    const [x, y] = canvasPoint(event);
+    if (state.tool === "draw") {
+      state.pointer = {mode: "new", startX: x, startY: y};
+      state.draftRect = [x, y, x, y];
+      state.selectedIndex = null;
+      drawScene();
+      return;
+    }
+    const hit = hitTest(x, y);
+    if (!hit) {
+      state.selectedIndex = null;
+      renderBoxes();
+      drawScene();
+      return;
+    }
+    state.selectedIndex = hit.index;
+    const box = state.boxes[hit.index];
+    state.pointer = {
+      mode: hit.mode,
+      index: hit.index,
+      startX: x,
+      startY: y,
+      original: [...box.bbox_xyxy],
+    };
+    renderBoxes();
+    drawScene();
+  }
+
+  function canvasMouseMove(event) {
+    if (!state.pointer) return;
+    const [x, y] = canvasPoint(event);
+    if (state.pointer.mode === "new") {
+      state.draftRect = [state.pointer.startX, state.pointer.startY, x, y];
+      drawScene();
+      return;
+    }
+    const box = state.boxes[state.pointer.index];
+    if (!box) return;
+    const [originalX1, originalY1, originalX2, originalY2] = state.pointer.original;
+    const dx = x - state.pointer.startX;
+    const dy = y - state.pointer.startY;
+    if (state.pointer.mode === "move") {
+      const width = originalX2 - originalX1;
+      const height = originalY2 - originalY1;
+      const x1 = clamp(originalX1 + dx, 0, canvas.width - width);
+      const y1 = clamp(originalY1 + dy, 0, canvas.height - height);
+      box.bbox_xyxy = [x1, y1, x1 + width, y1 + height].map(value => Math.round(value * 10) / 10);
+    } else if (state.pointer.mode === "resize") {
+      box.bbox_xyxy = [
+        originalX1,
+        originalY1,
+        clamp(originalX2 + dx, originalX1 + 2, canvas.width),
+        clamp(originalY2 + dy, originalY1 + 2, canvas.height),
+      ].map(value => Math.round(value * 10) / 10);
+    }
+    drawScene();
+  }
+
+  function canvasMouseUp() {
+    if (!state.pointer) return;
+    if (state.pointer.mode === "new" && state.draftRect) {
+      const [x1, y1, x2, y2] = state.draftRect;
+      const left = Math.min(x1, x2);
+      const top = Math.min(y1, y2);
+      const right = Math.max(x1, x2);
+      const bottom = Math.max(y1, y2);
+      if (right - left >= 3 && bottom - top >= 3) {
+        addBox([left, top, right, bottom], Number(els.classSelect.value), "manual");
+      }
+    } else {
+      persistDraft();
+      renderBoxes();
+    }
+    state.pointer = null;
+    state.draftRect = null;
+    drawScene();
+  }
+
+  function bindEvents() {
+    els.filterStatus.addEventListener("change", setFilterAndReload);
+    els.filterSplit.addEventListener("change", setFilterAndReload);
+    els.filterHint.addEventListener("change", setFilterAndReload);
+    els.prev.addEventListener("click", () => moveRelative(-1));
+    els.next.addEventListener("click", () => moveRelative(1));
+    els.toolDraw.addEventListener("click", () => setTool("draw"));
+    els.toolMove.addEventListener("click", () => setTool("move"));
+    els.drawClass.addEventListener("click", () => setTool("draw"));
+    els.zoomOut.addEventListener("click", () => setZoom(state.zoom - 0.25));
+    els.zoomIn.addEventListener("click", () => setZoom(state.zoom + 0.25));
+    els.zoomReset.addEventListener("click", () => setZoom(1, false));
+    els.canvasWrap.addEventListener("wheel", event => {
+      if (!event.ctrlKey) return;
+      event.preventDefault();
+      setZoom(state.zoom + (event.deltaY < 0 ? 0.25 : -0.25));
+    }, {passive: false});
+    els.undo.addEventListener("click", () => {
+      if (!state.boxes.length) return;
+      if (state.selectedIndex !== null && state.boxes[state.selectedIndex]) state.boxes.splice(state.selectedIndex, 1);
+      else state.boxes.pop();
+      state.selectedIndex = null;
+      persistDraft();
+      renderBoxes();
+      drawScene();
+    });
+    els.showCandidates.addEventListener("change", drawScene);
+    els.candidateSource.addEventListener("change", renderCandidates);
+    els.candidateHideWeak.addEventListener("change", () => { renderCandidates(); drawScene(); });
+    els.notes.addEventListener("input", () => { state.notes = els.notes.value; persistDraft(); });
+    els.saveNext.addEventListener("click", () => saveCurrent("labeled", true));
+    els.saveOnly.addEventListener("click", () => saveCurrent("labeled", false));
+    els.empty.addEventListener("click", () => saveCurrent("empty", true));
+    els.skip.addEventListener("click", () => saveCurrent("skipped", true));
+    els.exportButton.addEventListener("click", exportLabels);
+    canvas.addEventListener("mousedown", canvasMouseDown);
+    window.addEventListener("mousemove", canvasMouseMove);
+    window.addEventListener("mouseup", canvasMouseUp);
+    window.addEventListener("keydown", event => {
+      const tag = event.target?.tagName?.toLowerCase();
+      if (["input", "select", "textarea"].includes(tag)) return;
+      if (event.ctrlKey && event.key.toLowerCase() === "s") {
+        event.preventDefault();
+        saveCurrent("labeled", true);
+      } else if (event.key.toLowerCase() === "a") {
+        moveRelative(-1);
+      } else if (event.key.toLowerCase() === "d") {
+        moveRelative(1);
+      } else if (event.key.toLowerCase() === "f") {
+        setTool("draw");
+      } else if (event.key.toLowerCase() === "v") {
+        setTool("move");
+      } else if (event.key === "+" || event.key === "=") {
+        event.preventDefault();
+        setZoom(state.zoom + 0.25);
+      } else if (event.key === "-") {
+        event.preventDefault();
+        setZoom(state.zoom - 0.25);
+      } else if (event.key === "Delete" && state.selectedIndex !== null) {
+        state.boxes.splice(state.selectedIndex, 1);
+        state.selectedIndex = null;
+        persistDraft();
+        renderBoxes();
+        drawScene();
+      }
+    });
+  }
+
+  async function boot() {
+    bindEvents();
+    try {
+      const payload = await api("/api/bootstrap");
+      state.bootstrap = payload;
+      state.classes = payload.catalog.classes;
+      state.classById = new Map(state.classes.map(entry => [Number(entry.class_id), entry]));
+      state.summary = payload.summary;
+      const defaultClassId = state.classes.length ? Math.min(...state.classes.map(entry => Number(entry.class_id))) : 1;
+      fillSelect(els.classSelect, classOptions(false), defaultClassId);
+      const hintIds = [...new Set(payload.summary.items.map(item => Number(item.hint_class_id)))].sort((a, b) => a - b);
+      fillSelect(els.filterHint, [
+        {value: "all", label: "全部"},
+        ...hintIds.map(classId => {
+          const entry = state.classById.get(classId);
+          const fallback = classId === 99 ? "多物品混放" : "";
+          return {value: String(classId), label: `${classId} · ${entry?.display_name || fallback}`};
+        }),
+      ], "all");
+      renderProgress();
+      const filtered = filteredItems();
+      if (filtered.length) await loadItem(filtered[0].review_id);
+      else setError("没有可复核图片。请先运行照片采集和数据集构建。");
+    } catch (error) {
+      setError(error.message);
+    }
+  }
+
+  boot();
+})();
+</script>
+</body>
+</html>

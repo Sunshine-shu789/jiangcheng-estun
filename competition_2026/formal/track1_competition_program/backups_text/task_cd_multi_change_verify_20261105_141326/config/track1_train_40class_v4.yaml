@@ -1,0 +1,92 @@
+schema_version: 1
+purpose: 赛道一 40 类 YOLO v4：从 v3 epoch80 低学习率定向微调；v4 仅对训练集番茄汤罐头(5)和午餐肉罐头(10)做受控重复采样，验证集保持不变
+dataset_yaml: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v4/dataset.yaml
+base_weights: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_train_40class_v3/track1_40class_20261029_230844/weights/epoch80.pt
+output_root: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_train_40class_v4
+preflight_report: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/reports/track1_training_preflight_v4_latest.json
+expected:
+  nc: 40
+  source_nc: 40
+  empty_slots:
+  - 16
+  - 25
+  images:
+    train: 366
+    val: 103
+  boxes: 737
+  review_records: 348
+  reviewed_with_boxes: 346
+  empty_review_records: 2
+  skipped_review_records: 0
+  postclass_boxes: 602
+  min_free_gb: 5
+  min_gpu_memory_gb: 6
+  front10_names:
+  - 1-Cheez-it
+  - 2-Starkist_Tuna
+  - 3-Scissors
+  - 4-Frenchs_Mustard
+  - 5-Tomato_Soup
+  - 6-Foam_Brick
+  - 7-Clamp
+  - 8-Plastic_Banana
+  - 9-Mug
+  - 10-meat_can
+  front10_images:
+    train: 67
+    val: 23
+  front10_boxes: 94
+  front10_review_records: 71
+  front10_empty_records: 0
+  front10_skipped_records: 0
+  official_front10_images_used: false
+  v4_base_checkpoint: epoch80
+  v4_oversampling: 31
+train:
+  epochs: 45
+  imgsz: 640
+  batch: 8
+  device: 0
+  workers: 4
+  cache: false
+  amp: true
+  pretrained: true
+  optimizer: AdamW
+  lr0: 0.0002
+  lrf: 0.01
+  momentum: 0.937
+  weight_decay: 0.0005
+  warmup_epochs: 1.0
+  warmup_momentum: 0.8
+  warmup_bias_lr: 0.05
+  cos_lr: true
+  patience: 15
+  save: true
+  save_period: 5
+  val: true
+  plots: true
+  verbose: true
+  seed: 42
+  deterministic: true
+  close_mosaic: 5
+  mosaic: 0.2
+  mixup: 0.0
+  copy_paste: 0.0
+  degrees: 3.0
+  translate: 0.05
+  scale: 0.2
+  shear: 1.0
+  perspective: 0.0
+  flipud: 0.0
+  fliplr: 0.5
+  hsv_h: 0.015
+  hsv_s: 0.5
+  hsv_v: 0.3
+  multi_scale: 0.0
+  rect: false
+  fraction: 1.0
+  freeze: 0
+cpu_profile:
+  batch: 2
+  workers: 2
+  amp: false

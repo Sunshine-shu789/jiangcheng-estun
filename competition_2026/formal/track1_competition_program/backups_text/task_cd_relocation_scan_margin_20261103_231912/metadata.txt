@@ -1,0 +1,4 @@
+Task C/D relocation scan safety margin correction
+Created: 2026-11-03 23:19 CST
+Reason: live Task C full-route precheck rejected +Y 0.12 m because minimum weighted Jacobian singular value was 0.009663 < 0.010000. Read-only replay at the captured site observation posture also found the -X/+Y 0.085 m corner at only 0.010651.
+Change: axis +Y observation offset 0.12 m -> 0.11 m; positive-Y corner offsets 0.085 m -> 0.075 m. Safety threshold remains 0.010000; no threshold was weakened.

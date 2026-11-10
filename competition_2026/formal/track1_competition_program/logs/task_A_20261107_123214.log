@@ -1,0 +1,104 @@
+
+===== 任务A 十点位巡检 =====
+配置：/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/config/track1_task_a_legacy.yaml
+视觉后端：legacy_http
+模式：十点位巡检（J1-J4运动，J5/J6锁定，J1以当前位姿为锚点左右分配270度，十类识别，识别后停3秒，第10点后回原点，旧视觉识别，真机运动）
+日志：/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/task_A_20261107_123214.log
+
+正在启动机械臂状态桥接，日志：/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/codroid_bridge_20261107_123214.log
+[bridge] RobotInfo 已就绪：state=AutoReady fault_flag=0 xyz=(-0.1070, 0.3287, 0.3083)
+[INFO] [1794025939.862611465] [track1_grasp]: [patrol] J1 split around startup: startup=90.000 deg, left=162.000 deg, right=108.000 deg, total=270.000 deg, span=[-72.000, 198.000] deg
+[INFO] [1794025939.896573255] [track1_grasp]: [patrol] joint_arc route ready: 10 move(s), minimum distance=0.165 m, arcs=(1, 1, 1, 1, 1, 2, 2, 2, 2, 2), movable=J1/J2/J3/J4, return_to_start=True
+[INFO] [1794025939.898126255] [track1_grasp]: [patrol] position 1/10 arc=1 target xyz=(-0.301498127744124, -0.21041580674720142, 0.21869082592434777) distance=0.580 m
+[INFO] [1794025939.899640074] [track1_grasp]: [patrol] position 2/10 arc=1 target xyz=(-0.3097771955473594, 0.19802530616338104, 0.21869082592434777) distance=0.409 m
+[INFO] [1794025939.901139646] [track1_grasp]: [patrol] position 3/10 arc=1 target xyz=(0.06440492682313373, 0.3619778144627022, 0.21869082592434777) distance=0.409 m
+[INFO] [1794025939.902731827] [track1_grasp]: [patrol] position 4/10 arc=1 target xyz=(0.3590705924631579, 0.07902051879382012, 0.21869082592434777) distance=0.409 m
+[INFO] [1794025939.904307387] [track1_grasp]: [patrol] position 5/10 arc=1 target xyz=(0.2104158067472015, -0.30149812774412393, 0.21869082592434777) distance=0.409 m
+[INFO] [1794025939.905976743] [track1_grasp]: [patrol] position 6/10 arc=2 target xyz=(0.19257897788028835, -0.24660201318501307, 0.3737352364958576) distance=0.165 m
+[INFO] [1794025939.907558239] [track1_grasp]: [patrol] position 7/10 arc=2 target xyz=(0.30152733691430145, 0.0835492712217603, 0.3737352364958576) distance=0.348 m
+[INFO] [1794025939.909060185] [track1_grasp]: [patrol] position 8/10 arc=2 target xyz=(0.03820005460425112, 0.31054785695050313, 0.3737352364958576) distance=0.348 m
+[INFO] [1794025939.910975315] [track1_grasp]: [patrol] position 9/10 arc=2 target xyz=(-0.2722902808893241, 0.1541337684011226, 0.3737352364958576) distance=0.348 m
+[INFO] [1794025939.912347844] [track1_grasp]: [patrol] position 10/10 arc=2 target xyz=(-0.2466020131850131, -0.19257897788028835, 0.3737352364958576) distance=0.348 m
+[INFO] [1794025939.913680005] [track1_grasp]: [patrol] absolute joint targets deg=[(198.0, 15.01, 88.873, 0.001, 90.007, -0.003), (130.5, 15.01, 88.873, 0.001, 90.007, -0.003), (63.0, 15.01, 88.873, 0.001, 90.007, -0.003), (-4.5, 15.01, 88.873, 0.001, 90.007, -0.003), (-72.0, 15.01, 88.873, 0.001, 90.007, -0.003), (-72.0, -11.99, 88.873, 0.001, 90.007, -0.003), (-4.5, -11.99, 88.873, 0.001, 90.007, -0.003), (63.0, -11.99, 88.873, 0.001, 90.007, -0.003), (130.5, -11.99, 88.873, 0.001, 90.007, -0.003), (198.0, -11.99, 88.873, 0.001, 90.007, -0.003)]
+[INFO] [1794025939.915441972] [track1_grasp]: [motion:robotmove] task-a-patrol-01: 55 step(s), max_delta=108.00 deg, joint_velocity=0.600 rad/s, speed_scale=1.00
+[INFO] [1794025939.921284720] [track1_grasp]: [motion:robotmove] task-a-patrol-01: split 55 points into 2 controller-safe chunks points=[40, 15] max_points=40 max_payload_bytes=7600
+[INFO] [1794025939.924674487] [track1_grasp]: [motion:robotmove] sent continuous task-a-patrol-01 chunk 1/2: points=40 payload_bytes=7184 joint_velocity=0.600 rad/s endpoint_deg=[168.55, 10.92, 88.87, 0.0, 90.01, -0.0]
+[INFO] [1794025959.172073832] [track1_grasp]: [motion:robotmove] sent continuous task-a-patrol-01 chunk 2/2: points=15 payload_bytes=2732 joint_velocity=0.600 rad/s endpoint_deg=[198.0, 15.01, 88.87, 0.0, 90.01, -0.0]
+[INFO] [1794025977.067934981] [track1_grasp]: [patrol] position 1: 允许类别物品 not confirmed within 10 s; continuing
+[INFO] [1794025977.069449990] [track1_grasp]: [detect] frame 'legacy-00000452': 0 raw, 0 above min_confidence
+[INFO] [1794025977.070918695] [track1_grasp]: [annotate] drew 0 prediction(s) and 0 ground-truth box(es)
+[INFO] [1794025977.072314974] [track1_grasp]: [evaluate] passed=0/0 mean_iou=0.000
+[INFO] [1794025977.073772992] [track1_grasp]: [patrol] position 1: recognized classes=none
+[INFO] [1794025977.075780737] [track1_grasp]: [patrol] position 1: target not confirmed; continuing to the next position
+[INFO] [1794025977.077592574] [track1_grasp]: [motion:robotmove] task-a-patrol-02: 34 step(s), max_delta=67.50 deg, joint_velocity=0.600 rad/s, speed_scale=1.00
+[INFO] [1794025977.082638649] [track1_grasp]: [motion:robotmove] sent continuous task-a-patrol-02: points=34 payload_bytes=6114 joint_velocity=0.600 rad/s endpoint_deg=[130.5, 15.01, 88.87, 0.0, 90.01, -0.0]
+[INFO] [1794025995.285082547] [track1_grasp]: [patrol] position 2: target visible 1/3
+[INFO] [1794025995.422441587] [track1_grasp]: [patrol] position 2: target visible 2/3
+[INFO] [1794025995.562062457] [track1_grasp]: [patrol] position 2: target visible 3/3
+[INFO] [1794025995.563443302] [track1_grasp]: [patrol] position 2: target confirmed
+[INFO] [1794025995.564800400] [track1_grasp]: [detect] frame 'legacy-00000650': 1 raw, 1 above min_confidence
+[INFO] [1794025995.566120692] [track1_grasp]: [annotate] drew 1 prediction(s) and 0 ground-truth box(es)
+[INFO] [1794025995.567429111] [track1_grasp]: [evaluate] passed=0/0 mean_iou=0.000
+[INFO] [1794025995.568767213] [track1_grasp]: [patrol] position 2: recognized classes=8-Plastic_Banana
+[INFO] [1794025995.597339897] [track1_grasp]:     8-Plastic_Banana iou=0.000 (no ground truth) miss
+[INFO] [1794025995.599570858] [track1_grasp]: [patrol] position 2: item recognized; holding still for 3 s
+[INFO] [1794025998.605234644] [track1_grasp]: [patrol] position 2: target confirmed; advancing to the next position
+[INFO] [1794025998.607059545] [track1_grasp]: [motion:robotmove] task-a-patrol-03: 34 step(s), max_delta=67.50 deg, joint_velocity=0.600 rad/s, speed_scale=1.00
+[INFO] [1794025998.616512931] [track1_grasp]: [motion:robotmove] sent continuous task-a-patrol-03: points=34 payload_bytes=6107 joint_velocity=0.600 rad/s endpoint_deg=[63.0, 15.01, 88.87, 0.0, 90.01, -0.0]
+[INFO] [1794026016.967036927] [track1_grasp]: [patrol] position 3: target visible 1/3
+[INFO] [1794026017.105261662] [track1_grasp]: [patrol] position 3: target visible 2/3
+[INFO] [1794026017.238249157] [track1_grasp]: [patrol] position 3: target visible 3/3
+[INFO] [1794026017.239502961] [track1_grasp]: [patrol] position 3: target confirmed
+[INFO] [1794026017.240744891] [track1_grasp]: [detect] frame 'legacy-00000857': 1 raw, 1 above min_confidence
+[INFO] [1794026017.241993946] [track1_grasp]: [annotate] drew 1 prediction(s) and 0 ground-truth box(es)
+[INFO] [1794026017.243216879] [track1_grasp]: [evaluate] passed=0/0 mean_iou=0.000
+[INFO] [1794026017.244439813] [track1_grasp]: [patrol] position 3: recognized classes=8-Plastic_Banana
+[INFO] [1794026017.246185165] [track1_grasp]:     8-Plastic_Banana iou=0.000 (no ground truth) miss
+[INFO] [1794026017.247440156] [track1_grasp]: [patrol] position 3: item recognized; holding still for 3 s
+[INFO] [1794026020.251485197] [track1_grasp]: [patrol] position 3: target confirmed; advancing to the next position
+[INFO] [1794026020.254263513] [track1_grasp]: [motion:robotmove] task-a-patrol-04: 34 step(s), max_delta=67.50 deg, joint_velocity=0.600 rad/s, speed_scale=1.00
+[INFO] [1794026020.260390054] [track1_grasp]: [motion:robotmove] sent continuous task-a-patrol-04: points=34 payload_bytes=6132 joint_velocity=0.600 rad/s endpoint_deg=[-4.5, 15.01, 88.87, 0.0, 90.01, -0.0]
+[INFO] [1794026042.747770577] [track1_grasp]: [patrol] position 4: target visible 1/3
+[INFO] [1794026042.890871771] [track1_grasp]: [patrol] position 4: target visible 2/3
+[INFO] [1794026043.038924072] [track1_grasp]: [patrol] position 4: target visible 3/3
+[INFO] [1794026043.040205186] [track1_grasp]: [patrol] position 4: target confirmed
+[INFO] [1794026043.041419809] [track1_grasp]: [detect] frame 'legacy-00001118': 1 raw, 1 above min_confidence
+[INFO] [1794026043.043587847] [track1_grasp]: [annotate] drew 1 prediction(s) and 0 ground-truth box(es)
+[INFO] [1794026043.044948511] [track1_grasp]: [evaluate] passed=0/0 mean_iou=0.000
+[INFO] [1794026043.046183319] [track1_grasp]: [patrol] position 4: recognized classes=8-Plastic_Banana
+[INFO] [1794026043.047516674] [track1_grasp]:     8-Plastic_Banana iou=0.000 (no ground truth) miss
+[INFO] [1794026043.048909395] [track1_grasp]: [patrol] position 4: item recognized; holding still for 3 s
+[INFO] [1794026046.056858163] [track1_grasp]: [patrol] position 4: target confirmed; advancing to the next position
+[INFO] [1794026046.058620139] [track1_grasp]: [motion:robotmove] task-a-patrol-05: 34 step(s), max_delta=67.50 deg, joint_velocity=0.600 rad/s, speed_scale=1.00
+[INFO] [1794026046.064692072] [track1_grasp]: [motion:robotmove] sent continuous task-a-patrol-05: points=34 payload_bytes=6161 joint_velocity=0.600 rad/s endpoint_deg=[-72.0, 15.01, 88.87, 0.0, 90.01, -0.0]
+Traceback (most recent call last):
+  File "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/motion.py", line 1984, in execute_joint_route_step
+    actual = self.move_joints(
+  File "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/motion.py", line 2503, in move_joints
+    return self._send_joint_trajectory(
+  File "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/motion.py", line 2766, in _send_joint_trajectory
+    actual = self._send_joint_trajectory_once(
+  File "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/motion.py", line 2870, in _send_joint_trajectory_once
+    raise RuntimeError(f"controller fault during {name!r}")
+RuntimeError: controller fault during 'task-a-patrol-05'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/nodes/track1_node.py", line 275, in <module>
+    raise SystemExit(main())
+  File "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/nodes/track1_node.py", line 262, in main
+    raise error[0]
+  File "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/nodes/track1_node.py", line 204, in worker
+    report = pipeline.run()
+  File "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/vision_pipeline.py", line 68, in run
+    return self._run_patrol()
+  File "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/vision_pipeline.py", line 227, in _run_patrol
+    motion.execute_joint_route_step(
+  File "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/motion.py", line 1991, in execute_joint_route_step
+    raise RuntimeError(
+RuntimeError: joint patrol command 'task-a-patrol-05' failed at step 5/11; target_deg=(-72.0, 15.01, 88.873, 0.001, 90.007, -0.003); controller_state='AutoRunning' fault_flag=1 ready=False message='controller fault_flag=1' joints_deg=(-70.312, 15.009, 88.871, -0.001, 89.983, -0.008); cause=controller fault during 'task-a-patrol-05'

@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Dedicated Task C field test for the height-adaptive grasp path.
+# It uses the formal Task C configuration and stops after one complete
+# pick-transfer-release-retreat cycle followed by a return to observation.
+set -o pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+CONFIG="$ROOT/config/track1_task_c_v11_official_20261102.yaml"
+
+exec env TRACK1_CONFIG="$CONFIG" \
+    "$ROOT/bin/track1_task_runner" C --single-live-acceptance --no-pause "$@"

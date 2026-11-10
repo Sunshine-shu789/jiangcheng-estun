@@ -1,0 +1,37 @@
+[INFO] [1794038746.796136019] [codroid_udp_bridge]: listening for RobotInfo on udp/9006, sending RobotMove to 192.168.101.100:9005
+[INFO] [1794038748.303498663] [codroid_udp_bridge]: sent move to 192.168.101.100:9005: ['Joint1', 'Joint2', 'Joint3', 'Joint4', 'Joint5', 'Joint6'] -> [array('d', [1.5522783519085712, -0.14034805643571427, 1.2255960057891897, -0.13562798578714286, 1.520555265552857, 0.01199620422]), array('d', [1.5523485451971426, -0.12318750941142856, 1.2220538127634828, -0.12615103581428572, 1.5229735099457142, 0.01040230296]), array('d', [1.5524187384857142, -0.10602696238714285, 1.2185116197377759, -0.11667408584142858, 1.5253917543385713, 0.0088084017]), array('d', [1.5524889317742856, -0.08886641536285714, 1.214969426712069, -0.10719713586857144, 1.5278099987314284, 0.00721450044]), array('d', [1.552559125062857, -0.07170586833857141, 1.211427233686362, -0.09772018589571428, 1.5302282431242855, 0.00562059918]), array('d', [1.5526293183514284, -0.054545321314285716, 1.2078850406606552, -0.08824323592285716, 1.5326464875171428, 0.004026697920000001]), array('d', [1.5526995116399998, -0.03738477428999999, 1.2043428476349483, -0.07876628595, 1.53506473191, 0.00243279666]), array('d', [1.5527697049285714, -0.020224227265714295, 1.2008006546092413, -0.06928933597714286, 1.537482976302857, 0.0008388954000000011]), array('d', [1.5528398982171427, -0.003063680241428557, 1.1972584615835344, -0.059812386004285706, 1.5399012206957143, -0.0007550058600000013]), array('d', [1.5529100915057141, 0.014096866782857154, 1.1937162685578275, -0.050335436031428565, 1.5423194650885714, -0.0023489071200000003]), array('d', [1.5529802847942855, 0.031257413807142864, 1.1901740755321206, -0.04085848605857144, 1.5447377094814285, -0.003942808379999999]), array('d', [1.5530504780828571, 0.04841796083142855, 1.1866318825064137, -0.0313815360857143, 1.5471559538742856, -0.005536709639999998]), array('d', [1.5531206713714285, 0.06557850785571429, 1.1830896894807068, -0.021904586112857144, 1.549574198267143, -0.007130610900000001]), array('d', [1.55319086466, 0.08273905488, 1.179547496455, -0.012427636140000003, 1.55199244266, -0.00872451216])]
+[INFO] [1794038751.788188729] [codroid_udp_bridge]: rx=101 decoded=101 tx=1
+[INFO] [1794038756.787989186] [codroid_udp_bridge]: rx=201 decoded=201 tx=1
+Traceback (most recent call last):
+  File "/media/sunshine/ESTUN_RUNTIME/ros2_ws/build/taskA_grasp/taskA_grasp/nodes/udp_bridge.py", line 146, in main
+    rclpy.spin(node)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 229, in spin
+    executor.spin_once()
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 808, in spin_once
+    self._spin_once_impl(timeout_sec)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 797, in _spin_once_impl
+    handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 780, in wait_for_ready_callbacks
+    return next(self._cb_iter)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 681, in _wait_for_ready_callbacks
+    raise ExternalShutdownException()
+rclpy.executors.ExternalShutdownException
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/media/sunshine/ESTUN_RUNTIME/ros2_ws/build/taskA_grasp/taskA_grasp/nodes/udp_bridge.py", line 155, in <module>
+    main()
+  File "/media/sunshine/ESTUN_RUNTIME/ros2_ws/build/taskA_grasp/taskA_grasp/nodes/udp_bridge.py", line 151, in main
+    rclpy.shutdown()
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 130, in shutdown
+    _shutdown(context=context)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/utilities.py", line 58, in shutdown
+    return context.shutdown()
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 102, in shutdown
+    self.__context.shutdown()
+rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241

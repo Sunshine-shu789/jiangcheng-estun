@@ -1,0 +1,40 @@
+
+===== 任务B 五点位拾放 =====
+配置：/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/config/track1_task_b_pick1_single_low_speed_live_20261106.yaml
+视觉后端：realsense_yolo
+模式：真机执行
+日志：/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/task_B_20261106_185133.log
+
+正在启动机械臂状态桥接，日志：/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/codroid_bridge_20261106_185133.log
+[bridge] RobotInfo 已就绪：state=AutoReady fault_flag=0 xyz=(-0.0644, 0.4303, 0.4333)
+[INFO] [1793962297.247324205] [track1_grasp]: [gripper:ms42dc] /dev/serial/by-id/usb-1a86_USB_Single_Serial_5CF0022496-if00 @ 115200 id=1 subdivide=32
+[INFO] [1793962297.254890523] [track1_grasp]: [task_b_initial_pose] current_deg=[82.657, 54.31, -32.192, -53.451, 84.449, -2.06] target_deg=[82.657, 54.31, -32.193, -53.453, 84.446, -2.058] max_delta_deg=0.003 tolerance_deg=0.500
+[INFO] [1793962297.256621527] [track1_grasp]: [task_b_initial_pose] already inside tolerance; no joint motion command sent
+[INFO] [1793962297.260789947] [track1_grasp]: [task_b_observation_pose] pick_1: current_deg=[82.657, 54.31, -32.192, -53.451, 84.449, -2.06] target_deg=[81.722, 83.401, -48.371, -55.141, 87.911, -3.395] max_delta_deg=29.091 tolerance_deg=0.500
+[INFO] [1793962297.262304873] [track1_grasp]: [task_b_observation_pose] pick_1: moving six axes together: dry_run=False estimated_steps=30 max_step_deg=1.000 total_abs_deg=[0.935, 29.091, 16.179, 1.69, 3.462, 1.335]
+[INFO] [1793962297.264173598] [track1_grasp]: [motion:robotmove] task_b_observation_pick_1: 30 step(s), max_delta=29.09 deg, joint_velocity=0.100 rad/s, speed_scale=1.00
+[INFO] [1793962297.290245517] [track1_grasp]: [motion:robotmove] sent continuous task_b_observation_pick_1: points=30 payload_bytes=5556 joint_velocity=0.100 rad/s endpoint_deg=[81.72, 83.4, -48.37, -55.14, 87.91, -3.4]
+[INFO] [1793962307.573548104] [track1_grasp]: [task_b_observation_pose] pick_1: verified residual_deg=0.003; visual search may start
+[INFO] [1793962307.575199569] [track1_grasp]: [scan] round 1/1: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 1)
+[INFO] [1793962307.576778612] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793962308.722719673] [track1_grasp]: [camera] D405 started 640x480@15 fx=392.7 fy=391.7 cx=314.4 cy=246.7
+[INFO] [1793962317.042861634] [track1_grasp]: [yolo] loading /media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/models/best.pt
+[INFO] [1793962317.496019857] [track1_grasp]: [vision:realsense_yolo] ready 640x480 rotate180=True anchor=top_center cx=324.6 cy=232.3 stabilizer=on unknown_proposer=off
+[INFO] [1793962350.037023494] [track1_grasp]: [detect] frame 'realsense-000001': 0 detection(s), no confirmed target: no target at expected point 'pick_1' within 0.080 m (expected class '8-Plastic_Banana'); no detection had a usable base-frame position
+[INFO] [1793962350.088874966] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793962350.111269179] [track1_grasp]: [detect] frame 'realsense-000002': 0 detection(s), no confirmed target: no target at expected point 'pick_1' within 0.080 m (expected class '8-Plastic_Banana'); no detection had a usable base-frame position
+[INFO] [1793962350.163106404] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793962350.182654740] [track1_grasp]: [detect] frame 'realsense-000003': 0 detection(s), no confirmed target: no target at expected point 'pick_1' within 0.080 m (expected class '8-Plastic_Banana'); no detection had a usable base-frame position
+[INFO] [1793962350.234437350] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793962350.255108840] [track1_grasp]: [detect] frame 'realsense-000004': 0 detection(s), no confirmed target: no target at expected point 'pick_1' within 0.080 m (expected class '8-Plastic_Banana'); no detection had a usable base-frame position
+[INFO] [1793962350.306808342] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793962350.326468281] [track1_grasp]: [detect] frame 'realsense-000005': 0 detection(s), no confirmed target: no target at expected point 'pick_1' within 0.080 m (expected class '8-Plastic_Banana'); no detection had a usable base-frame position
+[INFO] [1793962350.378343498] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793962350.398819089] [track1_grasp]: [detect] frame 'realsense-000006': 0 detection(s), no confirmed target: no target at expected point 'pick_1' within 0.080 m (expected class '8-Plastic_Banana'); no detection had a usable base-frame position
+[INFO] [1793962350.450651565] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793962350.649011672] [track1_grasp]: [detect] frame 'realsense-000007': 0 detection(s), no confirmed target: no target at expected point 'pick_1' within 0.080 m (expected class '8-Plastic_Banana'); no detection had a usable base-frame position
+[INFO] [1793962350.701028174] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793962350.722802634] [track1_grasp]: [detect] frame 'realsense-000008': 0 detection(s), no confirmed target: no target at expected point 'pick_1' within 0.080 m (expected class '8-Plastic_Banana'); no detection had a usable base-frame position
+[INFO] [1793962350.724317586] [track1_grasp]: [scan] timed out after 30.0 s waiting for target at expected point 'pick_1' (round 1/1): target not confirmed in 8 frame(s): no target at expected point 'pick_1' within 0.080 m (expected class '8-Plastic_Banana'); no detection had a usable base-frame position
+[INFO] [1793962350.725781485] [track1_grasp]: [select] timed out after 30.0 s waiting for target at expected point 'pick_1' (round 1/1): target not confirmed in 8 frame(s): no target at expected point 'pick_1' within 0.080 m (expected class '8-Plastic_Banana'); no detection had a usable base-frame position
+[INFO] [1793962350.727267942] [track1_grasp]: [run] requested=1 attempts=1 successes=0 rate=0.00%

@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Export reviewed all-history multi-object candidates as YOLO labels.
+set -euo pipefail
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+PYTHON="${TRACK1_REVIEW_PYTHON:-/usr/bin/python3}"
+SITE_PACKAGES="${TRACK1_REVIEW_SITE_PACKAGES:-/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages}"
+CONFIG="${TRACK1_REVIEW_CONFIG:-$ROOT/config/track1_all_history_multi_object_review_20261031_v4.yaml}"
+APP_DIR="$ROOT/app/track1_all_history_bbox_review_v2"
+if [ -x "$ROOT/bin/ensure_runtime" ]; then
+  "$ROOT/bin/ensure_runtime"
+fi
+exec env \
+  PYTHONNOUSERSITE=1 \
+  PYTHONDONTWRITEBYTECODE=1 \
+  PYTHONPATH="$SITE_PACKAGES:$ROOT/app/track1_capture_web:$APP_DIR" \
+  "$PYTHON" "$APP_DIR/export_review_cli.py" --config "$CONFIG" "$@"

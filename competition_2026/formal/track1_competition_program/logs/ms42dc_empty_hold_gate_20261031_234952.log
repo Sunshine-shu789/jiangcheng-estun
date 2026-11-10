@@ -1,0 +1,21 @@
+MS42DC empty-close hold-gate validation
+Expected: close at empty hard stop, verifier must reject; then open.
+Started: 2026-10-31T23:49:52+08:00
+
+[gripper:ms42dc] /dev/serial/by-id/usb-1a86_USB_Single_Serial_5CF0022496-if00 @ 115200 id=1 subdivide=32
+[test] closing at empty hard stop...
+[gripper:ms42dc] close: 7b 01 02 01 20 4c 7b 00 32 5c 7d
+[gripper:ms42dc] no status reply
+[gripper:ms42dc] no status reply
+[gripper:ms42dc] arrived, angle=1978.4 deg
+[test] close status: arrived=True angle=1978.4 deg
+[test] hold verifier accepted=False: jaws closed 1978.4 deg (>= 1950.0 deg): nothing between the fingers
+[test] PASS: empty close rejected by hold_min_angle_deg
+[test] restoring open position...
+[gripper:ms42dc] open: 7b 01 02 00 20 4c 7b 00 32 5d 7d
+[gripper:ms42dc] no status reply
+[gripper:ms42dc] no status reply
+[gripper:ms42dc] arrived, angle=21.5 deg
+[test] final: arrived=True angle=21.4 deg
+
+Finished: 2026-10-31T23:50:07+08:00

@@ -1,0 +1,28 @@
+
+===== 任务B 五点位拾放 =====
+配置：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/track1_task_b_point2_random_preflight_20261026.yaml
+视觉后端：realsense_yolo
+模式：安全试运行（机械臂不会运动）
+日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/task_B_20261026_213928.log
+
+机械臂状态桥接已在运行（PID=54451），不重复启动。
+[bridge] RobotInfo 已就绪：state=AutoReady fault_flag=0 xyz=(-0.1249, 0.5217, 0.2412)
+[INFO] [1793021969.958658489] [track1_grasp]: [task_b_initial_pose] Task B initial pose check requires AutoReady, fault_flag=0, and six-joint feedback: no fresh RobotInfo
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/nodes/track1_node.py", line 207, in <module>
+    raise SystemExit(main())
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/nodes/track1_node.py", line 194, in main
+    raise error[0]
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/nodes/track1_node.py", line 159, in worker
+    report = pipeline.run()
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/pipeline.py", line 146, in run
+    self._ensure_task_b_initial_pose()
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/pipeline.py", line 234, in _ensure_task_b_initial_pose
+    self._move_to_task_b_initial_pose(
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/pipeline.py", line 855, in _move_to_task_b_initial_pose
+    raise RuntimeError(message)
+RuntimeError: Task B initial pose check requires AutoReady, fault_flag=0, and six-joint feedback: no fresh RobotInfo

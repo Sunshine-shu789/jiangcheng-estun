@@ -1,0 +1,17 @@
+# Eye-in-hand transform for the current upside-down D405.
+#
+# This is T_flange_camera.  The operator supplied the camera optical-center
+# position in the flange frame as (X, Y, Z) = (0, -65, 0) mm.  The rotation
+# below remains the prior assumption that rotate_180 makes the effective
+# camera axes parallel to the flange axes; translation is calibrated from the
+# physical mounting geometry, while rotation still requires on-site validation.
+# Keep motion in dry-run until that orientation check has passed.
+matrix:
+  - [1.0, 0.0, 0.0, 0.0]
+  - [0.0, 1.0, 0.0, -0.065]
+  - [0.0, 0.0, 1.0, 0.0]
+  - [0.0, 0.0, 0.0, 1.0]
+
+# Safety metadata consumed by adaptive_inverse configuration validation.
+validated: false
+calibration_id: ""

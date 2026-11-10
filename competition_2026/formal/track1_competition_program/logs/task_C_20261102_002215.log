@@ -1,0 +1,299 @@
+
+===== 任务C 无序抓取 =====
+配置：/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/config/track1_task_cd_40class_v11_official.yaml
+视觉后端：realsense_yolo
+模式：真机执行
+日志：/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/task_C_20261102_002215.log
+
+机械臂状态桥接已在运行（PID=8947），不重复启动。
+[bridge] RobotInfo 已就绪：state=AutoReady fault_flag=0 xyz=(-0.0299, 0.4953, 0.2451)
+[INFO] [1793550136.238683481] [track1_grasp]: [vision:realsense_yolo] verified weights sha256=f43234a94f1d71b24cb187082c18eb22fea84c88922c605df5f7b1a79ffcaaa6
+[INFO] [1793550136.251651413] [track1_grasp]: [gripper:ms42dc] /dev/serial/by-id/usb-1a86_USB_Single_Serial_5CF0022496-if00 @ 115200 id=1 subdivide=32
+[INFO] [1793550136.266097561] [track1_grasp]: [scan] C/D moving to fixed observation pose: joints_deg=[88.991, 4.741, 67.583, -0.712, 88.923, -0.5]
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+[INFO] [1793550136.501644457] [track1_grasp]: [camera] D405 started 640x480@15 fx=392.7 fy=391.7 cx=314.4 cy=246.7
+[INFO] [1793550136.501722820] [track1_grasp]: [motion:robotmove] task_cd_observation_entry: 35 step(s), max_delta=34.63 deg
+[INFO] [1793550136.506071981] [track1_grasp]: [motion:robotmove] sent continuous task_cd_observation_entry: points=35 payload_bytes=6458 joint_velocity=0.600 rad/s endpoint_deg=[88.99, 4.74, 67.58, -0.71, 88.92, -0.5]
+[INFO] [1793550140.760853799] [track1_grasp]: [yolo] loading /media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/models/official/track1_40class_v11_official_f43234a9.pt
+[INFO] [1793550140.798952590] [track1_grasp]: [vision:realsense_yolo] ready 640x480 rotate180=True anchor=top_center cx=324.6 cy=232.3 stabilizer=on unknown_proposer=off
+[INFO] [1793550150.509988831] [track1_grasp]: [vision:short_edge] PCA rejection for '23-GU24_Adapter': ValueError: object point cloud is not elongated enough for a stable grasp heading (axis ratio 1.013 < 1.020)
+[INFO] [1793550160.553195048] [track1_grasp]: [task_cd_observation_entry] verified residual_deg=0.001
+[INFO] [1793550160.555401093] [track1_grasp]: [detect] C/D observation 1/8: waiting for a fresh fixed-view frame
+[INFO] [1793550160.558724407] [track1_grasp]: [detect] frame 'realsense-000108': 8 raw, 6 policy-admissible unfinished track(s), completed_tracks_excluded=0, failed_tracks_excluded=0, missing_track_id_excluded=0
+[INFO] [1793550160.610586637] [track1_grasp]: [detect] C/D observation 2/8: waiting for a fresh fixed-view frame
+[INFO] [1793550160.732390449] [track1_grasp]: [detect] frame 'realsense-000110': 6 raw, 5 policy-admissible unfinished track(s), completed_tracks_excluded=0, failed_tracks_excluded=0, missing_track_id_excluded=0
+[INFO] [1793550160.783976033] [track1_grasp]: [detect] C/D observation 3/8: waiting for a fresh fixed-view frame
+[INFO] [1793550160.862985195] [track1_grasp]: [detect] frame 'realsense-000111': 6 raw, 5 policy-admissible unfinished track(s), completed_tracks_excluded=0, failed_tracks_excluded=0, missing_track_id_excluded=0
+[INFO] [1793550160.915209557] [track1_grasp]: [detect] C/D observation 4/8: waiting for a fresh fixed-view frame
+[INFO] [1793550160.990082089] [track1_grasp]: [detect] frame 'realsense-000112': 6 raw, 5 policy-admissible unfinished track(s), completed_tracks_excluded=0, failed_tracks_excluded=0, missing_track_id_excluded=0
+[INFO] [1793550161.041920572] [track1_grasp]: [detect] C/D observation 5/8: waiting for a fresh fixed-view frame
+[INFO] [1793550161.106487148] [track1_grasp]: [detect] frame 'realsense-000113': 6 raw, 5 policy-admissible unfinished track(s), completed_tracks_excluded=0, failed_tracks_excluded=0, missing_track_id_excluded=0
+[INFO] [1793550161.158453862] [track1_grasp]: [detect] C/D observation 6/8: waiting for a fresh fixed-view frame
+[INFO] [1793550161.231432615] [track1_grasp]: [detect] frame 'realsense-000114': 6 raw, 5 policy-admissible unfinished track(s), completed_tracks_excluded=0, failed_tracks_excluded=0, missing_track_id_excluded=0
+[INFO] [1793550161.283230729] [track1_grasp]: [detect] C/D observation 7/8: waiting for a fresh fixed-view frame
+[INFO] [1793550161.358043895] [track1_grasp]: [detect] frame 'realsense-000115': 6 raw, 5 policy-admissible unfinished track(s), completed_tracks_excluded=0, failed_tracks_excluded=0, missing_track_id_excluded=0
+[INFO] [1793550161.410122217] [track1_grasp]: [detect] C/D observation 8/8: waiting for a fresh fixed-view frame
+[INFO] [1793550161.497283532] [track1_grasp]: [detect] frame 'realsense-000116': 6 raw, 5 policy-admissible unfinished track(s), completed_tracks_excluded=0, failed_tracks_excluded=0, missing_track_id_excluded=0
+[INFO] [1793550161.499291294] [track1_grasp]: [detect] C/D fixed-view confirmation complete: 5/5 active track(s) reached 2/8 consecutive frame(s)
+[INFO] [1793550161.500854997] [track1_grasp]: [select] 5 confirmed unfinished candidate(s), ordered by graspability then detection score
+[INFO] [1793550161.502498251] [track1_grasp]: [plan] candidate 1/5: '10-meat_can' track='track-5' graspability=1.00 score=1.14
+[INFO] [1793550161.508554781] [track1_grasp]: [pose] loaded camera transform from /media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/config/camera_to_flange.d405_calibrated_20261025.yaml
+[INFO] [1793550161.510231280] [track1_grasp]: [plan] candidate '10-meat_can' track='track-5' short-edge PCA heading: major_axis_base_xy=(0.940510, 0.339607); yaw=0.346518054 rad; grasp_rpy=(3.141592654, 0.000000000, 0.346518054); closure_axis_tool_xy=(1.000000000, 0.000000000); closure_axis_base=(0.940560968, 0.339624890, 0.000000000); abs(configured_closure_axis dot major_axis)=1.000000000; pose_confidence=0.571767; axis_ratio=1.695816
+[INFO] [1793550161.511796170] [track1_grasp]: [plan] candidate '10-meat_can' track='track-5' short-edge insertion: fixed jaw-tip Z=0.000103000 m; the detected top-surface Z is not used as the grasp depth
+[INFO] [1793550161.513580715] [track1_grasp]: [plan] candidate '10-meat_can' track='track-5' grasp point: mode=object_center; source=point-cloud geometric centre; jaw_tip_base_xyz=(-0.146996903, 0.507130410, -0.020127875); detection_anchor_base_xyz=(-0.144454801, 0.516292058, 0.021593529); xy_correction_m=(-0.002542102, -0.009161648)
+[INFO] [1793550161.515062493] [track1_grasp]: [plan] fixed jaw-tip Z target=0.000103000 m; visual top-surface Z=-0.020127875 m; insertion_delta=0.020230875 m
+[INFO] [1793550161.517059569] [track1_grasp]: [plan] visual jaw-tip target=(-0.146997, 0.50713, 0.000103); flange=(-0.146997, 0.50713, 0.165103); tip_offset_flange=(0.0, 0.0, 0.165)
+[INFO] [1793550161.518654143] [track1_grasp]: [plan] release jaw-tip target=(0.270378, 0.335654, 0.246477); flange=(0.233276, 0.304828, 0.404269); tip_offset_flange=(0.0, 0.0, 0.165)
+[INFO] [1793550161.520583541] [track1_grasp]: [plan] task_cd_place: C/D grasp safety passed; place_pose_frame=jaw_tip; grasp_tip_xyz=(-0.146997, 0.507130, 0.000103) grasp_flange_xyz=(-0.146997, 0.507130, 0.165103) m; release_tip_xyz=(0.270378, 0.335654, 0.246477) m; release_flange_xyz=(0.233276, 0.304828, 0.404269) m; route_flange_z=[0.165103, 0.484269] m; route_tip_z=[0.000103, 0.326477] m; approach_height=0.080000 m; approach_xy_error=0.000000 m; max_tool_tilt=16.998158 deg; max_grasp_tool_tilt=0.000000 deg; max_place_tool_tilt=16.998158 deg; max_horizontal_reach=0.528005 m
+[INFO] [1793550162.760341349] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=6, source=offset[5], damping=0.05, iterations=5, step=0.605 deg, pos_err=0.0099 mm, rot_err=0.000197 rad, min_sigma=0.031200
+[INFO] [1793550163.006986144] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=11, source=offset[10], damping=0.05, iterations=5, step=0.622 deg, pos_err=0.0096 mm, rot_err=0.000190 rad, min_sigma=0.030513
+[INFO] [1793550163.124787494] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=9, source=offset[8], damping=0.01, iterations=4, step=0.637 deg, pos_err=0.0096 mm, rot_err=0.000187 rad, min_sigma=0.030153
+[INFO] [1793550163.248730861] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=9, source=offset[8], damping=0.01, iterations=4, step=0.652 deg, pos_err=0.0102 mm, rot_err=0.000197 rad, min_sigma=0.029781
+[INFO] [1793550163.372024762] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=2, source=offset[1], damping=0.05, iterations=5, step=0.669 deg, pos_err=0.0102 mm, rot_err=0.000199 rad, min_sigma=0.029395
+[INFO] [1793550163.495668924] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[11], damping=0.01, iterations=4, step=0.687 deg, pos_err=0.0104 mm, rot_err=0.000199 rad, min_sigma=0.028996
+[INFO] [1793550163.620037352] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=6, source=offset[5], damping=0.01, iterations=4, step=0.706 deg, pos_err=0.0103 mm, rot_err=0.000197 rad, min_sigma=0.028582
+[INFO] [1793550163.743942725] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=11, source=offset[10], damping=0.01, iterations=4, step=0.727 deg, pos_err=0.0101 mm, rot_err=0.000191 rad, min_sigma=0.028151
+[INFO] [1793550163.872015598] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=2, source=offset[1], damping=0.01, iterations=4, step=0.749 deg, pos_err=0.0098 mm, rot_err=0.000185 rad, min_sigma=0.027704
+[INFO] [1793550163.995271505] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=2, source=offset[1], damping=0.01, iterations=4, step=0.770 deg, pos_err=0.0107 mm, rot_err=0.000200 rad, min_sigma=0.027241
+[INFO] [1793550164.118534537] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=9, source=offset[8], damping=0.03, iterations=5, step=0.797 deg, pos_err=0.0099 mm, rot_err=0.000180 rad, min_sigma=0.026756
+[INFO] [1793550164.241645591] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=9, source=offset[8], damping=0.03, iterations=5, step=0.821 deg, pos_err=0.0107 mm, rot_err=0.000194 rad, min_sigma=0.026254
+[INFO] [1793550164.368171383] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[11], damping=0.03, iterations=5, step=0.840 deg, pos_err=0.0106 mm, rot_err=0.000192 rad, min_sigma=0.025728
+[INFO] [1793550164.493215398] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=6, source=offset[5], damping=0.03, iterations=5, step=0.868 deg, pos_err=0.0109 mm, rot_err=0.000197 rad, min_sigma=0.025178
+[INFO] [1793550164.621370196] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=11, source=offset[10], damping=0.03, iterations=5, step=0.899 deg, pos_err=0.0112 mm, rot_err=0.000200 rad, min_sigma=0.024603
+[INFO] [1793550165.836678667] [track1_grasp]: [motion:cartesian-precheck] target 1: 215 waypoint(s), planning_step=1.000 mm, max_joint_step=0.493 deg, max_joint_accel=0.023 deg, min_sigma=0.02335, axis_step_deg=0.034,0.344,0.493,0.228,0.012,0.073, axis_travel_deg=5.484,46.160,37.682,13.363,1.079,14.878
+[INFO] [1793550165.941423036] [track1_grasp]: [motion:ik-restart-selected] target 2 path waypoint: seed=12, source=offset[11], damping=0.03, iterations=5, step=0.727 deg, pos_err=0.0094 mm, rot_err=0.000186 rad, min_sigma=0.023847
+[INFO] [1793550166.070673732] [track1_grasp]: [motion:ik-restart-selected] target 2 path waypoint: seed=12, source=offset[11], damping=0.03, iterations=5, step=0.765 deg, pos_err=0.0094 mm, rot_err=0.000189 rad, min_sigma=0.024361
+[INFO] [1793550166.194650344] [track1_grasp]: [motion:ik-restart-selected] target 2 path waypoint: seed=5, source=offset[4], damping=0.03, iterations=5, step=0.738 deg, pos_err=0.0095 mm, rot_err=0.000190 rad, min_sigma=0.024855
+[INFO] [1793550166.319884330] [track1_grasp]: [motion:ik-restart-selected] target 2 path waypoint: seed=11, source=offset[10], damping=0.03, iterations=5, step=0.713 deg, pos_err=0.0094 mm, rot_err=0.000189 rad, min_sigma=0.025331
+[INFO] [1793550166.442210565] [track1_grasp]: [motion:ik-restart-selected] target 2 path waypoint: seed=10, source=offset[9], damping=0.03, iterations=5, step=0.699 deg, pos_err=0.0096 mm, rot_err=0.000196 rad, min_sigma=0.025789
+[INFO] [1793550166.568733982] [track1_grasp]: [motion:ik-restart-selected] target 2 path waypoint: seed=10, source=offset[9], damping=0.03, iterations=5, step=0.680 deg, pos_err=0.0090 mm, rot_err=0.000183 rad, min_sigma=0.026233
+[INFO] [1793550166.690669588] [track1_grasp]: [motion:ik-restart-selected] target 2 path waypoint: seed=1, source=offset[0], damping=0.01, iterations=4, step=0.657 deg, pos_err=0.0097 mm, rot_err=0.000195 rad, min_sigma=0.026658
+[INFO] [1793550166.817603819] [track1_grasp]: [motion:ik-restart-selected] target 2 path waypoint: seed=1, source=offset[0], damping=0.01, iterations=4, step=0.639 deg, pos_err=0.0091 mm, rot_err=0.000182 rad, min_sigma=0.027073
+[INFO] [1793550166.945724185] [track1_grasp]: [motion:ik-restart-selected] target 2 path waypoint: seed=12, source=offset[11], damping=0.01, iterations=4, step=0.619 deg, pos_err=0.0094 mm, rot_err=0.000191 rad, min_sigma=0.027472
+[INFO] [1793550167.075138732] [track1_grasp]: [motion:ik-restart-selected] target 2 path waypoint: seed=3, source=offset[2], damping=0.01, iterations=4, step=0.600 deg, pos_err=0.0098 mm, rot_err=0.000199 rad, min_sigma=0.027858
+[INFO] [1793550167.978180303] [track1_grasp]: [motion:cartesian-precheck] target 2: 80 waypoint(s), planning_step=1.000 mm, max_joint_step=0.389 deg, max_joint_accel=0.049 deg, min_sigma=0.02359, axis_step_deg=0.001,0.067,0.389,0.321,0.002,0.001, axis_travel_deg=0.002,2.535,19.899,20.404,0.004,0.002
+[INFO] [1793550167.979445988] [track1_grasp]: [motion:cartesian-precheck-reuse] target 3: exact endpoint and joint posture match
+[INFO] [1793550167.980799536] [track1_grasp]: [motion:cartesian-precheck] target 3: 80 waypoint(s), planning_step=1.000 mm, max_joint_step=0.389 deg, max_joint_accel=0.049 deg, min_sigma=0.02359, axis_step_deg=0.001,0.067,0.389,0.321,0.002,0.001, axis_travel_deg=0.002,2.535,19.899,20.404,0.004,0.002
+[INFO] [1793550168.084710404] [track1_grasp]: [motion:ik-restart-selected] target 4 path waypoint: seed=3, source=offset[2], damping=0.03, iterations=5, step=0.769 deg, pos_err=0.0101 mm, rot_err=0.000199 rad, min_sigma=0.023854
+[INFO] [1793550168.212244233] [track1_grasp]: [motion:ik-restart-selected] target 4 path waypoint: seed=3, source=offset[2], damping=0.03, iterations=5, step=0.804 deg, pos_err=0.0100 mm, rot_err=0.000200 rad, min_sigma=0.024374
+[INFO] [1793550168.343179740] [track1_grasp]: [motion:ik-restart-selected] target 4 path waypoint: seed=11, source=offset[10], damping=0.03, iterations=5, step=0.777 deg, pos_err=0.0098 mm, rot_err=0.000198 rad, min_sigma=0.024873
+[INFO] [1793550168.469623607] [track1_grasp]: [motion:ik-restart-selected] target 4 path waypoint: seed=2, source=offset[1], damping=0.03, iterations=5, step=0.751 deg, pos_err=0.0097 mm, rot_err=0.000197 rad, min_sigma=0.025351
+[INFO] [1793550168.593125290] [track1_grasp]: [motion:ik-restart-selected] target 4 path waypoint: seed=10, source=offset[9], damping=0.03, iterations=5, step=0.739 deg, pos_err=0.0093 mm, rot_err=0.000189 rad, min_sigma=0.025810
+[INFO] [1793550168.721669530] [track1_grasp]: [motion:ik-restart-selected] target 4 path waypoint: seed=1, source=offset[0], damping=0.01, iterations=4, step=0.714 deg, pos_err=0.0099 mm, rot_err=0.000197 rad, min_sigma=0.026250
+[INFO] [1793550168.853611886] [track1_grasp]: [motion:ik-restart-selected] target 4 path waypoint: seed=1, source=offset[0], damping=0.01, iterations=4, step=0.695 deg, pos_err=0.0091 mm, rot_err=0.000183 rad, min_sigma=0.026677
+[INFO] [1793550168.984450032] [track1_grasp]: [motion:ik-restart-selected] target 4 path waypoint: seed=12, source=offset[11], damping=0.01, iterations=4, step=0.673 deg, pos_err=0.0094 mm, rot_err=0.000191 rad, min_sigma=0.027085
+[INFO] [1793550169.113069073] [track1_grasp]: [motion:ik-restart-selected] target 4 path waypoint: seed=5, source=offset[4], damping=0.01, iterations=4, step=0.652 deg, pos_err=0.0098 mm, rot_err=0.000199 rad, min_sigma=0.027479
+[INFO] [1793550169.237736707] [track1_grasp]: [motion:ik-restart-selected] target 4 path waypoint: seed=5, source=offset[4], damping=0.01, iterations=4, step=0.636 deg, pos_err=0.0092 mm, rot_err=0.000187 rad, min_sigma=0.027861
+[INFO] [1793550169.364505900] [track1_grasp]: [motion:ik-restart-selected] target 4 path waypoint: seed=1, source=offset[0], damping=0.05, iterations=5, step=0.618 deg, pos_err=0.0096 mm, rot_err=0.000194 rad, min_sigma=0.028228
+[INFO] [1793550169.487280942] [track1_grasp]: [motion:ik-restart-selected] target 4 path waypoint: seed=1, source=offset[0], damping=0.05, iterations=5, step=0.604 deg, pos_err=0.0089 mm, rot_err=0.000182 rad, min_sigma=0.028585
+[INFO] [1793550171.038599193] [track1_grasp]: [motion:ik-restart-selected] target 4 path waypoint: seed=8, source=offset[7], damping=0.01, iterations=4, step=0.607 deg, pos_err=0.0105 mm, rot_err=0.000199 rad, min_sigma=0.026226
+[INFO] [1793550171.162495067] [track1_grasp]: [motion:ik-restart-selected] target 4 path waypoint: seed=11, source=offset[10], damping=0.01, iterations=4, step=0.616 deg, pos_err=0.0097 mm, rot_err=0.000184 rad, min_sigma=0.025833
+[INFO] [1793550171.283869069] [track1_grasp]: [motion:ik-restart-selected] target 4 path waypoint: seed=11, source=offset[10], damping=0.01, iterations=4, step=0.631 deg, pos_err=0.0104 mm, rot_err=0.000196 rad, min_sigma=0.025431
+[INFO] [1793550171.407347005] [track1_grasp]: [motion:ik-restart-selected] target 4 path waypoint: seed=2, source=offset[1], damping=0.01, iterations=4, step=0.649 deg, pos_err=0.0101 mm, rot_err=0.000190 rad, min_sigma=0.025014
+[INFO] [1793550171.534209997] [track1_grasp]: [motion:ik-restart-selected] target 4 path waypoint: seed=10, source=offset[9], damping=0.01, iterations=4, step=0.667 deg, pos_err=0.0104 mm, rot_err=0.000196 rad, min_sigma=0.024583
+[INFO] [1793550171.659795431] [track1_grasp]: [motion:ik-restart-selected] target 4 path waypoint: seed=1, source=offset[0], damping=0.03, iterations=5, step=0.687 deg, pos_err=0.0107 mm, rot_err=0.000196 rad, min_sigma=0.024137
+[INFO] [1793550171.784780079] [track1_grasp]: [motion:ik-restart-selected] target 4 path waypoint: seed=12, source=offset[11], damping=0.03, iterations=5, step=0.709 deg, pos_err=0.0109 mm, rot_err=0.000197 rad, min_sigma=0.023675
+[INFO] [1793550171.913467985] [track1_grasp]: [motion:ik-restart-selected] target 4 path waypoint: seed=6, source=offset[5], damping=0.03, iterations=5, step=0.721 deg, pos_err=0.0106 mm, rot_err=0.000193 rad, min_sigma=0.023194
+[INFO] [1793550172.047729181] [track1_grasp]: [motion:ik-restart-selected] target 4 path waypoint: seed=11, source=offset[10], damping=0.03, iterations=5, step=0.747 deg, pos_err=0.0104 mm, rot_err=0.000189 rad, min_sigma=0.022694
+[INFO] [1793550172.179356896] [track1_grasp]: [motion:ik-restart-selected] target 4 path waypoint: seed=2, source=offset[1], damping=0.03, iterations=5, step=0.772 deg, pos_err=0.0107 mm, rot_err=0.000192 rad, min_sigma=0.022175
+[INFO] [1793550172.437779926] [track1_grasp]: [motion:ik-restart-selected] target 4 path waypoint: seed=9, source=offset[8], damping=0.02, iterations=5, step=0.824 deg, pos_err=0.0094 mm, rot_err=0.000163 rad, min_sigma=0.021064
+[INFO] [1793550172.567496053] [track1_grasp]: [motion:ik-restart-selected] target 4 path waypoint: seed=9, source=offset[8], damping=0.02, iterations=5, step=0.852 deg, pos_err=0.0105 mm, rot_err=0.000180 rad, min_sigma=0.020474
+[INFO] [1793550174.491280809] [track1_grasp]: [motion:cartesian-precheck] target 4: 493 waypoint(s), planning_step=1.000 mm, max_joint_step=0.434 deg, max_joint_accel=0.048 deg, min_sigma=0.02047, axis_step_deg=0.139,0.278,0.434,0.218,0.017,0.069, axis_travel_deg=58.445,51.444,70.431,35.445,4.587,14.878
+[INFO] [1793550174.597416719] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=10, source=offset[9], damping=0.05, iterations=6, step=1.742 deg, pos_err=0.0063 mm, rot_err=0.000137 rad, min_sigma=0.021658
+[INFO] [1793550174.698822338] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=10, source=offset[9], damping=0.02, iterations=5, step=0.841 deg, pos_err=0.0089 mm, rot_err=0.000181 rad, min_sigma=0.021047
+[INFO] [1793550174.836169384] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=10, source=offset[9], damping=0.02, iterations=5, step=0.888 deg, pos_err=0.0086 mm, rot_err=0.000177 rad, min_sigma=0.021652
+[INFO] [1793550174.970716725] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=10, source=offset[9], damping=0.05, iterations=6, step=1.708 deg, pos_err=0.0053 mm, rot_err=0.000115 rad, min_sigma=0.022798
+[INFO] [1793550175.071254411] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=10, source=offset[9], damping=0.02, iterations=5, step=0.861 deg, pos_err=0.0078 mm, rot_err=0.000160 rad, min_sigma=0.022234
+[INFO] [1793550175.318539172] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=1, source=offset[0], damping=0.02, iterations=5, step=1.608 deg, pos_err=0.0091 mm, rot_err=0.000196 rad, min_sigma=0.023842
+[INFO] [1793550175.417625951] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=1, source=offset[0], damping=0.03, iterations=5, step=0.814 deg, pos_err=0.0099 mm, rot_err=0.000199 rad, min_sigma=0.023323
+[INFO] [1793550175.545854363] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=12, source=offset[11], damping=0.03, iterations=5, step=0.792 deg, pos_err=0.0096 mm, rot_err=0.000195 rad, min_sigma=0.023841
+[INFO] [1793550175.671653514] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=10, source=offset[9], damping=0.02, iterations=5, step=1.525 deg, pos_err=0.0089 mm, rot_err=0.000196 rad, min_sigma=0.024826
+[INFO] [1793550175.770723671] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=5, source=offset[4], damping=0.03, iterations=5, step=0.769 deg, pos_err=0.0098 mm, rot_err=0.000199 rad, min_sigma=0.024341
+[INFO] [1793550175.896759099] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=5, source=offset[4], damping=0.03, iterations=5, step=0.751 deg, pos_err=0.0090 mm, rot_err=0.000185 rad, min_sigma=0.024827
+[INFO] [1793550176.030117930] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=10, source=offset[9], damping=0.02, iterations=5, step=1.458 deg, pos_err=0.0077 mm, rot_err=0.000168 rad, min_sigma=0.025752
+[INFO] [1793550176.129885044] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=2, source=offset[1], damping=0.03, iterations=5, step=0.730 deg, pos_err=0.0096 mm, rot_err=0.000199 rad, min_sigma=0.025294
+[INFO] [1793550176.259523995] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=10, source=offset[9], damping=0.03, iterations=5, step=0.723 deg, pos_err=0.0093 mm, rot_err=0.000194 rad, min_sigma=0.025749
+[INFO] [1793550176.386699253] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=10, source=offset[9], damping=0.02, iterations=5, step=1.408 deg, pos_err=0.0067 mm, rot_err=0.000147 rad, min_sigma=0.026623
+[INFO] [1793550176.490300230] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=9, source=offset[8], damping=0.01, iterations=4, step=0.705 deg, pos_err=0.0098 mm, rot_err=0.000200 rad, min_sigma=0.026189
+[INFO] [1793550176.616530379] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=1, source=offset[0], damping=0.01, iterations=4, step=0.690 deg, pos_err=0.0095 mm, rot_err=0.000195 rad, min_sigma=0.026618
+[INFO] [1793550176.843325523] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=1, source=offset[0], damping=0.01, iterations=4, step=0.677 deg, pos_err=0.0089 mm, rot_err=0.000183 rad, min_sigma=0.027036
+[INFO] [1793550176.968593941] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=12, source=offset[11], damping=0.01, iterations=4, step=0.662 deg, pos_err=0.0092 mm, rot_err=0.000189 rad, min_sigma=0.027440
+[INFO] [1793550177.098761251] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=9, source=offset[8], damping=0.03, iterations=5, step=1.292 deg, pos_err=0.0092 mm, rot_err=0.000199 rad, min_sigma=0.028219
+[INFO] [1793550177.318067954] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=5, source=offset[4], damping=0.01, iterations=4, step=0.636 deg, pos_err=0.0092 mm, rot_err=0.000192 rad, min_sigma=0.028219
+[INFO] [1793550177.446900713] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=6, source=offset[5], damping=0.03, iterations=5, step=1.247 deg, pos_err=0.0092 mm, rot_err=0.000200 rad, min_sigma=0.028960
+[INFO] [1793550177.542078827] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=9, source=offset[8], damping=0.05, iterations=5, step=0.624 deg, pos_err=0.0096 mm, rot_err=0.000199 rad, min_sigma=0.028594
+[INFO] [1793550177.672527532] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=1, source=offset[0], damping=0.05, iterations=5, step=0.613 deg, pos_err=0.0094 mm, rot_err=0.000195 rad, min_sigma=0.028960
+[INFO] [1793550177.801392349] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=11, source=offset[10], damping=0.03, iterations=5, step=1.207 deg, pos_err=0.0087 mm, rot_err=0.000191 rad, min_sigma=0.029667
+[INFO] [1793550177.897825463] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=2, source=offset[1], damping=0.01, iterations=4, step=0.602 deg, pos_err=0.0093 mm, rot_err=0.000198 rad, min_sigma=0.029317
+[INFO] [1793550178.038605057] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=10, source=offset[9], damping=0.03, iterations=5, step=1.178 deg, pos_err=0.0084 mm, rot_err=0.000186 rad, min_sigma=0.030341
+[INFO] [1793550178.166866714] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=10, source=offset[9], damping=0.03, iterations=5, step=1.146 deg, pos_err=0.0077 mm, rot_err=0.000170 rad, min_sigma=0.030988
+[INFO] [1793550178.293564668] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=10, source=offset[9], damping=0.03, iterations=5, step=1.124 deg, pos_err=0.0071 mm, rot_err=0.000157 rad, min_sigma=0.031607
+[INFO] [1793550178.421339524] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=10, source=offset[9], damping=0.03, iterations=5, step=1.096 deg, pos_err=0.0065 mm, rot_err=0.000145 rad, min_sigma=0.032201
+[INFO] [1793550178.547575609] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=1, source=offset[0], damping=0.01, iterations=4, step=1.063 deg, pos_err=0.0084 mm, rot_err=0.000187 rad, min_sigma=0.032769
+[INFO] [1793550178.675294661] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=7, source=offset[6], damping=0.01, iterations=4, step=1.035 deg, pos_err=0.0089 mm, rot_err=0.000200 rad, min_sigma=0.033317
+[INFO] [1793550178.791265159] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=11, source=offset[10], damping=0.01, iterations=4, step=1.012 deg, pos_err=0.0087 mm, rot_err=0.000198 rad, min_sigma=0.033846
+[INFO] [1793550178.912419507] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=10, source=offset[9], damping=0.01, iterations=4, step=0.989 deg, pos_err=0.0087 mm, rot_err=0.000198 rad, min_sigma=0.034356
+[INFO] [1793550179.037379221] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=10, source=offset[9], damping=0.01, iterations=4, step=0.970 deg, pos_err=0.0082 mm, rot_err=0.000187 rad, min_sigma=0.034849
+[INFO] [1793550179.160030782] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=9, source=offset[8], damping=0.05, iterations=5, step=0.949 deg, pos_err=0.0087 mm, rot_err=0.000197 rad, min_sigma=0.035324
+[INFO] [1793550179.279689103] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=9, source=offset[8], damping=0.05, iterations=5, step=0.931 deg, pos_err=0.0082 mm, rot_err=0.000186 rad, min_sigma=0.035785
+[INFO] [1793550179.401133157] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=12, source=offset[11], damping=0.05, iterations=5, step=0.913 deg, pos_err=0.0084 mm, rot_err=0.000193 rad, min_sigma=0.036229
+[INFO] [1793550179.523889201] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=5, source=offset[4], damping=0.05, iterations=5, step=0.896 deg, pos_err=0.0086 mm, rot_err=0.000198 rad, min_sigma=0.036660
+[INFO] [1793550179.641514827] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=11, source=offset[10], damping=0.05, iterations=5, step=0.880 deg, pos_err=0.0086 mm, rot_err=0.000200 rad, min_sigma=0.037078
+[INFO] [1793550179.768354073] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=11, source=offset[10], damping=0.05, iterations=5, step=0.866 deg, pos_err=0.0082 mm, rot_err=0.000191 rad, min_sigma=0.037483
+[INFO] [1793550179.888159622] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=2, source=offset[1], damping=0.05, iterations=5, step=0.851 deg, pos_err=0.0084 mm, rot_err=0.000198 rad, min_sigma=0.037875
+[INFO] [1793550180.005712821] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=2, source=offset[1], damping=0.05, iterations=5, step=0.850 deg, pos_err=0.0081 mm, rot_err=0.000193 rad, min_sigma=0.038257
+[INFO] [1793550180.125047004] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=2, source=offset[1], damping=0.05, iterations=5, step=0.837 deg, pos_err=0.0078 mm, rot_err=0.000185 rad, min_sigma=0.038627
+[INFO] [1793550180.242692814] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=2, source=offset[1], damping=0.05, iterations=5, step=0.826 deg, pos_err=0.0075 mm, rot_err=0.000179 rad, min_sigma=0.038987
+[INFO] [1793550180.360114221] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=2, source=offset[1], damping=0.05, iterations=5, step=0.814 deg, pos_err=0.0072 mm, rot_err=0.000172 rad, min_sigma=0.039336
+[INFO] [1793550180.476804237] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=2, source=offset[1], damping=0.05, iterations=5, step=0.804 deg, pos_err=0.0069 mm, rot_err=0.000166 rad, min_sigma=0.039676
+[INFO] [1793550180.592087276] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=2, source=offset[1], damping=0.05, iterations=5, step=0.793 deg, pos_err=0.0066 mm, rot_err=0.000160 rad, min_sigma=0.040006
+[INFO] [1793550180.709797202] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=2, source=offset[1], damping=0.05, iterations=5, step=0.782 deg, pos_err=0.0064 mm, rot_err=0.000155 rad, min_sigma=0.040328
+[INFO] [1793550180.827584304] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=2, source=offset[1], damping=0.05, iterations=5, step=0.772 deg, pos_err=0.0061 mm, rot_err=0.000150 rad, min_sigma=0.040640
+[INFO] [1793550180.943241349] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=2, source=offset[1], damping=0.05, iterations=5, step=0.762 deg, pos_err=0.0059 mm, rot_err=0.000145 rad, min_sigma=0.040945
+[INFO] [1793550181.059002880] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=2, source=offset[1], damping=0.05, iterations=5, step=0.752 deg, pos_err=0.0057 mm, rot_err=0.000140 rad, min_sigma=0.041241
+[INFO] [1793550181.174487764] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=2, source=offset[1], damping=0.05, iterations=5, step=0.743 deg, pos_err=0.0055 mm, rot_err=0.000136 rad, min_sigma=0.041530
+[INFO] [1793550181.289075032] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=2, source=offset[1], damping=0.05, iterations=5, step=0.734 deg, pos_err=0.0053 mm, rot_err=0.000132 rad, min_sigma=0.041811
+[INFO] [1793550181.403151753] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=2, source=offset[1], damping=0.05, iterations=5, step=0.725 deg, pos_err=0.0052 mm, rot_err=0.000129 rad, min_sigma=0.042085
+[INFO] [1793550181.521382913] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=2, source=offset[1], damping=0.05, iterations=5, step=0.721 deg, pos_err=0.0050 mm, rot_err=0.000126 rad, min_sigma=0.042352
+[INFO] [1793550181.649739556] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=10, source=offset[9], damping=0.02, iterations=5, step=0.841 deg, pos_err=0.0089 mm, rot_err=0.000181 rad, min_sigma=0.021047
+[INFO] [1793550181.782125970] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=10, source=offset[9], damping=0.02, iterations=5, step=0.888 deg, pos_err=0.0086 mm, rot_err=0.000177 rad, min_sigma=0.021652
+[INFO] [1793550181.910740262] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=10, source=offset[9], damping=0.02, iterations=5, step=0.861 deg, pos_err=0.0078 mm, rot_err=0.000160 rad, min_sigma=0.022234
+[INFO] [1793550182.168943637] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=1, source=offset[0], damping=0.03, iterations=5, step=0.814 deg, pos_err=0.0099 mm, rot_err=0.000199 rad, min_sigma=0.023323
+[INFO] [1793550182.295585787] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=12, source=offset[11], damping=0.03, iterations=5, step=0.792 deg, pos_err=0.0096 mm, rot_err=0.000195 rad, min_sigma=0.023841
+[INFO] [1793550182.420733099] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=5, source=offset[4], damping=0.03, iterations=5, step=0.769 deg, pos_err=0.0098 mm, rot_err=0.000199 rad, min_sigma=0.024341
+[INFO] [1793550182.543246930] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=5, source=offset[4], damping=0.03, iterations=5, step=0.751 deg, pos_err=0.0090 mm, rot_err=0.000185 rad, min_sigma=0.024827
+[INFO] [1793550182.663864607] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=2, source=offset[1], damping=0.03, iterations=5, step=0.730 deg, pos_err=0.0096 mm, rot_err=0.000199 rad, min_sigma=0.025294
+[INFO] [1793550182.787854280] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=10, source=offset[9], damping=0.03, iterations=5, step=0.723 deg, pos_err=0.0093 mm, rot_err=0.000194 rad, min_sigma=0.025749
+[INFO] [1793550182.913411217] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=9, source=offset[8], damping=0.01, iterations=4, step=0.705 deg, pos_err=0.0098 mm, rot_err=0.000200 rad, min_sigma=0.026189
+[INFO] [1793550183.037985052] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=1, source=offset[0], damping=0.01, iterations=4, step=0.690 deg, pos_err=0.0095 mm, rot_err=0.000195 rad, min_sigma=0.026618
+[INFO] [1793550183.162423532] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=1, source=offset[0], damping=0.01, iterations=4, step=0.677 deg, pos_err=0.0089 mm, rot_err=0.000183 rad, min_sigma=0.027036
+[INFO] [1793550183.284014814] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=12, source=offset[11], damping=0.01, iterations=4, step=0.662 deg, pos_err=0.0092 mm, rot_err=0.000189 rad, min_sigma=0.027440
+[INFO] [1793550183.532533203] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=5, source=offset[4], damping=0.01, iterations=4, step=0.636 deg, pos_err=0.0092 mm, rot_err=0.000192 rad, min_sigma=0.028219
+[INFO] [1793550183.654833316] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=9, source=offset[8], damping=0.05, iterations=5, step=0.624 deg, pos_err=0.0096 mm, rot_err=0.000199 rad, min_sigma=0.028594
+[INFO] [1793550183.780110045] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=1, source=offset[0], damping=0.05, iterations=5, step=0.613 deg, pos_err=0.0094 mm, rot_err=0.000195 rad, min_sigma=0.028960
+[INFO] [1793550183.898818509] [track1_grasp]: [motion:ik-restart-selected] target 5 path waypoint: seed=2, source=offset[1], damping=0.01, iterations=4, step=0.602 deg, pos_err=0.0093 mm, rot_err=0.000198 rad, min_sigma=0.029317
+[INFO] [1793550185.560994649] [track1_grasp]: [motion:cartesian-precheck] target 5: 160 waypoint(s), planning_step=0.500 mm, max_joint_step=0.452 deg, max_joint_accel=0.059 deg, min_sigma=0.02074, axis_step_deg=0.001,0.180,0.452,0.271,0.002,0.001, axis_travel_deg=0.003,13.273,41.431,28.145,0.006,0.002
+[INFO] [1793550185.563872718] [track1_grasp]: [motion:cartesian-precheck-reuse] target 6: exact endpoint and joint posture match
+[INFO] [1793550185.566628492] [track1_grasp]: [motion:cartesian-precheck] target 6: 160 waypoint(s), planning_step=0.500 mm, max_joint_step=0.452 deg, max_joint_accel=0.059 deg, min_sigma=0.02074, axis_step_deg=0.001,0.180,0.452,0.271,0.002,0.001, axis_travel_deg=0.003,13.273,41.431,28.145,0.006,0.002
+[INFO] [1793550185.568765672] [track1_grasp]: [motion:linear-precheck] validated 6 segment(s), 1188 Cartesian waypoint(s), min_sigma=0.02047
+[INFO] [1793550185.570691508] [track1_grasp]: [plan] candidate '10-meat_can' track='track-5' passed the complete read-only precheck with 6 waypoint(s); grasp_point_mode=object_center; short_edge_variant=pca-primary
+[INFO] [1793550185.572962856] [track1_grasp]: [open_gripper] opening jaws after all candidate gates passed and before the prechecked approach
+[INFO] [1793550185.575462169] [track1_grasp]: [gripper:ms42dc] open: 7b 01 02 00 20 4c 7b 00 32 5d 7d
+[INFO] [1793550185.583471843] [track1_grasp]: [gripper:ms42dc] arrived, angle=21.1 deg
+[INFO] [1793550185.886161803] [track1_grasp]: [approach] move to pregrasp: xyz=(-0.147, 0.5071, 0.2451)
+[INFO] [1793550185.894569231] [track1_grasp]: [motion:robotmove] pregrasp: split 215 points into 6 controller-safe chunks points=[37, 37, 37, 38, 37, 29] max_points=40 max_payload_bytes=7600
+[INFO] [1793550185.897087541] [track1_grasp]: [motion:robotmove] sent continuous pregrasp chunk 1/6: points=37 payload_bytes=7475 joint_velocity=0.086 rad/s endpoint_deg=[90.17, 10.71, 66.21, 0.98, 88.96, -2.86]
+[INFO] [1793550196.435041363] [track1_grasp]: [motion:robotmove] sent continuous pregrasp chunk 2/6: points=37 payload_bytes=7434 joint_velocity=0.086 rad/s endpoint_deg=[91.23, 17.33, 63.24, 1.71, 89.04, -5.34]
+[INFO] [1793550197.192789140] [track1_grasp]: [vision:short_edge] PCA rejection for '23-GU24_Adapter': ValueError: object point cloud is not elongated enough for a stable grasp heading (axis ratio 1.020 < 1.020)
+[INFO] [1793550207.522534153] [track1_grasp]: [motion:robotmove] sent continuous pregrasp chunk 3/6: points=37 payload_bytes=7424 joint_velocity=0.086 rad/s endpoint_deg=[92.18, 24.61, 58.49, 1.32, 89.18, -7.9]
+[INFO] [1793550212.573930722] [track1_grasp]: [vision:short_edge] PCA rejection for '23-GU24_Adapter': ValueError: object point cloud is not elongated enough for a stable grasp heading (axis ratio 1.006 < 1.020)
+[INFO] [1793550219.167256196] [track1_grasp]: [motion:robotmove] sent continuous pregrasp chunk 4/6: points=38 payload_bytes=7598 joint_velocity=0.086 rad/s endpoint_deg=[93.08, 32.9, 51.39, -0.5, 89.4, -10.59]
+[INFO] [1793550222.128598986] [track1_grasp]: [depth] skip 38-Jumbo_Pencil_Cup: no valid depth at (566,31)
+[INFO] [1793550224.318259588] [track1_grasp]: [depth] skip 38-Jumbo_Pencil_Cup: no valid depth at (569,32)
+[INFO] [1793550231.664379327] [track1_grasp]: [motion:robotmove] sent continuous pregrasp chunk 5/6: points=37 payload_bytes=7429 joint_velocity=0.086 rad/s endpoint_deg=[93.88, 42.11, 41.45, -4.14, 89.7, -13.26]
+[INFO] [1793550245.162242818] [track1_grasp]: [motion:robotmove] sent continuous pregrasp chunk 6/6: points=29 payload_bytes=5818 joint_velocity=0.086 rad/s endpoint_deg=[94.48, 50.9, 29.9, -9.19, 90.0, -15.38]
+[INFO] [1793550257.961762626] [track1_grasp]: [motion:linear] pregrasp: completed 0.215 m with 215 waypoint(s), joint_velocity=0.086 rad/s, max_joint_step=0.493 deg
+[INFO] [1793550257.963423690] [track1_grasp]: [grasp] move to grasp: xyz=(-0.147, 0.5071, 0.1651)
+[INFO] [1793550257.967935514] [track1_grasp]: [motion:robotmove] grasp: split 80 points into 3 controller-safe chunks points=[37, 38, 5] max_points=40 max_payload_bytes=7600
+[INFO] [1793550257.970563058] [track1_grasp]: [motion:robotmove] sent continuous grasp chunk 1/3: points=37 payload_bytes=7420 joint_velocity=0.068 rad/s endpoint_deg=[94.48, 49.91, 41.39, 1.29, 90.0, -15.38]
+[INFO] [1793550269.146337967] [track1_grasp]: [depth] skip 17-Eggs_Plush: no valid depth at (595,227)
+[INFO] [1793550269.899714022] [track1_grasp]: [depth] skip 17-Eggs_Plush: no valid depth at (596,230)
+[INFO] [1793550270.008564150] [track1_grasp]: [depth] skip 17-Eggs_Plush: no valid depth at (596,229)
+[INFO] [1793550270.119397106] [track1_grasp]: [depth] skip 17-Eggs_Plush: no valid depth at (596,230)
+[INFO] [1793550270.347884183] [track1_grasp]: [depth] skip 17-Eggs_Plush: no valid depth at (596,231)
+[INFO] [1793550270.467457016] [track1_grasp]: [depth] skip 17-Eggs_Plush: no valid depth at (596,229)
+[INFO] [1793550272.374563451] [track1_grasp]: [motion:robotmove] sent continuous grasp chunk 2/3: points=38 payload_bytes=7558 joint_velocity=0.068 rad/s endpoint_deg=[94.48, 51.13, 49.01, 10.14, 90.0, -15.38]
+[INFO] [1793550285.223325055] [track1_grasp]: [motion:robotmove] sent continuous grasp chunk 3/3: points=5 payload_bytes=1069 joint_velocity=0.068 rad/s endpoint_deg=[94.48, 51.41, 49.8, 11.21, 90.0, -15.38]
+[INFO] [1793550286.980796847] [track1_grasp]: [motion:linear] grasp: completed 0.080 m with 80 waypoint(s), joint_velocity=0.068 rad/s, max_joint_step=0.389 deg
+[INFO] [1793550286.982609888] [track1_grasp]: [grasp] reached grasp pose; closing jaws
+[INFO] [1793550286.984443113] [track1_grasp]: [gripper:ms42dc] close: 7b 01 02 01 20 4c 7b 00 32 5c 7d
+[INFO] [1793550286.991831819] [track1_grasp]: [gripper:ms42dc] ignoring pre-command arrival status; waiting for fresh motion
+[INFO] [1793550293.591793216] [track1_grasp]: [gripper:ms42dc] arrived, angle=1877.9 deg
+[INFO] [1793550293.893506008] [track1_grasp]: [verify_hold] checking whether the object is held
+[INFO] [1793550293.894975913] [track1_grasp]: [verify_hold] jaws settled at 1877.9 deg
+[INFO] [1793550293.896285529] [track1_grasp]: [lift] move to lift: xyz=(-0.147, 0.5071, 0.2451)
+[INFO] [1793550293.900076649] [track1_grasp]: [motion:robotmove] lift: split 80 points into 3 controller-safe chunks points=[38, 37, 5] max_points=40 max_payload_bytes=7600
+[INFO] [1793550293.902263696] [track1_grasp]: [motion:robotmove] sent continuous lift chunk 1/3: points=38 payload_bytes=7554 joint_velocity=0.068 rad/s endpoint_deg=[94.48, 49.97, 42.58, 2.54, 90.0, -15.38]
+[INFO] [1793550306.653268313] [track1_grasp]: [motion:robotmove] sent continuous lift chunk 2/3: points=37 payload_bytes=7420 joint_velocity=0.068 rad/s endpoint_deg=[94.48, 50.6, 31.77, -7.64, 90.0, -15.38]
+[INFO] [1793550310.826063136] [track1_grasp]: [depth] skip 21-Haribo_Golden_Bear: no valid depth at (291,138)
+[INFO] [1793550310.827869053] [track1_grasp]: [depth] skip 17-Eggs_Plush: no valid depth at (596,230)
+[INFO] [1793550310.892706338] [track1_grasp]: [depth] skip 17-Eggs_Plush: no valid depth at (596,229)
+[INFO] [1793550311.125689803] [track1_grasp]: [depth] skip 17-Eggs_Plush: no valid depth at (596,230)
+[INFO] [1793550311.244653540] [track1_grasp]: [depth] skip 17-Eggs_Plush: no valid depth at (596,229)
+[INFO] [1793550311.471741952] [track1_grasp]: [depth] skip 17-Eggs_Plush: no valid depth at (596,229)
+[INFO] [1793550311.588765605] [track1_grasp]: [depth] skip 17-Eggs_Plush: no valid depth at (596,229)
+[INFO] [1793550311.702029008] [track1_grasp]: [depth] skip 21-Haribo_Golden_Bear: no valid depth at (292,140)
+[INFO] [1793550311.703745876] [track1_grasp]: [depth] skip 17-Eggs_Plush: no valid depth at (596,228)
+[INFO] [1793550311.759914523] [track1_grasp]: [depth] skip 17-Eggs_Plush: no valid depth at (595,229)
+[INFO] [1793550311.874575405] [track1_grasp]: [depth] skip 17-Eggs_Plush: no valid depth at (595,228)
+[INFO] [1793550312.110277838] [track1_grasp]: [depth] skip 17-Eggs_Plush: no valid depth at (595,228)
+[INFO] [1793550312.225505072] [track1_grasp]: [depth] skip 21-Haribo_Golden_Bear: no valid depth at (295,141)
+[INFO] [1793550312.227218378] [track1_grasp]: [depth] skip 17-Eggs_Plush: no valid depth at (595,228)
+[INFO] [1793550312.283775279] [track1_grasp]: [depth] skip 17-Eggs_Plush: no valid depth at (595,228)
+[INFO] [1793550320.708076066] [track1_grasp]: [motion:robotmove] sent continuous lift chunk 3/3: points=5 payload_bytes=1075 joint_velocity=0.068 rad/s endpoint_deg=[94.48, 50.9, 29.9, -9.19, 90.0, -15.38]
+[INFO] [1793550323.017676376] [track1_grasp]: [motion:linear] lift: completed 0.080 m with 80 waypoint(s), joint_velocity=0.068 rad/s, max_joint_step=0.389 deg
+[INFO] [1793550323.019279260] [track1_grasp]: [transfer] move to transfer: xyz=(0.2333, 0.3048, 0.4843)
+[INFO] [1793550323.039489857] [track1_grasp]: [motion:robotmove] transfer: split 493 points into 14 controller-safe chunks points=[37, 37, 37, 37, 37, 37, 37, 37, 37, 37, 37, 37, 37, 12] max_points=40 max_payload_bytes=7600
+[INFO] [1793550323.042470036] [track1_grasp]: [motion:robotmove] sent continuous transfer chunk 1/14: points=37 payload_bytes=7409 joint_velocity=0.076 rad/s endpoint_deg=[91.44, 41.99, 42.09, -4.62, 90.42, -12.97]
+[INFO] [1793550337.900881120] [track1_grasp]: [motion:robotmove] sent continuous transfer chunk 2/14: points=37 payload_bytes=7422 joint_velocity=0.076 rad/s endpoint_deg=[88.16, 34.88, 50.19, -2.33, 90.81, -10.82]
+[INFO] [1793550350.094968728] [track1_grasp]: [motion:robotmove] sent continuous transfer chunk 3/14: points=37 payload_bytes=7430 joint_velocity=0.076 rad/s endpoint_deg=[84.61, 28.82, 55.88, -1.39, 91.16, -8.93]
+[INFO] [1793550356.599710441] [track1_grasp]: [depth] skip 20-Scotch_Tape: no valid depth at (576,270)
+[INFO] [1793550360.734506201] [track1_grasp]: [motion:robotmove] sent continuous transfer chunk 4/14: points=37 payload_bytes=7445 joint_velocity=0.076 rad/s endpoint_deg=[80.79, 23.57, 59.76, -1.44, 91.44, -7.32]
+[INFO] [1793550370.669569853] [track1_grasp]: [motion:robotmove] sent continuous transfer chunk 5/14: points=37 payload_bytes=7438 joint_velocity=0.076 rad/s endpoint_deg=[76.69, 19.08, 62.13, -2.24, 91.64, -5.98]
+[INFO] [1793550371.962873503] [track1_grasp]: [depth] skip 1-Cheez-it: no valid depth at (560,222)
+[INFO] [1793550373.275090006] [track1_grasp]: [depth] skip 26-Plastic_Strawberry: no valid depth at (628,124)
+[INFO] [1793550373.589720862] [track1_grasp]: [depth] skip 26-Plastic_Strawberry: no valid depth at (627,123)
+[INFO] [1793550373.737563834] [track1_grasp]: [depth] skip 26-Plastic_Strawberry: no valid depth at (626,121)
+[INFO] [1793550373.914157811] [track1_grasp]: [depth] skip 26-Plastic_Strawberry: no valid depth at (626,121)
+[INFO] [1793550374.094931162] [track1_grasp]: [depth] skip 26-Plastic_Strawberry: no valid depth at (625,118)
+[INFO] [1793550374.251809655] [track1_grasp]: [depth] skip 26-Plastic_Strawberry: no valid depth at (624,118)
+[INFO] [1793550374.446823747] [track1_grasp]: [depth] skip 26-Plastic_Strawberry: no valid depth at (623,117)
+[INFO] [1793550374.624111120] [track1_grasp]: [depth] skip 26-Plastic_Strawberry: no valid depth at (623,116)
+[INFO] [1793550374.795486816] [track1_grasp]: [depth] skip 26-Plastic_Strawberry: no valid depth at (622,118)
+[INFO] [1793550374.952271511] [track1_grasp]: [depth] skip 26-Plastic_Strawberry: no valid depth at (622,119)
+[INFO] [1793550375.123581904] [track1_grasp]: [depth] skip 26-Plastic_Strawberry: no valid depth at (621,118)
+[INFO] [1793550375.313342096] [track1_grasp]: [depth] skip 26-Plastic_Strawberry: no valid depth at (620,118)
+[INFO] [1793550376.771958975] [track1_grasp]: [vision:short_edge] PCA rejection for '26-Plastic_Strawberry': ValueError: object point cloud is not elongated enough for a stable grasp heading (axis ratio 1.015 < 1.020)
+[INFO] [1793550379.906505921] [track1_grasp]: [motion:robotmove] sent continuous transfer chunk 6/14: points=37 payload_bytes=7440 joint_velocity=0.076 rad/s endpoint_deg=[72.32, 15.32, 63.18, -3.61, 91.73, -4.91]
+[INFO] [1793550388.990270314] [track1_grasp]: [motion:robotmove] sent continuous transfer chunk 7/14: points=37 payload_bytes=7429 joint_velocity=0.076 rad/s endpoint_deg=[67.7, 12.35, 62.95, -5.46, 91.71, -4.07]
+[INFO] [1793550392.910848230] [track1_grasp]: [vision:short_edge] PCA rejection for '18-Dice': ValueError: object point cloud is not elongated enough for a stable grasp heading (axis ratio 1.014 < 1.020)
+[INFO] [1793550397.880079703] [track1_grasp]: [depth] skip 21-Haribo_Golden_Bear: no valid depth at (537,43)
+[INFO] [1793550398.329940608] [track1_grasp]: [motion:robotmove] sent continuous transfer chunk 8/14: points=37 payload_bytes=7440 joint_velocity=0.076 rad/s endpoint_deg=[62.85, 10.22, 61.49, -7.73, 91.55, -3.43]
+[INFO] [1793550402.106530786] [track1_grasp]: [depth] skip 21-Haribo_Golden_Bear: no valid depth at (524,40)
+[INFO] [1793550402.478952170] [track1_grasp]: [depth] skip 21-Haribo_Golden_Bear: no valid depth at (523,40)
+[INFO] [1793550402.636161926] [track1_grasp]: [depth] skip 21-Haribo_Golden_Bear: no valid depth at (523,40)
+[INFO] [1793550402.818516790] [track1_grasp]: [depth] skip 21-Haribo_Golden_Bear: no valid depth at (522,40)
+[INFO] [1793550407.281490744] [track1_grasp]: [vision:short_edge] PCA rejection for '4-Frenchs_Mustard': ValueError: object point cloud is not elongated enough for a stable grasp heading (axis ratio 1.019 < 1.020)
+[INFO] [1793550407.863237013] [track1_grasp]: [motion:robotmove] sent continuous transfer chunk 9/14: points=37 payload_bytes=7437 joint_velocity=0.076 rad/s endpoint_deg=[57.83, 9.01, 58.78, -10.36, 91.27, -2.94]
+[INFO] [1793550409.933359200] [track1_grasp]: [depth] skip 21-Haribo_Golden_Bear: no valid depth at (520,79)
+[INFO] [1793550410.092376060] [track1_grasp]: [depth] skip 21-Haribo_Golden_Bear: no valid depth at (519,78)
+[INFO] [1793550410.241665191] [track1_grasp]: [depth] skip 21-Haribo_Golden_Bear: no valid depth at (517,79)
+[INFO] [1793550410.450939020] [track1_grasp]: [depth] skip 21-Haribo_Golden_Bear: no valid depth at (517,79)
+[INFO] [1793550410.658555349] [track1_grasp]: [depth] skip 38-Jumbo_Pencil_Cup: no valid depth at (80,48)
+[INFO] [1793550410.820468088] [track1_grasp]: [depth] skip 38-Jumbo_Pencil_Cup: no valid depth at (79,47)
+[INFO] [1793550410.821863191] [track1_grasp]: [depth] skip 21-Haribo_Golden_Bear: no valid depth at (516,78)
+[INFO] [1793550410.939340401] [track1_grasp]: [depth] skip 38-Jumbo_Pencil_Cup: no valid depth at (78,48)
+[INFO] [1793550411.230630879] [track1_grasp]: [depth] skip 38-Jumbo_Pencil_Cup: no valid depth at (77,48)
+[INFO] [1793550412.267510950] [track1_grasp]: [depth] skip 21-Haribo_Golden_Bear: no valid depth at (506,78)
+[INFO] [1793550412.553568899] [track1_grasp]: [depth] skip 21-Haribo_Golden_Bear: no valid depth at (503,79)
+[INFO] [1793550412.976026410] [track1_grasp]: [depth] skip 21-Haribo_Golden_Bear: no valid depth at (501,78)
+[INFO] [1793550413.150845340] [track1_grasp]: [depth] skip 21-Haribo_Golden_Bear: no valid depth at (499,78)
+[INFO] [1793550417.596818028] [track1_grasp]: [motion:robotmove] sent continuous transfer chunk 10/14: points=37 payload_bytes=7458 joint_velocity=0.076 rad/s endpoint_deg=[52.72, 8.78, 54.75, -13.35, 90.86, -2.51]
+[INFO] [1793550427.385605957] [track1_grasp]: [motion:robotmove] sent continuous transfer chunk 11/14: points=37 payload_bytes=7448 joint_velocity=0.076 rad/s endpoint_deg=[47.58, 9.66, 49.19, -16.8, 90.35, -2.06]
+[INFO] [1793550437.633116960] [track1_grasp]: [motion:robotmove] sent continuous transfer chunk 12/14: points=37 payload_bytes=7447 joint_velocity=0.076 rad/s endpoint_deg=[42.5, 11.88, 41.65, -20.95, 89.76, -1.52]
+[INFO] [1793550449.439838325] [track1_grasp]: [motion:robotmove] sent continuous transfer chunk 13/14: points=37 payload_bytes=7464 joint_velocity=0.076 rad/s endpoint_deg=[37.58, 16.0, 30.91, -26.46, 89.13, -0.79]
+[INFO] [1793550463.408629281] [track1_grasp]: [motion:robotmove] sent continuous transfer chunk 14/14: points=12 payload_bytes=2482 joint_velocity=0.076 rad/s endpoint_deg=[36.03, 18.02, 26.15, -28.86, 88.92, -0.5]
+[INFO] [1793550468.831883213] [track1_grasp]: [motion:linear] transfer: completed 0.493 m with 493 waypoint(s), joint_velocity=0.076 rad/s, max_joint_step=0.434 deg
+[INFO] [1793550468.833756807] [track1_grasp]: [release] move to release: xyz=(0.2333, 0.3048, 0.4043)
+[INFO] [1793550468.841228625] [track1_grasp]: [motion:robotmove] release: split 160 points into 5 controller-safe chunks points=[37, 37, 37, 37, 12] max_points=40 max_payload_bytes=7600
+[INFO] [1793550468.843856169] [track1_grasp]: [motion:robotmove] sent continuous release chunk 1/5: points=37 payload_bytes=7456 joint_velocity=0.158 rad/s endpoint_deg=[36.03, 12.85, 39.79, -20.4, 88.92, -0.5]
+[INFO] [1793550484.569049122] [track1_grasp]: [motion:robotmove] sent continuous release chunk 2/5: points=37 payload_bytes=7471 joint_velocity=0.158 rad/s endpoint_deg=[36.03, 9.48, 49.86, -13.7, 88.92, -0.5]

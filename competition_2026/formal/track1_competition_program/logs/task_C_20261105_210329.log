@@ -1,0 +1,44 @@
+
+===== 任务C 无序抓取 =====
+配置：/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/config/track1_task_c_v11_official_20261102.yaml
+视觉后端：realsense_yolo
+模式：任务C 无序抓取（仅抓取已训练 40 类已知物体；unknown/object 拒绝；真机运动）
+日志：/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/task_C_20261105_210329.log
+
+正在启动机械臂状态桥接，日志：/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/codroid_bridge_20261105_210329.log
+[bridge] RobotInfo 已就绪：state=AutoReady fault_flag=0 xyz=(-0.1028, 0.3698, 0.4043)
+[INFO] [1793883811.229232241] [track1_grasp]: [vision:realsense_yolo] verified weights sha256=f43234a94f1d71b24cb187082c18eb22fea84c88922c605df5f7b1a79ffcaaa6
+[INFO] [1793883811.240936740] [track1_grasp]: [gripper:ms42dc] /dev/serial/by-id/usb-1a86_USB_Single_Serial_5CF0022496-if00 @ 115200 id=1 subdivide=32
+[INFO] [1793883811.263096690] [track1_grasp]: [scan] C/D observation pose flange endpoint passed the box clearance gate
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+[INFO] [1793883811.484305562] [track1_grasp]: [scan] C/D moving to fixed observation pose: joints_deg=[88.991, 4.741, 67.583, -0.712, 88.923, -0.5]
+[INFO] [1793883811.484553710] [track1_grasp]: [camera] D405 started 640x480@15 fx=392.7 fy=391.7 cx=314.4 cy=246.7
+[INFO] [1793883811.485948799] [track1_grasp]: [motion:robotmove] task_cd_observation_entry: already at target
+[INFO] [1793883811.487165791] [track1_grasp]: [task_cd_observation_entry] verified residual_deg=0.021
+[INFO] [1793883811.488413654] [track1_grasp]: [scan] C/D ordinary clear cycle: capturing exactly one fixed-view frame; a visible candidate enters the complete safety precheck immediately without relocation-scan motion
+[INFO] [1793883811.489637770] [track1_grasp]: [detect] C/D clear fixed-view: capturing one frame; a valid candidate enters planning immediately
+[INFO] [1793883815.853743295] [track1_grasp]: [yolo] loading /media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/models/official/track1_40class_v11_official_f43234a9.pt
+[INFO] [1793883815.894326731] [track1_grasp]: [vision:realsense_yolo] ready 640x480 rotate180=True anchor=top_center cx=324.6 cy=232.3 stabilizer=on unknown_proposer=off
+[INFO] [1793883819.135279975] [track1_grasp]: [pose] loaded camera transform from /media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/config/camera_to_flange.d405_calibrated_20261025.yaml
+[INFO] [1793883819.136798545] [track1_grasp]: [detect] clear fixed-view frame 'realsense-000001': 1 raw after gripper-self filtering, 1 policy-admissible unfinished track(s), completed_tracks_excluded=0, failed_tracks_excluded=0, rejected_tracks_excluded=0, completed_spatial_excluded=0, failed_spatial_excluded=0, rejected_spatial_excluded=0, missing_track_id_excluded=0, off_target_excluded=0, unusable_geometry_or_depth_excluded=0, unusable_reason_counts={}, policy_rejected=0, corner_small_excluded=0, ignored_corner_small_present=False, ignored_corner_small_count=0, physical_detection_evidence=1
+[INFO] [1793883819.137932425] [track1_grasp]: [detect] C/D clear fixed-view confirmed 1 visible candidate(s) after 1/1 frame(s); planning starts immediately without waiting for the observation window to expire; ranking=[track-1@1.000 hits=1]
+[INFO] [1793883819.139232530] [track1_grasp]: [select] 1 confirmed unfinished candidate(s), ordered by adaptive centre-first relative target position, then graspability, measured geometry and detection confidence
+[INFO] [1793883819.140860331] [track1_grasp]: [plan] candidate 1/1: '29-Paper_Towels' track='track-1' centre_score=1.000 graspability=1.00 score=0.98
+[INFO] [1793883819.142369402] [track1_grasp]: [plan] candidate '29-Paper_Towels' track='track-1' geometry candidates: 1.vertical_center confidence=0.644099
+[INFO] [1793883819.145157206] [track1_grasp]: [plan] candidate '29-Paper_Towels' track='track-1' geometry grasp point: mode=vertical_center; source=measured_vertical_center_footprint; jaw_tip_base_xyz=(-0.030120965, 0.511473880, -0.030877213); geometry_mode=vertical_center; geometry_confidence=0.644099
+[INFO] [1793883819.146742264] [track1_grasp]: [plan] candidate '29-Paper_Towels' track='track-1' point=vertical_center: bounded precheck budget tries 5/10 orientation variant(s) before moving to the next measured grasp point
+[INFO] [1793883819.150065544] [track1_grasp]: [plan] candidate '29-Paper_Towels' track='track-1' geometry policy rejected before motion: measured width 0.18996708324734773 failed the CAD opening gate: MS42DC measured short-edge width plus safety margin 0.194967 m exceeds the CAD opening 0.072549 m at 50.0 mm depth
+[INFO] [1793883819.151490316] [track1_grasp]: [plan] all 1 confirmed C/D candidate(s) were rejected during read-only planning/precheck; no grasp-plan Cartesian motion or gripper command was issued for them; their locations will be deferred temporarily so another visible target can be tried immediately
+[INFO] [1793883819.153095559] [track1_grasp]: [run] C/D operator acceptance ended at a read-only planning rejection; automatic retry and exclusion release are disabled
+[INFO] [1793883819.154331548] [track1_grasp]: [run] C/D clear until empty observation_cycles=1 successes=0 completed_tracks=0 failed_tracks_pending_retry=0 rejected_tracks_pending_retry=1 final_status=rejected
+QObject::killTimer: Timers cannot be stopped from another thread
+QObject::~QObject: Timers cannot be stopped from another thread

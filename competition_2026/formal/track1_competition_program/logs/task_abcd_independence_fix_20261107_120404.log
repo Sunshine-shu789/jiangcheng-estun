@@ -1,0 +1,22 @@
+赛道一任务 A/B/C/D/E 独立性修复与无运动验证
+时间：2026-11-07T12:04:04
+
+修复内容：
+1. track1_task_runner 只校验当前入口选择的任务，不再把同一配置依次套用到 A/B/C/D/E。
+2. check 分支保留显式 TRACK1_CHECK_TASK；任务 E 支持 run_task_e --check。
+3. B/C/D 的无运动 check 显式绑定自身任务，防止其他任务的配置或环境变量串扰。
+4. A 视觉入口使用 --no-browser，并由启动器可靠打开 http://127.0.0.1:9100/。
+5. A/B/C/D/E 桌面入口全部指向 /media/sunshine/新加卷 正式数据盘路径。
+
+验证结果：
+- A/B/C/D/E 无运动自检：全部 rc=0
+- 桌面文件格式、正式/用户副本一致性、可信标记：全部通过
+- Task A 页面 HTTP 200，视觉服务 ready=true，约 13 FPS
+- Task A 离线测试：39 passed, 1 skipped
+- Task B 离线测试：71 passed
+- 配置与启动器离线测试：142 passed, 5 skipped
+- C/D 桌面、抓取安全、固定观察清箱及 V11 模型测试：180 passed
+
+安全说明：
+- 本次未启动 A 十点位巡检，也未发送机械臂或夹爪运动命令。
+- 真机任务仍需现场确认急停、控制器 AutoReady、工作区无人、标定和夹爪状态。

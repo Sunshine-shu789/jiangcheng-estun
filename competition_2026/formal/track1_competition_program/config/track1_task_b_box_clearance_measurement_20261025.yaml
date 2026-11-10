@@ -1,0 +1,135 @@
+# Task B physical box-clearance measurement record.
+#
+# ACTIVE FIELD RECORD (DRAFT).  Empty/null values and false review flags are
+# intentional blockers.  Fill every field from an on-site static measurement,
+# save the evidence files, and run bin/check_task_b_box_clearance_measurement.
+#
+# Units are metres and radians.  Box-local origin is the midpoint of the inner
+# rectangle.  Box-local +X points from the west inner wall toward the east
+# inner wall; box-local +Y points from the south inner wall toward the north
+# inner wall.  yaw_rad is the base-frame angle from base +X to box-local +X,
+# positive counter-clockwise.
+schema_version: 1
+status: draft
+
+# Values in this section are recorded for traceability only.  They are not a
+# substitute for the field measurements and review required below.
+provisional_input:
+  source: user-provided 2026-10-25
+  box_dimension_type: interior
+  box_height_m: 0.135
+  boss_height_from_box_bottom_m: 0.100
+  boss_count: 2
+  boss_layout: >-
+    one centred on each width edge; interpreted as the north and south short
+    edges pending field orientation review
+  activation_allowed: false
+
+metadata:
+  project: ESTUN_2026_TRACK1_TASK_B
+  measured_at: ''                 # ISO-8601 with timezone
+  measured_by: ''
+  reviewed_by: ''
+  measurement_location: ''
+  controller_base_frame: ''       # Exact frame used for all box coordinates
+  instrument_id: ''
+  measurement_method: ''
+  uncertainty_m: null             # Positive measured/estimated uncertainty
+  yaw_uncertainty_rad: null       # Positive measured/estimated uncertainty
+  bin_identifier: ''
+
+box:
+  center_xy_m: [null, null]
+  yaw_rad: null
+  interior_size_m: [0.260, 0.370]  # user-provided [east-west width, north-south depth]
+
+# Positive values are additional exclusion margins applied inside the measured
+# wall/obstacle boundaries.  Select them from measurement uncertainty and the
+# mechanical safety review; do not enter zero merely to pass the checker.
+clearances:
+  wall_m: null
+  obstacle_m: null
+
+gripper_footprint:
+  source_description: ''          # Physical assembly / CAD revision / measurement
+  flange_xy_m: []                 # Convex points, ordered around the perimeter
+
+# Inventory every structure that could overlap the descending gripper footprint.
+# Each L-shaped corner MUST be split into multiple strictly convex polygons.
+# Replace placeholder vertices and add as many convex pieces as the real shape
+# requires.  Keep at least eight lower_corner pieces and two edge_boss pieces.
+obstacles_m:
+  - name: northwest_L_long_leg
+    category: lower_corner
+    vertices_m: []
+    notes: ''
+  - name: northwest_L_short_leg
+    category: lower_corner
+    vertices_m: []
+    notes: ''
+  - name: northeast_L_long_leg
+    category: lower_corner
+    vertices_m: []
+    notes: ''
+  - name: northeast_L_short_leg
+    category: lower_corner
+    vertices_m: []
+    notes: ''
+  - name: southwest_L_long_leg
+    category: lower_corner
+    vertices_m: []
+    notes: ''
+  - name: southwest_L_short_leg
+    category: lower_corner
+    vertices_m: []
+    notes: ''
+  - name: southeast_L_long_leg
+    category: lower_corner
+    vertices_m: []
+    notes: ''
+  - name: southeast_L_short_leg
+    category: lower_corner
+    vertices_m: []
+    notes: ''
+  - name: north_edge_boss
+    category: edge_boss
+    vertices_m:
+      - [-0.050, 0.160]
+      - [0.050, 0.160]
+      - [0.050, 0.185]
+      - [-0.050, 0.185]
+    notes: >-
+      User-provided 100 mm along-edge x 25 mm inward, centred on the north
+      width edge; 100 mm height from box bottom and field orientation pending
+      verification.
+  - name: south_edge_boss
+    category: edge_boss
+    vertices_m:
+      - [-0.050, -0.185]
+      - [0.050, -0.185]
+      - [0.050, -0.160]
+      - [-0.050, -0.160]
+    notes: >-
+      User-provided 100 mm along-edge x 25 mm inward, centred on the south
+      width edge; 100 mm height from box bottom and field orientation pending
+      verification.
+
+evidence:
+  overview_photos: []
+  corner_photos:
+    northwest: []
+    northeast: []
+    southwest: []
+    southeast: []
+  boss_photos:
+    north: []
+    south: []
+  gripper_geometry_sources: []
+
+review:
+  measurement_complete: false
+  dimensions_rechecked: false
+  all_obstacles_inventoried: false
+  gripper_footprint_reviewed: false
+  safety_approved: false
+  review_notes: ''

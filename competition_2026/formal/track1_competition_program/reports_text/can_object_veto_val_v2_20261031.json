@@ -1,0 +1,4721 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-31T13:04:05+08:00",
+  "primaryConfig": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/track1_acceptance_40class.yaml",
+  "primaryWeights": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_train_40class_v10_targetfix_from_v7/track1_40class_20261031_101832/weights/best.pt",
+  "secondaryWeights": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_train_can_secondary_v1/can3_20261031_121753/weights/best.pt",
+  "datasetYaml": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_can_secondary_v1/dataset.yaml",
+  "split": "val",
+  "imageDir": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_can_secondary_v1/images/val",
+  "labelDir": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_can_secondary_v1/labels/val",
+  "imageCount": 447,
+  "device": "0",
+  "elapsedSeconds": 9.102,
+  "recommendedSecondaryConf": 0.005,
+  "evaluations": [
+    {
+      "secondaryConf": 0.005,
+      "thresholds": {
+        "secondary_conf": 0.005,
+        "strong_conf": 0.3,
+        "base_fallback_conf": 0.75
+      },
+      "images": 447,
+      "canImages": 153,
+      "exactCanCountImages": 385,
+      "exactCanCountRate": 0.8612975391498882,
+      "negativeImages": 294,
+      "negativeImagesWithFalseCan": 5,
+      "canPrecisionIoU30": 0.7098765432098766,
+      "canRecallIoU30": 0.7419354838709677,
+      "canPrecisionIoU50": 0.7098765432098766,
+      "canRecallIoU50": 0.7419354838709677,
+      "canWrongClassIoU30": 21,
+      "nonCanRecallIoU50": 0.0,
+      "confusionPredToGt": {
+        "2-Starkist_Tuna->10-meat_can": 19,
+        "5-Tomato_Soup->5-Tomato_Soup": 2
+      },
+      "perCanClassIoU50": {
+        "2-Starkist_Tuna": {
+          "groundTruth": 30,
+          "predictions": 48,
+          "truePositives": 28,
+          "falseNegatives": 2,
+          "recall": 0.9333333333333333
+        },
+        "5-Tomato_Soup": {
+          "groundTruth": 59,
+          "predictions": 78,
+          "truePositives": 59,
+          "falseNegatives": 0,
+          "recall": 1.0
+        },
+        "10-meat_can": {
+          "groundTruth": 66,
+          "predictions": 36,
+          "truePositives": 28,
+          "falseNegatives": 38,
+          "recall": 0.42424242424242425
+        }
+      },
+      "unresolvedNonCanOnCan": {
+        "15-Coca_cola_half": 3,
+        "19-Elmers_Glue": 6,
+        "22-E27_Adapter": 3,
+        "40-Pringles": 1
+      },
+      "unresolvedNonCanOnCanTotal": 13,
+      "unresolvedNonCanOnCanExamples": [
+        {
+          "image": "old_front10__5-Tomato_Soup_20261016_034604_573408.jpg",
+          "prediction": {
+            "class_id": 14,
+            "confidence": 0.876818060874939,
+            "bbox": [
+              229.03558349609375,
+              55.880767822265625,
+              418.17572021484375,
+              174.02711486816406
+            ],
+            "id": 14,
+            "officialId": 15,
+            "name": "15-Coca_cola_half"
+          },
+          "canGroundTruths": [
+            {
+              "id": 4,
+              "officialId": 5,
+              "name": "5-Tomato_Soup",
+              "bbox": [
+                245.00032000000004,
+                69.99983999999999,
+                430.0,
+                306.99984
+              ]
+            }
+          ]
+        },
+        {
+          "image": "old_front10__5-Tomato_Soup_20261016_034604_943652.jpg",
+          "prediction": {
+            "class_id": 14,
+            "confidence": 0.8225254416465759,
+            "bbox": [
+              227.97216796875,
+              55.68879699707031,
+              416.90826416015625,
+              177.43228149414062
+            ],
+            "id": 14,
+            "officialId": 15,
+            "name": "15-Coca_cola_half"
+          },
+          "canGroundTruths": [
+            {
+              "id": 4,
+              "officialId": 5,
+              "name": "5-Tomato_Soup",
+              "bbox": [
+                245.00032000000004,
+                69.99983999999999,
+                430.0,
+                306.99984
+              ]
+            }
+          ]
+        },
+        {
+          "image": "old_front10__5-Tomato_Soup_20261016_034607_162454.jpg",
+          "prediction": {
+            "class_id": 14,
+            "confidence": 0.8570056557655334,
+            "bbox": [
+              228.49124145507812,
+              53.85984802246094,
+              417.9054260253906,
+              176.137451171875
+            ],
+            "id": 14,
+            "officialId": 15,
+            "name": "15-Coca_cola_half"
+          },
+          "canGroundTruths": [
+            {
+              "id": 4,
+              "officialId": 5,
+              "name": "5-Tomato_Soup",
+              "bbox": [
+                245.00032000000004,
+                69.99983999999999,
+                430.0,
+                306.99984
+              ]
+            }
+          ]
+        },
+        {
+          "image": "old_front10__os3r2_scene_20261012_225009_437239_244212.jpg",
+          "prediction": {
+            "class_id": 39,
+            "confidence": 0.4180164933204651,
+            "bbox": [
+              162.58743286132812,
+              221.212890625,
+              328.5761413574219,
+              370.0540771484375
+            ],
+            "id": 39,
+            "officialId": 40,
+            "name": "40-Pringles"
+          },
+          "canGroundTruths": [
+            {
+              "id": 4,
+              "officialId": 5,
+              "name": "5-Tomato_Soup",
+              "bbox": [
+                184.0,
+                178.99992000000003,
+                428.99968,
+                364.00008
+              ]
+            }
+          ]
+        },
+        {
+          "image": "old_front10__os3r2_scene_20261012_225009_437239_244212.jpg",
+          "prediction": {
+            "class_id": 21,
+            "confidence": 0.1778739094734192,
+            "bbox": [
+              328.4327087402344,
+              214.97964477539062,
+              436.6513366699219,
+              375.3631286621094
+            ],
+            "id": 21,
+            "officialId": 22,
+            "name": "22-E27_Adapter"
+          },
+          "canGroundTruths": [
+            {
+              "id": 4,
+              "officialId": 5,
+              "name": "5-Tomato_Soup",
+              "bbox": [
+                184.0,
+                178.99992000000003,
+                428.99968,
+                364.00008
+              ]
+            }
+          ]
+        },
+        {
+          "image": "old_front10__scene_20261013_224902_284031_17c112__v17k02.jpg",
+          "prediction": {
+            "class_id": 21,
+            "confidence": 0.8824551701545715,
+            "bbox": [
+              220.72723388671875,
+              252.71218872070312,
+              397.5430908203125,
+              383.5581970214844
+            ],
+            "id": 21,
+            "officialId": 22,
+            "name": "22-E27_Adapter"
+          },
+          "canGroundTruths": [
+            {
+              "id": 4,
+              "officialId": 5,
+              "name": "5-Tomato_Soup",
+              "bbox": [
+                219.99968,
+                94.99992,
+                457.99968,
+                389.99976
+              ]
+            }
+          ]
+        },
+        {
+          "image": "old_front10__scene_20261013_224904_468854_411a13__v17k02.jpg",
+          "prediction": {
+            "class_id": 21,
+            "confidence": 0.7544870376586914,
+            "bbox": [
+              223.83392333984375,
+              253.39434814453125,
+              418.0784912109375,
+              384.62921142578125
+            ],
+            "id": 21,
+            "officialId": 22,
+            "name": "22-E27_Adapter"
+          },
+          "canGroundTruths": [
+            {
+              "id": 4,
+              "officialId": 5,
+              "name": "5-Tomato_Soup",
+              "bbox": [
+                228.00032,
+                88.00008,
+                442.00031999999993,
+                390.00024
+              ]
+            }
+          ]
+        },
+        {
+          "image": "old_front10__scene_20261013_231952_196898_e8775b__v17k01.jpg",
+          "prediction": {
+            "class_id": 18,
+            "confidence": 0.21254535019397736,
+            "bbox": [
+              2.171966552734375,
+              182.67083740234375,
+              440.3240051269531,
+              480.0
+            ],
+            "id": 18,
+            "officialId": 19,
+            "name": "19-Elmers_Glue"
+          },
+          "canGroundTruths": [
+            {
+              "id": 9,
+              "officialId": 10,
+              "name": "10-meat_can",
+              "bbox": [
+                269.0,
+                200.50008000000003,
+                431.8,
+                299.70024
+              ]
+            }
+          ]
+        },
+        {
+          "image": "old_front10__scene_20261013_231953_488006_1c4b06__v17k01.jpg",
+          "prediction": {
+            "class_id": 18,
+            "confidence": 0.25282806158065796,
+            "bbox": [
+              1.31634521484375,
+              181.23199462890625,
+              438.2733154296875,
+              480.0
+            ],
+            "id": 18,
+            "officialId": 19,
+            "name": "19-Elmers_Glue"
+          },
+          "canGroundTruths": [
+            {
+              "id": 9,
+              "officialId": 10,
+              "name": "10-meat_can",
+              "bbox": [
+                230.00000000000003,
+                199.60008000000005,
+                454.00000000000006,
+                307.99992000000003
+              ]
+            }
+          ]
+        },
+        {
+          "image": "old_front10__scene_20261013_232001_478950_6c3998__v17k01.jpg",
+          "prediction": {
+            "class_id": 18,
+            "confidence": 0.21270062029361725,
+            "bbox": [
+              0.69268798828125,
+              173.93167114257812,
+              438.0296630859375,
+              480.0
+            ],
+            "id": 18,
+            "officialId": 19,
+            "name": "19-Elmers_Glue"
+          },
+          "canGroundTruths": [
+            {
+              "id": 9,
+              "officialId": 10,
+              "name": "10-meat_can",
+              "bbox": [
+                231.00032,
+                199.39992,
+                443.00032,
+                310.00008
+              ]
+            }
+          ]
+        },
+        {
+          "image": "old_front10__scene_20261013_232004_507230_33583a__v17k01.jpg",
+          "prediction": {
+            "class_id": 18,
+            "confidence": 0.2491133213043213,
+            "bbox": [
+              0.35888671875,
+              168.1029052734375,
+              417.3280944824219,
+              480.0
+            ],
+            "id": 18,
+            "officialId": 19,
+            "name": "19-Elmers_Glue"
+          },
+          "canGroundTruths": [
+            {
+              "id": 9,
+              "officialId": 10,
+              "name": "10-meat_can",
+              "bbox": [
+                241.99967999999998,
+                199.50024,
+                443.0,
+                303.00023999999996
+              ]
+            }
+          ]
+        },
+        {
+          "image": "old_front10__scene_20261013_232006_521012_444b7b__v17k01.jpg",
+          "prediction": {
+            "class_id": 18,
+            "confidence": 0.2339792251586914,
+            "bbox": [
+              0.761322021484375,
+              181.36843872070312,
+              438.602294921875,
+              480.0
+            ],
+            "id": 18,
+            "officialId": 19,
+            "name": "19-Elmers_Glue"
+          },
+          "canGroundTruths": [
+            {
+              "id": 9,
+              "officialId": 10,
+              "name": "10-meat_can",
+              "bbox": [
+                244.00031999999996,
+                198.79992,
+                443.0,
+                307.00007999999997
+              ]
+            }
+          ]
+        },
+        {
+          "image": "old_front10__scene_20261013_232008_503322_485092__v17k01.jpg",
+          "prediction": {
+            "class_id": 18,
+            "confidence": 0.2134045660495758,
+            "bbox": [
+              1.446319580078125,
+              179.37884521484375,
+              442.0970458984375,
+              480.0
+            ],
+            "id": 18,
+            "officialId": 19,
+            "name": "19-Elmers_Glue"
+          },
+          "canGroundTruths": [
+            {
+              "id": 9,
+              "officialId": 10,
+              "name": "10-meat_can",
+              "bbox": [
+                186.99968,
+                199.89984,
+                450.99968,
+                307.99968
+              ]
+            }
+          ]
+        }
+      ],
+      "mismatches": [
+        {
+          "image": "old_front10__5-Tomato_Soup_20261016_034741_130555.jpg",
+          "gt": [
+            4
+          ],
+          "pred": [
+            4,
+            4
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.7746,
+                "bbox": [
+                  136.7,
+                  92.2,
+                  337.5,
+                  331.6
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.4746,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "red_label",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.24,
+                "whiteBodyRatio": 0.5424
+              },
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.3148,
+                "bbox": [
+                  80.9,
+                  58.5,
+                  196.2,
+                  193.6
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0148,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "red_label",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.4426,
+                "whiteBodyRatio": 0.2671
+              }
+            ],
+            "removedPrimaryCans": [
+              {
+                "class_id": 4,
+                "confidence": 0.008249659091234207,
+                "bbox": [
+                  0.0,
+                  459.9793701171875,
+                  102.78247833251953,
+                  479.665771484375
+                ],
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup"
+              }
+            ],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": [
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0229,
+                "bbox": [
+                  358.0,
+                  429.0,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "reason": "geometry"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.042,
+                "bbox": [
+                  415.5,
+                  365.0,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.042,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.9659,
+                "reason": "insufficient_evidence"
+              }
+            ]
+          }
+        },
+        {
+          "image": "old_front10__5-Tomato_Soup_20261016_034741_499377.jpg",
+          "gt": [
+            4
+          ],
+          "pred": [
+            4,
+            4
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.8396,
+                "bbox": [
+                  144.4,
+                  84.5,
+                  322.1,
+                  323.3
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.5396,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "red_label",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.2525,
+                "whiteBodyRatio": 0.5459
+              },
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.3338,
+                "bbox": [
+                  81.1,
+                  57.9,
+                  196.3,
+                  192.1
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0338,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "red_label",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.4459,
+                "whiteBodyRatio": 0.2538
+              }
+            ],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": [
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0159,
+                "bbox": [
+                  357.6,
+                  430.1,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "reason": "geometry"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0271,
+                "bbox": [
+                  415.6,
+                  365.0,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0271,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.9689,
+                "reason": "insufficient_evidence"
+              }
+            ]
+          }
+        },
+        {
+          "image": "old_front10__5-Tomato_Soup_20261016_034741_868641.jpg",
+          "gt": [
+            4
+          ],
+          "pred": [
+            4,
+            4
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.8882,
+                "bbox": [
+                  141.8,
+                  84.4,
+                  326.7,
+                  323.4
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.5882,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "red_label",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.2494,
+                "whiteBodyRatio": 0.5408
+              },
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.3415,
+                "bbox": [
+                  81.9,
+                  58.9,
+                  197.6,
+                  191.5
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0415,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "red_label",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.4538,
+                "whiteBodyRatio": 0.2502
+              }
+            ],
+            "removedPrimaryCans": [
+              {
+                "class_id": 4,
+                "confidence": 0.007842772640287876,
+                "bbox": [
+                  0.0,
+                  458.43817138671875,
+                  93.5495376586914,
+                  479.55267333984375
+                ],
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup"
+              }
+            ],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": [
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0128,
+                "bbox": [
+                  362.4,
+                  429.8,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "reason": "geometry"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0243,
+                "bbox": [
+                  416.1,
+                  365.5,
+                  639.9,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0243,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.9703,
+                "reason": "insufficient_evidence"
+              }
+            ]
+          }
+        },
+        {
+          "image": "old_front10__5-Tomato_Soup_20261016_034742_237283.jpg",
+          "gt": [
+            4
+          ],
+          "pred": [
+            4,
+            4
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.8922,
+                "bbox": [
+                  142.6,
+                  84.5,
+                  326.4,
+                  323.4
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.5922,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "red_label",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.2507,
+                "whiteBodyRatio": 0.5383
+              },
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.321,
+                "bbox": [
+                  82.6,
+                  59.3,
+                  196.0,
+                  190.4
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.021,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "red_label",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.4686,
+                "whiteBodyRatio": 0.2416
+              }
+            ],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": [
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0152,
+                "bbox": [
+                  360.4,
+                  432.1,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "reason": "geometry"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0284,
+                "bbox": [
+                  414.5,
+                  365.9,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0284,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.9703,
+                "reason": "insufficient_evidence"
+              }
+            ]
+          }
+        },
+        {
+          "image": "old_front10__5-Tomato_Soup_20261016_034742_606422.jpg",
+          "gt": [
+            4
+          ],
+          "pred": [
+            4,
+            4
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.7796,
+                "bbox": [
+                  142.2,
+                  84.5,
+                  325.6,
+                  323.3
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.4796,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "red_label",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.2508,
+                "whiteBodyRatio": 0.5408
+              },
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.3336,
+                "bbox": [
+                  82.0,
+                  58.6,
+                  197.2,
+                  191.3
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0336,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "red_label",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.459,
+                "whiteBodyRatio": 0.2412
+              }
+            ],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": [
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0188,
+                "bbox": [
+                  362.5,
+                  431.7,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "reason": "geometry"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0333,
+                "bbox": [
+                  411.6,
+                  364.9,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0333,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.9663,
+                "reason": "insufficient_evidence"
+              }
+            ]
+          }
+        },
+        {
+          "image": "old_front10__5-Tomato_Soup_20261016_034742_975438.jpg",
+          "gt": [
+            4
+          ],
+          "pred": [
+            4,
+            4
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.8598,
+                "bbox": [
+                  143.0,
+                  84.6,
+                  326.6,
+                  323.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.5598,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "red_label",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.2503,
+                "whiteBodyRatio": 0.5384
+              },
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.3409,
+                "bbox": [
+                  82.2,
+                  58.6,
+                  195.6,
+                  190.2
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0409,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "red_label",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.4668,
+                "whiteBodyRatio": 0.237
+              }
+            ],
+            "removedPrimaryCans": [
+              {
+                "class_id": 4,
+                "confidence": 0.009014837443828583,
+                "bbox": [
+                  0.0,
+                  458.5787658691406,
+                  102.69908142089844,
+                  479.5600891113281
+                ],
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup"
+              }
+            ],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": [
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.014,
+                "bbox": [
+                  361.4,
+                  431.2,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "reason": "geometry"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0239,
+                "bbox": [
+                  413.9,
+                  366.8,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0239,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.9726,
+                "reason": "insufficient_evidence"
+              }
+            ]
+          }
+        },
+        {
+          "image": "old_front10__5-Tomato_Soup_20261016_034743_345340.jpg",
+          "gt": [
+            4
+          ],
+          "pred": [
+            4,
+            4
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.8509,
+                "bbox": [
+                  139.1,
+                  84.4,
+                  344.4,
+                  323.4
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.5509,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "red_label",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.2347,
+                "whiteBodyRatio": 0.5031
+              },
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.332,
+                "bbox": [
+                  82.8,
+                  58.6,
+                  196.2,
+                  190.9
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.032,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "red_label",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.4641,
+                "whiteBodyRatio": 0.2366
+              }
+            ],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": [
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0131,
+                "bbox": [
+                  359.6,
+                  432.0,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "reason": "geometry"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0181,
+                "bbox": [
+                  413.5,
+                  365.4,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0181,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.9702,
+                "reason": "insufficient_evidence"
+              }
+            ]
+          }
+        },
+        {
+          "image": "old_front10__5-Tomato_Soup_20261016_034743_716697.jpg",
+          "gt": [
+            4
+          ],
+          "pred": [
+            4,
+            4
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.9257,
+                "bbox": [
+                  142.0,
+                  84.5,
+                  330.8,
+                  323.1
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.6257,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "red_label",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.2453,
+                "whiteBodyRatio": 0.5295
+              },
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.335,
+                "bbox": [
+                  82.0,
+                  58.1,
+                  196.8,
+                  190.7
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.035,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "red_label",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.465,
+                "whiteBodyRatio": 0.2377
+              }
+            ],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": [
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0172,
+                "bbox": [
+                  357.5,
+                  431.5,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "reason": "geometry"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0257,
+                "bbox": [
+                  371.7,
+                  361.4,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0257,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.963,
+                "reason": "insufficient_evidence"
+              }
+            ]
+          }
+        },
+        {
+          "image": "old_front10__5-Tomato_Soup_20261016_034744_086161.jpg",
+          "gt": [
+            4
+          ],
+          "pred": [
+            4,
+            4
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.8918,
+                "bbox": [
+                  141.1,
+                  84.5,
+                  330.0,
+                  323.1
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.5918,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "red_label",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.2461,
+                "whiteBodyRatio": 0.5323
+              },
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.3484,
+                "bbox": [
+                  81.2,
+                  58.4,
+                  196.9,
+                  191.9
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0484,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "red_label",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.4575,
+                "whiteBodyRatio": 0.2473
+              }
+            ],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": [
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0152,
+                "bbox": [
+                  360.5,
+                  431.9,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "reason": "geometry"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0229,
+                "bbox": [
+                  412.2,
+                  366.1,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0229,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.9729,
+                "reason": "insufficient_evidence"
+              }
+            ]
+          }
+        },
+        {
+          "image": "old_front10__5-Tomato_Soup_20261016_034744_455007.jpg",
+          "gt": [
+            4
+          ],
+          "pred": [
+            4,
+            4
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.8627,
+                "bbox": [
+                  142.1,
+                  84.5,
+                  331.8,
+                  323.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.5627,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "red_label",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.2458,
+                "whiteBodyRatio": 0.5255
+              },
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.3281,
+                "bbox": [
+                  81.8,
+                  58.0,
+                  196.4,
+                  192.1
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0281,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "red_label",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.4542,
+                "whiteBodyRatio": 0.2498
+              }
+            ],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": [
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0265,
+                "bbox": [
+                  361.4,
+                  431.9,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "reason": "geometry"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0455,
+                "bbox": [
+                  410.8,
+                  366.2,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0455,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.9724,
+                "reason": "insufficient_evidence"
+              }
+            ]
+          }
+        },
+        {
+          "image": "old_front10__5-Tomato_Soup_20261016_034744_824341.jpg",
+          "gt": [
+            4
+          ],
+          "pred": [
+            4,
+            4
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.8903,
+                "bbox": [
+                  141.1,
+                  84.6,
+                  331.8,
+                  322.8
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.5903,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "red_label",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.2476,
+                "whiteBodyRatio": 0.527
+              },
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.3223,
+                "bbox": [
+                  80.9,
+                  57.7,
+                  197.9,
+                  192.9
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0223,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "red_label",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.4458,
+                "whiteBodyRatio": 0.2553
+              }
+            ],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": [
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0221,
+                "bbox": [
+                  356.4,
+                  431.0,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "reason": "geometry"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.033,
+                "bbox": [
+                  371.0,
+                  361.1,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.033,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.9628,
+                "reason": "insufficient_evidence"
+              }
+            ]
+          }
+        },
+        {
+          "image": "old_front10__5-Tomato_Soup_20261016_034745_193238.jpg",
+          "gt": [
+            4
+          ],
+          "pred": [
+            4,
+            4
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.9195,
+                "bbox": [
+                  142.9,
+                  84.6,
+                  327.7,
+                  322.6
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.6195,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "red_label",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.2494,
+                "whiteBodyRatio": 0.5355
+              },
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.3289,
+                "bbox": [
+                  81.5,
+                  58.3,
+                  196.2,
+                  191.1
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0289,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "red_label",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.4577,
+                "whiteBodyRatio": 0.2464
+              }
+            ],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": [
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0254,
+                "bbox": [
+                  361.4,
+                  429.7,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "reason": "geometry"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0346,
+                "bbox": [
+                  373.9,
+                  362.0,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0346,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.9651,
+                "reason": "insufficient_evidence"
+              }
+            ]
+          }
+        },
+        {
+          "image": "old_front10__5-Tomato_Soup_20261016_034745_562431.jpg",
+          "gt": [
+            4
+          ],
+          "pred": [
+            4,
+            4
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.821,
+                "bbox": [
+                  138.5,
+                  84.4,
+                  343.2,
+                  323.2
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.521,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "red_label",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.2367,
+                "whiteBodyRatio": 0.5055
+              },
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.3426,
+                "bbox": [
+                  81.6,
+                  58.5,
+                  195.0,
+                  191.5
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0426,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "red_label",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.4607,
+                "whiteBodyRatio": 0.2473
+              }
+            ],
+            "removedPrimaryCans": [
+              {
+                "class_id": 4,
+                "confidence": 0.01743098348379135,
+                "bbox": [
+                  0.0,
+                  459.67218017578125,
+                  98.51936340332031,
+                  479.47637939453125
+                ],
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup"
+              },
+              {
+                "class_id": 4,
+                "confidence": 0.005164961330592632,
+                "bbox": [
+                  0.0,
+                  452.61529541015625,
+                  125.53791046142578,
+                  478.98248291015625
+                ],
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup"
+              }
+            ],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": [
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0215,
+                "bbox": [
+                  359.0,
+                  429.6,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "reason": "geometry"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0313,
+                "bbox": [
+                  372.7,
+                  361.9,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0313,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.9618,
+                "reason": "insufficient_evidence"
+              }
+            ]
+          }
+        },
+        {
+          "image": "old_front10__5-Tomato_Soup_20261016_034745_930802.jpg",
+          "gt": [
+            4
+          ],
+          "pred": [
+            4,
+            4
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.8577,
+                "bbox": [
+                  142.5,
+                  84.6,
+                  326.3,
+                  322.6
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.5577,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "red_label",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.25,
+                "whiteBodyRatio": 0.5385
+              },
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.3231,
+                "bbox": [
+                  81.8,
+                  58.3,
+                  197.8,
+                  191.1
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0231,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "red_label",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.4578,
+                "whiteBodyRatio": 0.2453
+              }
+            ],
+            "removedPrimaryCans": [
+              {
+                "class_id": 4,
+                "confidence": 0.007202228531241417,
+                "bbox": [
+                  0.0,
+                  457.529296875,
+                  94.65673065185547,
+                  479.416259765625
+                ],
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup"
+              }
+            ],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": [
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0269,
+                "bbox": [
+                  356.9,
+                  432.1,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "reason": "geometry"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0385,
+                "bbox": [
+                  372.1,
+                  361.4,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0385,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.9617,
+                "reason": "insufficient_evidence"
+              }
+            ]
+          }
+        },
+        {
+          "image": "old_front10__5-Tomato_Soup_20261016_034746_300264.jpg",
+          "gt": [
+            4
+          ],
+          "pred": [
+            4,
+            4
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.8561,
+                "bbox": [
+                  143.8,
+                  84.5,
+                  327.4,
+                  323.2
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.5561,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "red_label",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.2477,
+                "whiteBodyRatio": 0.5378
+              },
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.329,
+                "bbox": [
+                  81.6,
+                  58.1,
+                  195.6,
+                  189.9
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.029,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "red_label",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.4679,
+                "whiteBodyRatio": 0.2401
+              }
+            ],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": [
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0234,
+                "bbox": [
+                  363.1,
+                  432.4,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "reason": "geometry"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.038,
+                "bbox": [
+                  375.3,
+                  362.0,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.038,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.9643,
+                "reason": "insufficient_evidence"
+              }
+            ]
+          }
+        },
+        {
+          "image": "old_front10__empty_background_20261016_040856_969746.jpg",
+          "gt": [],
+          "pred": [
+            9
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.4367,
+                "bbox": [
+                  92.0,
+                  256.6,
+                  441.4,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.4367,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0163,
+                "whiteBodyRatio": 0.3301
+              }
+            ],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": [
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0672,
+                "bbox": [
+                  91.2,
+                  0.0,
+                  314.4,
+                  30.9
+                ],
+                "source": "secondary_model",
+                "reason": "geometry"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0308,
+                "bbox": [
+                  0.1,
+                  22.2,
+                  50.6,
+                  245.8
+                ],
+                "source": "secondary_model",
+                "reason": "geometry"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0297,
+                "bbox": [
+                  0.4,
+                  109.5,
+                  106.6,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "reason": "geometry"
+              },
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.0237,
+                "bbox": [
+                  140.2,
+                  0.1,
+                  364.3,
+                  24.0
+                ],
+                "source": "secondary_model",
+                "reason": "geometry"
+              },
+              {
+                "id": 1,
+                "officialId": 2,
+                "name": "2-Starkist_Tuna",
+                "confidence": 0.0139,
+                "bbox": [
+                  55.2,
+                  0.3,
+                  290.2,
+                  31.9
+                ],
+                "source": "secondary_model",
+                "reason": "geometry"
+              },
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.013,
+                "bbox": [
+                  0.3,
+                  20.6,
+                  41.3,
+                  231.1
+                ],
+                "source": "secondary_model",
+                "reason": "geometry"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0727,
+                "bbox": [
+                  0.3,
+                  46.0,
+                  112.3,
+                  292.8
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0727,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.9585,
+                "reason": "insufficient_evidence"
+              }
+            ]
+          }
+        },
+        {
+          "image": "old_front10__empty_background_20261016_040857_354841.jpg",
+          "gt": [],
+          "pred": [
+            9
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.4313,
+                "bbox": [
+                  93.7,
+                  255.4,
+                  422.8,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.4313,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0215,
+                "whiteBodyRatio": 0.43
+              }
+            ],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": [
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.1057,
+                "bbox": [
+                  90.7,
+                  0.1,
+                  315.2,
+                  30.6
+                ],
+                "source": "secondary_model",
+                "reason": "geometry"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0677,
+                "bbox": [
+                  292.0,
+                  0.3,
+                  484.1,
+                  31.6
+                ],
+                "source": "secondary_model",
+                "reason": "geometry"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0324,
+                "bbox": [
+                  0.5,
+                  113.1,
+                  104.5,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "reason": "geometry"
+              },
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.0243,
+                "bbox": [
+                  83.1,
+                  0.0,
+                  309.7,
+                  23.7
+                ],
+                "source": "secondary_model",
+                "reason": "geometry"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0201,
+                "bbox": [
+                  0.1,
+                  22.4,
+                  50.6,
+                  246.3
+                ],
+                "source": "secondary_model",
+                "reason": "geometry"
+              },
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.0183,
+                "bbox": [
+                  0.3,
+                  10.8,
+                  39.9,
+                  223.1
+                ],
+                "source": "secondary_model",
+                "reason": "geometry"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0563,
+                "bbox": [
+                  0.2,
+                  42.3,
+                  106.5,
+                  333.2
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0563,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.9674,
+                "reason": "insufficient_evidence"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0189,
+                "bbox": [
+                  0.3,
+                  55.3,
+                  135.0,
+                  221.6
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0189,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.9564,
+                "reason": "insufficient_evidence"
+              }
+            ]
+          }
+        },
+        {
+          "image": "old_front10__os3r0_scene_20261012_223800_375809_b4aee8.jpg",
+          "gt": [
+            1
+          ],
+          "pred": [],
+          "debug": {
+            "selected": [],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": []
+          }
+        },
+        {
+          "image": "old_front10__os3r0_scene_20261012_223801_356855_e58bab.jpg",
+          "gt": [
+            1
+          ],
+          "pred": [],
+          "debug": {
+            "selected": [],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": []
+          }
+        },
+        {
+          "image": "old_front10__real_real_c9_v5_meat_can_10-meat_can_20260926_135403_529163__r01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [],
+          "debug": {
+            "selected": [],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": [
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.3166,
+                "bbox": [
+                  245.1,
+                  21.9,
+                  461.3,
+                  371.9
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.3166,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.03,
+                "whiteBodyRatio": 0.3635,
+                "reason": "insufficient_evidence"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.1374,
+                "bbox": [
+                  367.7,
+                  238.8,
+                  638.5,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.1374,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0023,
+                "whiteBodyRatio": 0.8949,
+                "reason": "insufficient_evidence"
+              }
+            ]
+          }
+        },
+        {
+          "image": "old_front10__real_real_c9_v5_meat_can_10-meat_can_20260926_135403_844454__r01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [],
+          "debug": {
+            "selected": [],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": [
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.2054,
+                "bbox": [
+                  245.2,
+                  15.4,
+                  458.3,
+                  370.9
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.2054,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0308,
+                "whiteBodyRatio": 0.372,
+                "reason": "insufficient_evidence"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.1871,
+                "bbox": [
+                  362.0,
+                  245.9,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.1871,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.001,
+                "whiteBodyRatio": 0.9019,
+                "reason": "insufficient_evidence"
+              }
+            ]
+          }
+        },
+        {
+          "image": "old_front10__real_real_c9_v5_meat_can_10-meat_can_20260926_135404_149726__r01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [],
+          "debug": {
+            "selected": [],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": [
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.0118,
+                "bbox": [
+                  528.4,
+                  236.5,
+                  639.8,
+                  465.5
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0118,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.9699,
+                "reason": "insufficient_evidence"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0959,
+                "bbox": [
+                  352.7,
+                  239.9,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0959,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0049,
+                "whiteBodyRatio": 0.8881,
+                "reason": "insufficient_evidence"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0941,
+                "bbox": [
+                  247.8,
+                  13.5,
+                  453.9,
+                  371.7
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0941,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0322,
+                "whiteBodyRatio": 0.3673,
+                "reason": "insufficient_evidence"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0107,
+                "bbox": [
+                  1.5,
+                  279.1,
+                  224.1,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0107,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.9729,
+                "reason": "insufficient_evidence"
+              }
+            ]
+          }
+        },
+        {
+          "image": "old_front10__real_real_c9_v5_meat_can_10-meat_can_20260926_135404_455270__r01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [],
+          "debug": {
+            "selected": [],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": [
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.0164,
+                "bbox": [
+                  531.3,
+                  250.4,
+                  639.8,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0164,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.9952,
+                "reason": "insufficient_evidence"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.2926,
+                "bbox": [
+                  244.8,
+                  19.1,
+                  459.9,
+                  368.8
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.2926,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0303,
+                "whiteBodyRatio": 0.3743,
+                "reason": "insufficient_evidence"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.1079,
+                "bbox": [
+                  379.9,
+                  244.7,
+                  638.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.1079,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.9218,
+                "reason": "insufficient_evidence"
+              }
+            ]
+          }
+        },
+        {
+          "image": "old_front10__real_real_c9_v5_meat_can_10-meat_can_20260926_135404_760124__r01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [],
+          "debug": {
+            "selected": [],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": [
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.3873,
+                "bbox": [
+                  388.5,
+                  247.7,
+                  639.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.3873,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.9397,
+                "reason": "insufficient_evidence"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.155,
+                "bbox": [
+                  245.1,
+                  23.6,
+                  459.3,
+                  370.9
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.155,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0313,
+                "whiteBodyRatio": 0.3647,
+                "reason": "insufficient_evidence"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0113,
+                "bbox": [
+                  188.7,
+                  365.2,
+                  445.3,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0113,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.9258,
+                "reason": "insufficient_evidence"
+              }
+            ]
+          }
+        },
+        {
+          "image": "old_front10__real_real_c9_v5_meat_can_10-meat_can_20260926_135405_065133__r01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [],
+          "debug": {
+            "selected": [],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": [
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.2469,
+                "bbox": [
+                  327.4,
+                  250.1,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.2469,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0054,
+                "whiteBodyRatio": 0.8575,
+                "reason": "insufficient_evidence"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.1252,
+                "bbox": [
+                  246.7,
+                  21.8,
+                  454.9,
+                  370.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.1252,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0333,
+                "whiteBodyRatio": 0.3663,
+                "reason": "insufficient_evidence"
+              }
+            ]
+          }
+        },
+        {
+          "image": "old_front10__real_real_c9_v5_meat_can_10-meat_can_20260926_135405_370172__r01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [],
+          "debug": {
+            "selected": [],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": [
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.0201,
+                "bbox": [
+                  530.3,
+                  244.2,
+                  639.9,
+                  472.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0201,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.9803,
+                "reason": "insufficient_evidence"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0103,
+                "bbox": [
+                  521.2,
+                  250.0,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0103,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.9803,
+                "reason": "insufficient_evidence"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.1555,
+                "bbox": [
+                  373.9,
+                  247.0,
+                  638.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.1555,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0003,
+                "whiteBodyRatio": 0.9163,
+                "reason": "insufficient_evidence"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0872,
+                "bbox": [
+                  246.4,
+                  13.8,
+                  453.0,
+                  370.8
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0872,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0325,
+                "whiteBodyRatio": 0.3742,
+                "reason": "insufficient_evidence"
+              }
+            ]
+          }
+        },
+        {
+          "image": "old_front10__real_real_c9_v5_meat_can_10-meat_can_20260926_135405_675549__r01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [],
+          "debug": {
+            "selected": [],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": [
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.0169,
+                "bbox": [
+                  535.2,
+                  251.8,
+                  639.7,
+                  479.4
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0169,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.9925,
+                "reason": "insufficient_evidence"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.1105,
+                "bbox": [
+                  350.2,
+                  247.4,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.1105,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0035,
+                "whiteBodyRatio": 0.8893,
+                "reason": "insufficient_evidence"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0404,
+                "bbox": [
+                  246.2,
+                  12.7,
+                  453.1,
+                  369.8
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0404,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0318,
+                "whiteBodyRatio": 0.3752,
+                "reason": "insufficient_evidence"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0115,
+                "bbox": [
+                  2.1,
+                  282.5,
+                  216.6,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0115,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.9755,
+                "reason": "insufficient_evidence"
+              }
+            ]
+          }
+        },
+        {
+          "image": "old_front10__real_real_c9_v5_meat_can_10-meat_can_20260926_135405_981157__r01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [],
+          "debug": {
+            "selected": [],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": [
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.0102,
+                "bbox": [
+                  551.7,
+                  234.5,
+                  639.8,
+                  465.9
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0102,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.9409,
+                "reason": "insufficient_evidence"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.1126,
+                "bbox": [
+                  365.2,
+                  247.3,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.1126,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0005,
+                "whiteBodyRatio": 0.9047,
+                "reason": "insufficient_evidence"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0163,
+                "bbox": [
+                  2.3,
+                  288.5,
+                  224.8,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0163,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.9837,
+                "reason": "insufficient_evidence"
+              }
+            ]
+          }
+        },
+        {
+          "image": "old_front10__real_real_c9_v5_meat_can_10-meat_can_20260926_135406_286178__r01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [],
+          "debug": {
+            "selected": [],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": [
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.156,
+                "bbox": [
+                  372.1,
+                  247.4,
+                  637.9,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.156,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0005,
+                "whiteBodyRatio": 0.9115,
+                "reason": "insufficient_evidence"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0501,
+                "bbox": [
+                  246.9,
+                  30.6,
+                  450.3,
+                  369.6
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0501,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0333,
+                "whiteBodyRatio": 0.3462,
+                "reason": "insufficient_evidence"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0183,
+                "bbox": [
+                  2.2,
+                  292.8,
+                  238.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0183,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.9883,
+                "reason": "insufficient_evidence"
+              }
+            ]
+          }
+        },
+        {
+          "image": "old_front10__real_real_c9_v5_meat_can_10-meat_can_20260926_135406_591288__r01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [],
+          "debug": {
+            "selected": [],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": [
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.2834,
+                "bbox": [
+                  378.9,
+                  252.2,
+                  638.2,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.2834,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0003,
+                "whiteBodyRatio": 0.9262,
+                "reason": "insufficient_evidence"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0289,
+                "bbox": [
+                  2.0,
+                  293.7,
+                  241.8,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0289,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.9873,
+                "reason": "insufficient_evidence"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0255,
+                "bbox": [
+                  248.0,
+                  24.4,
+                  451.4,
+                  377.2
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0255,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0326,
+                "whiteBodyRatio": 0.345,
+                "reason": "insufficient_evidence"
+              }
+            ]
+          }
+        },
+        {
+          "image": "old_front10__real_real_c9_v5_meat_can_10-meat_can_20260926_135406_896287__r01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [],
+          "debug": {
+            "selected": [],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": []
+          }
+        },
+        {
+          "image": "old_front10__real_real_c9_v5_meat_can_10-meat_can_20260926_135407_200741__r01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [],
+          "debug": {
+            "selected": [],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": [
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.3283,
+                "bbox": [
+                  318.7,
+                  245.7,
+                  640.0,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.3283,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0001,
+                "whiteBodyRatio": 0.8834,
+                "reason": "insufficient_evidence"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0133,
+                "bbox": [
+                  2.9,
+                  279.9,
+                  182.3,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0133,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.9771,
+                "reason": "insufficient_evidence"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0114,
+                "bbox": [
+                  145.5,
+                  50.9,
+                  312.5,
+                  412.4
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0114,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0634,
+                "whiteBodyRatio": 0.3066,
+                "reason": "insufficient_evidence"
+              }
+            ]
+          }
+        },
+        {
+          "image": "old_front10__real_real_c9_v5_meat_can_10-meat_can_20260926_135407_505457__r01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [],
+          "debug": {
+            "selected": [],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": []
+          }
+        },
+        {
+          "image": "old_front10__real_real_c9_v5_meat_can_10-meat_can_20260926_135407_844906__r01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [],
+          "debug": {
+            "selected": [],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": [
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.1875,
+                "bbox": [
+                  243.7,
+                  31.5,
+                  447.4,
+                  396.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.1875,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0371,
+                "whiteBodyRatio": 0.316,
+                "reason": "insufficient_evidence"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.107,
+                "bbox": [
+                  378.3,
+                  251.2,
+                  637.8,
+                  479.9
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.107,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0007,
+                "whiteBodyRatio": 0.9041,
+                "reason": "insufficient_evidence"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0139,
+                "bbox": [
+                  1.6,
+                  294.9,
+                  204.6,
+                  480.0
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0139,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.9761,
+                "reason": "insufficient_evidence"
+              }
+            ]
+          }
+        },
+        {
+          "image": "old_front10__real_real_c9_v5_meat_can_10-meat_can_20260926_135408_457143__r01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [],
+          "debug": {
+            "selected": [],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": []
+          }
+        },
+        {
+          "image": "old_front10__real_real_c9_v5_meat_can_10-meat_can_20260926_135409_066615__r01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [],
+          "debug": {
+            "selected": [],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": [
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.0123,
+                "bbox": [
+                  139.6,
+                  0.0,
+                  366.9,
+                  24.3
+                ],
+                "source": "secondary_model",
+                "reason": "geometry"
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.1738,
+                "bbox": [
+                  202.6,
+                  37.8,
+                  369.9,
+                  394.6
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.1738,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0505,
+                "whiteBodyRatio": 0.2887,
+                "reason": "insufficient_evidence"
+              }
+            ]
+          }
+        },
+        {
+          "image": "old_front10__scene_20261013_224902_284031_17c112__v17k02.jpg",
+          "gt": [
+            4
+          ],
+          "pred": [
+            4,
+            4,
+            4
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.7389,
+                "bbox": [
+                  249.8,
+                  80.1,
+                  455.1,
+                  285.5
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.4389,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "red_label",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.1641,
+                "whiteBodyRatio": 0.6877
+              },
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.6977,
+                "bbox": [
+                  222.8,
+                  116.5,
+                  401.3,
+                  355.6
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.5074,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "red_label",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0952,
+                "whiteBodyRatio": 0.5581
+              },
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.2696,
+                "bbox": [
+                  273.0,
+                  124.2,
+                  480.6,
+                  363.8
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0297,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "red_label",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.1199,
+                "whiteBodyRatio": 0.6131
+              }
+            ],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": []
+          }
+        },
+        {
+          "image": "old_front10__scene_20261013_230959_956110_243d03__v17k01.jpg",
+          "gt": [
+            1
+          ],
+          "pred": [
+            1,
+            4,
+            4
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 1,
+                "officialId": 2,
+                "name": "2-Starkist_Tuna",
+                "confidence": 0.8984,
+                "bbox": [
+                  157.7,
+                  279.0,
+                  395.1,
+                  474.3
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.7784,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "plain_metal",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.4782
+              },
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.3284,
+                "bbox": [
+                  373.0,
+                  0.0,
+                  607.6,
+                  176.4
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0284,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "red_label",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.3706,
+                "whiteBodyRatio": 0.014
+              },
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.3128,
+                "bbox": [
+                  281.6,
+                  0.3,
+                  513.4,
+                  117.1
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0128,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "red_label",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.5137,
+                "whiteBodyRatio": 0.0248
+              }
+            ],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": []
+          }
+        },
+        {
+          "image": "old_front10__scene_20261013_231604_007690_617849__v17k01.jpg",
+          "gt": [
+            1
+          ],
+          "pred": [
+            9,
+            1
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.4616,
+                "bbox": [
+                  0.4,
+                  209.8,
+                  88.8,
+                  346.2
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.3961,
+                "primaryEvidenceConfidence": 0.1872,
+                "colorEvidence": "",
+                "evidenceSource": "primary",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0001,
+                "whiteBodyRatio": 0.4699
+              },
+              {
+                "id": 1,
+                "officialId": 2,
+                "name": "2-Starkist_Tuna",
+                "confidence": 0.4409,
+                "bbox": [
+                  211.5,
+                  151.2,
+                  364.1,
+                  345.1
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.2394,
+                "primaryEvidenceConfidence": 0.2327,
+                "colorEvidence": "plain_metal",
+                "evidenceSource": "primary_and_color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.2932
+              }
+            ],
+            "removedPrimaryCans": [
+              {
+                "class_id": 1,
+                "confidence": 0.23274855315685272,
+                "bbox": [
+                  212.64047241210938,
+                  169.66705322265625,
+                  354.7557678222656,
+                  338.0384826660156
+                ],
+                "id": 1,
+                "officialId": 2,
+                "name": "2-Starkist_Tuna"
+              },
+              {
+                "class_id": 9,
+                "confidence": 0.18717940151691437,
+                "bbox": [
+                  0.03223419189453125,
+                  216.74917602539062,
+                  74.66511535644531,
+                  343.2522277832031
+                ],
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can"
+              }
+            ],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": []
+          }
+        },
+        {
+          "image": "old_front10__scene_20261013_231610_840406_9fcfbc__v17k01.jpg",
+          "gt": [
+            1
+          ],
+          "pred": [
+            1,
+            9
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 1,
+                "officialId": 2,
+                "name": "2-Starkist_Tuna",
+                "confidence": 0.83,
+                "bbox": [
+                  282.6,
+                  177.2,
+                  448.7,
+                  396.3
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.71,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "plain_metal",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.3884
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.4632,
+                "bbox": [
+                  1.7,
+                  256.8,
+                  80.5,
+                  453.3
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.4632,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.3535
+              }
+            ],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [
+              {
+                "class_id": 18,
+                "confidence": 0.6400235295295715,
+                "bbox": [
+                  0.0,
+                  263.30877685546875,
+                  314.101318359375,
+                  480.0
+                ],
+                "id": 18,
+                "officialId": 19,
+                "name": "19-Elmers_Glue"
+              }
+            ],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": []
+          }
+        },
+        {
+          "image": "old_front10__scene_20261013_231952_196898_e8775b__v17k01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [
+            1
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 1,
+                "officialId": 2,
+                "name": "2-Starkist_Tuna",
+                "confidence": 0.8902,
+                "bbox": [
+                  245.3,
+                  189.7,
+                  449.0,
+                  315.9
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.7702,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "plain_metal",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.3113
+              }
+            ],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": []
+          }
+        },
+        {
+          "image": "old_front10__scene_20261013_231952_469419_44cf7a__v17k01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [
+            1
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 1,
+                "officialId": 2,
+                "name": "2-Starkist_Tuna",
+                "confidence": 0.8952,
+                "bbox": [
+                  246.3,
+                  184.8,
+                  447.6,
+                  314.9
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.7752,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "plain_metal",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.2983
+              }
+            ],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": []
+          }
+        },
+        {
+          "image": "old_front10__scene_20261013_231953_488006_1c4b06__v17k01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [
+            1
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 1,
+                "officialId": 2,
+                "name": "2-Starkist_Tuna",
+                "confidence": 0.88,
+                "bbox": [
+                  247.2,
+                  184.5,
+                  448.2,
+                  314.7
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.76,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "plain_metal",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.2978
+              }
+            ],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": []
+          }
+        },
+        {
+          "image": "old_front10__scene_20261013_231954_536937_5ec888__v17k01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [
+            1
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 1,
+                "officialId": 2,
+                "name": "2-Starkist_Tuna",
+                "confidence": 0.8874,
+                "bbox": [
+                  246.8,
+                  184.3,
+                  448.5,
+                  314.4
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.7674,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "plain_metal",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.2968
+              }
+            ],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": []
+          }
+        },
+        {
+          "image": "old_front10__scene_20261013_231955_478333_50d709__v17k01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [
+            1
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 1,
+                "officialId": 2,
+                "name": "2-Starkist_Tuna",
+                "confidence": 0.8891,
+                "bbox": [
+                  246.8,
+                  184.6,
+                  448.2,
+                  315.9
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.7691,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "plain_metal",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.2907
+              }
+            ],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": []
+          }
+        },
+        {
+          "image": "old_front10__scene_20261013_231956_547080_4f643a__v17k01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [
+            1
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 1,
+                "officialId": 2,
+                "name": "2-Starkist_Tuna",
+                "confidence": 0.8852,
+                "bbox": [
+                  247.2,
+                  184.9,
+                  448.8,
+                  314.6
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.7652,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "plain_metal",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.2808
+              }
+            ],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": []
+          }
+        },
+        {
+          "image": "old_front10__scene_20261013_231957_478017_74b783__v17k01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [
+            1
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 1,
+                "officialId": 2,
+                "name": "2-Starkist_Tuna",
+                "confidence": 0.8943,
+                "bbox": [
+                  248.2,
+                  184.5,
+                  448.4,
+                  314.5
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.7743,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "plain_metal",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.2707
+              }
+            ],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": []
+          }
+        },
+        {
+          "image": "old_front10__scene_20261013_231958_482579_c28edc__v17k01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [
+            1
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 1,
+                "officialId": 2,
+                "name": "2-Starkist_Tuna",
+                "confidence": 0.8915,
+                "bbox": [
+                  247.6,
+                  184.2,
+                  448.5,
+                  314.7
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.7715,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "plain_metal",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.2892
+              }
+            ],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": []
+          }
+        },
+        {
+          "image": "old_front10__scene_20261013_231959_509358_e8d285__v17k01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [
+            1
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 1,
+                "officialId": 2,
+                "name": "2-Starkist_Tuna",
+                "confidence": 0.8875,
+                "bbox": [
+                  246.7,
+                  185.1,
+                  448.4,
+                  315.2
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.7675,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "plain_metal",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.2937
+              }
+            ],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": []
+          }
+        },
+        {
+          "image": "old_front10__scene_20261013_232000_503831_fc8039__v17k01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [
+            1
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 1,
+                "officialId": 2,
+                "name": "2-Starkist_Tuna",
+                "confidence": 0.8706,
+                "bbox": [
+                  246.4,
+                  184.2,
+                  448.0,
+                  314.9
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.7506,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "plain_metal",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.2908
+              }
+            ],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": []
+          }
+        },
+        {
+          "image": "old_front10__scene_20261013_232001_478950_6c3998__v17k01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [
+            1
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 1,
+                "officialId": 2,
+                "name": "2-Starkist_Tuna",
+                "confidence": 0.8968,
+                "bbox": [
+                  247.4,
+                  185.0,
+                  447.9,
+                  314.7
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.7768,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "plain_metal",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.2824
+              }
+            ],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": []
+          }
+        },
+        {
+          "image": "old_front10__scene_20261013_232002_472990_a8cd6b__v17k01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [
+            1
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 1,
+                "officialId": 2,
+                "name": "2-Starkist_Tuna",
+                "confidence": 0.8941,
+                "bbox": [
+                  247.0,
+                  185.0,
+                  447.5,
+                  314.3
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.7741,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "plain_metal",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.2674
+              }
+            ],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": []
+          }
+        },
+        {
+          "image": "old_front10__scene_20261013_232003_489148_2b9bb5__v17k01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [
+            1
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 1,
+                "officialId": 2,
+                "name": "2-Starkist_Tuna",
+                "confidence": 0.8836,
+                "bbox": [
+                  249.3,
+                  185.0,
+                  448.8,
+                  316.4
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.7636,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "plain_metal",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.2974
+              }
+            ],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": []
+          }
+        },
+        {
+          "image": "old_front10__scene_20261013_232004_507230_33583a__v17k01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [
+            1
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 1,
+                "officialId": 2,
+                "name": "2-Starkist_Tuna",
+                "confidence": 0.8952,
+                "bbox": [
+                  247.6,
+                  184.7,
+                  449.1,
+                  313.9
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.7752,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "plain_metal",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.2746
+              }
+            ],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": []
+          }
+        },
+        {
+          "image": "old_front10__scene_20261013_232005_473898_736f76__v17k01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [
+            1
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 1,
+                "officialId": 2,
+                "name": "2-Starkist_Tuna",
+                "confidence": 0.8822,
+                "bbox": [
+                  249.3,
+                  189.2,
+                  445.6,
+                  314.9
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.7622,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "plain_metal",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.2733
+              }
+            ],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": []
+          }
+        },
+        {
+          "image": "old_front10__scene_20261013_232006_521012_444b7b__v17k01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [
+            1
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 1,
+                "officialId": 2,
+                "name": "2-Starkist_Tuna",
+                "confidence": 0.8819,
+                "bbox": [
+                  247.4,
+                  184.0,
+                  446.6,
+                  314.7
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.7619,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "plain_metal",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.275
+              }
+            ],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": []
+          }
+        },
+        {
+          "image": "old_front10__scene_20261013_232007_484219_beb0ec__v17k01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [
+            1
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 1,
+                "officialId": 2,
+                "name": "2-Starkist_Tuna",
+                "confidence": 0.8518,
+                "bbox": [
+                  246.2,
+                  184.8,
+                  447.6,
+                  314.6
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.7318,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "plain_metal",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.2579
+              }
+            ],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": []
+          }
+        },
+        {
+          "image": "old_front10__scene_20261013_232008_503322_485092__v17k01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [
+            1
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 1,
+                "officialId": 2,
+                "name": "2-Starkist_Tuna",
+                "confidence": 0.8802,
+                "bbox": [
+                  248.6,
+                  185.6,
+                  448.9,
+                  315.4
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.7602,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "plain_metal",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.2922
+              }
+            ],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": []
+          }
+        },
+        {
+          "image": "old_front10__scene_20261013_232009_529890_aad3bb__v17k01.jpg",
+          "gt": [
+            9
+          ],
+          "pred": [
+            1
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 1,
+                "officialId": 2,
+                "name": "2-Starkist_Tuna",
+                "confidence": 0.8837,
+                "bbox": [
+                  248.1,
+                  185.7,
+                  447.9,
+                  313.5
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.7637,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "plain_metal",
+                "evidenceSource": "color",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.3007
+              }
+            ],
+            "removedPrimaryCans": [],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": []
+          }
+        },
+        {
+          "image": "post30__split-unit-0003__001160.png",
+          "gt": [],
+          "pred": [
+            9
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.5134,
+                "bbox": [
+                  348.3,
+                  337.1,
+                  453.6,
+                  415.4
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.5134,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0048,
+                "whiteBodyRatio": 0.0541
+              }
+            ],
+            "removedPrimaryCans": [
+              {
+                "class_id": 1,
+                "confidence": 0.06212256848812103,
+                "bbox": [
+                  351.8623046875,
+                  336.1259460449219,
+                  456.668701171875,
+                  421.9916076660156
+                ],
+                "id": 1,
+                "officialId": 2,
+                "name": "2-Starkist_Tuna"
+              }
+            ],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": [
+              {
+                "id": 1,
+                "officialId": 2,
+                "name": "2-Starkist_Tuna",
+                "confidence": 0.0271,
+                "bbox": [
+                  401.1,
+                  0.1,
+                  624.9,
+                  63.4
+                ],
+                "source": "secondary_model",
+                "reason": "geometry"
+              },
+              {
+                "id": 1,
+                "officialId": 2,
+                "name": "2-Starkist_Tuna",
+                "confidence": 0.0213,
+                "bbox": [
+                  459.1,
+                  0.0,
+                  640.0,
+                  41.8
+                ],
+                "source": "secondary_model",
+                "reason": "geometry"
+              },
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.0114,
+                "bbox": [
+                  351.6,
+                  334.4,
+                  456.9,
+                  418.8
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0114,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0048,
+                "whiteBodyRatio": 0.0541,
+                "reason": "physical_group_loser",
+                "chosenId": 9
+              }
+            ]
+          }
+        },
+        {
+          "image": "post30__split-unit-0006__001170.png",
+          "gt": [],
+          "pred": [
+            9
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.7963,
+                "bbox": [
+                  364.0,
+                  201.7,
+                  473.3,
+                  276.6
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.792,
+                "primaryEvidenceConfidence": 0.0121,
+                "colorEvidence": "",
+                "evidenceSource": "primary",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0014,
+                "whiteBodyRatio": 0.2153
+              }
+            ],
+            "removedPrimaryCans": [
+              {
+                "class_id": 9,
+                "confidence": 0.012147805653512478,
+                "bbox": [
+                  364.3636474609375,
+                  196.80758666992188,
+                  471.6376953125,
+                  274.5748596191406
+                ],
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can"
+              }
+            ],
+            "suppressedConfusers": [],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": [
+              {
+                "id": 1,
+                "officialId": 2,
+                "name": "2-Starkist_Tuna",
+                "confidence": 0.019,
+                "bbox": [
+                  409.0,
+                  0.2,
+                  635.1,
+                  64.1
+                ],
+                "source": "secondary_model",
+                "reason": "geometry"
+              },
+              {
+                "id": 1,
+                "officialId": 2,
+                "name": "2-Starkist_Tuna",
+                "confidence": 0.0378,
+                "bbox": [
+                  363.4,
+                  201.5,
+                  475.0,
+                  274.9
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0378,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0014,
+                "whiteBodyRatio": 0.2153,
+                "reason": "physical_group_loser",
+                "chosenId": 9
+              }
+            ]
+          }
+        },
+        {
+          "image": "post30__split-unit-0017__000018.png",
+          "gt": [],
+          "pred": [
+            1
+          ],
+          "debug": {
+            "selected": [
+              {
+                "id": 1,
+                "officialId": 2,
+                "name": "2-Starkist_Tuna",
+                "confidence": 0.3733,
+                "bbox": [
+                  122.9,
+                  142.1,
+                  229.3,
+                  246.2
+                ],
+                "source": "secondary_color_arbitrated",
+                "modelConfidence": 0.1381,
+                "primaryEvidenceConfidence": 0.329,
+                "colorEvidence": "plain_metal",
+                "evidenceSource": "primary_and_color",
+                "secondaryClassMatched": false,
+                "rewrittenFrom": 4,
+                "redLabelRatio": 0.0186,
+                "whiteBodyRatio": 0.5317
+              }
+            ],
+            "removedPrimaryCans": [
+              {
+                "class_id": 1,
+                "confidence": 0.3289560079574585,
+                "bbox": [
+                  123.6202392578125,
+                  156.4687042236328,
+                  225.71075439453125,
+                  247.5829315185547
+                ],
+                "id": 1,
+                "officialId": 2,
+                "name": "2-Starkist_Tuna"
+              },
+              {
+                "class_id": 4,
+                "confidence": 0.028154347091913223,
+                "bbox": [
+                  124.2006607055664,
+                  154.27452087402344,
+                  228.31985473632812,
+                  247.8859405517578
+                ],
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup"
+              }
+            ],
+            "suppressedConfusers": [
+              {
+                "class_id": 11,
+                "confidence": 0.9576239585876465,
+                "bbox": [
+                  126.57190704345703,
+                  154.44808959960938,
+                  227.71478271484375,
+                  245.79043579101562
+                ],
+                "id": 11,
+                "officialId": 12,
+                "name": "12-Baseball"
+              }
+            ],
+            "secondaryObjectVetoes": [],
+            "rejectedSecondary": [
+              {
+                "id": 4,
+                "officialId": 5,
+                "name": "5-Tomato_Soup",
+                "confidence": 0.1634,
+                "bbox": [
+                  122.9,
+                  142.1,
+                  229.3,
+                  246.2
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.1535,
+                "primaryEvidenceConfidence": 0.0282,
+                "colorEvidence": "",
+                "evidenceSource": "primary",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0186,
+                "whiteBodyRatio": 0.5317,
+                "reason": "physical_group_loser",
+                "chosenId": 1
+              },
+              {
+                "id": 9,
+                "officialId": 10,
+                "name": "10-meat_can",
+                "confidence": 0.0289,
+                "bbox": [
+                  548.5,
+                  118.4,
+                  639.4,
+                  356.1
+                ],
+                "source": "secondary_model",
+                "modelConfidence": 0.0289,
+                "primaryEvidenceConfidence": 0.0,
+                "colorEvidence": "",
+                "evidenceSource": "model",
+                "secondaryClassMatched": true,
+                "redLabelRatio": 0.0,
+                "whiteBodyRatio": 0.9918,
+                "reason": "insufficient_evidence"
+              }
+            ]
+          }
+        }
+      ],
+      "collateralNonCanMisses": [],
+      "totals": {
+        "iou30_tp": 115,
+        "iou30_fn": 40,
+        "iou30_fp": 47,
+        "iou30_wrong_class": 21,
+        "iou50_tp": 115,
+        "iou50_fn": 40,
+        "iou50_fp": 47,
+        "iou50_wrong_class": 21,
+        "noncan_gt": 0,
+        "noncan_tp": 0,
+        "noncan_fn": 0
+      }
+    }
+  ]
+}

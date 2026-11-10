@@ -1,0 +1,590 @@
+
+===== 任务B 五点位拾放 =====
+配置：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/track1_task_b_five_point_live_20261027.yaml
+视觉后端：realsense_yolo
+模式：真机执行
+日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/task_B_20261027_042414.log
+
+正在启动机械臂状态桥接，日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/codroid_bridge_20261027_042414.log
+[bridge] RobotInfo 已就绪：state=AutoReady fault_flag=0 xyz=(-0.0833, 0.5156, 0.3086)
+[INFO] [1793046255.773282502] [track1_grasp]: [gripper:ms42dc] /dev/motor_serial @ 115200 id=1 subdivide=32
+[INFO] [1793046255.828862471] [track1_grasp]: [task_b_initial_pose] current_deg=[86.997, 66.808, -18.641, -36.394, 88.491, -11.162] target_deg=[82.657, 54.31, -32.193, -53.453, 84.446, -2.058] max_delta_deg=17.059 tolerance_deg=0.500
+[INFO] [1793046255.830386967] [track1_grasp]: [task_b_initial_pose] moving six axes together: dry_run=False estimated_steps=18 max_step_deg=1.000 total_abs_deg=[4.34, 12.498, 13.552, 17.059, 4.045, 9.104]
+[INFO] [1793046255.831856846] [track1_grasp]: [motion:robotmove] task_b_initial_pose: 18 step(s), max_delta=17.06 deg
+[INFO] [1793046255.835031691] [track1_grasp]: [motion:robotmove] sent continuous task_b_initial_pose: points=18 payload_bytes=3305 joint_velocity=0.600 rad/s endpoint_deg=[82.66, 54.31, -32.19, -53.45, 84.45, -2.06]
+[INFO] [1793046262.004570906] [track1_grasp]: [task_b_initial_pose] verified residual_deg=0.014; starting visual search
+[INFO] [1793046262.008082944] [track1_grasp]: [task_b_observation_pose] pick_1: current_deg=[82.659, 54.312, -32.189, -53.439, 84.452, -2.064] target_deg=[81.722, 83.401, -48.371, -55.141, 87.911, -3.395] max_delta_deg=29.089 tolerance_deg=0.500
+[INFO] [1793046262.009524329] [track1_grasp]: [task_b_observation_pose] pick_1: moving six axes together: dry_run=False estimated_steps=30 max_step_deg=1.000 total_abs_deg=[0.937, 29.089, 16.182, 1.702, 3.459, 1.331]
+[INFO] [1793046262.011027453] [track1_grasp]: [motion:robotmove] task_b_observation_pick_1: 30 step(s), max_delta=29.09 deg
+[INFO] [1793046262.015242374] [track1_grasp]: [motion:robotmove] sent continuous task_b_observation_pick_1: points=30 payload_bytes=5556 joint_velocity=0.600 rad/s endpoint_deg=[81.72, 83.4, -48.37, -55.14, 87.91, -3.4]
+[INFO] [1793046272.298164713] [track1_grasp]: [task_b_observation_pose] pick_1: verified residual_deg=0.003; visual search may start
+[INFO] [1793046272.299931418] [track1_grasp]: [scan] round 1/5: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 1)
+[INFO] [1793046272.301616199] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793046272.560445604] [track1_grasp]: [camera] D405 started 640x480@15 fx=392.7 fy=391.7 cx=314.4 cy=246.7
+[INFO] [1793046276.916827839] [track1_grasp]: [yolo] loading /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/models/best.pt
+[INFO] [1793046276.957307704] [track1_grasp]: [vision:realsense_yolo] ready 640x480 rotate180=True anchor=top_center cx=324.6 cy=232.3 stabilizer=on
+[INFO] [1793046279.491811042] [track1_grasp]: [detect] frame 'realsense-000001': 0 detection(s), no confirmed target
+[INFO] [1793046279.543389804] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793046279.693699829] [track1_grasp]: [detect] frame 'realsense-000002': 0 detection(s), no confirmed target
+[INFO] [1793046279.745203791] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793046279.898713595] [track1_grasp]: [pose] loaded camera transform from /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/camera_to_flange.d405_calibrated_20261025.yaml
+[INFO] [1793046279.900027938] [track1_grasp]: [detect] frame 'realsense-000003': 2 detection(s), no confirmed target
+[INFO] [1793046279.951588891] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793046280.153920542] [track1_grasp]: [detect] frame 'realsense-000004': 2 detection(s), no confirmed target
+[INFO] [1793046280.205348516] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793046280.359989819] [track1_grasp]: [detect] frame 'realsense-000005': 2 detection(s), no confirmed target
+[INFO] [1793046280.411376238] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793046280.622945096] [track1_grasp]: [detect] frame 'realsense-000006': 2 detection(s), no confirmed target
+[INFO] [1793046280.674406316] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793046280.886349174] [track1_grasp]: [detect] frame 'realsense-000007': 2 detection(s), no confirmed target
+[INFO] [1793046280.937830578] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793046281.140435308] [track1_grasp]: [detect] frame 'realsense-000008': 2 detection(s), no confirmed target
+[INFO] [1793046281.141730654] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1793046281.643994908] [track1_grasp]: [scan] round 1/5: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 2)
+[INFO] [1793046281.645445791] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793046281.804781684] [track1_grasp]: [detect] frame 'realsense-000009': 2 detection(s), no confirmed target
+[INFO] [1793046281.856337888] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793046282.057718510] [track1_grasp]: [detect] frame 'realsense-000010': 2 detection(s), no confirmed target
+[INFO] [1793046282.109312707] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793046282.273308760] [track1_grasp]: [detect] frame 'realsense-000011': 2 detection(s), no confirmed target
+[INFO] [1793046282.324954011] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793046282.566701705] [track1_grasp]: [detect] frame 'realsense-000012': 2 detection(s), no confirmed target
+[INFO] [1793046282.618595102] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793046282.772044353] [track1_grasp]: [detect] frame 'realsense-000013': 2 detection(s), no confirmed target
+[INFO] [1793046282.823672982] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793046283.002300154] [track1_grasp]: [detect] frame 'realsense-000014': 2 detection(s), no confirmed target
+[INFO] [1793046283.053878916] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793046283.250838027] [track1_grasp]: [detect] frame 'realsense-000015': 2 detection(s), no confirmed target
+[INFO] [1793046283.302321805] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793046283.453935487] [track1_grasp]: [detect] frame 'realsense-000016': 2 detection(s), no confirmed target
+[INFO] [1793046283.455285449] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1793046283.957394167] [track1_grasp]: [scan] round 1/5: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 3)
+[INFO] [1793046283.958721570] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793046284.157798827] [track1_grasp]: [detect] frame 'realsense-000017': 2 detection(s), no confirmed target
+[INFO] [1793046284.209470199] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793046284.413513939] [track1_grasp]: [detect] frame 'realsense-000018': 2 detection(s), no confirmed target
+[INFO] [1793046284.465120009] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793046284.614896936] [track1_grasp]: [detect] frame 'realsense-000019': 2 detection(s), no confirmed target
+[INFO] [1793046284.666587305] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793046284.815943927] [track1_grasp]: [detect] frame 'realsense-000020': 2 detection(s), no confirmed target
+[INFO] [1793046284.867489444] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793046285.018925032] [track1_grasp]: [detect] frame 'realsense-000021': 2 detection(s), no confirmed target
+[INFO] [1793046285.070323324] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793046285.231253764] [track1_grasp]: [detect] frame 'realsense-000022': 2 detection(s), no confirmed target
+[INFO] [1793046285.282741103] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793046285.430840373] [track1_grasp]: [detect] frame 'realsense-000023': 2 detection(s), no confirmed target
+[INFO] [1793046285.482529554] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793046285.688982330] [track1_grasp]: [detect] frame 'realsense-000024': 2 detection(s), no confirmed target
+[INFO] [1793046285.690247993] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1793046286.192484939] [track1_grasp]: [scan] round 1/5: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 4)
+[INFO] [1793046286.193769600] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793046286.411886428] [track1_grasp]: [detect] frame 'realsense-000025': 2 detection(s), no confirmed target
+[INFO] [1793046286.463395139] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793046286.670891553] [track1_grasp]: [detect] frame 'realsense-000026': 2 detection(s), no confirmed target
+[INFO] [1793046286.722340899] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793046286.886651586] [track1_grasp]: [detect] frame 'realsense-000027': 2 detection(s), no confirmed target
+[INFO] [1793046286.938246971] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793046287.142101930] [track1_grasp]: [detect] frame 'realsense-000028': 2 detection(s), no confirmed target
+[INFO] [1793046287.193805359] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793046287.439000977] [track1_grasp]: [detect] frame 'realsense-000029': 2 detection(s), no confirmed target
+[INFO] [1793046287.490593987] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793046287.702381309] [track1_grasp]: [detect] frame 'realsense-000030': 2 detection(s), no confirmed target
+[INFO] [1793046287.753812845] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793046287.912543215] [track1_grasp]: [detect] frame 'realsense-000031': 2 detection(s), no confirmed target
+[INFO] [1793046287.964149285] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793046288.127989801] [track1_grasp]: [detect] frame 'realsense-000032': 2 detection(s), no confirmed target
+[INFO] [1793046288.129263776] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1793046288.631197960] [track1_grasp]: [scan] round 1/5: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 5)
+[INFO] [1793046288.632388824] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793046288.798100527] [track1_grasp]: [detect] frame 'realsense-000033': 2 detection(s), no confirmed target
+[INFO] [1793046288.849684039] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793046289.067429241] [track1_grasp]: [detect] frame 'realsense-000034': 2 detection(s), no confirmed target
+[INFO] [1793046289.119425933] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793046289.292382552] [track1_grasp]: [detect] frame 'realsense-000035': 2 detection(s), no confirmed target
+[INFO] [1793046289.343779657] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793046289.555025569] [track1_grasp]: [detect] frame 'realsense-000036': 2 detection(s), no confirmed target
+[INFO] [1793046289.606523595] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793046289.771940848] [track1_grasp]: [detect] frame 'realsense-000037': 2 detection(s), no confirmed target
+[INFO] [1793046289.823398505] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793046290.020963139] [track1_grasp]: [detect] frame 'realsense-000038': 2 detection(s), no confirmed target
+[INFO] [1793046290.072417235] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793046290.267621514] [track1_grasp]: [detect] frame 'realsense-000039': 2 detection(s), no confirmed target
+[INFO] [1793046290.321039406] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793046290.525325356] [track1_grasp]: [detect] frame 'realsense-000040': 2 detection(s), no confirmed target
+[INFO] [1793046290.526637324] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1793046291.028792347] [track1_grasp]: [scan] round 1/5: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 6)
+[INFO] [1793046291.030020017] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793046291.244016907] [track1_grasp]: [detect] frame 'realsense-000041': 2 detection(s), no confirmed target
+[INFO] [1793046291.295543428] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793046291.506015220] [track1_grasp]: [detect] frame 'realsense-000042': 2 detection(s), no confirmed target
+[INFO] [1793046291.557573798] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793046291.771275050] [track1_grasp]: [detect] frame 'realsense-000043': 2 detection(s), no confirmed target
+[INFO] [1793046291.822818193] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793046292.033821896] [track1_grasp]: [detect] frame 'realsense-000044': 2 detection(s), no confirmed target
+[INFO] [1793046292.085405408] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793046292.291145802] [track1_grasp]: [detect] frame 'realsense-000045': 2 detection(s), no confirmed target
+[INFO] [1793046292.342802926] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793046292.544310590] [track1_grasp]: [detect] frame 'realsense-000046': 2 detection(s), no confirmed target
+[INFO] [1793046292.595940406] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793046292.799821486] [track1_grasp]: [detect] frame 'realsense-000047': 2 detection(s), no confirmed target
+[INFO] [1793046292.851765937] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793046293.010376389] [track1_grasp]: [detect] frame 'realsense-000048': 2 detection(s), no confirmed target
+[INFO] [1793046293.011657487] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1793046293.513775703] [track1_grasp]: [scan] round 1/5: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 7)
+[INFO] [1793046293.515008122] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793046293.665763386] [track1_grasp]: [detect] frame 'realsense-000049': 2 detection(s), no confirmed target
+[INFO] [1793046293.717102313] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793046293.865008053] [track1_grasp]: [detect] frame 'realsense-000050': 2 detection(s), no confirmed target
+[INFO] [1793046293.916326796] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793046294.113307278] [track1_grasp]: [detect] frame 'realsense-000051': 2 detection(s), no confirmed target
+[INFO] [1793046294.164763748] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793046294.366411513] [track1_grasp]: [detect] frame 'realsense-000052': 2 detection(s), no confirmed target
+[INFO] [1793046294.417903602] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793046294.563730376] [track1_grasp]: [detect] frame 'realsense-000053': 2 detection(s), no confirmed target
+[INFO] [1793046294.615383938] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793046294.772702606] [track1_grasp]: [detect] frame 'realsense-000054': 2 detection(s), no confirmed target
+[INFO] [1793046294.824131768] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793046294.968778364] [track1_grasp]: [detect] frame 'realsense-000055': 2 detection(s), no confirmed target
+[INFO] [1793046295.020682447] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793046295.220475647] [track1_grasp]: [detect] frame 'realsense-000056': 2 detection(s), no confirmed target
+[INFO] [1793046295.221706879] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1793046295.723505711] [track1_grasp]: [scan] round 1/5: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 8)
+[INFO] [1793046295.724696574] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793046295.879432861] [track1_grasp]: [detect] frame 'realsense-000057': 2 detection(s), no confirmed target
+[INFO] [1793046295.930883394] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793046296.075284219] [track1_grasp]: [detect] frame 'realsense-000058': 2 detection(s), no confirmed target
+[INFO] [1793046296.126593463] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793046296.324913222] [track1_grasp]: [detect] frame 'realsense-000059': 2 detection(s), no confirmed target
+[INFO] [1793046296.376404124] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793046296.538329522] [track1_grasp]: [detect] frame 'realsense-000060': 2 detection(s), no confirmed target
+[INFO] [1793046296.589877414] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793046296.747874031] [track1_grasp]: [detect] frame 'realsense-000061': 2 detection(s), no confirmed target
+[INFO] [1793046296.799345936] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793046296.955103302] [track1_grasp]: [detect] frame 'realsense-000062': 2 detection(s), no confirmed target
+[INFO] [1793046297.006568083] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793046297.157633232] [track1_grasp]: [detect] frame 'realsense-000063': 2 detection(s), no confirmed target
+[INFO] [1793046297.209136007] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793046297.376378143] [track1_grasp]: [detect] frame 'realsense-000064': 2 detection(s), no confirmed target
+[INFO] [1793046297.377622435] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1793046297.879626670] [track1_grasp]: [scan] round 1/5: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 9)
+[INFO] [1793046297.880817533] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793046298.077052390] [track1_grasp]: [detect] frame 'realsense-000065': 2 detection(s), no confirmed target
+[INFO] [1793046298.128638276] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793046298.339085134] [track1_grasp]: [detect] frame 'realsense-000066': 2 detection(s), no confirmed target
+[INFO] [1793046298.390547541] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793046298.566296693] [track1_grasp]: [detect] frame 'realsense-000067': 2 detection(s), no confirmed target
+[INFO] [1793046298.617710421] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793046298.819315443] [track1_grasp]: [detect] frame 'realsense-000068': 2 detection(s), no confirmed target
+[INFO] [1793046298.870687615] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793046299.073067945] [track1_grasp]: [detect] frame 'realsense-000069': 2 detection(s), no confirmed target
+[INFO] [1793046299.124561221] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793046299.327644435] [track1_grasp]: [detect] frame 'realsense-000070': 2 detection(s), no confirmed target
+[INFO] [1793046299.379359736] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793046299.585658162] [track1_grasp]: [detect] frame 'realsense-000071': 2 detection(s), no confirmed target
+[INFO] [1793046299.637244048] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793046299.786617293] [track1_grasp]: [detect] frame 'realsense-000072': 2 detection(s), no confirmed target
+[INFO] [1793046299.787842588] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1793046300.289592741] [track1_grasp]: [scan] round 1/5: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 10)
+[INFO] [1793046300.290769357] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793046300.497451281] [track1_grasp]: [detect] frame 'realsense-000073': 2 detection(s), no confirmed target
+[INFO] [1793046300.548936247] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793046300.751555225] [track1_grasp]: [detect] frame 'realsense-000074': 2 detection(s), no confirmed target
+[INFO] [1793046300.803171980] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793046300.954910330] [track1_grasp]: [detect] frame 'realsense-000075': 2 detection(s), no confirmed target
+[INFO] [1793046301.006443974] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793046301.224759082] [track1_grasp]: [detect] frame 'realsense-000076': 2 detection(s), no confirmed target
+[INFO] [1793046301.276259482] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793046301.494569840] [track1_grasp]: [detect] frame 'realsense-000077': 2 detection(s), no confirmed target
+[INFO] [1793046301.546031059] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793046301.704699688] [track1_grasp]: [detect] frame 'realsense-000078': 2 detection(s), no confirmed target
+[INFO] [1793046301.756500476] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793046301.956027720] [track1_grasp]: [detect] frame 'realsense-000079': 2 detection(s), no confirmed target
+[INFO] [1793046302.007693155] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793046302.161755054] [track1_grasp]: [detect] frame 'realsense-000080': 2 detection(s), no confirmed target
+[INFO] [1793046302.163018343] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1793046302.665506998] [track1_grasp]: [scan] round 1/5: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 11)
+[INFO] [1793046302.666942445] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793046302.865720502] [track1_grasp]: [detect] frame 'realsense-000081': 2 detection(s), no confirmed target
+[INFO] [1793046302.917472611] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793046303.059549886] [track1_grasp]: [detect] frame 'realsense-000082': 2 detection(s), no confirmed target
+[INFO] [1793046303.111189200] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793046303.260334483] [track1_grasp]: [detect] frame 'realsense-000083': 2 detection(s), no confirmed target
+[INFO] [1793046303.312128146] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793046303.524760827] [track1_grasp]: [detect] frame 'realsense-000084': 2 detection(s), no confirmed target
+[INFO] [1793046303.576501062] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793046303.782564403] [track1_grasp]: [detect] frame 'realsense-000085': 2 detection(s), no confirmed target
+[INFO] [1793046303.834327197] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793046303.983810860] [track1_grasp]: [detect] frame 'realsense-000086': 2 detection(s), no confirmed target
+[INFO] [1793046304.035638956] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793046304.196382989] [track1_grasp]: [detect] frame 'realsense-000087': 2 detection(s), no confirmed target
+[INFO] [1793046304.248295383] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793046304.403051853] [track1_grasp]: [detect] frame 'realsense-000088': 2 detection(s), no confirmed target
+[INFO] [1793046304.404955098] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1793046304.907314336] [track1_grasp]: [scan] round 1/5: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 12)
+[INFO] [1793046304.908786590] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793046305.107304628] [track1_grasp]: [detect] frame 'realsense-000089': 2 detection(s), no confirmed target
+[INFO] [1793046305.159243143] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793046305.329048663] [track1_grasp]: [detect] frame 'realsense-000090': 2 detection(s), no confirmed target
+[INFO] [1793046305.380806707] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793046305.541871312] [track1_grasp]: [detect] frame 'realsense-000091': 2 detection(s), no confirmed target
+[INFO] [1793046305.593651915] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793046305.740961629] [track1_grasp]: [detect] frame 'realsense-000092': 2 detection(s), no confirmed target
+[INFO] [1793046305.792663871] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793046305.940417635] [track1_grasp]: [detect] frame 'realsense-000093': 2 detection(s), no confirmed target
+[INFO] [1793046305.992080696] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793046306.140302258] [track1_grasp]: [detect] frame 'realsense-000094': 2 detection(s), no confirmed target
+[INFO] [1793046306.191967693] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793046306.392603877] [track1_grasp]: [detect] frame 'realsense-000095': 2 detection(s), no confirmed target
+[INFO] [1793046306.444205198] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793046306.606834666] [track1_grasp]: [detect] frame 'realsense-000096': 2 detection(s), no confirmed target
+[INFO] [1793046306.608090831] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1793046307.110137809] [track1_grasp]: [scan] round 1/5: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 13)
+[INFO] [1793046307.111551886] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793046307.326244535] [track1_grasp]: [detect] frame 'realsense-000097': 2 detection(s), no confirmed target
+[INFO] [1793046307.377693881] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793046307.603414189] [track1_grasp]: [detect] frame 'realsense-000098': 2 detection(s), no confirmed target
+[INFO] [1793046307.654925275] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793046307.823180179] [track1_grasp]: [detect] frame 'realsense-000099': 2 detection(s), no confirmed target
+[INFO] [1793046307.874833741] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793046308.021569988] [track1_grasp]: [detect] frame 'realsense-000100': 2 detection(s), no confirmed target
+[INFO] [1793046308.073075138] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793046308.223087150] [track1_grasp]: [detect] frame 'realsense-000101': 2 detection(s), no confirmed target
+[INFO] [1793046308.274475944] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793046308.476649684] [track1_grasp]: [detect] frame 'realsense-000102': 2 detection(s), no confirmed target
+[INFO] [1793046308.528103780] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793046308.743865001] [track1_grasp]: [detect] frame 'realsense-000103': 2 detection(s), no confirmed target
+[INFO] [1793046308.795491255] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793046308.971107429] [track1_grasp]: [detect] frame 'realsense-000104': 2 detection(s), no confirmed target
+[INFO] [1793046308.973569893] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1793046309.475627557] [track1_grasp]: [scan] round 1/5: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 14)
+[INFO] [1793046309.476890846] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793046309.671655823] [track1_grasp]: [detect] frame 'realsense-000105': 2 detection(s), no confirmed target
+[INFO] [1793046309.723095671] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793046309.878476662] [track1_grasp]: [detect] frame 'realsense-000106': 2 detection(s), no confirmed target
+[INFO] [1793046309.929929570] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793046310.081257113] [track1_grasp]: [detect] frame 'realsense-000107': 2 detection(s), no confirmed target
+[INFO] [1793046310.132744453] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793046310.330772135] [track1_grasp]: [detect] frame 'realsense-000108': 2 detection(s), no confirmed target
+[INFO] [1793046310.382504059] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793046310.531573354] [track1_grasp]: [detect] frame 'realsense-000109': 2 detection(s), no confirmed target
+[INFO] [1793046310.582950275] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793046310.794774404] [track1_grasp]: [detect] frame 'realsense-000110': 2 detection(s), no confirmed target
+[INFO] [1793046310.846417280] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793046311.009730634] [track1_grasp]: [detect] frame 'realsense-000111': 2 detection(s), no confirmed target
+[INFO] [1793046311.061152672] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793046311.274923976] [track1_grasp]: [detect] frame 'realsense-000112': 2 detection(s), no confirmed target
+[INFO] [1793046311.276234757] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1793046311.777958789] [track1_grasp]: [scan] round 1/5: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 15)
+[INFO] [1793046311.779140154] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793046311.975507988] [track1_grasp]: [detect] frame 'realsense-000113': 2 detection(s), no confirmed target
+[INFO] [1793046312.027065379] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793046312.173448998] [track1_grasp]: [detect] frame 'realsense-000114': 2 detection(s), no confirmed target
+[INFO] [1793046312.224949398] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793046312.437612949] [track1_grasp]: [detect] frame 'realsense-000115': 2 detection(s), no confirmed target
+[INFO] [1793046312.488992244] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793046312.704855573] [track1_grasp]: [detect] frame 'realsense-000116': 2 detection(s), no confirmed target
+[INFO] [1793046312.756441459] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793046312.906987757] [track1_grasp]: [detect] frame 'realsense-000117': 2 detection(s), no confirmed target
+[INFO] [1793046312.958959516] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793046313.102139795] [track1_grasp]: [detect] frame 'realsense-000118': 2 detection(s), no confirmed target
+[INFO] [1793046313.153599827] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793046313.361421561] [track1_grasp]: [detect] frame 'realsense-000119': 2 detection(s), no confirmed target
+[INFO] [1793046313.412994387] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793046313.626496172] [track1_grasp]: [detect] frame 'realsense-000120': 2 detection(s), no confirmed target
+[INFO] [1793046313.627725030] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1793046314.129629531] [track1_grasp]: [scan] round 1/5: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 16)
+[INFO] [1793046314.130844141] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793046314.284236402] [track1_grasp]: [detect] frame 'realsense-000121': 2 detection(s), no confirmed target
+[INFO] [1793046314.335797354] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793046314.498045699] [track1_grasp]: [detect] frame 'realsense-000122': 2 detection(s), no confirmed target
+[INFO] [1793046314.549650582] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793046314.762092107] [track1_grasp]: [detect] frame 'realsense-000123': 2 detection(s), no confirmed target
+[INFO] [1793046314.813482088] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793046315.017810781] [track1_grasp]: [detect] frame 'realsense-000124': 2 detection(s), no confirmed target
+[INFO] [1793046315.069253003] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793046315.265137606] [track1_grasp]: [detect] frame 'realsense-000125': 2 detection(s), no confirmed target
+[INFO] [1793046315.316873092] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793046315.521524730] [track1_grasp]: [detect] frame 'realsense-000126': 2 detection(s), no confirmed target
+[INFO] [1793046315.572867219] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793046315.719419435] [track1_grasp]: [detect] frame 'realsense-000127': 2 detection(s), no confirmed target
+[INFO] [1793046315.770810603] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793046315.970051708] [track1_grasp]: [detect] frame 'realsense-000128': 2 detection(s), no confirmed target
+[INFO] [1793046315.971291251] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1793046316.473232559] [track1_grasp]: [scan] round 1/5: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 17)
+[INFO] [1793046316.474409175] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793046316.633411436] [track1_grasp]: [detect] frame 'realsense-000129': 2 detection(s), no confirmed target
+[INFO] [1793046316.684732554] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793046316.831017627] [track1_grasp]: [detect] frame 'realsense-000130': 2 detection(s), no confirmed target
+[INFO] [1793046316.882382674] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793046317.078636528] [track1_grasp]: [detect] frame 'realsense-000131': 2 detection(s), no confirmed target
+[INFO] [1793046317.130106058] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793046317.328441252] [track1_grasp]: [detect] frame 'realsense-000132': 2 detection(s), no confirmed target
+[INFO] [1793046317.380056820] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793046317.537267443] [track1_grasp]: [detect] frame 'realsense-000133': 2 detection(s), no confirmed target
+[INFO] [1793046317.588632491] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793046317.782115182] [track1_grasp]: [detect] frame 'realsense-000134': 2 detection(s), no confirmed target
+[INFO] [1793046317.833760433] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793046318.043947273] [track1_grasp]: [detect] frame 'realsense-000135': 2 detection(s), no confirmed target
+[INFO] [1793046318.095483292] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793046318.265773231] [track1_grasp]: [detect] frame 'realsense-000136': 2 detection(s), no confirmed target
+[INFO] [1793046318.267067390] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1793046318.769070438] [track1_grasp]: [scan] round 1/5: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 18)
+[INFO] [1793046318.770271987] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793046318.970896298] [track1_grasp]: [detect] frame 'realsense-000137': 2 detection(s), no confirmed target
+[INFO] [1793046319.022447752] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793046319.177528356] [track1_grasp]: [detect] frame 'realsense-000138': 2 detection(s), no confirmed target
+[INFO] [1793046319.229054877] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793046319.423821041] [track1_grasp]: [detect] frame 'realsense-000139': 2 detection(s), no confirmed target
+[INFO] [1793046319.475410489] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793046319.636135525] [track1_grasp]: [detect] frame 'realsense-000140': 2 detection(s), no confirmed target
+[INFO] [1793046319.687778402] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793046319.840553266] [track1_grasp]: [detect] frame 'realsense-000141': 2 detection(s), no confirmed target
+[INFO] [1793046319.892156961] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793046320.038309056] [track1_grasp]: [detect] frame 'realsense-000142': 2 detection(s), no confirmed target
+[INFO] [1793046320.089809456] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793046320.299795641] [track1_grasp]: [detect] frame 'realsense-000143': 2 detection(s), no confirmed target
+[INFO] [1793046320.351401711] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793046320.500150435] [track1_grasp]: [detect] frame 'realsense-000144': 2 detection(s), no confirmed target
+[INFO] [1793046320.501375730] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1793046321.003579432] [track1_grasp]: [scan] round 1/5: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 19)
+[INFO] [1793046321.004772670] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793046321.154470048] [track1_grasp]: [detect] frame 'realsense-000145': 2 detection(s), no confirmed target
+[INFO] [1793046321.206154480] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793046321.350809387] [track1_grasp]: [detect] frame 'realsense-000146': 2 detection(s), no confirmed target
+[INFO] [1793046321.402234987] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793046321.623043428] [track1_grasp]: [detect] frame 'realsense-000147': 2 detection(s), no confirmed target
+[INFO] [1793046321.674604381] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793046321.867910164] [track1_grasp]: [detect] frame 'realsense-000148': 2 detection(s), no confirmed target
+[INFO] [1793046321.919786939] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793046322.081398890] [track1_grasp]: [detect] frame 'realsense-000149': 2 detection(s), no confirmed target
+[INFO] [1793046322.132862483] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793046322.333227963] [track1_grasp]: [detect] frame 'realsense-000150': 2 detection(s), no confirmed target
+[INFO] [1793046322.384587074] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793046322.601795616] [track1_grasp]: [detect] frame 'realsense-000151': 2 detection(s), no confirmed target
+[INFO] [1793046322.653363692] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793046322.873915676] [track1_grasp]: [detect] frame 'realsense-000152': 2 detection(s), no confirmed target
+[INFO] [1793046322.875150470] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1793046323.377151143] [track1_grasp]: [scan] round 1/5: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 20)
+[INFO] [1793046323.378440552] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793046323.535617931] [track1_grasp]: [detect] frame 'realsense-000153': 2 detection(s), no confirmed target
+[INFO] [1793046323.587063715] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793046323.793225602] [track1_grasp]: [detect] frame 'realsense-000154': 2 detection(s), no confirmed target
+[INFO] [1793046323.844797240] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793046323.989667049] [track1_grasp]: [detect] frame 'realsense-000155': 2 detection(s), no confirmed target
+[INFO] [1793046324.041116395] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793046324.237674198] [track1_grasp]: [detect] frame 'realsense-000156': 2 detection(s), no confirmed target
+[INFO] [1793046324.289260084] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793046324.446116891] [track1_grasp]: [detect] frame 'realsense-000157': 2 detection(s), no confirmed target
+[INFO] [1793046324.497793012] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793046324.643618599] [track1_grasp]: [detect] frame 'realsense-000158': 2 detection(s), no confirmed target
+[INFO] [1793046324.695100002] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793046324.854701851] [track1_grasp]: [detect] frame 'realsense-000159': 2 detection(s), no confirmed target
+[INFO] [1793046324.906362537] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793046325.056498029] [track1_grasp]: [detect] frame 'realsense-000160': 2 detection(s), no confirmed target
+[INFO] [1793046325.057749445] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1793046325.559919902] [track1_grasp]: [scan] round 1/5: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 21)
+[INFO] [1793046325.561168944] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793046325.754303756] [track1_grasp]: [detect] frame 'realsense-000161': 2 detection(s), no confirmed target
+[INFO] [1793046325.805856397] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793046326.005621102] [track1_grasp]: [detect] frame 'realsense-000162': 2 detection(s), no confirmed target
+[INFO] [1793046326.057221235] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793046326.210074461] [track1_grasp]: [detect] frame 'realsense-000163': 2 detection(s), no confirmed target
+[INFO] [1793046326.261652036] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793046326.467422113] [track1_grasp]: [detect] frame 'realsense-000164': 2 detection(s), no confirmed target
+[INFO] [1793046326.519295326] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793046326.667201065] [track1_grasp]: [detect] frame 'realsense-000165': 2 detection(s), no confirmed target
+[INFO] [1793046326.718743021] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793046326.913435572] [track1_grasp]: [detect] frame 'realsense-000166': 2 detection(s), no confirmed target
+[INFO] [1793046326.965017896] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793046327.166601547] [track1_grasp]: [detect] frame 'realsense-000167': 2 detection(s), no confirmed target
+[INFO] [1793046327.218125694] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793046327.378120539] [track1_grasp]: [detect] frame 'realsense-000168': 2 detection(s), no confirmed target
+[INFO] [1793046327.379478812] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1793046327.881531727] [track1_grasp]: [scan] round 1/5: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 22)
+[INFO] [1793046327.882732089] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793046328.078367358] [track1_grasp]: [detect] frame 'realsense-000169': 2 detection(s), no confirmed target
+[INFO] [1793046328.129995987] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793046328.292896160] [track1_grasp]: [detect] frame 'realsense-000170': 2 detection(s), no confirmed target
+[INFO] [1793046328.344480859] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793046328.537957613] [track1_grasp]: [detect] frame 'realsense-000171': 2 detection(s), no confirmed target
+[INFO] [1793046328.589422395] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793046328.739593506] [track1_grasp]: [detect] frame 'realsense-000172': 2 detection(s), no confirmed target
+[INFO] [1793046328.791229258] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793046328.942280160] [track1_grasp]: [detect] frame 'realsense-000173': 2 detection(s), no confirmed target
+[INFO] [1793046328.993749690] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793046329.150683672] [track1_grasp]: [detect] frame 'realsense-000174': 2 detection(s), no confirmed target
+[INFO] [1793046329.202249374] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793046329.365288461] [track1_grasp]: [detect] frame 'realsense-000175': 2 detection(s), no confirmed target
+[INFO] [1793046329.416725934] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793046329.566502861] [track1_grasp]: [detect] frame 'realsense-000176': 2 detection(s), no confirmed target
+[INFO] [1793046329.567786335] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1793046330.069636220] [track1_grasp]: [scan] round 1/5: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 23)
+[INFO] [1793046330.070873389] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793046330.227355009] [track1_grasp]: [detect] frame 'realsense-000177': 2 detection(s), no confirmed target
+[INFO] [1793046330.278983637] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793046330.431790558] [track1_grasp]: [detect] frame 'realsense-000178': 2 detection(s), no confirmed target
+[INFO] [1793046330.483368133] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793046330.681718762] [track1_grasp]: [detect] frame 'realsense-000179': 2 detection(s), no confirmed target
+[INFO] [1793046330.733198978] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793046330.926524945] [track1_grasp]: [detect] frame 'realsense-000180': 2 detection(s), no confirmed target
+[INFO] [1793046330.978154761] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793046331.175372704] [track1_grasp]: [detect] frame 'realsense-000181': 2 detection(s), no confirmed target
+[INFO] [1793046331.226905161] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793046331.424441300] [track1_grasp]: [detect] frame 'realsense-000182': 2 detection(s), no confirmed target
+[INFO] [1793046331.476090113] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793046331.672335656] [track1_grasp]: [detect] frame 'realsense-000183': 2 detection(s), no confirmed target
+[INFO] [1793046331.723856240] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793046331.870104506] [track1_grasp]: [detect] frame 'realsense-000184': 2 detection(s), no confirmed target
+[INFO] [1793046331.871347611] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1793046332.373452767] [track1_grasp]: [scan] round 1/5: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 24)
+[INFO] [1793046332.374649567] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793046332.524242462] [track1_grasp]: [detect] frame 'realsense-000185': 2 detection(s), no confirmed target
+[INFO] [1793046332.575569516] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793046332.720224423] [track1_grasp]: [detect] frame 'realsense-000186': 2 detection(s), no confirmed target
+[INFO] [1793046332.771596595] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793046332.962439914] [track1_grasp]: [detect] frame 'realsense-000187': 2 detection(s), no confirmed target
+[INFO] [1793046333.013888073] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793046333.175643688] [track1_grasp]: [detect] frame 'realsense-000188': 2 detection(s), no confirmed target
+[INFO] [1793046333.227109656] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793046333.425495903] [track1_grasp]: [detect] frame 'realsense-000189': 2 detection(s), no confirmed target
+[INFO] [1793046333.477110285] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793046333.681089910] [track1_grasp]: [detect] frame 'realsense-000190': 2 detection(s), no confirmed target
+[INFO] [1793046333.732678171] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793046333.932157923] [track1_grasp]: [detect] frame 'realsense-000191': 2 detection(s), no confirmed target
+[INFO] [1793046333.983489727] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793046334.179073942] [track1_grasp]: [detect] frame 'realsense-000192': 2 detection(s), no confirmed target
+[INFO] [1793046334.180314672] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1793046334.682282101] [track1_grasp]: [scan] round 1/5: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 25)
+[INFO] [1793046334.683471777] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793046334.884455841] [track1_grasp]: [detect] frame 'realsense-000193': 2 detection(s), no confirmed target
+[INFO] [1793046334.935888565] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793046335.125482843] [track1_grasp]: [detect] frame 'realsense-000194': 2 detection(s), no confirmed target
+[INFO] [1793046335.177028360] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793046335.377867573] [track1_grasp]: [detect] frame 'realsense-000195': 2 detection(s), no confirmed target
+[INFO] [1793046335.429503326] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793046335.575757529] [track1_grasp]: [detect] frame 'realsense-000196': 2 detection(s), no confirmed target
+[INFO] [1793046335.627281675] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793046335.784944660] [track1_grasp]: [detect] frame 'realsense-000197': 2 detection(s), no confirmed target
+[INFO] [1793046335.836469993] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793046336.003406992] [track1_grasp]: [detect] frame 'realsense-000198': 2 detection(s), no confirmed target
+[INFO] [1793046336.055005939] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793046336.249913392] [track1_grasp]: [detect] frame 'realsense-000199': 2 detection(s), no confirmed target
+[INFO] [1793046336.301385297] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793046336.467796321] [track1_grasp]: [detect] frame 'realsense-000200': 2 detection(s), no confirmed target
+[INFO] [1793046336.469084543] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1793046336.971027039] [track1_grasp]: [scan] round 1/5: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 26)
+[INFO] [1793046336.972260645] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793046337.114290428] [track1_grasp]: [detect] frame 'realsense-000201': 2 detection(s), no confirmed target
+[INFO] [1793046337.165705343] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793046337.313235895] [track1_grasp]: [detect] frame 'realsense-000202': 2 detection(s), no confirmed target
+[INFO] [1793046337.364731546] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793046337.517561026] [track1_grasp]: [detect] frame 'realsense-000203': 2 detection(s), no confirmed target
+[INFO] [1793046337.568932010] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793046337.773311757] [track1_grasp]: [detect] frame 'realsense-000204': 2 detection(s), no confirmed target
+[INFO] [1793046337.824876271] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793046337.972417509] [track1_grasp]: [detect] frame 'realsense-000205': 2 detection(s), no confirmed target
+[INFO] [1793046338.023982023] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793046338.217680803] [track1_grasp]: [detect] frame 'realsense-000206': 2 detection(s), no confirmed target
+[INFO] [1793046338.269134899] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793046338.421741166] [track1_grasp]: [detect] frame 'realsense-000207': 2 detection(s), no confirmed target
+[INFO] [1793046338.473245128] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793046338.622271680] [track1_grasp]: [detect] frame 'realsense-000208': 2 detection(s), no confirmed target
+[INFO] [1793046338.623519534] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1793046339.125592633] [track1_grasp]: [scan] round 1/5: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 27)
+[INFO] [1793046339.126827427] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793046339.330505478] [track1_grasp]: [detect] frame 'realsense-000209': 2 detection(s), no confirmed target
+[INFO] [1793046339.381980945] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793046339.532395453] [track1_grasp]: [detect] frame 'realsense-000210': 2 detection(s), no confirmed target
+[INFO] [1793046339.583880418] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793046339.794748769] [track1_grasp]: [detect] frame 'realsense-000211': 2 detection(s), no confirmed target
+[INFO] [1793046339.846321594] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793046340.045113899] [track1_grasp]: [detect] frame 'realsense-000212': 2 detection(s), no confirmed target
+[INFO] [1793046340.096615486] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793046340.243373105] [track1_grasp]: [detect] frame 'realsense-000213': 2 detection(s), no confirmed target
+[INFO] [1793046340.294875880] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793046340.466527654] [track1_grasp]: [detect] frame 'realsense-000214': 2 detection(s), no confirmed target
+[INFO] [1793046340.517940194] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793046340.671806188] [track1_grasp]: [detect] frame 'realsense-000215': 2 detection(s), no confirmed target
+[INFO] [1793046340.723191420] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793046340.872303458] [track1_grasp]: [detect] frame 'realsense-000216': 2 detection(s), no confirmed target
+[INFO] [1793046340.873533502] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1793046341.375599477] [track1_grasp]: [scan] round 1/5: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 28)
+[INFO] [1793046341.376866328] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793046341.521928480] [track1_grasp]: [detect] frame 'realsense-000217': 2 detection(s), no confirmed target
+[INFO] [1793046341.573627159] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793046341.722328391] [track1_grasp]: [detect] frame 'realsense-000218': 2 detection(s), no confirmed target
+[INFO] [1793046341.774021134] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793046341.928931954] [track1_grasp]: [detect] frame 'realsense-000219': 2 detection(s), no confirmed target
+[INFO] [1793046341.980674563] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793046342.144209943] [track1_grasp]: [detect] frame 'realsense-000220': 2 detection(s), no confirmed target
+[INFO] [1793046342.195766146] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793046342.343440362] [track1_grasp]: [detect] frame 'realsense-000221': 2 detection(s), no confirmed target
+[INFO] [1793046342.395267270] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793046342.546448775] [track1_grasp]: [detect] frame 'realsense-000222': 2 detection(s), no confirmed target
+[INFO] [1793046342.598416972] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793046342.794352628] [track1_grasp]: [detect] frame 'realsense-000223': 2 detection(s), no confirmed target
+[INFO] [1793046342.846186660] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793046342.995317695] [track1_grasp]: [detect] frame 'realsense-000224': 2 detection(s), no confirmed target
+[INFO] [1793046342.996814883] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1793046343.499164623] [track1_grasp]: [scan] round 1/5: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 29)
+[INFO] [1793046343.500693867] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793046343.695313994] [track1_grasp]: [detect] frame 'realsense-000225': 2 detection(s), no confirmed target
+[INFO] [1793046343.746880883] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793046343.955988465] [track1_grasp]: [detect] frame 'realsense-000226': 2 detection(s), no confirmed target
+[INFO] [1793046344.007401005] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793046344.224548994] [track1_grasp]: [detect] frame 'realsense-000227': 2 detection(s), no confirmed target
+[INFO] [1793046344.276089763] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793046344.481101154] [track1_grasp]: [detect] frame 'realsense-000228': 2 detection(s), no confirmed target
+[INFO] [1793046344.532708411] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793046344.678929369] [track1_grasp]: [detect] frame 'realsense-000229': 2 detection(s), no confirmed target
+[INFO] [1793046344.730548500] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793046344.877842779] [track1_grasp]: [detect] frame 'realsense-000230': 2 detection(s), no confirmed target
+[INFO] [1793046344.929337242] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793046345.074571553] [track1_grasp]: [detect] frame 'realsense-000231': 2 detection(s), no confirmed target
+[INFO] [1793046345.126080264] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793046345.330945617] [track1_grasp]: [detect] frame 'realsense-000232': 2 detection(s), no confirmed target
+[INFO] [1793046345.332274208] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1793046345.834373427] [track1_grasp]: [scan] round 1/5: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 30)
+[INFO] [1793046345.835694894] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793046345.978273210] [track1_grasp]: [detect] frame 'realsense-000233': 2 detection(s), no confirmed target
+[INFO] [1793046346.029913712] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793046346.191295326] [track1_grasp]: [detect] frame 'realsense-000234': 2 detection(s), no confirmed target
+[INFO] [1793046346.242828971] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793046346.398726438] [track1_grasp]: [detect] frame 'realsense-000235': 2 detection(s), no confirmed target
+[INFO] [1793046346.450136603] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793046346.597743143] [track1_grasp]: [detect] frame 'realsense-000236': 2 detection(s), no confirmed target
+[INFO] [1793046346.649340902] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793046346.800499848] [track1_grasp]: [detect] frame 'realsense-000237': 2 detection(s), no confirmed target
+[INFO] [1793046346.852095232] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793046347.017364072] [track1_grasp]: [detect] frame 'realsense-000238': 2 detection(s), no confirmed target
+[INFO] [1793046347.068783736] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793046347.215604281] [track1_grasp]: [detect] frame 'realsense-000239': 2 detection(s), no confirmed target
+[INFO] [1793046347.267223412] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793046347.467074790] [track1_grasp]: [detect] frame 'realsense-000240': 2 detection(s), no confirmed target
+[INFO] [1793046347.468316707] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1793046347.970447984] [track1_grasp]: [scan] round 1/5: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 31)
+[INFO] [1793046347.971699400] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793046348.164180008] [track1_grasp]: [detect] frame 'realsense-000241': 2 detection(s), no confirmed target
+[INFO] [1793046348.215792015] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793046348.377213997] [track1_grasp]: [detect] frame 'realsense-000242': 2 detection(s), no confirmed target
+[INFO] [1793046348.428741705] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793046348.629164175] [track1_grasp]: [detect] frame 'realsense-000243': 2 detection(s), no confirmed target
+[INFO] [1793046348.680779744] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793046348.897025384] [track1_grasp]: [detect] frame 'realsense-000244': 2 detection(s), no confirmed target
+[INFO] [1793046348.948515098] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793046349.098387009] [track1_grasp]: [detect] frame 'realsense-000245': 2 detection(s), no confirmed target
+[INFO] [1793046349.149944400] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793046349.344279574] [track1_grasp]: [detect] frame 'realsense-000246': 2 detection(s), no confirmed target
+[INFO] [1793046349.395771663] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793046349.543103935] [track1_grasp]: [detect] frame 'realsense-000247': 2 detection(s), no confirmed target
+[INFO] [1793046349.594968837] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793046349.792337567] [track1_grasp]: [detect] frame 'realsense-000248': 2 detection(s), no confirmed target
+[INFO] [1793046349.793852564] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1793046350.295861548] [track1_grasp]: [scan] round 1/5: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 32)
+[INFO] [1793046350.297428787] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793046350.496804056] [track1_grasp]: [detect] frame 'realsense-000249': 2 detection(s), no confirmed target
+[INFO] [1793046350.548537168] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793046350.701658724] [track1_grasp]: [detect] frame 'realsense-000250': 2 detection(s), no confirmed target
+[INFO] [1793046350.753471384] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793046350.915127265] [track1_grasp]: [detect] frame 'realsense-000251': 2 detection(s), no confirmed target
+[INFO] [1793046350.966929240] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame

@@ -1,0 +1,13 @@
+
+===== 无夹爪运动验证 =====
+配置：/home/sunshine/Desktop/赛道一比赛程序/config/track1_live.yaml
+模式：只预检查（不会运动）
+参数：轴=x 方向=auto 距离=10 mm
+夹爪：完全不调用，不会发出开合命令
+日志：/home/sunshine/Desktop/赛道一比赛程序/logs/arm_motion_check_20261018_182656.log
+
+[bridge] state=AutoReady fault_flag=0 xyz=(-0.1070, 0.1235, 0.7517)
+[INFO] [1792319218.104244214] [track1_arm_motion_check]: [start] DRY-RUN no-gripper check: base +x 10.0 mm out-and-back, step=2.5 mm
+[INFO] [1792319218.104532816] [track1_arm_motion_check]: [robot] controller state=AutoReady; start_xyz=(-0.10696251986607991, 0.12349209706968034, 0.7517274006073437) joints_deg=[90.0, -0.0, 0.0, 0.0, 90.0, -0.0]
+[ERROR] [1792319218.451087124] [track1_arm_motion_check]: IK failed for patrol target 1 waypoint 1/4: pose IK did not converge (position=0.000990 m, rotation=0.012226 rad)
+错误：无夹爪运动验证异常退出，退出码=2。请查看日志：/home/sunshine/Desktop/赛道一比赛程序/logs/arm_motion_check_20261018_182656.log

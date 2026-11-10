@@ -1,0 +1,54 @@
+
+===== 任务C 无序抓取 =====
+配置：/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/config/track1_task_c_v11_official_20261102.yaml
+视觉后端：realsense_yolo
+模式：任务C 无序抓取（仅抓取已训练 40 类已知物体；unknown/object 拒绝；真机运动）
+安全门禁：单次实机验收，最多 1 次完整成功抓取；完成后返回固定观察位并退出。
+日志：/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/task_C_20261107_160546.log
+
+正在启动机械臂状态桥接，日志：/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/codroid_bridge_20261107_160546.log
+[bridge] RobotInfo 已就绪：state=AutoReady fault_flag=0 xyz=(-0.1079, 0.2985, 0.4489)
+[INFO] [1794038748.049155913] [track1_grasp]: [vision:realsense_yolo] verified weights sha256=f43234a94f1d71b24cb187082c18eb22fea84c88922c605df5f7b1a79ffcaaa6
+[INFO] [1794038748.057262701] [track1_grasp]: [gripper:ms42dc] /dev/serial/by-id/usb-1a86_USB_Single_Serial_5CF0022496-if00 @ 115200 id=1 subdivide=32
+[INFO] [1794038748.065006179] [track1_grasp]: [scan] C/D moving to fixed observation pose: joints_deg=[88.991, 4.741, 67.583, -0.712, 88.923, -0.5]
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+[INFO] [1794038748.300687170] [track1_grasp]: [camera] D405 started 640x480@15 fx=392.7 fy=391.7 cx=314.4 cy=246.7
+[INFO] [1794038748.301277251] [track1_grasp]: [motion:robotmove] task_cd_observation_entry: 14 step(s), max_delta=13.77 deg, joint_velocity=2.400 rad/s, speed_scale=1.00
+[INFO] [1794038748.304076871] [track1_grasp]: [motion:robotmove] sent continuous task_cd_observation_entry: points=14 payload_bytes=2604 joint_velocity=2.400 rad/s endpoint_deg=[88.99, 4.74, 67.58, -0.71, 88.92, -0.5]
+[INFO] [1794038752.910380569] [track1_grasp]: [yolo] loading /media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/models/official/track1_40class_v11_official_f43234a9.pt
+[INFO] [1794038752.951492721] [track1_grasp]: [vision:realsense_yolo] model input size verified imgsz=640
+[INFO] [1794038752.952726311] [track1_grasp]: [vision:realsense_yolo] ready 640x480 rotate180=True anchor=top_center cx=324.6 cy=232.3 inference_padding_px=0 stabilizer=on unknown_proposer=off
+[INFO] [1794038753.313302700] [track1_grasp]: [task_cd_observation_entry] verified residual_deg=0.005
+[INFO] [1794038753.314937593] [track1_grasp]: [scan] C/D ordinary clear cycle: fixed-view captures are bounded to 3 miss retry frame(s); the first usable candidate enters the complete safety precheck immediately without relocation-scan motion
+[INFO] [1794038753.316745829] [track1_grasp]: [detect] C/D observation 1/3: capturing the next frame
+[INFO] [1794038756.030932813] [track1_grasp]: [pose] loaded camera transform from /media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/config/camera_to_flange.d405_calibrated_20261025.yaml
+[INFO] [1794038756.032878775] [track1_grasp]: [detect] C/D clear fixed-view frame 'realsense-000001': filtered gripper-self detection label='28-Kong_Duck_Dog_Toy' track='track-3' confidence=0.7723 fields=['object_center_camera_xyz']; it will not enter target policy, precheck, gripper commands or Cartesian motion
+[INFO] [1794038756.034723818] [track1_grasp]: [detect] C/D clear fixed-view frame 'realsense-000001': filtered gripper-self detection label='21-Haribo_Golden_Bear' track='track-5' confidence=0.5151 fields=['object_center_camera_xyz']; it will not enter target policy, precheck, gripper commands or Cartesian motion
+[INFO] [1794038756.036509496] [track1_grasp]: [detect] C/D clear fixed-view frame 'realsense-000001': removed 2 gripper-self detection(s)
+[INFO] [1794038756.038939871] [track1_grasp]: [detect] clear fixed-view frame 'realsense-000001': 4 raw after gripper-self filtering, 0 policy-admissible unfinished track(s), completed_tracks_excluded=0, failed_tracks_excluded=0, rejected_tracks_excluded=0, completed_spatial_excluded=0, failed_spatial_excluded=0, rejected_spatial_excluded=0, missing_track_id_excluded=0, off_target_excluded=0, unusable_geometry_or_depth_excluded=4, unusable_reason_counts={support_plane_invalid=4}, policy_rejected=0, corner_small_detected=1, ignored_corner_small_present=True, ignored_corner_small_count=1, physical_detection_evidence=4
+[INFO] [1794038756.091825156] [track1_grasp]: [detect] C/D observation 2/3: capturing the next frame
+[INFO] [1794038756.251765657] [track1_grasp]: [detect] C/D clear fixed-view frame 'realsense-000002': filtered gripper-self detection label='28-Kong_Duck_Dog_Toy' track='track-3' confidence=0.7576 fields=['object_center_camera_xyz']; it will not enter target policy, precheck, gripper commands or Cartesian motion
+[INFO] [1794038756.253781669] [track1_grasp]: [detect] C/D clear fixed-view frame 'realsense-000002': filtered gripper-self detection label='21-Haribo_Golden_Bear' track='track-5' confidence=0.5478 fields=['object_center_camera_xyz']; it will not enter target policy, precheck, gripper commands or Cartesian motion
+[INFO] [1794038756.255492548] [track1_grasp]: [detect] C/D clear fixed-view frame 'realsense-000002': removed 2 gripper-self detection(s)
+[INFO] [1794038756.257399330] [track1_grasp]: [detect] clear fixed-view frame 'realsense-000002': 5 raw after gripper-self filtering, 0 policy-admissible unfinished track(s), completed_tracks_excluded=0, failed_tracks_excluded=0, rejected_tracks_excluded=0, completed_spatial_excluded=0, failed_spatial_excluded=0, rejected_spatial_excluded=0, missing_track_id_excluded=0, off_target_excluded=0, unusable_geometry_or_depth_excluded=5, unusable_reason_counts={support_plane_invalid=5}, policy_rejected=0, corner_small_detected=1, ignored_corner_small_present=True, ignored_corner_small_count=2, physical_detection_evidence=9
+[INFO] [1794038756.309091393] [track1_grasp]: [detect] C/D observation 3/3: capturing the next frame
+[INFO] [1794038756.509392498] [track1_grasp]: [detect] C/D clear fixed-view frame 'realsense-000003': filtered gripper-self detection label='21-Haribo_Golden_Bear' track='track-5' confidence=0.5654 fields=['object_center_camera_xyz']; it will not enter target policy, precheck, gripper commands or Cartesian motion
+[INFO] [1794038756.511638843] [track1_grasp]: [detect] C/D clear fixed-view frame 'realsense-000003': filtered gripper-self detection label='28-Kong_Duck_Dog_Toy' track='track-3' confidence=0.6818 fields=['object_center_camera_xyz']; it will not enter target policy, precheck, gripper commands or Cartesian motion
+[INFO] [1794038756.513500508] [track1_grasp]: [detect] C/D clear fixed-view frame 'realsense-000003': removed 2 gripper-self detection(s)
+[INFO] [1794038756.515529580] [track1_grasp]: [detect] clear fixed-view frame 'realsense-000003': 7 raw after gripper-self filtering, 0 policy-admissible unfinished track(s), completed_tracks_excluded=0, failed_tracks_excluded=0, rejected_tracks_excluded=0, completed_spatial_excluded=0, failed_spatial_excluded=0, rejected_spatial_excluded=0, missing_track_id_excluded=0, off_target_excluded=0, unusable_geometry_or_depth_excluded=7, unusable_reason_counts={support_plane_invalid=6, support_plane_quality_below_policy=1}, policy_rejected=0, corner_small_detected=1, ignored_corner_small_present=True, ignored_corner_small_count=3, physical_detection_evidence=16
+[INFO] [1794038756.517177533] [track1_grasp]: [detect] C/D clear fixed-view confirmation complete: 0/0 active track(s) reached 1 cumulative hit(s) with at most 1 tolerated miss; adaptive centre-first ranking=[]
+[INFO] [1794038756.519490366] [track1_grasp]: [select] fixed-view miss retries detected 16 physical item observation(s), but none produced an executable grasp candidate; the bin is not empty, emptiness is unproven, and no relocation scan is allowed before the periodic empty check is due
+[INFO] [1794038756.521241613] [track1_grasp]: [run] C/D operator acceptance ended at a read-only planning rejection; automatic retry and exclusion release are disabled
+[INFO] [1794038756.522495388] [track1_grasp]: [run] C/D clear until empty observation_cycles=1 successes=0 completed_tracks=0 failed_tracks_pending_retry=0 rejected_tracks_pending_retry=0 final_status=rejected
+[ERROR] [1794038756.523876201] [track1_grasp]: Task C/D operator acceptance ended before the requested number of complete successful picks: 0/1. The arm returned to the fixed observation pose when the single cycle completed safely.
+QObject::killTimer: Timers cannot be stopped from another thread
+QObject::~QObject: Timers cannot be stopped from another thread

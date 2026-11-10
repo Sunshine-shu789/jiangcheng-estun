@@ -1,0 +1,150 @@
+#!/usr/bin/env bash
+# Exercise the MS42DC gripper through the vendor ROS 2 node.
+# No robot-arm command is ever sent by this launcher.
+
+set -o pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+APP_DIR="$ROOT/app/track1_grasp"
+CONFIG="${TRACK1_CONFIG:-$ROOT/config/ms42dc_ros_test.yaml}"
+TASK_PYTHON="${TRACK1_PYTHON:-/usr/bin/python3}"
+TASK_SITE_PACKAGES="${TRACK1_SITE_PACKAGES:-/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages}"
+MS42DC_ROS_SETUP="/home/sunshine/ms42dc_vendor_ws/install/setup.bash"
+LOG_DIR="$ROOT/logs"
+STATE_DIR="$ROOT/state"
+MOTOR_PID=""
+MOTOR_LOG=""
+MOTOR_WAIT_S="${TRACK1_MOTOR_WAIT_S:-10}"
+STAMP="$(date '+%Y%m%d_%H%M%S')"
+
+mkdir -p "$LOG_DIR" "$STATE_DIR"
+
+configured_gripper_backend() {
+    awk '
+        /^[[:space:]]*#/ { next }
+        /^gripper:[[:space:]]*$/ { in_gripper = 1; next }
+        /^[^[:space:]#]/ { in_gripper = 0 }
+        in_gripper && /^[[:space:]]+backend:/ {
+            value = $0
+            sub(/^[[:space:]]+backend:[[:space:]]*/, "", value)
+            sub(/[[:space:]]*#.*$/, "", value)
+            gsub(/[[:space:]"]/, "", value)
+            print value
+            exit
+        }
+    ' "$CONFIG"
+}
+
+find_running_motor_node() {
+    local pid
+    for pid in $(/usr/bin/pgrep -f '/step_motor/lib/step_motor/motor_node' 2>/dev/null || true); do
+        [ "$pid" = "$$" ] && continue
+        [ -r "/proc/$pid/cmdline" ] || continue
+        if tr '\0' ' ' < "/proc/$pid/cmdline" 2>/dev/null \
+            | grep -q '/step_motor/lib/step_motor/motor_node'; then
+            printf '%s\n' "$pid"
+            return 0
+        fi
+    done
+    return 1
+}
+
+stop_motor_node() {
+    [ -n "$MOTOR_PID" ] || return 0
+    if kill -0 "$MOTOR_PID" 2>/dev/null; then
+        printf '正在关闭本次测试启动的夹爪 ROS 节点...\n'
+        kill -TERM "$MOTOR_PID" 2>/dev/null || true
+        for _ in $(seq 1 30); do
+            kill -0 "$MOTOR_PID" 2>/dev/null || break
+            sleep 0.1
+        done
+        if kill -0 "$MOTOR_PID" 2>/dev/null; then
+            kill -KILL "$MOTOR_PID" 2>/dev/null || true
+        fi
+    fi
+    wait "$MOTOR_PID" 2>/dev/null || true
+    MOTOR_PID=""
+}
+
+cleanup() {
+    stop_motor_node
+}
+trap cleanup EXIT
+
+if [ ! -r "$CONFIG" ]; then
+    printf '找不到配置：%s\n' "$CONFIG" >&2
+    exit 1
+fi
+if [ ! -r "$MS42DC_ROS_SETUP" ]; then
+    printf '找不到 MS42DC ROS 工作空间：%s\n' "$MS42DC_ROS_SETUP" >&2
+    exit 1
+fi
+if [ "$(configured_gripper_backend)" != "ms42dc_ros" ]; then
+    printf '当前配置的夹爪后端是 %s，不是 ms42dc_ros。\n' \
+        "$(configured_gripper_backend)" >&2
+    printf '请先把 %s 中的 gripper.backend 改为 ms42dc_ros。\n' "$CONFIG" >&2
+    exit 2
+fi
+
+source /opt/ros/humble/setup.bash || exit 1
+source /home/sunshine/codex/easton/codroid_bridge/codroid_bridge/install/setup.bash || exit 1
+source /home/sunshine/codex/easton/ros2_ws/install/setup.bash || exit 1
+source "$MS42DC_ROS_SETUP" || exit 1
+if [ -d "$TASK_SITE_PACKAGES" ]; then
+    export PYTHONPATH="$APP_DIR:$TASK_SITE_PACKAGES${PYTHONPATH:+:$PYTHONPATH}"
+else
+    export PYTHONPATH="$APP_DIR${PYTHONPATH:+:$PYTHONPATH}"
+fi
+export PYTHONUNBUFFERED=1
+
+exec 9>"$STATE_DIR/task.lock"
+if ! flock -n 9; then
+    printf '已有任务或夹爪测试正在运行。\n' >&2
+    exit 1
+fi
+
+EXISTING_PID="$(find_running_motor_node || true)"
+if [ -n "$EXISTING_PID" ]; then
+    printf '复用已运行的夹爪 ROS 节点（PID=%s）。\n' "$EXISTING_PID"
+else
+    MOTOR_LOG="$LOG_DIR/motor_node_test_${STAMP}.log"
+    printf '启动夹爪 ROS 节点，日志：%s\n' "$MOTOR_LOG"
+    ros2 run step_motor motor_node >"$MOTOR_LOG" 2>&1 9>&- &
+    MOTOR_PID=$!
+    DEADLINE=$((SECONDS + MOTOR_WAIT_S))
+    while [ "$SECONDS" -lt "$DEADLINE" ]; do
+        if ! kill -0 "$MOTOR_PID" 2>/dev/null; then
+            break
+        fi
+        if ros2 node list 2>/dev/null | grep -qx '/motor_node'; then
+            break
+        fi
+        sleep 0.2
+    done
+    if ! kill -0 "$MOTOR_PID" 2>/dev/null \
+        || ! ros2 node list 2>/dev/null | grep -qx '/motor_node'; then
+        printf '夹爪 ROS 节点未就绪。\n' >&2
+        tail -n 40 "$MOTOR_LOG" 2>/dev/null >&2 || true
+        exit 1
+    fi
+    if grep -q 'can not open serial port' "$MOTOR_LOG" 2>/dev/null; then
+        printf '夹爪 ROS 节点无法打开 /dev/motor_serial。\n' >&2
+        tail -n 40 "$MOTOR_LOG" >&2 || true
+        exit 1
+    fi
+fi
+
+if [ $# -eq 0 ]; then
+    set -- status
+fi
+ACTION="$1"
+printf '\n===== MS42DC 夹爪测试（不会移动机械臂）=====\n'
+printf '配置：%s\n' "$CONFIG"
+printf '动作：%s\n\n' "$ACTION"
+"$TASK_PYTHON" -m track1_grasp.tools.gripper_bench \
+    "$@" --config "$CONFIG"
+STATUS=$?
+if [ "$STATUS" -ne 0 ]; then
+    printf '\n夹爪测试失败，退出码=%s\n' "$STATUS" >&2
+fi
+exit "$STATUS"

@@ -1,0 +1,87 @@
+schema_version: 1
+purpose: >-
+  赛道一三罐头隔离检测器 v1。只学习 2-Starkist_Tuna、5-Tomato_Soup、
+  10-meat_can；其他前10类及后30类真实照片全部作为硬负样本。该模型未来只能
+  修正三个罐类，不得覆盖或删除原 40 类模型的其他识别结果。
+dataset_yaml: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_can_secondary_v1/dataset.yaml
+dataset_audit: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_can_secondary_v1/audit_summary.json
+holdout_yaml: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_can_secondary_v1/holdout/target/dataset.yaml
+base_weights: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_train_40class_v10_targetfix_from_v7/track1_40class_20261031_101832/weights/best.pt
+output_root: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_train_can_secondary_v1
+preflight_report: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/reports/track1_can_secondary_training_preflight.json
+expected:
+  nc: 3
+  names:
+  - 2-Starkist_Tuna
+  - 5-Tomato_Soup
+  - 10-meat_can
+  images:
+    train: 1540
+    val: 447
+  instances:
+    train:
+      0: 99
+      1: 204
+      2: 226
+    val:
+      0: 30
+      1: 59
+      2: 66
+  groups_disjoint: true
+  materialization: physical_copy
+  official_competition_dataset_used: false
+  min_free_gb: 5
+  min_gpu_free_gb: 4
+train:
+  task: detect
+  epochs: 120
+  imgsz: 640
+  batch: 8
+  device: 0
+  workers: 2
+  cache: false
+  amp: true
+  pretrained: true
+  optimizer: AdamW
+  lr0: 0.001
+  lrf: 0.01
+  momentum: 0.9
+  weight_decay: 0.0005
+  warmup_epochs: 3.0
+  warmup_momentum: 0.8
+  warmup_bias_lr: 0.1
+  cos_lr: true
+  patience: 30
+  save: true
+  save_period: 10
+  val: true
+  plots: true
+  verbose: true
+  seed: 42
+  deterministic: true
+  close_mosaic: 15
+  mosaic: 0.30
+  mixup: 0.0
+  copy_paste: 0.0
+  degrees: 10.0
+  translate: 0.10
+  scale: 0.35
+  shear: 2.0
+  perspective: 0.0005
+  flipud: 0.0
+  fliplr: 0.5
+  hsv_h: 0.015
+  hsv_s: 0.45
+  hsv_v: 0.30
+  multi_scale: 0.0
+  rect: false
+  fraction: 1.0
+  freeze: 0
+  cls_pw: 0.5
+holdout_eval:
+  conf: 0.001
+  iou: 0.50
+  max_det: 100
+  save_txt: true
+  save_conf: true
+  plots: true

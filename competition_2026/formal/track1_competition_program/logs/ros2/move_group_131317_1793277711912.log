@@ -1,0 +1,63 @@
+[INFO] [1793277711.926350595] [moveit_rdf_loader.rdf_loader]: Loaded robot model in 0.00202902 seconds
+[INFO] [1793277711.926718644] [moveit_robot_model.robot_model]: Loading robot model 'estun_s3_60_g2'...
+[INFO] [1793277712.185977248] [moveit_ros.planning_scene_monitor.planning_scene_monitor]: Publishing maintained planning scene on 'monitored_planning_scene'
+[INFO] [1793277712.186117344] [moveit.ros_planning_interface.moveit_cpp]: Listening to 'joint_states' for joint states
+[INFO] [1793277712.186737092] [moveit_ros.current_state_monitor]: Listening to joint states on topic 'joint_states'
+[INFO] [1793277712.187153818] [moveit_ros.planning_scene_monitor.planning_scene_monitor]: Listening to '/attached_collision_object' for attached collision objects
+[INFO] [1793277712.187169253] [moveit_ros.planning_scene_monitor.planning_scene_monitor]: Starting planning scene monitor
+[INFO] [1793277712.187456568] [moveit_ros.planning_scene_monitor.planning_scene_monitor]: Listening to '/planning_scene'
+[INFO] [1793277712.187472003] [moveit_ros.planning_scene_monitor.planning_scene_monitor]: Starting world geometry update monitor for collision objects, attached objects, octomap updates.
+[INFO] [1793277712.187773566] [moveit_ros.planning_scene_monitor.planning_scene_monitor]: Listening to 'collision_object'
+[INFO] [1793277712.188092937] [moveit_ros.planning_scene_monitor.planning_scene_monitor]: Listening to 'planning_scene_world' for planning scene world geometry
+[WARN] [1793277712.188281711] [moveit.ros.occupancy_map_monitor.middleware_handle]: Resolution not specified for Octomap. Assuming resolution = 0.1 instead
+[ERROR] [1793277712.188295958] [moveit.ros.occupancy_map_monitor.middleware_handle]: No 3D sensor plugin(s) defined for octomap updates
+[INFO] [1793277712.269517292] [moveit.ros_planning_interface.moveit_cpp]: Loading planning pipeline 'ompl'
+[INFO] [1793277712.277558574] [moveit.ros_planning.planning_pipeline]: Using planning interface 'OMPL'
+[INFO] [1793277712.279212421] [moveit_ros.fix_workspace_bounds]: Param 'ompl.default_workspace_bounds' was not set. Using default value: 10.000000
+[INFO] [1793277712.279230229] [moveit_ros.fix_start_state_bounds]: Param 'ompl.start_state_max_bounds_error' was not set. Using default value: 0.050000
+[INFO] [1793277712.279236166] [moveit_ros.fix_start_state_bounds]: Param 'ompl.start_state_max_dt' was not set. Using default value: 0.500000
+[INFO] [1793277712.279246851] [moveit_ros.fix_start_state_collision]: Param 'ompl.start_state_max_dt' was not set. Using default value: 0.500000
+[INFO] [1793277712.279252787] [moveit_ros.fix_start_state_collision]: Param 'ompl.jiggle_fraction' was not set. Using default value: 0.020000
+[INFO] [1793277712.279258724] [moveit_ros.fix_start_state_collision]: Param 'ompl.max_sampling_attempts' was not set. Using default value: 100
+[INFO] [1793277712.279271783] [moveit_ros.add_time_optimal_parameterization]: Param 'ompl.path_tolerance' was not set. Using default value: 0.100000
+[INFO] [1793277712.279276532] [moveit_ros.add_time_optimal_parameterization]: Param 'ompl.resample_dt' was not set. Using default value: 0.100000
+[INFO] [1793277712.279282469] [moveit_ros.add_time_optimal_parameterization]: Param 'ompl.min_angle_change' was not set. Using default value: 0.001000
+[INFO] [1793277712.279288405] [moveit.ros_planning.planning_pipeline]: Using planning request adapter 'Resolve constraint frames to robot links'
+[INFO] [1793277712.279294341] [moveit.ros_planning.planning_pipeline]: Using planning request adapter 'Fix Workspace Bounds'
+[INFO] [1793277712.279301465] [moveit.ros_planning.planning_pipeline]: Using planning request adapter 'Fix Start State Bounds'
+[INFO] [1793277712.279307401] [moveit.ros_planning.planning_pipeline]: Using planning request adapter 'Fix Start State In Collision'
+[INFO] [1793277712.279312150] [moveit.ros_planning.planning_pipeline]: Using planning request adapter 'Fix Start State Path Constraints'
+[INFO] [1793277712.279316899] [moveit.ros_planning.planning_pipeline]: Using planning request adapter 'Add Time Optimal Parameterization'
+[WARN] [1793277712.282209053] [moveit_ros.trajectory_execution_manager]: Parameter '~moveit_controller_manager' is not specified but only one matching plugin was found: 'moveit_simple_controller_manager/MoveItSimpleControllerManager'. Using that one.
+[WARN] [1793277712.282318281] [rcl.logging_rosout]: Publisher already registered for provided node name. If this is due to multiple nodes with the same name then all logs for that logger name will go out over the existing publisher. As soon as any node with that name is destructed it will unregister the publisher, preventing any further logs for that name from being published on the rosout topic.
+[ERROR] [1793277712.290879580] [moveit.plugins.moveit_simple_controller_manager]: No controller_names specified.
+[INFO] [1793277712.291140776] [moveit.plugins.moveit_simple_controller_manager]: Returned 0 controllers in list
+[INFO] [1793277712.291151462] [moveit.plugins.moveit_simple_controller_manager]: Returned 0 controllers in list
+[INFO] [1793277712.291429280] [moveit_ros.trajectory_execution_manager]: Trajectory execution is not managing controllers
+[INFO] [1793277712.291448276] [move_group.move_group]: MoveGroup debug mode is ON
+[INFO] [1793277712.300957005] [move_group.move_group]: 
+
+********************************************************
+* MoveGroup using: 
+*     - ApplyPlanningSceneService
+*     - ClearOctomapService
+*     - CartesianPathService
+*     - ExecuteTrajectoryAction
+*     - GetPlanningSceneService
+*     - KinematicsService
+*     - MoveAction
+*     - MotionPlanService
+*     - QueryPlannersService
+*     - StateValidationService
+********************************************************
+
+[INFO] [1793277712.300983124] [moveit_move_group_capabilities_base.move_group_context]: MoveGroup context using planning plugin ompl_interface/OMPLPlanner
+[INFO] [1793277712.300991435] [moveit_move_group_capabilities_base.move_group_context]: MoveGroup context initialization complete
+[INFO] [1793277805.330271366] [moveit_move_group_default_capabilities.plan_service_capability]: Received new planning service request...
+[INFO] [1793277805.330311733] [moveit_move_group_capabilities_base.move_group_capability]: Using planning pipeline 'ompl'
+[INFO] [1793277805.331033584] [moveit.ompl_planning.model_based_planning_context]: Planner configuration 'arm[RRTConnect]' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[INFO] [1793277813.335705906] [moveit.ompl_planning.model_based_planning_context]: Unable to solve the planning problem
+[INFO] [1793277845.050263079] [moveit_move_group_default_capabilities.plan_service_capability]: Received new planning service request...
+[INFO] [1793277845.050302258] [moveit_move_group_capabilities_base.move_group_capability]: Using planning pipeline 'ompl'
+[INFO] [1793277845.050610945] [moveit.ompl_planning.model_based_planning_context]: Planner configuration 'arm[RRTConnect]' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[INFO] [1793277914.323402685] [rclcpp]: signal_handler(SIGINT/SIGTERM)

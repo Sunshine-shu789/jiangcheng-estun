@@ -1,0 +1,32 @@
+[start] pick_4 observation XY nudge; log=/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/task_b_pick4_observation_nudge_20261106_203822.log
+[authorization] one XY nudge only; no gripper, no grasp, no retry
+[authorization-check] target=xyz=(0.038598, 0.440596, 0.256349) rpy=(-3.121188, 0.049584, -0.522564) distance=0.020129 m speed=0.120 m/s
+[preflight] state=AutoReady fault=False xyz=(0.031712, 0.421680, 0.256353) rpy=(-3.121173, 0.049574, -0.522552)
+[preflight] joints_deg=[70.265, 93.339, -80.36, -75.365, 87.413, 10.272]
+[preflight] expected-start error position=0.005 mm rotation=0.000021 rad
+[preflight] /RobotMove bridge subscriber confirmed
+[plan] full Cartesian IK/route/singularity precheck starting
+[motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.01, iterations=3, step=0.561 deg, pos_err=0.0118 mm, rot_err=0.000199 rad, min_sigma=0.068285
+[motion:ik-restart-selected] target 1 path waypoint: seed=5, source=offset[2], damping=0.05, iterations=4, step=0.577 deg, pos_err=0.0115 mm, rot_err=0.000196 rad, min_sigma=0.067562
+[motion:ik-restart-selected] target 1 path waypoint: seed=9, source=offset[6], damping=0.05, iterations=4, step=0.581 deg, pos_err=0.0119 mm, rot_err=0.000199 rad, min_sigma=0.067193
+[motion:ik-restart-selected] target 1 path waypoint: seed=4, source=offset[1], damping=0.05, iterations=4, step=0.587 deg, pos_err=0.0123 mm, rot_err=0.000199 rad, min_sigma=0.066817
+[motion:ik-restart-selected] target 1 path waypoint: seed=13, source=offset[10], damping=0.01, iterations=3, step=0.592 deg, pos_err=0.0117 mm, rot_err=0.000195 rad, min_sigma=0.066436
+[motion:ik-restart-selected] target 1 path waypoint: seed=14, source=offset[11], damping=0.05, iterations=4, step=0.599 deg, pos_err=0.0110 mm, rot_err=0.000178 rad, min_sigma=0.066047
+[motion:ik-restart-selected] target 1 path waypoint: seed=14, source=offset[11], damping=0.05, iterations=4, step=0.603 deg, pos_err=0.0114 mm, rot_err=0.000185 rad, min_sigma=0.065654
+[motion:ik-restart-selected] target 1 path waypoint: seed=14, source=offset[11], damping=0.05, iterations=4, step=0.608 deg, pos_err=0.0118 mm, rot_err=0.000191 rad, min_sigma=0.065255
+[motion:ik-restart-selected] target 1 path waypoint: seed=14, source=offset[11], damping=0.05, iterations=4, step=0.613 deg, pos_err=0.0122 mm, rot_err=0.000198 rad, min_sigma=0.064849
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.01, iterations=3, step=0.619 deg, pos_err=0.0118 mm, rot_err=0.000199 rad, min_sigma=0.064436
+[motion:plan-timing] target 1: total_s=1.434, attempts=1, waypoints=22, planning_step_mm=2.000, max_joint_step=0.315 deg, max_joint_accel=0.007 deg, min_sigma=0.064430
+[motion:cartesian-precheck] target 1: 22 waypoint(s), planning_step=2.000 mm, max_joint_step=0.315 deg, max_joint_accel=0.007 deg, min_sigma=0.06443, axis_step_deg=0.001,0.068,0.315,0.247,0.002,0.001, axis_travel_deg=0.014,1.274,6.620,5.350,0.003,0.013
+[motion:linear-precheck] validated 1 segment(s), 22 Cartesian waypoint(s), min_sigma=0.06443, total_s=1.435
+[plan-pass] distance=0.020130 m waypoints=22 max_joint_step=0.315 deg max_joint_accel=0.007 deg min_sigma=0.064430
+[post-ik] fresh feedback position drift=0.003 mm rotation drift=0.000012 rad
+[motion] sending the single authorized 0.12 m/s observation XY nudge
+[motion:robotmove] sent continuous pick4_observation_nudge_once: points=22 payload_bytes=4054 joint_velocity=0.600 rad/s endpoint_deg=[70.25, 92.06, -73.74, -70.02, 87.41, 10.26]
+[motion:linear] pick4_observation_nudge_once: completed 0.020 m with 22 waypoint(s), cartesian_speed=0.120 m/s, speed_scale=1.00, joint_velocity=0.600 rad/s, max_joint_step=0.315 deg
+[final] state=AutoReady ready=True fault=False xyz=(0.038592, 0.440574, 0.256344) rpy=(-3.121190, 0.049577, -0.522589)
+[final] joints_deg=[70.252, 92.063, -73.74, -70.022, 87.412, 10.261]
+[final] target error position=0.023 mm rotation=0.000026 rad
+[success] pick_4 observation XY nudge completed; no grasp performed
+VERDICT=OBSERVATION_NUDGED
+LOG=/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/task_b_pick4_observation_nudge_20261106_203822.log

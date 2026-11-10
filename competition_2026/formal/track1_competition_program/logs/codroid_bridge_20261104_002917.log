@@ -1,0 +1,52 @@
+[INFO] [1793723357.382806652] [codroid_udp_bridge]: listening for RobotInfo on udp/9006, sending RobotMove to 192.168.101.100:9005
+[INFO] [1793723362.373964314] [codroid_udp_bridge]: rx=100 decoded=100 tx=0
+[INFO] [1793723367.373986903] [codroid_udp_bridge]: rx=200 decoded=200 tx=0
+[INFO] [1793723372.373976245] [codroid_udp_bridge]: rx=300 decoded=300 tx=0
+[INFO] [1793723377.373994084] [codroid_udp_bridge]: rx=400 decoded=400 tx=0
+[INFO] [1793723382.374129473] [codroid_udp_bridge]: rx=500 decoded=500 tx=0
+[INFO] [1793723387.374139001] [codroid_udp_bridge]: rx=600 decoded=600 tx=0
+[INFO] [1793723392.373982296] [codroid_udp_bridge]: rx=700 decoded=700 tx=0
+[INFO] [1793723397.374158056] [codroid_udp_bridge]: rx=800 decoded=800 tx=0
+[INFO] [1793723402.374016787] [codroid_udp_bridge]: rx=900 decoded=900 tx=0
+[INFO] [1793723407.374142677] [codroid_udp_bridge]: rx=1000 decoded=1000 tx=0
+[INFO] [1793723412.374038216] [codroid_udp_bridge]: rx=1100 decoded=1100 tx=0
+[INFO] [1793723417.373993125] [codroid_udp_bridge]: rx=1200 decoded=1200 tx=0
+[INFO] [1793723422.374000277] [codroid_udp_bridge]: rx=1300 decoded=1300 tx=0
+[INFO] [1793723427.374104795] [codroid_udp_bridge]: rx=1400 decoded=1400 tx=0
+[INFO] [1793723432.374011021] [codroid_udp_bridge]: rx=1500 decoded=1500 tx=0
+[INFO] [1793723437.374134536] [codroid_udp_bridge]: rx=1600 decoded=1600 tx=0
+[INFO] [1793723442.374059760] [codroid_udp_bridge]: rx=1700 decoded=1700 tx=0
+[INFO] [1793723447.373998045] [codroid_udp_bridge]: rx=1800 decoded=1800 tx=0
+Traceback (most recent call last):
+  File "/media/sunshine/ESTUN_RUNTIME/ros2_ws/build/taskA_grasp/taskA_grasp/nodes/udp_bridge.py", line 146, in main
+    rclpy.spin(node)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 229, in spin
+    executor.spin_once()
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 808, in spin_once
+    self._spin_once_impl(timeout_sec)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 797, in _spin_once_impl
+    handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 780, in wait_for_ready_callbacks
+    return next(self._cb_iter)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 681, in _wait_for_ready_callbacks
+    raise ExternalShutdownException()
+rclpy.executors.ExternalShutdownException
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/media/sunshine/ESTUN_RUNTIME/ros2_ws/build/taskA_grasp/taskA_grasp/nodes/udp_bridge.py", line 155, in <module>
+    main()
+  File "/media/sunshine/ESTUN_RUNTIME/ros2_ws/build/taskA_grasp/taskA_grasp/nodes/udp_bridge.py", line 151, in main
+    rclpy.shutdown()
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 130, in shutdown
+    _shutdown(context=context)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/utilities.py", line 58, in shutdown
+    return context.shutdown()
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 102, in shutdown
+    self.__context.shutdown()
+rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241

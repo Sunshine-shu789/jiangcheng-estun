@@ -1,0 +1,45 @@
+
+===== 任务A 十点位巡检 =====
+配置：/home/sunshine/Desktop/赛道一比赛程序/config/track1_task_a_legacy.yaml
+视觉后端：legacy_http
+模式：十点位巡检（旧视觉识别 legacy_http，每段 >= 15 cm，真机运动，视觉持续刷新）
+日志：/home/sunshine/Desktop/赛道一比赛程序/logs/task_A_20261018_135706.log
+
+正在启动机械臂状态桥接，日志：/home/sunshine/Desktop/赛道一比赛程序/logs/codroid_bridge_20261018_135706.log
+[bridge] RobotInfo 已就绪：state=AutoReady xyz=(-0.0783, 0.4988, 0.3260)
+[INFO] [1792303033.084817832] [track1_grasp]: [patrol] axis x rejected during pre-check: IK failed for patrol target 1 waypoint 18/20: pose IK did not converge (position=0.000063 m, rotation=0.000990 rad)
+[INFO] [1792303036.059862564] [track1_grasp]: [motion:linear-precheck] validated 10 segment(s), 200 Cartesian waypoint(s)
+[INFO] [1792303036.060688996] [track1_grasp]: [patrol] route ready: 10 move(s), minimum distance=0.200 m
+[INFO] [1792303036.061235202] [track1_grasp]: [patrol] position 1/10 target xyz=(-0.07833770741152558, 0.29880784770537927, 0.3260112008056777) distance=0.200 m
+[INFO] [1792303036.061737473] [track1_grasp]: [patrol] position 2/10 target xyz=(-0.07833770741152558, 0.4988078477053793, 0.3260112008056777) distance=0.200 m
+[INFO] [1792303036.061934582] [track1_grasp]: [patrol] position 3/10 target xyz=(-0.07833770741152558, 0.29880784770537927, 0.3260112008056777) distance=0.200 m
+[INFO] [1792303036.062128129] [track1_grasp]: [patrol] position 4/10 target xyz=(-0.07833770741152558, 0.4988078477053793, 0.3260112008056777) distance=0.200 m
+[INFO] [1792303036.062312177] [track1_grasp]: [patrol] position 5/10 target xyz=(-0.07833770741152558, 0.29880784770537927, 0.3260112008056777) distance=0.200 m
+[INFO] [1792303036.062490287] [track1_grasp]: [patrol] position 6/10 target xyz=(-0.07833770741152558, 0.4988078477053793, 0.3260112008056777) distance=0.200 m
+[INFO] [1792303036.062673147] [track1_grasp]: [patrol] position 7/10 target xyz=(-0.07833770741152558, 0.29880784770537927, 0.3260112008056777) distance=0.200 m
+[INFO] [1792303036.062867881] [track1_grasp]: [patrol] position 8/10 target xyz=(-0.07833770741152558, 0.4988078477053793, 0.3260112008056777) distance=0.200 m
+[INFO] [1792303036.063051929] [track1_grasp]: [patrol] position 9/10 target xyz=(-0.07833770741152558, 0.29880784770537927, 0.3260112008056777) distance=0.200 m
+[INFO] [1792303036.063234789] [track1_grasp]: [patrol] position 10/10 target xyz=(-0.07833770741152558, 0.4988078477053793, 0.3260112008056777) distance=0.200 m
+[INFO] [1792303036.063504329] [track1_grasp]: [motion:robotmove] task-a-patrol-01_p001: 12 step(s), max_delta=11.40 deg
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/sunshine/Desktop/赛道一比赛程序/app/track1_grasp/track1_grasp/nodes/track1_node.py", line 107, in <module>
+    raise SystemExit(main())
+  File "/home/sunshine/Desktop/赛道一比赛程序/app/track1_grasp/track1_grasp/nodes/track1_node.py", line 94, in main
+    raise error[0]
+  File "/home/sunshine/Desktop/赛道一比赛程序/app/track1_grasp/track1_grasp/nodes/track1_node.py", line 69, in worker
+    report = pipeline.run()
+  File "/home/sunshine/Desktop/赛道一比赛程序/app/track1_grasp/track1_grasp/vision_pipeline.py", line 59, in run
+    return self._run_patrol()
+  File "/home/sunshine/Desktop/赛道一比赛程序/app/track1_grasp/track1_grasp/vision_pipeline.py", line 142, in _run_patrol
+    motion.execute_linear_route(
+  File "/home/sunshine/Desktop/赛道一比赛程序/app/track1_grasp/track1_grasp/motion.py", line 472, in execute_linear_route
+    self.move_joints(
+  File "/home/sunshine/Desktop/赛道一比赛程序/app/track1_grasp/track1_grasp/motion.py", line 580, in move_joints
+    current_q = self._send_joint_waypoint(
+  File "/home/sunshine/Desktop/赛道一比赛程序/app/track1_grasp/track1_grasp/motion.py", line 618, in _send_joint_waypoint
+    point = message.points.add()
+AttributeError: 'list' object has no attribute 'add'

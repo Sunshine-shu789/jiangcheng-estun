@@ -1,0 +1,123 @@
+schema_version: 1
+source_topic: /RobotInfo
+read_only_capture: true
+updated_at: '2026-10-20T05:14:19+08:00'
+captures:
+  pick_3_grasp:
+    captured_at: '2026-10-20T05:12:59+08:00'
+    capture_role: operator_manual_new_grasp_pose_candidate
+    runtime_ready: true
+    notes: User manually positioned the arm at the new point-3 grasp location. Recorded by a 30-frame
+      /RobotInfo read-only capture. No /RobotMove or gripper command was sent. The controller was Idle.
+      This low grasp pose must not be used as the point-3 observation pose. The separate high observation
+      pose was subsequently captured and is encoded in the live configuration. A 0.01 m/s live single-point
+      pick/return test passed on 2026-10-20 at 05:21:19.
+    stable_sample_count: 30
+    collection_duration_s: 1.472
+    controller_state: Idle
+    fault_flag: 0
+    joint_positions_rad:
+    - 1.5495304843980002
+    - 1.9209709969739999
+    - -1.5011990800791033
+    - -1.2190923826560003
+    - 1.480199374854
+    - 0.3706903004040001
+    joint_positions_deg:
+    - 88.78155698286747
+    - 110.06353069364823
+    - -86.01237149745431
+    - -69.84884836273638
+    - 84.80917701703709
+    - 21.238989719585838
+    tcp_xyz_m:
+    - -0.10915477291202483
+    - 0.4235906023301977
+    - 0.16218029524630417
+    tcp_rpy_rad:
+    - 3.0451784106976563
+    - 0.059528589027963
+    - -0.39791559173998436
+    tcp_rpy_deg:
+    - 174.47587079733137
+    - 3.4107369116710595
+    - -22.798884009151827
+    max_joint_spread_deg: 0.0006866452267648457
+    max_tcp_xyz_spread_mm: 0.008582849179844532
+    max_tcp_rpy_spread_deg: 0.0019596753572361796
+    read_only_capture_log: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/task_b_point3_new_grasp_readonly_20261020_051259.log
+    constraints:
+      requires_new_safe_high_observation_pose: false
+      approved_for_live_motion: true
+      new_observation_captured_at: '2026-10-20T05:14:19+08:00'
+  pick_3_observation:
+    captured_at: '2026-10-20T05:14:19+08:00'
+    capture_role: operator_manual_new_safe_high_observation_pose_candidate
+    runtime_ready: true
+    notes: User manually positioned the arm at the new point-3 high observation pose above the newly taught
+      grasp column. Recorded by a 30-frame /RobotInfo read-only capture. No /RobotMove or gripper command
+      was sent. The controller was Idle. Configuration, full-route precheck, camera confirmation and a 0.01 m/s live single-point pick/return
+      test all passed on 2026-10-20.
+    stable_sample_count: 30
+    collection_duration_s: 1.519
+    controller_state: Idle
+    fault_flag: 0
+    joint_positions_rad:
+    - 1.546471312506
+    - 1.6562707361459994
+    - -1.3846125931791038
+    - -1.2853195792200005
+    - 1.48020696486
+    - 0.3706719245999999
+    joint_positions_deg:
+    - 88.6062793446508
+    - 94.89732291219173
+    - -79.33245784982708
+    - -73.64338721483689
+    - 84.80961189234736
+    - 21.23793686357147
+    tcp_xyz_m:
+    - -0.10800867847142236
+    - 0.41770857970223113
+    - 0.24588120948280748
+    tcp_rpy_rad:
+    - 3.1216239501243455
+    - 0.0894381260163736
+    - -0.3952641983317136
+    tcp_rpy_deg:
+    - 178.8558775690816
+    - 5.124427148297414
+    - -22.646970357029105
+    max_joint_spread_deg: 0.0006866452267648457
+    max_tcp_xyz_spread_mm: 0.006968086212338909
+    max_tcp_rpy_spread_deg: 0.001285025358961593
+    read_only_capture_log: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/task_b_point3_new_observation_readonly_20261020_051419.log
+    constraints:
+      new_grasp_column:
+      - -0.10800867847142236
+      - 0.41770857970223113
+      captured_clearance_above_grasp_m: 0.0837009142365033
+      preferred_descent: vertical
+      approved_for_live_motion: true
+calibration_status: validated_live_single_point
+supersedes_point_3_observation:
+  source_file: task_b_point_captures_20261020.yaml
+  captured_at: '2026-10-20T02:13:46+08:00'
+  reason: Old observation window no longer matches the repositioned point-3 box.
+
+validation:
+  validated_at: '2026-10-20T05:21:19+08:00'
+  scope: point_3_single_in_place_pick_and_return
+  speed_mps: 0.01
+  vision_imgsz: 960
+  target_confirmed_hits: 2
+  target_confidence:
+  - 0.69
+  - 0.63
+  gripper_settled_angle_deg: 20.8
+  lift_height_m: 0.08
+  result: passed
+  task_log: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/task_B_20261020_052119.log
+  post_place_visual_check: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/vision/point3_post_place_check_20261020_052318
+  post_place_robot_state: AutoReady
+  post_place_fault_flag: 0

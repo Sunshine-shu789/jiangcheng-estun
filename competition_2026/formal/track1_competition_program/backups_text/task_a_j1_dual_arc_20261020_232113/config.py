@@ -1,0 +1,1866 @@
+"""YAML configuration for the hardware-agnostic Track 1 framework.
+
+One file describes the whole challenge.  The ``task.mode`` field selects the
+sub-task (A/B/C/D/E) and the matching sections (``task_a``, ``task_b``) pick
+up their own parameters; unset sections simply fall back to the defaults.
+"""
+
+from __future__ import annotations
+
+from dataclasses import dataclass, field, replace
+from math import hypot, isfinite
+from pathlib import Path
+from typing import Any, Mapping, Sequence
+
+import yaml
+
+from .domain import TaskMode
+
+
+def _triple(value: Sequence[float] | None, default: Sequence[float]) -> tuple[float, float, float]:
+    source = default if value is None else value
+    if len(source) != 3:
+        raise ValueError(f"expected a 3-value vector, got {source!r}")
+    return tuple(float(v) for v in source)  # type: ignore[return-value]
+
+
+def _pair(value: Sequence[float] | None) -> tuple[float, float]:
+    if (
+        value is None
+        or isinstance(value, (str, bytes))
+        or not isinstance(value, Sequence)
+        or len(value) != 2
+    ):
+        raise ValueError(f"expected a 2-value vector, got {value!r}")
+    return tuple(float(v) for v in value)  # type: ignore[return-value]
+
+
+def _joint_vector_deg(value: Any) -> tuple[float, ...] | None:
+    if value is None:
+        return None
+    if isinstance(value, (str, bytes)) or not isinstance(value, Sequence):
+        raise ValueError(f"expected a six-value joint vector, got {value!r}")
+    if len(value) != 6:
+        raise ValueError(f"expected a six-value joint vector, got {value!r}")
+    return tuple(float(v) for v in value)
+
+
+def _pose_value(value: Sequence[float] | None) -> tuple[float, ...] | None:
+    if value is None:
+        return None
+    if len(value) != 6:
+        raise ValueError(f"expected [x, y, z, rx, ry, rz], got {value!r}")
+    return tuple(float(v) for v in value)
+
+
+def _pose_item(item: Any) -> tuple[float, ...] | None:
+    """Read one pose entry: ``[x, y, z, rx, ry, rz]`` or ``{pose: [...]}``."""
+
+    if isinstance(item, Mapping):
+        item = item.get("pose", item.get("xyz_rpy", item.get("xyz")))
+    return _pose_value(item)
+
+
+def _pose_list(value: Sequence[Any] | None) -> tuple[tuple[float, ...], ...]:
+    if not value:
+        return ()
+    return tuple(pose for pose in (_pose_item(item) for item in value) if pose is not None)
+
+
+def _resolve_path(value: str, base_dir: Path) -> str:
+    if not value:
+        return ""
+    path = Path(value).expanduser()
+    if not path.is_absolute():
+        path = base_dir / path
+    return str(path.resolve())
+
+
+def _str_tuple(value: Sequence[Any] | None, default: Sequence[str] = ()) -> tuple[str, ...]:
+    if value is None:
+        return tuple(default)
+    return tuple(str(item) for item in value)
+
+
+def _float_tuple(value: Sequence[Any] | None) -> tuple[float, ...]:
+    if value is None:
+        return ()
+    if isinstance(value, (str, bytes)) or not isinstance(value, Sequence):
+        raise ValueError(f"expected a numeric sequence, got {value!r}")
+    return tuple(float(item) for item in value)
+
+
+def _int_tuple(value: Sequence[Any] | None) -> tuple[int, ...]:
+    if value is None:
+        return ()
+    if isinstance(value, (str, bytes)) or not isinstance(value, Sequence):
+        raise ValueError(f"expected an integer sequence, got {value!r}")
+    return tuple(int(item) for item in value)
+
+
+def _float_rows(value: Sequence[Any] | None) -> tuple[tuple[float, ...], ...]:
+    if value is None:
+        return ()
+    if isinstance(value, (str, bytes)) or not isinstance(value, Sequence):
+        raise ValueError(f"expected a sequence of numeric rows, got {value!r}")
+    rows: list[tuple[float, ...]] = []
+    for row in value:
+        if isinstance(row, (str, bytes)) or not isinstance(row, Sequence):
+            raise ValueError(f"expected a numeric row, got {row!r}")
+        rows.append(tuple(float(item) for item in row))
+    return tuple(rows)
+
+
+def _bool_tuple(value: Sequence[Any] | None) -> tuple[bool, ...]:
+    if not value:
+        return ()
+    if isinstance(value, (str, bytes)) or not isinstance(value, Sequence):
+        raise ValueError(f"expected a boolean sequence, got {value!r}")
+    result: list[bool] = []
+    for item in value:
+        if not isinstance(item, bool):
+            raise ValueError(f"expected boolean entries, got {value!r}")
+        result.append(item)
+    return tuple(result)
+
+
+@dataclass(frozen=True)
+class TaskConfig:
+    mode: TaskMode = TaskMode.C
+    max_picks: int = 20
+    stop_on_error: bool = False
+    sample_period_s: float = 0.5
+
+    @classmethod
+    def from_dict(cls, data: Mapping[str, Any] | None) -> "TaskConfig":
+        data = dict(data or {})
+        try:
+            mode = TaskMode(str(data.get("mode", "C")).upper())
+        except ValueError as exc:
+            raise ValueError("task.mode must be A, B, C, D or E") from exc
+        return cls(
+            mode=mode,
+            max_picks=int(data.get("max_picks", 20)),
+            stop_on_error=bool(data.get("stop_on_error", False)),
+            sample_period_s=float(data.get("sample_period_s", 0.5)),
+        )
+
+
+@dataclass(frozen=True)
+class VisionConfig:
+    #: mock | taska_realsense | realsense_yolo | legacy_http
+    backend: str = "mock"
+    scenario_file: str = ""
+    taska_config: str = ""
+    #: Read-only adapter for the legacy Task A browser recognizer.  Task A
+    #: must use that program instead of the newer grab-recognition runtime.
+    legacy_status_url: str = "http://127.0.0.1:9100/status.json"
+    legacy_poll_s: float = 0.10
+    min_confidence: float = 0.35
+    require_depth: bool = False
+    loop_scenario: bool = False
+    camera_frame_id: str = "camera_color_optical_frame"
+
+    #: Direct RealSense + YOLO backend.  These fields deliberately mirror the
+    #: proven arm_visual_probe settings instead of depending on taskA's live
+    #: configuration file.
+    weights: str = ""
+    width: int = 640
+    height: int = 480
+    fps: int = 15
+    serial: str = ""
+    warmup_frames: int = 20
+    imgsz: int = 640
+    device: str = "cpu"
+    target_class: str = ""
+    classes: tuple[str, ...] = ()
+    depth_window: int = 5
+    anchor: str = "center"  # center | top_center | bottom_center
+    rotate_180: bool = False
+    output_dir: str = ""
+    save_annotated: bool = False
+    save_interval_s: float = 2.0
+    show: bool = False
+    #: Keep a real camera/YOLO source running in a background thread.  Mock
+    #: sources stay synchronous so scripted unit tests remain deterministic.
+    continuous: bool = True
+    window_name: str = "Track 1 - D405 + YOLO"
+    preview_fps: float = 30.0
+    capture_timeout_s: float = 5.0
+    #: The first live frame includes lazy camera/model startup and can be much
+    #: slower than steady-state inference on the competition PC.
+    first_frame_timeout_s: float = 120.0
+    stale_after_s: float = 2.0
+
+    #: Lightweight temporal stabilisation for the live YOLO path.  Raw YOLO is
+    #: intentionally allowed to run at a lower threshold; the stabiliser is
+    #: responsible for confirming new tracks and suppressing one-frame noise.
+    stabilize: bool = True
+    stabilizer_inference_min_confidence: float = 0.10
+    stabilizer_confirm_hits: int = 3
+    stabilizer_max_misses: int = 3
+    stabilizer_match_iou: float = 0.20
+    stabilizer_confidence_alpha: float = 0.25
+    stabilizer_box_alpha: float = 0.55
+    stabilizer_depth_alpha: float = 0.25
+    stabilizer_duplicate_iou: float = 0.55
+    stabilizer_containment_ratio: float = 0.90
+    stabilizer_cross_class_iou: float = 0.40
+    stabilizer_cross_class_containment: float = 0.60
+    stabilizer_cross_class_conf_ratio: float = 1.50
+    stabilizer_max_per_class: int = 1
+    stabilizer_class_switch_hits: int = 3
+    stabilizer_edge_margin_px: int = 8
+    stabilizer_edge_suppress_confidence: float = 0.55
+
+    #: Optional per-task mock scenarios, e.g. {"A": "mock_task_a_scene.yaml"}.
+    scenario_files: Mapping[str, str] = field(default_factory=dict)
+
+    def accepted_target_labels(self) -> tuple[str, ...]:
+        """Return the detector labels allowed to confirm the configured target.
+
+        A non-empty ``target_class`` pins one exact object label for tasks that
+        follow one item.  When it is empty, ``classes`` is the allow-list; Task
+        A uses this mode to recognize all ten competition classes.
+        """
+
+        target_class = self.target_class.strip()
+        if target_class:
+            return (target_class,)
+        return tuple(
+            label.strip() for label in self.classes if label.strip()
+        )
+
+    @classmethod
+    def from_dict(
+        cls, data: Mapping[str, Any] | None, base_dir: Path
+    ) -> "VisionConfig":
+        data = dict(data or {})
+        target_class = str(data.get("target_class", ""))
+        configured_classes = _str_tuple(data.get("classes"))
+        if target_class and not configured_classes:
+            configured_classes = (target_class,)
+        stabilizer = dict(data.get("stabilizer", {}) or {})
+        return cls(
+            backend=str(data.get("backend", "mock")),
+            scenario_file=_resolve_path(str(data.get("scenario_file", "")), base_dir),
+            taska_config=_resolve_path(str(data.get("taska_config", "")), base_dir),
+            legacy_status_url=str(
+                data.get(
+                    "legacy_status_url",
+                    "http://127.0.0.1:9100/status.json",
+                )
+            ),
+            legacy_poll_s=float(data.get("legacy_poll_s", 0.10)),
+            min_confidence=float(data.get("min_confidence", 0.35)),
+            require_depth=bool(data.get("require_depth", False)),
+            loop_scenario=bool(data.get("loop_scenario", False)),
+            camera_frame_id=str(data.get("camera_frame_id", "camera_color_optical_frame")),
+            weights=_resolve_path(str(data.get("weights", "")), base_dir),
+            width=int(data.get("width", 640)),
+            height=int(data.get("height", 480)),
+            fps=int(data.get("fps", 15)),
+            serial=str(data.get("serial", "")),
+            warmup_frames=int(data.get("warmup_frames", 20)),
+            imgsz=int(data.get("imgsz", 640)),
+            device=str(data.get("device", "cpu")),
+            target_class=target_class,
+            classes=configured_classes,
+            depth_window=int(data.get("depth_window", 5)),
+            anchor=str(data.get("anchor", "center")),
+            rotate_180=bool(data.get("rotate_180", False)),
+            output_dir=_resolve_path(str(data.get("output_dir", "")), base_dir),
+            save_annotated=bool(data.get("save_annotated", False)),
+            save_interval_s=float(data.get("save_interval_s", 2.0)),
+            show=bool(data.get("show", False)),
+            continuous=bool(data.get("continuous", True)),
+            window_name=str(data.get("window_name", "Track 1 - D405 + YOLO")),
+            preview_fps=float(data.get("preview_fps", 30.0)),
+            capture_timeout_s=float(data.get("capture_timeout_s", 5.0)),
+            first_frame_timeout_s=float(data.get("first_frame_timeout_s", 120.0)),
+            stale_after_s=float(data.get("stale_after_s", 2.0)),
+            stabilize=bool(data.get("stabilize", stabilizer.get("enabled", True))),
+            stabilizer_inference_min_confidence=float(
+                stabilizer.get("inference_min_confidence", 0.10)
+            ),
+            stabilizer_confirm_hits=int(stabilizer.get("confirm_hits", 3)),
+            stabilizer_max_misses=int(stabilizer.get("max_misses", 3)),
+            stabilizer_match_iou=float(stabilizer.get("match_iou", 0.20)),
+            stabilizer_confidence_alpha=float(
+                stabilizer.get("confidence_alpha", 0.25)
+            ),
+            stabilizer_box_alpha=float(stabilizer.get("box_alpha", 0.55)),
+            stabilizer_depth_alpha=float(stabilizer.get("depth_alpha", 0.25)),
+            stabilizer_duplicate_iou=float(
+                stabilizer.get("duplicate_iou", 0.55)
+            ),
+            stabilizer_containment_ratio=float(
+                stabilizer.get("containment_ratio", 0.90)
+            ),
+            stabilizer_cross_class_iou=float(
+                stabilizer.get("cross_class_iou", 0.40)
+            ),
+            stabilizer_cross_class_containment=float(
+                stabilizer.get("cross_class_containment", 0.60)
+            ),
+            stabilizer_cross_class_conf_ratio=float(
+                stabilizer.get("cross_class_conf_ratio", 1.50)
+            ),
+            stabilizer_max_per_class=int(stabilizer.get("max_per_class", 1)),
+            stabilizer_class_switch_hits=int(
+                stabilizer.get("class_switch_hits", 3)
+            ),
+            stabilizer_edge_margin_px=int(
+                stabilizer.get("edge_margin_px", 8)
+            ),
+            stabilizer_edge_suppress_confidence=float(
+                stabilizer.get("edge_suppress_confidence", 0.55)
+            ),
+            scenario_files={
+                str(key).upper(): _resolve_path(str(value), base_dir)
+                for key, value in dict(data.get("scenario_files", {}) or {}).items()
+            },
+        )
+
+    def scenario_for(self, mode: "TaskMode | str") -> str:
+        """Scenario file to use for a task, falling back to scenario_file."""
+
+        key = mode.value if isinstance(mode, TaskMode) else str(mode).upper()
+        return self.scenario_files.get(key, self.scenario_file)
+
+
+@dataclass(frozen=True)
+class ObjectVisibilityConfig:
+    """Per-position target observation used by the task A patrol.
+
+    The arm stops at every position and observes the target for a bounded
+    window.  Consecutive detections confirm that the target is present at that
+    position.  If the target is not confirmed before the window expires, the
+    patrol records that position as unseen and safely advances to the next
+    one.  This is a search patrol, so an unseen position is not an error.
+    """
+
+    enabled: bool = False
+    visible_confirm_frames: int = 3
+    observation_window_s: float = 3.0
+    poll_s: float = 0.10
+
+    @classmethod
+    def from_dict(cls, data: Mapping[str, Any] | None) -> "ObjectVisibilityConfig":
+        data = dict(data or {})
+        return cls(
+            enabled=bool(data.get("enabled", False)),
+            visible_confirm_frames=int(data.get("visible_confirm_frames", 3)),
+            observation_window_s=float(
+                data.get(
+                    "observation_window_s",
+                    data.get("max_wait_visible_s", 3.0),
+                )
+            ),
+            poll_s=float(data.get("poll_s", 0.10)),
+        )
+
+
+@dataclass(frozen=True)
+class TaskAPatrolConfig:
+    """Ten-position Task A patrol.
+
+    ``joint_arc`` is the gripper-safe route.  Only the configured subset of
+    Joint2, Joint3 and Joint4 may move; Joint1, Joint5 and Joint6 are copied
+    exactly from the startup RobotInfo posture for every target.  Offsets are
+    relative to that startup posture so the route remains independent of the
+    absolute J1 yaw and of the mounted gripper's nominal pose.
+
+    ``cartesian_box`` is retained only for hardware-free regression tests.  The
+    live Task A configuration must use ``joint_arc``.
+    """
+
+    enabled: bool = False
+    mode: str = "joint_arc"  # joint_arc | cartesian_box
+    position_count: int = 10
+    #: Pause after every move so an operator can place one object, trigger
+    #: recognition with Enter, review the result, and only then advance.
+    manual_step: bool = False
+    #: Competition joint patrol.  Entries are one-based ROS joint numbers.
+    movable_joints: tuple[int, ...] = (2, 3, 4)
+    #: One row per position, in the same column order as movable_joints.
+    joint_offsets_deg: tuple[tuple[float, ...], ...] = ()
+    #: Optional logical arc labels (1 or 2) for the ten positions.
+    arc_indices: tuple[int, ...] = ()
+    joint_max_step_deg: float = 2.0
+    max_initial_move_deg: float = 30.0
+    max_target_move_deg: float = 30.0
+    #: Legacy Cartesian-box fields.
+    min_move_distance_m: float = 0.15
+    stride_m: float = 0.17
+    linear_step_m: float = 0.02
+    settle_s: float = 0.5
+    axes: tuple[str, ...] = ("x", "y", "z")
+    object_visibility: ObjectVisibilityConfig = field(
+        default_factory=ObjectVisibilityConfig
+    )
+
+    @classmethod
+    def from_dict(cls, data: Mapping[str, Any] | None) -> "TaskAPatrolConfig":
+        data = dict(data or {})
+        axes = tuple(
+            str(axis).lower()
+            for axis in _str_tuple(data.get("axes"), ("x", "y", "z"))
+        )
+        return cls(
+            enabled=bool(data.get("enabled", False)),
+            # Historical Task B/C configs contain a legacy Task A patrol
+            # section without an explicit mode.  Treat a missing key as the
+            # old Cartesian behaviour; the scored Task A configuration always
+            # declares ``mode: joint_arc`` explicitly.
+            mode=str(data.get("mode", "cartesian_box")).strip().lower(),
+            position_count=int(data.get("position_count", 10)),
+            manual_step=bool(data.get("manual_step", False)),
+            movable_joints=_int_tuple(data.get("movable_joints", (2, 3, 4))),
+            joint_offsets_deg=_float_rows(data.get("joint_offsets_deg")),
+            arc_indices=_int_tuple(data.get("arc_indices")),
+            joint_max_step_deg=float(data.get("joint_max_step_deg", 2.0)),
+            max_initial_move_deg=float(data.get("max_initial_move_deg", 30.0)),
+            max_target_move_deg=float(data.get("max_target_move_deg", 30.0)),
+            min_move_distance_m=float(data.get("min_move_distance_m", 0.15)),
+            stride_m=float(data.get("stride_m", 0.17)),
+            linear_step_m=float(data.get("linear_step_m", 0.02)),
+            settle_s=float(data.get("settle_s", 0.5)),
+            axes=axes,
+            object_visibility=ObjectVisibilityConfig.from_dict(
+                data.get("object_visibility")
+            ),
+        )
+
+
+@dataclass(frozen=True)
+class TaskAConfig:
+    """Task A: patrol, detect, annotate and score IoU from ten positions."""
+
+    iou_threshold: float = 0.75
+    ground_truth_file: str = ""
+    output_dir: str = ""
+    save_annotated: bool = False
+    draw_labels: bool = True
+    draw_ground_truth: bool = True
+    max_frames: int = 0  # 0 = every frame the scenario/camera provides
+    min_positions: int = 10  # competition demo: 10 different positions
+    patrol: TaskAPatrolConfig = field(default_factory=TaskAPatrolConfig)
+
+    @classmethod
+    def from_dict(
+        cls, data: Mapping[str, Any] | None, base_dir: Path
+    ) -> "TaskAConfig":
+        data = dict(data or {})
+        return cls(
+            iou_threshold=float(data.get("iou_threshold", 0.75)),
+            ground_truth_file=_resolve_path(str(data.get("ground_truth_file", "")), base_dir),
+            output_dir=_resolve_path(str(data.get("output_dir", "")), base_dir),
+            save_annotated=bool(data.get("save_annotated", False)),
+            draw_labels=bool(data.get("draw_labels", True)),
+            draw_ground_truth=bool(data.get("draw_ground_truth", True)),
+            max_frames=int(data.get("max_frames", 0)),
+            min_positions=int(data.get("min_positions", 10)),
+            patrol=TaskAPatrolConfig.from_dict(data.get("patrol")),
+        )
+
+
+@dataclass(frozen=True)
+class TaskBConfig:
+    """Task B: pick five same-class targets and return each to its pick point.
+
+    The default workflow is deliberately an in-place pick-and-return: the
+    release pose comes from the observed target, not from a fixed drop slot.
+    ``place_poses`` remains as a backwards-compatible metadata source for
+    callers that explicitly set ``return_to_pick`` to false.
+    """
+
+    place_poses: tuple[tuple[float, ...], ...] = ()
+    place_poses_file: str = ""
+    #: Captured absolute six-joint arm posture used once before the first
+    #: Task B visual search.  An empty path leaves the current pose unchanged.
+    initial_pose_file: str = ""
+    initial_pose_tolerance_deg: float = 0.5
+    rounds: int = 5
+    #: Release at the observed grasp location instead of a configured slot.
+    return_to_pick: bool = True
+    #: Optional class lock.  When empty, the first successful target class is
+    #: reused for all remaining rounds.
+    target_class: str = ""
+    #: Maximum base-frame distance between a detection and the expected point.
+    pick_pose_tolerance_m: float = 0.08
+    #: A candidate must be at least this much closer to the current point than
+    #: to every previously completed point.  This prevents an object returned
+    #: to an old point from triggering the next round when tolerance circles
+    #: overlap.
+    point_assignment_margin_m: float = 0.01
+    #: How long to wait for the target to appear at the next point.  Zero waits
+    #: until the task is interrupted.
+    next_point_timeout_s: float = 120.0
+    next_point_poll_s: float = 0.5
+    #: Supervised pause after reaching the lifted pose and before the return
+    #: path starts.  A non-zero value makes the hold explicit in live logs.
+    lift_hold_s: float = 0.0
+    #: Pause after each completed in-place pick-and-return.  The operator can
+    #: reposition the target at the next point, then press Enter to let the
+    #: next cycle begin its visual search.  No motion is issued while paused.
+    operator_pause_after_each_pick: bool = False
+    #: When true the same object/class is used for every round (the "same
+    #: target class at five positions" wording of the competition).
+    keep_same_target: bool = True
+    #: Human-readable labels for the five reference points.  With
+    #: ``return_to_pick`` enabled these labels are reporting metadata only.
+    place_names: tuple[str, ...] = ()
+    #: Optional per-reference-point grasp height overrides, in the same order
+    #: as ``place_poses``.  ``None`` falls back to ``motion.grasp_z_m``.
+    point_grasp_z_m: tuple[float | None, ...] = ()
+    #: Optional per-reference-point switches that take grasp/release XY from
+    #: the point's taught observation anchor instead of the visual XY.  Visual
+    #: confirmation is still mandatory before planning; this only selects a
+    #: validated vertical descent column for points that need it.
+    point_grasp_xy_from_observation: tuple[bool, ...] = ()
+    #: Optional per-reference-point explicit grasp/release XY in the robot base
+    #: frame.  This keeps a manually taught grasp column fixed even when the
+    #: safe camera observation pose is deliberately offset from it.  Mutually
+    #: exclusive with ``point_grasp_xy_from_observation`` for the same point.
+    point_grasp_xy_m: tuple[tuple[float, float] | None, ...] = ()
+    #: Optional per-reference-point XY correction in the flange/tool frame,
+    #: applied after selecting the visual, taught-observation, or explicit
+    #: grasp XY.  The final grasp RPY rotates the correction into the base
+    #: frame, but only its base X/Y projection is applied so grasp Z remains
+    #: fixed.  Target confirmation and point assignment still use the
+    #: unshifted coordinates.
+    point_grasp_xy_offset_m: tuple[tuple[float, float], ...] = ()
+    #: Optional per-reference-point grasp orientation overrides, in the same
+    #: order as ``place_poses``.  ``None`` falls back to ``motion.grasp_rpy``.
+    point_grasp_rpy: tuple[tuple[float, float, float] | None, ...] = ()
+    #: Optional per-reference-point switches that lock the high approach,
+    #: descent, lift and release to one vertical grasp column.  The high pose
+    #: then uses the exact grasp XY and orientation, so once the arm is above
+    #: the object the only remaining pre-grasp motion is a straight Z descent.
+    point_vertical_grasp_descent: tuple[bool, ...] = ()
+    #: Optional per-reference-point override for the locked high approach
+    #: height above the final grasp Z.  ``None`` falls back to
+    #: ``vertical_grasp_approach_height_m`` so a point-specific clearance can
+    #: be tuned without changing every other point's route.
+    point_vertical_grasp_approach_height_m: tuple[float | None, ...] = ()
+    #: Height of the locked high approach pose above the final grasp Z.  With a
+    #: verified grasp height this gives a deterministic vertical descent instead
+    #: of inheriting an arbitrary observation-pose height.
+    vertical_grasp_approach_height_m: float = 0.08
+    #: Optional per-reference-point six-joint observation posture in degrees.
+    #: When an entry is present, the arm moves there before its first camera
+    #: observation for that point.  This keeps the later Cartesian approach
+    #: local to the operator-validated low observation posture instead of
+    #: planning a long diagonal move from the high startup/retreat posture.
+    point_observation_joints_deg: tuple[tuple[float, ...] | None, ...] = ()
+    #: Maximum six-joint residual after moving to an observation posture.
+    observation_pose_tolerance_deg: float = 0.5
+    #: Return to ``initial_pose_file`` after each point has been picked,
+    #: returned in place and retreated successfully.  With the supervised gate
+    #: enabled, the arm is already at the initial pose before the operator is
+    #: asked to move the banana and press Enter for the next point.
+    return_to_initial_after_each_pick: bool = False
+    #: Legacy final-only return mode.  Ignored for per-point return decisions
+    #: when ``return_to_initial_after_each_pick`` is true.
+    return_to_initial_after_task: bool = False
+
+    @classmethod
+    def from_dict(
+        cls, data: Mapping[str, Any] | None, base_dir: Path
+    ) -> "TaskBConfig":
+        data = dict(data or {})
+        point_grasp_z_m = tuple(
+            None if value is None else float(value)
+            for value in data.get("point_grasp_z_m", ())
+        )
+        point_grasp_xy_from_observation = _bool_tuple(
+            data.get("point_grasp_xy_from_observation", ())
+        )
+        point_grasp_xy_m = tuple(
+            None if value is None else _pair(value)
+            for value in data.get("point_grasp_xy_m", ())
+        )
+        point_grasp_xy_offset_m = tuple(
+            _pair(value)
+            for value in data.get("point_grasp_xy_offset_m", ())
+        )
+        point_grasp_rpy = tuple(
+            None
+            if value is None
+            else _triple(value, (0.0, 0.0, 0.0))
+            for value in data.get("point_grasp_rpy", ())
+        )
+        point_vertical_grasp_descent = _bool_tuple(
+            data.get("point_vertical_grasp_descent", ())
+        )
+        point_vertical_grasp_approach_height_m = tuple(
+            None if value is None else float(value)
+            for value in data.get("point_vertical_grasp_approach_height_m", ())
+        )
+        point_observation_joints_deg = tuple(
+            _joint_vector_deg(value)
+            for value in data.get("point_observation_joints_deg", ())
+        )
+        return cls(
+            place_poses=_pose_list(data.get("place_poses")),
+            place_poses_file=_resolve_path(str(data.get("place_poses_file", "")), base_dir),
+            initial_pose_file=_resolve_path(
+                str(data.get("initial_pose_file", "")), base_dir
+            ),
+            initial_pose_tolerance_deg=float(
+                data.get("initial_pose_tolerance_deg", 0.5)
+            ),
+            rounds=int(data.get("rounds", 5)),
+            return_to_pick=bool(data.get("return_to_pick", True)),
+            target_class=str(data.get("target_class", "")),
+            pick_pose_tolerance_m=float(
+                data.get("pick_pose_tolerance_m", 0.08)
+            ),
+            point_assignment_margin_m=float(
+                data.get("point_assignment_margin_m", 0.01)
+            ),
+            next_point_timeout_s=float(
+                data.get("next_point_timeout_s", 120.0)
+            ),
+            next_point_poll_s=float(
+                data.get("next_point_poll_s", 0.5)
+            ),
+            lift_hold_s=float(data.get("lift_hold_s", 0.0)),
+            operator_pause_after_each_pick=bool(
+                data.get("operator_pause_after_each_pick", False)
+            ),
+            keep_same_target=bool(data.get("keep_same_target", True)),
+            place_names=_str_tuple(data.get("place_names")),
+            point_grasp_z_m=point_grasp_z_m,
+            point_grasp_xy_from_observation=point_grasp_xy_from_observation,
+            point_grasp_xy_m=point_grasp_xy_m,
+            point_grasp_xy_offset_m=point_grasp_xy_offset_m,
+            point_grasp_rpy=point_grasp_rpy,
+            point_vertical_grasp_descent=point_vertical_grasp_descent,
+            point_vertical_grasp_approach_height_m=(
+                point_vertical_grasp_approach_height_m
+            ),
+            vertical_grasp_approach_height_m=float(
+                data.get("vertical_grasp_approach_height_m", 0.08)
+            ),
+            point_observation_joints_deg=point_observation_joints_deg,
+            observation_pose_tolerance_deg=float(
+                data.get("observation_pose_tolerance_deg", 0.5)
+            ),
+            return_to_initial_after_each_pick=bool(
+                data.get("return_to_initial_after_each_pick", False)
+            ),
+            return_to_initial_after_task=bool(
+                data.get("return_to_initial_after_task", False)
+            ),
+        )
+
+
+@dataclass(frozen=True)
+class TargetConfig:
+    # any = C; known_and_unseen = D; ordered = E.  known/any also cover the
+    # single-object wording of task B.
+    policy: str = "any"
+    known_classes: tuple[str, ...] = ()
+    unknown_labels: tuple[str, ...] = ("unknown", "object")
+    unknown_min_graspability: float = 0.65
+    order: tuple[str, ...] = ()
+    order_file: str = ""
+    max_attempts_per_target: int = 2
+
+    @classmethod
+    def from_dict(
+        cls, data: Mapping[str, Any] | None, base_dir: Path
+    ) -> "TargetConfig":
+        data = dict(data or {})
+        return cls(
+            policy=str(data.get("policy", "any")),
+            known_classes=_str_tuple(data.get("known_classes")),
+            unknown_labels=_str_tuple(data.get("unknown_labels"), ("unknown", "object")),
+            unknown_min_graspability=float(data.get("unknown_min_graspability", 0.65)),
+            order=_str_tuple(data.get("order")),
+            order_file=_resolve_path(str(data.get("order_file", "")), base_dir),
+            max_attempts_per_target=int(data.get("max_attempts_per_target", 2)),
+        )
+
+
+@dataclass(frozen=True)
+class PoseConfig:
+    camera_frame: str = "base"  # base | flange
+    extrinsics_file: str = ""
+    use_detection_base_xyz: bool = True
+    fallback_camera_to_base: bool = False
+    fixed_camera_to_base_xyz: tuple[float, float, float] = (0.0, 0.0, 0.0)
+
+    @classmethod
+    def from_dict(
+        cls, data: Mapping[str, Any] | None, base_dir: Path
+    ) -> "PoseConfig":
+        data = dict(data or {})
+        return cls(
+            camera_frame=str(data.get("camera_frame", "base")),
+            extrinsics_file=_resolve_path(str(data.get("extrinsics_file", "")), base_dir),
+            use_detection_base_xyz=bool(data.get("use_detection_base_xyz", True)),
+            fallback_camera_to_base=bool(data.get("fallback_camera_to_base", False)),
+            fixed_camera_to_base_xyz=_triple(
+                data.get("fixed_camera_to_base_xyz"), (0.0, 0.0, 0.0)
+            ),
+        )
+
+
+@dataclass(frozen=True)
+class MotionConfig:
+    backend: str = "mock"  # mock | robotmove
+    dry_run: bool = True
+    motion_mode: str = "joint_ik"  # cartesian (legacy) | joint_ik
+    workspace_min: tuple[float, float, float] = (-0.45, -0.45, 0.0)
+    workspace_max: tuple[float, float, float] = (0.45, 0.45, 0.60)
+    workspace_margin: float = 0.0
+    approach_height: float = 0.08
+    grasp_z_offset: float = 0.0
+    #: Optional operator-verified TCP height for Task B in-place pick/return.
+    #: When set, visual detection supplies target XY but this value supplies
+    #: the calibrated grasp Z instead of the raw depth-derived height.
+    grasp_z_m: float | None = None
+    #: Optional operator-verified TCP orientation for Task B pick/return.
+    grasp_rpy: tuple[float, float, float] | None = None
+    lift_height: float = 0.12
+    place_pose: tuple[float, ...] | None = None
+    place_approach_height: float = 0.08
+    retreat_height: float = 0.08
+    speed_mps: float = 0.05
+    #: Scalar joint speed used for explicit joint-space moves such as the
+    #: initial pose and per-point observation posture.
+    joint_speed_rad_s: float = 0.6
+    #: Upper bound for the scalar joint speed derived from Cartesian motion.
+    #: The vendor bridge accepts one velocity scalar, not six joint rates.
+    joint_speed_safety_limit_rad_s: float = 0.6
+    orientation: str = "fixed"  # fixed | current
+    fixed_rpy: tuple[float, float, float] = (3.141592653589793, 0.0, 0.0)
+    move_timeout_s: float = 30.0
+    position_tolerance_m: float = 0.003
+    poll_period_s: float = 0.05
+    robotmove_topic: str = "RobotMove"
+    robotinfo_topic: str = "RobotInfo"
+    robot_info_timeout_s: float = 1.0
+    joint_max_step_deg: float = 1.0
+    joint_tolerance_deg: float = 0.35
+    joint_start_tolerance_deg: float = 0.05
+    joint_limit_margin_deg: float = 2.0
+    joint_move_timeout_s: float = 8.0
+    joint_reject_timeout_s: float = 2.0
+    #: Planned Cartesian moves are subdivided until every adjacent IK step is
+    #: below the joint-step limit.  The complete route is checked before the
+    #: first command is published.
+    cartesian_step_m: float = 0.002
+    cartesian_min_step_m: float = 0.0005
+    cartesian_orientation_step_deg: float = 1.0
+    cartesian_min_orientation_step_deg: float = 0.1
+    cartesian_max_waypoints: int = 600
+    cartesian_joint_step_deg: float = 0.5
+    cartesian_joint_branch_jump_deg: float = 5.0
+    #: Maximum change in the per-waypoint joint increment.  This is a discrete
+    #: acceleration guard because the controller bridge accepts absolute
+    #: waypoint positions rather than a timed multi-point trajectory.
+    cartesian_joint_acceleration_limit_deg: float = 0.25
+    cartesian_min_jacobian_singular_value: float = 0.01
+
+    @classmethod
+    def from_dict(cls, data: Mapping[str, Any] | None) -> "MotionConfig":
+        data = dict(data or {})
+        return cls(
+            backend=str(data.get("backend", "mock")),
+            dry_run=bool(data.get("dry_run", True)),
+            motion_mode=str(data.get("motion_mode", "joint_ik")),
+            workspace_min=_triple(data.get("workspace_min"), (-0.45, -0.45, 0.0)),
+            workspace_max=_triple(data.get("workspace_max"), (0.45, 0.45, 0.60)),
+            workspace_margin=float(data.get("workspace_margin", 0.0)),
+            approach_height=float(data.get("approach_height", 0.08)),
+            grasp_z_offset=float(data.get("grasp_z_offset", 0.0)),
+            grasp_z_m=(
+                None
+                if data.get("grasp_z_m") is None
+                else float(data["grasp_z_m"])
+            ),
+            grasp_rpy=(
+                None
+                if data.get("grasp_rpy") is None
+                else _triple(data.get("grasp_rpy"), (0.0, 0.0, 0.0))
+            ),
+            lift_height=float(data.get("lift_height", 0.12)),
+            place_pose=_pose_value(data.get("place_pose")),
+            place_approach_height=float(data.get("place_approach_height", 0.08)),
+            retreat_height=float(data.get("retreat_height", 0.08)),
+            speed_mps=float(data.get("speed_mps", 0.05)),
+            joint_speed_rad_s=float(data.get("joint_speed_rad_s", 0.6)),
+            joint_speed_safety_limit_rad_s=float(
+                data.get("joint_speed_safety_limit_rad_s", 0.6)
+            ),
+            orientation=str(data.get("orientation", "fixed")),
+            fixed_rpy=_triple(
+                data.get("fixed_rpy"), (3.141592653589793, 0.0, 0.0)
+            ),
+            move_timeout_s=float(data.get("move_timeout_s", 30.0)),
+            position_tolerance_m=float(data.get("position_tolerance_m", 0.003)),
+            poll_period_s=float(data.get("poll_period_s", 0.05)),
+            robotmove_topic=str(data.get("robotmove_topic", "RobotMove")),
+            robotinfo_topic=str(data.get("robotinfo_topic", "RobotInfo")),
+            robot_info_timeout_s=float(data.get("robot_info_timeout_s", 1.0)),
+            joint_max_step_deg=float(data.get("joint_max_step_deg", 1.0)),
+            joint_tolerance_deg=float(data.get("joint_tolerance_deg", 0.35)),
+            joint_start_tolerance_deg=float(
+                data.get("joint_start_tolerance_deg", 0.05)
+            ),
+            joint_limit_margin_deg=float(
+                data.get("joint_limit_margin_deg", 2.0)
+            ),
+            joint_move_timeout_s=float(data.get("joint_move_timeout_s", 8.0)),
+            joint_reject_timeout_s=float(
+                data.get("joint_reject_timeout_s", 2.0)
+            ),
+            cartesian_step_m=float(data.get("cartesian_step_m", 0.002)),
+            cartesian_min_step_m=float(
+                data.get("cartesian_min_step_m", 0.0005)
+            ),
+            cartesian_orientation_step_deg=float(
+                data.get("cartesian_orientation_step_deg", 1.0)
+            ),
+            cartesian_min_orientation_step_deg=float(
+                data.get("cartesian_min_orientation_step_deg", 0.1)
+            ),
+            cartesian_max_waypoints=int(
+                data.get("cartesian_max_waypoints", 600)
+            ),
+            cartesian_joint_step_deg=float(
+                data.get("cartesian_joint_step_deg", 0.5)
+            ),
+            cartesian_joint_branch_jump_deg=float(
+                data.get("cartesian_joint_branch_jump_deg", 5.0)
+            ),
+            cartesian_joint_acceleration_limit_deg=float(
+                data.get("cartesian_joint_acceleration_limit_deg", 0.25)
+            ),
+            cartesian_min_jacobian_singular_value=float(
+                data.get("cartesian_min_jacobian_singular_value", 0.01)
+            ),
+        )
+
+
+@dataclass(frozen=True)
+class ServoConfig:
+    """Small-step eye-in-hand visual servoing parameters.
+
+    ``camera_to_tool`` is R_tool_camera.  After the D405 RGB-D frame has been
+    rotated 180 degrees, identity means image +X/+Y/+Z align with tool
+    +X/+Y/+Z.  Keep this matrix configurable and verify signs under supervision.
+    """
+
+    desired_standoff_m: float = 0.18
+    min_depth_m: float = 0.12
+    center_tolerance_px: float = 35.0
+    depth_tolerance_m: float = 0.015
+    max_steps: int = 36
+    max_step_m: float = 0.005
+    max_total_travel_m: float = 0.35
+    speed_mps: float = 0.01
+    lateral_gain: float = 0.8
+    forward_gain: float = 0.8
+    settle_s_after_move: float = 0.25
+    convergence_frames: int = 2
+    camera_to_tool: tuple[tuple[float, float, float], ...] = (
+        (1.0, 0.0, 0.0),
+        (0.0, 1.0, 0.0),
+        (0.0, 0.0, 1.0),
+    )
+
+    @classmethod
+    def from_dict(cls, data: Mapping[str, Any] | None) -> "ServoConfig":
+        import numpy as np
+
+        data = dict(data or {})
+        matrix = np.asarray(
+            data.get("camera_to_tool", np.eye(3).tolist()), dtype=float
+        )
+        if matrix.shape != (3, 3):
+            raise ValueError("servo.camera_to_tool must be a 3x3 matrix")
+        if not np.all(np.isfinite(matrix)):
+            raise ValueError("servo.camera_to_tool contains non-finite values")
+        if not np.allclose(matrix.T @ matrix, np.eye(3), atol=1e-4):
+            raise ValueError("servo.camera_to_tool must be orthonormal")
+        if abs(float(np.linalg.det(matrix)) - 1.0) > 1e-4:
+            raise ValueError("servo.camera_to_tool must have determinant +1")
+        config = cls(
+            desired_standoff_m=float(data.get("desired_standoff_m", 0.18)),
+            min_depth_m=float(data.get("min_depth_m", 0.12)),
+            center_tolerance_px=float(data.get("center_tolerance_px", 35.0)),
+            depth_tolerance_m=float(data.get("depth_tolerance_m", 0.015)),
+            max_steps=int(data.get("max_steps", 36)),
+            max_step_m=float(data.get("max_step_m", 0.005)),
+            max_total_travel_m=float(data.get("max_total_travel_m", 0.35)),
+            speed_mps=float(data.get("speed_mps", 0.01)),
+            lateral_gain=float(data.get("lateral_gain", 0.8)),
+            forward_gain=float(data.get("forward_gain", 0.8)),
+            settle_s_after_move=float(data.get("settle_s_after_move", 0.25)),
+            convergence_frames=int(data.get("convergence_frames", 2)),
+            camera_to_tool=tuple(tuple(float(v) for v in row) for row in matrix),
+        )
+        if not 0.0 < config.max_step_m <= 0.05:
+            raise ValueError("servo.max_step_m must be in (0, 0.05]")
+        if config.min_depth_m <= 0.0:
+            raise ValueError("servo.min_depth_m must be positive")
+        if config.desired_standoff_m <= config.min_depth_m:
+            raise ValueError("servo.desired_standoff_m must exceed min_depth_m")
+        if config.max_steps < 1 or config.convergence_frames < 1:
+            raise ValueError("servo max_steps/convergence_frames must be >= 1")
+        if config.max_total_travel_m <= 0.0:
+            raise ValueError("servo.max_total_travel_m must be positive")
+        if not 0.0 < config.speed_mps <= 0.05:
+            raise ValueError("servo.speed_mps must be in (0, 0.05]")
+        return config
+
+
+@dataclass(frozen=True)
+class SearchConfig:
+    enabled: bool = True
+    yaw_offsets_deg: tuple[float, ...] = (0.0,)
+    pitch_down_offsets_deg: tuple[float, ...] = (0.0,)
+    settle_s: float = 0.8
+    #: Safe Cartesian observation positions around the expected Task B point.
+    #: Each entry is an (x, y) offset in metres from that point.  Empty keeps
+    #: the legacy wrist-only search used by the hardware-free tests.
+    observation_offsets_xy_m: tuple[tuple[float, float], ...] = ()
+    #: Height above the expected point's Z used for the active observation
+    #: positions.  Keep the camera clear of the table while it scans.
+    observation_clearance_m: float = 0.20
+    observe_frames: int = 3
+    #: Number of consecutive frames that must select the same target before a
+    #: pick cycle is allowed to move.  The D405 stabilizer already suppresses
+    #: one-frame flicker, but this second gate protects the motion planner from
+    #: a single false positive after a search move.
+    confirm_hits: int = 2
+    return_to_initial_on_miss: bool = True
+
+    @classmethod
+    def from_dict(cls, data: Mapping[str, Any] | None) -> "SearchConfig":
+        data = dict(data or {})
+        offsets: list[tuple[float, float]] = []
+        raw_offsets = data.get("observation_offsets_xy_m", ())
+        if raw_offsets is None:
+            raw_offsets = ()
+        for index, raw in enumerate(raw_offsets, start=1):
+            if not isinstance(raw, (list, tuple)) or len(raw) != 2:
+                raise ValueError(
+                    "search.observation_offsets_xy_m entries must be [x, y]"
+                )
+            try:
+                x, y = (float(raw[0]), float(raw[1]))
+            except (TypeError, ValueError) as exc:
+                raise ValueError(
+                    "search.observation_offsets_xy_m entries must be numeric"
+                ) from exc
+            if not isfinite(x) or not isfinite(y):
+                raise ValueError(
+                    f"search.observation_offsets_xy_m entry {index} must be finite"
+                )
+            offsets.append((x, y))
+        config = cls(
+            enabled=bool(data.get("enabled", True)),
+            yaw_offsets_deg=tuple(
+                float(v) for v in data.get("yaw_offsets_deg", (0.0,))
+            ),
+            pitch_down_offsets_deg=tuple(
+                float(v) for v in data.get("pitch_down_offsets_deg", (0.0,))
+            ),
+            settle_s=float(data.get("settle_s", 0.8)),
+            observation_offsets_xy_m=tuple(offsets),
+            observation_clearance_m=float(
+                data.get("observation_clearance_m", 0.20)
+            ),
+            observe_frames=int(data.get("observe_frames", 3)),
+            confirm_hits=int(data.get("confirm_hits", 2)),
+            return_to_initial_on_miss=bool(
+                data.get("return_to_initial_on_miss", True)
+            ),
+        )
+        if config.observe_frames < 1:
+            raise ValueError("search.observe_frames must be >= 1")
+        if not 1 <= config.confirm_hits <= config.observe_frames:
+            raise ValueError(
+                "search.confirm_hits must be in [1, search.observe_frames]"
+            )
+        if config.settle_s < 0.0:
+            raise ValueError("search.settle_s must be >= 0")
+        if config.observation_clearance_m <= 0.0:
+            raise ValueError("search.observation_clearance_m must be > 0")
+        return config
+
+
+@dataclass(frozen=True)
+class GripperConfig:
+    """How to drive the jaws.
+
+    ``backend`` selects the transport.  Everything after it is deliberately
+    generic so that a two-finger electric gripper with its own electronic
+    controller can be driven by whichever interface it exposes:
+
+    * ``mock``        - no hardware, records commands (default)
+    * ``taska``       - reuse the existing pluggable gripper in taskA_grasp
+    * ``serial``      - RS485/RS232: open/close command bytes, optional feedback
+    * ``tcp``         - Ethernet: same command bytes over a socket
+    * ``ros_service`` - call a service exposed by the vendor's ROS driver
+    * ``ros_topic``   - publish std_msgs/Bool on a topic consumed by a driver
+    * ``ms42dc_ros``  - use the vendor ``step_motor/motor_node`` ROS driver
+    """
+
+    backend: str = "mock"
+    taska_config: str = ""
+    settle_time_s: float = 0.8
+    open_before_approach: bool = True
+
+    # --- generic discrete command layer (serial / tcp) -------------------
+    open_command: str = ""
+    close_command: str = ""
+    command_encoding: str = "ascii"  # ascii | hex
+    command_terminator: str = ""  # e.g. "\r\n"; escapes are expanded
+    expect_response: bool = False
+    response_timeout_s: float = 0.3
+    response_length: int = 0  # 0 -> read whatever is available
+    feedback_command: str = ""  # optional query issued before state is read
+    feedback_open_match: str = ""  # substring in the reply that means OPEN
+    feedback_closed_match: str = ""  # substring in the reply that means CLOSED
+
+    # --- serial ----------------------------------------------------------
+    serial_port: str = ""
+    serial_baudrate: int = 115200
+    serial_bytesize: int = 8
+    serial_parity: str = "N"
+    serial_stopbits: int = 1
+
+    # --- tcp -------------------------------------------------------------
+    tcp_host: str = ""
+    tcp_port: int = 0
+
+    # --- ros drivers -----------------------------------------------------
+    ros_service: str = ""
+    ros_topic: str = ""
+    ros_open_value: bool = True
+    ros_close_value: bool = False
+
+    # --- WHEELTEC FAE 2-finger electric gripper (MS42DC stepper) ---------
+    #   ``ms42dc`` talks the 11-byte protocol directly over the serial port.
+    #   ``ms42dc_ros`` delegates the same protocol to the vendor ROS 2 node,
+    #   so only one process owns /dev/motor_serial.
+    device_id: int = 1
+    subdivide: int = 32
+    motion_mode: int = 2  # 2 = relative angle, 4 = absolute angle
+    open_angle_deg: float = 1872.0  # 5.2 turns; wire value is this times ten
+    close_angle_deg: float = 1872.0
+    speed_rad_s: float = 20.0  # wire value is this times ten
+    status_timeout_s: float = 1.0
+    motion_timeout_s: float = 8.0
+    invert_direction: bool = False  # swap open/close when the wiring is reversed
+    hold_min_angle_deg: float = 0.0  # > 0 enables the empty-grip angle check
+    require_feedback: bool = False
+    ignore_empty_close: bool = False
+
+    # --- vendor MS42DC ROS 2 driver --------------------------------------
+    motor_control_topic: str = "/motor_control"
+    motor_state_topic: str = "/motor_state"
+    open_dir: int = 0
+    close_dir: int = 1
+    ros_connect_timeout_s: float = 3.0
+
+    @classmethod
+    def from_dict(
+        cls, data: Mapping[str, Any] | None, base_dir: Path
+    ) -> "GripperConfig":
+        data = dict(data or {})
+        return cls(
+            backend=str(data.get("backend", "mock")),
+            taska_config=_resolve_path(str(data.get("taska_config", "")), base_dir),
+            settle_time_s=float(data.get("settle_time_s", 0.8)),
+            open_before_approach=bool(data.get("open_before_approach", True)),
+            open_command=str(data.get("open_command", "")),
+            close_command=str(data.get("close_command", "")),
+            command_encoding=str(data.get("command_encoding", "ascii")),
+            command_terminator=str(data.get("command_terminator", "")),
+            expect_response=bool(data.get("expect_response", False)),
+            response_timeout_s=float(data.get("response_timeout_s", 0.3)),
+            response_length=int(data.get("response_length", 0)),
+            feedback_command=str(data.get("feedback_command", "")),
+            feedback_open_match=str(data.get("feedback_open_match", "")),
+            feedback_closed_match=str(data.get("feedback_closed_match", "")),
+            serial_port=str(data.get("serial_port", "")),
+            serial_baudrate=int(data.get("serial_baudrate", 115200)),
+            serial_bytesize=int(data.get("serial_bytesize", 8)),
+            serial_parity=str(data.get("serial_parity", "N")),
+            serial_stopbits=int(data.get("serial_stopbits", 1)),
+            tcp_host=str(data.get("tcp_host", "")),
+            tcp_port=int(data.get("tcp_port", 0)),
+            ros_service=str(data.get("ros_service", "")),
+            ros_topic=str(data.get("ros_topic", "")),
+            ros_open_value=bool(data.get("ros_open_value", True)),
+            ros_close_value=bool(data.get("ros_close_value", False)),
+            device_id=int(data.get("device_id", 1)),
+            subdivide=int(data.get("subdivide", 32)),
+            motion_mode=int(data.get("motion_mode", 2)),
+            open_angle_deg=float(data.get("open_angle_deg", 1872.0)),
+            close_angle_deg=float(data.get("close_angle_deg", 1872.0)),
+            speed_rad_s=float(data.get("speed_rad_s", 20.0)),
+            status_timeout_s=float(data.get("status_timeout_s", 1.0)),
+            motion_timeout_s=float(data.get("motion_timeout_s", 8.0)),
+            invert_direction=bool(data.get("invert_direction", False)),
+            hold_min_angle_deg=float(data.get("hold_min_angle_deg", 0.0)),
+            require_feedback=bool(data.get("require_feedback", False)),
+            ignore_empty_close=bool(data.get("ignore_empty_close", False)),
+            motor_control_topic=str(data.get("motor_control_topic", "/motor_control")),
+            motor_state_topic=str(data.get("motor_state_topic", "/motor_state")),
+            open_dir=int(data.get("open_dir", 0)),
+            close_dir=int(data.get("close_dir", 1)),
+            ros_connect_timeout_s=float(data.get("ros_connect_timeout_s", 3.0)),
+        )
+
+
+@dataclass(frozen=True)
+class Track1Config:
+    task: TaskConfig = field(default_factory=TaskConfig)
+    vision: VisionConfig = field(default_factory=VisionConfig)
+    task_a: TaskAConfig = field(default_factory=TaskAConfig)
+    task_b: TaskBConfig = field(default_factory=TaskBConfig)
+    target: TargetConfig = field(default_factory=TargetConfig)
+    pose: PoseConfig = field(default_factory=PoseConfig)
+    motion: MotionConfig = field(default_factory=MotionConfig)
+    servo: ServoConfig = field(default_factory=ServoConfig)
+    search: SearchConfig = field(default_factory=SearchConfig)
+    gripper: GripperConfig = field(default_factory=GripperConfig)
+
+    @classmethod
+    def from_dict(
+        cls, data: Mapping[str, Any] | None, *, base_dir: Path | None = None
+    ) -> "Track1Config":
+        data = dict(data or {})
+        base_dir = base_dir or Path.cwd()
+        config = cls(
+            task=TaskConfig.from_dict(data.get("task")),
+            vision=VisionConfig.from_dict(data.get("vision"), base_dir),
+            task_a=TaskAConfig.from_dict(data.get("task_a"), base_dir),
+            task_b=TaskBConfig.from_dict(data.get("task_b"), base_dir),
+            target=TargetConfig.from_dict(data.get("target"), base_dir),
+            pose=PoseConfig.from_dict(data.get("pose"), base_dir),
+            motion=MotionConfig.from_dict(data.get("motion")),
+            servo=ServoConfig.from_dict(data.get("servo")),
+            search=SearchConfig.from_dict(data.get("search")),
+            gripper=GripperConfig.from_dict(data.get("gripper"), base_dir),
+        )
+        config.validate()
+        return config
+
+    @property
+    def order(self) -> tuple[str, ...]:
+        if self.target.order:
+            return self.target.order
+        if not self.target.order_file:
+            return ()
+        return _load_string_list(self.target.order_file, key="order")
+
+    @property
+    def place_poses(self) -> tuple[tuple[float, ...], ...]:
+        """Legacy task B release slots, from config or an external YAML file."""
+
+        if self.task_b.place_poses:
+            return self.task_b.place_poses
+        if not self.task_b.place_poses_file:
+            return ()
+        poses = _load_pose_list(self.task_b.place_poses_file)
+        if self.task_b.rounds and len(poses) > self.task_b.rounds:
+            return poses[: self.task_b.rounds]
+        return poses
+
+    def validate(self) -> None:
+        if self.task.max_picks < 1:
+            raise ValueError("task.max_picks must be >= 1")
+        if self.task.sample_period_s < 0.0:
+            raise ValueError("task.sample_period_s must be >= 0")
+        if self.vision.backend not in {
+            "mock",
+            "taska_realsense",
+            "realsense_yolo",
+            "legacy_http",
+        }:
+            raise ValueError(
+                "vision.backend must be mock, taska_realsense, realsense_yolo "
+                "or legacy_http"
+            )
+        if self.vision.backend == "mock" and not self.vision.scenario_file:
+            raise ValueError("mock vision needs vision.scenario_file")
+        if self.vision.backend == "taska_realsense" and not self.vision.taska_config:
+            raise ValueError("taska_realsense vision needs vision.taska_config")
+        if self.vision.backend == "realsense_yolo" and not self.vision.weights:
+            raise ValueError("realsense_yolo vision needs vision.weights")
+        if self.vision.backend == "legacy_http":
+            if not self.vision.legacy_status_url:
+                raise ValueError(
+                    "legacy_http vision needs vision.legacy_status_url"
+                )
+            if not self.vision.accepted_target_labels():
+                raise ValueError(
+                    "legacy_http vision needs vision.target_class or vision.classes "
+                    "so unrelated detections cannot satisfy the patrol"
+                )
+        if self.vision.legacy_poll_s <= 0.0:
+            raise ValueError("vision.legacy_poll_s must be positive")
+        if self.vision.anchor not in {"center", "top_center", "bottom_center"}:
+            raise ValueError(
+                "vision.anchor must be center, top_center or bottom_center"
+            )
+        if self.vision.width <= 0 or self.vision.height <= 0 or self.vision.fps <= 0:
+            raise ValueError("vision width/height/fps must be positive")
+        if self.vision.depth_window < 1:
+            raise ValueError("vision.depth_window must be >= 1")
+        if self.vision.capture_timeout_s <= 0.0:
+            raise ValueError("vision.capture_timeout_s must be positive")
+        if self.vision.first_frame_timeout_s <= 0.0:
+            raise ValueError("vision.first_frame_timeout_s must be positive")
+        if self.vision.stale_after_s <= 0.0:
+            raise ValueError("vision.stale_after_s must be positive")
+        if not 0.0 <= self.vision.min_confidence <= 1.0:
+            raise ValueError("vision.min_confidence must be in [0, 1]")
+        if not 0.0 <= self.vision.stabilizer_inference_min_confidence <= 1.0:
+            raise ValueError(
+                "vision.stabilizer.inference_min_confidence must be in [0, 1]"
+            )
+        if self.vision.stabilizer_confirm_hits < 1:
+            raise ValueError("vision.stabilizer.confirm_hits must be >= 1")
+        if self.vision.stabilizer_max_misses < 0:
+            raise ValueError("vision.stabilizer.max_misses must be >= 0")
+        if self.vision.stabilizer_max_per_class < 0:
+            raise ValueError("vision.stabilizer.max_per_class must be >= 0")
+        for name in (
+            "stabilizer_match_iou",
+            "stabilizer_confidence_alpha",
+            "stabilizer_box_alpha",
+            "stabilizer_depth_alpha",
+            "stabilizer_duplicate_iou",
+            "stabilizer_containment_ratio",
+            "stabilizer_cross_class_iou",
+            "stabilizer_cross_class_containment",
+            "stabilizer_edge_suppress_confidence",
+        ):
+            value = float(getattr(self.vision, name))
+            if not 0.0 <= value <= 1.0:
+                raise ValueError(f"vision.{name} must be in [0, 1]")
+        if self.vision.stabilizer_cross_class_conf_ratio < 1.0:
+            raise ValueError(
+                "vision.stabilizer.cross_class_conf_ratio must be >= 1"
+            )
+        if self.vision.stabilizer_class_switch_hits < 1:
+            raise ValueError("vision.stabilizer.class_switch_hits must be >= 1")
+        if self.vision.stabilizer_edge_margin_px < 0:
+            raise ValueError("vision.stabilizer.edge_margin_px must be >= 0")
+        if not 0.0 <= self.task_a.iou_threshold <= 1.0:
+            raise ValueError("task_a.iou_threshold must be in [0, 1]")
+        if self.task_a.max_frames < 0:
+            raise ValueError("task_a.max_frames must be >= 0")
+        if self.task_a.min_positions < 1:
+            raise ValueError("task_a.min_positions must be >= 1")
+        patrol = self.task_a.patrol
+        if patrol.mode not in {"joint_arc", "cartesian_box"}:
+            raise ValueError(
+                "task_a.patrol.mode must be joint_arc or cartesian_box"
+            )
+        if patrol.position_count < 2:
+            raise ValueError("task_a.patrol.position_count must be >= 2")
+        if patrol.enabled and patrol.position_count < self.task_a.min_positions:
+            raise ValueError(
+                "task_a.patrol.position_count must be at least "
+                "task_a.min_positions"
+            )
+        if patrol.enabled and patrol.position_count != 10:
+            raise ValueError(
+                "task_a.patrol.position_count must be exactly 10 for "
+                "the scored Task A patrol"
+            )
+        if patrol.min_move_distance_m <= 0.0:
+            raise ValueError("task_a.patrol.min_move_distance_m must be positive")
+        if patrol.settle_s < 0.0:
+            raise ValueError("task_a.patrol.settle_s must be >= 0")
+        if patrol.mode == "joint_arc":
+            if not patrol.movable_joints:
+                raise ValueError(
+                    "task_a.patrol.movable_joints must contain at least one "
+                    "of Joint2, Joint3 and Joint4"
+                )
+            if len(set(patrol.movable_joints)) != len(patrol.movable_joints):
+                raise ValueError(
+                    "task_a.patrol.movable_joints must not contain duplicates"
+                )
+            invalid_joints = set(patrol.movable_joints) - {2, 3, 4}
+            if invalid_joints:
+                raise ValueError(
+                    "task_a.patrol.movable_joints may only contain Joint2, "
+                    "Joint3 and Joint4; Joint1, Joint5 and Joint6 are locked"
+                )
+            for name in (
+                "joint_max_step_deg",
+                "max_initial_move_deg",
+                "max_target_move_deg",
+            ):
+                value = float(getattr(patrol, name))
+                if not isfinite(value) or value <= 0.0:
+                    raise ValueError(
+                        f"task_a.patrol.{name} must be positive and finite"
+                    )
+            if patrol.joint_max_step_deg > 5.0:
+                raise ValueError(
+                    "task_a.patrol.joint_max_step_deg must be <= 5 degrees"
+                )
+            if patrol.enabled and not patrol.joint_offsets_deg:
+                raise ValueError(
+                    "task_a.patrol.joint_offsets_deg must define all ten "
+                    "J2/J3/J4 offset targets"
+                )
+            if patrol.joint_offsets_deg:
+                if len(patrol.joint_offsets_deg) != patrol.position_count:
+                    raise ValueError(
+                        "task_a.patrol.joint_offsets_deg must contain exactly "
+                        "one row per patrol position"
+                    )
+                expected_width = len(patrol.movable_joints)
+                for index, row in enumerate(patrol.joint_offsets_deg, start=1):
+                    if len(row) != expected_width:
+                        raise ValueError(
+                            "task_a.patrol.joint_offsets_deg row "
+                            f"{index} must contain {expected_width} value(s)"
+                        )
+                    if not all(isfinite(value) for value in row):
+                        raise ValueError(
+                            "task_a.patrol.joint_offsets_deg row "
+                            f"{index} must contain finite values"
+                        )
+            if patrol.arc_indices:
+                if len(patrol.arc_indices) != patrol.position_count:
+                    raise ValueError(
+                        "task_a.patrol.arc_indices must contain exactly one "
+                        "entry per patrol position"
+                    )
+                if set(patrol.arc_indices) - {1, 2}:
+                    raise ValueError(
+                        "task_a.patrol.arc_indices may only contain 1 or 2"
+                    )
+                if patrol.enabled and set(patrol.arc_indices) != {1, 2}:
+                    raise ValueError(
+                        "task_a.patrol.arc_indices must use both of the two arcs"
+                    )
+        else:
+            if patrol.stride_m < patrol.min_move_distance_m:
+                raise ValueError(
+                    "task_a.patrol.stride_m must be >= min_move_distance_m"
+                )
+            if patrol.linear_step_m <= 0.0:
+                raise ValueError("task_a.patrol.linear_step_m must be positive")
+            if not patrol.axes:
+                raise ValueError("task_a.patrol.axes must not be empty")
+            invalid_axes = set(patrol.axes) - {"x", "y", "z"}
+            if invalid_axes:
+                raise ValueError(
+                    "task_a.patrol.axes may only contain x, y and z; got "
+                    f"{sorted(invalid_axes)}"
+                )
+        visibility = patrol.object_visibility
+        if patrol.enabled and patrol.manual_step:
+            expected_classes = tuple(
+                label.strip() for label in self.vision.classes if label.strip()
+            )
+            if len(expected_classes) != patrol.position_count:
+                raise ValueError(
+                    "task_a.patrol.manual_step requires exactly one "
+                    "vision.classes label per patrol position"
+                )
+            if len(set(expected_classes)) != len(expected_classes):
+                raise ValueError(
+                    "task_a.patrol.manual_step requires unique vision.classes "
+                    "labels so every point has one expected object"
+                )
+        if visibility.visible_confirm_frames < 1:
+            raise ValueError(
+                "task_a.patrol.object_visibility.visible_confirm_frames "
+                "must be >= 1"
+            )
+        if visibility.observation_window_s <= 0.0:
+            raise ValueError(
+                "task_a.patrol.object_visibility.observation_window_s "
+                "must be positive"
+            )
+        if visibility.poll_s <= 0.0:
+            raise ValueError(
+                "task_a.patrol.object_visibility.poll_s must be positive"
+            )
+        if self.task_b.rounds < 1:
+            raise ValueError("task_b.rounds must be >= 1")
+        if (
+            not isfinite(self.task_b.initial_pose_tolerance_deg)
+            or self.task_b.initial_pose_tolerance_deg <= 0.0
+        ):
+            raise ValueError(
+                "task_b.initial_pose_tolerance_deg must be positive and finite"
+            )
+        if self.task_b.pick_pose_tolerance_m <= 0.0:
+            raise ValueError("task_b.pick_pose_tolerance_m must be positive")
+        if self.task_b.point_assignment_margin_m < 0.0:
+            raise ValueError(
+                "task_b.point_assignment_margin_m must be >= 0"
+            )
+        for index, pose in enumerate(self.place_poses):
+            if not all(isfinite(value) for value in pose):
+                raise ValueError(
+                    f"task_b reference point {index + 1} must contain finite values"
+                )
+        for first in range(len(self.place_poses)):
+            for second in range(first + 1, len(self.place_poses)):
+                separation = hypot(
+                    self.place_poses[first][0] - self.place_poses[second][0],
+                    self.place_poses[first][1] - self.place_poses[second][1],
+                )
+                minimum = 2.0 * self.task_b.point_assignment_margin_m
+                if separation <= minimum:
+                    raise ValueError(
+                        "task_b reference points "
+                        f"{first + 1} and {second + 1} are only "
+                        f"{separation:.3f} m apart; point assignment needs "
+                        f"more than {minimum:.3f} m separation"
+                    )
+        if self.task_b.next_point_timeout_s < 0.0:
+            raise ValueError("task_b.next_point_timeout_s must be >= 0")
+        if self.task_b.next_point_poll_s <= 0.0:
+            raise ValueError("task_b.next_point_poll_s must be positive")
+        if self.task_b.lift_hold_s < 0.0:
+            raise ValueError("task_b.lift_hold_s must be >= 0")
+        point_count = len(self.place_poses)
+        for name, values in (
+            ("point_grasp_z_m", self.task_b.point_grasp_z_m),
+            (
+                "point_grasp_xy_from_observation",
+                self.task_b.point_grasp_xy_from_observation,
+            ),
+            ("point_grasp_xy_m", self.task_b.point_grasp_xy_m),
+            (
+                "point_grasp_xy_offset_m",
+                self.task_b.point_grasp_xy_offset_m,
+            ),
+            ("point_grasp_rpy", self.task_b.point_grasp_rpy),
+            (
+                "point_vertical_grasp_descent",
+                self.task_b.point_vertical_grasp_descent,
+            ),
+            (
+                "point_vertical_grasp_approach_height_m",
+                self.task_b.point_vertical_grasp_approach_height_m,
+            ),
+            ("point_observation_joints_deg", self.task_b.point_observation_joints_deg),
+        ):
+            if values and len(values) != point_count:
+                raise ValueError(
+                    f"task_b.{name} must be empty or contain exactly "
+                    f"{point_count} entries (one per configured point)"
+                )
+        for index, value in enumerate(self.task_b.point_grasp_z_m):
+            if value is not None and not isfinite(value):
+                raise ValueError(
+                    f"task_b.point_grasp_z_m entry {index + 1} must be finite"
+                )
+        for index, value in enumerate(
+            self.task_b.point_grasp_xy_from_observation
+        ):
+            if not isinstance(value, bool):
+                raise ValueError(
+                    "task_b.point_grasp_xy_from_observation entry "
+                    f"{index + 1} must be boolean"
+                )
+        for index, value in enumerate(self.task_b.point_grasp_xy_m):
+            if value is None:
+                continue
+            if not all(isfinite(item) for item in value):
+                raise ValueError(
+                    f"task_b.point_grasp_xy_m entry {index + 1} must contain "
+                    "finite values"
+                )
+            if (
+                index < len(self.task_b.point_grasp_xy_from_observation)
+                and self.task_b.point_grasp_xy_from_observation[index]
+            ):
+                raise ValueError(
+                    f"task_b.point_grasp_xy_m entry {index + 1} conflicts with "
+                    "point_grasp_xy_from_observation"
+                )
+        for index, value in enumerate(self.task_b.point_grasp_xy_offset_m):
+            if not all(isfinite(item) for item in value):
+                raise ValueError(
+                    f"task_b.point_grasp_xy_offset_m entry {index + 1} must "
+                    "contain finite values"
+                )
+        for index, value in enumerate(self.task_b.point_grasp_rpy):
+            if value is not None and not all(isfinite(item) for item in value):
+                raise ValueError(
+                    f"task_b.point_grasp_rpy entry {index + 1} must contain "
+                    "finite values"
+                )
+        for index, value in enumerate(
+            self.task_b.point_vertical_grasp_descent
+        ):
+            if not isinstance(value, bool):
+                raise ValueError(
+                    "task_b.point_vertical_grasp_descent entry "
+                    f"{index + 1} must be boolean"
+                )
+        for index, value in enumerate(
+            self.task_b.point_vertical_grasp_approach_height_m
+        ):
+            if value is not None and (
+                not isfinite(value) or value <= 0.0
+            ):
+                raise ValueError(
+                    "task_b.point_vertical_grasp_approach_height_m entry "
+                    f"{index + 1} must be positive and finite"
+                )
+        for index, value in enumerate(self.task_b.point_observation_joints_deg):
+            if value is not None and not all(isfinite(item) for item in value):
+                raise ValueError(
+                    "task_b.point_observation_joints_deg entry "
+                    f"{index + 1} must contain finite values"
+                )
+        if (
+            not isfinite(self.task_b.vertical_grasp_approach_height_m)
+            or self.task_b.vertical_grasp_approach_height_m <= 0.0
+        ):
+            raise ValueError(
+                "task_b.vertical_grasp_approach_height_m must be positive "
+                "and finite"
+            )
+        if self.task_b.observation_pose_tolerance_deg <= 0.0:
+            raise ValueError(
+                "task_b.observation_pose_tolerance_deg must be > 0"
+            )
+        if (
+            self.task_b.return_to_initial_after_each_pick
+            and not self.task_b.initial_pose_file
+        ):
+            raise ValueError(
+                "task_b.return_to_initial_after_each_pick needs "
+                "task_b.initial_pose_file"
+            )
+        if (
+            self.task_b.return_to_initial_after_task
+            and not self.task_b.initial_pose_file
+        ):
+            raise ValueError(
+                "task_b.return_to_initial_after_task needs "
+                "task_b.initial_pose_file"
+            )
+        if self.target.policy not in {"any", "known", "known_and_unseen", "ordered"}:
+            raise ValueError("unsupported target.policy")
+        if self.target.policy == "ordered" and not (self.target.order or self.target.order_file):
+            raise ValueError("ordered policy needs target.order or target.order_file")
+        if self.target.policy == "known" and not self.target.known_classes:
+            raise ValueError("known policy needs target.known_classes")
+        if not 0.0 <= self.target.unknown_min_graspability <= 1.0:
+            raise ValueError("unknown_min_graspability must be in [0, 1]")
+        if self.target.max_attempts_per_target < 1:
+            raise ValueError("max_attempts_per_target must be >= 1")
+        if self.pose.camera_frame not in {"base", "flange"}:
+            raise ValueError("pose.camera_frame must be base or flange")
+        if self.motion.backend not in {"mock", "robotmove"}:
+            raise ValueError("motion.backend must be mock or robotmove")
+        if self.motion.motion_mode not in {"joint_ik", "cartesian"}:
+            raise ValueError("motion.motion_mode must be joint_ik or cartesian")
+        if any(a >= b for a, b in zip(self.motion.workspace_min, self.motion.workspace_max)):
+            raise ValueError("workspace_min must be smaller than workspace_max")
+        if self.motion.workspace_margin < 0.0:
+            raise ValueError("motion.workspace_margin must be >= 0")
+        if self.motion.approach_height < 0.0 or self.motion.lift_height < 0.0:
+            raise ValueError("approach_height and lift_height must be >= 0")
+        if self.motion.grasp_z_m is not None and not isfinite(self.motion.grasp_z_m):
+            raise ValueError("motion.grasp_z_m must be finite when configured")
+        if self.motion.grasp_rpy is not None and not all(
+            isfinite(value) for value in self.motion.grasp_rpy
+        ):
+            raise ValueError("motion.grasp_rpy must contain finite values")
+        if not isfinite(self.motion.speed_mps) or self.motion.speed_mps <= 0.0:
+            raise ValueError("motion.speed_mps must be positive and finite")
+        if (
+            not isfinite(self.motion.joint_speed_rad_s)
+            or self.motion.joint_speed_rad_s <= 0.0
+        ):
+            raise ValueError(
+                "motion.joint_speed_rad_s must be positive and finite"
+            )
+        if (
+            not isfinite(self.motion.joint_speed_safety_limit_rad_s)
+            or self.motion.joint_speed_safety_limit_rad_s <= 0.0
+        ):
+            raise ValueError(
+                "motion.joint_speed_safety_limit_rad_s must be positive "
+                "and finite"
+            )
+        if (
+            self.motion.joint_speed_rad_s
+            > self.motion.joint_speed_safety_limit_rad_s
+        ):
+            raise ValueError(
+                "motion.joint_speed_rad_s must not exceed "
+                "motion.joint_speed_safety_limit_rad_s"
+            )
+        if self.motion.orientation not in {"fixed", "current"}:
+            raise ValueError("motion.orientation must be fixed or current")
+        if not 0.0 < self.motion.joint_max_step_deg <= 5.0:
+            raise ValueError("motion.joint_max_step_deg must be in (0, 5]")
+        if not 0.0 < self.motion.joint_tolerance_deg <= 2.0:
+            raise ValueError("motion.joint_tolerance_deg must be in (0, 2]")
+        if not 0.0 < self.motion.joint_limit_margin_deg <= 10.0:
+            raise ValueError("motion.joint_limit_margin_deg must be in (0, 10]")
+        if self.motion.joint_move_timeout_s <= 0.0:
+            raise ValueError("motion.joint_move_timeout_s must be positive")
+        if not 0.1 <= self.motion.joint_reject_timeout_s <= 10.0:
+            raise ValueError("motion.joint_reject_timeout_s must be in [0.1, 10]")
+        if not 0.0 < self.motion.cartesian_step_m <= 0.02:
+            raise ValueError("motion.cartesian_step_m must be in (0, 0.02]")
+        if not 0.0 < self.motion.cartesian_min_step_m <= self.motion.cartesian_step_m:
+            raise ValueError(
+                "motion.cartesian_min_step_m must be in "
+                "(0, cartesian_step_m]"
+            )
+        if not 0.0 < self.motion.cartesian_orientation_step_deg <= 5.0:
+            raise ValueError(
+                "motion.cartesian_orientation_step_deg must be in (0, 5]"
+            )
+        if (
+            not 0.0
+            < self.motion.cartesian_min_orientation_step_deg
+            <= self.motion.cartesian_orientation_step_deg
+        ):
+            raise ValueError(
+                "motion.cartesian_min_orientation_step_deg must be in "
+                "(0, cartesian_orientation_step_deg]"
+            )
+        if self.motion.cartesian_max_waypoints < 2:
+            raise ValueError("motion.cartesian_max_waypoints must be >= 2")
+        if not 0.0 < self.motion.cartesian_joint_step_deg <= 2.0:
+            raise ValueError(
+                "motion.cartesian_joint_step_deg must be in (0, 2]"
+            )
+        if (
+            self.motion.cartesian_joint_branch_jump_deg
+            <= self.motion.cartesian_joint_step_deg
+        ):
+            raise ValueError(
+                "motion.cartesian_joint_branch_jump_deg must exceed "
+                "cartesian_joint_step_deg"
+            )
+        if self.motion.cartesian_joint_acceleration_limit_deg <= 0.0:
+            raise ValueError(
+                "motion.cartesian_joint_acceleration_limit_deg must be positive"
+            )
+        if self.motion.cartesian_min_jacobian_singular_value <= 0.0:
+            raise ValueError(
+                "motion.cartesian_min_jacobian_singular_value must be positive"
+            )
+        _validate_gripper(self.gripper)
+        if self.task.mode is TaskMode.B and not self.place_poses:
+            raise ValueError("task B needs task_b.place_poses or task_b.place_poses_file")
+        if self.task.mode is TaskMode.B and len(self.place_poses) < self.task_b.rounds:
+            raise ValueError(
+                "task B needs one configured reference pick point per round"
+            )
+
+
+GRIPPER_BACKENDS = (
+    "mock",
+    "taska",
+    "ms42dc",
+    "serial",
+    "tcp",
+    "ros_service",
+    "ros_topic",
+    "ms42dc_ros",
+)
+
+
+def _validate_gripper(cfg: "GripperConfig") -> None:
+    if cfg.backend not in GRIPPER_BACKENDS:
+        raise ValueError(
+            "gripper.backend must be one of " + ", ".join(GRIPPER_BACKENDS)
+        )
+    if cfg.backend == "taska" and not cfg.taska_config:
+        raise ValueError("taska gripper needs gripper.taska_config")
+    if cfg.backend in {"serial", "tcp"}:
+        if not cfg.open_command or not cfg.close_command:
+            raise ValueError(
+                f"{cfg.backend} gripper needs gripper.open_command and "
+                "gripper.close_command"
+            )
+        if cfg.command_encoding not in {"ascii", "hex"}:
+            raise ValueError("gripper.command_encoding must be ascii or hex")
+    if cfg.backend == "serial" and not cfg.serial_port:
+        raise ValueError("serial gripper needs gripper.serial_port")
+    if cfg.backend == "tcp" and (not cfg.tcp_host or cfg.tcp_port <= 0):
+        raise ValueError("tcp gripper needs gripper.tcp_host and gripper.tcp_port")
+    if cfg.backend == "ros_service" and not cfg.ros_service:
+        raise ValueError("ros_service gripper needs gripper.ros_service")
+    if cfg.backend == "ros_topic" and not cfg.ros_topic:
+        raise ValueError("ros_topic gripper needs gripper.ros_topic")
+    if cfg.backend in {"ms42dc", "ms42dc_ros"}:
+        if cfg.backend == "ms42dc" and not cfg.serial_port:
+            raise ValueError("ms42dc gripper needs gripper.serial_port")
+        if cfg.subdivide not in {2, 4, 8, 16, 32}:
+            raise ValueError(
+                f"{cfg.backend} gripper.subdivide must be 2, 4, 8, 16 or 32"
+            )
+        if cfg.motion_mode not in {2, 4}:
+            raise ValueError(
+                f"{cfg.backend} gripper.motion_mode must be 2 (relative) "
+                "or 4 (absolute)"
+            )
+        for name in ("open_angle_deg", "close_angle_deg"):
+            if getattr(cfg, name) <= 0.0:
+                raise ValueError(f"{cfg.backend} gripper.{name} must be > 0")
+        if cfg.speed_rad_s <= 0.0:
+            raise ValueError(f"{cfg.backend} gripper.speed_rad_s must be > 0")
+        if not 0 <= cfg.device_id <= 0xFF:
+            raise ValueError(f"{cfg.backend} gripper.device_id must fit uint8")
+        if int(round(cfg.open_angle_deg * 10.0)) > 0xFFFF:
+            raise ValueError(
+                f"{cfg.backend} gripper.open_angle_deg is too large for uint16"
+            )
+        if int(round(cfg.close_angle_deg * 10.0)) > 0xFFFF:
+            raise ValueError(
+                f"{cfg.backend} gripper.close_angle_deg is too large for uint16"
+            )
+        if int(round(cfg.speed_rad_s * 10.0)) > 0xFFFF:
+            raise ValueError(
+                f"{cfg.backend} gripper.speed_rad_s is too large for uint16"
+            )
+    if cfg.backend == "ms42dc_ros":
+        if not cfg.motor_control_topic or not cfg.motor_state_topic:
+            raise ValueError(
+                "ms42dc_ros gripper needs motor_control_topic and motor_state_topic"
+            )
+        if cfg.open_dir not in {0, 1} or cfg.close_dir not in {0, 1}:
+            raise ValueError("ms42dc_ros open_dir/close_dir must be 0 or 1")
+        if cfg.open_dir == cfg.close_dir:
+            raise ValueError("ms42dc_ros open_dir and close_dir must differ")
+        if cfg.ros_connect_timeout_s <= 0.0:
+            raise ValueError("ms42dc_ros ros_connect_timeout_s must be > 0")
+
+
+#: Backwards-compatible alias for code written against the C/D/E version.
+CDEConfig = Track1Config
+
+
+def _load_string_list(path: str, *, key: str) -> tuple[str, ...]:
+    with open(path, "r", encoding="utf-8") as handle:
+        payload = yaml.safe_load(handle) or {}
+    if isinstance(payload, list):
+        return tuple(str(item) for item in payload)
+    if isinstance(payload, Mapping) and key in payload:
+        return tuple(str(item) for item in payload[key])
+    if isinstance(payload, Mapping) and "order" in payload:
+        return tuple(str(item) for item in payload["order"])
+    raise ValueError(f"unsupported {key} file format: {path}")
+
+
+def _load_pose_list(path: str) -> tuple[tuple[float, ...], ...]:
+    with open(path, "r", encoding="utf-8") as handle:
+        payload = yaml.safe_load(handle) or {}
+    if isinstance(payload, Mapping):
+        for key in ("places", "place_poses", "poses"):
+            if key in payload:
+                payload = payload[key]
+                break
+        else:
+            payload = payload.get("items", [])
+    if isinstance(payload, list):
+        return _pose_list(payload)
+    raise ValueError(f"unsupported place pose file format: {path}")
+
+
+def load_joint_pose_file(
+    path: str | Path,
+    *,
+    expected_role: str = "",
+) -> tuple[float, ...]:
+    """Load and validate an absolute six-joint posture capture.
+
+    Joint values are read from ``joint_positions_rad`` in radians.  The file is
+    rejected unless it contains exactly six finite values and, when
+    ``expected_role`` is supplied, the YAML ``role`` matches exactly.  Keeping
+    this validation in one place prevents a malformed capture from becoming a
+    motion target.
+    """
+
+    pose_path = Path(path).expanduser()
+    if not pose_path.is_file():
+        raise ValueError(f"joint pose file does not exist: {pose_path}")
+    with open(pose_path, "r", encoding="utf-8") as handle:
+        payload = yaml.safe_load(handle) or {}
+    if not isinstance(payload, Mapping):
+        raise ValueError(f"joint pose file must contain a mapping: {pose_path}")
+
+    role = str(payload.get("role", "")).strip()
+    if expected_role and role != expected_role:
+        raise ValueError(
+            f"joint pose role must be {expected_role!r}, got {role!r}: {pose_path}"
+        )
+
+    raw_joints = payload.get("joint_positions_rad")
+    if not isinstance(raw_joints, (list, tuple)) or len(raw_joints) != 6:
+        raise ValueError(
+            "joint_positions_rad must contain exactly six values: "
+            f"{pose_path}"
+        )
+    try:
+        joints = tuple(float(value) for value in raw_joints)
+    except (TypeError, ValueError) as exc:
+        raise ValueError(
+            f"joint_positions_rad contains a non-numeric value: {pose_path}"
+        ) from exc
+    if not all(isfinite(value) for value in joints):
+        raise ValueError(
+            f"joint_positions_rad contains a non-finite value: {pose_path}"
+        )
+    return joints
+
+
+def load_config(path: str | Path) -> Track1Config:
+    config_path = Path(path).expanduser().resolve()
+    with open(config_path, "r", encoding="utf-8") as handle:
+        payload = yaml.safe_load(handle) or {}
+    return Track1Config.from_dict(payload, base_dir=config_path.parent)
+
+
+#: Target policy implied by each competition task.
+_MODE_POLICY = {
+    TaskMode.A: "any",
+    TaskMode.B: "any",
+    TaskMode.C: "any",
+    TaskMode.D: "known_and_unseen",
+    TaskMode.E: "ordered",
+}
+
+
+def apply_mode(config: Track1Config, mode: TaskMode | str) -> Track1Config:
+    """Return a copy whose target policy matches the competition task.
+
+    Task A is a detection/patrol demo and task B is a single-object
+    pick&place, so both default to the permissive ``any`` policy.  C is
+    any-object clearing, D additionally accepts unseen objects and E enforces
+    the published order.
+    Explicit advanced policies can still be built by calling the dataclasses
+    directly.
+    """
+
+    selected = mode if isinstance(mode, TaskMode) else TaskMode(str(mode).upper())
+    return replace(
+        config,
+        task=replace(config.task, mode=selected),
+        target=replace(config.target, policy=_MODE_POLICY[selected]),
+    )

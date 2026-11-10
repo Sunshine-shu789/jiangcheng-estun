@@ -1,0 +1,45 @@
+
+===== 任务B 五点位拾放 =====
+配置：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/track1_task_b_point2_random_live_once_20261026.yaml
+视觉后端：realsense_yolo
+模式：真机执行
+日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/task_B_20261026_213019.log
+
+机械臂状态桥接已在运行（PID=54451），不重复启动。
+[bridge] RobotInfo 已就绪：state=AutoReady fault_flag=0 xyz=(-0.1249, 0.5217, 0.1665)
+[INFO] [1793021420.770045474] [track1_grasp]: [gripper:ms42dc] /dev/motor_serial @ 115200 id=1 subdivide=32
+[INFO] [1793021420.774151163] [track1_grasp]: [task_b_initial_pose] current_deg=[91.407, 94.39, -42.401, -39.637, 87.642, -19.602] target_deg=[82.657, 54.31, -32.193, -53.453, 84.446, -2.058] max_delta_deg=40.080 tolerance_deg=0.500
+[INFO] [1793021420.775330154] [track1_grasp]: [task_b_initial_pose] moving six axes together: dry_run=False estimated_steps=41 max_step_deg=1.000 total_abs_deg=[8.75, 40.08, 10.208, 13.816, 3.196, 17.544]
+[INFO] [1793021420.776529329] [track1_grasp]: [motion:robotmove] task_b_initial_pose: 41 step(s), max_delta=40.08 deg
+[INFO] [1793021420.780357190] [track1_grasp]: [motion:robotmove] task_b_initial_pose: split 41 points into 2 controller-safe chunks points=[40, 1] max_points=40 max_payload_bytes=7600
+[INFO] [1793021420.782443279] [track1_grasp]: [motion:robotmove] sent continuous task_b_initial_pose chunk 1/2: points=40 payload_bytes=7360 joint_velocity=0.600 rad/s endpoint_deg=[82.87, 55.29, -32.44, -53.12, 84.52, -2.49]
+[INFO] [1793021434.466928107] [track1_grasp]: [motion:robotmove] sent continuous task_b_initial_pose chunk 2/2: points=1 payload_bytes=236 joint_velocity=0.600 rad/s endpoint_deg=[82.66, 54.31, -32.19, -53.45, 84.45, -2.06]
+[INFO] [1793021434.970226501] [track1_grasp]: [task_b_initial_pose] verified residual_deg=0.008; starting visual search
+[INFO] [1793021434.972965606] [track1_grasp]: [task_b_observation_pose] pick_2: current_deg=[82.66, 54.312, -32.195, -53.445, 84.453, -2.059] target_deg=[91.406, 74.367, -18.644, -35.901, 87.641, -19.601] max_delta_deg=20.055 tolerance_deg=0.500
+[INFO] [1793021434.974600521] [track1_grasp]: [task_b_observation_pose] pick_2: moving six axes together: dry_run=False estimated_steps=21 max_step_deg=1.000 total_abs_deg=[8.746, 20.055, 13.551, 17.544, 3.188, 17.542]
+[INFO] [1793021434.976240184] [track1_grasp]: [motion:robotmove] task_b_observation_pick_2: 21 step(s), max_delta=20.05 deg
+[INFO] [1793021434.980426610] [track1_grasp]: [motion:robotmove] sent continuous task_b_observation_pick_2: points=21 payload_bytes=3914 joint_velocity=0.600 rad/s endpoint_deg=[91.41, 74.37, -18.64, -35.9, 87.64, -19.6]
+[INFO] [1793021442.152762060] [track1_grasp]: [task_b_observation_pose] pick_2: verified residual_deg=0.015; visual search may start
+[INFO] [1793021442.154287743] [track1_grasp]: [scan] round 1/1: waiting for 8-Plastic_Banana at 'pick_2' xy=(-0.149, 0.515) within 0.250 m, completed_points_excluded=0 (wait attempt 1)
+[INFO] [1793021442.155869229] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793021442.409304721] [track1_grasp]: [camera] D405 started 640x480@15 fx=392.7 fy=391.7 cx=314.4 cy=246.7
+[INFO] [1793021446.781271479] [track1_grasp]: [yolo] loading /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/models/best.pt
+[INFO] [1793021446.819129782] [track1_grasp]: [vision:realsense_yolo] ready 640x480 rotate180=True anchor=top_center cx=324.6 cy=232.3 stabilizer=on
+[INFO] [1793021449.193064807] [track1_grasp]: [detect] frame 'realsense-000001': 0 detection(s), no confirmed target
+[INFO] [1793021449.244625760] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793021449.283603688] [track1_grasp]: [detect] frame 'realsense-000002': 0 detection(s), no confirmed target
+[INFO] [1793021449.335026914] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793021449.373998906] [track1_grasp]: [pose] loaded camera transform from /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/camera_to_flange.d405_assumed.yaml
+[INFO] [1793021449.375417732] [track1_grasp]: [detect] frame 'realsense-000003': 1 detection(s), 8-Plastic_Banana conf=0.93, confirmation 1/2
+[INFO] [1793021449.426937129] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793021449.476346691] [track1_grasp]: [detect] frame 'realsense-000004': 1 detection(s), 8-Plastic_Banana conf=0.93, confirmation 2/2
+[INFO] [1793021449.477645599] [track1_grasp]: [scan] round 1/1: target confirmed at expected point 'pick_2'
+[INFO] [1793021449.478830526] [track1_grasp]: [select] selected '8-Plastic_Banana' conf=0.93 graspability=1.00: 8-Plastic_Banana confirmed in 2 consecutive frames
+[INFO] [1793021449.480129434] [track1_grasp]: [task_b_anchor_pose] pick_2: fixed high anchor xyz=(-0.124884, 0.521709, 0.241216) rpy=(3.128682, 0.04828, 0.365743)
+[INFO] [1793021449.481516202] [track1_grasp]: [plan] pick_2: vertical grasp column locked; xy=(-0.2274, 0.6215), straight_descent=0.0800 m, lateral=0.0000 m, rotation=0.0000 rad
+[INFO] [1793021449.483177237] [track1_grasp]: [plan] planned 6 waypoint(s)
+[INFO] [1793021449.586503359] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=9, damping=0.01, iterations=6, step=2.540 deg, pos_err=0.0028 mm, rot_err=0.000038 rad, min_sigma=0.014825
+[INFO] [1793021449.683514222] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=9, damping=0.02, iterations=6, step=1.219 deg, pos_err=0.0023 mm, rot_err=0.000031 rad, min_sigma=0.016078
+[INFO] [1793021449.775693954] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, damping=0.03, iterations=6, step=0.595 deg, pos_err=0.0020 mm, rot_err=0.000027 rad, min_sigma=0.016671
+[INFO] [1793021449.777242195] [track1_grasp]: [plan] Task B point 'pick_2' visual_xy=(-0.227406, 0.621475) failed_waypoint='pregrasp': full-route precheck rejected before motion: joint-step limit cannot be satisfied at the minimum spacing (0.595 deg > 0.500 deg) at target 1 path waypoint, depth=3; no arm or gripper command was issued.
+[INFO] [1793021449.778474615] [track1_grasp]: [run] requested=1 attempts=1 successes=0 rate=0.00%

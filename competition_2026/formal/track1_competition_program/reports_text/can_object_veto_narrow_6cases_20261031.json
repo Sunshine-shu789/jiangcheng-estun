@@ -1,0 +1,269 @@
+{
+  "createdAt": "2026-10-31T13:06:30+0800",
+  "primaryWeights": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_train_40class_v10_targetfix_from_v7/track1_40class_20261031_101832/weights/best.pt",
+  "secondaryWeights": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_train_can_secondary_v1/can3_20261031_121753/weights/best.pt",
+  "caseCount": 6,
+  "passedCount": 6,
+  "allPassed": true,
+  "cases": [
+    {
+      "image": "post30__split-unit-0009__001178.png",
+      "groundTruthIds": [],
+      "requiredBlockerId": 26,
+      "requiredBlockerName": "27-Coca_cola_full",
+      "forbiddenIds": [
+        4
+      ],
+      "baselineOutputIds": [
+        21,
+        39,
+        4
+      ],
+      "currentOutputIds": [
+        26,
+        21,
+        39,
+        14
+      ],
+      "currentSecondaryObjectVetoes": [
+        {
+          "bbox": [
+            426.1,
+            330.6,
+            622.7,
+            471.9
+          ],
+          "candidateId": 4,
+          "candidateName": "5-Tomato_Soup",
+          "secondaryModelConfidence": 0.1476,
+          "reason": "coke_primary_dominates_weak_secondary",
+          "blocker": {
+            "id": 26,
+            "name": "27-Coca_cola_full",
+            "confidence": 0.7933
+          },
+          "primarySupport": {
+            "15-Coca_cola_half": 0.3199,
+            "27-Coca_cola_full": 0.7933
+          },
+          "redLabelRatio": 0.2038,
+          "whiteBodyRatio": 0.3311
+        }
+      ],
+      "passed": true
+    },
+    {
+      "image": "post30__split-unit-0020__000028.png",
+      "groundTruthIds": [],
+      "requiredBlockerId": 11,
+      "requiredBlockerName": "12-Baseball",
+      "forbiddenIds": [
+        1,
+        4
+      ],
+      "baselineOutputIds": [
+        4
+      ],
+      "currentOutputIds": [
+        11
+      ],
+      "currentSecondaryObjectVetoes": [
+        {
+          "bbox": [
+            438.2,
+            135.0,
+            548.5,
+            236.9
+          ],
+          "candidateId": 4,
+          "candidateName": "5-Tomato_Soup",
+          "secondaryModelConfidence": 0.763,
+          "reason": "baseball_plain_metal_dominates_weak_tomato",
+          "blocker": {
+            "id": 11,
+            "name": "12-Baseball",
+            "confidence": 0.9477
+          },
+          "primarySupport": {
+            "2-Starkist_Tuna": 0.0765,
+            "5-Tomato_Soup": 0.0821,
+            "12-Baseball": 0.9477
+          },
+          "redLabelRatio": 0.0291,
+          "whiteBodyRatio": 0.5848
+        }
+      ],
+      "passed": true
+    },
+    {
+      "image": "post30__split-unit-0092__000488.png",
+      "groundTruthIds": [],
+      "requiredBlockerId": 24,
+      "requiredBlockerName": "25-Flat_Screwdriver",
+      "forbiddenIds": [
+        4
+      ],
+      "baselineOutputIds": [
+        23,
+        24,
+        27,
+        4,
+        24
+      ],
+      "currentOutputIds": [
+        23,
+        24,
+        27,
+        24
+      ],
+      "currentSecondaryObjectVetoes": [
+        {
+          "bbox": [
+            171.9,
+            217.3,
+            292.3,
+            333.8
+          ],
+          "candidateId": 4,
+          "candidateName": "5-Tomato_Soup",
+          "secondaryModelConfidence": 0.0242,
+          "reason": "adapter_or_spoon_primary_dominates_weak_tomato",
+          "blocker": {
+            "id": 23,
+            "name": "24-Spoon",
+            "confidence": 0.9027
+          },
+          "primarySupport": {
+            "24-Spoon": 0.9027
+          },
+          "redLabelRatio": 0.1468,
+          "whiteBodyRatio": 0.7795
+        }
+      ],
+      "passed": true
+    },
+    {
+      "image": "post30__split-unit-0139__000602.png",
+      "groundTruthIds": [],
+      "requiredBlockerId": 21,
+      "requiredBlockerName": "22-E27_Adapter",
+      "forbiddenIds": [
+        4
+      ],
+      "baselineOutputIds": [
+        21,
+        4
+      ],
+      "currentOutputIds": [
+        21
+      ],
+      "currentSecondaryObjectVetoes": [
+        {
+          "bbox": [
+            248.7,
+            142.6,
+            354.2,
+            236.9
+          ],
+          "candidateId": 4,
+          "candidateName": "5-Tomato_Soup",
+          "secondaryModelConfidence": 0.155,
+          "reason": "adapter_or_spoon_primary_dominates_weak_tomato",
+          "blocker": {
+            "id": 21,
+            "name": "22-E27_Adapter",
+            "confidence": 0.9491
+          },
+          "primarySupport": {
+            "22-E27_Adapter": 0.9491
+          },
+          "redLabelRatio": 0.0714,
+          "whiteBodyRatio": 0.3918
+        }
+      ],
+      "passed": true
+    },
+    {
+      "image": "post30__split-unit-0187__000314.png",
+      "groundTruthIds": [],
+      "requiredBlockerId": 26,
+      "requiredBlockerName": "27-Coca_cola_full",
+      "forbiddenIds": [
+        4
+      ],
+      "baselineOutputIds": [
+        4
+      ],
+      "currentOutputIds": [
+        26
+      ],
+      "currentSecondaryObjectVetoes": [
+        {
+          "bbox": [
+            272.0,
+            136.3,
+            413.0,
+            267.8
+          ],
+          "candidateId": 4,
+          "candidateName": "5-Tomato_Soup",
+          "secondaryModelConfidence": 0.0665,
+          "reason": "coke_primary_dominates_weak_secondary",
+          "blocker": {
+            "id": 26,
+            "name": "27-Coca_cola_full",
+            "confidence": 0.7223
+          },
+          "primarySupport": {
+            "5-Tomato_Soup": 0.4275,
+            "27-Coca_cola_full": 0.7223
+          },
+          "redLabelRatio": 0.2373,
+          "whiteBodyRatio": 0.2192
+        }
+      ],
+      "passed": true
+    },
+    {
+      "image": "post30__split-unit-0191__000324.png",
+      "groundTruthIds": [],
+      "requiredBlockerId": 26,
+      "requiredBlockerName": "27-Coca_cola_full",
+      "forbiddenIds": [
+        4
+      ],
+      "baselineOutputIds": [
+        4
+      ],
+      "currentOutputIds": [
+        26
+      ],
+      "currentSecondaryObjectVetoes": [
+        {
+          "bbox": [
+            0.0,
+            341.4,
+            118.5,
+            480.0
+          ],
+          "candidateId": 4,
+          "candidateName": "5-Tomato_Soup",
+          "secondaryModelConfidence": 0.4384,
+          "reason": "coke_primary_dominates_weak_secondary",
+          "blocker": {
+            "id": 26,
+            "name": "27-Coca_cola_full",
+            "confidence": 0.9315
+          },
+          "primarySupport": {
+            "24-Spoon": 0.0101,
+            "27-Coca_cola_full": 0.9315
+          },
+          "redLabelRatio": 0.3589,
+          "whiteBodyRatio": 0.2221
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

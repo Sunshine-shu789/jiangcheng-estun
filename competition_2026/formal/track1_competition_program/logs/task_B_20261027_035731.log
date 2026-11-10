@@ -1,0 +1,253 @@
+
+===== 任务B 箱体动态五点抓取 =====
+配置：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/track1_task_b_box_relative_mock.yaml
+视觉后端：mock
+模式：箱体动态五点抓取离线试运行（每轮从当前帧拟合箱体位姿，五点全部路径预检后匹配物品，机械臂和夹爪不会动作）
+日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/task_B_20261027_035731.log
+
+[INFO] [1793044651.594737787] [track1_grasp]: [vision:mock] loaded 5 frame(s), 0 dynamically projected detection(s)
+[INFO] [1793044651.596958041] [track1_grasp]: [task_b_initial_pose] no initial pose file configured; keeping the current arm posture
+[INFO] [1793044651.598435045] [track1_grasp]: [scan] box_relative_round_1: acquiring the current box-relative five-point target from one stable RGB-D frame; no remembered point, legacy grasp override, or previous release XY is used
+[INFO] [1793044651.599844372] [track1_grasp]: [detect] observation 1/1: waiting for a fresh frame
+[INFO] [1793044651.601481661] [track1_grasp]: [detect] frame 'box_relative_round_1': 1 detection(s), 8-Plastic_Banana conf=0.95, confirmation 1/1
+[INFO] [1793044651.602879115] [track1_grasp]: [select] selected '8-Plastic_Banana' conf=0.95 graspability=1.00: 8-Plastic_Banana confirmed in 1 consecutive frames
+[INFO] [1793044651.604289629] [track1_grasp]: [plan] box_relative_round_1: RGB-D coordinates use live RobotInfo flange_xyz=(0.0, 0.0, 0.3); route planning uses the dry-run virtual flange_xyz=(0.0, 0.0, 0.3)
+[INFO] [1793044651.608702830] [track1_grasp]: [pose] loaded camera transform from /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/camera_to_flange.d405_calibrated_20261025.yaml
+[INFO] [1793044651.610777046] [track1_grasp]: [box-five-point-plan] point=corner_nw jaw_tip_base=(-0.070000, 0.070000, 0.022000) flange_target=(-0.070000, 0.070000, 0.187000) rpy=(3.141593, 0.000000, 0.000000)
+[INFO] [1793044651.612295605] [track1_grasp]: [box-five-point-plan] point=corner_ne jaw_tip_base=(0.070000, 0.070000, 0.022000) flange_target=(0.070000, 0.070000, 0.187000) rpy=(3.141593, 0.000000, 0.000000)
+[INFO] [1793044651.613885402] [track1_grasp]: [box-five-point-plan] point=corner_se jaw_tip_base=(0.070000, 0.030000, 0.022000) flange_target=(0.070000, 0.030000, 0.187000) rpy=(3.141593, 0.000000, 0.000000)
+[INFO] [1793044651.615371904] [track1_grasp]: [box-five-point-plan] point=corner_sw jaw_tip_base=(-0.070000, 0.030000, 0.022000) flange_target=(-0.070000, 0.030000, 0.187000) rpy=(3.141593, 0.000000, 0.000000)
+[INFO] [1793044651.616848907] [track1_grasp]: [box-five-point-plan] point=center jaw_tip_base=(0.000000, 0.050000, 0.022000) flange_target=(-0.000000, 0.050000, 0.187000) rpy=(3.141593, 0.000000, 0.000000)
+[INFO] [1793044651.620146044] [track1_grasp]: [plan] box_relative_round_1: fitted box centre=(0.0000, 0.0500, 0.0200) yaw=0.00 deg; generated 5 fixed box-local grasp point candidate(s)
+[INFO] [1793044651.621753651] [track1_grasp]: [plan] box_relative_round_1: generated 5 object-relative grasp candidate(s)
+[INFO] [1793044651.624007149] [track1_grasp]: [plan] candidate 1: box_point=corner_nw grasp_xyz=(-0.07, 0.07, 0.187) grasp_rpy=(3.141593, 0.0, 0.0) pregrasp_xyz=(-0.07, 0.07, 0.267) pregrasp_rpy=(3.141593, 0.0, 0.0)
+[INFO] [1793044651.633158871] [track1_grasp]: [plan] adaptive candidate 1/1 passed full-route precheck: box point 'corner_nw', box yaw=0.00 deg, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.634588382] [track1_grasp]: [plan] adaptive winner: box point 'corner_nw', box yaw=0.00 deg, selection=first_safe_candidate, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.636440573] [track1_grasp]: [plan] candidate 1: box_point=corner_ne grasp_xyz=(0.07, 0.07, 0.187) grasp_rpy=(3.141593, 0.0, 0.0) pregrasp_xyz=(0.07, 0.07, 0.267) pregrasp_rpy=(3.141593, 0.0, 0.0)
+[INFO] [1793044651.643500269] [track1_grasp]: [plan] adaptive candidate 1/1 passed full-route precheck: box point 'corner_ne', box yaw=0.00 deg, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.644917908] [track1_grasp]: [plan] adaptive winner: box point 'corner_ne', box yaw=0.00 deg, selection=first_safe_candidate, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.646747540] [track1_grasp]: [plan] candidate 1: box_point=corner_se grasp_xyz=(0.07, 0.03, 0.187) grasp_rpy=(3.141593, 0.0, 0.0) pregrasp_xyz=(0.07, 0.03, 0.267) pregrasp_rpy=(3.141593, 0.0, 0.0)
+[INFO] [1793044651.653439172] [track1_grasp]: [plan] adaptive candidate 1/1 passed full-route precheck: box point 'corner_se', box yaw=0.00 deg, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.654900741] [track1_grasp]: [plan] adaptive winner: box point 'corner_se', box yaw=0.00 deg, selection=first_safe_candidate, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.656726811] [track1_grasp]: [plan] candidate 1: box_point=corner_sw grasp_xyz=(-0.07, 0.03, 0.187) grasp_rpy=(3.141593, 0.0, 0.0) pregrasp_xyz=(-0.07, 0.03, 0.267) pregrasp_rpy=(3.141593, 0.0, 0.0)
+[INFO] [1793044651.663501554] [track1_grasp]: [plan] adaptive candidate 1/1 passed full-route precheck: box point 'corner_sw', box yaw=0.00 deg, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.664958374] [track1_grasp]: [plan] adaptive winner: box point 'corner_sw', box yaw=0.00 deg, selection=first_safe_candidate, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.666953041] [track1_grasp]: [plan] candidate 1: box_point=center grasp_xyz=(-0.0, 0.05, 0.187) grasp_rpy=(3.141593, 0.0, 0.0) pregrasp_xyz=(-0.0, 0.05, 0.267) pregrasp_rpy=(3.141593, 0.0, 0.0)
+[INFO] [1793044651.673413149] [track1_grasp]: [plan] adaptive candidate 1/1 passed full-route precheck: box point 'center', box yaw=0.00 deg, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.674833162] [track1_grasp]: [plan] adaptive winner: box point 'center', box yaw=0.00 deg, selection=first_safe_candidate, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.676493010] [track1_grasp]: [plan] box_relative_round_1: vertical grasp column locked; xy=(-0.0700, 0.0700), straight_descent=0.0800 m, lateral=0.0000 m, rotation=0.0000 rad
+[INFO] [1793044651.677909461] [track1_grasp]: [plan] box_relative_round_1: all five routes prechecked; item match 'corner_nw' distance=0.0000 m margin=0.0400 m; selected the matching prechecked route with 6 waypoint(s)
+[INFO] [1793044651.679321163] [track1_grasp]: [open_gripper] opening jaws before entering approach corridor
+[INFO] [1793044651.680717430] [track1_grasp]: [gripper:mock] open
+[INFO] [1793044651.682130319] [track1_grasp]: [approach] move to pregrasp: xyz=(-0.07, 0.07, 0.267)
+[INFO] [1793044651.683575265] [track1_grasp]: [motion:mock-prechecked] pregrasp: distance=0.104 m waypoints=53 v=0.120
+[INFO] [1793044651.684997652] [track1_grasp]: [grasp] move to grasp: xyz=(-0.07, 0.07, 0.187)
+[INFO] [1793044651.686424789] [track1_grasp]: [motion:mock-prechecked] grasp: distance=0.080 m waypoints=40 v=0.120
+[INFO] [1793044651.687834116] [track1_grasp]: [grasp] reached grasp pose; closing jaws
+[INFO] [1793044651.689235132] [track1_grasp]: [gripper:mock] close
+[INFO] [1793044651.690629024] [track1_grasp]: [verify_hold] checking whether the object is held
+[INFO] [1793044651.692022917] [track1_grasp]: [verify_hold] mock hold verifier accepted
+[INFO] [1793044651.693438180] [track1_grasp]: [lift] move to lift: xyz=(-0.07, 0.07, 0.267)
+[INFO] [1793044651.694849882] [track1_grasp]: [motion:mock-prechecked] lift: distance=0.080 m waypoints=40 v=0.120
+[INFO] [1793044651.696436117] [track1_grasp]: [transfer] move to transfer: xyz=(-0.07, 0.07, 0.267)
+[INFO] [1793044651.697989108] [track1_grasp]: [motion:mock-prechecked] transfer: distance=0.000 m waypoints=0 v=0.120
+[INFO] [1793044651.699441178] [track1_grasp]: [release] move to release: xyz=(-0.07, 0.07, 0.187)
+[INFO] [1793044651.700865940] [track1_grasp]: [motion:mock-prechecked] release: distance=0.080 m waypoints=40 v=0.120
+[INFO] [1793044651.702261020] [track1_grasp]: [release] opening jaws to release the object
+[INFO] [1793044651.703635915] [track1_grasp]: [gripper:mock] open
+[INFO] [1793044651.705046429] [track1_grasp]: [retreat] move to retreat: xyz=(-0.07, 0.07, 0.267)
+[INFO] [1793044651.706468817] [track1_grasp]: [motion:mock-prechecked] retreat: distance=0.080 m waypoints=40 v=0.120
+[INFO] [1793044651.707886455] [track1_grasp]: [done] box_relative_round_1: box-relative target returned in place and the arm retreated; no legacy reference or released XY was stored, so the next round requires a fresh stable RGB-D frame (1/5)
+[INFO] [1793044651.709409763] [track1_grasp]: [scan] box_relative_round_2: acquiring the current box-relative five-point target from one stable RGB-D frame; no remembered point, legacy grasp override, or previous release XY is used
+[INFO] [1793044651.710827402] [track1_grasp]: [detect] observation 1/1: waiting for a fresh frame
+[INFO] [1793044651.712394640] [track1_grasp]: [detect] frame 'box_relative_round_2': 1 detection(s), 8-Plastic_Banana conf=0.95, confirmation 1/1
+[INFO] [1793044651.713883516] [track1_grasp]: [select] selected '8-Plastic_Banana' conf=0.95 graspability=1.00: 8-Plastic_Banana confirmed in 1 consecutive frames
+[INFO] [1793044651.715341523] [track1_grasp]: [plan] box_relative_round_2: RGB-D coordinates use live RobotInfo flange_xyz=(-0.07, 0.07, 0.267); route planning uses the dry-run virtual flange_xyz=(-0.07, 0.07, 0.267)
+[INFO] [1793044651.717234082] [track1_grasp]: [box-five-point-plan] point=corner_nw jaw_tip_base=(-0.102619, 0.054852, 0.022000) flange_target=(-0.102619, 0.054852, 0.187000) rpy=(3.141593, 0.000000, 0.349066)
+[INFO] [1793044651.718722958] [track1_grasp]: [box-five-point-plan] point=corner_ne jaw_tip_base=(0.028938, 0.102735, 0.022000) flange_target=(0.028938, 0.102735, 0.187000) rpy=(3.141593, 0.000000, 0.349066)
+[INFO] [1793044651.720222520] [track1_grasp]: [box-five-point-plan] point=corner_se jaw_tip_base=(0.042619, 0.065148, 0.022000) flange_target=(0.042619, 0.065148, 0.187000) rpy=(3.141593, 0.000000, 0.349066)
+[INFO] [1793044651.721693587] [track1_grasp]: [box-five-point-plan] point=corner_sw jaw_tip_base=(-0.088938, 0.017265, 0.022000) flange_target=(-0.088938, 0.017265, 0.187000) rpy=(3.141593, 0.000000, 0.349066)
+[INFO] [1793044651.723206210] [track1_grasp]: [box-five-point-plan] point=center jaw_tip_base=(-0.030000, 0.060000, 0.022000) flange_target=(-0.030000, 0.060000, 0.187000) rpy=(3.141593, 0.000000, 0.349066)
+[INFO] [1793044651.724673715] [track1_grasp]: [plan] box_relative_round_2: fitted box centre=(-0.0300, 0.0600, 0.0200) yaw=20.00 deg; generated 5 fixed box-local grasp point candidate(s)
+[INFO] [1793044651.726094915] [track1_grasp]: [plan] box_relative_round_2: generated 5 object-relative grasp candidate(s)
+[INFO] [1793044651.727972039] [track1_grasp]: [plan] candidate 1: box_point=corner_nw grasp_xyz=(-0.102619, 0.054852, 0.187) grasp_rpy=(3.141593, 0.0, 0.349066) pregrasp_xyz=(-0.102619, 0.054852, 0.267) pregrasp_rpy=(3.141593, 0.0, 0.349066)
+[INFO] [1793044651.733870554] [track1_grasp]: [plan] adaptive candidate 1/1 passed full-route precheck: box point 'corner_nw', box yaw=20.00 deg, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.735308376] [track1_grasp]: [plan] adaptive winner: box point 'corner_nw', box yaw=20.00 deg, selection=first_safe_candidate, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.737141570] [track1_grasp]: [plan] candidate 1: box_point=corner_ne grasp_xyz=(0.028938, 0.102735, 0.187) grasp_rpy=(3.141593, 0.0, 0.349066) pregrasp_xyz=(0.028938, 0.102735, 0.267) pregrasp_rpy=(3.141593, 0.0, 0.349066)
+[INFO] [1793044651.744062352] [track1_grasp]: [plan] adaptive candidate 1/1 passed full-route precheck: box point 'corner_ne', box yaw=20.00 deg, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.745557165] [track1_grasp]: [plan] adaptive winner: box point 'corner_ne', box yaw=20.00 deg, selection=first_safe_candidate, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.747493654] [track1_grasp]: [plan] candidate 1: box_point=corner_se grasp_xyz=(0.042619, 0.065148, 0.187) grasp_rpy=(3.141593, 0.0, 0.349066) pregrasp_xyz=(0.042619, 0.065148, 0.267) pregrasp_rpy=(3.141593, 0.0, 0.349066)
+[INFO] [1793044651.754578283] [track1_grasp]: [plan] adaptive candidate 1/1 passed full-route precheck: box point 'corner_se', box yaw=20.00 deg, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.756019668] [track1_grasp]: [plan] adaptive winner: box point 'corner_se', box yaw=20.00 deg, selection=first_safe_candidate, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.757863547] [track1_grasp]: [plan] candidate 1: box_point=corner_sw grasp_xyz=(-0.088938, 0.017265, 0.187) grasp_rpy=(3.141593, 0.0, 0.349066) pregrasp_xyz=(-0.088938, 0.017265, 0.267) pregrasp_rpy=(3.141593, 0.0, 0.349066)
+[INFO] [1793044651.771250374] [track1_grasp]: [plan] adaptive candidate 1/1 passed full-route precheck: box point 'corner_sw', box yaw=20.00 deg, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.772493479] [track1_grasp]: [plan] adaptive winner: box point 'corner_sw', box yaw=20.00 deg, selection=first_safe_candidate, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.774287492] [track1_grasp]: [plan] candidate 1: box_point=center grasp_xyz=(-0.03, 0.06, 0.187) grasp_rpy=(3.141593, 0.0, 0.349066) pregrasp_xyz=(-0.03, 0.06, 0.267) pregrasp_rpy=(3.141593, 0.0, 0.349066)
+[INFO] [1793044651.780820026] [track1_grasp]: [plan] adaptive candidate 1/1 passed full-route precheck: box point 'center', box yaw=20.00 deg, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.782272096] [track1_grasp]: [plan] adaptive winner: box point 'center', box yaw=20.00 deg, selection=first_safe_candidate, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.783924820] [track1_grasp]: [plan] box_relative_round_2: vertical grasp column locked; xy=(0.0289, 0.1027), straight_descent=0.0800 m, lateral=0.0000 m, rotation=0.0000 rad
+[INFO] [1793044651.785355519] [track1_grasp]: [plan] box_relative_round_2: all five routes prechecked; item match 'corner_ne' distance=0.0000 m margin=0.0400 m; selected the matching prechecked route with 6 waypoint(s)
+[INFO] [1793044651.786788592] [track1_grasp]: [approach] move to pregrasp: xyz=(0.0289, 0.1027, 0.267)
+[INFO] [1793044651.788220478] [track1_grasp]: [motion:mock-prechecked] pregrasp: distance=0.104 m waypoints=53 v=0.120
+[INFO] [1793044651.789639304] [track1_grasp]: [grasp] move to grasp: xyz=(0.0289, 0.1027, 0.187)
+[INFO] [1793044651.791073564] [track1_grasp]: [motion:mock-prechecked] grasp: distance=0.080 m waypoints=40 v=0.120
+[INFO] [1793044651.792473393] [track1_grasp]: [grasp] reached grasp pose; closing jaws
+[INFO] [1793044651.793873222] [track1_grasp]: [gripper:mock] close
+[INFO] [1793044651.795264739] [track1_grasp]: [verify_hold] checking whether the object is held
+[INFO] [1793044651.796812981] [track1_grasp]: [verify_hold] mock hold verifier accepted
+[INFO] [1793044651.798240117] [track1_grasp]: [lift] move to lift: xyz=(0.0289, 0.1027, 0.267)
+[INFO] [1793044651.799675565] [track1_grasp]: [motion:mock-prechecked] lift: distance=0.080 m waypoints=40 v=0.120
+[INFO] [1793044651.801097953] [track1_grasp]: [transfer] move to transfer: xyz=(0.0289, 0.1027, 0.267)
+[INFO] [1793044651.802495407] [track1_grasp]: [motion:mock-prechecked] transfer: distance=0.000 m waypoints=0 v=0.120
+[INFO] [1793044651.803907109] [track1_grasp]: [release] move to release: xyz=(0.0289, 0.1027, 0.187)
+[INFO] [1793044651.805338995] [track1_grasp]: [motion:mock-prechecked] release: distance=0.080 m waypoints=40 v=0.120
+[INFO] [1793044651.806725763] [track1_grasp]: [release] opening jaws to release the object
+[INFO] [1793044651.808141027] [track1_grasp]: [gripper:mock] open
+[INFO] [1793044651.809551541] [track1_grasp]: [retreat] move to retreat: xyz=(0.0289, 0.1027, 0.267)
+[INFO] [1793044651.811019046] [track1_grasp]: [motion:mock-prechecked] retreat: distance=0.080 m waypoints=40 v=0.120
+[INFO] [1793044651.812519796] [track1_grasp]: [done] box_relative_round_2: box-relative target returned in place and the arm retreated; no legacy reference or released XY was stored, so the next round requires a fresh stable RGB-D frame (2/5)
+[INFO] [1793044651.814127402] [track1_grasp]: [scan] box_relative_round_3: acquiring the current box-relative five-point target from one stable RGB-D frame; no remembered point, legacy grasp override, or previous release XY is used
+[INFO] [1793044651.815543853] [track1_grasp]: [detect] observation 1/1: waiting for a fresh frame
+[INFO] [1793044651.817084971] [track1_grasp]: [detect] frame 'box_relative_round_3': 1 detection(s), 8-Plastic_Banana conf=0.95, confirmation 1/1
+[INFO] [1793044651.818510920] [track1_grasp]: [select] selected '8-Plastic_Banana' conf=0.95 graspability=1.00: 8-Plastic_Banana confirmed in 1 consecutive frames
+[INFO] [1793044651.819948742] [track1_grasp]: [plan] box_relative_round_3: RGB-D coordinates use live RobotInfo flange_xyz=(0.028938, 0.102735, 0.267); route planning uses the dry-run virtual flange_xyz=(0.028938, 0.102735, 0.267)
+[INFO] [1793044651.821819930] [track1_grasp]: [box-five-point-plan] point=corner_nw jaw_tip_base=(-0.022438, 0.107436, 0.022000) flange_target=(-0.022438, 0.107436, 0.187000) rpy=(3.141593, 0.000000, -0.261799)
+[INFO] [1793044651.823331365] [track1_grasp]: [box-five-point-plan] point=corner_ne jaw_tip_base=(0.112791, 0.071201, 0.022000) flange_target=(0.112791, 0.071201, 0.187000) rpy=(3.141593, 0.000000, -0.261799)
+[INFO] [1793044651.824839238] [track1_grasp]: [box-five-point-plan] point=corner_se jaw_tip_base=(0.102438, 0.032564, 0.022000) flange_target=(0.102438, 0.032564, 0.187000) rpy=(3.141593, 0.000000, -0.261799)
+[INFO] [1793044651.826334051] [track1_grasp]: [box-five-point-plan] point=corner_sw jaw_tip_base=(-0.032791, 0.068799, 0.022000) flange_target=(-0.032791, 0.068799, 0.187000) rpy=(3.141593, 0.000000, -0.261799)
+[INFO] [1793044651.827815804] [track1_grasp]: [box-five-point-plan] point=center jaw_tip_base=(0.040000, 0.070000, 0.022000) flange_target=(0.040000, 0.070000, 0.187000) rpy=(3.141593, 0.000000, -0.261799)
+[INFO] [1793044651.829231067] [track1_grasp]: [plan] box_relative_round_3: fitted box centre=(0.0400, 0.0700, 0.0200) yaw=-15.00 deg; generated 5 fixed box-local grasp point candidate(s)
+[INFO] [1793044651.830610712] [track1_grasp]: [plan] box_relative_round_3: generated 5 object-relative grasp candidate(s)
+[INFO] [1793044651.832441531] [track1_grasp]: [plan] candidate 1: box_point=corner_nw grasp_xyz=(-0.022438, 0.107436, 0.187) grasp_rpy=(3.141593, 0.0, -0.261799) pregrasp_xyz=(-0.022438, 0.107436, 0.267) pregrasp_rpy=(3.141593, 0.0, -0.261799)
+[INFO] [1793044651.838752040] [track1_grasp]: [plan] adaptive candidate 1/1 passed full-route precheck: box point 'corner_nw', box yaw=-15.00 deg, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.840218358] [track1_grasp]: [plan] adaptive winner: box point 'corner_nw', box yaw=-15.00 deg, selection=first_safe_candidate, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.842055114] [track1_grasp]: [plan] candidate 1: box_point=corner_ne grasp_xyz=(0.112791, 0.071201, 0.187) grasp_rpy=(3.141593, 0.0, -0.261799) pregrasp_xyz=(0.112791, 0.071201, 0.267) pregrasp_rpy=(3.141593, 0.0, -0.261799)
+[INFO] [1793044651.848706378] [track1_grasp]: [plan] adaptive candidate 1/1 passed full-route precheck: box point 'corner_ne', box yaw=-15.00 deg, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.850122829] [track1_grasp]: [plan] adaptive winner: box point 'corner_ne', box yaw=-15.00 deg, selection=first_safe_candidate, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.851919216] [track1_grasp]: [plan] candidate 1: box_point=corner_se grasp_xyz=(0.102438, 0.032564, 0.187) grasp_rpy=(3.141593, 0.0, -0.261799) pregrasp_xyz=(0.102438, 0.032564, 0.267) pregrasp_rpy=(3.141593, 0.0, -0.261799)
+[INFO] [1793044651.858742639] [track1_grasp]: [plan] adaptive candidate 1/1 passed full-route precheck: box point 'corner_se', box yaw=-15.00 deg, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.860208957] [track1_grasp]: [plan] adaptive winner: box point 'corner_se', box yaw=-15.00 deg, selection=first_safe_candidate, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.862113389] [track1_grasp]: [plan] candidate 1: box_point=corner_sw grasp_xyz=(-0.032791, 0.068799, 0.187) grasp_rpy=(3.141593, 0.0, -0.261799) pregrasp_xyz=(-0.032791, 0.068799, 0.267) pregrasp_rpy=(3.141593, 0.0, -0.261799)
+[INFO] [1793044651.868851326] [track1_grasp]: [plan] adaptive candidate 1/1 passed full-route precheck: box point 'corner_sw', box yaw=-15.00 deg, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.870291523] [track1_grasp]: [plan] adaptive winner: box point 'corner_sw', box yaw=-15.00 deg, selection=first_safe_candidate, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.872146089] [track1_grasp]: [plan] candidate 1: box_point=center grasp_xyz=(0.04, 0.07, 0.187) grasp_rpy=(3.141593, 0.0, -0.261799) pregrasp_xyz=(0.04, 0.07, 0.267) pregrasp_rpy=(3.141593, 0.0, -0.261799)
+[INFO] [1793044651.878073099] [track1_grasp]: [plan] adaptive candidate 1/1 passed full-route precheck: box point 'center', box yaw=-15.00 deg, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.879513296] [track1_grasp]: [plan] adaptive winner: box point 'center', box yaw=-15.00 deg, selection=first_safe_candidate, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.881129214] [track1_grasp]: [plan] box_relative_round_3: vertical grasp column locked; xy=(0.1024, 0.0326), straight_descent=0.0800 m, lateral=0.0000 m, rotation=0.0000 rad
+[INFO] [1793044651.882540915] [track1_grasp]: [plan] box_relative_round_3: all five routes prechecked; item match 'corner_se' distance=0.0000 m margin=0.0400 m; selected the matching prechecked route with 6 waypoint(s)
+[INFO] [1793044651.883954992] [track1_grasp]: [approach] move to pregrasp: xyz=(0.1024, 0.0326, 0.267)
+[INFO] [1793044651.885377379] [track1_grasp]: [motion:mock-prechecked] pregrasp: distance=0.102 m waypoints=51 v=0.120
+[INFO] [1793044651.886777208] [track1_grasp]: [grasp] move to grasp: xyz=(0.1024, 0.0326, 0.187)
+[INFO] [1793044651.888186535] [track1_grasp]: [motion:mock-prechecked] grasp: distance=0.080 m waypoints=40 v=0.120
+[INFO] [1793044651.889572116] [track1_grasp]: [grasp] reached grasp pose; closing jaws
+[INFO] [1793044651.890956510] [track1_grasp]: [gripper:mock] close
+[INFO] [1793044651.892348028] [track1_grasp]: [verify_hold] checking whether the object is held
+[INFO] [1793044651.893734796] [track1_grasp]: [verify_hold] mock hold verifier accepted
+[INFO] [1793044651.895133438] [track1_grasp]: [lift] move to lift: xyz=(0.1024, 0.0326, 0.267)
+[INFO] [1793044651.896631813] [track1_grasp]: [motion:mock-prechecked] lift: distance=0.080 m waypoints=40 v=0.120
+[INFO] [1793044651.898110003] [track1_grasp]: [transfer] move to transfer: xyz=(0.1024, 0.0326, 0.267)
+[INFO] [1793044651.899533578] [track1_grasp]: [motion:mock-prechecked] transfer: distance=0.000 m waypoints=0 v=0.120
+[INFO] [1793044651.900934594] [track1_grasp]: [release] move to release: xyz=(0.1024, 0.0326, 0.187)
+[INFO] [1793044651.902361731] [track1_grasp]: [motion:mock-prechecked] release: distance=0.080 m waypoints=40 v=0.120
+[INFO] [1793044651.903752061] [track1_grasp]: [release] opening jaws to release the object
+[INFO] [1793044651.905140017] [track1_grasp]: [gripper:mock] open
+[INFO] [1793044651.906545782] [track1_grasp]: [retreat] move to retreat: xyz=(0.1024, 0.0326, 0.267)
+[INFO] [1793044651.907945611] [track1_grasp]: [motion:mock-prechecked] retreat: distance=0.080 m waypoints=40 v=0.120
+[INFO] [1793044651.909343065] [track1_grasp]: [done] box_relative_round_3: box-relative target returned in place and the arm retreated; no legacy reference or released XY was stored, so the next round requires a fresh stable RGB-D frame (3/5)
+[INFO] [1793044651.910828379] [track1_grasp]: [scan] box_relative_round_4: acquiring the current box-relative five-point target from one stable RGB-D frame; no remembered point, legacy grasp override, or previous release XY is used
+[INFO] [1793044651.912235332] [track1_grasp]: [detect] observation 1/1: waiting for a fresh frame
+[INFO] [1793044651.913732519] [track1_grasp]: [detect] frame 'box_relative_round_4': 1 detection(s), 8-Plastic_Banana conf=0.95, confirmation 1/1
+[INFO] [1793044651.915166780] [track1_grasp]: [select] selected '8-Plastic_Banana' conf=0.95 graspability=1.00: 8-Plastic_Banana confirmed in 1 consecutive frames
+[INFO] [1793044651.916589167] [track1_grasp]: [plan] box_relative_round_4: RGB-D coordinates use live RobotInfo flange_xyz=(0.102438, 0.032564, 0.267); route planning uses the dry-run virtual flange_xyz=(0.102438, 0.032564, 0.267)
+[INFO] [1793044651.918433047] [track1_grasp]: [box-five-point-plan] point=corner_nw jaw_tip_base=(-0.048812, 0.006233, 0.022000) flange_target=(-0.048812, 0.006233, 0.187000) rpy=(3.141593, 0.000000, 0.610865)
+[INFO] [1793044651.919927860] [track1_grasp]: [box-five-point-plan] point=corner_ne jaw_tip_base=(0.065869, 0.086533, 0.022000) flange_target=(0.065869, 0.086533, 0.187000) rpy=(3.141593, 0.000000, 0.610865)
+[INFO] [1793044651.921427422] [track1_grasp]: [box-five-point-plan] point=corner_se jaw_tip_base=(0.088812, 0.053767, 0.022000) flange_target=(0.088812, 0.053767, 0.187000) rpy=(3.141593, 0.000000, 0.610865)
+[INFO] [1793044651.922910362] [track1_grasp]: [box-five-point-plan] point=corner_sw jaw_tip_base=(-0.025869, -0.026533, 0.022000) flange_target=(-0.025869, -0.026533, 0.187000) rpy=(3.141593, 0.000000, 0.610865)
+[INFO] [1793044651.924418235] [track1_grasp]: [box-five-point-plan] point=center jaw_tip_base=(0.020000, 0.030000, 0.022000) flange_target=(0.020000, 0.030000, 0.187000) rpy=(3.141593, 0.000000, 0.610865)
+[INFO] [1793044651.925844184] [track1_grasp]: [plan] box_relative_round_4: fitted box centre=(0.0200, 0.0300, 0.0200) yaw=35.00 deg; generated 5 fixed box-local grasp point candidate(s)
+[INFO] [1793044651.927251137] [track1_grasp]: [plan] box_relative_round_4: generated 5 object-relative grasp candidate(s)
+[INFO] [1793044651.929197125] [track1_grasp]: [plan] candidate 1: box_point=corner_nw grasp_xyz=(-0.048812, 0.006233, 0.187) grasp_rpy=(3.141593, 0.0, 0.610865) pregrasp_xyz=(-0.048812, 0.006233, 0.267) pregrasp_rpy=(3.141593, 0.0, 0.610865)
+[INFO] [1793044651.936776859] [track1_grasp]: [plan] adaptive candidate 1/1 passed full-route precheck: box point 'corner_nw', box yaw=35.00 deg, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.938203996] [track1_grasp]: [plan] adaptive winner: box point 'corner_nw', box yaw=35.00 deg, selection=first_safe_candidate, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.940024129] [track1_grasp]: [plan] candidate 1: box_point=corner_ne grasp_xyz=(0.065869, 0.086533, 0.187) grasp_rpy=(3.141593, 0.0, 0.610865) pregrasp_xyz=(0.065869, 0.086533, 0.267) pregrasp_rpy=(3.141593, 0.0, 0.610865)
+[INFO] [1793044651.946353635] [track1_grasp]: [plan] adaptive candidate 1/1 passed full-route precheck: box point 'corner_ne', box yaw=35.00 deg, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.947774835] [track1_grasp]: [plan] adaptive winner: box point 'corner_ne', box yaw=35.00 deg, selection=first_safe_candidate, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.949596156] [track1_grasp]: [plan] candidate 1: box_point=corner_se grasp_xyz=(0.088812, 0.053767, 0.187) grasp_rpy=(3.141593, 0.0, 0.610865) pregrasp_xyz=(0.088812, 0.053767, 0.267) pregrasp_rpy=(3.141593, 0.0, 0.610865)
+[INFO] [1793044651.955308264] [track1_grasp]: [plan] adaptive candidate 1/1 passed full-route precheck: box point 'corner_se', box yaw=35.00 deg, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.956727090] [track1_grasp]: [plan] adaptive winner: box point 'corner_se', box yaw=35.00 deg, selection=first_safe_candidate, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.958568595] [track1_grasp]: [plan] candidate 1: box_point=corner_sw grasp_xyz=(-0.025869, -0.026533, 0.187) grasp_rpy=(3.141593, 0.0, 0.610865) pregrasp_xyz=(-0.025869, -0.026533, 0.267) pregrasp_rpy=(3.141593, 0.0, 0.610865)
+[INFO] [1793044651.966280120] [track1_grasp]: [plan] adaptive candidate 1/1 passed full-route precheck: box point 'corner_sw', box yaw=35.00 deg, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.967708444] [track1_grasp]: [plan] adaptive winner: box point 'corner_sw', box yaw=35.00 deg, selection=first_safe_candidate, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.969532139] [track1_grasp]: [plan] candidate 1: box_point=center grasp_xyz=(0.02, 0.03, 0.187) grasp_rpy=(3.141593, 0.0, 0.610865) pregrasp_xyz=(0.02, 0.03, 0.267) pregrasp_rpy=(3.141593, 0.0, 0.610865)
+[INFO] [1793044651.976101480] [track1_grasp]: [plan] adaptive candidate 1/1 passed full-route precheck: box point 'center', box yaw=35.00 deg, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.977528616] [track1_grasp]: [plan] adaptive winner: box point 'center', box yaw=35.00 deg, selection=first_safe_candidate, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044651.979129099] [track1_grasp]: [plan] box_relative_round_4: vertical grasp column locked; xy=(-0.0259, -0.0265), straight_descent=0.0800 m, lateral=0.0000 m, rotation=0.0000 rad
+[INFO] [1793044651.980540801] [track1_grasp]: [plan] box_relative_round_4: all five routes prechecked; item match 'corner_sw' distance=0.0000 m margin=0.0400 m; selected the matching prechecked route with 6 waypoint(s)
+[INFO] [1793044651.981946566] [track1_grasp]: [approach] move to pregrasp: xyz=(-0.0259, -0.0265, 0.267)
+[INFO] [1793044651.983368954] [track1_grasp]: [motion:mock-prechecked] pregrasp: distance=0.141 m waypoints=71 v=0.120
+[INFO] [1793044651.984772344] [track1_grasp]: [grasp] move to grasp: xyz=(-0.0259, -0.0265, 0.187)
+[INFO] [1793044651.986169798] [track1_grasp]: [motion:mock-prechecked] grasp: distance=0.080 m waypoints=40 v=0.120
+[INFO] [1793044651.987555380] [track1_grasp]: [grasp] reached grasp pose; closing jaws
+[INFO] [1793044651.988940961] [track1_grasp]: [gripper:mock] close
+[INFO] [1793044651.990407278] [track1_grasp]: [verify_hold] checking whether the object is held
+[INFO] [1793044651.991839164] [track1_grasp]: [verify_hold] mock hold verifier accepted
+[INFO] [1793044651.993242555] [track1_grasp]: [lift] move to lift: xyz=(-0.0259, -0.0265, 0.267)
+[INFO] [1793044651.994651882] [track1_grasp]: [motion:mock-prechecked] lift: distance=0.080 m waypoints=40 v=0.120
+[INFO] [1793044651.996156193] [track1_grasp]: [transfer] move to transfer: xyz=(-0.0259, -0.0265, 0.267)
+[INFO] [1793044651.997563146] [track1_grasp]: [motion:mock-prechecked] transfer: distance=0.000 m waypoints=0 v=0.120
+[INFO] [1793044651.998959413] [track1_grasp]: [release] move to release: xyz=(-0.0259, -0.0265, 0.187)
+[INFO] [1793044652.000372302] [track1_grasp]: [motion:mock-prechecked] release: distance=0.080 m waypoints=40 v=0.120
+[INFO] [1793044652.001760258] [track1_grasp]: [release] opening jaws to release the object
+[INFO] [1793044652.003148213] [track1_grasp]: [gripper:mock] open
+[INFO] [1793044652.004537356] [track1_grasp]: [retreat] move to retreat: xyz=(-0.0259, -0.0265, 0.267)
+[INFO] [1793044652.005944309] [track1_grasp]: [motion:mock-prechecked] retreat: distance=0.080 m waypoints=40 v=0.120
+[INFO] [1793044652.007350074] [track1_grasp]: [done] box_relative_round_4: box-relative target returned in place and the arm retreated; no legacy reference or released XY was stored, so the next round requires a fresh stable RGB-D frame (4/5)
+[INFO] [1793044652.008838951] [track1_grasp]: [scan] box_relative_round_5: acquiring the current box-relative five-point target from one stable RGB-D frame; no remembered point, legacy grasp override, or previous release XY is used
+[INFO] [1793044652.010237592] [track1_grasp]: [detect] observation 1/1: waiting for a fresh frame
+[INFO] [1793044652.011734780] [track1_grasp]: [detect] frame 'box_relative_round_5': 1 detection(s), 8-Plastic_Banana conf=0.95, confirmation 1/1
+[INFO] [1793044652.013133421] [track1_grasp]: [select] selected '8-Plastic_Banana' conf=0.95 graspability=1.00: 8-Plastic_Banana confirmed in 1 consecutive frames
+[INFO] [1793044652.014556996] [track1_grasp]: [plan] box_relative_round_5: RGB-D coordinates use live RobotInfo flange_xyz=(-0.025869, -0.026533, 0.267); route planning uses the dry-run virtual flange_xyz=(-0.025869, -0.026533, 0.267)
+[INFO] [1793044652.016412748] [track1_grasp]: [box-five-point-plan] point=corner_nw jaw_tip_base=(-0.070622, 0.132321, 0.022000) flange_target=(-0.070622, 0.132321, 0.187000) rpy=(3.141593, 0.000000, -0.523599)
+[INFO] [1793044652.017894501] [track1_grasp]: [box-five-point-plan] point=corner_ne jaw_tip_base=(0.050622, 0.062321, 0.022000) flange_target=(0.050622, 0.062321, 0.187000) rpy=(3.141593, 0.000000, -0.523599)
+[INFO] [1793044652.019381003] [track1_grasp]: [box-five-point-plan] point=corner_se jaw_tip_base=(0.030622, 0.027679, 0.022000) flange_target=(0.030622, 0.027679, 0.187000) rpy=(3.141593, 0.000000, -0.523599)
+[INFO] [1793044652.020944679] [track1_grasp]: [box-five-point-plan] point=corner_sw jaw_tip_base=(-0.090622, 0.097679, 0.022000) flange_target=(-0.090622, 0.097679, 0.187000) rpy=(3.141593, 0.000000, -0.523599)
+[INFO] [1793044652.022592654] [track1_grasp]: [box-five-point-plan] point=center jaw_tip_base=(-0.020000, 0.080000, 0.022000) flange_target=(-0.020000, 0.080000, 0.187000) rpy=(3.141593, 0.000000, -0.523599)
+[INFO] [1793044652.024168203] [track1_grasp]: [plan] box_relative_round_5: fitted box centre=(-0.0200, 0.0800, 0.0200) yaw=-30.00 deg; generated 5 fixed box-local grasp point candidate(s)
+[INFO] [1793044652.025728318] [track1_grasp]: [plan] box_relative_round_5: generated 5 object-relative grasp candidate(s)
+[INFO] [1793044652.027902267] [track1_grasp]: [plan] candidate 1: box_point=corner_nw grasp_xyz=(-0.070622, 0.132321, 0.187) grasp_rpy=(3.141593, 0.0, -0.523599) pregrasp_xyz=(-0.070622, 0.132321, 0.267) pregrasp_rpy=(3.141593, 0.0, -0.523599)
+[INFO] [1793044652.035622103] [track1_grasp]: [plan] adaptive candidate 1/1 passed full-route precheck: box point 'corner_nw', box yaw=-30.00 deg, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044652.037032618] [track1_grasp]: [plan] adaptive winner: box point 'corner_nw', box yaw=-30.00 deg, selection=first_safe_candidate, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044652.038862250] [track1_grasp]: [plan] candidate 1: box_point=corner_ne grasp_xyz=(0.050622, 0.062321, 0.187) grasp_rpy=(3.141593, 0.0, -0.523599) pregrasp_xyz=(0.050622, 0.062321, 0.267) pregrasp_rpy=(3.141593, 0.0, -0.523599)
+[INFO] [1793044652.045949254] [track1_grasp]: [plan] adaptive candidate 1/1 passed full-route precheck: box point 'corner_ne', box yaw=-30.00 deg, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044652.047363330] [track1_grasp]: [plan] adaptive winner: box point 'corner_ne', box yaw=-30.00 deg, selection=first_safe_candidate, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044652.049178714] [track1_grasp]: [plan] candidate 1: box_point=corner_se grasp_xyz=(0.030622, 0.027679, 0.187) grasp_rpy=(3.141593, 0.0, -0.523599) pregrasp_xyz=(0.030622, 0.027679, 0.267) pregrasp_rpy=(3.141593, 0.0, -0.523599)
+[INFO] [1793044652.056011636] [track1_grasp]: [plan] adaptive candidate 1/1 passed full-route precheck: box point 'corner_se', box yaw=-30.00 deg, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044652.057451833] [track1_grasp]: [plan] adaptive winner: box point 'corner_se', box yaw=-30.00 deg, selection=first_safe_candidate, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044652.059261281] [track1_grasp]: [plan] candidate 1: box_point=corner_sw grasp_xyz=(-0.090622, 0.097679, 0.187) grasp_rpy=(3.141593, 0.0, -0.523599) pregrasp_xyz=(-0.090622, 0.097679, 0.267) pregrasp_rpy=(3.141593, 0.0, -0.523599)
+[INFO] [1793044652.066778088] [track1_grasp]: [plan] adaptive candidate 1/1 passed full-route precheck: box point 'corner_sw', box yaw=-30.00 deg, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044652.068213536] [track1_grasp]: [plan] adaptive winner: box point 'corner_sw', box yaw=-30.00 deg, selection=first_safe_candidate, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044652.070063352] [track1_grasp]: [plan] candidate 1: box_point=center grasp_xyz=(-0.02, 0.08, 0.187) grasp_rpy=(3.141593, 0.0, -0.523599) pregrasp_xyz=(-0.02, 0.08, 0.267) pregrasp_rpy=(3.141593, 0.0, -0.523599)
+[INFO] [1793044652.076962762] [track1_grasp]: [plan] adaptive candidate 1/1 passed full-route precheck: box point 'center', box yaw=-30.00 deg, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044652.078385150] [track1_grasp]: [plan] adaptive winner: box point 'center', box yaw=-30.00 deg, selection=first_safe_candidate, min_sigma=0.000000, joint_travel=0.00 deg
+[INFO] [1793044652.079988007] [track1_grasp]: [plan] box_relative_round_5: vertical grasp column locked; xy=(-0.0200, 0.0800), straight_descent=0.0800 m, lateral=0.0000 m, rotation=0.0000 rad
+[INFO] [1793044652.081487569] [track1_grasp]: [plan] box_relative_round_5: all five routes prechecked; item match 'center' distance=0.0000 m margin=0.0728 m; selected the matching prechecked route with 6 waypoint(s)
+[INFO] [1793044652.082931328] [track1_grasp]: [approach] move to pregrasp: xyz=(-0.02, 0.08, 0.267)
+[INFO] [1793044652.084362027] [track1_grasp]: [motion:mock-prechecked] pregrasp: distance=0.107 m waypoints=54 v=0.120
+[INFO] [1793044652.085777290] [track1_grasp]: [grasp] move to grasp: xyz=(-0.02, 0.08, 0.187)
+[INFO] [1793044652.087187805] [track1_grasp]: [motion:mock-prechecked] grasp: distance=0.080 m waypoints=40 v=0.120
+[INFO] [1793044652.088571011] [track1_grasp]: [grasp] reached grasp pose; closing jaws
+[INFO] [1793044652.089961342] [track1_grasp]: [gripper:mock] close
+[INFO] [1793044652.091330301] [track1_grasp]: [verify_hold] checking whether the object is held
+[INFO] [1793044652.092689761] [track1_grasp]: [verify_hold] mock hold verifier accepted
+[INFO] [1793044652.094050409] [track1_grasp]: [lift] move to lift: xyz=(-0.02, 0.08, 0.267)
+[INFO] [1793044652.095428866] [track1_grasp]: [motion:mock-prechecked] lift: distance=0.080 m waypoints=40 v=0.120
+[INFO] [1793044652.096941489] [track1_grasp]: [transfer] move to transfer: xyz=(-0.02, 0.08, 0.267)
+[INFO] [1793044652.098338943] [track1_grasp]: [motion:mock-prechecked] transfer: distance=0.000 m waypoints=0 v=0.120
+[INFO] [1793044652.099724524] [track1_grasp]: [release] move to release: xyz=(-0.02, 0.08, 0.187)
+[INFO] [1793044652.101108918] [track1_grasp]: [motion:mock-prechecked] release: distance=0.080 m waypoints=40 v=0.120
+[INFO] [1793044652.102493312] [track1_grasp]: [release] opening jaws to release the object
+[INFO] [1793044652.103874144] [track1_grasp]: [gripper:mock] open
+[INFO] [1793044652.105271598] [track1_grasp]: [retreat] move to retreat: xyz=(-0.02, 0.08, 0.267)
+[INFO] [1793044652.106665490] [track1_grasp]: [motion:mock-prechecked] retreat: distance=0.080 m waypoints=40 v=0.120
+[INFO] [1793044652.108074817] [track1_grasp]: [done] box_relative_round_5: box-relative target returned in place and the arm retreated; all five fixed box-local points completed from current-frame box poses
+[INFO] [1793044652.109723979] [track1_grasp]: [run] requested=5 attempts=5 successes=5 rate=100.00%

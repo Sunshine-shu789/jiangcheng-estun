@@ -1,0 +1,36 @@
+# Loaded by launch/move_group.launch.py under the `ompl` namespace.
+# RRTConnect is the conservative default for the articulated 6R arm.
+planning_plugin: ompl_interface/OMPLPlanner
+request_adapters: >-
+  default_planner_request_adapters/ResolveConstraintFrames
+  default_planner_request_adapters/FixWorkspaceBounds
+  default_planner_request_adapters/FixStartStateBounds
+  default_planner_request_adapters/FixStartStateCollision
+  default_planner_request_adapters/FixStartStatePathConstraints
+  default_planner_request_adapters/AddTimeOptimalParameterization
+
+planner_configs:
+  RRTConnect:
+    type: geometric::RRTConnect
+    range: 0.0
+
+arm:
+  default_planner_config: RRTConnect
+  planner_configs:
+    - RRTConnect
+  projection_evaluator: joints(joint1,joint2)
+  longest_valid_segment_fraction: 0.005
+
+arm_with_tool:
+  default_planner_config: RRTConnect
+  planner_configs:
+    - RRTConnect
+  projection_evaluator: joints(joint1,joint2)
+  longest_valid_segment_fraction: 0.005
+
+gripper:
+  default_planner_config: RRTConnect
+  planner_configs:
+    - RRTConnect
+  projection_evaluator: joints(gripper_left_finger_joint,gripper_right_finger_joint)
+  longest_valid_segment_fraction: 0.01

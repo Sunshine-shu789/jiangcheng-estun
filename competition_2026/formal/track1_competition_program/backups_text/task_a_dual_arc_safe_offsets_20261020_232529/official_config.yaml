@@ -1,0 +1,226 @@
+# Task A legacy-vision configuration for the current Estun/Codroid cell.
+#
+# This file is pinned to Task A only. The desktop launcher opts into real
+# motion after an explicit operator confirmation; the package copy remains
+# dry-run. B/C/D/E continue to use track1_live.yaml and grab recognition.
+
+task:
+  mode: A
+  max_picks: 1
+  stop_on_error: false
+  sample_period_s: 0.2
+
+vision:
+  # Task A is pinned to the old browser recognizer.  This adapter only reads
+  # http://127.0.0.1:9100/status.json; it never loads models/best.pt and never
+  # starts the newer grab-recognition process.
+  backend: legacy_http
+  legacy_status_url: http://127.0.0.1:9100/status.json
+  legacy_poll_s: 0.10
+  min_confidence: 0.35
+  require_depth: false
+  # Task A must recognize every competition object class, not one fixed item.
+  # An empty target_class means "all labels in classes"; the legacy browser
+  # status already contains every stabilized detection.
+  target_class: ""
+  classes:
+    - "1-Cheez-it"
+    - "2-Starkist_Tuna"
+    - "3-Scissors"
+    - "4-Frenchs_Mustard"
+    - "5-Tomato_Soup"
+    - "6-Foam_Brick"
+    - "7-Clamp"
+    - "8-Plastic_Banana"
+    - "9-Mug"
+    - "10-meat_can"
+  continuous: true
+  # The legacy page itself is the live window.  Do not open a second OpenCV
+  # window or compete with the browser preview for the camera.
+  show: false
+  capture_timeout_s: 20.0
+  first_frame_timeout_s: 120.0
+  stale_after_s: 2.0
+  save_annotated: false
+
+task_a:
+  iou_threshold: 0.75
+  ground_truth_file: ""
+  output_dir: ../logs/task_a_annotated
+  save_annotated: false
+  draw_labels: true
+  draw_ground_truth: true
+  max_frames: 0
+  min_positions: 10
+  # Task A automatic ten-position dual-arc patrol.
+  # J1 uses absolute targets spanning +135 -> -135 on arc 1 and
+  # -135 -> +135 on arc 2. J2/J3/J4 offsets are relative to startup
+  # feedback. J5/J6 are copied exactly from startup and remain locked.
+  # Every patrol segment and the final return-to-start move are fully
+  # pre-checked before the first motion command.
+  patrol:
+    enabled: true
+    mode: joint_arc
+    position_count: 10
+    # Automatic competition flow: no Enter prompt between positions.
+    manual_step: false
+    movable_joints: [1, 2, 3, 4]
+    joint1_targets_deg:
+      - 135.0
+      - 67.5
+      - 0.0
+      - -67.5
+      - -135.0
+      - -135.0
+      - -67.5
+      - 0.0
+      - 67.5
+      - 135.0
+    joint_offsets_deg:
+      # [Joint2 delta, Joint3 delta, Joint4 delta], relative to startup.
+      # Arc 1 uses the outer middle-arm posture; arc 2 uses the inner posture.
+      - [27.0, 0.0, 0.0]
+      - [27.0, 0.0, 0.0]
+      - [27.0, 0.0, 0.0]
+      - [27.0, 0.0, 0.0]
+      - [27.0, 0.0, 0.0]
+      - [ 3.0, 0.0, 0.0]
+      - [ 3.0, 0.0, 0.0]
+      - [ 3.0, 0.0, 0.0]
+      - [ 3.0, 0.0, 0.0]
+      - [ 3.0, 0.0, 0.0]
+    arc_indices: [1, 1, 1, 1, 1, 2, 2, 2, 2, 2]
+    min_move_distance_m: 0.15
+    joint_max_step_deg: 2.0
+    max_initial_move_deg: 60.0
+    max_target_move_deg: 70.0
+    settle_s: 0.5
+    # After an allowed item is confirmed, hold still for three seconds before
+    # moving to the next position.
+    post_detection_dwell_s: 3.0
+    # After point 10, return to the exact startup joint posture.
+    return_to_start: true
+    # Legacy Cartesian-box fields are kept for hardware-free tests only; the
+    # live configuration above must remain in joint_arc mode.
+    stride_m: 0.17
+    linear_step_m: 0.02
+    axes: [x, y, z]
+    # Wait up to ten seconds for three consecutive detections. If no item is
+    # confirmed, record the miss and continue; communication failures abort.
+    object_visibility:
+      enabled: true
+      visible_confirm_frames: 3
+      observation_window_s: 10.0
+      poll_s: 0.10
+
+task_b:
+  place_poses_file: task_b_place_poses.yaml
+  rounds: 5
+  keep_same_target: true
+  place_names: [corner_front_left, corner_front_right, corner_back_right, corner_back_left, centre]
+
+target:
+  policy: any
+  known_classes:
+    - "1-Cheez-it"
+    - "2-Starkist_Tuna"
+    - "3-Scissors"
+    - "4-Frenchs_Mustard"
+    - "5-Tomato_Soup"
+    - "6-Foam_Brick"
+    - "7-Clamp"
+    - "8-Plastic_Banana"
+    - "9-Mug"
+    - "10-meat_can"
+  unknown_labels: [unknown, object]
+  unknown_min_graspability: 0.65
+  max_attempts_per_target: 2
+  # Exact detector labels in the published task-E order.  Update if the
+  # competition order differs.
+  order:
+    - "1-Cheez-it"
+    - "2-Starkist_Tuna"
+    - "3-Scissors"
+    - "4-Frenchs_Mustard"
+    - "5-Tomato_Soup"
+    - "6-Foam_Brick"
+    - "7-Clamp"
+    - "8-Plastic_Banana"
+    - "9-Mug"
+    - "10-meat_can"
+
+pose:
+  # Eye-in-hand camera.  The transform file is a temporary identity-rotation
+  # assumption, not a completed hand-eye calibration.
+  camera_frame: flange
+  extrinsics_file: camera_to_flange.d405_assumed.yaml
+  use_detection_base_xyz: false
+  fallback_camera_to_base: false
+
+motion:
+  backend: robotmove
+  dry_run: false
+  motion_mode: joint_ik
+  # Broad enough for the observed target at y about 0.50 m.  Small steps and
+  # max_total_travel remain the primary safety bounds.
+  workspace_min: [-0.65, -0.65, 0.02]
+  workspace_max: [0.65, 0.65, 0.80]
+  workspace_margin: 0.01
+  approach_height: 0.08
+  grasp_z_offset: 0.00
+  lift_height: 0.10
+  place_pose: [0.25, 0.25, 0.08, 3.14159265, 0.0, 0.0]
+  place_approach_height: 0.08
+  retreat_height: 0.08
+  speed_mps: 0.02
+  orientation: current
+  fixed_rpy: [3.14159265, 0.0, 0.0]
+  move_timeout_s: 30.0
+  position_tolerance_m: 0.003
+  poll_period_s: 0.05
+  robotmove_topic: RobotMove
+  robotinfo_topic: RobotInfo
+  robot_info_timeout_s: 2.0
+  joint_max_step_deg: 2.0
+  joint_tolerance_deg: 0.35
+  joint_start_tolerance_deg: 0.05
+  joint_move_timeout_s: 8.0
+  joint_reject_timeout_s: 2.0
+
+servo:
+  desired_standoff_m: 0.18
+  min_depth_m: 0.12
+  center_tolerance_px: 35
+  depth_tolerance_m: 0.015
+  max_steps: 36
+  max_step_m: 0.005      # first supervised test: 5 mm per servo iteration
+  max_total_travel_m: 0.35
+  speed_mps: 0.01
+  lateral_gain: 0.8
+  forward_gain: 0.8
+  settle_s_after_move: 0.25
+  convergence_frames: 2
+  # R_tool_camera after the RGB-D frame is rotated 180 degrees.  Verify signs
+  # under emergency-stop supervision; change this matrix, not the servo code.
+  camera_to_tool:
+    - [1.0, 0.0, 0.0]
+    - [0.0, 1.0, 0.0]
+    - [0.0, 0.0, 1.0]
+
+search:
+  enabled: true
+  yaw_offsets_deg: [0]
+  # Positive values rotate the current forward-looking camera toward world -Z.
+  pitch_down_offsets_deg: [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80]
+  settle_s: 0.8
+  # The detector can briefly switch class under the current view, so search
+  # and post-move checks look at several consecutive newest frames.
+  observe_frames: 8
+  return_to_initial_on_miss: true
+
+gripper:
+  # Search/approach testing deliberately never sends a gripper command.
+  # Replace this with the real backend only after the approach test passes.
+  backend: mock
+  settle_time_s: 0.3
+  open_before_approach: true

@@ -1,0 +1,48 @@
+[state] controller state=AutoReady fault=False
+[start] joints_deg=[82.657, 54.3102, -32.1933, -53.4526, 84.445, -2.0579]
+[start] tcp_xyz_m=(-0.064452, 0.430292, 0.433298)
+[start] tcp_rpy_rad=(-2.885479, 0.08484, -0.069029)
+[targets]
+  lower_safe: xyz=(-0.06445214524780357, 0.43029237887557603, 0.3) rpy=(-2.8854790565433053, 0.08483967474514516, -0.06902893214361419)
+  align_low: xyz=(-0.063443253, 0.543732009, 0.3) rpy=(-2.8854790565433053, 0.08483967474514516, -0.06902893214361419)
+  descend_rotate_to_above_release: xyz=(-0.063443253, 0.543732009, 0.211534092) rpy=(3.082206718, 0.098641098, -0.072880619)
+  release: xyz=(-0.063443253, 0.543732009, 0.161534092) rpy=(3.082206718, 0.098641098, -0.072880619)
+  retreat: xyz=(-0.063443253, 0.543732009, 0.211534092) rpy=(3.082206718, 0.098641098, -0.072880619)
+[motion:cartesian-precheck] target 1: 144 waypoint(s), planning_step=2.000 mm, max_joint_step=0.498 deg, max_joint_accel=0.247 deg, min_sigma=0.02989, axis_step_deg=0.001,0.463,0.498,0.181,0.003,0.000, axis_travel_deg=0.003,35.922,48.572,12.660,0.007,0.002
+[motion:cartesian-precheck] target 2: 149 waypoint(s), planning_step=2.000 mm, max_joint_step=0.496 deg, max_joint_accel=0.246 deg, min_sigma=0.02779, axis_step_deg=0.017,0.177,0.496,0.338,0.005,0.017, axis_travel_deg=1.538,15.334,52.545,37.373,0.390,1.498
+[motion:cartesian-precheck] target 3: 53 waypoint(s), planning_step=2.000 mm, max_joint_step=0.494 deg, max_joint_accel=0.238 deg, min_sigma=0.01280, axis_step_deg=0.004,0.108,0.494,0.197,0.016,0.036, axis_travel_deg=0.084,3.115,14.301,4.928,0.367,1.493
+[motion:cartesian-precheck] target 4: 54 waypoint(s), planning_step=2.000 mm, max_joint_step=0.496 deg, max_joint_accel=0.242 deg, min_sigma=0.01327, axis_step_deg=0.002,0.475,0.496,0.174,0.005,0.001, axis_travel_deg=0.002,14.592,18.471,3.908,0.006,0.001
+[motion:cartesian-precheck] target 5: 55 waypoint(s), planning_step=2.000 mm, max_joint_step=0.495 deg, max_joint_accel=0.241 deg, min_sigma=0.01280, axis_step_deg=0.002,0.475,0.495,0.142,0.005,0.001, axis_travel_deg=0.002,14.592,18.471,3.942,0.005,0.001
+[motion:linear-precheck] validated 5 segment(s), 455 Cartesian waypoint(s), min_sigma=0.01280
+[precheck] PASS
+[segment 1] lower_safe: distance_mm=133.298 waypoints=144 planning_step_mm=2.0000
+  max_joint_step_deg=0.498158 max_joint_accel_deg=0.246912 min_sigma=0.029890
+  axis_max_step_deg=[0.001023, 0.46306, 0.498158, 0.181395, 0.002502, 0.000141]
+  axis_travel_deg=[0.002523, 35.92225, 48.57187, 12.660494, 0.006726, 0.002102]
+  segment_start_joints_deg=[82.657, 54.3102, -32.1933, -53.4526, 84.445, -2.0579]
+  segment_end_joints_deg=[82.6582, 90.2325, -80.7652, -66.1131, 84.4483, -2.0579]
+[segment 2] align_low: distance_mm=113.444 waypoints=149 planning_step_mm=2.0000
+  max_joint_step_deg=0.496192 max_joint_accel_deg=0.246468 min_sigma=0.027792
+  axis_max_step_deg=[0.017495, 0.17674, 0.496192, 0.33758, 0.005003, 0.017235]
+  axis_travel_deg=[1.538279, 15.333851, 52.545086, 37.373264, 0.389927, 1.497991]
+  segment_start_joints_deg=[82.6582, 90.2325, -80.7652, -66.1131, 84.4483, -2.0579]
+  segment_end_joints_deg=[84.1964, 74.8986, -28.2201, -28.7398, 84.8282, -0.5599]
+[segment 3] descend_rotate_to_above_release: distance_mm=88.466 waypoints=53 planning_step_mm=2.0000
+  max_joint_step_deg=0.494138 max_joint_accel_deg=0.238092 min_sigma=0.012801
+  axis_max_step_deg=[0.003789, 0.107558, 0.494138, 0.197187, 0.01559, 0.035609]
+  axis_travel_deg=[0.084493, 3.11516, 14.301186, 4.928051, 0.367371, 1.492814]
+  segment_start_joints_deg=[84.1964, 74.8986, -28.2201, -28.7398, 84.8282, -0.5599]
+  segment_end_joints_deg=[84.1119, 75.858, -13.9189, -31.636, 84.4608, -2.0527]
+[segment 4] release: distance_mm=50.000 waypoints=54 planning_step_mm=2.0000
+  max_joint_step_deg=0.495834 max_joint_accel_deg=0.241914 min_sigma=0.013271
+  axis_max_step_deg=[0.001657, 0.47513, 0.495834, 0.174426, 0.004667, 0.000871]
+  axis_travel_deg=[0.001965, 14.592446, 18.470711, 3.908279, 0.005562, 0.001049]
+  segment_start_joints_deg=[84.1119, 75.858, -13.9189, -31.636, 84.4608, -2.0527]
+  segment_end_joints_deg=[84.1135, 90.4504, -32.3896, -35.5368, 84.4651, -2.0534]
+[segment 5] retreat: distance_mm=50.000 waypoints=55 planning_step_mm=2.0000
+  max_joint_step_deg=0.494758 max_joint_accel_deg=0.241401 min_sigma=0.012801
+  axis_max_step_deg=[0.001592, 0.474673, 0.494758, 0.141578, 0.004555, 0.000637]
+  axis_travel_deg=[0.001687, 14.592448, 18.470716, 3.942016, 0.004852, 0.0007]
+  segment_start_joints_deg=[84.1135, 90.4504, -32.3896, -35.5368, 84.4651, -2.0534]
+  segment_end_joints_deg=[84.1119, 75.858, -13.9189, -31.636, 84.4608, -2.0527]
+[precheck] PASS all five segments, total_cartesian_waypoints=455

@@ -1,0 +1,7 @@
+赛道一 v11 无相机离线视觉验收
+模型：/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_train_40class_v11_full_v10aug_from_yolo11s/track1_40class_v11_20261031_234506/weights/best.pt
+SHA256：f43234a94f1d71b24cb187082c18eb22fea84c88922c605df5f7b1a79ffcaaa6
+数据集：/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v10_all_multiclass_augmented_20261031
+正式阈值：0.15
+灰线候选阈值：0.05
+打开：/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/reports/track1_v11_offline_acceptance_20261101/index.html

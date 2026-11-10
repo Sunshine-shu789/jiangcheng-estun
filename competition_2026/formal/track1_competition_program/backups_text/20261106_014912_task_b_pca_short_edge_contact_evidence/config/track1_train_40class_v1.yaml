@@ -1,0 +1,83 @@
+schema_version: 1
+purpose: 赛道一 40 类 YOLO 检测训练（前 10 类保留，后 28 类加入，17/26 为空槽）
+dataset_yaml: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/dataset.yaml
+base_weights: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/models/best.pt
+output_root: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_train_40class_v1
+preflight_report: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/reports/track1_training_preflight_latest.json
+
+expected:
+  nc: 40
+  source_nc: 10
+  empty_slots: [16, 25]
+  images:
+    train: 1490
+    val: 426
+  boxes: 2238
+  review_records: 348
+  reviewed_with_boxes: 346
+  empty_review_records: 2
+  skipped_review_records: 0
+  postclass_boxes: 602
+  min_free_gb: 5
+  min_gpu_memory_gb: 6
+  front10_names:
+    - 1-Cheez-it
+    - 2-Starkist_Tuna
+    - 3-Scissors
+    - 4-Frenchs_Mustard
+    - 5-Tomato_Soup
+    - 6-Foam_Brick
+    - 7-Clamp
+    - 8-Plastic_Banana
+    - 9-Mug
+    - 10-meat_can
+
+train:
+  epochs: 120
+  imgsz: 640
+  batch: 8
+  device: 0
+  workers: 4
+  cache: false
+  amp: true
+  pretrained: true
+  optimizer: AdamW
+  lr0: 0.001
+  lrf: 0.01
+  momentum: 0.937
+  weight_decay: 0.0005
+  warmup_epochs: 3.0
+  warmup_momentum: 0.8
+  warmup_bias_lr: 0.1
+  cos_lr: true
+  patience: 30
+  save: true
+  save_period: 10
+  val: true
+  plots: true
+  verbose: true
+  seed: 42
+  deterministic: true
+  close_mosaic: 10
+  mosaic: 0.5
+  mixup: 0.0
+  copy_paste: 0.0
+  degrees: 5.0
+  translate: 0.1
+  scale: 0.3
+  shear: 2.0
+  perspective: 0.0
+  flipud: 0.0
+  fliplr: 0.5
+  hsv_h: 0.015
+  hsv_s: 0.7
+  hsv_v: 0.4
+  multi_scale: 0.0
+  rect: false
+  fraction: 1.0
+  freeze: 0
+
+cpu_profile:
+  batch: 2
+  workers: 2
+  amp: false

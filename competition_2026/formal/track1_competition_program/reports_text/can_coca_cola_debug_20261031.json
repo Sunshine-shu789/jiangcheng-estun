@@ -1,0 +1,201 @@
+{
+  "primary": [
+    {
+      "class_id": 26,
+      "id": 26,
+      "confidence": 0.7224642634391785,
+      "bbox": [
+        280.5501708984375,
+        145.97537231445312,
+        408.7935791015625,
+        281.9309997558594
+      ],
+      "name": "27-Coca_cola_full"
+    },
+    {
+      "class_id": 4,
+      "id": 4,
+      "confidence": 0.427249938249588,
+      "bbox": [
+        278.3055725097656,
+        148.40383911132812,
+        404.5967712402344,
+        278.3140869140625
+      ],
+      "name": "5-Tomato_Soup"
+    },
+    {
+      "class_id": 4,
+      "id": 4,
+      "confidence": 0.006612629629671574,
+      "bbox": [
+        333.49212646484375,
+        147.04678344726562,
+        406.378173828125,
+        276.96343994140625
+      ],
+      "name": "5-Tomato_Soup"
+    }
+  ],
+  "secondary": [
+    {
+      "class_id": 1,
+      "id": 1,
+      "confidence": 0.06655994802713394,
+      "bbox": [
+        272.01007080078125,
+        136.2615966796875,
+        413.04290771484375,
+        267.79510498046875
+      ],
+      "name": "2-Starkist_Tuna"
+    }
+  ],
+  "fused": [
+    {
+      "id": 4,
+      "officialId": 5,
+      "name": "5-Tomato_Soup",
+      "confidence": 0.5161,
+      "bbox": [
+        272.0,
+        136.3,
+        413.0,
+        267.8
+      ],
+      "source": "secondary_model",
+      "modelConfidence": 0.0666,
+      "primaryEvidenceConfidence": 0.4272,
+      "colorEvidence": "red_label",
+      "evidenceSource": "primary_and_color",
+      "secondaryClassMatched": true,
+      "redLabelRatio": 0.2373,
+      "whiteBodyRatio": 0.2192
+    }
+  ],
+  "debug": {
+    "enabled": true,
+    "mode": "dedicated_can_detector",
+    "secondaryRaw": 1,
+    "secondaryCurrent": 1,
+    "secondaryAnchors": 1,
+    "trustedAnchors": 1,
+    "secondaryAnchorsAfterArbitration": 1,
+    "effectiveSuppressionAnchors": 1,
+    "selectedCans": [
+      {
+        "id": 4,
+        "officialId": 5,
+        "name": "5-Tomato_Soup",
+        "confidence": 0.5161,
+        "bbox": [
+          272.0,
+          136.3,
+          413.0,
+          267.8
+        ],
+        "source": "secondary_model",
+        "modelConfidence": 0.0666,
+        "primaryEvidenceConfidence": 0.4272,
+        "colorEvidence": "red_label",
+        "evidenceSource": "primary_and_color",
+        "secondaryClassMatched": true,
+        "redLabelRatio": 0.2373,
+        "whiteBodyRatio": 0.2192
+      }
+    ],
+    "primaryCanArbitrations": [],
+    "secondaryEvidenceArbitrations": [
+      {
+        "bbox": [
+          272.0,
+          136.3,
+          413.0,
+          267.8
+        ],
+        "decision": "red_label_primary_support",
+        "accepted": true,
+        "chosenClass": 4,
+        "chosenModelClassMatched": true,
+        "redLabelRatio": 0.2373,
+        "whiteBodyRatio": 0.2192,
+        "primarySupport": {
+          "5-Tomato_Soup": 0.4272
+        },
+        "candidates": [
+          {
+            "id": 4,
+            "name": "5-Tomato_Soup",
+            "modelConfidence": 0.0666,
+            "evidenceConfidence": 0.5161,
+            "secondaryClassMatched": true
+          }
+        ]
+      }
+    ],
+    "primaryColorRescues": [],
+    "primaryColorAssessments": [
+      {
+        "bbox": [
+          278.3,
+          148.4,
+          404.6,
+          278.3
+        ],
+        "primaryConfidence": 0.4272,
+        "redLabelRatio": 0.2655,
+        "whiteBodyRatio": 0.1317,
+        "accepted": false,
+        "reason": "insufficient_white_body"
+      }
+    ],
+    "removedSecondaryAnchors": [],
+    "removedPrimaryCans": [
+      {
+        "class_id": 4,
+        "id": 4,
+        "confidence": 0.427249938249588,
+        "bbox": [
+          278.3055725097656,
+          148.40383911132812,
+          404.5967712402344,
+          278.3140869140625
+        ],
+        "name": "5-Tomato_Soup",
+        "officialId": 5
+      },
+      {
+        "class_id": 4,
+        "id": 4,
+        "confidence": 0.006612629629671574,
+        "bbox": [
+          333.49212646484375,
+          147.04678344726562,
+          406.378173828125,
+          276.96343994140625
+        ],
+        "name": "5-Tomato_Soup",
+        "officialId": 5
+      }
+    ],
+    "suppressedConfusers": [
+      {
+        "class_id": 26,
+        "id": 26,
+        "confidence": 0.7224642634391785,
+        "bbox": [
+          280.5501708984375,
+          145.97537231445312,
+          408.7935791015625,
+          281.9309997558594
+        ],
+        "name": "27-Coca_cola_full",
+        "officialId": 27
+      }
+    ],
+    "retainedConfuserCount": 0,
+    "rejectedSecondary": [],
+    "trackerFrame": 0,
+    "tracks": 0
+  }
+}

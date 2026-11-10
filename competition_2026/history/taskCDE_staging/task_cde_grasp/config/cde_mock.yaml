@@ -1,0 +1,61 @@
+# Task C/D/E hardware-free framework configuration.
+# Run:
+#   PYTHONPATH=src python3 -m task_cde_grasp.nodes.mock_demo --config config/cde_mock.yaml
+#
+# C selects any visible target.
+# D accepts known classes plus generic labels such as "object" when the
+#   detector's graspability score passes the threshold.
+# E follows target.order (or target.order_file) exactly.
+
+task:
+  mode: C
+  max_picks: 4
+  stop_on_error: false
+  sample_period_s: 0.2
+
+vision:
+  backend: mock
+  scenario_file: ../scenarios/mock_cde_scene.yaml
+  min_confidence: 0.35
+  require_depth: true
+  loop_scenario: false
+
+target:
+  policy: any
+  known_classes: [mug, bowl, book]
+  unknown_labels: [unknown, object]
+  unknown_min_graspability: 0.65
+  max_attempts_per_target: 2
+  order: [mug, object, bowl, book]
+
+pose:
+  camera_frame: base
+  use_detection_base_xyz: true
+  fallback_camera_to_base: false
+  # extrinsics_file: camera_to_base.example.yaml
+
+motion:
+  backend: mock
+  dry_run: true
+  workspace_min: [-0.45, -0.45, 0.00]
+  workspace_max: [0.45, 0.45, 0.60]
+  workspace_margin: 0.01
+  approach_height: 0.08
+  grasp_z_offset: 0.00
+  lift_height: 0.12
+  place_pose: [0.25, 0.25, 0.08, 3.14159265, 0.0, 0.0]
+  place_approach_height: 0.08
+  retreat_height: 0.08
+  speed_mps: 0.05
+  orientation: fixed
+  fixed_rpy: [3.14159265, 0.0, 0.0]
+  move_timeout_s: 10.0
+  position_tolerance_m: 0.003
+  poll_period_s: 0.05
+  robotmove_topic: RobotMove
+  robotinfo_topic: RobotInfo
+
+gripper:
+  backend: mock
+  settle_time_s: 0.1
+  open_before_approach: true

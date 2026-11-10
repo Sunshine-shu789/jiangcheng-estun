@@ -1,0 +1,236 @@
+task:
+  mode: B
+  max_picks: 1
+  stop_on_error: true
+  sample_period_s: 0.2
+vision:
+  backend: realsense_yolo
+  min_confidence: 0.35
+  require_depth: true
+  camera_frame_id: camera_color_optical_frame
+  weights: ../models/best.pt
+  width: 640
+  height: 480
+  fps: 15
+  serial: ''
+  warmup_frames: 20
+  imgsz: 640
+  device: 0
+  depth_window: 5
+  target_class: 8-Plastic_Banana
+  classes:
+  - 1-Cheez-it
+  - 2-Starkist_Tuna
+  - 3-Scissors
+  - 4-Frenchs_Mustard
+  - 5-Tomato_Soup
+  - 6-Foam_Brick
+  - 7-Clamp
+  - 8-Plastic_Banana
+  - 9-Mug
+  - 10-meat_can
+  anchor: top_center
+  rotate_180: true
+  output_dir: ../logs/vision
+  save_annotated: false
+  save_interval_s: 2.0
+  show: false
+  continuous: true
+  window_name: Track 1 - D405 + YOLO
+  preview_fps: 30.0
+  capture_timeout_s: 20.0
+  first_frame_timeout_s: 120.0
+  stale_after_s: 2.0
+  stabilizer:
+    enabled: true
+    inference_min_confidence: 0.1
+    confirm_hits: 3
+    max_misses: 3
+    match_iou: 0.2
+    confidence_alpha: 0.25
+    box_alpha: 0.55
+    depth_alpha: 0.25
+    duplicate_iou: 0.55
+    containment_ratio: 0.9
+    cross_class_iou: 0.4
+    cross_class_containment: 0.6
+    cross_class_conf_ratio: 1.5
+    max_per_class: 1
+    class_switch_hits: 3
+    edge_margin_px: 8
+    edge_suppress_confidence: 0.55
+task_b:
+  initial_pose_file: ''
+  rounds: 1
+  return_to_pick: true
+  target_class: 8-Plastic_Banana
+  keep_same_target: true
+  next_point_timeout_s: 0.0
+  next_point_poll_s: 0.01
+  lift_hold_s: 0.0
+  operator_pause_after_each_pick: false
+  return_to_initial_after_each_pick: false
+  return_to_initial_after_task: false
+target:
+  policy: any
+  known_classes:
+  - 8-Plastic_Banana
+  unknown_labels:
+  - unknown
+  - object
+  unknown_min_graspability: 0.65
+  max_attempts_per_target: 1
+  order:
+  - 8-Plastic_Banana
+pose:
+  camera_frame: flange
+  extrinsics_file: camera_to_flange.d405_calibrated_20261025.yaml
+  use_detection_base_xyz: false
+  fallback_camera_to_base: false
+  robot_pose_frame: flange
+  gripper_tip_offset_flange_m:
+  - 0.0
+  - 0.0
+  - 0.165
+adaptive_inverse:
+  enabled: true
+  arbitrary_placement: true
+  require_validated_extrinsics: true
+  min_pose_confidence: 0.5
+  pca:
+    min_valid_points: 200
+    min_depth_m: 0.08
+    max_depth_m: 1.2
+    trim_percentile: 5.0
+    min_axis_ratio: 1.1
+    support_plane_required: true
+    support_plane_min_points: 300
+    support_plane_max_rms_m: 0.0035
+    support_plane_min_inlier_ratio: 0.35
+    support_plane_min_normal_z: 0.8
+    support_plane_depth_window_m: 0.012
+    support_plane_guard_dilation_px: 13
+    support_plane_ring_padding_ratio: 0.45
+    support_plane_ransac_threshold_m: 0.002
+    support_plane_ransac_iterations: 64
+    support_plane_max_samples: 30000
+  candidates:
+    # Keep the gripper axis exactly vertical for every candidate.  The five
+    # headings let J6 choose a safe wrist posture without tilting the gripper.
+    max_count: 5
+    yaw_offsets_deg:
+    - 0.0
+    - 45.0
+    - -45.0
+    - 90.0
+    - -90.0
+    # Zero is the absolute vertical-down flange orientation configured in
+    # motion.grasp_rpy.  No tilted fallback is permitted for live picking.
+    pitch_offsets_deg:
+    - 0.0
+    axis_alignment_offset_deg: 90.0
+    # J6 may rotate around the vertical tool axis to escape a bad wrist
+    # branch; the tool Z axis itself remains exactly vertical.
+    max_orientation_change_deg: 180.0
+    use_visual_grasp_z: true
+    # User-validated live adjustment: keep the jaw-tip plane 25 mm above
+    # the fitted support plane, exactly 10 mm higher than the first run.
+    jaw_tip_clearance_m: 0.025
+    approach_height_m: 0.05
+  selection:
+    # Preserve the first complete route that passes every safety gate.  This
+    # avoids spending planning time on lower-priority candidates during a pick.
+    stop_after_first_valid: true
+    min_sigma_margin: 0.001
+    sigma_weight: 10.0
+    joint_travel_weight: 1.0
+    orientation_weight: 1.0
+  box_clearance:
+    # Fail closed until the physical bin walls, four L-shaped corner blocks,
+    # edge bosses, and the real flange-frame gripper footprint have been
+    # statically measured and reviewed.  Do not replace this with a guess.
+    required: true
+    geometry_validated: false
+    geometry_source: unconfigured
+motion:
+  backend: robotmove
+  dry_run: false
+  motion_mode: joint_ik
+  workspace_min:
+  - -0.65
+  - -0.65
+  - 0.02
+  workspace_max:
+  - 0.65
+  - 0.65
+  - 0.8
+  workspace_margin: 0.01
+  approach_height: 0.08
+  grasp_z_offset: 0.0
+  grasp_z_m: null
+  grasp_rpy:
+  - 3.14159265
+  - 0.0
+  - 0.0
+  lift_height: 0.08
+  place_approach_height: 0.08
+  retreat_height: 0.08
+  speed_mps: 0.01
+  joint_speed_rad_s: 0.1
+  joint_speed_safety_limit_rad_s: 0.2
+  orientation: fixed
+  fixed_rpy:
+  - 3.14159265
+  - 0.0
+  - 0.0
+  cartesian_step_m: 0.002
+  cartesian_min_step_m: 0.0005
+  cartesian_orientation_step_deg: 1.0
+  cartesian_min_orientation_step_deg: 0.1
+  cartesian_max_waypoints: 600
+  cartesian_joint_step_deg: 0.5
+  cartesian_joint_branch_jump_deg: 5.0
+  cartesian_joint_acceleration_limit_deg: 0.25
+  cartesian_min_jacobian_singular_value: 0.01
+  move_timeout_s: 30.0
+  position_tolerance_m: 0.003
+  poll_period_s: 0.05
+  robotmove_topic: RobotMove
+  robotinfo_topic: RobotInfo
+  robot_info_timeout_s: 2.0
+  joint_max_step_deg: 1.0
+  joint_tolerance_deg: 0.35
+  joint_start_tolerance_deg: 0.05
+  joint_limit_margin_deg: 2.0
+  joint_move_timeout_s: 8.0
+  joint_reject_timeout_s: 2.0
+search:
+  enabled: true
+  # If the full initial observation misses, lift the camera 20 mm relative to
+  # the current TCP while preserving the live observation orientation.  The
+  # outbound and return paths are pre-checked together before any motion.
+  arbitrary_observation_offsets_xyz_m:
+  - [0.0, 0.0, 0.020]
+  observe_frames: 5
+  confirm_hits: 3
+  return_to_initial_on_miss: true
+gripper:
+  backend: ms42dc
+  serial_port: /dev/motor_serial
+  serial_baudrate: 115200
+  serial_bytesize: 8
+  serial_parity: N
+  serial_stopbits: 1
+  device_id: 1
+  subdivide: 32
+  motion_mode: 2
+  open_angle_deg: 3000.0
+  close_angle_deg: 3000.0
+  speed_rad_s: 10.0
+  status_timeout_s: 1.0
+  motion_timeout_s: 8.0
+  invert_direction: false
+  require_feedback: true
+  hold_min_angle_deg: 0.0
+  settle_time_s: 0.3
+  open_before_approach: true

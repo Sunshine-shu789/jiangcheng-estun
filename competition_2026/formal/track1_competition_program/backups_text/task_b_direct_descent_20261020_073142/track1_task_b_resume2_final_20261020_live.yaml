@@ -1,0 +1,330 @@
+# Task B STRICT LIVE resume configuration: points 2 -> 3 -> 4 -> 5.
+# Generated from track1_task_b_final_20261020_live.yaml on 2026-10-20.
+# Point 1 is intentionally omitted because it was already validated.
+# Only the point subset/metadata was trimmed. Formal motion gates remain:
+# cartesian_step_m=0.002, cartesian_joint_step_deg=0.5,
+# cartesian_joint_acceleration_limit_deg=0.25, speed_mps=0.06.
+# The task returns all six axes to the captured initial pose after point 5.
+task:
+  mode: B
+  max_picks: 5
+  stop_on_error: true
+  sample_period_s: 0.2
+vision:
+  backend: realsense_yolo
+  weights: ../models/best.pt
+  min_confidence: 0.35
+  require_depth: true
+  camera_frame_id: camera_color_optical_frame
+  width: 640
+  height: 480
+  fps: 15
+  serial: ''
+  warmup_frames: 20
+  imgsz: 640
+  device: cpu
+  depth_window: 5
+  target_class: 8-Plastic_Banana
+  classes:
+  - 1-Cheez-it
+  - 2-Starkist_Tuna
+  - 3-Scissors
+  - 4-Frenchs_Mustard
+  - 5-Tomato_Soup
+  - 6-Foam_Brick
+  - 7-Clamp
+  - 8-Plastic_Banana
+  - 9-Mug
+  - 10-meat_can
+  anchor: top_center
+  rotate_180: true
+  output_dir: ../logs/vision
+  continuous: true
+  show: true
+  window_name: Track 1 - D405 + YOLO
+  preview_fps: 30
+  capture_timeout_s: 20.0
+  stale_after_s: 2.0
+  stabilizer:
+    enabled: true
+    inference_min_confidence: 0.1
+    confirm_hits: 3
+    max_misses: 3
+    match_iou: 0.2
+    confidence_alpha: 0.25
+    box_alpha: 0.55
+    depth_alpha: 0.25
+    duplicate_iou: 0.55
+    containment_ratio: 0.9
+    cross_class_iou: 0.4
+    cross_class_containment: 0.6
+    cross_class_conf_ratio: 1.5
+    max_per_class: 1
+    class_switch_hits: 3
+    edge_margin_px: 8
+    edge_suppress_confidence: 0.55
+  save_annotated: false
+  save_interval_s: 2.0
+task_a:
+  iou_threshold: 0.75
+  ground_truth_file: ''
+  output_dir: ../logs/task_a_annotated
+  save_annotated: true
+  draw_labels: true
+  draw_ground_truth: true
+  max_frames: 0
+  min_positions: 10
+  patrol:
+    enabled: true
+    position_count: 10
+    min_move_distance_m: 0.15
+    stride_m: 0.2
+    linear_step_m: 0.01
+    settle_s: 0.8
+    axes:
+    - x
+    - y
+task_b:
+  initial_pose_file: task_b_initial_pose_20261019_233355.yaml
+  initial_pose_tolerance_deg: 0.5
+  place_poses_file: task_b_place_poses_resume_2_5_20261020.yaml
+  rounds: 4
+  return_to_pick: true
+  target_class: 8-Plastic_Banana
+  keep_same_target: true
+  pick_pose_tolerance_m: 0.08
+  point_assignment_margin_m: 0.01
+  next_point_timeout_s: 0.0
+  next_point_poll_s: 0.5
+  lift_hold_s: 2.0
+  operator_pause_after_each_pick: true
+  place_names:
+  - pick_2
+  - pick_3
+  - pick_4
+  - pick_5
+  point_grasp_z_m:
+  - 0.166534092
+  - 0.172258106
+  - 0.169424007
+  - 0.167454634
+  point_grasp_xy_from_observation:
+  - true
+  - false
+  - false
+  - false
+  point_grasp_xy_m:
+  - null
+  - null
+  - null
+  - [0.043300, 0.522000]
+  # pick_2 uses its verified observation-posture RPY so the locked vertical
+  # approach remains clear of the Jacobian singularity threshold.
+  point_grasp_rpy:
+  - - 3.128682244906
+    - 0.048279522802
+    - 0.365742992703
+  - - 3.021631068
+    - -0.004533933
+    - -0.79220136
+  - - 3.087441818
+    - 0.120447929
+    - -0.056104146
+  - - 3.026471987
+    - 0.054535204
+    - -0.656420178
+  point_observation_joints_deg:
+  - - 91.405846375
+    - 74.366790849
+    - -18.643502588
+    - -35.900559036
+    - 87.641336807
+    - -19.600974643
+  - - 92.517662326
+    - 85.050258156
+    - -63.670080228
+    - -70.436525124
+    - 88.355447843
+    - 39.645911201
+  - - 67.079379281
+    - 79.736333634
+    - -66.380154497
+    - -79.564329005
+    - 89.221559244
+    - -27.790203164
+  - - 72.779312861
+    - 88.137392207
+    - -54.227518175
+    - -57.451217024
+    - 87.927919637
+    - 12.231898069
+  observation_pose_tolerance_deg: 0.5
+  return_to_initial_after_task: true
+target:
+  policy: any
+  known_classes:
+  - 1-Cheez-it
+  - 2-Starkist_Tuna
+  - 3-Scissors
+  - 4-Frenchs_Mustard
+  - 5-Tomato_Soup
+  - 6-Foam_Brick
+  - 7-Clamp
+  - 8-Plastic_Banana
+  - 9-Mug
+  - 10-meat_can
+  unknown_labels:
+  - unknown
+  - object
+  unknown_min_graspability: 0.65
+  max_attempts_per_target: 1
+  order:
+  - 1-Cheez-it
+  - 2-Starkist_Tuna
+  - 3-Scissors
+  - 4-Frenchs_Mustard
+  - 5-Tomato_Soup
+  - 6-Foam_Brick
+  - 7-Clamp
+  - 8-Plastic_Banana
+  - 9-Mug
+  - 10-meat_can
+pose:
+  camera_frame: flange
+  extrinsics_file: camera_to_flange.d405_assumed.yaml
+  use_detection_base_xyz: false
+  fallback_camera_to_base: false
+motion:
+  backend: robotmove
+  dry_run: false
+  motion_mode: joint_ik
+  workspace_min:
+  - -0.65
+  - -0.65
+  - 0.02
+  workspace_max:
+  - 0.65
+  - 0.65
+  - 0.8
+  workspace_margin: 0.01
+  approach_height: 0.08
+  grasp_z_offset: 0.0
+  grasp_z_m: 0.161534092
+  grasp_rpy:
+  - 3.082206718
+  - 0.098641098
+  - -0.072880619
+  lift_height: 0.08
+  place_pose:
+  - 0.25
+  - 0.25
+  - 0.08
+  - 3.14159265
+  - 0.0
+  - 0.0
+  place_approach_height: 0.08
+  retreat_height: 0.08
+  speed_mps: 0.06
+  orientation: current
+  fixed_rpy:
+  - 3.14159265
+  - 0.0
+  - 0.0
+  move_timeout_s: 30.0
+  position_tolerance_m: 0.003
+  poll_period_s: 0.05
+  robotmove_topic: RobotMove
+  robotinfo_topic: RobotInfo
+  robot_info_timeout_s: 2.0
+  joint_max_step_deg: 1.0
+  joint_tolerance_deg: 0.35
+  joint_start_tolerance_deg: 0.05
+  joint_limit_margin_deg: 2.0
+  joint_move_timeout_s: 8.0
+  joint_reject_timeout_s: 2.0
+  cartesian_step_m: 0.002
+  cartesian_min_step_m: 0.0005
+  cartesian_orientation_step_deg: 1.0
+  cartesian_min_orientation_step_deg: 0.1
+  cartesian_max_waypoints: 600
+  cartesian_joint_step_deg: 0.5
+  cartesian_joint_branch_jump_deg: 5.0
+  cartesian_joint_acceleration_limit_deg: 0.25
+  cartesian_min_jacobian_singular_value: 0.01
+servo:
+  desired_standoff_m: 0.18
+  min_depth_m: 0.12
+  center_tolerance_px: 35
+  depth_tolerance_m: 0.015
+  max_steps: 36
+  max_step_m: 0.005
+  max_total_travel_m: 0.35
+  speed_mps: 0.01
+  lateral_gain: 0.8
+  forward_gain: 0.8
+  settle_s_after_move: 0.25
+  convergence_frames: 2
+  camera_to_tool:
+  - - 1.0
+    - 0.0
+    - 0.0
+  - - 0.0
+    - 1.0
+    - 0.0
+  - - 0.0
+    - 0.0
+    - 1.0
+search:
+  enabled: true
+  observation_offsets_xy_m:
+  - - 0.0
+    - 0.0
+  - - 0.08
+    - 0.0
+  - - 0.0
+    - -0.08
+  observation_clearance_m: 0.2
+  yaw_offsets_deg:
+  - 0
+  pitch_down_offsets_deg:
+  - 0
+  - 5
+  - 10
+  - 15
+  - 20
+  - 25
+  - 30
+  - 35
+  - 40
+  - 45
+  - 50
+  - 55
+  - 60
+  - 65
+  - 70
+  - 75
+  - 80
+  settle_s: 0.8
+  observe_frames: 8
+  confirm_hits: 2
+  return_to_initial_on_miss: true
+gripper:
+  backend: ms42dc_ros
+  motor_control_topic: /motor_control
+  motor_state_topic: /motor_state
+  device_id: 1
+  subdivide: 32
+  motion_mode: 2
+  open_dir: 0
+  close_dir: 1
+  open_angle_deg: 3000.0
+  close_angle_deg: 3000.0
+  speed_rad_s: 10.0
+  status_timeout_s: 1.0
+  motion_timeout_s: 8.0
+  ros_connect_timeout_s: 5.0
+  invert_direction: false
+  require_feedback: true
+  hold_min_angle_deg: 0.0
+  settle_time_s: 0.3
+  open_before_approach: true

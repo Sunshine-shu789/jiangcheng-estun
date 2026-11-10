@@ -1,0 +1,88 @@
+#!/bin/bash
+# 9100 预览服务切换脚本
+#   preview_switch.sh v18     -> 当前配置（v18 单模型，全部 10 类）—— 回滚用
+#   preview_switch.sh dual    -> v18 管旧类 + v20 只管 class5(Foam_Brick)
+#   preview_switch.sh v21     -> v21 单模型，全部 10 类（含泡沫砖）
+#   preview_switch.sh v21soup -> v21 主模型（0-3,5-9）+ v20 只管 class4 番茄汤（推荐实测）
+set -euo pipefail
+
+T=/media/sunshine/新加卷/taskA
+RUNS=$T/runs
+V18=$RUNS/yolo11s_real_ft_v18_20261014/weights/best.pt
+V20=$RUNS/yolo11s_real_ft_v20_20261015/weights/best.pt
+V21=$RUNS/yolo11s_real_ft_v21_20261016/weights/best.pt
+CAM=/dev/v4l/by-id/usb-Intel_R__RealSense_TM__Depth_Camera_405_Intel_R__RealSense_TM__Depth_Camera_405_260423072083-video-index4
+SCENE=/home/sunshine/codex/easton/taskA/datasets/random_real_scenes_near_supp_20261013
+STATE=/home/sunshine/.local/state/task-a-camera-recognition
+LOG=$STATE/preview.log
+PY=/usr/bin/python3
+APP=/home/sunshine/codex/easton/taskA/live_camera_preview.py
+PORT=9100
+VENV_SP=$T/venv/lib/python3.10/site-packages
+
+# 与 camera_recognition.py 启动方式一致：系统 python + venv 依赖注入
+export PYTHONPATH="$VENV_SP${PYTHONPATH:+:$PYTHONPATH}"
+export PYTHONNOUSERSITE=1
+export PYTHONUNBUFFERED=1
+
+MODE=${1:-}
+case "$MODE" in
+  v18)
+    WEIGHTS=$V18; PRIMARY="0,1,2,3,4,5,6,7,8,9"; FALLBACK=$V18; FCONF=0.20; SUPPRESS=0.0;;
+  dual)
+    WEIGHTS=$V18; PRIMARY="0,1,2,3,4,6,7,8,9"; FALLBACK=$V20; FCONF=0.20; SUPPRESS=0.5;;
+  v21)
+    WEIGHTS=$V21; PRIMARY="0,1,2,3,4,5,6,7,8,9"; FALLBACK=$V21; FCONF=0.20; SUPPRESS=0.0;;
+  v21soup)
+    WEIGHTS=$V21; PRIMARY="0,1,2,3,5,6,7,8,9"; FALLBACK=$V20; FCONF=0.35; SUPPRESS=0.5;;
+  *) echo "用法: $0 {v18|dual|v21|v21soup}"; exit 2;;
+esac
+
+for f in "$WEIGHTS" "$FALLBACK" "$CAM"; do
+  [ -e "$f" ] || { echo "缺少文件：$f"; exit 1; }
+done
+
+# 停掉现有服务（只杀监听 9100 的那个进程）
+OLD=$(ss -ltnp 2>/dev/null | awk '/:9100 /{print $NF}' | grep -oP 'pid=\K[0-9]+' | head -1 || true)
+if [ -n "${OLD:-}" ]; then
+  echo "停止旧服务 PID $OLD"
+  kill "$OLD" 2>/dev/null || true
+  for _ in $(seq 1 30); do kill -0 "$OLD" 2>/dev/null || break; sleep 0.5; done
+  kill -9 "$OLD" 2>/dev/null || true
+fi
+
+mkdir -p "$STATE"
+cd /home/sunshine/codex/easton/taskA
+setsid nohup "$PY" "$APP" \
+  --weights "$WEIGHTS" \
+  --primary-classes "$PRIMARY" \
+  --fallback-weights "$FALLBACK" \
+  --fallback-conf "$FCONF" \
+  --fallback-suppress-iou "$SUPPRESS" \
+  --camera "$CAM" \
+  --device 0 --imgsz 640 --stable-confidence-alpha 0.1 --rotate 180 \
+  --detection-scale 0.65,0.75 --scene-root "$SCENE" \
+  --rgbd --host 127.0.0.1 --port "$PORT" \
+  >> "$LOG" 2>&1 < /dev/null &
+NEW=$!
+echo "$NEW" > "$STATE/preview.pid"
+echo "已以 [$MODE] 模式启动，PID $NEW，日志：$LOG"
+
+for i in $(seq 1 60); do
+  sleep 1
+  if curl -s -m 2 "http://127.0.0.1:$PORT/status.json" > /tmp/_pv_status.json 2>/dev/null; then
+    echo "服务就绪（${i}s）"
+    /media/sunshine/新加卷/taskA/venv/bin/python - <<'PY'
+import json
+d=json.load(open('/tmp/_pv_status.json'))
+print("  weights       :", d.get("weights"))
+print("  primaryClasses:", d.get("primaryClasses"))
+print("  fallback      :", d.get("fallbackWeights"))
+print("  fallbackClasses:", d.get("fallbackClasses"))
+print("  fps           :", d.get("fps"), "| inferenceMs:", d.get("inferenceMs"))
+print("  detections    :", len(d.get("detections") or []))
+PY
+    exit 0
+  fi
+done
+echo "启动超时，请查看日志：$LOG"; exit 1

@@ -1,0 +1,90 @@
+
+===== 任务B 任意摆放抓取 =====
+配置：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/track1_task_b_arbitrary_single_live.yaml
+视觉后端：realsense_yolo
+模式：任意摆放抓取（仅使用当前画面识别与 PCA 位姿，逐轮生成候选并完成整条路径逆解预检，真机运动）
+日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/task_B_20261025_212802.log
+
+机械臂状态桥接已在运行（PID=5726），不重复启动。
+[bridge] RobotInfo 已就绪：state=AutoReady fault_flag=0 xyz=(-0.0627, 0.5026, 0.2995)
+[INFO] [1792934886.683949386] [track1_grasp]: [camera] D405 started 640x480@15 fx=392.7 fy=391.7 cx=314.4 cy=246.7
+[INFO] [1792934886.684706884] [track1_grasp]: [gripper:ms42dc] /dev/motor_serial @ 115200 id=1 subdivide=32
+[INFO] [1792934886.687651391] [track1_grasp]: [task_b_initial_pose] no initial pose file configured; keeping the current arm posture
+[INFO] [1792934886.688870750] [track1_grasp]: [scan] arbitrary_round_1: acquiring the current arbitrary-placement target; no remembered point or previous release XY is used
+[INFO] [1792934886.690029556] [track1_grasp]: [detect] observation 1/5: waiting for a fresh frame
+[INFO] [1792934890.951847512] [track1_grasp]: [yolo] loading /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/models/best.pt
+[INFO] [1792934890.991301534] [track1_grasp]: [vision:realsense_yolo] ready 640x480 rotate180=True anchor=top_center cx=324.6 cy=232.3 stabilizer=on
+[INFO] [1792934893.409015053] [track1_grasp]: [detect] frame 'realsense-000001': 0 detection(s), no confirmed target
+[INFO] [1792934893.460622292] [track1_grasp]: [detect] observation 2/5: waiting for a fresh frame
+[INFO] [1792934893.473882073] [track1_grasp]: [detect] frame 'realsense-000002': 0 detection(s), no confirmed target
+[INFO] [1792934893.525787324] [track1_grasp]: [detect] observation 3/5: waiting for a fresh frame
+[INFO] [1792934893.582673305] [track1_grasp]: [detect] frame 'realsense-000004': 0 detection(s), no confirmed target
+[INFO] [1792934893.634301915] [track1_grasp]: [detect] observation 4/5: waiting for a fresh frame
+[INFO] [1792934893.711152367] [track1_grasp]: [detect] frame 'realsense-000006': 0 detection(s), no confirmed target
+[INFO] [1792934893.763061180] [track1_grasp]: [detect] observation 5/5: waiting for a fresh frame
+[INFO] [1792934893.838605601] [track1_grasp]: [detect] frame 'realsense-000007': 0 detection(s), no confirmed target
+[INFO] [1792934898.120706381] [track1_grasp]: [motion:cartesian-precheck] target 1: 25 waypoint(s), planning_step=2.000 mm, max_joint_step=0.491 deg, max_joint_accel=0.238 deg, min_sigma=0.02673, axis_step_deg=0.002,0.335,0.491,0.158,0.005,0.002, axis_travel_deg=0.004,6.438,9.223,2.812,0.009,0.004
+[INFO] [1792934898.122162012] [track1_grasp]: [motion:cartesian-precheck-reuse] target 2: exact endpoint and joint posture match
+[INFO] [1792934898.123674634] [track1_grasp]: [motion:cartesian-precheck] target 2: 25 waypoint(s), planning_step=2.000 mm, max_joint_step=0.491 deg, max_joint_accel=0.238 deg, min_sigma=0.02673, axis_step_deg=0.002,0.335,0.491,0.158,0.005,0.002, axis_travel_deg=0.004,6.438,9.223,2.812,0.009,0.004
+[INFO] [1792934898.125472208] [track1_grasp]: [motion:linear-precheck] validated 2 segment(s), 50 Cartesian waypoint(s), min_sigma=0.02673
+[INFO] [1792934898.127031135] [track1_grasp]: [scan] observation adjustment route precheck passed for 'arbitrary_round_1': 1 view(s) plus exact return, min_sigma=0.02673
+[INFO] [1792934898.128604309] [track1_grasp]: [scan] observation adjustment 1/1: moving to relative TCP view xyz=(-0.063, 0.503, 0.32)
+[INFO] [1792934898.131889572] [track1_grasp]: [motion:robotmove] sent continuous task_observation_adjust_01: points=25 payload_bytes=5033 joint_velocity=0.097 rad/s endpoint_deg=[84.93, 69.35, -28.67, -43.36, 90.01, -11.26]
+[INFO] [1792934898.346743623] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.298 is below 0.350
+[INFO] [1792934898.467786620] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.230 is below 0.350
+[INFO] [1792934898.801704437] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.259 is below 0.350
+[INFO] [1792934899.639900006] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.340 is below 0.350
+[INFO] [1792934899.730574210] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.308 is below 0.350
+[INFO] [1792934900.272687695] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.312 is below 0.350
+[INFO] [1792934901.208217049] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.288 is below 0.350
+[INFO] [1792934901.619622906] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.300 is below 0.350
+[INFO] [1792934901.714107161] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.303 is below 0.350
+[INFO] [1792934902.028480815] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.326 is below 0.350
+[INFO] [1792934902.196514828] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.326 is below 0.350
+[INFO] [1792934902.298728415] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.308 is below 0.350
+[INFO] [1792934902.583380356] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.323 is below 0.350
+[INFO] [1792934902.828187650] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.314 is below 0.350
+[INFO] [1792934903.063108285] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.342 is below 0.350
+[INFO] [1792934903.313522018] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.345 is below 0.350
+[INFO] [1792934903.415396037] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.332 is below 0.350
+[INFO] [1792934903.453805236] [track1_grasp]: [motion:linear] task_observation_adjust_01: completed 0.020 m with 25 waypoint(s), joint_velocity=0.097 rad/s, max_joint_step=0.491 deg
+[INFO] [1792934903.506368255] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.333 is below 0.350
+[INFO] [1792934903.672383857] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.313 is below 0.350
+[INFO] [1792934903.760745200] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.285 is below 0.350
+[INFO] [1792934903.861353556] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.323 is below 0.350
+[INFO] [1792934903.951014994] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.336 is below 0.350
+[INFO] [1792934904.146489917] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.332 is below 0.350
+[INFO] [1792934904.256103955] [track1_grasp]: [detect] observation 1/5: waiting for a fresh frame
+[INFO] [1792934904.264198976] [track1_grasp]: [detect] frame 'realsense-000084': 1 detection(s), no confirmed target
+[INFO] [1792934904.316643265] [track1_grasp]: [detect] observation 2/5: waiting for a fresh frame
+[INFO] [1792934904.358152508] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.335 is below 0.350
+[INFO] [1792934904.377693115] [track1_grasp]: [detect] frame 'realsense-000085': 1 detection(s), no confirmed target
+[INFO] [1792934904.429576997] [track1_grasp]: [detect] observation 3/5: waiting for a fresh frame
+[INFO] [1792934904.456890866] [track1_grasp]: [detect] frame 'realsense-000086': 1 detection(s), no confirmed target
+[INFO] [1792934904.508747441] [track1_grasp]: [detect] observation 4/5: waiting for a fresh frame
+[INFO] [1792934904.546969046] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.307 is below 0.350
+[INFO] [1792934904.550846773] [track1_grasp]: [detect] frame 'realsense-000087': 1 detection(s), no confirmed target
+[INFO] [1792934904.602680789] [track1_grasp]: [detect] observation 5/5: waiting for a fresh frame
+[INFO] [1792934904.640947512] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.336 is below 0.350
+[INFO] [1792934904.644959404] [track1_grasp]: [detect] frame 'realsense-000088': 1 detection(s), no confirmed target
+[INFO] [1792934904.648707714] [track1_grasp]: [scan] observation adjustment 1/1: no confirmed target: target not confirmed in 5 frame(s): no usable detection with expected class '8-Plastic_Banana'
+[INFO] [1792934904.651998914] [track1_grasp]: [motion:robotmove] sent continuous task_observation_return: points=25 payload_bytes=5021 joint_velocity=0.097 rad/s endpoint_deg=[84.93, 75.79, -37.9, -46.17, 90.02, -11.25]
+[INFO] [1792934904.739087470] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.306 is below 0.350
+[INFO] [1792934905.025345832] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.337 is below 0.350
+[INFO] [1792934905.145202719] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.319 is below 0.350
+[INFO] [1792934905.375725594] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.337 is below 0.350
+[INFO] [1792934905.675769713] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.342 is below 0.350
+[INFO] [1792934905.788050431] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.311 is below 0.350
+[INFO] [1792934906.465708634] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.267 is below 0.350
+[INFO] [1792934906.655275548] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.204 is below 0.350
+[INFO] [1792934906.698626296] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.249 is below 0.350
+[INFO] [1792934907.016485875] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.252 is below 0.350
+[INFO] [1792934907.101114344] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.256 is below 0.350
+[INFO] [1792934908.058355909] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.296 is below 0.350
+[INFO] [1792934908.926566496] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.215 is below 0.350
+[INFO] [1792934910.023774284] [track1_grasp]: [motion:linear] task_observation_return: completed 0.020 m with 25 waypoint(s), joint_velocity=0.097 rad/s, max_joint_step=0.491 deg
+[INFO] [1792934910.036562708] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.308 is below 0.350
+[INFO] [1792934910.342739247] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.312 is below 0.350
+[INFO] [1792934910.612864566] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.258 is below 0.350
+[INFO] [1792934910.826689239] [track1_grasp]: [select] target not confirmed in 1 relative observation posture(s); returned to the initial observation pose: target not confirmed in 5 frame(s): no usable detection with expected class '8-Plastic_Banana'; no additional wrist search views configured
+[INFO] [1792934910.831322089] [track1_grasp]: [run] requested=1 attempts=1 successes=0 rate=0.00%

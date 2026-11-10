@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "asset_id": "graspnet_stage12_thirdparty_freax_epoch18",
+  "status": "third_party_mirror_structure_verified_quality_unvalidated",
+  "retrieved_utc": "2026-10-29",
+  "checkpoint": {
+    "filename": "checkpoint_thirdparty_freax_epoch18.tar",
+    "size_bytes": 12468415,
+    "sha256": "60680087c61cba2b6791614fef1519071e294f6dcaf99b3f581bb95f7c51a868"
+  },
+  "model_summary": {
+    "epoch": 18,
+    "loss": 0.5611659608781338,
+    "state_dict_items": 162,
+    "parameter_count": 1025964,
+    "strict_load_verified": true,
+    "random_point_cuda_forward_verified": true,
+    "real_scene_quality_verified": false
+  },
+  "source": {
+    "repository": "https://github.com/H-Freax/GraspNet_Pointnet2_PyTorch1.13.1",
+    "commit": "8030845394f012e3370cb34facdd7857170b1e3e",
+    "path": "logs/log_rs/checkpoint.tar",
+    "raw_url": "https://raw.githubusercontent.com/H-Freax/GraspNet_Pointnet2_PyTorch1.13.1/8030845394f012e3370cb34facdd7857170b1e3e/logs/log_rs/checkpoint.tar"
+  },
+  "architecture_origin": {
+    "repository": "https://github.com/graspnet/graspnet-baseline",
+    "local_commit": "280c215129f759ed8649cb4e89fc5dfee55f4f80"
+  },
+  "license_review": {
+    "wrapper_repository_license": "MIT",
+    "graspnet_baseline_license": "Academic or non-profit organization noncommercial research use only",
+    "checkpoint_separate_license_found": false,
+    "conclusion": "No separate checkpoint license or commercial-use grant was found. Treat this asset as research-only and obtain written clarification before redistribution or commercial deployment.",
+    "included_files": [
+      {
+        "filename": "LICENSE_H-FREAX_MIT.txt",
+        "size_bytes": 11786,
+        "sha256": "a685959614b960ed104bef76a746183c56951aa1126e188e577b0502c3a976ce"
+      },
+      {
+        "filename": "LICENSE_GRASPNET_BASELINE_ACADEMIC.txt",
+        "size_bytes": 11946,
+        "sha256": "acdeaedbed2d5b38b1fdacba406db53743d06a05f4220126bee91a548241f09b"
+      }
+    ]
+  },
+  "integration": {
+    "cuda_arch": "sm_120",
+    "torch": "2.9.1+cu128",
+    "pointnet2_extension": "third_party/graspnet-baseline/pointnet2/pointnet2/_ext.cpython-310-x86_64-linux-gnu.so",
+    "notes": [
+      "The .tar filename is retained for source traceability, but the file is a PyTorch zip-format checkpoint, not a tar archive.",
+      "The checkpoint is loaded strictly into isolated Stage1/Stage2 inference classes.",
+      "Training-only KNN and label-generation modules are intentionally not imported."
+    ]
+  }
+}

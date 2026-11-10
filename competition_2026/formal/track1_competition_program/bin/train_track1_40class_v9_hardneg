@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+# Safe v9 launcher: without --execute it only runs preflight and never trains.
+# v9 rebuilds class rows 17/26 from v5 using the audited train-only hard-negative view.
+set -euo pipefail
+ROOT="/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序"
+PYTHON="${TRACK1_PREP_PYTHON:-/usr/bin/python3}"
+SITE_PACKAGES="${TRACK1_PREP_SITE_PACKAGES:-/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages}"
+APP_DIR="$ROOT/app/track1_training_prep"
+CONFIG="$ROOT/config/track1_train_40class_v9_hardneg.yaml"
+CACHE_ROOT="$ROOT/cache/track1_training"
+mkdir -p "$CACHE_ROOT/tmp" "$CACHE_ROOT/matplotlib" "$CACHE_ROOT/numba" "$CACHE_ROOT/cuda" "$CACHE_ROOT/torch" "$CACHE_ROOT/xdg" "$ROOT/config/ultralytics" "$ROOT/state" "$ROOT/reports" "$ROOT/logs" "$ROOT/runs/track1_train_40class_v9_hardneg_from_v5"
+
+EXECUTE=0
+for arg in "$@"; do
+  if [ "$arg" = "--execute" ]; then
+    EXECUTE=1
+  fi
+done
+
+if [ "$EXECUTE" -eq 0 ]; then
+  echo "安全模式：未检测到 --execute，只做 v9 预检，不会启动训练。"
+fi
+
+RUN_ENV=(
+  env
+  TRACK1_PROJECT_ROOT="$ROOT"
+  PYTHONNOUSERSITE=1
+  PYTHONDONTWRITEBYTECODE=1
+  PYTHONPATH="$SITE_PACKAGES:$APP_DIR"
+  TMPDIR="$CACHE_ROOT/tmp"
+  TEMP="$CACHE_ROOT/tmp"
+  TMP="$CACHE_ROOT/tmp"
+  MPLCONFIGDIR="$CACHE_ROOT/matplotlib"
+  NUMBA_CACHE_DIR="$CACHE_ROOT/numba"
+  CUDA_CACHE_PATH="$CACHE_ROOT/cuda"
+  TORCH_HOME="$CACHE_ROOT/torch"
+  XDG_CACHE_HOME="$CACHE_ROOT/xdg"
+  YOLO_CONFIG_DIR="$ROOT/config/ultralytics"
+  WANDB_MODE=disabled
+)
+
+if [ "$EXECUTE" -eq 1 ]; then
+  LOG="$ROOT/logs/track1_train_40class_v9_hardneg_$(date +%Y%m%d_%H%M%S).log"
+  echo "训练日志：$LOG"
+  set -o pipefail
+  "${RUN_ENV[@]}" "$PYTHON" "$APP_DIR/training_preflight_v7_rowfix.py" --config "$CONFIG" "$@" 2>&1 | tee "$LOG"
+  exit "${PIPESTATUS[0]}"
+else
+  exec "${RUN_ENV[@]}" "$PYTHON" "$APP_DIR/training_preflight_v7_rowfix.py" --config "$CONFIG" "$@"
+fi

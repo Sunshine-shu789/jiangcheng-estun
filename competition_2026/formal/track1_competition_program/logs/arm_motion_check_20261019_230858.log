@@ -1,0 +1,21 @@
+
+===== 无夹爪运动验证 =====
+配置：config/track1_task_b_floor230_20261019_223939.yaml
+模式：只预检查（不会运动）
+参数：多轴协作 径向内收=3 mm 向上=18 mm
+夹爪：完全不调用，不会发出开合命令
+日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/arm_motion_check_20261019_230858.log
+
+[bridge] state=AutoReady fault_flag=0 xyz=(-0.0522, 0.4525, 0.2340)
+[INFO] [1792422539.883272350] [track1_arm_motion_check]: [start] DRY-RUN no-gripper check: coordinated radial-in 3.0 mm + up 18.0 mm (18.2 mm) out-and-back, step=2.5 mm
+[INFO] [1792422539.883540680] [track1_arm_motion_check]: [robot] controller state=AutoReady; start_xyz=(-0.05219587952567141, 0.45245909952376456, 0.23402591830455785) joints_deg=[81.93, 95.82, -73.39, -66.27, 86.19, -2.05]
+[INFO] [1792422540.730481052] [track1_arm_motion_check]: [motion:cartesian-precheck] target 1: 10 waypoint(s), planning_step=2.000 mm, max_joint_step=0.380 deg, max_joint_accel=0.022 deg, min_sigma=0.06241, axis_step_deg=0.011,0.380,0.276,0.129,0.003,0.010, axis_travel_deg=0.101,3.751,2.564,1.182,0.005,0.100
+[INFO] [1792422541.577816796] [track1_arm_motion_check]: [motion:cartesian-precheck] target 2: 10 waypoint(s), planning_step=2.000 mm, max_joint_step=0.380 deg, max_joint_accel=0.032 deg, min_sigma=0.06257, axis_step_deg=0.012,0.380,0.272,0.132,0.006,0.011, axis_travel_deg=0.102,3.742,2.547,1.180,0.008,0.101
+[INFO] [1792422541.578040008] [track1_arm_motion_check]: [motion:linear-precheck] validated 2 segment(s), 20 Cartesian waypoint(s), min_sigma=0.06241
+[INFO] [1792422541.578260846] [track1_arm_motion_check]: [precheck] outbound=18.2 mm return=18.2 mm; all IK, joint limits and workspace checks passed
+[INFO] [1792422541.578462687] [track1_arm_motion_check]: [precheck] Joint1 travel=0.203 deg, max_step=0.012 deg
+[INFO] [1792422541.578682337] [track1_arm_motion_check]: [motion:robotmove:dry-run-linear] no_gripper_out: distance=0.018 m waypoints=10 target_xyz=(-0.05185207831182452, 0.4494788645119983, 0.25202591830455784) v=0.010 max_joint_step=0.380 deg max_joint_accel=0.022 deg min_sigma=0.06241 axis_step_deg=0.011,0.380,0.276,0.129,0.003,0.010 axis_travel_deg=0.101,3.751,2.564,1.182,0.005,0.100
+[INFO] [1792422541.578882991] [track1_arm_motion_check]: [motion:robotmove:dry-run-linear] no_gripper_return: distance=0.018 m waypoints=10 target_xyz=(-0.05219587952567141, 0.45245909952376456, 0.23402591830455785) v=0.010 max_joint_step=0.380 deg max_joint_accel=0.032 deg min_sigma=0.06257 axis_step_deg=0.012,0.380,0.272,0.132,0.006,0.011 axis_travel_deg=0.102,3.742,2.547,1.180,0.008,0.101
+[INFO] [1792422541.579070585] [track1_arm_motion_check]: [result] dry-run complete; no motion was sent and gripper stayed untouched
+
+[完成] 无夹爪运动验证结束。

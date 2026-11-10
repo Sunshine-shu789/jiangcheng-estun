@@ -1,0 +1,27 @@
+
+===== 任务B 任意摆放抓取 =====
+配置：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/track1_task_b_arbitrary_single_live.yaml
+视觉后端：realsense_yolo
+模式：任意摆放抓取（仅使用当前画面识别与 PCA 位姿，逐轮生成候选并完成整条路径逆解预检，真机运动）
+日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/task_B_20261025_211343.log
+
+机械臂状态桥接已在运行（PID=5726），不重复启动。
+[bridge] RobotInfo 已就绪：state=AutoReady fault_flag=0 xyz=(-0.0627, 0.5026, 0.2995)
+[INFO] [1792934024.106639815] [track1_grasp]: [camera] D405 started 640x480@15 fx=392.7 fy=391.7 cx=314.4 cy=246.7
+[INFO] [1792934024.107816417] [track1_grasp]: [gripper:ms42dc] /dev/motor_serial @ 115200 id=1 subdivide=32
+[INFO] [1792934024.110462881] [track1_grasp]: [task_b_initial_pose] no initial pose file configured; keeping the current arm posture
+[INFO] [1792934024.111976673] [track1_grasp]: [scan] arbitrary_round_1: acquiring the current arbitrary-placement target; no remembered point or previous release XY is used
+[INFO] [1792934024.113412104] [track1_grasp]: [detect] observation 1/5: waiting for a fresh frame
+[INFO] [1792934028.384401601] [track1_grasp]: [yolo] loading /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/models/best.pt
+[INFO] [1792934028.423441996] [track1_grasp]: [vision:realsense_yolo] ready 640x480 rotate180=True anchor=top_center cx=324.6 cy=232.3 stabilizer=on
+[INFO] [1792934030.860016494] [track1_grasp]: [detect] frame 'realsense-000001': 0 detection(s), no confirmed target
+[INFO] [1792934030.912013763] [track1_grasp]: [detect] observation 2/5: waiting for a fresh frame
+[INFO] [1792934030.946947332] [track1_grasp]: [detect] frame 'realsense-000003': 0 detection(s), no confirmed target
+[INFO] [1792934030.998735638] [track1_grasp]: [detect] observation 3/5: waiting for a fresh frame
+[INFO] [1792934031.052416482] [track1_grasp]: [detect] frame 'realsense-000004': 0 detection(s), no confirmed target
+[INFO] [1792934031.104255843] [track1_grasp]: [detect] observation 4/5: waiting for a fresh frame
+[INFO] [1792934031.161242096] [track1_grasp]: [detect] frame 'realsense-000006': 0 detection(s), no confirmed target
+[INFO] [1792934031.213111139] [track1_grasp]: [detect] observation 5/5: waiting for a fresh frame
+[INFO] [1792934031.236587381] [track1_grasp]: [detect] frame 'realsense-000007': 0 detection(s), no confirmed target
+[INFO] [1792934031.238351691] [track1_grasp]: [select] target not confirmed in 5 frame(s): no usable detection with expected class '8-Plastic_Banana'
+[INFO] [1792934031.239816804] [track1_grasp]: [run] requested=1 attempts=1 successes=0 rate=0.00%

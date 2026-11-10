@@ -1,0 +1,14 @@
+
+===== 无夹爪运动验证 =====
+配置：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/track1_live.yaml
+模式：只预检查（不会运动）
+参数：多轴协作 径向内收=5 mm 向上=10 mm
+去程终点停留：0 秒
+夹爪：完全不调用，不会发出开合命令
+日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/arm_motion_check_20261026_205022.log
+
+[bridge] state=AutoReady fault_flag=0 xyz=(-0.0693, 0.4282, 0.4338)
+[INFO] [1793019024.211775423] [track1_arm_motion_check]: [start] DRY-RUN no-gripper check: coordinated radial-in 5.0 mm + up 10.0 mm (11.2 mm) out-and-back, hold=0.0 s, step=2.5 mm
+[INFO] [1793019024.213248865] [track1_arm_motion_check]: [robot] controller state=AutoReady; start_xyz=(-0.06933237615199961, 0.4281998480529195, 0.4338308014345217) joints_deg=[84.93, 43.24, -8.49, -46.17, 90.02, -11.26]
+[ERROR] [1793019024.257393930] [track1_arm_motion_check]: near-singular posture at start posture: minimum weighted Jacobian singular value=0.007534 < 0.010000
+错误：无夹爪运动验证异常退出，退出码=2。请查看日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/arm_motion_check_20261026_205022.log

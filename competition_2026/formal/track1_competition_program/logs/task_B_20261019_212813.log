@@ -1,0 +1,940 @@
+
+===== 任务B 五点位拾放 =====
+配置：/home/sunshine/Desktop/赛道一比赛程序/config/track1_task_b_live.yaml
+视觉后端：realsense_yolo
+模式：安全试运行（机械臂不会运动）
+日志：/home/sunshine/Desktop/赛道一比赛程序/logs/task_B_20261019_212813.log
+
+正在启动机械臂状态桥接，日志：/home/sunshine/Desktop/赛道一比赛程序/logs/codroid_bridge_20261019_212813.log
+[bridge] RobotInfo 已就绪：state=AutoReady fault_flag=0 xyz=(-0.1133, 0.3860, 0.5192)
+[INFO] [1792416494.983187012] [track1_grasp]: [camera] D405 started 640x480@15 fx=392.7 fy=391.7 cx=314.4 cy=246.7
+[INFO] [1792416495.015274986] [track1_grasp]: [scan] round 1/5: waiting for 6-Foam_Brick at 'pick_1' xy=(0.300, -0.300) within 0.080 m, completed_points_excluded=0 (wait attempt 1)
+[INFO] [1792416495.015758217] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+[INFO] [1792416528.926235320] [track1_grasp]: [yolo] loading /home/sunshine/Desktop/赛道一比赛程序/models/best.pt
+[INFO] [1792416529.221457501] [track1_grasp]: [vision:realsense_yolo] ready 640x480 rotate180=True anchor=top_center cx=324.6 cy=232.3 stabilizer=on
+[INFO] [1792416553.946409577] [track1_grasp]: [detect] frame 'realsense-000001': 0 detection(s), no confirmed target
+[INFO] [1792416553.997139350] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792416554.007104360] [track1_grasp]: [detect] frame 'realsense-000002': 0 detection(s), no confirmed target
+[INFO] [1792416554.057667911] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792416554.114427982] [track1_grasp]: [detect] frame 'realsense-000004': 0 detection(s), no confirmed target
+[INFO] [1792416554.165110263] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792416554.180221032] [track1_grasp]: [detect] frame 'realsense-000005': 0 detection(s), no confirmed target
+[INFO] [1792416554.230895003] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792416554.253744594] [track1_grasp]: [detect] frame 'realsense-000006': 0 detection(s), no confirmed target
+[INFO] [1792416554.304504050] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792416554.310531973] [track1_grasp]: [detect] frame 'realsense-000007': 0 detection(s), no confirmed target
+[INFO] [1792416554.361137079] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792416554.375387056] [track1_grasp]: [detect] frame 'realsense-000008': 0 detection(s), no confirmed target
+[INFO] [1792416554.426044404] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792416554.441492366] [track1_grasp]: [detect] frame 'realsense-000009': 0 detection(s), no confirmed target
+[INFO] [1792416554.441936416] [track1_grasp]: [scan] search IK validation skipped: no AutoReady joint feedback
+[INFO] [1792416554.442264111] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1792416554.943254906] [track1_grasp]: [scan] round 1/5: waiting for 6-Foam_Brick at 'pick_1' xy=(0.300, -0.300) within 0.080 m, completed_points_excluded=0 (wait attempt 2)
+[INFO] [1792416554.943887737] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792416554.973768520] [track1_grasp]: [detect] frame 'realsense-000017': 0 detection(s), no confirmed target
+[INFO] [1792416555.024357004] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792416555.043037985] [track1_grasp]: [detect] frame 'realsense-000018': 0 detection(s), no confirmed target
+[INFO] [1792416555.093649028] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792416555.114205943] [track1_grasp]: [detect] frame 'realsense-000019': 0 detection(s), no confirmed target
+[INFO] [1792416555.164808675] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792416555.173337052] [track1_grasp]: [detect] frame 'realsense-000020': 0 detection(s), no confirmed target
+[INFO] [1792416555.223767626] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792416555.247041083] [track1_grasp]: [detect] frame 'realsense-000021': 0 detection(s), no confirmed target
+[INFO] [1792416555.297586825] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792416555.317139284] [track1_grasp]: [detect] frame 'realsense-000022': 0 detection(s), no confirmed target
+[INFO] [1792416555.367690962] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792416555.382312564] [track1_grasp]: [detect] frame 'realsense-000023': 0 detection(s), no confirmed target
+[INFO] [1792416555.432889175] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792416555.437389043] [track1_grasp]: [detect] frame 'realsense-000024': 0 detection(s), no confirmed target
+[INFO] [1792416555.740665868] [track1_grasp]: [scan] search IK 1/16 pitch=+5 yaw=+0 limits_ok=True
+[INFO] [1792416555.943842606] [track1_grasp]: [scan] search IK 2/16 pitch=+10 yaw=+0 limits_ok=True
+[INFO] [1792416556.146800880] [track1_grasp]: [scan] search IK 3/16 pitch=+15 yaw=+0 limits_ok=True
+[INFO] [1792416556.350453725] [track1_grasp]: [scan] search IK 4/16 pitch=+20 yaw=+0 limits_ok=True
+[INFO] [1792416556.553577034] [track1_grasp]: [scan] search IK 5/16 pitch=+25 yaw=+0 limits_ok=True
+[INFO] [1792416556.756382146] [track1_grasp]: [scan] search IK 6/16 pitch=+30 yaw=+0 limits_ok=True
+[INFO] [1792416556.960050426] [track1_grasp]: [scan] search IK 7/16 pitch=+35 yaw=+0 limits_ok=True
+[INFO] [1792416557.162582460] [track1_grasp]: [scan] search IK 8/16 pitch=+40 yaw=+0 limits_ok=True
+[INFO] [1792416557.365125179] [track1_grasp]: [scan] search IK 9/16 pitch=+45 yaw=+0 limits_ok=True
+[INFO] [1792416557.567087308] [track1_grasp]: [scan] search IK 10/16 pitch=+50 yaw=+0 limits_ok=True
+[INFO] [1792416557.771218635] [track1_grasp]: [scan] search IK 11/16 pitch=+55 yaw=+0 limits_ok=True
+[INFO] [1792416557.976118145] [track1_grasp]: [scan] search IK 12/16 pitch=+60 yaw=+0 limits_ok=True
+[INFO] [1792416558.181671857] [track1_grasp]: [scan] search IK 13/16 pitch=+65 yaw=+0 limits_ok=True
+[INFO] [1792416558.385406626] [track1_grasp]: [scan] search IK 14/16 pitch=+70 yaw=+0 limits_ok=True
+[INFO] [1792416558.587772437] [track1_grasp]: [scan] search IK 15/16 pitch=+75 yaw=+0 limits_ok=True
+[INFO] [1792416558.790550242] [track1_grasp]: [scan] search IK 16/16 pitch=+80 yaw=+0 limits_ok=True
+[INFO] [1792416558.791609314] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1792416559.292989543] [track1_grasp]: [scan] round 1/5: waiting for 6-Foam_Brick at 'pick_1' xy=(0.300, -0.300) within 0.080 m, completed_points_excluded=0 (wait attempt 3)
+[INFO] [1792416559.293669866] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792416559.306633996] [track1_grasp]: [pose] loaded camera transform from /home/sunshine/Desktop/赛道一比赛程序/config/camera_to_flange.d405_assumed.yaml
+[INFO] [1792416559.306990186] [track1_grasp]: [detect] frame 'realsense-000033': 1 detection(s), no confirmed target
+[INFO] [1792416559.357622601] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792416559.372713186] [track1_grasp]: [detect] frame 'realsense-000034': 0 detection(s), no confirmed target
+[INFO] [1792416559.423451270] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792416559.439201994] [track1_grasp]: [detect] frame 'realsense-000035': 0 detection(s), no confirmed target
+[INFO] [1792416559.489803539] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792416559.504065388] [track1_grasp]: [detect] frame 'realsense-000036': 0 detection(s), no confirmed target
+[INFO] [1792416559.554676432] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792416559.574801169] [track1_grasp]: [detect] frame 'realsense-000037': 0 detection(s), no confirmed target
+[INFO] [1792416559.625321978] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792416559.640752130] [track1_grasp]: [detect] frame 'realsense-000038': 0 detection(s), no confirmed target
+[INFO] [1792416559.691384545] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792416559.710720915] [track1_grasp]: [detect] frame 'realsense-000039': 0 detection(s), no confirmed target
+[INFO] [1792416559.761231038] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792416559.774393448] [track1_grasp]: [detect] frame 'realsense-000040': 0 detection(s), no confirmed target
+[INFO] [1792416559.983640851] [track1_grasp]: [scan] search IK 1/16 pitch=+5 yaw=+0 limits_ok=True
+[INFO] [1792416560.197418991] [track1_grasp]: [scan] search IK 2/16 pitch=+10 yaw=+0 limits_ok=True
+[INFO] [1792416560.404035337] [track1_grasp]: [scan] search IK 3/16 pitch=+15 yaw=+0 limits_ok=True
+[INFO] [1792416560.611582526] [track1_grasp]: [scan] search IK 4/16 pitch=+20 yaw=+0 limits_ok=True
+[INFO] [1792416560.820451181] [track1_grasp]: [scan] search IK 5/16 pitch=+25 yaw=+0 limits_ok=True
+[INFO] [1792416561.028133722] [track1_grasp]: [scan] search IK 6/16 pitch=+30 yaw=+0 limits_ok=True
+[INFO] [1792416561.234576722] [track1_grasp]: [scan] search IK 7/16 pitch=+35 yaw=+0 limits_ok=True
+[INFO] [1792416561.441123018] [track1_grasp]: [scan] search IK 8/16 pitch=+40 yaw=+0 limits_ok=True
+[INFO] [1792416561.646362096] [track1_grasp]: [scan] search IK 9/16 pitch=+45 yaw=+0 limits_ok=True
+[INFO] [1792416561.852579509] [track1_grasp]: [scan] search IK 10/16 pitch=+50 yaw=+0 limits_ok=True
+[INFO] [1792416562.059689772] [track1_grasp]: [scan] search IK 11/16 pitch=+55 yaw=+0 limits_ok=True
+[INFO] [1792416562.265642417] [track1_grasp]: [scan] search IK 12/16 pitch=+60 yaw=+0 limits_ok=True
+[INFO] [1792416562.472675505] [track1_grasp]: [scan] search IK 13/16 pitch=+65 yaw=+0 limits_ok=True
+[INFO] [1792416562.683415345] [track1_grasp]: [scan] search IK 14/16 pitch=+70 yaw=+0 limits_ok=True
+[INFO] [1792416562.888630676] [track1_grasp]: [scan] search IK 15/16 pitch=+75 yaw=+0 limits_ok=True
+[INFO] [1792416563.097510016] [track1_grasp]: [scan] search IK 16/16 pitch=+80 yaw=+0 limits_ok=True
+[INFO] [1792416563.098878973] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1792416563.599735604] [track1_grasp]: [scan] round 1/5: waiting for 6-Foam_Brick at 'pick_1' xy=(0.300, -0.300) within 0.080 m, completed_points_excluded=0 (wait attempt 4)
+[INFO] [1792416563.600084670] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792416563.645605757] [track1_grasp]: [detect] frame 'realsense-000050': 0 detection(s), no confirmed target
+[INFO] [1792416563.696244109] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792416563.716176503] [track1_grasp]: [detect] frame 'realsense-000051': 0 detection(s), no confirmed target
+[INFO] [1792416563.766820791] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792416563.782877838] [track1_grasp]: [detect] frame 'realsense-000052': 0 detection(s), no confirmed target
+[INFO] [1792416563.833568431] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792416563.839057319] [track1_grasp]: [detect] frame 'realsense-000053': 0 detection(s), no confirmed target
+[INFO] [1792416563.889718229] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792416563.905813270] [track1_grasp]: [detect] frame 'realsense-000054': 0 detection(s), no confirmed target
+[INFO] [1792416563.956392256] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792416563.980145383] [track1_grasp]: [detect] frame 'realsense-000055': 0 detection(s), no confirmed target
+[INFO] [1792416564.030822915] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792416564.042786151] [track1_grasp]: [detect] frame 'realsense-000056': 0 detection(s), no confirmed target
+[INFO] [1792416564.093447061] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792416564.106419503] [track1_grasp]: [detect] frame 'realsense-000057': 0 detection(s), no confirmed target
+[INFO] [1792416564.315789198] [track1_grasp]: [scan] search IK 1/16 pitch=+5 yaw=+0 limits_ok=True
+[INFO] [1792416564.530139617] [track1_grasp]: [scan] search IK 2/16 pitch=+10 yaw=+0 limits_ok=True
+[INFO] [1792416564.737343676] [track1_grasp]: [scan] search IK 3/16 pitch=+15 yaw=+0 limits_ok=True
+[INFO] [1792416564.944370828] [track1_grasp]: [scan] search IK 4/16 pitch=+20 yaw=+0 limits_ok=True
+[INFO] [1792416565.152679077] [track1_grasp]: [scan] search IK 5/16 pitch=+25 yaw=+0 limits_ok=True
+[INFO] [1792416565.359017595] [track1_grasp]: [scan] search IK 6/16 pitch=+30 yaw=+0 limits_ok=True
+[INFO] [1792416565.566622962] [track1_grasp]: [scan] search IK 7/16 pitch=+35 yaw=+0 limits_ok=True
+[INFO] [1792416565.769069510] [track1_grasp]: [scan] search IK 8/16 pitch=+40 yaw=+0 limits_ok=True
+[INFO] [1792416565.975892446] [track1_grasp]: [scan] search IK 9/16 pitch=+45 yaw=+0 limits_ok=True
+[INFO] [1792416566.180744464] [track1_grasp]: [scan] search IK 10/16 pitch=+50 yaw=+0 limits_ok=True
+[INFO] [1792416566.389357849] [track1_grasp]: [scan] search IK 11/16 pitch=+55 yaw=+0 limits_ok=True
+[INFO] [1792416566.595462468] [track1_grasp]: [scan] search IK 12/16 pitch=+60 yaw=+0 limits_ok=True
+[INFO] [1792416566.801844916] [track1_grasp]: [scan] search IK 13/16 pitch=+65 yaw=+0 limits_ok=True
+[INFO] [1792416567.009079845] [track1_grasp]: [scan] search IK 14/16 pitch=+70 yaw=+0 limits_ok=True
+[INFO] [1792416567.216163988] [track1_grasp]: [scan] search IK 15/16 pitch=+75 yaw=+0 limits_ok=True
+[INFO] [1792416567.423850091] [track1_grasp]: [scan] search IK 16/16 pitch=+80 yaw=+0 limits_ok=True
+[INFO] [1792416567.424963779] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1792416567.925638752] [track1_grasp]: [scan] round 1/5: waiting for 6-Foam_Brick at 'pick_1' xy=(0.300, -0.300) within 0.080 m, completed_points_excluded=0 (wait attempt 5)
+[INFO] [1792416567.925962885] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792416567.984619074] [track1_grasp]: [detect] frame 'realsense-000067': 0 detection(s), no confirmed target
+[INFO] [1792416568.035239615] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792416568.042352731] [track1_grasp]: [detect] frame 'realsense-000068': 0 detection(s), no confirmed target
+[INFO] [1792416568.093057571] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792416568.105460108] [track1_grasp]: [detect] frame 'realsense-000069': 0 detection(s), no confirmed target
+[INFO] [1792416568.156186319] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792416568.171065565] [track1_grasp]: [detect] frame 'realsense-000070': 0 detection(s), no confirmed target
+[INFO] [1792416568.221587561] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792416568.250295291] [track1_grasp]: [detect] frame 'realsense-000071': 0 detection(s), no confirmed target
+[INFO] [1792416568.300964512] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792416568.309155696] [track1_grasp]: [detect] frame 'realsense-000072': 0 detection(s), no confirmed target
+[INFO] [1792416568.359873596] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792416568.374186499] [track1_grasp]: [detect] frame 'realsense-000073': 0 detection(s), no confirmed target
+[INFO] [1792416568.424818914] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792416568.442862314] [track1_grasp]: [detect] frame 'realsense-000074': 0 detection(s), no confirmed target
+[INFO] [1792416568.652994256] [track1_grasp]: [scan] search IK 1/16 pitch=+5 yaw=+0 limits_ok=True
+[INFO] [1792416568.859464564] [track1_grasp]: [scan] search IK 2/16 pitch=+10 yaw=+0 limits_ok=True
+[INFO] [1792416569.066437100] [track1_grasp]: [scan] search IK 3/16 pitch=+15 yaw=+0 limits_ok=True
+[INFO] [1792416569.273860810] [track1_grasp]: [scan] search IK 4/16 pitch=+20 yaw=+0 limits_ok=True
+[INFO] [1792416569.481177663] [track1_grasp]: [scan] search IK 5/16 pitch=+25 yaw=+0 limits_ok=True
+[INFO] [1792416569.693143984] [track1_grasp]: [scan] search IK 6/16 pitch=+30 yaw=+0 limits_ok=True
+[INFO] [1792416569.902822377] [track1_grasp]: [scan] search IK 7/16 pitch=+35 yaw=+0 limits_ok=True
+[INFO] [1792416570.111119940] [track1_grasp]: [scan] search IK 8/16 pitch=+40 yaw=+0 limits_ok=True
+[INFO] [1792416570.320600054] [track1_grasp]: [scan] search IK 9/16 pitch=+45 yaw=+0 limits_ok=True
+[INFO] [1792416570.528521242] [track1_grasp]: [scan] search IK 10/16 pitch=+50 yaw=+0 limits_ok=True
+[INFO] [1792416570.736616964] [track1_grasp]: [scan] search IK 11/16 pitch=+55 yaw=+0 limits_ok=True
+[INFO] [1792416570.946368970] [track1_grasp]: [scan] search IK 12/16 pitch=+60 yaw=+0 limits_ok=True
+[INFO] [1792416571.156006995] [track1_grasp]: [scan] search IK 13/16 pitch=+65 yaw=+0 limits_ok=True
+[INFO] [1792416571.361185520] [track1_grasp]: [scan] search IK 14/16 pitch=+70 yaw=+0 limits_ok=True
+[INFO] [1792416571.566284497] [track1_grasp]: [scan] search IK 15/16 pitch=+75 yaw=+0 limits_ok=True
+[INFO] [1792416571.772638449] [track1_grasp]: [scan] search IK 16/16 pitch=+80 yaw=+0 limits_ok=True
+[INFO] [1792416571.773433941] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1792416572.274620640] [track1_grasp]: [scan] round 1/5: waiting for 6-Foam_Brick at 'pick_1' xy=(0.300, -0.300) within 0.080 m, completed_points_excluded=0 (wait attempt 6)
+[INFO] [1792416572.275222601] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792416572.307615711] [track1_grasp]: [detect] frame 'realsense-000084': 0 detection(s), no confirmed target
+[INFO] [1792416572.358417910] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792416572.374820461] [track1_grasp]: [detect] frame 'realsense-000085': 0 detection(s), no confirmed target
+[INFO] [1792416572.425583479] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792416572.441154920] [track1_grasp]: [detect] frame 'realsense-000086': 0 detection(s), no confirmed target
+[INFO] [1792416572.491840764] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792416572.506582282] [track1_grasp]: [detect] frame 'realsense-000087': 0 detection(s), no confirmed target
+[INFO] [1792416572.557407040] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792416572.575279469] [track1_grasp]: [detect] frame 'realsense-000088': 0 detection(s), no confirmed target
+[INFO] [1792416572.626029426] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792416572.641997426] [track1_grasp]: [detect] frame 'realsense-000089': 0 detection(s), no confirmed target
+[INFO] [1792416572.692825745] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792416572.710704111] [track1_grasp]: [detect] frame 'realsense-000090': 0 detection(s), no confirmed target
+[INFO] [1792416572.761401827] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792416572.773949215] [track1_grasp]: [detect] frame 'realsense-000091': 0 detection(s), no confirmed target
+[INFO] [1792416572.981002487] [track1_grasp]: [scan] search IK 1/16 pitch=+5 yaw=+0 limits_ok=True
+[INFO] [1792416573.187775557] [track1_grasp]: [scan] search IK 2/16 pitch=+10 yaw=+0 limits_ok=True
+[INFO] [1792416573.395480657] [track1_grasp]: [scan] search IK 3/16 pitch=+15 yaw=+0 limits_ok=True
+[INFO] [1792416573.606738159] [track1_grasp]: [scan] search IK 4/16 pitch=+20 yaw=+0 limits_ok=True
+[INFO] [1792416573.811631733] [track1_grasp]: [scan] search IK 5/16 pitch=+25 yaw=+0 limits_ok=True
+[INFO] [1792416574.018819170] [track1_grasp]: [scan] search IK 6/16 pitch=+30 yaw=+0 limits_ok=True
+[INFO] [1792416574.228000084] [track1_grasp]: [scan] search IK 7/16 pitch=+35 yaw=+0 limits_ok=True
+[INFO] [1792416574.435630385] [track1_grasp]: [scan] search IK 8/16 pitch=+40 yaw=+0 limits_ok=True
+[INFO] [1792416574.643246437] [track1_grasp]: [scan] search IK 9/16 pitch=+45 yaw=+0 limits_ok=True
+[INFO] [1792416574.850731887] [track1_grasp]: [scan] search IK 10/16 pitch=+50 yaw=+0 limits_ok=True
+[INFO] [1792416575.057901515] [track1_grasp]: [scan] search IK 11/16 pitch=+55 yaw=+0 limits_ok=True
+[INFO] [1792416575.263749678] [track1_grasp]: [scan] search IK 12/16 pitch=+60 yaw=+0 limits_ok=True
+[INFO] [1792416575.468985194] [track1_grasp]: [scan] search IK 13/16 pitch=+65 yaw=+0 limits_ok=True
+[INFO] [1792416575.675673965] [track1_grasp]: [scan] search IK 14/16 pitch=+70 yaw=+0 limits_ok=True
+[INFO] [1792416575.883133294] [track1_grasp]: [scan] search IK 15/16 pitch=+75 yaw=+0 limits_ok=True
+[INFO] [1792416576.091398800] [track1_grasp]: [scan] search IK 16/16 pitch=+80 yaw=+0 limits_ok=True
+[INFO] [1792416576.092561167] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1792416576.593407111] [track1_grasp]: [scan] round 1/5: waiting for 6-Foam_Brick at 'pick_1' xy=(0.300, -0.300) within 0.080 m, completed_points_excluded=0 (wait attempt 7)
+[INFO] [1792416576.593803669] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792416576.647373464] [track1_grasp]: [detect] frame 'realsense-000101': 0 detection(s), no confirmed target
+[INFO] [1792416576.698115111] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792416576.711777374] [track1_grasp]: [detect] frame 'realsense-000102': 0 detection(s), no confirmed target
+[INFO] [1792416576.762458468] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792416576.773037312] [track1_grasp]: [detect] frame 'realsense-000103': 0 detection(s), no confirmed target
+[INFO] [1792416576.823672101] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792416576.841196651] [track1_grasp]: [detect] frame 'realsense-000104': 0 detection(s), no confirmed target
+[INFO] [1792416576.891759015] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792416576.906191836] [track1_grasp]: [detect] frame 'realsense-000105': 0 detection(s), no confirmed target
+[INFO] [1792416576.956821876] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792416576.975046933] [track1_grasp]: [detect] frame 'realsense-000106': 0 detection(s), no confirmed target
+[INFO] [1792416577.025804015] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792416577.037003817] [track1_grasp]: [detect] frame 'realsense-000107': 0 detection(s), no confirmed target
+[INFO] [1792416577.087702720] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792416577.103636288] [track1_grasp]: [detect] frame 'realsense-000108': 0 detection(s), no confirmed target
+[INFO] [1792416577.309100953] [track1_grasp]: [scan] search IK 1/16 pitch=+5 yaw=+0 limits_ok=True
+[INFO] [1792416577.514852945] [track1_grasp]: [scan] search IK 2/16 pitch=+10 yaw=+0 limits_ok=True
+[INFO] [1792416577.721377868] [track1_grasp]: [scan] search IK 3/16 pitch=+15 yaw=+0 limits_ok=True
+[INFO] [1792416577.930692948] [track1_grasp]: [scan] search IK 4/16 pitch=+20 yaw=+0 limits_ok=True
+[INFO] [1792416578.136898488] [track1_grasp]: [scan] search IK 5/16 pitch=+25 yaw=+0 limits_ok=True
+[INFO] [1792416578.353150962] [track1_grasp]: [scan] search IK 6/16 pitch=+30 yaw=+0 limits_ok=True
+[INFO] [1792416578.560393015] [track1_grasp]: [scan] search IK 7/16 pitch=+35 yaw=+0 limits_ok=True
+[INFO] [1792416578.767094846] [track1_grasp]: [scan] search IK 8/16 pitch=+40 yaw=+0 limits_ok=True
+[INFO] [1792416578.970751253] [track1_grasp]: [scan] search IK 9/16 pitch=+45 yaw=+0 limits_ok=True
+[INFO] [1792416579.179596162] [track1_grasp]: [scan] search IK 10/16 pitch=+50 yaw=+0 limits_ok=True
+[INFO] [1792416579.385132064] [track1_grasp]: [scan] search IK 11/16 pitch=+55 yaw=+0 limits_ok=True
+[INFO] [1792416579.591165446] [track1_grasp]: [scan] search IK 12/16 pitch=+60 yaw=+0 limits_ok=True
+[INFO] [1792416579.797532459] [track1_grasp]: [scan] search IK 13/16 pitch=+65 yaw=+0 limits_ok=True
+[INFO] [1792416580.004875433] [track1_grasp]: [scan] search IK 14/16 pitch=+70 yaw=+0 limits_ok=True
+[INFO] [1792416580.210469513] [track1_grasp]: [scan] search IK 15/16 pitch=+75 yaw=+0 limits_ok=True
+[INFO] [1792416580.416997999] [track1_grasp]: [scan] search IK 16/16 pitch=+80 yaw=+0 limits_ok=True
+[INFO] [1792416580.417877788] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1792416580.920162740] [track1_grasp]: [scan] round 1/5: waiting for 6-Foam_Brick at 'pick_1' xy=(0.300, -0.300) within 0.080 m, completed_points_excluded=0 (wait attempt 8)
+[INFO] [1792416580.920552175] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792416580.975051626] [track1_grasp]: [detect] frame 'realsense-000118': 0 detection(s), no confirmed target
+[INFO] [1792416581.025689977] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792416581.042433284] [track1_grasp]: [detect] frame 'realsense-000119': 0 detection(s), no confirmed target
+[INFO] [1792416581.093158308] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792416581.109080003] [track1_grasp]: [detect] frame 'realsense-000120': 0 detection(s), no confirmed target
+[INFO] [1792416581.159712418] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792416581.175206685] [track1_grasp]: [detect] frame 'realsense-000121': 0 detection(s), no confirmed target
+[INFO] [1792416581.225817728] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792416581.239434873] [track1_grasp]: [detect] frame 'realsense-000122': 0 detection(s), no confirmed target
+[INFO] [1792416581.290139713] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792416581.305718279] [track1_grasp]: [detect] frame 'realsense-000123': 0 detection(s), no confirmed target
+[INFO] [1792416581.356475360] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792416581.372438610] [track1_grasp]: [detect] frame 'realsense-000124': 0 detection(s), no confirmed target
+[INFO] [1792416581.423156511] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792416581.439465265] [track1_grasp]: [detect] frame 'realsense-000125': 0 detection(s), no confirmed target
+[INFO] [1792416581.648419405] [track1_grasp]: [scan] search IK 1/16 pitch=+5 yaw=+0 limits_ok=True
+[INFO] [1792416581.852910484] [track1_grasp]: [scan] search IK 2/16 pitch=+10 yaw=+0 limits_ok=True
+[INFO] [1792416582.058281352] [track1_grasp]: [scan] search IK 3/16 pitch=+15 yaw=+0 limits_ok=True
+[INFO] [1792416582.266696458] [track1_grasp]: [scan] search IK 4/16 pitch=+20 yaw=+0 limits_ok=True
+[INFO] [1792416582.478244849] [track1_grasp]: [scan] search IK 5/16 pitch=+25 yaw=+0 limits_ok=True
+[INFO] [1792416582.686739503] [track1_grasp]: [scan] search IK 6/16 pitch=+30 yaw=+0 limits_ok=True
+[INFO] [1792416582.896490322] [track1_grasp]: [scan] search IK 7/16 pitch=+35 yaw=+0 limits_ok=True
+[INFO] [1792416583.106357496] [track1_grasp]: [scan] search IK 8/16 pitch=+40 yaw=+0 limits_ok=True
+[INFO] [1792416583.316513183] [track1_grasp]: [scan] search IK 9/16 pitch=+45 yaw=+0 limits_ok=True
+[INFO] [1792416583.524895045] [track1_grasp]: [scan] search IK 10/16 pitch=+50 yaw=+0 limits_ok=True
+[INFO] [1792416583.735613513] [track1_grasp]: [scan] search IK 11/16 pitch=+55 yaw=+0 limits_ok=True
+[INFO] [1792416583.943590504] [track1_grasp]: [scan] search IK 12/16 pitch=+60 yaw=+0 limits_ok=True
+[INFO] [1792416584.150658024] [track1_grasp]: [scan] search IK 13/16 pitch=+65 yaw=+0 limits_ok=True
+[INFO] [1792416584.356545368] [track1_grasp]: [scan] search IK 14/16 pitch=+70 yaw=+0 limits_ok=True
+[INFO] [1792416584.562350788] [track1_grasp]: [scan] search IK 15/16 pitch=+75 yaw=+0 limits_ok=True
+[INFO] [1792416584.771578007] [track1_grasp]: [scan] search IK 16/16 pitch=+80 yaw=+0 limits_ok=True
+[INFO] [1792416584.772447111] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1792416585.273814280] [track1_grasp]: [scan] round 1/5: waiting for 6-Foam_Brick at 'pick_1' xy=(0.300, -0.300) within 0.080 m, completed_points_excluded=0 (wait attempt 9)
+[INFO] [1792416585.274166908] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792416585.309048599] [track1_grasp]: [detect] frame 'realsense-000135': 0 detection(s), no confirmed target
+[INFO] [1792416585.359738004] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792416585.375716689] [track1_grasp]: [detect] frame 'realsense-000136': 0 detection(s), no confirmed target
+[INFO] [1792416585.426302799] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792416585.449243813] [track1_grasp]: [detect] frame 'realsense-000137': 0 detection(s), no confirmed target
+[INFO] [1792416585.500034139] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792416585.509067118] [track1_grasp]: [detect] frame 'realsense-000138': 0 detection(s), no confirmed target
+[INFO] [1792416585.559751774] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792416585.580681501] [track1_grasp]: [detect] frame 'realsense-000139': 0 detection(s), no confirmed target
+[INFO] [1792416585.631351909] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792416585.643255780] [track1_grasp]: [detect] frame 'realsense-000140': 0 detection(s), no confirmed target
+[INFO] [1792416585.693949935] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792416585.707470909] [track1_grasp]: [detect] frame 'realsense-000141': 0 detection(s), no confirmed target
+[INFO] [1792416585.758127070] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792416585.784866256] [track1_grasp]: [detect] frame 'realsense-000142': 0 detection(s), no confirmed target
+[INFO] [1792416585.991135911] [track1_grasp]: [scan] search IK 1/16 pitch=+5 yaw=+0 limits_ok=True
+[INFO] [1792416586.197739196] [track1_grasp]: [scan] search IK 2/16 pitch=+10 yaw=+0 limits_ok=True
+[INFO] [1792416586.405369496] [track1_grasp]: [scan] search IK 3/16 pitch=+15 yaw=+0 limits_ok=True
+[INFO] [1792416586.615779266] [track1_grasp]: [scan] search IK 4/16 pitch=+20 yaw=+0 limits_ok=True
+[INFO] [1792416586.824259674] [track1_grasp]: [scan] search IK 5/16 pitch=+25 yaw=+0 limits_ok=True
+[INFO] [1792416587.029588986] [track1_grasp]: [scan] search IK 6/16 pitch=+30 yaw=+0 limits_ok=True
+[INFO] [1792416587.234484934] [track1_grasp]: [scan] search IK 7/16 pitch=+35 yaw=+0 limits_ok=True
+[INFO] [1792416587.440064767] [track1_grasp]: [scan] search IK 8/16 pitch=+40 yaw=+0 limits_ok=True
+[INFO] [1792416587.648540425] [track1_grasp]: [scan] search IK 9/16 pitch=+45 yaw=+0 limits_ok=True
+[INFO] [1792416587.855228009] [track1_grasp]: [scan] search IK 10/16 pitch=+50 yaw=+0 limits_ok=True
+[INFO] [1792416588.062101999] [track1_grasp]: [scan] search IK 11/16 pitch=+55 yaw=+0 limits_ok=True
+[INFO] [1792416588.267910981] [track1_grasp]: [scan] search IK 12/16 pitch=+60 yaw=+0 limits_ok=True
+[INFO] [1792416588.470938119] [track1_grasp]: [scan] search IK 13/16 pitch=+65 yaw=+0 limits_ok=True
+[INFO] [1792416588.676090524] [track1_grasp]: [scan] search IK 14/16 pitch=+70 yaw=+0 limits_ok=True
+[INFO] [1792416588.879858536] [track1_grasp]: [scan] search IK 15/16 pitch=+75 yaw=+0 limits_ok=True
+[INFO] [1792416589.083393839] [track1_grasp]: [scan] search IK 16/16 pitch=+80 yaw=+0 limits_ok=True
+[INFO] [1792416589.084329431] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1792416589.585271547] [track1_grasp]: [scan] round 1/5: waiting for 6-Foam_Brick at 'pick_1' xy=(0.300, -0.300) within 0.080 m, completed_points_excluded=0 (wait attempt 10)
+[INFO] [1792416589.585744092] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792416589.640894184] [track1_grasp]: [detect] frame 'realsense-000152': 0 detection(s), no confirmed target
+[INFO] [1792416589.691634643] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792416589.707240516] [track1_grasp]: [detect] frame 'realsense-000153': 0 detection(s), no confirmed target
+[INFO] [1792416589.757887178] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792416589.774296854] [track1_grasp]: [detect] frame 'realsense-000154': 0 detection(s), no confirmed target
+[INFO] [1792416589.824979135] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792416589.841438677] [track1_grasp]: [detect] frame 'realsense-000155': 0 detection(s), no confirmed target
+[INFO] [1792416589.892323987] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792416589.910888612] [track1_grasp]: [detect] frame 'realsense-000156': 0 detection(s), no confirmed target
+[INFO] [1792416589.961639756] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792416589.974094535] [track1_grasp]: [detect] frame 'realsense-000157': 0 detection(s), no confirmed target
+[INFO] [1792416590.024737635] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792416590.049593764] [track1_grasp]: [detect] frame 'realsense-000158': 0 detection(s), no confirmed target
+[INFO] [1792416590.100354407] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792416590.109082250] [track1_grasp]: [detect] frame 'realsense-000159': 0 detection(s), no confirmed target
+[INFO] [1792416590.319180948] [track1_grasp]: [scan] search IK 1/16 pitch=+5 yaw=+0 limits_ok=True
+[INFO] [1792416590.525450602] [track1_grasp]: [scan] search IK 2/16 pitch=+10 yaw=+0 limits_ok=True
+[INFO] [1792416590.731697698] [track1_grasp]: [scan] search IK 3/16 pitch=+15 yaw=+0 limits_ok=True
+[INFO] [1792416590.939077478] [track1_grasp]: [scan] search IK 4/16 pitch=+20 yaw=+0 limits_ok=True
+[INFO] [1792416591.145968090] [track1_grasp]: [scan] search IK 5/16 pitch=+25 yaw=+0 limits_ok=True
+[INFO] [1792416591.352643801] [track1_grasp]: [scan] search IK 6/16 pitch=+30 yaw=+0 limits_ok=True
+[INFO] [1792416591.561791471] [track1_grasp]: [scan] search IK 7/16 pitch=+35 yaw=+0 limits_ok=True
+[INFO] [1792416591.769810018] [track1_grasp]: [scan] search IK 8/16 pitch=+40 yaw=+0 limits_ok=True
+[INFO] [1792416591.977312090] [track1_grasp]: [scan] search IK 9/16 pitch=+45 yaw=+0 limits_ok=True
+[INFO] [1792416592.181975327] [track1_grasp]: [scan] search IK 10/16 pitch=+50 yaw=+0 limits_ok=True
+[INFO] [1792416592.387935096] [track1_grasp]: [scan] search IK 11/16 pitch=+55 yaw=+0 limits_ok=True
+[INFO] [1792416592.596034380] [track1_grasp]: [scan] search IK 12/16 pitch=+60 yaw=+0 limits_ok=True
+[INFO] [1792416592.805609478] [track1_grasp]: [scan] search IK 13/16 pitch=+65 yaw=+0 limits_ok=True
+[INFO] [1792416593.014295288] [track1_grasp]: [scan] search IK 14/16 pitch=+70 yaw=+0 limits_ok=True
+[INFO] [1792416593.223034527] [track1_grasp]: [scan] search IK 15/16 pitch=+75 yaw=+0 limits_ok=True
+[INFO] [1792416593.429742295] [track1_grasp]: [scan] search IK 16/16 pitch=+80 yaw=+0 limits_ok=True
+[INFO] [1792416593.430914160] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1792416593.931863399] [track1_grasp]: [scan] round 1/5: waiting for 6-Foam_Brick at 'pick_1' xy=(0.300, -0.300) within 0.080 m, completed_points_excluded=0 (wait attempt 11)
+[INFO] [1792416593.932312199] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792416593.979719906] [track1_grasp]: [detect] frame 'realsense-000169': 0 detection(s), no confirmed target
+[INFO] [1792416594.030389127] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792416594.046572028] [track1_grasp]: [detect] frame 'realsense-000170': 0 detection(s), no confirmed target
+[INFO] [1792416594.097257871] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792416594.108646454] [track1_grasp]: [detect] frame 'realsense-000171': 0 detection(s), no confirmed target
+[INFO] [1792416594.159401161] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792416594.174678152] [track1_grasp]: [detect] frame 'realsense-000172': 0 detection(s), no confirmed target
+[INFO] [1792416594.225254764] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792416594.252967536] [track1_grasp]: [detect] frame 'realsense-000173': 0 detection(s), no confirmed target
+[INFO] [1792416594.303522777] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792416594.319938388] [track1_grasp]: [detect] frame 'realsense-000174': 0 detection(s), no confirmed target
+[INFO] [1792416594.370590987] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792416594.387910134] [track1_grasp]: [detect] frame 'realsense-000175': 0 detection(s), no confirmed target
+[INFO] [1792416594.438575794] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792416594.453516779] [track1_grasp]: [detect] frame 'realsense-000176': 0 detection(s), no confirmed target
+[INFO] [1792416594.663198734] [track1_grasp]: [scan] search IK 1/16 pitch=+5 yaw=+0 limits_ok=True
+[INFO] [1792416594.869779460] [track1_grasp]: [scan] search IK 2/16 pitch=+10 yaw=+0 limits_ok=True
+[INFO] [1792416595.076203464] [track1_grasp]: [scan] search IK 3/16 pitch=+15 yaw=+0 limits_ok=True
+[INFO] [1792416595.282369823] [track1_grasp]: [scan] search IK 4/16 pitch=+20 yaw=+0 limits_ok=True
+[INFO] [1792416595.494334956] [track1_grasp]: [scan] search IK 5/16 pitch=+25 yaw=+0 limits_ok=True
+[INFO] [1792416595.703277223] [track1_grasp]: [scan] search IK 6/16 pitch=+30 yaw=+0 limits_ok=True
+[INFO] [1792416595.911743383] [track1_grasp]: [scan] search IK 7/16 pitch=+35 yaw=+0 limits_ok=True
+[INFO] [1792416596.119292946] [track1_grasp]: [scan] search IK 8/16 pitch=+40 yaw=+0 limits_ok=True
+[INFO] [1792416596.327297246] [track1_grasp]: [scan] search IK 9/16 pitch=+45 yaw=+0 limits_ok=True
+[INFO] [1792416596.535454708] [track1_grasp]: [scan] search IK 10/16 pitch=+50 yaw=+0 limits_ok=True
+[INFO] [1792416596.744399349] [track1_grasp]: [scan] search IK 11/16 pitch=+55 yaw=+0 limits_ok=True
+[INFO] [1792416596.952529503] [track1_grasp]: [scan] search IK 12/16 pitch=+60 yaw=+0 limits_ok=True
+[INFO] [1792416597.162311191] [track1_grasp]: [scan] search IK 13/16 pitch=+65 yaw=+0 limits_ok=True
+[INFO] [1792416597.364453790] [track1_grasp]: [scan] search IK 14/16 pitch=+70 yaw=+0 limits_ok=True
+[INFO] [1792416597.567921416] [track1_grasp]: [scan] search IK 15/16 pitch=+75 yaw=+0 limits_ok=True
+[INFO] [1792416597.773019205] [track1_grasp]: [scan] search IK 16/16 pitch=+80 yaw=+0 limits_ok=True
+[INFO] [1792416597.774348981] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1792416598.275196113] [track1_grasp]: [scan] round 1/5: waiting for 6-Foam_Brick at 'pick_1' xy=(0.300, -0.300) within 0.080 m, completed_points_excluded=0 (wait attempt 12)
+[INFO] [1792416598.275535681] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792416598.309615944] [track1_grasp]: [detect] frame 'realsense-000186': 0 detection(s), no confirmed target
+[INFO] [1792416598.360346905] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792416598.375152538] [track1_grasp]: [detect] frame 'realsense-000187': 0 detection(s), no confirmed target
+[INFO] [1792416598.425793263] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792416598.442381034] [track1_grasp]: [detect] frame 'realsense-000188': 0 detection(s), no confirmed target
+[INFO] [1792416598.493088248] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792416598.511087719] [track1_grasp]: [detect] frame 'realsense-000189': 0 detection(s), no confirmed target
+[INFO] [1792416598.561919600] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792416598.576002167] [track1_grasp]: [detect] frame 'realsense-000190': 0 detection(s), no confirmed target
+[INFO] [1792416598.626527724] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792416598.648991443] [track1_grasp]: [detect] frame 'realsense-000191': 0 detection(s), no confirmed target
+[INFO] [1792416598.699743775] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792416598.708091683] [track1_grasp]: [detect] frame 'realsense-000192': 0 detection(s), no confirmed target
+[INFO] [1792416598.758643361] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792416598.780343646] [track1_grasp]: [detect] frame 'realsense-000193': 0 detection(s), no confirmed target
+[INFO] [1792416598.987254442] [track1_grasp]: [scan] search IK 1/16 pitch=+5 yaw=+0 limits_ok=True
+[INFO] [1792416599.192958941] [track1_grasp]: [scan] search IK 2/16 pitch=+10 yaw=+0 limits_ok=True
+[INFO] [1792416599.398991136] [track1_grasp]: [scan] search IK 3/16 pitch=+15 yaw=+0 limits_ok=True
+[INFO] [1792416599.604353693] [track1_grasp]: [scan] search IK 4/16 pitch=+20 yaw=+0 limits_ok=True
+[INFO] [1792416599.811068585] [track1_grasp]: [scan] search IK 5/16 pitch=+25 yaw=+0 limits_ok=True
+[INFO] [1792416600.019090694] [track1_grasp]: [scan] search IK 6/16 pitch=+30 yaw=+0 limits_ok=True
+[INFO] [1792416600.226751864] [track1_grasp]: [scan] search IK 7/16 pitch=+35 yaw=+0 limits_ok=True
+[INFO] [1792416600.433533245] [track1_grasp]: [scan] search IK 8/16 pitch=+40 yaw=+0 limits_ok=True
+[INFO] [1792416600.639863451] [track1_grasp]: [scan] search IK 9/16 pitch=+45 yaw=+0 limits_ok=True
+[INFO] [1792416600.845548954] [track1_grasp]: [scan] search IK 10/16 pitch=+50 yaw=+0 limits_ok=True
+[INFO] [1792416601.051406615] [track1_grasp]: [scan] search IK 11/16 pitch=+55 yaw=+0 limits_ok=True
+[INFO] [1792416601.259580699] [track1_grasp]: [scan] search IK 12/16 pitch=+60 yaw=+0 limits_ok=True
+[INFO] [1792416601.464578755] [track1_grasp]: [scan] search IK 13/16 pitch=+65 yaw=+0 limits_ok=True
+[INFO] [1792416601.670363990] [track1_grasp]: [scan] search IK 14/16 pitch=+70 yaw=+0 limits_ok=True
+[INFO] [1792416601.874769583] [track1_grasp]: [scan] search IK 15/16 pitch=+75 yaw=+0 limits_ok=True
+[INFO] [1792416602.080874203] [track1_grasp]: [scan] search IK 16/16 pitch=+80 yaw=+0 limits_ok=True
+[INFO] [1792416602.081761116] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1792416602.582971562] [track1_grasp]: [scan] round 1/5: waiting for 6-Foam_Brick at 'pick_1' xy=(0.300, -0.300) within 0.080 m, completed_points_excluded=0 (wait attempt 13)
+[INFO] [1792416602.583621015] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792416602.586988198] [track1_grasp]: [detect] frame 'realsense-000202': 0 detection(s), no confirmed target
+[INFO] [1792416602.637617051] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792416602.642882727] [track1_grasp]: [detect] frame 'realsense-000203': 0 detection(s), no confirmed target
+[INFO] [1792416602.693498520] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792416602.710257261] [track1_grasp]: [detect] frame 'realsense-000204': 0 detection(s), no confirmed target
+[INFO] [1792416602.760836247] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792416602.776275898] [track1_grasp]: [detect] frame 'realsense-000205': 0 detection(s), no confirmed target
+[INFO] [1792416602.826895253] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792416602.843119709] [track1_grasp]: [detect] frame 'realsense-000206': 0 detection(s), no confirmed target
+[INFO] [1792416602.893743813] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792416602.910609411] [track1_grasp]: [detect] frame 'realsense-000207': 0 detection(s), no confirmed target
+[INFO] [1792416602.961251325] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792416602.975826621] [track1_grasp]: [detect] frame 'realsense-000208': 0 detection(s), no confirmed target
+[INFO] [1792416603.026347430] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792416603.043047993] [track1_grasp]: [detect] frame 'realsense-000209': 0 detection(s), no confirmed target
+[INFO] [1792416603.249071877] [track1_grasp]: [scan] search IK 1/16 pitch=+5 yaw=+0 limits_ok=True
+[INFO] [1792416603.457332633] [track1_grasp]: [scan] search IK 2/16 pitch=+10 yaw=+0 limits_ok=True
+[INFO] [1792416603.663834998] [track1_grasp]: [scan] search IK 3/16 pitch=+15 yaw=+0 limits_ok=True
+[INFO] [1792416603.870288684] [track1_grasp]: [scan] search IK 4/16 pitch=+20 yaw=+0 limits_ok=True
+[INFO] [1792416604.076523907] [track1_grasp]: [scan] search IK 5/16 pitch=+25 yaw=+0 limits_ok=True
+[INFO] [1792416604.282052686] [track1_grasp]: [scan] search IK 6/16 pitch=+30 yaw=+0 limits_ok=True
+[INFO] [1792416604.489331545] [track1_grasp]: [scan] search IK 7/16 pitch=+35 yaw=+0 limits_ok=True
+[INFO] [1792416604.693667088] [track1_grasp]: [scan] search IK 8/16 pitch=+40 yaw=+0 limits_ok=True
+[INFO] [1792416604.900761916] [track1_grasp]: [scan] search IK 9/16 pitch=+45 yaw=+0 limits_ok=True
+[INFO] [1792416605.108142883] [track1_grasp]: [scan] search IK 10/16 pitch=+50 yaw=+0 limits_ok=True
+[INFO] [1792416605.315040619] [track1_grasp]: [scan] search IK 11/16 pitch=+55 yaw=+0 limits_ok=True
+[INFO] [1792416605.521348267] [track1_grasp]: [scan] search IK 12/16 pitch=+60 yaw=+0 limits_ok=True
+[INFO] [1792416605.729441614] [track1_grasp]: [scan] search IK 13/16 pitch=+65 yaw=+0 limits_ok=True
+[INFO] [1792416605.933729664] [track1_grasp]: [scan] search IK 14/16 pitch=+70 yaw=+0 limits_ok=True
+[INFO] [1792416606.141831323] [track1_grasp]: [scan] search IK 15/16 pitch=+75 yaw=+0 limits_ok=True
+[INFO] [1792416606.349790505] [track1_grasp]: [scan] search IK 16/16 pitch=+80 yaw=+0 limits_ok=True
+[INFO] [1792416606.351094161] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1792416606.852088518] [track1_grasp]: [scan] round 1/5: waiting for 6-Foam_Brick at 'pick_1' xy=(0.300, -0.300) within 0.080 m, completed_points_excluded=0 (wait attempt 14)
+[INFO] [1792416606.852513571] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792416606.911940318] [track1_grasp]: [detect] frame 'realsense-000219': 0 detection(s), no confirmed target
+[INFO] [1792416606.962641596] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792416606.977969641] [track1_grasp]: [detect] frame 'realsense-000220': 0 detection(s), no confirmed target
+[INFO] [1792416607.028653110] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792416607.046000752] [track1_grasp]: [detect] frame 'realsense-000221': 0 detection(s), no confirmed target
+[INFO] [1792416607.096788703] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792416607.110792908] [track1_grasp]: [detect] frame 'realsense-000222': 0 detection(s), no confirmed target
+[INFO] [1792416607.161529805] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792416607.176863787] [track1_grasp]: [detect] frame 'realsense-000223': 0 detection(s), no confirmed target
+[INFO] [1792416607.227504513] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792416607.243160252] [track1_grasp]: [detect] frame 'realsense-000224': 0 detection(s), no confirmed target
+[INFO] [1792416607.293906648] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792416607.311742271] [track1_grasp]: [detect] frame 'realsense-000225': 0 detection(s), no confirmed target
+[INFO] [1792416607.362493415] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792416607.381454599] [track1_grasp]: [detect] frame 'realsense-000226': 0 detection(s), no confirmed target
+[INFO] [1792416607.588859312] [track1_grasp]: [scan] search IK 1/16 pitch=+5 yaw=+0 limits_ok=True
+[INFO] [1792416607.794086517] [track1_grasp]: [scan] search IK 2/16 pitch=+10 yaw=+0 limits_ok=True
+[INFO] [1792416608.001888975] [track1_grasp]: [scan] search IK 3/16 pitch=+15 yaw=+0 limits_ok=True
+[INFO] [1792416608.209957389] [track1_grasp]: [scan] search IK 4/16 pitch=+20 yaw=+0 limits_ok=True
+[INFO] [1792416608.421359742] [track1_grasp]: [scan] search IK 5/16 pitch=+25 yaw=+0 limits_ok=True
+[INFO] [1792416608.627703009] [track1_grasp]: [scan] search IK 6/16 pitch=+30 yaw=+0 limits_ok=True
+[INFO] [1792416608.833146303] [track1_grasp]: [scan] search IK 7/16 pitch=+35 yaw=+0 limits_ok=True
+[INFO] [1792416609.039328097] [track1_grasp]: [scan] search IK 8/16 pitch=+40 yaw=+0 limits_ok=True
+[INFO] [1792416609.247256409] [track1_grasp]: [scan] search IK 9/16 pitch=+45 yaw=+0 limits_ok=True
+[INFO] [1792416609.452033627] [track1_grasp]: [scan] search IK 10/16 pitch=+50 yaw=+0 limits_ok=True
+[INFO] [1792416609.661410446] [track1_grasp]: [scan] search IK 11/16 pitch=+55 yaw=+0 limits_ok=True
+[INFO] [1792416609.869064492] [track1_grasp]: [scan] search IK 12/16 pitch=+60 yaw=+0 limits_ok=True
+[INFO] [1792416610.079298542] [track1_grasp]: [scan] search IK 13/16 pitch=+65 yaw=+0 limits_ok=True
+[INFO] [1792416610.289443544] [track1_grasp]: [scan] search IK 14/16 pitch=+70 yaw=+0 limits_ok=True
+[INFO] [1792416610.498624458] [track1_grasp]: [scan] search IK 15/16 pitch=+75 yaw=+0 limits_ok=True
+[INFO] [1792416610.706616885] [track1_grasp]: [scan] search IK 16/16 pitch=+80 yaw=+0 limits_ok=True
+[INFO] [1792416610.708477384] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1792416611.209442058] [track1_grasp]: [scan] round 1/5: waiting for 6-Foam_Brick at 'pick_1' xy=(0.300, -0.300) within 0.080 m, completed_points_excluded=0 (wait attempt 15)
+[INFO] [1792416611.209840991] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792416611.254823044] [track1_grasp]: [detect] frame 'realsense-000236': 0 detection(s), no confirmed target
+[INFO] [1792416611.305305859] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792416611.312112651] [track1_grasp]: [detect] frame 'realsense-000237': 0 detection(s), no confirmed target
+[INFO] [1792416611.364692238] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792416611.377297804] [track1_grasp]: [detect] frame 'realsense-000238': 0 detection(s), no confirmed target
+[INFO] [1792416611.427940904] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792416611.443878034] [track1_grasp]: [detect] frame 'realsense-000239': 0 detection(s), no confirmed target
+[INFO] [1792416611.494572188] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792416611.509927541] [track1_grasp]: [detect] frame 'realsense-000240': 0 detection(s), no confirmed target
+[INFO] [1792416611.560641879] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792416611.577084799] [track1_grasp]: [detect] frame 'realsense-000241': 0 detection(s), no confirmed target
+[INFO] [1792416611.627768268] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792416611.642647513] [track1_grasp]: [detect] frame 'realsense-000242': 0 detection(s), no confirmed target
+[INFO] [1792416611.693282303] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792416611.710191831] [track1_grasp]: [detect] frame 'realsense-000243': 0 detection(s), no confirmed target
+[INFO] [1792416611.923390569] [track1_grasp]: [scan] search IK 1/16 pitch=+5 yaw=+0 limits_ok=True
+[INFO] [1792416612.136431396] [track1_grasp]: [scan] search IK 2/16 pitch=+10 yaw=+0 limits_ok=True
+[INFO] [1792416612.344651785] [track1_grasp]: [scan] search IK 3/16 pitch=+15 yaw=+0 limits_ok=True
+[INFO] [1792416612.553322160] [track1_grasp]: [scan] search IK 4/16 pitch=+20 yaw=+0 limits_ok=True
+[INFO] [1792416612.762235931] [track1_grasp]: [scan] search IK 5/16 pitch=+25 yaw=+0 limits_ok=True
+[INFO] [1792416612.969615711] [track1_grasp]: [scan] search IK 6/16 pitch=+30 yaw=+0 limits_ok=True
+[INFO] [1792416613.178911794] [track1_grasp]: [scan] search IK 7/16 pitch=+35 yaw=+0 limits_ok=True
+[INFO] [1792416613.387392201] [track1_grasp]: [scan] search IK 8/16 pitch=+40 yaw=+0 limits_ok=True
+[INFO] [1792416613.597468340] [track1_grasp]: [scan] search IK 9/16 pitch=+45 yaw=+0 limits_ok=True
+[INFO] [1792416613.803312940] [track1_grasp]: [scan] search IK 10/16 pitch=+50 yaw=+0 limits_ok=True
+[INFO] [1792416614.009620588] [track1_grasp]: [scan] search IK 11/16 pitch=+55 yaw=+0 limits_ok=True
+[INFO] [1792416614.215676528] [track1_grasp]: [scan] search IK 12/16 pitch=+60 yaw=+0 limits_ok=True
+[INFO] [1792416614.422970823] [track1_grasp]: [scan] search IK 13/16 pitch=+65 yaw=+0 limits_ok=True
+[INFO] [1792416614.633551564] [track1_grasp]: [scan] search IK 14/16 pitch=+70 yaw=+0 limits_ok=True
+[INFO] [1792416614.840931344] [track1_grasp]: [scan] search IK 15/16 pitch=+75 yaw=+0 limits_ok=True
+[INFO] [1792416615.047260363] [track1_grasp]: [scan] search IK 16/16 pitch=+80 yaw=+0 limits_ok=True
+[INFO] [1792416615.048211391] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1792416615.549273423] [track1_grasp]: [scan] round 1/5: waiting for 6-Foam_Brick at 'pick_1' xy=(0.300, -0.300) within 0.080 m, completed_points_excluded=0 (wait attempt 16)
+[INFO] [1792416615.549870635] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792416615.579384542] [track1_grasp]: [detect] frame 'realsense-000252': 0 detection(s), no confirmed target
+[INFO] [1792416615.630057325] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792416615.645765306] [track1_grasp]: [detect] frame 'realsense-000253': 0 detection(s), no confirmed target
+[INFO] [1792416615.696444026] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792416615.711646217] [track1_grasp]: [detect] frame 'realsense-000254': 0 detection(s), no confirmed target
+[INFO] [1792416615.762253698] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792416615.777274232] [track1_grasp]: [detect] frame 'realsense-000255': 0 detection(s), no confirmed target
+[INFO] [1792416615.827975510] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792416615.847038802] [track1_grasp]: [detect] frame 'realsense-000256': 0 detection(s), no confirmed target
+[INFO] [1792416615.897808943] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792416615.911987681] [track1_grasp]: [detect] frame 'realsense-000257': 0 detection(s), no confirmed target
+[INFO] [1792416615.962627220] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792416615.977964763] [track1_grasp]: [detect] frame 'realsense-000258': 0 detection(s), no confirmed target
+[INFO] [1792416616.028611425] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792416616.046810362] [track1_grasp]: [detect] frame 'realsense-000259': 0 detection(s), no confirmed target
+[INFO] [1792416616.257245065] [track1_grasp]: [scan] search IK 1/16 pitch=+5 yaw=+0 limits_ok=True
+[INFO] [1792416616.470802368] [track1_grasp]: [scan] search IK 2/16 pitch=+10 yaw=+0 limits_ok=True
+[INFO] [1792416616.680187498] [track1_grasp]: [scan] search IK 3/16 pitch=+15 yaw=+0 limits_ok=True
+[INFO] [1792416616.888514743] [track1_grasp]: [scan] search IK 4/16 pitch=+20 yaw=+0 limits_ok=True
+[INFO] [1792416617.095632130] [track1_grasp]: [scan] search IK 5/16 pitch=+25 yaw=+0 limits_ok=True
+[INFO] [1792416617.302078692] [track1_grasp]: [scan] search IK 6/16 pitch=+30 yaw=+0 limits_ok=True
+[INFO] [1792416617.509086847] [track1_grasp]: [scan] search IK 7/16 pitch=+35 yaw=+0 limits_ok=True
+[INFO] [1792416617.717522137] [track1_grasp]: [scan] search IK 8/16 pitch=+40 yaw=+0 limits_ok=True
+[INFO] [1792416617.928333214] [track1_grasp]: [scan] search IK 9/16 pitch=+45 yaw=+0 limits_ok=True
+[INFO] [1792416618.136031190] [track1_grasp]: [scan] search IK 10/16 pitch=+50 yaw=+0 limits_ok=True
+[INFO] [1792416618.349313039] [track1_grasp]: [scan] search IK 11/16 pitch=+55 yaw=+0 limits_ok=True
+[INFO] [1792416618.556527784] [track1_grasp]: [scan] search IK 12/16 pitch=+60 yaw=+0 limits_ok=True
+[INFO] [1792416618.762736886] [track1_grasp]: [scan] search IK 13/16 pitch=+65 yaw=+0 limits_ok=True
+[INFO] [1792416618.971546176] [track1_grasp]: [scan] search IK 14/16 pitch=+70 yaw=+0 limits_ok=True
+[INFO] [1792416619.176873114] [track1_grasp]: [scan] search IK 15/16 pitch=+75 yaw=+0 limits_ok=True
+[INFO] [1792416619.383280495] [track1_grasp]: [scan] search IK 16/16 pitch=+80 yaw=+0 limits_ok=True
+[INFO] [1792416619.384383497] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1792416619.885446717] [track1_grasp]: [scan] round 1/5: waiting for 6-Foam_Brick at 'pick_1' xy=(0.300, -0.300) within 0.080 m, completed_points_excluded=0 (wait attempt 17)
+[INFO] [1792416619.885907389] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792416619.912765306] [track1_grasp]: [detect] frame 'realsense-000268': 0 detection(s), no confirmed target
+[INFO] [1792416619.963492704] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792416619.991014322] [track1_grasp]: [detect] frame 'realsense-000269': 0 detection(s), no confirmed target
+[INFO] [1792416620.041809397] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792416620.049642016] [track1_grasp]: [detect] frame 'realsense-000270': 0 detection(s), no confirmed target
+[INFO] [1792416620.100333795] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792416620.123588256] [track1_grasp]: [detect] frame 'realsense-000271': 0 detection(s), no confirmed target
+[INFO] [1792416620.174356023] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792416620.179992137] [track1_grasp]: [detect] frame 'realsense-000272': 0 detection(s), no confirmed target
+[INFO] [1792416620.231017548] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792416620.245070432] [track1_grasp]: [detect] frame 'realsense-000273': 0 detection(s), no confirmed target
+[INFO] [1792416620.295808517] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792416620.313616832] [track1_grasp]: [detect] frame 'realsense-000274': 0 detection(s), no confirmed target
+[INFO] [1792416620.364411906] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792416620.379926357] [track1_grasp]: [detect] frame 'realsense-000275': 0 detection(s), no confirmed target
+[INFO] [1792416620.591036634] [track1_grasp]: [scan] search IK 1/16 pitch=+5 yaw=+0 limits_ok=True
+[INFO] [1792416620.802467482] [track1_grasp]: [scan] search IK 2/16 pitch=+10 yaw=+0 limits_ok=True
+[INFO] [1792416621.010784042] [track1_grasp]: [scan] search IK 3/16 pitch=+15 yaw=+0 limits_ok=True
+[INFO] [1792416621.219563649] [track1_grasp]: [scan] search IK 4/16 pitch=+20 yaw=+0 limits_ok=True
+[INFO] [1792416621.427907517] [track1_grasp]: [scan] search IK 5/16 pitch=+25 yaw=+0 limits_ok=True
+[INFO] [1792416621.636773796] [track1_grasp]: [scan] search IK 6/16 pitch=+30 yaw=+0 limits_ok=True
+[INFO] [1792416621.844278243] [track1_grasp]: [scan] search IK 7/16 pitch=+35 yaw=+0 limits_ok=True
+[INFO] [1792416622.049056648] [track1_grasp]: [scan] search IK 8/16 pitch=+40 yaw=+0 limits_ok=True
+[INFO] [1792416622.255455718] [track1_grasp]: [scan] search IK 9/16 pitch=+45 yaw=+0 limits_ok=True
+[INFO] [1792416622.460750599] [track1_grasp]: [scan] search IK 10/16 pitch=+50 yaw=+0 limits_ok=True
+[INFO] [1792416622.665589556] [track1_grasp]: [scan] search IK 11/16 pitch=+55 yaw=+0 limits_ok=True
+[INFO] [1792416622.871687052] [track1_grasp]: [scan] search IK 12/16 pitch=+60 yaw=+0 limits_ok=True
+[INFO] [1792416623.078631093] [track1_grasp]: [scan] search IK 13/16 pitch=+65 yaw=+0 limits_ok=True
+[INFO] [1792416623.284194304] [track1_grasp]: [scan] search IK 14/16 pitch=+70 yaw=+0 limits_ok=True
+[INFO] [1792416623.489930860] [track1_grasp]: [scan] search IK 15/16 pitch=+75 yaw=+0 limits_ok=True
+[INFO] [1792416623.695757652] [track1_grasp]: [scan] search IK 16/16 pitch=+80 yaw=+0 limits_ok=True
+[INFO] [1792416623.696703930] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1792416624.197674540] [track1_grasp]: [scan] round 1/5: waiting for 6-Foam_Brick at 'pick_1' xy=(0.300, -0.300) within 0.080 m, completed_points_excluded=0 (wait attempt 18)
+[INFO] [1792416624.198189829] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792416624.242191172] [track1_grasp]: [detect] frame 'realsense-000285': 0 detection(s), no confirmed target
+[INFO] [1792416624.292907885] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792416624.312472217] [track1_grasp]: [detect] frame 'realsense-000286': 0 detection(s), no confirmed target
+[INFO] [1792416624.363148562] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792416624.380154262] [track1_grasp]: [detect] frame 'realsense-000287': 0 detection(s), no confirmed target
+[INFO] [1792416624.430834168] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792416624.450828303] [track1_grasp]: [detect] frame 'realsense-000288': 0 detection(s), no confirmed target
+[INFO] [1792416624.501461905] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792416624.513929744] [track1_grasp]: [detect] frame 'realsense-000289': 0 detection(s), no confirmed target
+[INFO] [1792416624.564469549] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792416624.576379357] [track1_grasp]: [detect] frame 'realsense-000290': 0 detection(s), no confirmed target
+[INFO] [1792416624.626904914] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792416624.649545541] [track1_grasp]: [detect] frame 'realsense-000291': 0 detection(s), no confirmed target
+[INFO] [1792416624.700234946] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792416624.715381334] [track1_grasp]: [detect] frame 'realsense-000292': 0 detection(s), no confirmed target
+[INFO] [1792416624.926000069] [track1_grasp]: [scan] search IK 1/16 pitch=+5 yaw=+0 limits_ok=True
+[INFO] [1792416625.134910279] [track1_grasp]: [scan] search IK 2/16 pitch=+10 yaw=+0 limits_ok=True
+[INFO] [1792416625.338862323] [track1_grasp]: [scan] search IK 3/16 pitch=+15 yaw=+0 limits_ok=True
+[INFO] [1792416625.544284245] [track1_grasp]: [scan] search IK 4/16 pitch=+20 yaw=+0 limits_ok=True
+[INFO] [1792416625.750659569] [track1_grasp]: [scan] search IK 5/16 pitch=+25 yaw=+0 limits_ok=True
+[INFO] [1792416625.955231384] [track1_grasp]: [scan] search IK 6/16 pitch=+30 yaw=+0 limits_ok=True
+[INFO] [1792416626.160235376] [track1_grasp]: [scan] search IK 7/16 pitch=+35 yaw=+0 limits_ok=True
+[INFO] [1792416626.365321292] [track1_grasp]: [scan] search IK 8/16 pitch=+40 yaw=+0 limits_ok=True
+[INFO] [1792416626.572431555] [track1_grasp]: [scan] search IK 9/16 pitch=+45 yaw=+0 limits_ok=True
+[INFO] [1792416626.778898301] [track1_grasp]: [scan] search IK 10/16 pitch=+50 yaw=+0 limits_ok=True
+[INFO] [1792416626.985253441] [track1_grasp]: [scan] search IK 11/16 pitch=+55 yaw=+0 limits_ok=True
+[INFO] [1792416627.191171654] [track1_grasp]: [scan] search IK 12/16 pitch=+60 yaw=+0 limits_ok=True
+[INFO] [1792416627.397220471] [track1_grasp]: [scan] search IK 13/16 pitch=+65 yaw=+0 limits_ok=True
+[INFO] [1792416627.602363377] [track1_grasp]: [scan] search IK 14/16 pitch=+70 yaw=+0 limits_ok=True
+[INFO] [1792416627.810644318] [track1_grasp]: [scan] search IK 15/16 pitch=+75 yaw=+0 limits_ok=True
+[INFO] [1792416628.017591921] [track1_grasp]: [scan] search IK 16/16 pitch=+80 yaw=+0 limits_ok=True
+[INFO] [1792416628.019250579] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1792416628.519691654] [track1_grasp]: [scan] round 1/5: waiting for 6-Foam_Brick at 'pick_1' xy=(0.300, -0.300) within 0.080 m, completed_points_excluded=0 (wait attempt 19)
+[INFO] [1792416628.520022911] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792416628.577164105] [track1_grasp]: [detect] frame 'realsense-000302': 0 detection(s), no confirmed target
+[INFO] [1792416628.627852323] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792416628.648872284] [track1_grasp]: [detect] frame 'realsense-000303': 0 detection(s), no confirmed target
+[INFO] [1792416628.699520134] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792416628.713834224] [track1_grasp]: [detect] frame 'realsense-000304': 0 detection(s), no confirmed target
+[INFO] [1792416628.764530753] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792416628.779595218] [track1_grasp]: [detect] frame 'realsense-000305': 0 detection(s), no confirmed target
+[INFO] [1792416628.830330927] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792416628.846188508] [track1_grasp]: [detect] frame 'realsense-000306': 0 detection(s), no confirmed target
+[INFO] [1792416628.896736625] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792416628.923704960] [track1_grasp]: [detect] frame 'realsense-000307': 0 detection(s), no confirmed target
+[INFO] [1792416628.974395552] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792416628.984476918] [track1_grasp]: [detect] frame 'realsense-000308': 0 detection(s), no confirmed target
+[INFO] [1792416629.035017911] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792416629.056849986] [track1_grasp]: [detect] frame 'realsense-000309': 0 detection(s), no confirmed target
+[INFO] [1792416629.267572016] [track1_grasp]: [scan] search IK 1/16 pitch=+5 yaw=+0 limits_ok=True
+[INFO] [1792416629.479203517] [track1_grasp]: [scan] search IK 2/16 pitch=+10 yaw=+0 limits_ok=True
+[INFO] [1792416629.685658390] [track1_grasp]: [scan] search IK 3/16 pitch=+15 yaw=+0 limits_ok=True
+[INFO] [1792416629.892900443] [track1_grasp]: [scan] search IK 4/16 pitch=+20 yaw=+0 limits_ok=True
+[INFO] [1792416630.100680343] [track1_grasp]: [scan] search IK 5/16 pitch=+25 yaw=+0 limits_ok=True
+[INFO] [1792416630.309222490] [track1_grasp]: [scan] search IK 6/16 pitch=+30 yaw=+0 limits_ok=True
+[INFO] [1792416630.516770867] [track1_grasp]: [scan] search IK 7/16 pitch=+35 yaw=+0 limits_ok=True
+[INFO] [1792416630.723844323] [track1_grasp]: [scan] search IK 8/16 pitch=+40 yaw=+0 limits_ok=True
+[INFO] [1792416630.930985456] [track1_grasp]: [scan] search IK 9/16 pitch=+45 yaw=+0 limits_ok=True
+[INFO] [1792416631.136968971] [track1_grasp]: [scan] search IK 10/16 pitch=+50 yaw=+0 limits_ok=True
+[INFO] [1792416631.344478166] [track1_grasp]: [scan] search IK 11/16 pitch=+55 yaw=+0 limits_ok=True
+[INFO] [1792416631.551145566] [track1_grasp]: [scan] search IK 12/16 pitch=+60 yaw=+0 limits_ok=True
+[INFO] [1792416631.759829002] [track1_grasp]: [scan] search IK 13/16 pitch=+65 yaw=+0 limits_ok=True
+[INFO] [1792416631.966199576] [track1_grasp]: [scan] search IK 14/16 pitch=+70 yaw=+0 limits_ok=True
+[INFO] [1792416632.172251955] [track1_grasp]: [scan] search IK 15/16 pitch=+75 yaw=+0 limits_ok=True
+[INFO] [1792416632.378272276] [track1_grasp]: [scan] search IK 16/16 pitch=+80 yaw=+0 limits_ok=True
+[INFO] [1792416632.379574744] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1792416632.880531107] [track1_grasp]: [scan] round 1/5: waiting for 6-Foam_Brick at 'pick_1' xy=(0.300, -0.300) within 0.080 m, completed_points_excluded=0 (wait attempt 20)
+[INFO] [1792416632.880976345] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792416632.925060799] [track1_grasp]: [detect] frame 'realsense-000319': 0 detection(s), no confirmed target
+[INFO] [1792416632.975697963] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792416632.979912879] [track1_grasp]: [detect] frame 'realsense-000320': 0 detection(s), no confirmed target
+[INFO] [1792416633.030602284] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792416633.047916682] [track1_grasp]: [detect] frame 'realsense-000321': 0 detection(s), no confirmed target
+[INFO] [1792416633.098576404] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792416633.124203091] [track1_grasp]: [detect] frame 'realsense-000322': 0 detection(s), no confirmed target
+[INFO] [1792416633.174791575] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792416633.184025209] [track1_grasp]: [detect] frame 'realsense-000323': 0 detection(s), no confirmed target
+[INFO] [1792416633.234678995] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792416633.245547540] [track1_grasp]: [detect] frame 'realsense-000324': 0 detection(s), no confirmed target
+[INFO] [1792416633.296272564] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792416633.315880826] [track1_grasp]: [detect] frame 'realsense-000325': 0 detection(s), no confirmed target
+[INFO] [1792416633.366637908] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792416633.377546821] [track1_grasp]: [detect] frame 'realsense-000326': 0 detection(s), no confirmed target
+[INFO] [1792416633.589001415] [track1_grasp]: [scan] search IK 1/16 pitch=+5 yaw=+0 limits_ok=True
+[INFO] [1792416633.798485091] [track1_grasp]: [scan] search IK 2/16 pitch=+10 yaw=+0 limits_ok=True
+[INFO] [1792416634.004213336] [track1_grasp]: [scan] search IK 3/16 pitch=+15 yaw=+0 limits_ok=True
+[INFO] [1792416634.212002735] [track1_grasp]: [scan] search IK 4/16 pitch=+20 yaw=+0 limits_ok=True
+[INFO] [1792416634.419982101] [track1_grasp]: [scan] search IK 5/16 pitch=+25 yaw=+0 limits_ok=True
+[INFO] [1792416634.626701742] [track1_grasp]: [scan] search IK 6/16 pitch=+30 yaw=+0 limits_ok=True
+[INFO] [1792416634.832912032] [track1_grasp]: [scan] search IK 7/16 pitch=+35 yaw=+0 limits_ok=True
+[INFO] [1792416635.045897056] [track1_grasp]: [scan] search IK 8/16 pitch=+40 yaw=+0 limits_ok=True
+[INFO] [1792416635.251697726] [track1_grasp]: [scan] search IK 9/16 pitch=+45 yaw=+0 limits_ok=True
+[INFO] [1792416635.456896436] [track1_grasp]: [scan] search IK 10/16 pitch=+50 yaw=+0 limits_ok=True
+[INFO] [1792416635.666243572] [track1_grasp]: [scan] search IK 11/16 pitch=+55 yaw=+0 limits_ok=True
+[INFO] [1792416635.868271003] [track1_grasp]: [scan] search IK 12/16 pitch=+60 yaw=+0 limits_ok=True
+[INFO] [1792416636.077993326] [track1_grasp]: [scan] search IK 13/16 pitch=+65 yaw=+0 limits_ok=True
+[INFO] [1792416636.285170078] [track1_grasp]: [scan] search IK 14/16 pitch=+70 yaw=+0 limits_ok=True
+[INFO] [1792416636.491824417] [track1_grasp]: [scan] search IK 15/16 pitch=+75 yaw=+0 limits_ok=True
+[INFO] [1792416636.699189949] [track1_grasp]: [scan] search IK 16/16 pitch=+80 yaw=+0 limits_ok=True
+[INFO] [1792416636.700328570] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1792416637.201167391] [track1_grasp]: [scan] round 1/5: waiting for 6-Foam_Brick at 'pick_1' xy=(0.300, -0.300) within 0.080 m, completed_points_excluded=0 (wait attempt 21)
+[INFO] [1792416637.201528330] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792416637.243798590] [track1_grasp]: [detect] frame 'realsense-000336': 0 detection(s), no confirmed target
+[INFO] [1792416637.294562795] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792416637.312172830] [track1_grasp]: [detect] frame 'realsense-000337': 0 detection(s), no confirmed target
+[INFO] [1792416637.362877670] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792416637.381933838] [track1_grasp]: [detect] frame 'realsense-000338': 0 detection(s), no confirmed target
+[INFO] [1792416637.432535383] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792416637.448281357] [track1_grasp]: [detect] frame 'realsense-000339': 0 detection(s), no confirmed target
+[INFO] [1792416637.498906648] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792416637.524209201] [track1_grasp]: [detect] frame 'realsense-000340': 0 detection(s), no confirmed target
+[INFO] [1792416637.575012587] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792416637.577797993] [track1_grasp]: [detect] frame 'realsense-000341': 0 detection(s), no confirmed target
+[INFO] [1792416637.628555075] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792416637.646718392] [track1_grasp]: [detect] frame 'realsense-000342': 0 detection(s), no confirmed target
+[INFO] [1792416637.697496845] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792416637.718147556] [track1_grasp]: [detect] frame 'realsense-000343': 0 detection(s), no confirmed target
+[INFO] [1792416637.930787076] [track1_grasp]: [scan] search IK 1/16 pitch=+5 yaw=+0 limits_ok=True
+[INFO] [1792416638.136739721] [track1_grasp]: [scan] search IK 2/16 pitch=+10 yaw=+0 limits_ok=True
+[INFO] [1792416638.344910243] [track1_grasp]: [scan] search IK 3/16 pitch=+15 yaw=+0 limits_ok=True
+[INFO] [1792416638.552969158] [track1_grasp]: [scan] search IK 4/16 pitch=+20 yaw=+0 limits_ok=True
+[INFO] [1792416638.758297284] [track1_grasp]: [scan] search IK 5/16 pitch=+25 yaw=+0 limits_ok=True
+[INFO] [1792416638.964604932] [track1_grasp]: [scan] search IK 6/16 pitch=+30 yaw=+0 limits_ok=True
+[INFO] [1792416639.170618129] [track1_grasp]: [scan] search IK 7/16 pitch=+35 yaw=+0 limits_ok=True
+[INFO] [1792416639.376237143] [track1_grasp]: [scan] search IK 8/16 pitch=+40 yaw=+0 limits_ok=True
+[INFO] [1792416639.581192456] [track1_grasp]: [scan] search IK 9/16 pitch=+45 yaw=+0 limits_ok=True
+[INFO] [1792416639.790172716] [track1_grasp]: [scan] search IK 10/16 pitch=+50 yaw=+0 limits_ok=True
+[INFO] [1792416639.993906297] [track1_grasp]: [scan] search IK 11/16 pitch=+55 yaw=+0 limits_ok=True
+[INFO] [1792416640.200282809] [track1_grasp]: [scan] search IK 12/16 pitch=+60 yaw=+0 limits_ok=True
+[INFO] [1792416640.405936254] [track1_grasp]: [scan] search IK 13/16 pitch=+65 yaw=+0 limits_ok=True
+[INFO] [1792416640.614567448] [track1_grasp]: [scan] search IK 14/16 pitch=+70 yaw=+0 limits_ok=True
+[INFO] [1792416640.820539090] [track1_grasp]: [scan] search IK 15/16 pitch=+75 yaw=+0 limits_ok=True
+[INFO] [1792416641.027925994] [track1_grasp]: [scan] search IK 16/16 pitch=+80 yaw=+0 limits_ok=True
+[INFO] [1792416641.029089548] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1792416641.530121898] [track1_grasp]: [scan] round 1/5: waiting for 6-Foam_Brick at 'pick_1' xy=(0.300, -0.300) within 0.080 m, completed_points_excluded=0 (wait attempt 22)
+[INFO] [1792416641.530561199] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792416641.582462838] [track1_grasp]: [detect] frame 'realsense-000353': 0 detection(s), no confirmed target
+[INFO] [1792416641.633153430] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792416641.651032983] [track1_grasp]: [detect] frame 'realsense-000354': 0 detection(s), no confirmed target
+[INFO] [1792416641.701814998] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792416641.717805556] [track1_grasp]: [detect] frame 'realsense-000355': 0 detection(s), no confirmed target
+[INFO] [1792416641.768585196] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792416641.786122807] [track1_grasp]: [detect] frame 'realsense-000356': 0 detection(s), no confirmed target
+[INFO] [1792416641.836807462] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792416641.846530263] [track1_grasp]: [detect] frame 'realsense-000357': 0 detection(s), no confirmed target
+[INFO] [1792416641.897142494] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792416641.916922914] [track1_grasp]: [detect] frame 'realsense-000358': 0 detection(s), no confirmed target
+[INFO] [1792416641.967682370] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792416641.982489190] [track1_grasp]: [detect] frame 'realsense-000359': 0 detection(s), no confirmed target
+[INFO] [1792416642.033139415] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792416642.045931386] [track1_grasp]: [detect] frame 'realsense-000360': 0 detection(s), no confirmed target
+[INFO] [1792416642.253437020] [track1_grasp]: [scan] search IK 1/16 pitch=+5 yaw=+0 limits_ok=True
+[INFO] [1792416642.457113611] [track1_grasp]: [scan] search IK 2/16 pitch=+10 yaw=+0 limits_ok=True
+[INFO] [1792416642.664501702] [track1_grasp]: [scan] search IK 3/16 pitch=+15 yaw=+0 limits_ok=True
+[INFO] [1792416642.869420208] [track1_grasp]: [scan] search IK 4/16 pitch=+20 yaw=+0 limits_ok=True
+[INFO] [1792416643.076751309] [track1_grasp]: [scan] search IK 5/16 pitch=+25 yaw=+0 limits_ok=True
+[INFO] [1792416643.284116841] [track1_grasp]: [scan] search IK 6/16 pitch=+30 yaw=+0 limits_ok=True
+[INFO] [1792416643.488948675] [track1_grasp]: [scan] search IK 7/16 pitch=+35 yaw=+0 limits_ok=True
+[INFO] [1792416643.693882617] [track1_grasp]: [scan] search IK 8/16 pitch=+40 yaw=+0 limits_ok=True
+[INFO] [1792416643.898240718] [track1_grasp]: [scan] search IK 9/16 pitch=+45 yaw=+0 limits_ok=True
+[INFO] [1792416644.104859438] [track1_grasp]: [scan] search IK 10/16 pitch=+50 yaw=+0 limits_ok=True
+[INFO] [1792416644.309907361] [track1_grasp]: [scan] search IK 11/16 pitch=+55 yaw=+0 limits_ok=True
+[INFO] [1792416644.515108445] [track1_grasp]: [scan] search IK 12/16 pitch=+60 yaw=+0 limits_ok=True
+[INFO] [1792416644.722677005] [track1_grasp]: [scan] search IK 13/16 pitch=+65 yaw=+0 limits_ok=True
+[INFO] [1792416644.930525769] [track1_grasp]: [scan] search IK 14/16 pitch=+70 yaw=+0 limits_ok=True
+[INFO] [1792416645.135451399] [track1_grasp]: [scan] search IK 15/16 pitch=+75 yaw=+0 limits_ok=True
+[INFO] [1792416645.340533753] [track1_grasp]: [scan] search IK 16/16 pitch=+80 yaw=+0 limits_ok=True
+[INFO] [1792416645.341424229] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1792416645.842641798] [track1_grasp]: [scan] round 1/5: waiting for 6-Foam_Brick at 'pick_1' xy=(0.300, -0.300) within 0.080 m, completed_points_excluded=0 (wait attempt 23)
+[INFO] [1792416645.843405232] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792416645.848135435] [track1_grasp]: [detect] frame 'realsense-000369': 0 detection(s), no confirmed target
+[INFO] [1792416645.898829590] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792416645.914372536] [track1_grasp]: [detect] frame 'realsense-000370': 0 detection(s), no confirmed target
+[INFO] [1792416645.965099935] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792416645.982313412] [track1_grasp]: [detect] frame 'realsense-000371': 0 detection(s), no confirmed target
+[INFO] [1792416646.032995693] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792416646.048659744] [track1_grasp]: [detect] frame 'realsense-000372': 0 detection(s), no confirmed target
+[INFO] [1792416646.099749269] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792416646.113920884] [track1_grasp]: [detect] frame 'realsense-000373': 0 detection(s), no confirmed target
+[INFO] [1792416646.164667280] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792416646.178461333] [track1_grasp]: [detect] frame 'realsense-000374': 0 detection(s), no confirmed target
+[INFO] [1792416646.229186357] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792416646.249334840] [track1_grasp]: [detect] frame 'realsense-000375': 0 detection(s), no confirmed target
+[INFO] [1792416646.300031369] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792416646.312435094] [track1_grasp]: [detect] frame 'realsense-000376': 0 detection(s), no confirmed target
+[INFO] [1792416646.517028280] [track1_grasp]: [scan] search IK 1/16 pitch=+5 yaw=+0 limits_ok=True
+[INFO] [1792416646.724598028] [track1_grasp]: [scan] search IK 2/16 pitch=+10 yaw=+0 limits_ok=True
+[INFO] [1792416646.930005702] [track1_grasp]: [scan] search IK 3/16 pitch=+15 yaw=+0 limits_ok=True
+[INFO] [1792416647.135614031] [track1_grasp]: [scan] search IK 4/16 pitch=+20 yaw=+0 limits_ok=True
+[INFO] [1792416647.339731110] [track1_grasp]: [scan] search IK 5/16 pitch=+25 yaw=+0 limits_ok=True
+[INFO] [1792416647.544660302] [track1_grasp]: [scan] search IK 6/16 pitch=+30 yaw=+0 limits_ok=True
+[INFO] [1792416647.749826954] [track1_grasp]: [scan] search IK 7/16 pitch=+35 yaw=+0 limits_ok=True
+[INFO] [1792416647.954621982] [track1_grasp]: [scan] search IK 8/16 pitch=+40 yaw=+0 limits_ok=True
+[INFO] [1792416648.160423840] [track1_grasp]: [scan] search IK 9/16 pitch=+45 yaw=+0 limits_ok=True
+[INFO] [1792416648.367205221] [track1_grasp]: [scan] search IK 10/16 pitch=+50 yaw=+0 limits_ok=True
+[INFO] [1792416648.577660108] [track1_grasp]: [scan] search IK 11/16 pitch=+55 yaw=+0 limits_ok=True
+[INFO] [1792416648.783889394] [track1_grasp]: [scan] search IK 12/16 pitch=+60 yaw=+0 limits_ok=True
+[INFO] [1792416648.990788317] [track1_grasp]: [scan] search IK 13/16 pitch=+65 yaw=+0 limits_ok=True
+[INFO] [1792416649.192110492] [track1_grasp]: [scan] search IK 14/16 pitch=+70 yaw=+0 limits_ok=True
+[INFO] [1792416649.396305933] [track1_grasp]: [scan] search IK 15/16 pitch=+75 yaw=+0 limits_ok=True
+[INFO] [1792416649.602176654] [track1_grasp]: [scan] search IK 16/16 pitch=+80 yaw=+0 limits_ok=True
+[INFO] [1792416649.603061193] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1792416650.103813340] [track1_grasp]: [scan] round 1/5: waiting for 6-Foam_Brick at 'pick_1' xy=(0.300, -0.300) within 0.080 m, completed_points_excluded=0 (wait attempt 24)
+[INFO] [1792416650.104321504] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792416650.122890879] [track1_grasp]: [detect] frame 'realsense-000385': 0 detection(s), no confirmed target
+[INFO] [1792416650.173598093] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792416650.178600189] [track1_grasp]: [detect] frame 'realsense-000386': 0 detection(s), no confirmed target
+[INFO] [1792416650.229306216] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792416650.245903485] [track1_grasp]: [detect] frame 'realsense-000387': 0 detection(s), no confirmed target
+[INFO] [1792416650.296696185] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792416650.313055994] [track1_grasp]: [detect] frame 'realsense-000388': 0 detection(s), no confirmed target
+[INFO] [1792416650.363794078] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792416650.376720215] [track1_grasp]: [detect] frame 'realsense-000389': 0 detection(s), no confirmed target
+[INFO] [1792416650.427307512] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792416650.454190362] [track1_grasp]: [detect] frame 'realsense-000390': 0 detection(s), no confirmed target
+[INFO] [1792416650.504858396] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792416650.512555663] [track1_grasp]: [detect] frame 'realsense-000391': 0 detection(s), no confirmed target
+[INFO] [1792416650.563120401] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792416650.584434813] [track1_grasp]: [detect] frame 'realsense-000392': 0 detection(s), no confirmed target
+[INFO] [1792416650.795282697] [track1_grasp]: [scan] search IK 1/16 pitch=+5 yaw=+0 limits_ok=True
+[INFO] [1792416651.005034703] [track1_grasp]: [scan] search IK 2/16 pitch=+10 yaw=+0 limits_ok=True
+[INFO] [1792416651.215209387] [track1_grasp]: [scan] search IK 3/16 pitch=+15 yaw=+0 limits_ok=True
+[INFO] [1792416651.423776467] [track1_grasp]: [scan] search IK 4/16 pitch=+20 yaw=+0 limits_ok=True
+[INFO] [1792416651.632972816] [track1_grasp]: [scan] search IK 5/16 pitch=+25 yaw=+0 limits_ok=True
+[INFO] [1792416651.839540483] [track1_grasp]: [scan] search IK 6/16 pitch=+30 yaw=+0 limits_ok=True
+[INFO] [1792416652.048778387] [track1_grasp]: [scan] search IK 7/16 pitch=+35 yaw=+0 limits_ok=True
+[INFO] [1792416652.256894293] [track1_grasp]: [scan] search IK 8/16 pitch=+40 yaw=+0 limits_ok=True
+[INFO] [1792416652.464272886] [track1_grasp]: [scan] search IK 9/16 pitch=+45 yaw=+0 limits_ok=True
+[INFO] [1792416652.671746463] [track1_grasp]: [scan] search IK 10/16 pitch=+50 yaw=+0 limits_ok=True
+[INFO] [1792416652.880412089] [track1_grasp]: [scan] search IK 11/16 pitch=+55 yaw=+0 limits_ok=True
+[INFO] [1792416653.086002607] [track1_grasp]: [scan] search IK 12/16 pitch=+60 yaw=+0 limits_ok=True
+[INFO] [1792416653.290853438] [track1_grasp]: [scan] search IK 13/16 pitch=+65 yaw=+0 limits_ok=True
+[INFO] [1792416653.496272985] [track1_grasp]: [scan] search IK 14/16 pitch=+70 yaw=+0 limits_ok=True
+[INFO] [1792416653.701640291] [track1_grasp]: [scan] search IK 15/16 pitch=+75 yaw=+0 limits_ok=True
+[INFO] [1792416653.905058050] [track1_grasp]: [scan] search IK 16/16 pitch=+80 yaw=+0 limits_ok=True
+[INFO] [1792416653.905967522] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1792416654.406851460] [track1_grasp]: [scan] round 1/5: waiting for 6-Foam_Brick at 'pick_1' xy=(0.300, -0.300) within 0.080 m, completed_points_excluded=0 (wait attempt 25)
+[INFO] [1792416654.407192215] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792416654.444345211] [track1_grasp]: [detect] frame 'realsense-000402': 0 detection(s), no confirmed target
+[INFO] [1792416654.495026305] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792416654.511872907] [track1_grasp]: [detect] frame 'realsense-000403': 0 detection(s), no confirmed target
+[INFO] [1792416654.562523131] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792416654.585421402] [track1_grasp]: [detect] frame 'realsense-000404': 0 detection(s), no confirmed target
+[INFO] [1792416654.635979017] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792416654.653606862] [track1_grasp]: [detect] frame 'realsense-000405': 0 detection(s), no confirmed target
+[INFO] [1792416654.704258273] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792416654.720367562] [track1_grasp]: [detect] frame 'realsense-000406': 0 detection(s), no confirmed target
+[INFO] [1792416654.771113957] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792416654.779553287] [track1_grasp]: [detect] frame 'realsense-000407': 0 detection(s), no confirmed target
+[INFO] [1792416654.830197574] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792416654.854310453] [track1_grasp]: [detect] frame 'realsense-000408': 0 detection(s), no confirmed target
+[INFO] [1792416654.905018855] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792416654.914362907] [track1_grasp]: [detect] frame 'realsense-000409': 0 detection(s), no confirmed target
+[INFO] [1792416655.119845381] [track1_grasp]: [scan] search IK 1/16 pitch=+5 yaw=+0 limits_ok=True
+[INFO] [1792416655.326714622] [track1_grasp]: [scan] search IK 2/16 pitch=+10 yaw=+0 limits_ok=True
+[INFO] [1792416655.534504021] [track1_grasp]: [scan] search IK 3/16 pitch=+15 yaw=+0 limits_ok=True
+[INFO] [1792416655.741173795] [track1_grasp]: [scan] search IK 4/16 pitch=+20 yaw=+0 limits_ok=True
+[INFO] [1792416655.946948345] [track1_grasp]: [scan] search IK 5/16 pitch=+25 yaw=+0 limits_ok=True
+[INFO] [1792416656.152899803] [track1_grasp]: [scan] search IK 6/16 pitch=+30 yaw=+0 limits_ok=True
+[INFO] [1792416656.357653275] [track1_grasp]: [scan] search IK 7/16 pitch=+35 yaw=+0 limits_ok=True
+[INFO] [1792416656.565093607] [track1_grasp]: [scan] search IK 8/16 pitch=+40 yaw=+0 limits_ok=True
+[INFO] [1792416656.769039715] [track1_grasp]: [scan] search IK 9/16 pitch=+45 yaw=+0 limits_ok=True
+[INFO] [1792416656.975134836] [track1_grasp]: [scan] search IK 10/16 pitch=+50 yaw=+0 limits_ok=True
+[INFO] [1792416657.182877930] [track1_grasp]: [scan] search IK 11/16 pitch=+55 yaw=+0 limits_ok=True
+[INFO] [1792416657.387313205] [track1_grasp]: [scan] search IK 12/16 pitch=+60 yaw=+0 limits_ok=True
+[INFO] [1792416657.591070532] [track1_grasp]: [scan] search IK 13/16 pitch=+65 yaw=+0 limits_ok=True
+[INFO] [1792416657.799943936] [track1_grasp]: [scan] search IK 14/16 pitch=+70 yaw=+0 limits_ok=True
+[INFO] [1792416658.003506546] [track1_grasp]: [scan] search IK 15/16 pitch=+75 yaw=+0 limits_ok=True
+[INFO] [1792416658.209612353] [track1_grasp]: [scan] search IK 16/16 pitch=+80 yaw=+0 limits_ok=True
+[INFO] [1792416658.210460085] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1792416658.711406950] [track1_grasp]: [scan] round 1/5: waiting for 6-Foam_Brick at 'pick_1' xy=(0.300, -0.300) within 0.080 m, completed_points_excluded=0 (wait attempt 26)
+[INFO] [1792416658.712714167] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792416658.785515850] [track1_grasp]: [detect] frame 'realsense-000419': 0 detection(s), no confirmed target
+[INFO] [1792416658.836179135] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792416658.847383686] [track1_grasp]: [detect] frame 'realsense-000420': 0 detection(s), no confirmed target
+[INFO] [1792416658.898026786] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792416658.914308233] [track1_grasp]: [detect] frame 'realsense-000421': 0 detection(s), no confirmed target
+[INFO] [1792416658.965053442] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792416658.979812770] [track1_grasp]: [detect] frame 'realsense-000422': 0 detection(s), no confirmed target
+[INFO] [1792416659.030452308] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792416659.050232729] [track1_grasp]: [detect] frame 'realsense-000423': 0 detection(s), no confirmed target
+[INFO] [1792416659.100948254] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792416659.113609623] [track1_grasp]: [detect] frame 'realsense-000424': 0 detection(s), no confirmed target
+[INFO] [1792416659.164214730] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792416659.178328167] [track1_grasp]: [detect] frame 'realsense-000425': 0 detection(s), no confirmed target
+[INFO] [1792416659.228846601] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792416659.254321312] [track1_grasp]: [detect] frame 'realsense-000426': 0 detection(s), no confirmed target
+[INFO] [1792416659.464171864] [track1_grasp]: [scan] search IK 1/16 pitch=+5 yaw=+0 limits_ok=True
+[INFO] [1792416659.672526417] [track1_grasp]: [scan] search IK 2/16 pitch=+10 yaw=+0 limits_ok=True
+[INFO] [1792416659.884514109] [track1_grasp]: [scan] search IK 3/16 pitch=+15 yaw=+0 limits_ok=True
+[INFO] [1792416660.093330522] [track1_grasp]: [scan] search IK 4/16 pitch=+20 yaw=+0 limits_ok=True
+[INFO] [1792416660.302938864] [track1_grasp]: [scan] search IK 5/16 pitch=+25 yaw=+0 limits_ok=True
+[INFO] [1792416660.508151821] [track1_grasp]: [scan] search IK 6/16 pitch=+30 yaw=+0 limits_ok=True
+[INFO] [1792416660.715168287] [track1_grasp]: [scan] search IK 7/16 pitch=+35 yaw=+0 limits_ok=True
+[INFO] [1792416660.921234913] [track1_grasp]: [scan] search IK 8/16 pitch=+40 yaw=+0 limits_ok=True
+[INFO] [1792416661.128662185] [track1_grasp]: [scan] search IK 9/16 pitch=+45 yaw=+0 limits_ok=True
+[INFO] [1792416661.333239937] [track1_grasp]: [scan] search IK 10/16 pitch=+50 yaw=+0 limits_ok=True
+[INFO] [1792416661.537582603] [track1_grasp]: [scan] search IK 11/16 pitch=+55 yaw=+0 limits_ok=True
+[INFO] [1792416661.744956446] [track1_grasp]: [scan] search IK 12/16 pitch=+60 yaw=+0 limits_ok=True
+[INFO] [1792416661.953395298] [track1_grasp]: [scan] search IK 13/16 pitch=+65 yaw=+0 limits_ok=True
+[INFO] [1792416662.157258295] [track1_grasp]: [scan] search IK 14/16 pitch=+70 yaw=+0 limits_ok=True
+[INFO] [1792416662.363777282] [track1_grasp]: [scan] search IK 15/16 pitch=+75 yaw=+0 limits_ok=True
+[INFO] [1792416662.567935917] [track1_grasp]: [scan] search IK 16/16 pitch=+80 yaw=+0 limits_ok=True
+[INFO] [1792416662.569059102] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+[INFO] [1792416663.070098576] [track1_grasp]: [scan] round 1/5: waiting for 6-Foam_Brick at 'pick_1' xy=(0.300, -0.300) within 0.080 m, completed_points_excluded=0 (wait attempt 27)
+[INFO] [1792416663.070699350] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792416663.119873760] [track1_grasp]: [detect] frame 'realsense-000436': 0 detection(s), no confirmed target
+[INFO] [1792416663.170520423] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792416663.180335833] [track1_grasp]: [detect] frame 'realsense-000437': 0 detection(s), no confirmed target
+[INFO] [1792416663.231048984] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792416663.247057352] [track1_grasp]: [detect] frame 'realsense-000438': 0 detection(s), no confirmed target
+[INFO] [1792416663.297727760] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792416663.325011918] [track1_grasp]: [detect] frame 'realsense-000439': 0 detection(s), no confirmed target
+[INFO] [1792416663.375708447] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792416663.379789197] [track1_grasp]: [detect] frame 'realsense-000440': 0 detection(s), no confirmed target
+[INFO] [1792416663.430364621] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792416663.459573392] [track1_grasp]: [detect] frame 'realsense-000441': 0 detection(s), no confirmed target
+[INFO] [1792416663.510237864] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792416663.514679554] [track1_grasp]: [detect] frame 'realsense-000442': 0 detection(s), no confirmed target
+[INFO] [1792416663.565295346] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792416663.585018776] [track1_grasp]: [detect] frame 'realsense-000443': 0 detection(s), no confirmed target
+[INFO] [1792416663.794806401] [track1_grasp]: [scan] search IK 1/16 pitch=+5 yaw=+0 limits_ok=True
+[INFO] [1792416664.002421266] [track1_grasp]: [scan] search IK 2/16 pitch=+10 yaw=+0 limits_ok=True
+[INFO] [1792416664.208002287] [track1_grasp]: [scan] search IK 3/16 pitch=+15 yaw=+0 limits_ok=True
+[INFO] [1792416664.413153504] [track1_grasp]: [scan] search IK 4/16 pitch=+20 yaw=+0 limits_ok=True
+[INFO] [1792416664.620216275] [track1_grasp]: [scan] search IK 5/16 pitch=+25 yaw=+0 limits_ok=True
+[INFO] [1792416664.822157033] [track1_grasp]: [scan] search IK 6/16 pitch=+30 yaw=+0 limits_ok=True
+[INFO] [1792416665.025917922] [track1_grasp]: [scan] search IK 7/16 pitch=+35 yaw=+0 limits_ok=True
+[INFO] [1792416665.230380505] [track1_grasp]: [scan] search IK 8/16 pitch=+40 yaw=+0 limits_ok=True
+[INFO] [1792416665.435062739] [track1_grasp]: [scan] search IK 9/16 pitch=+45 yaw=+0 limits_ok=True
+[INFO] [1792416665.642285795] [track1_grasp]: [scan] search IK 10/16 pitch=+50 yaw=+0 limits_ok=True
+[INFO] [1792416665.848519831] [track1_grasp]: [scan] search IK 11/16 pitch=+55 yaw=+0 limits_ok=True
+[INFO] [1792416666.052500370] [track1_grasp]: [scan] search IK 12/16 pitch=+60 yaw=+0 limits_ok=True
+Failed to publish log message to rosout: publisher's context is invalid, at ./src/rcl/publisher.c:389
+[INFO] [1792416666.258107511] [track1_grasp]: [scan] search IK 13/16 pitch=+65 yaw=+0 limits_ok=True
+Failed to publish log message to rosout: publisher's context is invalid, at ./src/rcl/publisher.c:389
+[INFO] [1792416666.465366186] [track1_grasp]: [scan] search IK 14/16 pitch=+70 yaw=+0 limits_ok=True
+Failed to publish log message to rosout: publisher's context is invalid, at ./src/rcl/publisher.c:389
+[INFO] [1792416666.671330704] [track1_grasp]: [scan] search IK 15/16 pitch=+75 yaw=+0 limits_ok=True
+Failed to publish log message to rosout: publisher's context is invalid, at ./src/rcl/publisher.c:389
+[INFO] [1792416666.877345089] [track1_grasp]: [scan] search IK 16/16 pitch=+80 yaw=+0 limits_ok=True
+Failed to publish log message to rosout: publisher's context is invalid, at ./src/rcl/publisher.c:389
+[INFO] [1792416666.877717901] [track1_grasp]: [scan] target not yet confirmed at 'pick_1'; waiting until interrupted; no pick motion will be issued
+Failed to publish log message to rosout: publisher's context is invalid, at ./src/rcl/publisher.c:389
+[INFO] [1792416667.378568594] [track1_grasp]: [scan] round 1/5: waiting for 6-Foam_Brick at 'pick_1' xy=(0.300, -0.300) within 0.080 m, completed_points_excluded=0 (wait attempt 28)
+Failed to publish log message to rosout: publisher's context is invalid, at ./src/rcl/publisher.c:389
+[INFO] [1792416667.378823864] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+Failed to publish log message to rosout: publisher's context is invalid, at ./src/rcl/publisher.c:389
+[INFO] [1792416667.379038765] [track1_grasp]: [abort] target acquisition failed: vision source is closed
+Failed to publish log message to rosout: publisher's context is invalid, at ./src/rcl/publisher.c:389
+[INFO] [1792416667.379261978] [track1_grasp]: [run] requested=5 attempts=1 successes=0 rate=0.00%
+Failed to publish log message to rosout: publisher's context is invalid, at ./src/rcl/publisher.c:389

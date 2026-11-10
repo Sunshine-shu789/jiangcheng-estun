@@ -1,0 +1,12 @@
+复用已运行的夹爪 ROS 节点（PID=36099）。
+
+===== MS42DC 夹爪测试（不会移动机械臂）=====
+配置：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/ms42dc_ros_test.yaml
+动作：status
+
+[gripper:ms42dc_ros] control=/motor_control state=/motor_state id=1
+[gripper:ms42dc_ros] no valid /motor_state reply before timeout
+[bench] no valid status reply: check power, wiring, baud rate,
+and that the controller's DIP switch selects the right transport
+
+夹爪测试失败，退出码=1

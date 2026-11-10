@@ -1,0 +1,190 @@
+# Task B dynamic box-relative five-point OFFLINE MOCK validation.
+# motion.dry_run=true, every hardware backend is mock, and box pose is
+# fitted from each frame rather than copied from box_clearance center/yaw.
+task:
+  mode: B
+  max_picks: 5
+  stop_on_error: true
+  sample_period_s: 0.0
+vision:
+  backend: mock
+  scenario_file: ../app/track1_grasp/scenarios/task_b_box_relative_mock_20261024.yaml
+  min_confidence: 0.35
+  require_depth: true
+  continuous: false
+  show: false
+  loop_scenario: false
+  capture_timeout_s: 2.0
+  first_frame_timeout_s: 2.0
+  stale_after_s: 2.0
+  stabilizer:
+    enabled: false
+    confirm_hits: 1
+    max_misses: 1
+task_b:
+  initial_pose_file: ''
+  rounds: 5
+  return_to_pick: true
+  target_class: 8-Plastic_Banana
+  keep_same_target: true
+  next_point_timeout_s: 0.0
+  next_point_poll_s: 0.01
+  lift_hold_s: 0.0
+  operator_pause_after_each_pick: false
+  return_to_initial_after_each_pick: false
+  return_to_initial_after_task: false
+target:
+  policy: any
+  known_classes:
+  - 8-Plastic_Banana
+  unknown_labels:
+  - unknown
+  - object
+  unknown_min_graspability: 0.65
+  max_attempts_per_target: 1
+  order:
+  - 8-Plastic_Banana
+pose:
+  camera_frame: flange
+  extrinsics_file: camera_to_flange.d405_calibrated_20261025.yaml
+  use_detection_base_xyz: false
+  fallback_camera_to_base: false
+  robot_pose_frame: flange
+  gripper_tip_offset_flange_m:
+  - 0.0
+  - 0.0
+  - 0.165
+adaptive_inverse:
+  enabled: true
+  arbitrary_placement: false
+  require_validated_extrinsics: true
+  min_pose_confidence: 0.5
+  pca:
+    min_valid_points: 200
+    min_depth_m: 0.08
+    max_depth_m: 1.2
+    trim_percentile: 5.0
+    min_axis_ratio: 1.1
+    support_plane_required: true
+    support_plane_min_points: 300
+    support_plane_max_rms_m: 0.0035
+    support_plane_min_inlier_ratio: 0.35
+    support_plane_min_normal_z: 0.8
+    support_plane_depth_window_m: 0.012
+    support_plane_guard_dilation_px: 13
+    support_plane_ring_padding_ratio: 0.45
+    support_plane_ransac_threshold_m: 0.002
+    support_plane_ransac_iterations: 64
+    support_plane_max_samples: 30000
+  candidates:
+    max_count: 5
+    yaw_offsets_deg:
+    - 0.0
+    - 45.0
+    - -45.0
+    - 90.0
+    - -90.0
+    pitch_offsets_deg:
+    - 0.0
+    axis_alignment_offset_deg: 0.0
+    max_orientation_change_deg: 180.0
+    use_visual_grasp_z: true
+    jaw_tip_clearance_m: 0.002
+    approach_height_m: 0.08
+  selection:
+    stop_after_first_valid: true
+    min_sigma_margin: 0.001
+    sigma_weight: 10.0
+    joint_travel_weight: 1.0
+    orientation_weight: 1.0
+  box_clearance:
+    required: true
+    geometry_validated: true
+    geometry_source: offline_mock_synthetic_test_only
+    center_xy_m:
+    - 0.0
+    - 0.05
+    yaw_rad: 0.0
+    interior_size_m:
+    - 0.44
+    - 0.34
+    wall_clearance_m: 0.08
+    obstacle_clearance_m: 0.0
+    gripper_footprint_flange_xy_m:
+    - - -0.059
+      - -0.0315
+    - - 0.059
+      - -0.0315
+    - - 0.059
+      - 0.0315
+    - - -0.059
+      - 0.0315
+    obstacles_m: []
+  box_relative_five_point:
+    enabled: true
+    gripper_max_outer_m: 0.14
+    boss_axis: x
+    max_capture_pose_translation_m: 0.002
+    max_capture_pose_rotation_deg: 0.5
+    max_capture_joint_delta_deg: 0.5
+    max_corner_plane_rms_m: 0.004
+    max_corner_edge_error_m: 0.015
+    max_corner_orthogonality_error_deg: 3.0
+    max_corner_reprojection_rms_px: 3.0
+    max_corner_depth_std_m: 0.006
+    min_plane_normal_z: 0.85
+    item_match_max_distance_m: 0.02
+    item_match_min_margin_m: 0.015
+motion:
+  backend: mock
+  dry_run: true
+  motion_mode: joint_ik
+  workspace_min:
+  - -0.65
+  - -0.65
+  - 0.02
+  workspace_max:
+  - 0.65
+  - 0.65
+  - 0.8
+  workspace_margin: 0.01
+  approach_height: 0.08
+  grasp_z_offset: 0.0
+  grasp_z_m: null
+  grasp_rpy:
+  - 3.14159265
+  - 0.0
+  - 0.0
+  lift_height: 0.08
+  place_approach_height: 0.08
+  retreat_height: 0.08
+  speed_mps: 0.12
+  joint_speed_rad_s: 0.6
+  joint_speed_safety_limit_rad_s: 0.7
+  orientation: fixed
+  fixed_rpy:
+  - 3.14159265
+  - 0.0
+  - 0.0
+  cartesian_step_m: 0.002
+  cartesian_min_step_m: 0.0005
+  cartesian_orientation_step_deg: 1.0
+  cartesian_min_orientation_step_deg: 0.1
+  cartesian_max_waypoints: 600
+  cartesian_joint_step_deg: 0.5
+  cartesian_joint_branch_jump_deg: 5.0
+  cartesian_joint_acceleration_limit_deg: 0.25
+  cartesian_min_jacobian_singular_value: 0.01
+search:
+  enabled: false
+  arbitrary_observation_offsets_xyz_m:
+  - - 0.0
+    - 0.0
+    - 0.02
+  observe_frames: 1
+  confirm_hits: 1
+  return_to_initial_on_miss: true
+gripper:
+  backend: mock
+  settle_time_s: 0.0
+  open_before_approach: true

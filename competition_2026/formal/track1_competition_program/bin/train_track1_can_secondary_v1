@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -euo pipefail
+ROOT="/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序"
+SP="/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages"
+CONFIG="$ROOT/config/track1_train_can_secondary_v1.yaml"
+CACHE="$ROOT/cache/track1_can_secondary"
+mkdir -p "$CACHE/tmp" "$CACHE/matplotlib" "$CACHE/numba" "$CACHE/cuda" "$CACHE/torch" "$CACHE/xdg" "$ROOT/config/ultralytics" "$ROOT/runs/track1_train_can_secondary_v1" "$ROOT/logs" "$ROOT/reports"
+RUN_ENV=(
+  env
+  PYTHONNOUSERSITE=1
+  PYTHONDONTWRITEBYTECODE=1
+  PYTHONPATH="$SP:$ROOT/app"
+  TMPDIR="/tmp/c3"
+  TEMP="/tmp/c3"
+  TMP="/tmp/c3"
+  MPLCONFIGDIR="$CACHE/matplotlib"
+  NUMBA_CACHE_DIR="$CACHE/numba"
+  CUDA_CACHE_PATH="$CACHE/cuda"
+  TORCH_HOME="$CACHE/torch"
+  XDG_CACHE_HOME="$CACHE/xdg"
+  YOLO_CONFIG_DIR="$ROOT/config/ultralytics"
+  WANDB_MODE=disabled
+)
+if [[ " $* " == *" --execute "* ]]; then
+  LOG="$ROOT/logs/track1_train_can_secondary_v1_$(date +%Y%m%d_%H%M%S).log"
+  echo "training log: $LOG"
+  "${RUN_ENV[@]}" /usr/bin/python3 "$ROOT/app/track1_can_secondary/train_can_secondary.py" --config "$CONFIG" "$@" 2>&1 | tee "$LOG"
+  exit "${PIPESTATUS[0]}"
+fi
+exec "${RUN_ENV[@]}" /usr/bin/python3 "$ROOT/app/track1_can_secondary/train_can_secondary.py" --config "$CONFIG" "$@"

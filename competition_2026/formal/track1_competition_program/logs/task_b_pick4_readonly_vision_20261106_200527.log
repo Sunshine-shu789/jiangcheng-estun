@@ -1,0 +1,29 @@
+ROBOT state=AutoReady fault=0 xyz=(0.056669, 0.417884, 0.256344) rpy=(-3.112923, 0.045257, -0.347986)
+POINTS pick_1=(-0.041246, 0.4907) pick_2=(-0.124884, 0.521709) pick_3=(-0.108009, 0.417709) pick_4=(0.056674, 0.417881) pick_5=(0.034196, 0.486713)
+VISION [camera] D405 started 640x480@15 fx=392.7 fy=391.7 cx=314.4 cy=246.7
+VISION [yolo] loading /media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/models/best.pt
+VISION [vision:realsense_yolo] model input size verified imgsz=640
+VISION [vision:realsense_yolo] ready 640x480 rotate180=True anchor=top_center cx=324.6 cy=232.3 stabilizer=off unknown_proposer=off
+FRAME 01 detections=0 banana=0 image=/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/vision_banana_center_diagnostics/frame_000001.jpg
+FRAME 02 detections=0 banana=0 image=
+FRAME 03 detections=0 banana=0 image=
+FRAME 04 detections=0 banana=0 image=
+FRAME 05 detections=0 banana=0 image=
+FRAME 06 detections=1 banana=1 image=
+VISION [pose] loaded camera transform from /media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/config/camera_to_flange.d405_calibrated_20261025.yaml
+  BANANA conf=0.0341 pose_conf=0.4760548661864451 anchor_base=(0.126575,0.491171,-0.037922) center_base=(0.058452,0.458869,-0.035349) distances=pick_5=0.036927 pick_4=0.041027 pick_1=0.104656 pick_3=0.171474 pick_2=0.193806
+FRAME 07 detections=0 banana=0 image=
+FRAME 08 detections=0 banana=0 image=
+FRAME 09 detections=0 banana=0 image=/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/vision_banana_center_diagnostics/frame_000009.jpg
+FRAME 10 detections=1 banana=1 image=
+  BANANA conf=0.1052 pose_conf=0.4710906048711755 anchor_base=(0.128017,0.494522,-0.034374) center_base=(0.058167,0.459059,-0.035266) distances=pick_5=0.036597 pick_4=0.041205 pick_1=0.104328 pick_3=0.171243 pick_2=0.193475
+FRAME 11 detections=0 banana=0 image=
+FRAME 12 detections=0 banana=0 image=
+FRAME 13 detections=0 banana=0 image=
+FRAME 14 detections=0 banana=0 image=
+FRAME 15 detections=1 banana=1 image=/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/vision_banana_center_diagnostics/frame_000015.jpg
+  BANANA conf=0.1507 pose_conf=0.4798382277036755 anchor_base=(0.124611,0.490780,-0.034947) center_base=(0.059225,0.459705,-0.034778) distances=pick_5=0.036822 pick_4=0.041902 pick_1=0.105144 pick_3=0.172426 pick_2=0.194269
+SUMMARY banana_detections=3 banana_frames=3/15 pose_valid_frames=3
+CENTER_MEAN=(0.058615,0.459211) pick_5=0.036778 pick_4=0.041375 pick_1=0.104708 pick_3=0.171714 pick_2=0.193850
+ASSIGNMENT nearest=pick_5 nearest_distance=0.036778 second=pick_4 second_distance=0.041375 margin=0.004598
+ANCHOR_MEAN=(0.126401,0.492158) pick_5=0.092365 pick_4=0.101877 pick_1=0.167654 pick_3=0.245948 pick_2=0.253016

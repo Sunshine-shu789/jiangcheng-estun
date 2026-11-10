@@ -1,0 +1,110 @@
+
+===== 任务B 五点位拾放 =====
+配置：/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/config/track1_task_b_pick1_single_low_speed_live_20261106.yaml
+视觉后端：realsense_yolo
+模式：真机执行
+日志：/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/task_B_20261106_190531.log
+
+正在启动机械臂状态桥接，日志：/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/codroid_bridge_20261106_190531.log
+[bridge] RobotInfo 已就绪：state=AutoReady fault_flag=0 xyz=(-0.0413, 0.4907, 0.2617)
+[INFO] [1793963133.377517735] [track1_grasp]: [gripper:ms42dc] /dev/serial/by-id/usb-1a86_USB_Single_Serial_5CF0022496-if00 @ 115200 id=1 subdivide=32
+[INFO] [1793963133.382645899] [track1_grasp]: [task_b_initial_pose] current_deg=[81.723, 83.399, -48.37, -55.14, 87.912, -3.397] target_deg=[82.657, 54.31, -32.193, -53.453, 84.446, -2.058] max_delta_deg=29.089 tolerance_deg=0.500
+[INFO] [1793963133.383829687] [track1_grasp]: [task_b_initial_pose] moving six axes together: dry_run=False estimated_steps=30 max_step_deg=1.000 total_abs_deg=[0.934, 29.089, 16.177, 1.687, 3.466, 1.339]
+[INFO] [1793963133.385242633] [track1_grasp]: [motion:robotmove] task_b_initial_pose: 30 step(s), max_delta=29.09 deg, joint_velocity=0.100 rad/s, speed_scale=1.00
+[INFO] [1793963133.389064712] [track1_grasp]: [motion:robotmove] sent continuous task_b_initial_pose: points=30 payload_bytes=5347 joint_velocity=0.100 rad/s endpoint_deg=[82.66, 54.31, -32.19, -53.45, 84.45, -2.06]
+[INFO] [1793963143.670979335] [track1_grasp]: [task_b_initial_pose] verified residual_deg=0.005; starting visual search
+[INFO] [1793963143.675118437] [track1_grasp]: [task_b_observation_pose] pick_1: current_deg=[82.657, 54.313, -32.195, -53.454, 84.45, -2.057] target_deg=[81.722, 83.401, -48.371, -55.141, 87.911, -3.395] max_delta_deg=29.088 tolerance_deg=0.500
+[INFO] [1793963143.676657243] [track1_grasp]: [task_b_observation_pose] pick_1: moving six axes together: dry_run=False estimated_steps=30 max_step_deg=1.000 total_abs_deg=[0.935, 29.088, 16.176, 1.687, 3.461, 1.338]
+[INFO] [1793963143.678507134] [track1_grasp]: [motion:robotmove] task_b_observation_pick_1: 30 step(s), max_delta=29.09 deg, joint_velocity=0.100 rad/s, speed_scale=1.00
+[INFO] [1793963143.683757596] [track1_grasp]: [motion:robotmove] sent continuous task_b_observation_pick_1: points=30 payload_bytes=5546 joint_velocity=0.100 rad/s endpoint_deg=[81.72, 83.4, -48.37, -55.14, 87.91, -3.4]
+[INFO] [1793963153.914244709] [track1_grasp]: [task_b_observation_pose] pick_1: verified residual_deg=0.004; visual search may start
+[INFO] [1793963153.915908186] [track1_grasp]: [scan] round 1/1: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 1)
+[INFO] [1793963153.917541980] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793963154.168723527] [track1_grasp]: [camera] D405 started 640x480@15 fx=392.7 fy=391.7 cx=314.4 cy=246.7
+[INFO] [1793963158.553600579] [track1_grasp]: [yolo] loading /media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/models/best.pt
+[INFO] [1793963158.592118219] [track1_grasp]: [vision:realsense_yolo] model input size verified imgsz=640
+[INFO] [1793963158.593357813] [track1_grasp]: [vision:realsense_yolo] ready 640x480 rotate180=True anchor=top_center cx=324.6 cy=232.3 stabilizer=on unknown_proposer=off
+[INFO] [1793963161.586095424] [track1_grasp]: [detect] frame 'realsense-000001': 0 detection(s), no confirmed target: no target at expected point 'pick_1' within 0.080 m (expected class '8-Plastic_Banana'); no detection had a usable base-frame position
+[INFO] [1793963161.637551621] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793963161.787866600] [track1_grasp]: [detect] frame 'realsense-000002': 0 detection(s), no confirmed target: no target at expected point 'pick_1' within 0.080 m (expected class '8-Plastic_Banana'); no detection had a usable base-frame position
+[INFO] [1793963161.839340608] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793963161.995351306] [track1_grasp]: [pose] loaded camera transform from /media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/config/camera_to_flange.d405_calibrated_20261025.yaml
+[INFO] [1793963161.996676389] [track1_grasp]: [detect] frame 'realsense-000003': 1 detection(s), 8-Plastic_Banana conf=0.84, confirmation 1/2
+[INFO] [1793963162.048265570] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793963162.268211519] [track1_grasp]: [detect] frame 'realsense-000004': 1 detection(s), 8-Plastic_Banana conf=0.84, confirmation 2/2
+[INFO] [1793963162.269486734] [track1_grasp]: [scan] round 1/1: target confirmed at expected point 'pick_1'
+[INFO] [1793963162.270700206] [track1_grasp]: [select] selected '8-Plastic_Banana' conf=0.84 graspability=1.00: 8-Plastic_Banana confirmed in 2 consecutive frames
+[INFO] [1793963162.272059722] [track1_grasp]: [task_b_anchor_pose] pick_1: fixed high anchor xyz=(-0.041247, 0.4907, 0.261723) rpy=(3.140775, 0.036569, -0.085293)
+[INFO] [1793963162.273799190] [track1_grasp]: [plan] pick_1: generated 1 object-relative grasp candidate(s)
+[INFO] [1793963162.276509910] [track1_grasp]: [plan] candidate 1: object_center_base=(-0.021378, 0.484397, -0.032876) major_axis_base=(0.166209, -0.986008, 0.012768) major_axis_xy=(0.166222, -0.986088) commanded_jaw_tip_base=(-0.021378, 0.484397, 0.001534) yaw_offset=-78.144 deg pitch_offset=0.000 deg orientation_source=task_b_banana_waist_short_axis grasp_xyz=(-0.021378, 0.484397, 0.166534) grasp_rpy=(3.141593, -0.0, 0.166739) pregrasp_xyz=(-0.021378, 0.484397, 0.241534) pregrasp_rpy=(3.141593, -0.0, 0.166739)
+[INFO] [1793963162.409532322] [track1_grasp]: [plan] adaptive candidate 1/1 passed pregrasp endpoint condition: min_sigma=0.052407
+[INFO] [1793963162.683033704] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.05, iterations=4, step=0.539 deg, pos_err=0.0100 mm, rot_err=0.000173 rad, min_sigma=0.045049
+[INFO] [1793963162.829195334] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.05, iterations=4, step=0.542 deg, pos_err=0.0111 mm, rot_err=0.000189 rad, min_sigma=0.045322
+[INFO] [1793963163.092722975] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.05, iterations=4, step=0.542 deg, pos_err=0.0109 mm, rot_err=0.000186 rad, min_sigma=0.045597
+[INFO] [1793963163.224549727] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.05, iterations=4, step=0.542 deg, pos_err=0.0107 mm, rot_err=0.000184 rad, min_sigma=0.045869
+[INFO] [1793963163.490745347] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.05, iterations=4, step=0.542 deg, pos_err=0.0105 mm, rot_err=0.000181 rad, min_sigma=0.046140
+[INFO] [1793963163.620148716] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.05, iterations=4, step=0.542 deg, pos_err=0.0103 mm, rot_err=0.000179 rad, min_sigma=0.046409
+[INFO] [1793963163.882912893] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.05, iterations=4, step=0.542 deg, pos_err=0.0101 mm, rot_err=0.000177 rad, min_sigma=0.046677
+[INFO] [1793963164.021097906] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.05, iterations=4, step=0.542 deg, pos_err=0.0099 mm, rot_err=0.000175 rad, min_sigma=0.046943
+[INFO] [1793963164.287735223] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.05, iterations=4, step=0.542 deg, pos_err=0.0098 mm, rot_err=0.000172 rad, min_sigma=0.047207
+[INFO] [1793963164.421890370] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.05, iterations=4, step=0.542 deg, pos_err=0.0096 mm, rot_err=0.000170 rad, min_sigma=0.047470
+[INFO] [1793963164.685250600] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.05, iterations=4, step=0.542 deg, pos_err=0.0094 mm, rot_err=0.000168 rad, min_sigma=0.047731
+[INFO] [1793963164.815037485] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.05, iterations=4, step=0.542 deg, pos_err=0.0093 mm, rot_err=0.000167 rad, min_sigma=0.047991
+[INFO] [1793963165.057013538] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.05, iterations=4, step=0.542 deg, pos_err=0.0091 mm, rot_err=0.000165 rad, min_sigma=0.048249
+[INFO] [1793963165.179919729] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.05, iterations=4, step=0.542 deg, pos_err=0.0089 mm, rot_err=0.000163 rad, min_sigma=0.048505
+[INFO] [1793963165.433154240] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.05, iterations=4, step=0.542 deg, pos_err=0.0088 mm, rot_err=0.000161 rad, min_sigma=0.048760
+[INFO] [1793963165.564563047] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.05, iterations=4, step=0.542 deg, pos_err=0.0087 mm, rot_err=0.000160 rad, min_sigma=0.049014
+[INFO] [1793963165.686115659] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.03, iterations=4, step=1.090 deg, pos_err=0.0119 mm, rot_err=0.000197 rad, min_sigma=0.049510
+[INFO] [1793963165.807319191] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.05, iterations=4, step=0.542 deg, pos_err=0.0085 mm, rot_err=0.000158 rad, min_sigma=0.049266
+[INFO] [1793963165.924401429] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.05, iterations=4, step=0.542 deg, pos_err=0.0084 mm, rot_err=0.000157 rad, min_sigma=0.049516
+[INFO] [1793963166.054028024] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.03, iterations=4, step=1.090 deg, pos_err=0.0115 mm, rot_err=0.000192 rad, min_sigma=0.050007
+[INFO] [1793963166.184016762] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.05, iterations=4, step=0.542 deg, pos_err=0.0082 mm, rot_err=0.000155 rad, min_sigma=0.049765
+[INFO] [1793963166.310116927] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.05, iterations=4, step=0.542 deg, pos_err=0.0081 mm, rot_err=0.000154 rad, min_sigma=0.050013
+[INFO] [1793963166.435296896] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.03, iterations=4, step=1.090 deg, pos_err=0.0112 mm, rot_err=0.000187 rad, min_sigma=0.050498
+[INFO] [1793963166.557012177] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.05, iterations=4, step=0.542 deg, pos_err=0.0080 mm, rot_err=0.000153 rad, min_sigma=0.050259
+[INFO] [1793963166.677870191] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.05, iterations=4, step=0.542 deg, pos_err=0.0079 mm, rot_err=0.000151 rad, min_sigma=0.050504
+[INFO] [1793963166.818289801] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.03, iterations=4, step=1.091 deg, pos_err=0.0108 mm, rot_err=0.000182 rad, min_sigma=0.050983
+[INFO] [1793963166.937836981] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.05, iterations=4, step=0.543 deg, pos_err=0.0078 mm, rot_err=0.000150 rad, min_sigma=0.050747
+[INFO] [1793963167.075587428] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.05, iterations=4, step=0.543 deg, pos_err=0.0076 mm, rot_err=0.000149 rad, min_sigma=0.050988
+[INFO] [1793963167.199607358] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.03, iterations=4, step=1.091 deg, pos_err=0.0105 mm, rot_err=0.000178 rad, min_sigma=0.051462
+[INFO] [1793963167.320543738] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.05, iterations=4, step=0.543 deg, pos_err=0.0075 mm, rot_err=0.000148 rad, min_sigma=0.051229
+[INFO] [1793963167.437377823] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.05, iterations=4, step=0.543 deg, pos_err=0.0074 mm, rot_err=0.000147 rad, min_sigma=0.051467
+[INFO] [1793963167.569580971] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.03, iterations=4, step=1.091 deg, pos_err=0.0102 mm, rot_err=0.000174 rad, min_sigma=0.051935
+[INFO] [1793963167.690177769] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.05, iterations=4, step=0.543 deg, pos_err=0.0073 mm, rot_err=0.000146 rad, min_sigma=0.051705
+[INFO] [1793963167.819727189] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.05, iterations=4, step=0.543 deg, pos_err=0.0072 mm, rot_err=0.000145 rad, min_sigma=0.051940
+[INFO] [1793963167.942458843] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.03, iterations=4, step=1.092 deg, pos_err=0.0099 mm, rot_err=0.000170 rad, min_sigma=0.052403
+[INFO] [1793963168.061507337] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.05, iterations=4, step=0.543 deg, pos_err=0.0071 mm, rot_err=0.000144 rad, min_sigma=0.052175
+[INFO] [1793963168.181367979] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=12, source=offset[9], damping=0.05, iterations=4, step=0.543 deg, pos_err=0.0070 mm, rot_err=0.000143 rad, min_sigma=0.052408
+[INFO] [1793963168.186584010] [track1_grasp]: [motion:plan-timing] target 1: total_s=5.775, attempts=1, waypoints=60, planning_step_mm=2.000, max_joint_step=0.273 deg, max_joint_accel=0.016 deg, min_sigma=0.044912
+[INFO] [1793963168.187806980] [track1_grasp]: [motion:cartesian-precheck] target 1: 60 waypoint(s), planning_step=2.000 mm, max_joint_step=0.273 deg, max_joint_accel=0.016 deg, min_sigma=0.04491, axis_step_deg=0.033,0.102,0.154,0.054,0.037,0.273, axis_travel_deg=1.941,6.039,8.756,2.554,2.091,16.372
+[INFO] [1793963168.262202791] [track1_grasp]: [motion:plan-timing] target 2: total_s=0.072, attempts=1, waypoints=38, planning_step_mm=2.000, max_joint_step=0.468 deg, max_joint_accel=0.040 deg, min_sigma=0.052803
+[INFO] [1793963168.263394891] [track1_grasp]: [motion:cartesian-precheck] target 2: 38 waypoint(s), planning_step=2.000 mm, max_joint_step=0.468 deg, max_joint_accel=0.040 deg, min_sigma=0.05280, axis_step_deg=0.001,0.460,0.468,0.143,0.002,0.003, axis_travel_deg=0.003,16.031,13.213,2.822,0.008,0.005
+[INFO] [1793963168.264604801] [track1_grasp]: [motion:cartesian-precheck-reuse] target 3: exact endpoint and joint posture match
+[INFO] [1793963168.265792151] [track1_grasp]: [motion:cartesian-precheck] target 3: 38 waypoint(s), planning_step=2.000 mm, max_joint_step=0.468 deg, max_joint_accel=0.040 deg, min_sigma=0.05280, axis_step_deg=0.001,0.460,0.468,0.143,0.002,0.003, axis_travel_deg=0.003,16.031,13.213,2.822,0.008,0.005
+[INFO] [1793963168.267310772] [track1_grasp]: [motion:cartesian-precheck] target 4: 0 waypoint(s), planning_step=2.000 mm, max_joint_step=0.000 deg, max_joint_accel=0.000 deg, min_sigma=0.05241, axis_step_deg=0.000,0.000,0.000,0.000,0.000,0.000, axis_travel_deg=0.000,0.000,0.000,0.000,0.000,0.000
+[INFO] [1793963168.268521869] [track1_grasp]: [motion:cartesian-precheck-reuse] target 5: exact endpoint and joint posture match
+[INFO] [1793963168.269683098] [track1_grasp]: [motion:cartesian-precheck] target 5: 38 waypoint(s), planning_step=2.000 mm, max_joint_step=0.468 deg, max_joint_accel=0.040 deg, min_sigma=0.05280, axis_step_deg=0.001,0.460,0.468,0.143,0.002,0.003, axis_travel_deg=0.003,16.031,13.213,2.822,0.008,0.005
+[INFO] [1793963168.270891821] [track1_grasp]: [motion:cartesian-precheck-reuse] target 6: exact endpoint and joint posture match
+[INFO] [1793963168.272054237] [track1_grasp]: [motion:cartesian-precheck] target 6: 38 waypoint(s), planning_step=2.000 mm, max_joint_step=0.468 deg, max_joint_accel=0.040 deg, min_sigma=0.05280, axis_step_deg=0.001,0.460,0.468,0.143,0.002,0.003, axis_travel_deg=0.003,16.031,13.213,2.822,0.008,0.005
+[INFO] [1793963168.273207154] [track1_grasp]: [motion:linear-precheck] validated 6 segment(s), 212 Cartesian waypoint(s), min_sigma=0.04479, total_s=5.862
+[INFO] [1793963168.274415876] [track1_grasp]: [plan] adaptive candidate 1/1 passed full-route precheck: orientation_source=task_b_banana_waist_short_axis, yaw_offset=-78.14 deg, pitch_offset=0.00 deg, orientation_change=78.31 deg, min_sigma=0.044912, joint_travel=166.08 deg
+[INFO] [1793963168.275561670] [track1_grasp]: [plan] adaptive winner: orientation_source=task_b_banana_waist_short_axis, yaw_offset=-78.14 deg, pitch_offset=0.00 deg, orientation_change=78.31 deg, selection=first_safe_candidate, min_sigma=0.044912, joint_travel=166.08 deg
+[INFO] [1793963168.276813137] [track1_grasp]: [plan] pick_1: vertical grasp column locked; xy=(-0.0214, 0.4844), straight_descent=0.0750 m, lateral=0.0000 m, rotation=0.0000 rad
+[INFO] [1793963168.277963679] [track1_grasp]: [plan] selected adaptive full-route candidate; planned 6 waypoint(s)
+[INFO] [1793963168.279115409] [track1_grasp]: [open_gripper] opening jaws before entering approach corridor
+[INFO] [1793963168.452917378] [track1_grasp]: [gripper:ms42dc] stable arrival after 4 samples, angle=19.2 deg, speed=0.00 rad/s
+[INFO] [1793963168.454070295] [track1_grasp]: [gripper:ms42dc] already at verified open hard stop angle=19.2 deg; no motion command sent
+[INFO] [1793963168.755948183] [track1_grasp]: [approach] move to pregrasp: xyz=(-0.0214, 0.4844, 0.2415)
+[INFO] [1793963168.759284637] [track1_grasp]: [motion:robotmove] pregrasp: split 60 points into 2 controller-safe chunks points=[37, 23] max_points=40 max_payload_bytes=7600
+[INFO] [1793963168.762692333] [track1_grasp]: [motion:robotmove] sent continuous pregrasp chunk 1/2: points=37 payload_bytes=7413 joint_velocity=0.099 rad/s endpoint_deg=[80.53, 87.14, -53.87, -56.88, 89.21, -13.48]
+[INFO] [1793963175.584179453] [track1_grasp]: [motion:robotmove] sent continuous pregrasp chunk 2/2: points=23 payload_bytes=4623 joint_velocity=0.099 rad/s endpoint_deg=[79.78, 89.44, -57.13, -57.69, 90.0, -19.77]
+[INFO] [1793963179.897750095] [track1_grasp]: [motion:linear] pregrasp: completed 0.029 m with 60 waypoint(s), cartesian_speed=0.010 m/s, speed_scale=1.00, joint_velocity=0.099 rad/s, max_joint_step=0.273 deg
+[INFO] [1793963179.899722284] [track1_grasp]: [grasp] move to grasp: xyz=(-0.0214, 0.4844, 0.1665)
+[INFO] [1793963179.903949252] [track1_grasp]: [motion:robotmove] sent continuous grasp: points=38 payload_bytes=7588 joint_velocity=0.041 rad/s endpoint_deg=[79.78, 105.47, -70.34, -54.88, 90.0, -19.77]
+[INFO] [1793963189.230698332] [track1_grasp]: [motion:linear] grasp: completed 0.075 m with 38 waypoint(s), cartesian_speed=0.010 m/s, speed_scale=1.00, joint_velocity=0.041 rad/s, max_joint_step=0.468 deg
+[INFO] [1793963189.232247825] [track1_grasp]: [grasp] reached grasp pose; closing jaws
+[INFO] [1793963189.408296302] [track1_grasp]: [gripper:ms42dc] stable arrival after 4 samples, angle=19.2 deg, speed=0.00 rad/s
+[INFO] [1793963189.409912286] [track1_grasp]: [gripper:ms42dc] close_for_width width=0.037216 m: 7b 01 02 01 20 75 30 00 14 08 7d
+[INFO] [1793963206.704358441] [track1_grasp]: [gripper:ms42dc] rejected close evidence: MS42DC final close angle 1977.9 deg is at or beyond the configured contact ceiling 1970.0 deg; refusing the bare-hard-stop empty close
+[INFO] [1793963206.705998173] [track1_grasp]: [abort] motion failed: MS42DC final close angle 1977.9 deg is at or beyond the configured contact ceiling 1970.0 deg; refusing the bare-hard-stop empty close
+[INFO] [1793963206.707696084] [track1_grasp]: [run] requested=1 attempts=1 successes=0 rate=0.00%

@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)"
+RUNTIME="/media/sunshine/ESTUN_RUNTIME"
+TOOL="$ROOT/app/track1_grasp/track1_grasp/tools/align_pick4_observation_once.py"
+SITE_PACKAGES="/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages"
+
+"$ROOT/bin/ensure_runtime"
+source /opt/ros/humble/setup.bash
+source "$RUNTIME/ros2_ws/install/setup.bash"
+export PYTHONPATH="$ROOT/app/track1_grasp:$SITE_PACKAGES${PYTHONPATH:+:$PYTHONPATH}"
+export PYTHONUNBUFFERED=1
+
+# The data disk is NTFS. Its parent-directory enumeration can omit a valid
+# package directory even though direct access by path succeeds. Seed the
+# package with an explicit __path__ so ROS imports remain deterministic.
+/usr/bin/python3 - "$TOOL" "$@" <<'PY'
+import runpy
+import sys
+import types
+from pathlib import Path
+
+tool = Path(sys.argv[1]).resolve()
+package_dir = tool.parents[1]
+package = types.ModuleType("task1_grasp")
+package.__package__ = "task1_grasp"
+package.__path__ = [str(package_dir)]
+sys.modules["task1_grasp"] = package
+sys.argv = [str(tool), *sys.argv[2:]]
+runpy.run_path(str(tool), run_name="__main__")
+PY

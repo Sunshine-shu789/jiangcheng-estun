@@ -1,0 +1,13 @@
+# Temporary eye-in-hand transform for the current upside-down D405.
+#
+# This is T_flange_camera.  After rotating the RGB-D frame by 180 degrees the
+# effective optical axes are assumed to align with the tool axes, so the
+# rotation is identity.  The flange-to-camera translation is NOT calibrated
+# here.  Keep motion in dry-run until this transform has been verified; the
+# search_approach_node does not depend on this file because it servos directly
+# from the current flange pose.
+matrix:
+  - [1.0, 0.0, 0.0, 0.0]
+  - [0.0, 1.0, 0.0, 0.0]
+  - [0.0, 0.0, 1.0, 0.0]
+  - [0.0, 0.0, 0.0, 1.0]

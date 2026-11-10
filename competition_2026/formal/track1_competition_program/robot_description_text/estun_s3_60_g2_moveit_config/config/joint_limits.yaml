@@ -1,0 +1,88 @@
+# Position and velocity limits match the controller-derived URDF.
+# Acceleration values are deliberately conservative offline assumptions, not
+# manufacturer limits.  They exist so OMPL paths receive strictly increasing
+# timestamps.  Re-identify them before any hardware execution.
+joint_limits:
+  joint1:
+    has_position_limits: true
+    min_position: -3.490658503988659
+    max_position: 3.490658503988659
+    has_velocity_limits: true
+    max_velocity: 2.617994
+    has_acceleration_limits: true
+    max_acceleration: 0.5
+    has_effort_limits: true
+    max_effort: 80.0
+  joint2:
+    has_position_limits: true
+    min_position: -3.490658503988659
+    max_position: 3.490658503988659
+    has_velocity_limits: true
+    max_velocity: 2.617994
+    has_acceleration_limits: true
+    max_acceleration: 0.5
+    has_effort_limits: true
+    max_effort: 100.0
+  joint3:
+    has_position_limits: true
+    min_position: -2.8448866807507573
+    max_position: 2.8448866807507573
+    has_velocity_limits: true
+    max_velocity: 2.617994
+    has_acceleration_limits: true
+    max_acceleration: 0.5
+    has_effort_limits: true
+    max_effort: 80.0
+  joint4:
+    has_position_limits: true
+    min_position: -3.490658503988659
+    max_position: 3.490658503988659
+    has_velocity_limits: true
+    max_velocity: 3.141593
+    has_acceleration_limits: true
+    max_acceleration: 1.0
+    has_effort_limits: true
+    max_effort: 50.0
+  joint5:
+    has_position_limits: true
+    min_position: -3.490658503988659
+    max_position: 3.490658503988659
+    has_velocity_limits: true
+    max_velocity: 3.141593
+    has_acceleration_limits: true
+    max_acceleration: 1.0
+    has_effort_limits: true
+    max_effort: 50.0
+  joint6:
+    has_position_limits: true
+    min_position: -3.490658503988659
+    max_position: 3.490658503988659
+    has_velocity_limits: true
+    max_velocity: 3.141593
+    has_acceleration_limits: true
+    max_acceleration: 1.0
+    has_effort_limits: true
+    max_effort: 50.0
+  # Provisional prismatic representation of the FAE2MR86M-D flexible fingers.
+  # The limits describe visual/collision closure at the 50 mm TCP section, not
+  # a calibrated motor-command-to-opening transfer function.
+  gripper_left_finger_joint:
+    has_position_limits: true
+    min_position: -0.0362745
+    max_position: 0.0
+    has_velocity_limits: true
+    max_velocity: 0.02
+    has_acceleration_limits: true
+    max_acceleration: 0.1
+    has_effort_limits: true
+    max_effort: 30.0
+  gripper_right_finger_joint:
+    has_position_limits: true
+    min_position: -0.0362745
+    max_position: 0.0
+    has_velocity_limits: true
+    max_velocity: 0.02
+    has_acceleration_limits: true
+    max_acceleration: 0.1
+    has_effort_limits: true
+    max_effort: 30.0

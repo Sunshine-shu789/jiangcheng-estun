@@ -1,0 +1,36 @@
+# Stand-alone gripper config for bench bring-up, before it is mounted.
+#
+#   python3 -m track1_grasp.tools.gripper_bench status --config config/ms42dc_gripper.example.yaml
+#   python3 -m track1_grasp.tools.gripper_bench cycle  --config config/ms42dc_gripper.example.yaml --really
+#
+# Everything outside the `gripper:` block is only there because the shared
+# config schema expects it; the bench tool never touches vision or motion.
+
+task:
+  mode: C
+  max_picks: 1
+
+vision:
+  backend: mock
+  scenario_file: ../scenarios/mock_track1_scene.yaml
+
+motion:
+  backend: mock
+  dry_run: true
+
+gripper:
+  backend: ms42dc
+  serial_port: /dev/ttyACM0     # USB-C bring-up; use /dev/motor_serial with the udev rule
+  serial_baudrate: 115200
+  device_id: 1
+  subdivide: 32
+  motion_mode: 2                # 2 = relative, 4 = absolute
+  open_angle_deg: 1872.0        # match the firmware actually flashed
+  close_angle_deg: 1872.0
+  speed_rad_s: 20.0
+  status_timeout_s: 1.0
+  motion_timeout_s: 8.0
+  invert_direction: false       # set true if open actually closes
+  hold_min_angle_deg: 0.0       # measure the empty close first, then raise it
+  require_feedback: false
+  settle_time_s: 0.3

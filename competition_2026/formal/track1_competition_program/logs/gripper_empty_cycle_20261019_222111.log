@@ -1,0 +1,59 @@
+启动夹爪 ROS 节点，日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/motor_node_test_20261019_222111.log
+
+===== MS42DC 夹爪测试（不会移动机械臂）=====
+配置：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/ms42dc_ros_test.yaml
+动作：status
+
+[gripper:ms42dc_ros] control=/motor_control state=/motor_state id=1
+[bench] id=1 arrived=True angle=1818.1 deg speed=0.0 rad/s
+正在关闭本次测试启动的夹爪 ROS 节点...
+
+===== 空载张开→闭合→张开始 =====
+启动夹爪 ROS 节点，日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/motor_node_test_20261019_222115.log
+
+===== MS42DC 夹爪测试（不会移动机械臂）=====
+配置：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/ms42dc_ros_test.yaml
+动作：cycle
+
+[gripper:ms42dc_ros] control=/motor_control state=/motor_state id=1
+[bench] cycle 1/1: opening
+[gripper:ms42dc_ros] open: dir=0 angle_wire=30000 speed_wire=200
+[bench] cycle 1/1: closing (grasp test)
+[gripper:ms42dc_ros] close: dir=1 angle_wire=30000 speed_wire=200
+[bench] cycle 1/1: opening again (release)
+[gripper:ms42dc_ros] open: dir=0 angle_wire=30000 speed_wire=200
+[bench] cycle finished; watch that open, close and release really work, then inspect the status below
+[gripper:ms42dc_ros] no valid /motor_state reply before timeout
+[bench] no valid status reply: check power, wiring, baud rate,
+and that the controller's DIP switch selects the right transport
+
+夹爪测试失败，退出码=1
+正在关闭本次测试启动的夹爪 ROS 节点...
+
+===== 动作后只读状态检查 =====
+启动夹爪 ROS 节点，日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/motor_node_test_20261019_222140.log
+
+===== MS42DC 夹爪测试（不会移动机械臂）=====
+配置：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/ms42dc_ros_test.yaml
+动作：status
+
+[gripper:ms42dc_ros] control=/motor_control state=/motor_state id=1
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/tools/gripper_bench.py", line 267, in <module>
+    raise SystemExit(main())
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/tools/gripper_bench.py", line 98, in main
+    return _status(gripper)
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/tools/gripper_bench.py", line 157, in _status
+    status = read()
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/gripper.py", line 776, in read_status
+    self._wait_for_control_subscriber()
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/gripper.py", line 743, in _wait_for_control_subscriber
+    raise RuntimeError(
+RuntimeError: no subscriber on /motor_control; confirm the vendor motor_node is running
+
+夹爪测试失败，退出码=1
+正在关闭本次测试启动的夹爪 ROS 节点...

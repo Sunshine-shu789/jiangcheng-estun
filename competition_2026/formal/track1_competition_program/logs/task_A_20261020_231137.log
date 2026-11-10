@@ -1,0 +1,135 @@
+
+===== 任务A 十点位巡检 =====
+配置：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/track1_task_a_legacy.yaml
+视觉后端：legacy_http
+模式：十点位巡检（J2/J3/J4运动，J1/J5/J6锁定，十类识别，相邻TCP >= 15 cm，旧视觉识别，真机运动）
+日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/task_A_20261020_231137.log
+
+正在启动机械臂状态桥接，日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/codroid_bridge_20261020_231137.log
+[bridge] RobotInfo 已就绪：state=AutoReady fault_flag=0 xyz=(-0.1307, 0.3967, 0.4027)
+[INFO] [1792509098.562475417] [track1_grasp]: [patrol] joint_arc route ready: 10 move(s), minimum distance=0.176 m, arcs=(2, 1, 2, 1, 2, 1, 2, 1, 2, 1), movable=J2/J3/J4
+[INFO] [1792509098.562781704] [track1_grasp]: [patrol] position 1/10 arc=2 target xyz=(-0.1340683535189397, 0.4555635948587561, 0.19478437489943723) distance=0.216 m
+[INFO] [1792509098.562990644] [track1_grasp]: [patrol] position 2/10 arc=1 target xyz=(-0.1313100134418201, 0.40801256110638456, 0.38130171812625563) distance=0.193 m
+[INFO] [1792509098.563191274] [track1_grasp]: [patrol] position 3/10 arc=2 target xyz=(-0.13421432744973952, 0.458080039936724, 0.20331353074782593) distance=0.185 m
+[INFO] [1792509098.563395466] [track1_grasp]: [patrol] position 4/10 arc=1 target xyz=(-0.13135388900183434, 0.4087689320312195, 0.3725587853358813) distance=0.176 m
+[INFO] [1792509098.563599658] [track1_grasp]: [patrol] position 5/10 arc=2 target xyz=(-0.13390250147087393, 0.45270447085120746, 0.186489147426648) distance=0.191 m
+[INFO] [1792509098.563801475] [track1_grasp]: [patrol] position 6/10 arc=1 target xyz=(-0.13124246828007605, 0.4068481498387012, 0.39011874073912356) distance=0.209 m
+[INFO] [1792509098.564019913] [track1_grasp]: [patrol] position 7/10 arc=2 target xyz=(-0.13375758588890482, 0.45020627065224883, 0.19662427428828477) distance=0.198 m
+[INFO] [1792509098.564227666] [track1_grasp]: [patrol] position 8/10 arc=1 target xyz=(-0.1316337993664891, 0.4135943077373354, 0.38177724191300194) distance=0.189 m
+[INFO] [1792509098.564428296] [track1_grasp]: [patrol] position 9/10 arc=2 target xyz=(-0.13437534734793322, 0.46085586249657584, 0.19294467011672042) distance=0.195 m
+[INFO] [1792509098.564644359] [track1_grasp]: [patrol] position 10/10 arc=1 target xyz=(-0.13098277539452488, 0.4023713033220129, 0.3807998667485996) distance=0.197 m
+[INFO] [1792509098.564887727] [track1_grasp]: [patrol] absolute joint targets deg=[(93.32, 85.533, -39.214, -64.689, 89.769, 2.212), (93.32, 61.533, -39.214, -64.689, 89.769, 2.212), (93.32, 85.533, -41.214, -63.689, 89.769, 2.212), (93.32, 61.533, -37.214, -65.689, 89.769, 2.212), (93.32, 85.533, -37.214, -65.689, 89.769, 2.212), (93.32, 61.533, -41.214, -63.689, 89.769, 2.212), (93.32, 85.533, -40.214, -66.689, 89.769, 2.212), (93.32, 61.533, -38.214, -62.689, 89.769, 2.212), (93.32, 85.533, -38.214, -62.689, 89.769, 2.212), (93.32, 61.533, -40.214, -66.689, 89.769, 2.212)]
+[INFO] [1792509098.565247437] [track1_grasp]: [motion:robotmove] task-a-patrol-01: 14 step(s), max_delta=27.00 deg
+[INFO] [1792509098.567050733] [track1_grasp]: [motion:robotmove] sent continuous task-a-patrol-01: points=14 payload_bytes=2647 joint_velocity=0.600 rad/s endpoint_deg=[93.32, 85.53, -39.21, -64.69, 89.77, 2.21]
+[INFO] [1792509106.278041004] [track1_grasp]: [patrol] position 1: target visible 1/3
+[INFO] [1792509106.412707752] [track1_grasp]: [patrol] position 1: target visible 2/3
+[INFO] [1792509106.551511755] [track1_grasp]: [patrol] position 1: target visible 3/3
+[INFO] [1792509106.551917764] [track1_grasp]: [patrol] position 1: target confirmed
+[INFO] [1792509106.552193185] [track1_grasp]: [detect] frame 'legacy-00025914': 1 raw, 1 above min_confidence
+[INFO] [1792509106.552449612] [track1_grasp]: [annotate] drew 1 prediction(s) and 0 ground-truth box(es)
+[INFO] [1792509106.552700103] [track1_grasp]: [evaluate] passed=0/0 mean_iou=0.000
+[INFO] [1792509106.552947032] [track1_grasp]: [patrol] position 1: recognized classes=8-Plastic_Banana
+[INFO] [1792509106.603993750] [track1_grasp]:     8-Plastic_Banana iou=0.000 (no ground truth) miss
+[INFO] [1792509106.604397385] [track1_grasp]: [patrol] position 1: target confirmed; advancing to the next position
+[INFO] [1792509106.604996901] [track1_grasp]: [motion:robotmove] task-a-patrol-02: 13 step(s), max_delta=24.00 deg
+[INFO] [1792509106.608070460] [track1_grasp]: [motion:robotmove] sent continuous task-a-patrol-02: points=13 payload_bytes=2451 joint_velocity=0.600 rad/s endpoint_deg=[93.32, 61.53, -39.21, -64.69, 89.77, 2.21]
+[INFO] [1792509113.392527005] [track1_grasp]: [patrol] position 2: target visible 1/3
+[INFO] [1792509113.532075357] [track1_grasp]: [patrol] position 2: target visible 2/3
+[INFO] [1792509113.695103372] [track1_grasp]: [patrol] position 2: target visible 3/3
+[INFO] [1792509113.695507007] [track1_grasp]: [patrol] position 2: target confirmed
+[INFO] [1792509113.695854845] [track1_grasp]: [detect] frame 'legacy-00025979': 1 raw, 1 above min_confidence
+[INFO] [1792509113.696188437] [track1_grasp]: [annotate] drew 1 prediction(s) and 0 ground-truth box(es)
+[INFO] [1792509113.696491163] [track1_grasp]: [evaluate] passed=0/0 mean_iou=0.000
+[INFO] [1792509113.696827129] [track1_grasp]: [patrol] position 2: recognized classes=8-Plastic_Banana
+[INFO] [1792509113.698000044] [track1_grasp]:     8-Plastic_Banana iou=0.000 (no ground truth) miss
+[INFO] [1792509113.698351443] [track1_grasp]: [patrol] position 2: target confirmed; advancing to the next position
+[INFO] [1792509113.698893976] [track1_grasp]: [motion:robotmove] task-a-patrol-03: 13 step(s), max_delta=24.00 deg
+[INFO] [1792509113.701521162] [track1_grasp]: [motion:robotmove] sent continuous task-a-patrol-03: points=13 payload_bytes=2448 joint_velocity=0.600 rad/s endpoint_deg=[93.32, 85.53, -41.21, -63.69, 89.77, 2.21]
+[INFO] [1792509120.468826798] [track1_grasp]: [patrol] position 3: target visible 1/3
+[INFO] [1792509120.604792300] [track1_grasp]: [patrol] position 3: target visible 2/3
+[INFO] [1792509120.765041172] [track1_grasp]: [patrol] position 3: target visible 3/3
+[INFO] [1792509120.765412753] [track1_grasp]: [patrol] position 3: target confirmed
+[INFO] [1792509120.765736848] [track1_grasp]: [detect] frame 'legacy-00026043': 1 raw, 1 above min_confidence
+[INFO] [1792509120.766053820] [track1_grasp]: [annotate] drew 1 prediction(s) and 0 ground-truth box(es)
+[INFO] [1792509120.766344674] [track1_grasp]: [evaluate] passed=0/0 mean_iou=0.000
+[INFO] [1792509120.766664020] [track1_grasp]: [patrol] position 3: recognized classes=8-Plastic_Banana
+[INFO] [1792509120.767131762] [track1_grasp]:     8-Plastic_Banana iou=0.000 (no ground truth) miss
+[INFO] [1792509120.767430926] [track1_grasp]: [patrol] position 3: target confirmed; advancing to the next position
+[INFO] [1792509120.767962774] [track1_grasp]: [motion:robotmove] task-a-patrol-04: 13 step(s), max_delta=24.00 deg
+[INFO] [1792509120.770455811] [track1_grasp]: [motion:robotmove] sent continuous task-a-patrol-04: points=13 payload_bytes=2448 joint_velocity=0.600 rad/s endpoint_deg=[93.32, 61.53, -37.21, -65.69, 89.77, 2.21]
+[INFO] [1792509127.590634019] [track1_grasp]: [patrol] position 4: target visible 1/3
+[INFO] [1792509127.728928730] [track1_grasp]: [patrol] position 4: target visible 2/3
+[INFO] [1792509127.871504342] [track1_grasp]: [patrol] position 4: target visible 3/3
+[INFO] [1792509127.871852180] [track1_grasp]: [patrol] position 4: target confirmed
+[INFO] [1792509127.872151344] [track1_grasp]: [detect] frame 'legacy-00026107': 1 raw, 1 above min_confidence
+[INFO] [1792509127.872444573] [track1_grasp]: [annotate] drew 1 prediction(s) and 0 ground-truth box(es)
+[INFO] [1792509127.872734240] [track1_grasp]: [evaluate] passed=0/0 mean_iou=0.000
+[INFO] [1792509127.873021533] [track1_grasp]: [patrol] position 4: recognized classes=8-Plastic_Banana
+[INFO] [1792509127.873445349] [track1_grasp]:     8-Plastic_Banana iou=0.000 (no ground truth) miss
+[INFO] [1792509127.873730268] [track1_grasp]: [patrol] position 4: target confirmed; advancing to the next position
+[INFO] [1792509127.874183763] [track1_grasp]: [motion:robotmove] task-a-patrol-05: 13 step(s), max_delta=24.00 deg
+[INFO] [1792509127.876829944] [track1_grasp]: [motion:robotmove] sent continuous task-a-patrol-05: points=13 payload_bytes=2448 joint_velocity=0.600 rad/s endpoint_deg=[93.32, 85.53, -37.21, -65.69, 89.77, 2.21]
+[INFO] [1792509137.710295952] [track1_grasp]: [patrol] position 5: 允许类别物品 not confirmed within 3 s; continuing
+[INFO] [1792509137.710666346] [track1_grasp]: [detect] frame 'legacy-00026197': 0 raw, 0 above min_confidence
+[INFO] [1792509137.710919211] [track1_grasp]: [annotate] drew 0 prediction(s) and 0 ground-truth box(es)
+[INFO] [1792509137.711159018] [track1_grasp]: [evaluate] passed=0/0 mean_iou=0.000
+[INFO] [1792509137.711411883] [track1_grasp]: [patrol] position 5: recognized classes=none
+[INFO] [1792509137.711754972] [track1_grasp]: [patrol] position 5: target not confirmed; continuing to the next position
+[INFO] [1792509137.712145548] [track1_grasp]: [motion:robotmove] task-a-patrol-06: 12 step(s), max_delta=24.00 deg
+[INFO] [1792509137.713895423] [track1_grasp]: [motion:robotmove] sent continuous task-a-patrol-06: points=12 payload_bytes=2229 joint_velocity=0.600 rad/s endpoint_deg=[93.32, 61.53, -41.21, -63.69, 89.77, 2.21]
+[INFO] [1792509144.317484492] [track1_grasp]: [patrol] position 6: target visible 1/3
+[INFO] [1792509144.455664048] [track1_grasp]: [patrol] position 6: target visible 2/3
+[INFO] [1792509144.596007798] [track1_grasp]: [patrol] position 6: target visible 3/3
+[INFO] [1792509144.596334267] [track1_grasp]: [patrol] position 6: target confirmed
+[INFO] [1792509144.596615624] [track1_grasp]: [detect] frame 'legacy-00026260': 1 raw, 1 above min_confidence
+[INFO] [1792509144.596882735] [track1_grasp]: [annotate] drew 1 prediction(s) and 0 ground-truth box(es)
+[INFO] [1792509144.597134413] [track1_grasp]: [evaluate] passed=0/0 mean_iou=0.000
+[INFO] [1792509144.597393214] [track1_grasp]: [patrol] position 6: recognized classes=8-Plastic_Banana
+[INFO] [1792509144.597795662] [track1_grasp]:     8-Plastic_Banana iou=0.000 (no ground truth) miss
+[INFO] [1792509144.598036656] [track1_grasp]: [patrol] position 6: target confirmed; advancing to the next position
+[INFO] [1792509144.598433167] [track1_grasp]: [motion:robotmove] task-a-patrol-07: 13 step(s), max_delta=24.00 deg
+[INFO] [1792509144.600352806] [track1_grasp]: [motion:robotmove] sent continuous task-a-patrol-07: points=13 payload_bytes=2440 joint_velocity=0.600 rad/s endpoint_deg=[93.32, 85.53, -40.21, -66.69, 89.77, 2.21]
+[INFO] [1792509154.429936799] [track1_grasp]: [patrol] position 7: 允许类别物品 not confirmed within 3 s; continuing
+[INFO] [1792509154.430283450] [track1_grasp]: [detect] frame 'legacy-00026349': 0 raw, 0 above min_confidence
+[INFO] [1792509154.430580240] [track1_grasp]: [annotate] drew 0 prediction(s) and 0 ground-truth box(es)
+[INFO] [1792509154.430872281] [track1_grasp]: [evaluate] passed=0/0 mean_iou=0.000
+[INFO] [1792509154.431163136] [track1_grasp]: [patrol] position 7: recognized classes=none
+[INFO] [1792509154.431531155] [track1_grasp]: [patrol] position 7: target not confirmed; continuing to the next position
+[INFO] [1792509154.432010768] [track1_grasp]: [motion:robotmove] task-a-patrol-08: 12 step(s), max_delta=24.00 deg
+[INFO] [1792509154.434319796] [track1_grasp]: [motion:robotmove] sent continuous task-a-patrol-08: points=12 payload_bytes=2230 joint_velocity=0.600 rad/s endpoint_deg=[93.32, 61.53, -38.21, -62.69, 89.77, 2.21]
+[INFO] [1792509161.013313271] [track1_grasp]: [patrol] position 8: target visible 1/3
+[INFO] [1792509161.150309228] [track1_grasp]: [patrol] position 8: target visible 2/3
+[INFO] [1792509161.286558462] [track1_grasp]: [patrol] position 8: target visible 3/3
+[INFO] [1792509161.286928856] [track1_grasp]: [patrol] position 8: target confirmed
+[INFO] [1792509161.287235143] [track1_grasp]: [detect] frame 'legacy-00026411': 1 raw, 1 above min_confidence
+[INFO] [1792509161.287534308] [track1_grasp]: [annotate] drew 1 prediction(s) and 0 ground-truth box(es)
+[INFO] [1792509161.287835847] [track1_grasp]: [evaluate] passed=0/0 mean_iou=0.000
+[INFO] [1792509161.288511341] [track1_grasp]: [patrol] position 8: recognized classes=8-Plastic_Banana
+[INFO] [1792509161.289376781] [track1_grasp]:     8-Plastic_Banana iou=0.000 (no ground truth) miss
+[INFO] [1792509161.289661700] [track1_grasp]: [patrol] position 8: target confirmed; advancing to the next position
+[INFO] [1792509161.290121131] [track1_grasp]: [motion:robotmove] task-a-patrol-09: 13 step(s), max_delta=24.00 deg
+[INFO] [1792509161.292386233] [track1_grasp]: [motion:robotmove] sent continuous task-a-patrol-09: points=13 payload_bytes=2447 joint_velocity=0.600 rad/s endpoint_deg=[93.32, 85.53, -38.21, -62.69, 89.77, 2.21]
+[INFO] [1792509170.995925825] [track1_grasp]: [patrol] position 9: 允许类别物品 not confirmed within 3 s; continuing
+[INFO] [1792509170.996188188] [track1_grasp]: [detect] frame 'legacy-00026500': 0 raw, 0 above min_confidence
+[INFO] [1792509170.996406625] [track1_grasp]: [annotate] drew 0 prediction(s) and 0 ground-truth box(es)
+[INFO] [1792509170.996613191] [track1_grasp]: [evaluate] passed=0/0 mean_iou=0.000
+[INFO] [1792509170.996829254] [track1_grasp]: [patrol] position 9: recognized classes=none
+[INFO] [1792509170.997136729] [track1_grasp]: [patrol] position 9: target not confirmed; continuing to the next position
+[INFO] [1792509170.997476257] [track1_grasp]: [motion:robotmove] task-a-patrol-10: 12 step(s), max_delta=24.00 deg
+[INFO] [1792509170.998975641] [track1_grasp]: [motion:robotmove] sent continuous task-a-patrol-10: points=12 payload_bytes=2221 joint_velocity=0.600 rad/s endpoint_deg=[93.32, 61.53, -40.21, -66.69, 89.77, 2.21]
+[INFO] [1792509177.552408362] [track1_grasp]: [patrol] position 10: target visible 1/3
+[INFO] [1792509177.725022698] [track1_grasp]: [patrol] position 10: target visible 2/3
+[INFO] [1792509177.863992903] [track1_grasp]: [patrol] position 10: target visible 3/3
+[INFO] [1792509177.864231523] [track1_grasp]: [patrol] position 10: target confirmed
+[INFO] [1792509177.864444024] [track1_grasp]: [detect] frame 'legacy-00026561': 1 raw, 1 above min_confidence
+[INFO] [1792509177.864765745] [track1_grasp]: [annotate] drew 1 prediction(s) and 0 ground-truth box(es)
+[INFO] [1792509177.865012674] [track1_grasp]: [evaluate] passed=0/0 mean_iou=0.000
+[INFO] [1792509177.865242983] [track1_grasp]: [patrol] position 10: recognized classes=8-Plastic_Banana
+[INFO] [1792509177.865643057] [track1_grasp]:     8-Plastic_Banana iou=0.000 (no ground truth) miss
+[INFO] [1792509177.865848435] [track1_grasp]: [patrol] final position target confirmed; patrol complete
+[INFO] [1792509177.866077557] [track1_grasp]: [report] frames=10 detections=7 matched=0/0 passed=0 pass_rate=0.0% mean_iou=0.000
+[INFO] [1792509177.866280562] [track1_grasp]: [patrol] target confirmed at position(s): [1, 2, 3, 4, 6, 8, 10]
+[INFO] [1792509177.866480005] [track1_grasp]: [patrol] class coverage: 1/10 recognized=['8-Plastic_Banana']
+[INFO] [1792509177.866680635] [track1_grasp]: [patrol] class coverage missing=['1-Cheez-it', '2-Starkist_Tuna', '3-Scissors', '4-Frenchs_Mustard', '5-Tomato_Soup', '6-Foam_Brick', '7-Clamp', '9-Mug', '10-meat_can']
+[INFO] [1792509177.866913318] [track1_grasp]: task A: frames=10 passed=0/0 pass_rate=0.0%
+[INFO] [1792509177.867108013] [track1_grasp]: task A patrol: moves=10 min_distance=0.176 m target_positions=[1, 2, 3, 4, 6, 8, 10] detected_classes=['8-Plastic_Banana'] missing_classes=['1-Cheez-it', '2-Starkist_Tuna', '3-Scissors', '4-Frenchs_Mustard', '5-Tomato_Soup', '6-Foam_Brick', '7-Clamp', '9-Mug', '10-meat_can']

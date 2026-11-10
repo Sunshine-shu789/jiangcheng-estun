@@ -1,0 +1,1763 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-31T09:54:25+08:00",
+  "mode": "v7_offline_targeted_acceptance",
+  "read_only_static_inference": true,
+  "opens_camera": false,
+  "imports_ros": false,
+  "robot_control": false,
+  "gripper_control": false,
+  "weights": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_train_40class_v9_hardneg_from_v5/track1_40class_20261031_024314/weights/best.pt",
+  "weights_sha256": "0cf17201d07931507a0576ff7ad79daf981146a099b65b1fcfa3e65ed84815ee",
+  "dataset_yaml": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/dataset.yaml",
+  "split": "val",
+  "image_count": 121,
+  "target_classes": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    17,
+    26
+  ],
+  "target_class_names": [
+    "1-Cheez-it",
+    "2-Starkist_Tuna",
+    "3-Scissors",
+    "4-Frenchs_Mustard",
+    "5-Tomato_Soup",
+    "6-Foam_Brick",
+    "7-Clamp",
+    "8-Plastic_Banana",
+    "9-Mug",
+    "10-meat_can",
+    "17-Eggs_Plush",
+    "26-Plastic_Strawberry"
+  ],
+  "parameters": {
+    "imgsz": 640,
+    "conf": 0.15,
+    "nms_iou": 0.6,
+    "match_iou": 0.5,
+    "overlap_warning_iou": 0.3,
+    "device": "0",
+    "max_det": 100
+  },
+  "post_train_metrics": {
+    "post_train_audit": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_train_40class_v9_hardneg_from_v5/track1_40class_20261031_024314/post_train_audit.json",
+    "post_train_accepted": true,
+    "map50": 0.9225782501520421,
+    "map50_95": 0.7072540475082806,
+    "front10_baseline_drops": {
+      "0": {
+        "name": "1-Cheez-it",
+        "baseline_ap50": 0.995,
+        "current_ap50": 0.995,
+        "drop": 0.0
+      },
+      "1": {
+        "name": "2-Starkist_Tuna",
+        "baseline_ap50": 0.995,
+        "current_ap50": 0.995,
+        "drop": 0.0
+      },
+      "2": {
+        "name": "3-Scissors",
+        "baseline_ap50": 0.995,
+        "current_ap50": 0.995,
+        "drop": 0.0
+      },
+      "3": {
+        "name": "4-Frenchs_Mustard",
+        "baseline_ap50": 0.995,
+        "current_ap50": 0.995,
+        "drop": 0.0
+      },
+      "4": {
+        "name": "5-Tomato_Soup",
+        "baseline_ap50": 0.945,
+        "current_ap50": 0.945,
+        "drop": 0.0
+      },
+      "5": {
+        "name": "6-Foam_Brick",
+        "baseline_ap50": 0.995,
+        "current_ap50": 0.995,
+        "drop": 0.0
+      },
+      "6": {
+        "name": "7-Clamp",
+        "baseline_ap50": 0.995,
+        "current_ap50": 0.995,
+        "drop": 0.0
+      },
+      "7": {
+        "name": "8-Plastic_Banana",
+        "baseline_ap50": 0.995,
+        "current_ap50": 0.995,
+        "drop": 0.0
+      },
+      "8": {
+        "name": "9-Mug",
+        "baseline_ap50": 0.995,
+        "current_ap50": 0.995,
+        "drop": 0.0
+      },
+      "9": {
+        "name": "10-meat_can",
+        "baseline_ap50": 0.995,
+        "current_ap50": 0.995,
+        "drop": 0.0
+      }
+    },
+    "classes": {
+      "0": {
+        "official_id": 1,
+        "name": "1-Cheez-it",
+        "ap50": 0.995,
+        "precision": 0.9583777080278565,
+        "recall": 1.0
+      },
+      "1": {
+        "official_id": 2,
+        "name": "2-Starkist_Tuna",
+        "ap50": 0.995,
+        "precision": 0.952013169368799,
+        "recall": 1.0
+      },
+      "2": {
+        "official_id": 3,
+        "name": "3-Scissors",
+        "ap50": 0.995,
+        "precision": 0.9663220641133232,
+        "recall": 1.0
+      },
+      "3": {
+        "official_id": 4,
+        "name": "4-Frenchs_Mustard",
+        "ap50": 0.995,
+        "precision": 0.9358303598346394,
+        "recall": 1.0
+      },
+      "4": {
+        "official_id": 5,
+        "name": "5-Tomato_Soup",
+        "ap50": 0.945,
+        "precision": 1.0,
+        "recall": 0.5907711477768246
+      },
+      "5": {
+        "official_id": 6,
+        "name": "6-Foam_Brick",
+        "ap50": 0.995,
+        "precision": 0.9200692836433734,
+        "recall": 1.0
+      },
+      "6": {
+        "official_id": 7,
+        "name": "7-Clamp",
+        "ap50": 0.995,
+        "precision": 1.0,
+        "recall": 0.9043956663754684
+      },
+      "7": {
+        "official_id": 8,
+        "name": "8-Plastic_Banana",
+        "ap50": 0.995,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "8": {
+        "official_id": 9,
+        "name": "9-Mug",
+        "ap50": 0.995,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "9": {
+        "official_id": 10,
+        "name": "10-meat_can",
+        "ap50": 0.995,
+        "precision": 1.0,
+        "recall": 0.8314071983652932
+      },
+      "16": {
+        "official_id": 17,
+        "name": "17-Eggs_Plush",
+        "ap50": 0.6873076923076921,
+        "precision": 0.6100107713312607,
+        "recall": 0.5
+      },
+      "25": {
+        "official_id": 26,
+        "name": "26-Plastic_Strawberry",
+        "ap50": 0.8983333333333332,
+        "precision": 0.888110159124091,
+        "recall": 1.0
+      }
+    }
+  },
+  "decision": {
+    "new2_core_ok": false,
+    "front10_core_ok": true,
+    "strict_zero_error_ok": false,
+    "front10_vs_v6_drop_within_0_03": true,
+    "new2_ap50_at_least_0_30": true,
+    "deployment_candidate_ready_pending_onsite": false,
+    "note": "通过以验证集 GT 召回/错类/定位为核心；额外同类预测和跨类重叠单列，不自动覆盖生产模型。"
+  },
+  "counts": {
+    "gt": 43,
+    "tp": 38,
+    "fp": 16,
+    "gt_level_errors": 5,
+    "overlap_warnings": 12
+  },
+  "classes": [
+    {
+      "class_id": 0,
+      "official_id": 1,
+      "group": "front10",
+      "name": "1-Cheez-it",
+      "gt": 2,
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "missing": 0,
+      "wrong_class": 0,
+      "localization": 0,
+      "recall": 1.0,
+      "precision": 1.0,
+      "matched_mean_score": 0.83552,
+      "status": "PASS",
+      "note": "无 GT 级错误，无额外同类预测"
+    },
+    {
+      "class_id": 1,
+      "official_id": 2,
+      "group": "front10",
+      "name": "2-Starkist_Tuna",
+      "gt": 3,
+      "tp": 3,
+      "fp": 0,
+      "fn": 0,
+      "missing": 0,
+      "wrong_class": 0,
+      "localization": 0,
+      "recall": 1.0,
+      "precision": 1.0,
+      "matched_mean_score": 0.89878,
+      "status": "PASS",
+      "note": "无 GT 级错误，无额外同类预测"
+    },
+    {
+      "class_id": 2,
+      "official_id": 3,
+      "group": "front10",
+      "name": "3-Scissors",
+      "gt": 3,
+      "tp": 3,
+      "fp": 0,
+      "fn": 0,
+      "missing": 0,
+      "wrong_class": 0,
+      "localization": 0,
+      "recall": 1.0,
+      "precision": 1.0,
+      "matched_mean_score": 0.90276,
+      "status": "PASS",
+      "note": "无 GT 级错误，无额外同类预测"
+    },
+    {
+      "class_id": 3,
+      "official_id": 4,
+      "group": "front10",
+      "name": "4-Frenchs_Mustard",
+      "gt": 2,
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "missing": 0,
+      "wrong_class": 0,
+      "localization": 0,
+      "recall": 1.0,
+      "precision": 1.0,
+      "matched_mean_score": 0.93105,
+      "status": "PASS",
+      "note": "无 GT 级错误，无额外同类预测"
+    },
+    {
+      "class_id": 4,
+      "official_id": 5,
+      "group": "front10",
+      "name": "5-Tomato_Soup",
+      "gt": 4,
+      "tp": 4,
+      "fp": 1,
+      "fn": 0,
+      "missing": 0,
+      "wrong_class": 0,
+      "localization": 0,
+      "recall": 1.0,
+      "precision": 0.8,
+      "matched_mean_score": 0.64435,
+      "status": "CAUTION",
+      "note": "GT 均可检出，但存在额外同类预测"
+    },
+    {
+      "class_id": 5,
+      "official_id": 6,
+      "group": "front10",
+      "name": "6-Foam_Brick",
+      "gt": 2,
+      "tp": 2,
+      "fp": 1,
+      "fn": 0,
+      "missing": 0,
+      "wrong_class": 0,
+      "localization": 0,
+      "recall": 1.0,
+      "precision": 0.66667,
+      "matched_mean_score": 0.92632,
+      "status": "CAUTION",
+      "note": "GT 均可检出，但存在额外同类预测"
+    },
+    {
+      "class_id": 6,
+      "official_id": 7,
+      "group": "front10",
+      "name": "7-Clamp",
+      "gt": 2,
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "missing": 0,
+      "wrong_class": 0,
+      "localization": 0,
+      "recall": 1.0,
+      "precision": 1.0,
+      "matched_mean_score": 0.88583,
+      "status": "PASS",
+      "note": "无 GT 级错误，无额外同类预测"
+    },
+    {
+      "class_id": 7,
+      "official_id": 8,
+      "group": "front10",
+      "name": "8-Plastic_Banana",
+      "gt": 2,
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "missing": 0,
+      "wrong_class": 0,
+      "localization": 0,
+      "recall": 1.0,
+      "precision": 1.0,
+      "matched_mean_score": 0.9087,
+      "status": "PASS",
+      "note": "无 GT 级错误，无额外同类预测"
+    },
+    {
+      "class_id": 8,
+      "official_id": 9,
+      "group": "front10",
+      "name": "9-Mug",
+      "gt": 1,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "missing": 0,
+      "wrong_class": 0,
+      "localization": 0,
+      "recall": 1.0,
+      "precision": 1.0,
+      "matched_mean_score": 0.9453,
+      "status": "PASS",
+      "note": "无 GT 级错误，无额外同类预测"
+    },
+    {
+      "class_id": 9,
+      "official_id": 10,
+      "group": "front10",
+      "name": "10-meat_can",
+      "gt": 4,
+      "tp": 4,
+      "fp": 0,
+      "fn": 0,
+      "missing": 0,
+      "wrong_class": 0,
+      "localization": 0,
+      "recall": 1.0,
+      "precision": 1.0,
+      "matched_mean_score": 0.89498,
+      "status": "PASS",
+      "note": "无 GT 级错误，无额外同类预测"
+    },
+    {
+      "class_id": 16,
+      "official_id": 17,
+      "group": "new2",
+      "name": "17-Eggs_Plush",
+      "gt": 10,
+      "tp": 5,
+      "fp": 8,
+      "fn": 5,
+      "missing": 5,
+      "wrong_class": 0,
+      "localization": 0,
+      "recall": 0.5,
+      "precision": 0.38462,
+      "matched_mean_score": 0.9966,
+      "status": "FAIL",
+      "note": "存在 GT 级漏检、错类或定位错误"
+    },
+    {
+      "class_id": 25,
+      "official_id": 26,
+      "group": "new2",
+      "name": "26-Plastic_Strawberry",
+      "gt": 8,
+      "tp": 8,
+      "fp": 6,
+      "fn": 0,
+      "missing": 0,
+      "wrong_class": 0,
+      "localization": 0,
+      "recall": 1.0,
+      "precision": 0.57143,
+      "matched_mean_score": 0.8556,
+      "status": "CAUTION",
+      "note": "GT 均可检出，但存在额外同类预测"
+    }
+  ],
+  "errors": [
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/front10__front10-review-unit-0011__001321.png",
+      "gt_class_id": 4,
+      "gt_name": "5-Tomato_Soup",
+      "gt_xyxy": [],
+      "reason": "false_positive",
+      "prediction_class_id": 4,
+      "prediction_name": "5-Tomato_Soup",
+      "prediction_score": 0.58282,
+      "prediction_xyxy": [
+        152.18,
+        280.12,
+        276.17,
+        403.32
+      ],
+      "iou": null
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/front10__front10-review-unit-0018__001361.png",
+      "gt_class_id": 16,
+      "gt_name": "17-Eggs_Plush",
+      "gt_xyxy": [],
+      "reason": "false_positive",
+      "prediction_class_id": 16,
+      "prediction_name": "17-Eggs_Plush",
+      "prediction_score": 0.3881,
+      "prediction_xyxy": [
+        214.63,
+        217.09,
+        415.28,
+        318.99
+      ],
+      "iou": null
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/front10__front10-review-unit-0068__001535.png",
+      "gt_class_id": 16,
+      "gt_name": "17-Eggs_Plush",
+      "gt_xyxy": [],
+      "reason": "false_positive",
+      "prediction_class_id": 16,
+      "prediction_name": "17-Eggs_Plush",
+      "prediction_score": 0.94076,
+      "prediction_xyxy": [
+        251.96,
+        146.63,
+        357.3,
+        284.76
+      ],
+      "iou": null
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/front10__front10-review-unit-0070__001551.png",
+      "gt_class_id": 16,
+      "gt_name": "17-Eggs_Plush",
+      "gt_xyxy": [],
+      "reason": "false_positive",
+      "prediction_class_id": 16,
+      "prediction_name": "17-Eggs_Plush",
+      "prediction_score": 0.85001,
+      "prediction_xyxy": [
+        350.47,
+        295.05,
+        491.32,
+        408.78
+      ],
+      "iou": null
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0086__000469.png",
+      "gt_class_id": 25,
+      "gt_name": "26-Plastic_Strawberry",
+      "gt_xyxy": [],
+      "reason": "false_positive",
+      "prediction_class_id": 25,
+      "prediction_name": "26-Plastic_Strawberry",
+      "prediction_score": 0.55591,
+      "prediction_xyxy": [
+        156.76,
+        192.95,
+        205.23,
+        240.54
+      ],
+      "iou": null
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0089__000478.png",
+      "gt_class_id": 25,
+      "gt_name": "26-Plastic_Strawberry",
+      "gt_xyxy": [],
+      "reason": "false_positive",
+      "prediction_class_id": 25,
+      "prediction_name": "26-Plastic_Strawberry",
+      "prediction_score": 0.65431,
+      "prediction_xyxy": [
+        271.28,
+        165.72,
+        317.84,
+        214.69
+      ],
+      "iou": null
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0129__000572.png",
+      "gt_class_id": 16,
+      "gt_name": "17-Eggs_Plush",
+      "gt_xyxy": [],
+      "reason": "false_positive",
+      "prediction_class_id": 16,
+      "prediction_name": "17-Eggs_Plush",
+      "prediction_score": 0.19133,
+      "prediction_xyxy": [
+        217.99,
+        238.65,
+        416.74,
+        407.2
+      ],
+      "iou": null
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0139__000602.png",
+      "gt_class_id": 16,
+      "gt_name": "17-Eggs_Plush",
+      "gt_xyxy": [],
+      "reason": "false_positive",
+      "prediction_class_id": 16,
+      "prediction_name": "17-Eggs_Plush",
+      "prediction_score": 0.24287,
+      "prediction_xyxy": [
+        248.03,
+        145.32,
+        352.69,
+        249.9
+      ],
+      "iou": null
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0155__000650.png",
+      "gt_class_id": 25,
+      "gt_name": "26-Plastic_Strawberry",
+      "gt_xyxy": [],
+      "reason": "false_positive",
+      "prediction_class_id": 25,
+      "prediction_name": "26-Plastic_Strawberry",
+      "prediction_score": 0.46605,
+      "prediction_xyxy": [
+        435.55,
+        346.4,
+        565.51,
+        474.89
+      ],
+      "iou": null
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0181__000734.png",
+      "gt_class_id": 25,
+      "gt_name": "26-Plastic_Strawberry",
+      "gt_xyxy": [],
+      "reason": "false_positive",
+      "prediction_class_id": 25,
+      "prediction_name": "26-Plastic_Strawberry",
+      "prediction_score": 0.26451,
+      "prediction_xyxy": [
+        288.39,
+        216.9,
+        368.97,
+        291.3
+      ],
+      "iou": null
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0253__000895.png",
+      "gt_class_id": 16,
+      "gt_name": "17-Eggs_Plush",
+      "gt_xyxy": [],
+      "reason": "false_positive",
+      "prediction_class_id": 16,
+      "prediction_name": "17-Eggs_Plush",
+      "prediction_score": 0.15182,
+      "prediction_xyxy": [
+        237.6,
+        136.29,
+        351.31,
+        289.71
+      ],
+      "iou": null
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0271__001261.png",
+      "gt_class_id": 25,
+      "gt_name": "26-Plastic_Strawberry",
+      "gt_xyxy": [],
+      "reason": "false_positive",
+      "prediction_class_id": 25,
+      "prediction_name": "26-Plastic_Strawberry",
+      "prediction_score": 0.15178,
+      "prediction_xyxy": [
+        201.65,
+        227.78,
+        291.42,
+        353.98
+      ],
+      "iou": null
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0274__001278.png",
+      "gt_class_id": 16,
+      "gt_name": "17-Eggs_Plush",
+      "gt_xyxy": [],
+      "reason": "false_positive",
+      "prediction_class_id": 16,
+      "prediction_name": "17-Eggs_Plush",
+      "prediction_score": 0.84594,
+      "prediction_xyxy": [
+        377.92,
+        255.36,
+        625.12,
+        480.0
+      ],
+      "iou": null
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0274__001278.png",
+      "gt_class_id": 25,
+      "gt_name": "26-Plastic_Strawberry",
+      "gt_xyxy": [],
+      "reason": "false_positive",
+      "prediction_class_id": 25,
+      "prediction_name": "26-Plastic_Strawberry",
+      "prediction_score": 0.15577,
+      "prediction_xyxy": [
+        235.33,
+        258.61,
+        333.72,
+        344.2
+      ],
+      "iou": null
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0309__001034.png",
+      "gt_class_id": 16,
+      "gt_name": "17-Eggs_Plush",
+      "gt_xyxy": [],
+      "reason": "false_positive",
+      "prediction_class_id": 16,
+      "prediction_name": "17-Eggs_Plush",
+      "prediction_score": 0.3515,
+      "prediction_xyxy": [
+        203.76,
+        252.5,
+        464.53,
+        438.78
+      ],
+      "iou": null
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/selfcollected__20261027_session_001__001603_17-Eggs_Plush.png",
+      "gt_class_id": 16,
+      "gt_name": "17-Eggs_Plush",
+      "gt_xyxy": [
+        58.0,
+        69.0,
+        218.0,
+        239.0
+      ],
+      "reason": "missing",
+      "prediction_class_id": null,
+      "prediction_name": null,
+      "prediction_score": null,
+      "prediction_xyxy": null,
+      "iou": 0.0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/selfcollected__20261027_session_001__001604_17-Eggs_Plush.png",
+      "gt_class_id": 16,
+      "gt_name": "17-Eggs_Plush",
+      "gt_xyxy": [
+        58.0,
+        69.0,
+        223.0,
+        239.0
+      ],
+      "reason": "missing",
+      "prediction_class_id": null,
+      "prediction_name": null,
+      "prediction_score": null,
+      "prediction_xyxy": null,
+      "iou": 0.0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/selfcollected__20261027_session_001__001605_17-Eggs_Plush.png",
+      "gt_class_id": 16,
+      "gt_name": "17-Eggs_Plush",
+      "gt_xyxy": [
+        58.0,
+        69.0,
+        216.0,
+        239.0
+      ],
+      "reason": "missing",
+      "prediction_class_id": null,
+      "prediction_name": null,
+      "prediction_score": null,
+      "prediction_xyxy": null,
+      "iou": 0.0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/selfcollected__20261027_session_001__001606_17-Eggs_Plush.png",
+      "gt_class_id": 16,
+      "gt_name": "17-Eggs_Plush",
+      "gt_xyxy": [
+        60.0,
+        69.0,
+        216.0,
+        239.0
+      ],
+      "reason": "missing",
+      "prediction_class_id": null,
+      "prediction_name": null,
+      "prediction_score": null,
+      "prediction_xyxy": null,
+      "iou": 0.0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/selfcollected__20261027_session_001__001607_17-Eggs_Plush.png",
+      "gt_class_id": 16,
+      "gt_name": "17-Eggs_Plush",
+      "gt_xyxy": [
+        58.0,
+        69.0,
+        216.0,
+        239.0
+      ],
+      "reason": "missing",
+      "prediction_class_id": null,
+      "prediction_name": null,
+      "prediction_score": null,
+      "prediction_xyxy": null,
+      "iou": 0.0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/selfcollected__20261027_session_001__001635_17-Eggs_Plush.png",
+      "gt_class_id": 5,
+      "gt_name": "6-Foam_Brick",
+      "gt_xyxy": [],
+      "reason": "false_positive",
+      "prediction_class_id": 5,
+      "prediction_name": "6-Foam_Brick",
+      "prediction_score": 0.15071,
+      "prediction_xyxy": [
+        165.83,
+        208.19,
+        326.13,
+        391.44
+      ],
+      "iou": null
+    }
+  ],
+  "overlap_warnings": [
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/front10__front10-review-unit-0011__001321.png",
+      "gt_class_id": 1,
+      "gt_name": "2-Starkist_Tuna",
+      "overlapping_class_id": 4,
+      "overlapping_name": "5-Tomato_Soup",
+      "score": 0.58282,
+      "iou": 0.8857
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/front10__front10-review-unit-0018__001361.png",
+      "gt_class_id": 3,
+      "gt_name": "4-Frenchs_Mustard",
+      "overlapping_class_id": 16,
+      "overlapping_name": "17-Eggs_Plush",
+      "score": 0.3881,
+      "iou": 0.8968
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/front10__front10-review-unit-0068__001535.png",
+      "gt_class_id": 9,
+      "gt_name": "10-meat_can",
+      "overlapping_class_id": 16,
+      "overlapping_name": "17-Eggs_Plush",
+      "score": 0.94076,
+      "iou": 0.8924
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/front10__front10-review-unit-0070__001551.png",
+      "gt_class_id": 9,
+      "gt_name": "10-meat_can",
+      "overlapping_class_id": 16,
+      "overlapping_name": "17-Eggs_Plush",
+      "score": 0.85001,
+      "iou": 0.9276
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/selfcollected__20261027_session_001__001598_26-Plastic_Strawberry.png",
+      "gt_class_id": 25,
+      "gt_name": "26-Plastic_Strawberry",
+      "overlapping_class_id": 17,
+      "overlapping_name": "18-Dice",
+      "score": 0.16534,
+      "iou": 0.7384
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/selfcollected__20261027_session_001__001599_26-Plastic_Strawberry.png",
+      "gt_class_id": 25,
+      "gt_name": "26-Plastic_Strawberry",
+      "overlapping_class_id": 17,
+      "overlapping_name": "18-Dice",
+      "score": 0.19917,
+      "iou": 0.7322
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/selfcollected__20261027_session_001__001600_26-Plastic_Strawberry.png",
+      "gt_class_id": 25,
+      "gt_name": "26-Plastic_Strawberry",
+      "overlapping_class_id": 17,
+      "overlapping_name": "18-Dice",
+      "score": 0.29373,
+      "iou": 0.7317
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/selfcollected__20261027_session_001__001601_26-Plastic_Strawberry.png",
+      "gt_class_id": 25,
+      "gt_name": "26-Plastic_Strawberry",
+      "overlapping_class_id": 17,
+      "overlapping_name": "18-Dice",
+      "score": 0.28346,
+      "iou": 0.7232
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/selfcollected__20261027_session_001__001634_17-Eggs_Plush.png",
+      "gt_class_id": 16,
+      "gt_name": "17-Eggs_Plush",
+      "overlapping_class_id": 12,
+      "overlapping_name": "13-Bowl",
+      "score": 0.1976,
+      "iou": 0.8342
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/selfcollected__20261027_session_001__001635_17-Eggs_Plush.png",
+      "gt_class_id": 16,
+      "gt_name": "17-Eggs_Plush",
+      "overlapping_class_id": 5,
+      "overlapping_name": "6-Foam_Brick",
+      "score": 0.15071,
+      "iou": 0.8363
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/selfcollected__20261027_session_001__001636_17-Eggs_Plush.png",
+      "gt_class_id": 16,
+      "gt_name": "17-Eggs_Plush",
+      "overlapping_class_id": 12,
+      "overlapping_name": "13-Bowl",
+      "score": 0.23849,
+      "iou": 0.8473
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/selfcollected__20261027_session_001__001637_17-Eggs_Plush.png",
+      "gt_class_id": 16,
+      "gt_name": "17-Eggs_Plush",
+      "overlapping_class_id": 12,
+      "overlapping_name": "13-Bowl",
+      "score": 0.2261,
+      "iou": 0.8311
+    }
+  ],
+  "images": [
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/front10__front10-review-unit-0002__001294.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        0
+      ],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/front10__front10-review-unit-0005__001303.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        0
+      ],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/front10__front10-review-unit-0011__001321.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        1
+      ],
+      "target_prediction_count": 2
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/front10__front10-review-unit-0013__001333.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        1
+      ],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/front10__front10-review-unit-0015__001351.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        2
+      ],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/front10__front10-review-unit-0018__001361.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        3
+      ],
+      "target_prediction_count": 2
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/front10__front10-review-unit-0020__001369.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        3
+      ],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/front10__front10-review-unit-0025__001382.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        4
+      ],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/front10__front10-review-unit-0028__001396.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        4
+      ],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/front10__front10-review-unit-0031__001404.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        4
+      ],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/front10__front10-review-unit-0035__001416.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        5
+      ],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/front10__front10-review-unit-0038__001424.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        5
+      ],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/front10__front10-review-unit-0044__001443.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        6
+      ],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/front10__front10-review-unit-0046__001453.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        6
+      ],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/front10__front10-review-unit-0049__001464.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        7
+      ],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/front10__front10-review-unit-0050__001475.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        7
+      ],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/front10__front10-review-unit-0058__001508.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        8
+      ],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/front10__front10-review-unit-0065__001538.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        9
+      ],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/front10__front10-review-unit-0068__001535.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        9
+      ],
+      "target_prediction_count": 2
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/front10__front10-review-unit-0069__001544.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        9
+      ],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/front10__front10-review-unit-0070__001551.png",
+      "target_gt_count": 3,
+      "target_gt_classes": [
+        1,
+        9,
+        4
+      ],
+      "target_prediction_count": 4
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0003__001160.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0006__001170.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0009__001178.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0013__000006.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0017__000018.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0020__000028.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0029__000079.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0033__000092.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0036__000125.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0043__001201.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0046__001218.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0052__000371.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0056__000383.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0060__000393.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0064__000407.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0071__000228.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0075__000240.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0079__000255.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0086__000469.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0089__000478.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0092__000488.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0098__000505.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0101__000514.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0104__000523.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0110__000279.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0113__000296.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0119__000542.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0122__000553.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0126__000565.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0129__000572.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0136__000594.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0139__000602.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0142__000612.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0149__000632.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0152__000641.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0155__000650.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0162__000671.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0165__000682.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0168__000689.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0175__000710.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0178__000726.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0181__000734.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0187__000314.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0191__000324.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0195__000338.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0199__000348.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0206__000752.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0210__000766.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0214__000778.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0221__000797.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0224__000806.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0227__000815.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0233__000834.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0236__000844.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0239__000853.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0246__000872.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0250__000886.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0253__000895.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0259__000912.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0262__000922.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0265__000931.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0271__001261.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0274__001278.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 2
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0279__000945.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0282__000954.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0288__000972.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0291__000980.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0294__000991.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0300__001009.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0303__001018.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0309__001034.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0312__001044.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0317__001058.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0320__001067.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0323__001078.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0329__001095.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0332__001103.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0339__001125.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0342__001134.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/post28__split-unit-0345__001142.png",
+      "target_gt_count": 0,
+      "target_gt_classes": [],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/scissors_v3__g6__001349.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        2
+      ],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/scissors_v3__g6__001350.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        2
+      ],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/selfcollected__20261027_session_001__001570_26-Plastic_Strawberry.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        25
+      ],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/selfcollected__20261027_session_001__001571_26-Plastic_Strawberry.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        25
+      ],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/selfcollected__20261027_session_001__001572_26-Plastic_Strawberry.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        25
+      ],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/selfcollected__20261027_session_001__001598_26-Plastic_Strawberry.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        25
+      ],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/selfcollected__20261027_session_001__001599_26-Plastic_Strawberry.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        25
+      ],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/selfcollected__20261027_session_001__001600_26-Plastic_Strawberry.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        25
+      ],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/selfcollected__20261027_session_001__001601_26-Plastic_Strawberry.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        25
+      ],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/selfcollected__20261027_session_001__001602_26-Plastic_Strawberry.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        25
+      ],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/selfcollected__20261027_session_001__001603_17-Eggs_Plush.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        16
+      ],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/selfcollected__20261027_session_001__001604_17-Eggs_Plush.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        16
+      ],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/selfcollected__20261027_session_001__001605_17-Eggs_Plush.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        16
+      ],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/selfcollected__20261027_session_001__001606_17-Eggs_Plush.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        16
+      ],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/selfcollected__20261027_session_001__001607_17-Eggs_Plush.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        16
+      ],
+      "target_prediction_count": 0
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/selfcollected__20261027_session_001__001633_17-Eggs_Plush.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        16
+      ],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/selfcollected__20261027_session_001__001634_17-Eggs_Plush.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        16
+      ],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/selfcollected__20261027_session_001__001635_17-Eggs_Plush.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        16
+      ],
+      "target_prediction_count": 2
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/selfcollected__20261027_session_001__001636_17-Eggs_Plush.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        16
+      ],
+      "target_prediction_count": 1
+    },
+    {
+      "image": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v9_hardneg/images/val/selfcollected__20261027_session_001__001637_17-Eggs_Plush.png",
+      "target_gt_count": 1,
+      "target_gt_classes": [
+        16
+      ],
+      "target_prediction_count": 1
+    }
+  ],
+  "all_prediction_counts_by_class": {
+    "1-Cheez-it": 2,
+    "10-meat_can": 4,
+    "11-Padlock": 2,
+    "12-Baseball": 3,
+    "13-Bowl": 7,
+    "14-Sleeve": 2,
+    "15-Coca_cola_half": 5,
+    "16-ICRA_Duckie": 4,
+    "17-Eggs_Plush": 13,
+    "18-Dice": 7,
+    "19-Elmers_Glue": 13,
+    "2-Starkist_Tuna": 3,
+    "20-Scotch_Tape": 2,
+    "21-Haribo_Golden_Bear": 4,
+    "22-E27_Adapter": 11,
+    "23-GU24_Adapter": 6,
+    "24-Spoon": 10,
+    "25-Flat_Screwdriver": 9,
+    "26-Plastic_Strawberry": 14,
+    "27-Coca_cola_full": 5,
+    "28-Kong_Duck_Dog_Toy": 14,
+    "29-Paper_Towels": 2,
+    "3-Scissors": 3,
+    "30-Stabilo_OHPen": 5,
+    "31-Plastic_White_Cup": 2,
+    "32-Wine_Glass": 3,
+    "33-Key": 2,
+    "34-Nail": 2,
+    "35-Book": 3,
+    "36-Adjustable_Wrench": 3,
+    "37-T-shirt": 2,
+    "38-Jumbo_Pencil_Cup": 5,
+    "39-Glove": 2,
+    "4-Frenchs_Mustard": 2,
+    "40-Pringles": 5,
+    "5-Tomato_Soup": 5,
+    "6-Foam_Brick": 3,
+    "7-Clamp": 2,
+    "8-Plastic_Banana": 2,
+    "9-Mug": 1
+  }
+}

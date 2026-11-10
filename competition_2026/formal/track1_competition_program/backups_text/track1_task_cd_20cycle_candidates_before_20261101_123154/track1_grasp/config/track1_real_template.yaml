@@ -1,0 +1,103 @@
+# Template for the first real integration after the camera and gripper are
+# physically mounted.  Keep dry_run: true until calibration and wiring are
+# verified; `track1_node ... --execute` overrides it.
+
+task:
+  mode: C
+  max_picks: 20
+  stop_on_error: false
+  sample_period_s: 0.2
+
+vision:
+  backend: taska_realsense
+  taska_config: /home/sunshine/codex/easton/ros2_ws/src/taskA_grasp/config/grasp_params.yaml
+  min_confidence: 0.35
+  require_depth: true
+  loop_scenario: true
+  camera_frame_id: camera_color_optical_frame
+
+task_a:
+  # Task A scoring: IoU >= 0.75 at every one of the ten positions.
+  iou_threshold: 0.75
+  ground_truth_file: /home/sunshine/codex/easton/taskA/ground_truth/labels.yaml
+  output_dir: /media/sunshine/新加卷/track1/task_a_annotated
+  save_annotated: true
+  draw_labels: true
+  draw_ground_truth: true
+  max_frames: 10
+  min_positions: 10
+
+task_b:
+  place_poses_file: task_b_place_poses.example.yaml
+  rounds: 5
+  keep_same_target: true
+
+target:
+  policy: any
+  known_classes: []
+  unknown_labels: [unknown, object]
+  unknown_min_graspability: 0.65
+  max_attempts_per_target: 2
+  order_file: target_order.example.yaml
+
+pose:
+  # Fixed camera: extrinsics_file is T_base_camera.
+  # Wrist camera: set camera_frame: flange and extrinsics_file is T_flange_camera.
+  camera_frame: base
+  extrinsics_file: camera_to_base.example.yaml
+  use_detection_base_xyz: false
+  fallback_camera_to_base: false
+
+motion:
+  backend: robotmove
+  dry_run: true
+  workspace_min: [-0.40, -0.40, 0.02]
+  workspace_max: [0.40, 0.40, 0.60]
+  workspace_margin: 0.01
+  approach_height: 0.08
+  grasp_z_offset: 0.00
+  lift_height: 0.12
+  place_pose: [0.30, 0.25, 0.08, 3.14159265, 0.0, 0.0]
+  place_approach_height: 0.08
+  retreat_height: 0.08
+  speed_mps: 0.03
+  orientation: fixed
+  fixed_rpy: [3.14159265, 0.0, 0.0]
+  move_timeout_s: 30.0
+  position_tolerance_m: 0.003
+  poll_period_s: 0.05
+  robotmove_topic: RobotMove
+  robotinfo_topic: RobotInfo
+  robot_info_timeout_s: 1.0
+
+gripper:
+  # The gripper is a WHEELTEC FAE two-finger electric gripper whose electronic
+  # controller is an MS42DC integrated stepper drive.  Its natural backend is
+  # "ms42dc"; docs/GRIPPER_INTEGRATION.md covers the other four transports and
+  # exactly what is still undecided about the wiring.
+  backend: ms42dc
+
+  # --- MS42DC stepper controller (TTL serial or USB-C) -------------------
+  # USB: second DIP switch ON, port is usually /dev/ttyUSB0 or the udev alias
+  # /dev/motor_serial, fixed 115200 8N1.
+  serial_port: /dev/motor_serial
+  serial_baudrate: 115200
+  serial_bytesize: 8
+  serial_parity: N
+  serial_stopbits: 1
+  device_id: 1
+  subdivide: 32
+  motion_mode: 2          # 2 = relative angle, 4 = absolute angle
+  open_angle_deg: 1872.0  # 5.2 turns; scale to the firmware actually flashed
+  close_angle_deg: 1872.0
+  speed_rad_s: 20.0
+  status_timeout_s: 1.0
+  motion_timeout_s: 8.0
+  # Reject a close that ran to the hard stop, i.e. gripped nothing.  Set to 0
+  # until the real empty-close angle has been measured on the bench.
+  hold_min_angle_deg: 0.0
+  require_feedback: false
+  ignore_empty_close: false
+
+  settle_time_s: 0.3
+  open_before_approach: true

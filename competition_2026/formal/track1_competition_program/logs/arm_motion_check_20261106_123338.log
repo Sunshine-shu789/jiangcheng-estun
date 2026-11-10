@@ -1,0 +1,25 @@
+
+===== 无夹爪运动验证 =====
+配置：config/track1_task_b_pick1_single_low_speed_live_20261106.yaml
+模式：只预检查（不会运动）
+参数：轴=z 方向=auto 距离=1 mm
+去程终点停留：0 秒
+夹爪：完全不调用，不会发出开合命令
+日志：/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/arm_motion_check_20261106_123338.log
+
+[bridge] state=AutoReady fault_flag=0 xyz=(-0.0644, 0.4303, 0.4333)
+[INFO] [1793939629.323385638] [track1_arm_motion_check]: [start] DRY-RUN no-gripper check: base -z 1.0 mm out-and-back, hold=0.0 s, step=2.5 mm
+[INFO] [1793939629.508049452] [track1_arm_motion_check]: [robot] controller state=AutoReady; start_xyz=(-0.06444726394518227, 0.43029568036149785, 0.4332944905104354) joints_deg=[82.66, 54.31, -32.19, -53.45, 84.45, -2.06]
+[INFO] [1793939630.064630297] [track1_arm_motion_check]: [motion:ik-restart-selected] target 1 path waypoint: seed=11, source=offset[8], damping=0.01, iterations=4, step=0.638 deg, pos_err=0.0119 mm, rot_err=0.000193 rad, min_sigma=0.030209
+[INFO] [1793939630.198119128] [track1_arm_motion_check]: [motion:plan-timing] target 1: total_s=0.361, attempts=1, waypoints=2, planning_step_mm=2.000, max_joint_step=0.336 deg, max_joint_accel=0.012 deg, min_sigma=0.029914
+[INFO] [1793939630.343167531] [track1_arm_motion_check]: [motion:cartesian-precheck] target 1: 2 waypoint(s), planning_step=2.000 mm, max_joint_step=0.336 deg, max_joint_accel=0.012 deg, min_sigma=0.02991, axis_step_deg=0.000,0.198,0.336,0.140,0.001,0.000, axis_travel_deg=0.000,0.390,0.661,0.277,0.001,0.000
+[INFO] [1793939630.655899019] [track1_arm_motion_check]: [motion:ik-restart-selected] target 2 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=5, step=0.620 deg, pos_err=0.0136 mm, rot_err=0.000198 rad, min_sigma=0.029647
+[INFO] [1793939630.797840468] [track1_arm_motion_check]: [motion:plan-timing] target 2: total_s=0.319, attempts=1, waypoints=2, planning_step_mm=2.000, max_joint_step=0.338 deg, max_joint_accel=0.031 deg, min_sigma=0.029624
+[INFO] [1793939630.808774622] [track1_arm_motion_check]: [motion:cartesian-precheck] target 2: 2 waypoint(s), planning_step=2.000 mm, max_joint_step=0.338 deg, max_joint_accel=0.031 deg, min_sigma=0.02962, axis_step_deg=0.001,0.198,0.338,0.141,0.002,0.000, axis_travel_deg=0.001,0.381,0.645,0.272,0.002,0.000
+[INFO] [1793939630.956457361] [track1_arm_motion_check]: [motion:linear-precheck] validated 2 segment(s), 4 Cartesian waypoint(s), min_sigma=0.02961, total_s=1.301
+[INFO] [1793939631.004963101] [track1_arm_motion_check]: [precheck] outbound=1.0 mm return=1.0 mm; all IK, joint limits and workspace checks passed
+[INFO] [1793939631.192350472] [track1_arm_motion_check]: [motion:robotmove:dry-run-linear] no_gripper_out: distance=0.001 m waypoints=2 target_xyz=(-0.06444726394518227, 0.43029568036149785, 0.4322944905104354) v=0.010 speed_scale=1.00 joint_velocity=0.100 rad/s max_joint_step=0.336 deg max_joint_accel=0.012 deg min_sigma=0.02991 axis_step_deg=0.000,0.198,0.336,0.140,0.001,0.000 axis_travel_deg=0.000,0.390,0.661,0.277,0.001,0.000
+[INFO] [1793939631.248976434] [track1_arm_motion_check]: [motion:robotmove:dry-run-linear] no_gripper_return: distance=0.001 m waypoints=2 target_xyz=(-0.06444726394518227, 0.43029568036149785, 0.4332944905104354) v=0.010 speed_scale=1.00 joint_velocity=0.100 rad/s max_joint_step=0.338 deg max_joint_accel=0.031 deg min_sigma=0.02962 axis_step_deg=0.001,0.198,0.338,0.141,0.002,0.000 axis_travel_deg=0.001,0.381,0.645,0.272,0.002,0.000
+[INFO] [1793939631.346193695] [track1_arm_motion_check]: [result] dry-run complete; no motion was sent and gripper stayed untouched
+
+[完成] 无夹爪运动验证结束。

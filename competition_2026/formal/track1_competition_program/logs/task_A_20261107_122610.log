@@ -1,0 +1,14 @@
+
+===== 任务A 十点位巡检 =====
+配置：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/track1_task_a_legacy.yaml
+视觉后端：legacy_http
+模式：十点位巡检（J1-J4运动，J5/J6锁定，J1以当前位姿为锚点左右分配270度，十类识别，识别后停3秒，第10点后回原点，旧视觉识别，真机运动）
+日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/task_A_20261107_122610.log
+
+正在启动机械臂状态桥接，日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/codroid_bridge_20261107_122610.log
+在 12.0 秒内没有收到满足条件的 /RobotInfo；需要 state=AutoReady、fault_flag=0、至少 6 项且全部为有限数。 最后状态 state=PowerOff, fault_flag=0, end_positions=6, joint_positions=6
+未收到机械臂状态。请检查控制器已上电、处于 AutoReady，且
+控制器“设置 -> ROS”的目标 IP 指向本机 9006 端口。
+[INFO] [1794025573.293782704] [codroid_udp_bridge]: listening for RobotInfo on udp/9006, sending RobotMove to 192.168.101.100:9005
+[INFO] [1794025578.282407525] [codroid_udp_bridge]: rx=100 decoded=100 tx=0
+[INFO] [1794025583.282366336] [codroid_udp_bridge]: rx=200 decoded=200 tx=0

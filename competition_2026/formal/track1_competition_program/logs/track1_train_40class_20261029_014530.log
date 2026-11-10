@@ -1,0 +1,706 @@
+Overriding model.yaml nc=10 with nc=40
+赛道一 40 类训练预检
+- 数据集：通过（{'train': 1490, 'val': 426}，bbox=2238）
+- 后类复核：348→有框 346 / 空标签 2 / 跳过 0
+- 起始权重：通过（10 类 → 40 类，前 10 类头继承=True）
+- 数据盘写权限：通过（剩余 382.08 GiB）
+- GPU/CUDA：通过（CUDA=True，显存=7.5 GiB）
+- 训练准备：完成
+- 可以开始训练：是
+- 本次启动训练：否
+- 预检报告：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/reports/track1_training_preflight_latest.json
+开始训练：run_name=track1_40class_20261029_014535
+输出目录：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_train_40class_v1/track1_40class_20261029_014535
+起始权重：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/models/best.pt
+数据集：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/dataset.yaml
+New https://pypi.org/project/ultralytics/8.4.191 available 😃 Update with 'pip install -U ultralytics'
+Ultralytics 8.4.155 🚀 Python-3.10.12 torch-2.14.0+cu130 CUDA:0 (NVIDIA GeForce RTX 5060 Laptop GPU, 7683MiB)
+[34m[1mengine/trainer: [0magnostic_nms=False, amp=True, angle=1.0, augment=False, auto_augment=randaugment, batch=8, bgr=0.0, box=7.5, cache=False, cfg=None, channels_last=None, classes=None, close_mosaic=10, cls=0.5, cls_pw=0.0, cls_remap=True, compile=False, conf=None, copy_paste=0.0, copy_paste_mode=flip, cos_lr=True, cutmix=0.0, data=/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/dataset.yaml, degrees=5.0, deterministic=True, device=0, dfl=1.5, dgrad=0.5, dis=6.0, distill_model=None, dlam=1.0, dlog=1.0, dnn=False, dropout=0.0, dynamic=False, embed=None, epochs=120, erasing=0.4, exist_ok=False, fliplr=0.5, flipud=0.0, format=torchscript, fraction=1.0, freeze=0, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, imgsz=640, iou=0.7, keras=False, kobj=1.0, line_width=None, lr0=0.001, lrf=0.01, mask_ratio=4, max_det=300, mixup=0.0, mode=train, model=/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/models/best.pt, momentum=0.937, mosaic=0.5, multi_scale=0.0, name=track1_40class_20261029_014535, nbs=64, nms=None, opset=None, optimize=False, optimizer=AdamW, overlap_mask=True, patience=30, perspective=0.0, plots=True, pose=12.0, pretrained=True, profile=False, project=/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_train_40class_v1, quantize=None, rect=False, resume=False, retina_masks=False, rle=1.0, save=True, save_conf=False, save_crop=False, save_dir=/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_train_40class_v1/track1_40class_20261029_014535, save_frames=False, save_json=False, save_period=10, save_txt=False, scale=0.3, seed=42, shear=2.0, show=False, show_boxes=True, show_conf=True, show_labels=True, simplify=True, single_cls=False, source=None, split=val, stream_buffer=False, task=detect, time=None, tracker=tracktrack.yaml, translate=0.1, val=True, verbose=True, vid_stride=1, visualize=False, warmup_bias_lr=0.1, warmup_epochs=3.0, warmup_momentum=0.8, weight_decay=0.0005, workers=4, workspace=None
+Overriding model.yaml nc=10 with nc=40
+
+                   from  n    params  module                                       arguments                     
+  0                  -1  1       928  ultralytics.nn.modules.conv.Conv             [3, 32, 3, 2]                 
+  1                  -1  1     18560  ultralytics.nn.modules.conv.Conv             [32, 64, 3, 2]                
+  2                  -1  1     26080  ultralytics.nn.modules.block.C3k2            [64, 128, 1, False, 0.25]     
+  3                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+  4                  -1  1    103360  ultralytics.nn.modules.block.C3k2            [128, 256, 1, False, 0.25]    
+  5                  -1  1    590336  ultralytics.nn.modules.conv.Conv             [256, 256, 3, 2]              
+  6                  -1  1    346112  ultralytics.nn.modules.block.C3k2            [256, 256, 1, True]           
+  7                  -1  1   1180672  ultralytics.nn.modules.conv.Conv             [256, 512, 3, 2]              
+  8                  -1  1   1380352  ultralytics.nn.modules.block.C3k2            [512, 512, 1, True]           
+  9                  -1  1    656896  ultralytics.nn.modules.block.SPPF            [512, 512, 5]                 
+ 10                  -1  1    990976  ultralytics.nn.modules.block.C2PSA           [512, 512, 1]                 
+ 11                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 12             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 13                  -1  1    443776  ultralytics.nn.modules.block.C3k2            [768, 256, 1, False]          
+ 14                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 15             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 16                  -1  1    127680  ultralytics.nn.modules.block.C3k2            [512, 128, 1, False]          
+ 17                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+ 18            [-1, 13]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 19                  -1  1    345472  ultralytics.nn.modules.block.C3k2            [384, 256, 1, False]          
+ 20                  -1  1    590336  ultralytics.nn.modules.conv.Conv             [256, 256, 3, 2]              
+ 21            [-1, 10]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 22                  -1  1   1511424  ultralytics.nn.modules.block.C3k2            [768, 512, 1, True]           
+ 23        [16, 19, 22]  1    834888  ultralytics.nn.modules.head.Detect           [40, 16, None, [128, 256, 512]]
+YOLO11s summary: 181 layers, 9,443,272 parameters, 9,443,256 gradients, 21.8 GFLOPs
+
+Remapped 10/40 cls head rows from pretrained weights by class name
+Transferred 499/499 items from pretrained weights
+Freezing layer 'model.23.dfl.conv.weight'
+[34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
+[34m[1mAMP: [0mchecks passed ✅
+WARNING ⚠️ [34m[1mtrain: [0mSlow image access detected (ping: 0.0±0.0 ms, read: 5.4±1.4 MB/s, size: 81.9 KB). Use local storage instead of remote/mounted storage for better performance. See https://docs.ultralytics.com/guides/model-training-tips
+[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 3 images, 0 backgrounds, 0 corrupt: 0% ──────────── 3/1490 4.0it/s 0.2s<6:13[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 15 images, 0 backgrounds, 0 corrupt: 1% ──────────── 15/1490 13.9it/s 0.6s<1:46[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 58 images, 0 backgrounds, 0 corrupt: 3% ──────────── 58/1490 125.2it/s 0.7s<11.4s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 82 images, 0 backgrounds, 0 corrupt: 5% ╸─────────── 82/1490 145.4it/s 0.8s<9.7s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 104 images, 0 backgrounds, 0 corrupt: 6% ╸─────────── 104/1490 157.0it/s 0.9s<8.8s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 113 images, 0 backgrounds, 0 corrupt: 7% ╸─────────── 113/1490 127.1it/s 1.1s<10.8s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 120 images, 0 backgrounds, 0 corrupt: 8% ╸─────────── 120/1490 104.8it/s 1.2s<13.1s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 137 images, 0 backgrounds, 0 corrupt: 9% ━─────────── 137/1490 93.2it/s 1.5s<14.5s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 173 images, 0 backgrounds, 0 corrupt: 11% ━─────────── 173/1490 101.0it/s 1.8s<13.0s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 230 images, 44 backgrounds, 0 corrupt: 15% ━╸────────── 230/1490 239.2it/s 1.9s<5.3s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 236 images, 44 backgrounds, 0 corrupt: 15% ━╸────────── 236/1490 184.8it/s 2.0s<6.8s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 250 images, 44 backgrounds, 0 corrupt: 16% ━━────────── 250/1490 169.0it/s 2.1s<7.3s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 254 images, 44 backgrounds, 0 corrupt: 17% ━━────────── 254/1490 124.8it/s 2.2s<9.9s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 265 images, 44 backgrounds, 0 corrupt: 17% ━━────────── 265/1490 94.3it/s 2.7s<13.0s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 332 images, 44 backgrounds, 0 corrupt: 22% ━━╸───────── 332/1490 98.6it/s 3.3s<11.7s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 398 images, 44 backgrounds, 0 corrupt: 26% ━━━───────── 398/1490 172.1it/s 3.5s<6.3s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 423 images, 44 backgrounds, 0 corrupt: 28% ━━━───────── 423/1490 161.4it/s 3.7s<6.6s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 461 images, 44 backgrounds, 0 corrupt: 30% ━━━╸──────── 461/1490 226.4it/s 3.8s<4.5s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 474 images, 44 backgrounds, 0 corrupt: 31% ━━━╸──────── 474/1490 180.1it/s 4.0s<5.6s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 499 images, 44 backgrounds, 0 corrupt: 33% ━━━━──────── 499/1490 157.1it/s 4.2s<6.3s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 514 images, 44 backgrounds, 0 corrupt: 34% ━━━━──────── 514/1490 136.8it/s 4.4s<7.1s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 531 images, 44 backgrounds, 0 corrupt: 35% ━━━━──────── 531/1490 103.4it/s 5.1s<9.3s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 632 images, 44 backgrounds, 0 corrupt: 42% ━━━━━─────── 632/1490 293.4it/s 5.2s<2.9s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 633 images, 44 backgrounds, 0 corrupt: 42% ━━━━━─────── 633/1490 206.0it/s 5.7s<4.2s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 692 images, 44 backgrounds, 0 corrupt: 46% ━━━━━╸────── 692/1490 236.0it/s 5.9s<3.4s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 722 images, 44 backgrounds, 0 corrupt: 48% ━━━━━╸────── 722/1490 207.4it/s 6.1s<3.7s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 757 images, 44 backgrounds, 0 corrupt: 50% ━━━━━━────── 757/1490 195.9it/s 6.3s<3.7s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 785 images, 44 backgrounds, 0 corrupt: 52% ━━━━━━────── 785/1490 164.3it/s 6.6s<4.3s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 795 images, 44 backgrounds, 0 corrupt: 53% ━━━━━━────── 795/1490 122.9it/s 7.0s<5.7s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 859 images, 44 backgrounds, 0 corrupt: 57% ━━━━━━╸───── 859/1490 212.5it/s 7.1s<3.0s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 866 images, 44 backgrounds, 0 corrupt: 58% ━━━━━━╸───── 866/1490 160.5it/s 7.3s<3.9s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 899 images, 44 backgrounds, 0 corrupt: 60% ━━━━━━━───── 899/1490 172.2it/s 7.5s<3.4s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 925 images, 44 backgrounds, 0 corrupt: 62% ━━━━━━━───── 925/1490 153.4it/s 7.7s<3.7s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 943 images, 44 backgrounds, 0 corrupt: 63% ━━━━━━━╸──── 943/1490 159.4it/s 7.8s<3.4s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 966 images, 44 backgrounds, 0 corrupt: 64% ━━━━━━━╸──── 966/1490 164.5it/s 7.9s<3.2s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 973 images, 44 backgrounds, 0 corrupt: 65% ━━━━━━━╸──── 973/1490 135.8it/s 8.0s<3.8s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 995 images, 44 backgrounds, 0 corrupt: 66% ━━━━━━━━──── 995/1490 156.1it/s 8.1s<3.2s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 1008 images, 44 backgrounds, 0 corrupt: 67% ━━━━━━━━──── 1008/1490 144.2it/s 8.3s<3.3s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 1027 images, 44 backgrounds, 0 corrupt: 68% ━━━━━━━━──── 1027/1490 135.4it/s 8.4s<3.4s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 1030 images, 44 backgrounds, 0 corrupt: 69% ━━━━━━━━──── 1030/1490 99.7it/s 8.6s<4.6s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 1075 images, 44 backgrounds, 0 corrupt: 72% ━━━━━━━━╸─── 1075/1490 81.3it/s 9.8s<5.1s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 1223 images, 44 backgrounds, 0 corrupt: 82% ━━━━━━━━━╸── 1223/1490 409.2it/s 9.9s<0.7s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 1376 images, 45 backgrounds, 0 corrupt: 92% ━━━━━━━━━━━─ 1376/1490 742.5it/s 10.0s<0.2s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 1457 images, 45 backgrounds, 0 corrupt: 97% ━━━━━━━━━━━╸ 1457/1490 762.3it/s 10.1s<0.0s[K[34m[1mtrain: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train... 1490 images, 45 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 1490/1490 146.9it/s 10.1s
+[34m[1mtrain: [0mNew cache created: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/train.cache
+[34m[1mval: [0mFast image access ✅ (ping: 0.0±0.0 ms, read: 2431.9±2101.5 MB/s, size: 205.1 KB)
+[K[34m[1mval: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/val... 1 images, 0 backgrounds, 0 corrupt: 0% ──────────── 1/426 2.2it/s 0.1s<3:11[K[34m[1mval: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/val... 17 images, 0 backgrounds, 0 corrupt: 3% ──────────── 17/426 45.3it/s 0.2s<9.0s[K[34m[1mval: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/val... 38 images, 0 backgrounds, 0 corrupt: 8% ━─────────── 38/426 78.2it/s 0.4s<5.0s[K[34m[1mval: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/val... 46 images, 0 backgrounds, 0 corrupt: 10% ━─────────── 46/426 69.5it/s 0.5s<5.5s[K[34m[1mval: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/val... 66 images, 10 backgrounds, 0 corrupt: 15% ━╸────────── 66/426 77.4it/s 0.8s<4.7s[K[34m[1mval: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/val... 76 images, 10 backgrounds, 0 corrupt: 17% ━━────────── 76/426 56.5it/s 2.0s<6.2s[K[34m[1mval: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/val... 236 images, 10 backgrounds, 0 corrupt: 55% ━━━━━━╸───── 236/426 207.3it/s 2.3s<0.9s[K[34m[1mval: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/val... 279 images, 10 backgrounds, 0 corrupt: 65% ━━━━━━━╸──── 279/426 203.2it/s 2.5s<0.7s[K[34m[1mval: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/val... 287 images, 10 backgrounds, 0 corrupt: 67% ━━━━━━━━──── 287/426 154.2it/s 2.7s<0.9s[K[34m[1mval: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/val... 299 images, 10 backgrounds, 0 corrupt: 70% ━━━━━━━━──── 299/426 134.6it/s 2.9s<0.9s[K[34m[1mval: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/val... 422 images, 11 backgrounds, 0 corrupt: 99% ━━━━━━━━━━━╸ 422/426 460.2it/s 3.0s<0.0s[K[34m[1mval: [0mScanning /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/val... 426 images, 11 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 426/426 143.6it/s 3.0s
+[34m[1mval: [0mNew cache created: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v1/labels/val.cache
+[34m[1moptimizer:[0m AdamW(lr=0.001, momentum=0.937) with parameter groups 81 weight(decay=0.0), 88 weight(decay=0.0005), 87 bias(decay=0.0)
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 614, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+    self._start()
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 448, in __init__
+    self._listener = SocketListener(address, family, backlog)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 591, in __init__
+    self._socket.bind(address)
+OSError: AF_UNIX path too long
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 614, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+    self._start()
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 448, in __init__
+    self._listener = SocketListener(address, family, backlog)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 591, in __init__
+    self._socket.bind(address)
+OSError: AF_UNIX path too long
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 614, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+    self._start()
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 448, in __init__
+    self._listener = SocketListener(address, family, backlog)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 591, in __init__
+    self._socket.bind(address)
+OSError: AF_UNIX path too long
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 614, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+    self._start()
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 448, in __init__
+    self._listener = SocketListener(address, family, backlog)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 591, in __init__
+    self._socket.bind(address)
+OSError: AF_UNIX path too long
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 614, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+    self._start()
+  File "/usr/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 448, in __init__
+    self._listener = SocketListener(address, family, backlog)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 591, in __init__
+    self._socket.bind(address)
+  File "/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 614, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+    self._start()
+OSError: AF_UNIX path too long
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 448, in __init__
+    self._listener = SocketListener(address, family, backlog)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 591, in __init__
+    self._socket.bind(address)
+OSError: AF_UNIX path too long
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 614, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+    self._start()
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 448, in __init__
+    self._listener = SocketListener(address, family, backlog)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 591, in __init__
+    self._socket.bind(address)
+OSError: AF_UNIX path too long
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 614, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+    self._start()
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 448, in __init__
+    self._listener = SocketListener(address, family, backlog)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 591, in __init__
+    self._socket.bind(address)
+OSError: AF_UNIX path too long
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+Traceback (most recent call last):
+  File "/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 614, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+    self._start()
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 448, in __init__
+    self._listener = SocketListener(address, family, backlog)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 591, in __init__
+    self._socket.bind(address)
+Traceback (most recent call last):
+OSError: AF_UNIX path too long
+  File "/usr/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/usr/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 614, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 614, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 614, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+    self._start()
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+    self._start()
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 448, in __init__
+    self._listener = SocketListener(address, family, backlog)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+    self._start()
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 591, in __init__
+    self._socket.bind(address)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 448, in __init__
+    self._listener = SocketListener(address, family, backlog)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 591, in __init__
+    self._socket.bind(address)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 448, in __init__
+    self._listener = SocketListener(address, family, backlog)
+OSError: AF_UNIX path too long
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 591, in __init__
+    self._socket.bind(address)
+OSError: AF_UNIX path too long
+OSError: AF_UNIX path too long
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 614, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+    self._start()
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 448, in __init__
+    self._listener = SocketListener(address, family, backlog)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 591, in __init__
+    self._socket.bind(address)
+OSError: AF_UNIX path too long
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 614, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+    self._start()
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 448, in __init__
+    self._listener = SocketListener(address, family, backlog)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 591, in __init__
+    self._socket.bind(address)
+OSError: AF_UNIX path too long
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 614, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+    self._start()
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 448, in __init__
+    self._listener = SocketListener(address, family, backlog)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 591, in __init__
+    self._socket.bind(address)
+OSError: AF_UNIX path too long
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 614, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+    self._start()
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 448, in __init__
+    self._listener = SocketListener(address, family, backlog)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 591, in __init__
+    self._socket.bind(address)
+OSError: AF_UNIX path too long
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 614, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+    self._start()
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 448, in __init__
+    self._listener = SocketListener(address, family, backlog)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 591, in __init__
+    self._socket.bind(address)
+OSError: AF_UNIX path too long
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 614, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+    self._start()
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 448, in __init__
+    self._listener = SocketListener(address, family, backlog)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 591, in __init__
+    self._socket.bind(address)
+OSError: AF_UNIX path too long
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 614, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+    self._start()
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 448, in __init__
+    self._listener = SocketListener(address, family, backlog)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 591, in __init__
+    self._socket.bind(address)
+OSError: AF_UNIX path too long
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 614, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+    self._start()
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 448, in __init__
+    self._listener = SocketListener(address, family, backlog)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 591, in __init__
+    self._socket.bind(address)
+OSError: AF_UNIX path too long
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 614, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+    self._start()
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 448, in __init__
+    self._listener = SocketListener(address, family, backlog)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 591, in __init__
+    self._socket.bind(address)
+OSError: AF_UNIX path too long
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 614, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+    self._start()
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 448, in __init__
+    self._listener = SocketListener(address, family, backlog)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 591, in __init__
+    self._socket.bind(address)
+OSError: AF_UNIX path too long
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 614, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+    self._start()
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 448, in __init__
+    self._listener = SocketListener(address, family, backlog)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 591, in __init__
+    self._socket.bind(address)
+OSError: AF_UNIX path too long
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 614, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+    self._start()
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 448, in __init__
+    self._listener = SocketListener(address, family, backlog)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 591, in __init__
+    self._socket.bind(address)
+OSError: AF_UNIX path too long
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 614, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+    self._start()
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 448, in __init__
+    self._listener = SocketListener(address, family, backlog)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 591, in __init__
+    self._socket.bind(address)
+OSError: AF_UNIX path too long
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 614, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+    self._start()
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 448, in __init__
+    self._listener = SocketListener(address, family, backlog)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 591, in __init__
+    self._socket.bind(address)
+OSError: AF_UNIX path too long
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 614, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+    self._start()
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 448, in __init__
+    self._listener = SocketListener(address, family, backlog)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 591, in __init__
+    self._socket.bind(address)
+OSError: AF_UNIX path too long
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 614, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+    self._start()
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 448, in __init__
+    self._listener = SocketListener(address, family, backlog)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 591, in __init__
+    self._socket.bind(address)
+OSError: AF_UNIX path too long
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 614, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+    self._start()
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 448, in __init__
+    self._listener = SocketListener(address, family, backlog)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 591, in __init__
+    self._socket.bind(address)
+OSError: AF_UNIX path too long
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 614, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+    self._start()
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 448, in __init__
+    self._listener = SocketListener(address, family, backlog)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 591, in __init__
+    self._socket.bind(address)
+OSError: AF_UNIX path too long
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 614, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+    self._start()
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 448, in __init__
+    self._listener = SocketListener(address, family, backlog)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 591, in __init__
+    self._socket.bind(address)
+OSError: AF_UNIX path too long
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 614, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+    self._start()
+  File "/usr/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 448, in __init__
+    self._listener = SocketListener(address, family, backlog)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 591, in __init__
+    self._socket.bind(address)
+OSError: AF_UNIX path too long
+/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/matplotlib/projections/__init__.py:63: UserWarning: Unable to import Axes3D. This may be due to multiple versions of Matplotlib being installed (e.g. as a system package and as a pip package). As a result, the 3D projection is not available.
+  warnings.warn("Unable to import Axes3D. This may be due to multiple versions of "
+Plotting labels to /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_train_40class_v1/track1_40class_20261029_014535/labels.jpg... 
+Using 1490 train, 426 val images for fraction=1.0 at imgsz=640
+Using 4 dataloader workers
+Logging results to [1m/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_train_40class_v1/track1_40class_20261029_014535[0m
+Starting training for 120 epochs...

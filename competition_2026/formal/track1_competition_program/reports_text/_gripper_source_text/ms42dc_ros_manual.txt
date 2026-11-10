@@ -1,0 +1,259 @@
+        驱控一体步进电机
+        ROS 控制使用手册
+        推荐关注我们的公众号获取更新资料
+
+
+
+
+版本说明：
+版本        日期                         内容说明
+V1.0    2024/3/27                    初次发布
+V1.1    2025/7/25                 新增柔性夹爪 ROS 控制
+
+
+
+
+              网址:www.wheeltec.net
+
+
+
+                    第 1 页 共 9 页
+                                                 目录
+
+1. 硬件连接 ................................................................................................ 3
+
+2. ROS1 ....................................................................................................... 5
+
+3. ROS2 ....................................................................................................... 7
+
+
+
+
+                                                 第 2 页 共 9 页
+1. 硬件连接
+
+  通过 ROS 串口控制时，2 号拨码开关需要往下拨，如图 1-1 所示。
+
+
+
+
+                 图 1-1 拨码开关
+
+
+  通过 TypeC-USB 线连接电机与 ubuntu 系统，并且通过接口一为
+
+电机供电。
+
+
+
+
+               图 1-2 供电与串口通信
+
+
+  电机通过 TypeC-USB 线连接之后，我们需要先将更改串口别名，
+
+避免插拔时需要重复为串口设备赋权限。通过 ll /dev 可以查询串口
+
+设备名，可以找到设备名为 ttyACM0 的设备，如果系统已安装 CH9102
+
+串口驱动，则显示名为 ttyCH343USB0 的设备。
+
+                  第 3 页 共 9 页
+   通过 udevadm info /dev/ttyACM0 命令查看串口号，并将其复
+
+制到源码包路径为 src/step_motor/的 ch9102_udev 文件中 serial
+
+位置，复制完成需要保存文件，如图 1-3。
+
+
+
+
+                    图 1-3 查询串口号
+
+
+   为脚本文件赋运行权限后，运行串口别名脚本，如图 1-4。
+
+
+
+
+                    图 1-4 串口别名
+
+
+
+
+                     第 4 页 共 9 页
+2. ROS1
+
+1   串口功能包安装
+
+    ROS1 可以通过二进制安装串口驱动包，具体指令为：
+     sudo apt install ros-melodic-serial    (ubuntu18)
+     sudo apt install ros-noetic-serial     (ubuntu20)
+
+
+2   源码编译
+
+    将 ROS1 源码复制到系统里，在源码根目录打开终端通过
+
+catkin_make 编译。
+
+3   键盘控制
+
+    在 ROS1 中可以通过键盘的方式控制电机速度模式的速度大小，
+
+方向，细分值，查询电机状态等信息。
+
+    首先运行串口底层节点：
+             roslaunch   step_motor step_motor.launch
+
+    键盘速度模式控制节点：
+             rosrun   step_motor   key_control.py
+
+    键值对应:
+        Q             增大速度分辨率                    D       电机换向
+
+
+         A            减少速度分辨率                    R       id 递增
+
+         W       增大电机运动速度                        V       id 递减
+
+         X       减少电机运动速度                        F       查询电机状态
+
+
+         S             电机停止                      Z       更改电机细分值
+
+
+
+
+                                   第 5 页 共 9 页
+     电机状态查询：
+               rostopic echo /motor_state         (键盘控制节点按 F)
+
+
+
+
+                                 图 2-1 电机控制
+
+
+4    位置控制
+
+     位置模式通过话题发布的形式控制,可参考图 2-2。
+
+     首先运行串口底层节点：
+               roslaunch   step_motor step_motor.launch
+
+     话题发布：电机 id 1,相对模式下旋转 90 度，细分 8，速度 100。
+               rostopic pub /motor_control step_motor/Motor "{id: 1, speed: 100,
+           dir: 0, mode: 2, angle: 900, state: 0, sub_divide: 8}"
+
+
+                  id          电机唯一 ID
+               speed          到达目标角度的速度
+               mode           运动模式，2 为相对角度模式，4 为绝对角度模式
+               angle          运动角度，需要放大十倍发送
+               state          电机状态查询，控制电机时为 0
+            sub_divide        电机细分值：2/4/8/16/32
+
+     注：如需用来控制夹爪的张开闭合，需要增大旋转的角度，可参
+
+考下面的指令：
+
+     张开：rostopic pub /motor_control step_motor/Motor "{id: 1, speed: 200, dir:
+0, mode: 2, angle: 30000, state: 0, sub_divide: 32}"
+
+
+     闭合：rostopic pub /motor_control step_motor/Motor "{id: 1, speed: 200, dir:
+1, mode: 2, angle: 30000, state: 0, sub_divide: 32}"
+
+
+                                  第 6 页 共 9 页
+                   图 2-2 电机位置控制
+
+
+3. ROS2
+
+1   源码编译
+
+    将 ROS2 源码复制到系统里，在工作空间路径下打开终端通过
+
+colcon build 编译，编译时会出现 serial 报错，需要先
+
+    source install/setup.bash 环境后再重新编译，如图 3-1。
+
+
+
+
+                    图 3-1 源码编译
+
+
+                     第 7 页 共 9 页
+2   键盘控制
+
+    在 ROS2 中可以通过键盘的方式控制电机速度模式的速度大小，
+
+方向，细分值，查询电机状态等信息，位置模式则通过话题发布的形
+
+式控制。
+
+    首先运行串口底层节点：
+           ros2 run   step_motor   motor_node
+
+    键盘速度模式控制节点：
+           ros2 run   wheeltec_robot_keyboard   wheeltec_keyboard
+
+
+       Q         增大速度分辨率                    D          电机换向
+
+
+       A         减少速度分辨率                    R           id 递增
+
+       W        增大电机运动速度                    V           id 递减
+
+       X        减少电机运动速度                    F          查询电机状态
+
+
+       S              电机停止                  Z          更改电机细分值
+
+
+    电机状态查询：
+           ros2 topic echo /motor_state         (键盘控制节点按 F)
+
+
+
+
+                            图 3-2 电机控制
+
+                             第 8 页 共 9 页
+3    位置控制
+
+     位置模式通过话题发布的形式控制，首先运行串口底层节点：
+                ros2 run   step_motor   motor_node
+
+     话题发布：电机 id 1，绝对模式下旋转 90 度，细分 8，速度 100
+                ros2 topic pub --once /motor_control step_motor/msg/Motor "{id:
+            1,speed: 100,dir: 0,mode: 4,angle: 900,state: 0,sub_divide: 8}"
+
+
+                  id          电机唯一 ID
+               speed          到达目标角度的速度
+               mode           运动模式，2 为相对角度模式，4 为绝对角度模式
+               angle          运动角度，需要放大十倍发送
+               state          电机状态查询，控制电机时为 0
+            sub_divide        电机细分值：2/4/8/16/32
+
+     注：如需用来控制夹爪的张开闭合，需要增大旋转的角度，可参
+
+考下面的指令：
+
+张开：ros2 topic pub --once /motor_control step_motor/msg/Motor "{id: 1,speed:
+200,dir: 0,mode: 2,angle: 30000,state: 0,sub_divide: 32}"
+
+
+闭合：ros2 topic pub --once /motor_control step_motor/msg/Motor "{id: 1,speed:
+200,dir: 1,mode: 2,angle: 30000,state: 0,sub_divide: 32}"
+
+
+
+
+                                  第 9 页 共 9 页
+

@@ -1,0 +1,443 @@
+# Temporary read-only Task D geometry acceptance configuration.
+# No motion or gripper backend is constructed by bin/accept_task_d_vision.
+task:
+  mode: D
+  max_picks: 40
+  stop_on_error: false
+  sample_period_s: 0.2
+task_cd:
+  enabled: true
+  observation_pose_file: task_cd_observation_pose_20261101_194651.yaml
+  observation_pose_tolerance_deg: 0.5
+  return_to_observation_after_each_pick: true
+  place_pose_verified: true
+  exclude_completed_tracks: true
+  short_edge_grasp:
+    enabled: true
+    closure_axis_tool_xy:
+    - 1.0
+    - 0.0
+    grasp_point_modes:
+    - object_center
+    - handle
+    handle_grasp_labels:
+    - 3-Scissors
+    - 4-Frenchs_Mustard
+    - 7-Clamp
+    - 9-Mug
+    - 24-Spoon
+    - 25-Flat_Screwdriver
+    - 30-Stabilo_OHPen
+    - 36-Adjustable_Wrench
+    handle_offset_fraction: 0.3
+    min_pose_confidence: 0.5
+    require_validated_extrinsics: true
+    jaw_tip_z_m: 0.000103
+    pca:
+      min_valid_points: 200
+      min_depth_m: 0.08
+      max_depth_m: 1.2
+      trim_percentile: 5.0
+      min_axis_ratio: 1.02
+      support_plane_required: false
+      defer_axis_ratio_rejection: true
+    geometry_policy:
+      enabled: true
+      allow_rim: true
+      allow_horizontal_sidewall: false
+      horizontal_execution_enabled: false
+vision:
+  backend: realsense_yolo
+  weights: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/models/official/track1_40class_v11_official_f43234a9.pt
+  min_confidence: 0.15
+  require_depth: true
+  camera_frame_id: camera_color_optical_frame
+  width: 640
+  height: 480
+  fps: 15
+  serial: ''
+  warmup_frames: 20
+  imgsz: 640
+  device: cpu
+  depth_window: 5
+  target_class: ''
+  classes:
+  - 1-Cheez-it
+  - 2-Starkist_Tuna
+  - 3-Scissors
+  - 4-Frenchs_Mustard
+  - 5-Tomato_Soup
+  - 6-Foam_Brick
+  - 7-Clamp
+  - 8-Plastic_Banana
+  - 9-Mug
+  - 10-meat_can
+  - 11-Padlock
+  - 12-Baseball
+  - 13-Bowl
+  - 14-Sleeve
+  - 15-Coca_cola_half
+  - 16-ICRA_Duckie
+  - 17-Eggs_Plush
+  - 18-Dice
+  - 19-Elmers_Glue
+  - 20-Scotch_Tape
+  - 21-Haribo_Golden_Bear
+  - 22-E27_Adapter
+  - 23-GU24_Adapter
+  - 24-Spoon
+  - 25-Flat_Screwdriver
+  - 26-Plastic_Strawberry
+  - 27-Coca_cola_full
+  - 28-Kong_Duck_Dog_Toy
+  - 29-Paper_Towels
+  - 30-Stabilo_OHPen
+  - 31-Plastic_White_Cup
+  - 32-Wine_Glass
+  - 33-Key
+  - 34-Nail
+  - 35-Book
+  - 36-Adjustable_Wrench
+  - 37-T-shirt
+  - 38-Jumbo_Pencil_Cup
+  - 39-Glove
+  - 40-Pringles
+  anchor: top_center
+  rotate_180: true
+  output_dir: ../logs/vision
+  continuous: false
+  show: false
+  window_name: Track 1 - D405 + YOLO
+  preview_fps: 30
+  capture_timeout_s: 20.0
+  stale_after_s: 2.0
+  stabilizer:
+    enabled: true
+    inference_min_confidence: 0.1
+    confirm_hits: 3
+    max_misses: 3
+    match_iou: 0.2
+    confidence_alpha: 0.25
+    box_alpha: 0.55
+    depth_alpha: 0.25
+    duplicate_iou: 0.55
+    containment_ratio: 0.9
+    cross_class_iou: 0.4
+    cross_class_containment: 0.6
+    cross_class_conf_ratio: 1.5
+    max_per_class: 0
+    instance_tracking_labels:
+    - unknown
+    - object
+    class_switch_hits: 3
+    edge_margin_px: 8
+    edge_suppress_confidence: 0.55
+  unknown_proposer:
+    enabled: true
+    label: unknown
+    min_depth_m: 0.08
+    max_depth_m: 1.2
+    plane_max_samples: 18000
+    plane_ransac_iterations: 128
+    plane_ransac_threshold_m: 0.003
+    plane_min_inliers: 300
+    plane_min_inlier_ratio: 0.22
+    plane_max_rms_m: 0.006
+    plane_min_normal_z: 0.5
+    min_object_height_m: 0.008
+    max_object_height_m: 0.35
+    min_area_px: 400
+    max_area_ratio: 0.6
+    min_component_width_px: 12
+    min_component_height_px: 8
+    min_valid_ratio: 0.35
+    min_depth_points: 120
+    morph_open_px: 3
+    morph_close_px: 5
+    edge_margin_px: 2
+    max_proposals: 8
+    known_overlap_iou: 0.25
+    known_containment: 0.7
+    min_pose_confidence: 0.55
+    graspability_scale: 0.9
+    seed: 20261101
+  save_annotated: false
+  save_interval_s: 2.0
+  weights_sha256: f43234a94f1d71b24cb187082c18eb22fea84c88922c605df5f7b1a79ffcaaa6
+task_a:
+  iou_threshold: 0.75
+  ground_truth_file: ''
+  output_dir: ../logs/task_a_annotated
+  save_annotated: true
+  draw_labels: true
+  draw_ground_truth: true
+  max_frames: 0
+  min_positions: 10
+  patrol:
+    enabled: true
+    position_count: 10
+    min_move_distance_m: 0.15
+    stride_m: 0.2
+    linear_step_m: 0.01
+    settle_s: 0.8
+    axes:
+    - x
+    - y
+task_b:
+  place_poses_file: task_b_place_poses.yaml
+  rounds: 5
+  keep_same_target: true
+  place_names:
+  - corner_front_left
+  - corner_front_right
+  - corner_back_right
+  - corner_back_left
+  - centre
+target:
+  policy: any
+  known_classes:
+  - 1-Cheez-it
+  - 2-Starkist_Tuna
+  - 3-Scissors
+  - 4-Frenchs_Mustard
+  - 5-Tomato_Soup
+  - 6-Foam_Brick
+  - 7-Clamp
+  - 8-Plastic_Banana
+  - 9-Mug
+  - 10-meat_can
+  - 11-Padlock
+  - 12-Baseball
+  - 13-Bowl
+  - 14-Sleeve
+  - 15-Coca_cola_half
+  - 16-ICRA_Duckie
+  - 17-Eggs_Plush
+  - 18-Dice
+  - 19-Elmers_Glue
+  - 20-Scotch_Tape
+  - 21-Haribo_Golden_Bear
+  - 22-E27_Adapter
+  - 23-GU24_Adapter
+  - 24-Spoon
+  - 25-Flat_Screwdriver
+  - 26-Plastic_Strawberry
+  - 27-Coca_cola_full
+  - 28-Kong_Duck_Dog_Toy
+  - 29-Paper_Towels
+  - 30-Stabilo_OHPen
+  - 31-Plastic_White_Cup
+  - 32-Wine_Glass
+  - 33-Key
+  - 34-Nail
+  - 35-Book
+  - 36-Adjustable_Wrench
+  - 37-T-shirt
+  - 38-Jumbo_Pencil_Cup
+  - 39-Glove
+  - 40-Pringles
+  unknown_labels:
+  - unknown
+  - object
+  unknown_min_graspability: 0.65
+  max_attempts_per_target: 2
+  order:
+  - 1-Cheez-it
+  - 2-Starkist_Tuna
+  - 3-Scissors
+  - 4-Frenchs_Mustard
+  - 5-Tomato_Soup
+  - 6-Foam_Brick
+  - 7-Clamp
+  - 8-Plastic_Banana
+  - 9-Mug
+  - 10-meat_can
+  - 11-Padlock
+  - 12-Baseball
+  - 13-Bowl
+  - 14-Sleeve
+  - 15-Coca_cola_half
+  - 16-ICRA_Duckie
+  - 17-Eggs_Plush
+  - 18-Dice
+  - 19-Elmers_Glue
+  - 20-Scotch_Tape
+  - 21-Haribo_Golden_Bear
+  - 22-E27_Adapter
+  - 23-GU24_Adapter
+  - 24-Spoon
+  - 25-Flat_Screwdriver
+  - 26-Plastic_Strawberry
+  - 27-Coca_cola_full
+  - 28-Kong_Duck_Dog_Toy
+  - 29-Paper_Towels
+  - 30-Stabilo_OHPen
+  - 31-Plastic_White_Cup
+  - 32-Wine_Glass
+  - 33-Key
+  - 34-Nail
+  - 35-Book
+  - 36-Adjustable_Wrench
+  - 37-T-shirt
+  - 38-Jumbo_Pencil_Cup
+  - 39-Glove
+  - 40-Pringles
+pose:
+  camera_frame: flange
+  extrinsics_file: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/camera_to_flange.d405_calibrated_20261025.yaml
+  use_detection_base_xyz: false
+  fallback_camera_to_base: false
+  robot_pose_frame: flange
+  gripper_tip_offset_flange_m:
+  - 0.0
+  - 0.0
+  - 0.165
+motion:
+  backend: mock
+  dry_run: true
+  motion_mode: joint_ik
+  workspace_min:
+  - -0.65
+  - -0.65
+  - 0.02
+  workspace_max:
+  - 0.65
+  - 0.65
+  - 0.8
+  workspace_margin: 0.01
+  approach_height: 0.08
+  grasp_z_offset: 0.0
+  lift_height: 0.08
+  place_pose_frame: jaw_tip
+  place_pose:
+  - 0.270377682201
+  - 0.335654065085
+  - 0.246477463808
+  - -2.84530955462
+  - 0.015450189026
+  - -0.92808733871
+  place_approach_height: 0.08
+  retreat_height: 0.08
+  speed_mps: 0.01
+  orientation: fixed
+  fixed_rpy:
+  - 3.14159265
+  - 0.0
+  - 0.0
+  grasp_rpy:
+  - 3.14159265
+  - 0.0
+  - 0.0
+  grasp_safety:
+    enabled: true
+    require_flange_tip_offset: true
+    require_tool_down: true
+    maximum_tool_tilt_deg: 2.0
+    maximum_place_tool_tilt_deg: 18.0
+    minimum_approach_height_m: 0.05
+    maximum_approach_height_m: 0.12
+    maximum_approach_xy_error_m: 0.001
+    minimum_grasp_flange_z_m: 0.164621
+    minimum_grasp_tip_z_m: 0.000103
+    minimum_route_flange_z_m: 0.164621
+    minimum_route_tip_z_m: 0.000103
+    maximum_grasp_flange_z_m: null
+    maximum_grasp_tip_z_m: null
+    maximum_route_flange_z_m: 0.4842692994444904
+    maximum_route_tip_z_m: 0.32647746380750964
+    maximum_horizontal_reach_m: 0.584604610412
+  move_timeout_s: 30.0
+  position_tolerance_m: 0.003
+  poll_period_s: 0.05
+  robotmove_topic: RobotMove
+  robotinfo_topic: RobotInfo
+  robot_info_timeout_s: 2.0
+  joint_max_step_deg: 1.0
+  joint_tolerance_deg: 0.35
+  joint_start_tolerance_deg: 0.05
+  joint_limit_margin_deg: 2.0
+  joint_move_timeout_s: 8.0
+  joint_reject_timeout_s: 2.0
+  cartesian_step_m: 0.002
+  cartesian_min_step_m: 0.0005
+  cartesian_orientation_step_deg: 1.0
+  cartesian_min_orientation_step_deg: 0.1
+  cartesian_max_waypoints: 600
+  cartesian_joint_step_deg: 0.6
+  cartesian_joint_branch_jump_deg: 5.0
+  cartesian_joint_acceleration_limit_deg: 0.25
+  cartesian_min_jacobian_singular_value: 0.01
+servo:
+  desired_standoff_m: 0.18
+  min_depth_m: 0.12
+  center_tolerance_px: 35
+  depth_tolerance_m: 0.015
+  max_steps: 36
+  max_step_m: 0.005
+  max_total_travel_m: 0.35
+  speed_mps: 0.01
+  lateral_gain: 0.8
+  forward_gain: 0.8
+  settle_s_after_move: 0.25
+  convergence_frames: 2
+  camera_to_tool:
+  - - 1.0
+    - 0.0
+    - 0.0
+  - - 0.0
+    - 1.0
+    - 0.0
+  - - 0.0
+    - 0.0
+    - 1.0
+search:
+  enabled: false
+  yaw_offsets_deg:
+  - 0
+  pitch_down_offsets_deg:
+  - 0
+  - 5
+  - 10
+  - 15
+  - 20
+  - 25
+  - 30
+  - 35
+  - 40
+  - 45
+  - 50
+  - 55
+  - 60
+  - 65
+  - 70
+  - 75
+  - 80
+  settle_s: 0.8
+  observe_frames: 8
+  confirm_hits: 2
+  return_to_initial_on_miss: true
+gripper:
+  backend: mock
+  serial_port: /dev/serial/by-id/usb-1a86_USB_Single_Serial_5CF0022496-if00
+  serial_baudrate: 115200
+  device_id: 1
+  subdivide: 32
+  motion_mode: 2
+  open_angle_deg: 1957.9
+  close_angle_deg: 1957.9
+  speed_rad_s: 5.0
+  status_timeout_s: 1.0
+  motion_timeout_s: 15.0
+  invert_direction: false
+  hold_min_angle_deg: 1950.0
+  require_feedback: true
+  settle_time_s: 0.3
+  open_before_approach: true
+grasp_consensus:
+  enabled: false
+  report_file: ''
+  minimum_distinct_frames: 4
+  maximum_translation_tolerance_m: 0.025
+  maximum_jaw_rotation_tolerance_deg: 15.0
+  maximum_pose_translation_error_m: 0.025
+  maximum_pose_jaw_rotation_error_deg: 15.0

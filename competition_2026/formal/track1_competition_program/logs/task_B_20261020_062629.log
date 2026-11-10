@@ -1,0 +1,128 @@
+
+===== 任务B 五点位拾放 =====
+配置：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/track1_task_b_point1_continuous_live_once.yaml
+视觉后端：realsense_yolo
+模式：真机执行
+日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/task_B_20261020_062629.log
+
+夹爪 ROS 节点已在运行（PID=49232），不重复启动。
+机械臂状态桥接已在运行（PID=48121），不重复启动。
+[bridge] RobotInfo 已就绪：state=AutoReady fault_flag=0 xyz=(-0.1249, 0.4417, 0.2412)
+[INFO] [1792448790.206413177] [track1_grasp]: [camera] D405 started 640x480@15 fx=392.7 fy=391.7 cx=314.4 cy=246.7
+[INFO] [1792448790.215732295] [track1_grasp]: [gripper:ms42dc_ros] control=/motor_control state=/motor_state id=1
+[INFO] [1792448790.272219287] [track1_grasp]: [task_b_initial_pose] current_deg=[91.658, 91.902, -66.736, -66.458, 87.638, -19.351] target_deg=[82.657, 54.31, -32.193, -53.453, 84.446, -2.058] max_delta_deg=37.592 tolerance_deg=0.500
+[INFO] [1792448790.272621782] [track1_grasp]: [task_b_initial_pose] moving six axes together: dry_run=False estimated_steps=38 max_step_deg=1.000 total_abs_deg=[9.001, 37.592, 34.543, 13.005, 3.192, 17.293]
+[INFO] [1792448790.272972035] [track1_grasp]: [motion:robotmove] task_b_initial_pose: 38 step(s), max_delta=37.59 deg
+[INFO] [1792448790.276054266] [track1_grasp]: [motion:robotmove] sent continuous task_b_initial_pose: points=38 payload_bytes=6767 endpoint_deg=[82.66, 54.31, -32.19, -53.45, 84.45, -2.06]
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+[INFO] [1792448793.035557073] [track1_grasp]: [yolo] loading /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/models/best.pt
+[INFO] [1792448793.070884002] [track1_grasp]: [vision:realsense_yolo] ready 640x480 rotate180=True anchor=top_center cx=324.6 cy=232.3 stabilizer=on
+[INFO] [1792448794.726146622] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (95,383)
+[INFO] [1792448794.807492117] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (95,383)
+[INFO] [1792448794.888195282] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (95,383)
+[INFO] [1792448794.969334187] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (95,384)
+[INFO] [1792448795.049569556] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (95,384)
+[INFO] [1792448795.529631810] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (96,386)
+[INFO] [1792448795.631531844] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (97,385)
+[INFO] [1792448795.722655943] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (96,385)
+[INFO] [1792448795.889655644] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (96,385)
+[INFO] [1792448795.970257889] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (96,385)
+[INFO] [1792448796.048423794] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (96,385)
+[INFO] [1792448803.371778933] [track1_grasp]: [task_b_initial_pose] verified residual_deg=0.008; starting visual search
+[INFO] [1792448803.374348250] [track1_grasp]: [task_b_observation_pose] pick_1: current_deg=[82.66, 54.313, -32.195, -53.458, 84.454, -2.059] target_deg=[81.722, 83.401, -48.371, -55.141, 87.911, -3.395] max_delta_deg=29.088 tolerance_deg=0.500
+[INFO] [1792448803.374654574] [track1_grasp]: [task_b_observation_pose] pick_1: moving six axes together: dry_run=False estimated_steps=30 max_step_deg=1.000 total_abs_deg=[0.938, 29.088, 16.176, 1.683, 3.457, 1.336]
+[INFO] [1792448803.375186484] [track1_grasp]: [motion:robotmove] task_b_observation_pick_1: 30 step(s), max_delta=29.09 deg
+[INFO] [1792448803.378167795] [track1_grasp]: [motion:robotmove] sent continuous task_b_observation_pick_1: points=30 payload_bytes=5470 endpoint_deg=[81.72, 83.4, -48.37, -55.14, 87.91, -3.4]
+[INFO] [1792448806.665227236] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,377)
+[INFO] [1792448806.825344159] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,376)
+[INFO] [1792448807.067076093] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,378)
+[INFO] [1792448807.146367558] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (97,380)
+[INFO] [1792448809.574187385] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,386)
+[INFO] [1792448809.651550675] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,386)
+[INFO] [1792448809.804489181] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,384)
+[INFO] [1792448809.880115451] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,385)
+[INFO] [1792448809.955437772] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (97,385)
+[INFO] [1792448813.677395757] [track1_grasp]: [task_b_observation_pose] pick_1: verified residual_deg=0.003; visual search may start
+[INFO] [1792448813.679586325] [track1_grasp]: [scan] round 1/1: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 1)
+[INFO] [1792448813.680432870] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792448813.683918784] [track1_grasp]: [pose] loaded camera transform from /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/camera_to_flange.d405_assumed.yaml
+[INFO] [1792448813.684873373] [track1_grasp]: [detect] frame 'realsense-000252': 2 detection(s), no confirmed target
+[INFO] [1792448813.736507869] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792448813.816535460] [track1_grasp]: [detect] frame 'realsense-000254': 1 detection(s), no confirmed target
+[INFO] [1792448813.867331722] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792448813.903030276] [track1_grasp]: [detect] frame 'realsense-000255': 1 detection(s), no confirmed target
+[INFO] [1792448813.954183915] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792448813.984169180] [track1_grasp]: [detect] frame 'realsense-000256': 1 detection(s), no confirmed target
+[INFO] [1792448814.035278889] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792448814.064602828] [track1_grasp]: [detect] frame 'realsense-000257': 1 detection(s), no confirmed target
+[INFO] [1792448814.115618741] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792448814.144151938] [track1_grasp]: [detect] frame 'realsense-000258': 1 detection(s), no confirmed target
+[INFO] [1792448814.195081177] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792448814.223127581] [track1_grasp]: [detect] frame 'realsense-000259': 1 detection(s), no confirmed target
+[INFO] [1792448814.274029513] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792448814.301858641] [track1_grasp]: [detect] frame 'realsense-000260': 1 detection(s), no confirmed target
+[INFO] [1792448814.304351971] [track1_grasp]: [motion:cartesian-precheck] target 1: 1 waypoint(s), planning_step=2.000 mm, max_joint_step=0.000 deg, max_joint_accel=0.000 deg, min_sigma=0.04479, axis_step_deg=0.000,0.000,0.000,0.000,0.000,0.000, axis_travel_deg=0.000,0.000,0.000,0.000,0.000,0.000
+[INFO] [1792448814.430624903] [track1_grasp]: [motion:cartesian-precheck] target 2: 40 waypoint(s), planning_step=2.000 mm, max_joint_step=0.238 deg, max_joint_accel=0.017 deg, min_sigma=0.04438, axis_step_deg=0.236,0.034,0.095,0.057,0.003,0.238, axis_travel_deg=9.312,0.589,1.724,1.150,0.052,9.310
+[INFO] [1792448819.711786991] [track1_grasp]: [motion:cartesian-precheck] target 3: 94 waypoint(s), planning_step=2.000 mm, max_joint_step=0.499 deg, max_joint_accel=0.247 deg, min_sigma=0.04469, axis_step_deg=0.164,0.136,0.499,0.382,0.002,0.164, axis_travel_deg=7.660,8.436,32.405,23.713,0.052,7.663
+[INFO] [1792448819.713131015] [track1_grasp]: [motion:linear-precheck] validated 3 segment(s), 135 Cartesian waypoint(s), min_sigma=0.04438
+[INFO] [1792448819.714047610] [track1_grasp]: [scan] active search route precheck passed for Task B point 'pick_1': 3 segment(s)
+[INFO] [1792448819.715991221] [track1_grasp]: [scan] active search move 1/3: xyz=(-0.041, 0.491, 0.262)
+[INFO] [1792448819.719207617] [track1_grasp]: [motion:cartesian-precheck] target 1: 1 waypoint(s), planning_step=2.000 mm, max_joint_step=0.000 deg, max_joint_accel=0.000 deg, min_sigma=0.04479, axis_step_deg=0.000,0.000,0.000,0.000,0.000,0.000, axis_travel_deg=0.000,0.000,0.000,0.000,0.000,0.000
+[INFO] [1792448819.719658791] [track1_grasp]: [motion:linear-precheck] validated 1 segment(s), 1 Cartesian waypoint(s), min_sigma=0.04479
+[INFO] [1792448819.720202574] [track1_grasp]: [motion:robotmove] task_search_position_01: already within startup tolerance (0.000 deg <= 0.050 deg); no joint command sent
+[INFO] [1792448819.720567075] [track1_grasp]: [motion:linear] task_search_position_01: completed 0.000 m with 1 waypoint(s), max_joint_step=0.000 deg
+[INFO] [1792448820.521884253] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792448820.540941607] [track1_grasp]: [detect] frame 'realsense-000270': 1 detection(s), no confirmed target
+[INFO] [1792448820.591793672] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792448820.619884006] [track1_grasp]: [detect] frame 'realsense-000271': 1 detection(s), no confirmed target
+[INFO] [1792448820.670489113] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792448820.707538814] [track1_grasp]: [detect] frame 'realsense-000272': 1 detection(s), no confirmed target
+[INFO] [1792448820.758324390] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792448820.801784325] [track1_grasp]: [detect] frame 'realsense-000273': 1 detection(s), no confirmed target
+[INFO] [1792448820.852946275] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792448820.890353353] [track1_grasp]: [detect] frame 'realsense-000274': 1 detection(s), no confirmed target
+[INFO] [1792448820.941369266] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792448820.973818179] [track1_grasp]: [detect] frame 'realsense-000275': 1 detection(s), no confirmed target
+[INFO] [1792448821.025387373] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792448821.054002494] [track1_grasp]: [detect] frame 'realsense-000276': 1 detection(s), no confirmed target
+[INFO] [1792448821.104801131] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792448821.132966265] [track1_grasp]: [detect] frame 'realsense-000277': 2 detection(s), no confirmed target
+[INFO] [1792448821.133690518] [track1_grasp]: [scan] active search move 2/3: xyz=(0.039, 0.491, 0.262)
+[INFO] [1792448821.264907367] [track1_grasp]: [motion:cartesian-precheck] target 1: 41 waypoint(s), planning_step=2.000 mm, max_joint_step=0.232 deg, max_joint_accel=0.017 deg, min_sigma=0.04438, axis_step_deg=0.231,0.034,0.093,0.055,0.005,0.232, axis_travel_deg=9.314,0.589,1.725,1.153,0.055,9.315
+[INFO] [1792448821.265243373] [track1_grasp]: [motion:linear-precheck] validated 1 segment(s), 41 Cartesian waypoint(s), min_sigma=0.04438
+[INFO] [1792448821.267670215] [track1_grasp]: [motion:robotmove] sent continuous task_search_position_02: points=41 payload_bytes=7414 endpoint_deg=[72.41, 83.16, -47.93, -55.26, 87.97, -12.71]
+[INFO] [1792448828.205751207] [track1_grasp]: [motion:linear] task_search_position_02: completed 0.080 m with 41 waypoint(s), max_joint_step=0.232 deg
+[INFO] [1792448829.008053843] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792448829.037925127] [track1_grasp]: [detect] frame 'realsense-000375': 2 detection(s), no confirmed target
+[INFO] [1792448829.089905127] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792448829.117820928] [track1_grasp]: [detect] frame 'realsense-000376': 2 detection(s), no confirmed target
+[INFO] [1792448829.168645686] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792448829.198427922] [track1_grasp]: [detect] frame 'realsense-000377': 2 detection(s), no confirmed target
+[INFO] [1792448829.249192127] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792448829.276202018] [track1_grasp]: [detect] frame 'realsense-000378': 2 detection(s), no confirmed target
+[INFO] [1792448829.328106031] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792448829.357128396] [track1_grasp]: [detect] frame 'realsense-000379': 2 detection(s), no confirmed target
+[INFO] [1792448829.407984023] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792448829.441742528] [track1_grasp]: [detect] frame 'realsense-000380': 1 detection(s), no confirmed target
+[INFO] [1792448829.492568472] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792448829.517367610] [track1_grasp]: [detect] frame 'realsense-000381': 2 detection(s), no confirmed target
+[INFO] [1792448829.568236298] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792448829.596599711] [track1_grasp]: [detect] frame 'realsense-000382': 2 detection(s), no confirmed target
+[INFO] [1792448829.597212358] [track1_grasp]: [scan] active search move 3/3: xyz=(-0.041, 0.411, 0.262)
+[INFO] [1792448834.802769547] [track1_grasp]: [motion:cartesian-precheck] target 1: 94 waypoint(s), planning_step=2.000 mm, max_joint_step=0.498 deg, max_joint_accel=0.247 deg, min_sigma=0.04471, axis_step_deg=0.164,0.137,0.498,0.382,0.002,0.164, axis_travel_deg=7.660,8.438,32.408,23.715,0.054,7.665
+[INFO] [1792448834.804012650] [track1_grasp]: [motion:linear-precheck] validated 1 segment(s), 94 Cartesian waypoint(s), min_sigma=0.04438
+[INFO] [1792448834.809180967] [track1_grasp]: [motion:robotmove] sent continuous task_search_position_03: points=94 payload_bytes=16873 endpoint_deg=[80.07, 91.6, -80.33, -78.98, 87.92, -5.05]
+[INFO] [1792448836.820222825] [track1_grasp]: [scan] active search view 3/3 move failed: controller ignored joint move 'task_search_position_03'; state stayed AutoReady and joints did not change (error=32.408 deg)
+[INFO] [1792448836.821265274] [track1_grasp]: [motion:robotmove] task_search_return: 10 step(s), max_delta=9.31 deg
+[INFO] [1792448836.822838447] [track1_grasp]: [motion:robotmove] sent continuous task_search_return: points=10 payload_bytes=1781 endpoint_deg=[81.72, 83.4, -48.37, -55.14, 87.91, -3.4]
+[INFO] [1792448841.350938797] [track1_grasp]: [motion:robotmove] task_search_01_pitch_+5deg_yaw_+0deg: 5 step(s), max_delta=4.98 deg
+[INFO] [1792448841.352304192] [track1_grasp]: [motion:robotmove] sent continuous task_search_01_pitch_+5deg_yaw_+0deg: points=5 payload_bytes=987 endpoint_deg=[81.72, 83.26, -48.5, -55.0, 92.9, -3.4]

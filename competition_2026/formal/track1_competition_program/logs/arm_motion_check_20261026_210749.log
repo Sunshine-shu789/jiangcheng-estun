@@ -1,0 +1,23 @@
+
+===== 无夹爪运动验证 =====
+配置：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/track1_live.yaml
+模式：真机运动（一次往返）
+参数：轴=x 方向=+ 距离=10 mm
+去程终点停留：0 秒
+夹爪：完全不调用，不会发出开合命令
+日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/arm_motion_check_20261026_210749.log
+
+[bridge] state=AutoReady fault_flag=0 xyz=(-0.0705, 0.4152, 0.4679)
+[INFO] [1793020071.139274120] [track1_arm_motion_check]: [start] EXECUTE no-gripper check: base +x 10.0 mm out-and-back, hold=0.0 s, step=2.5 mm
+[INFO] [1793020071.140776056] [track1_arm_motion_check]: [robot] controller state=AutoReady; start_xyz=(-0.07049789901557141, 0.41520262026388743, 0.4678551597308506) joints_deg=[84.93, 43.25, -16.54, -46.18, 90.02, -11.26]
+[INFO] [1793020071.152478102] [track1_arm_motion_check]: [motion:cartesian-precheck] target 1: 5 waypoint(s), planning_step=2.000 mm, max_joint_step=0.366 deg, max_joint_accel=0.018 deg, min_sigma=0.01530, axis_step_deg=0.308,0.132,0.366,0.236,0.091,0.295, axis_travel_deg=1.540,0.618,1.720,1.108,0.453,1.472
+[INFO] [1793020071.163316980] [track1_arm_motion_check]: [motion:cartesian-precheck] target 2: 5 waypoint(s), planning_step=2.000 mm, max_joint_step=0.380 deg, max_joint_accel=0.035 deg, min_sigma=0.01498, axis_step_deg=0.308,0.139,0.380,0.242,0.091,0.295, axis_travel_deg=1.540,0.610,1.701,1.101,0.452,1.472
+[INFO] [1793020071.164911526] [track1_arm_motion_check]: [motion:linear-precheck] validated 2 segment(s), 10 Cartesian waypoint(s), min_sigma=0.01496
+[INFO] [1793020071.166948936] [track1_arm_motion_check]: [precheck] outbound=10.0 mm return=10.0 mm; all IK, joint limits and workspace checks passed
+[INFO] [1793020071.168962600] [track1_arm_motion_check]: [motion:robotmove] sent continuous no_gripper_out: points=5 payload_bytes=1083 joint_velocity=0.032 rad/s endpoint_deg=[83.39, 43.87, -18.26, -47.29, 89.57, -12.73]
+[INFO] [1793020072.474163400] [track1_arm_motion_check]: [motion:linear] no_gripper_out: completed 0.010 m with 5 waypoint(s), joint_velocity=0.032 rad/s, max_joint_step=0.366 deg
+[INFO] [1793020072.476466765] [track1_arm_motion_check]: [motion:robotmove] sent continuous no_gripper_return: points=5 payload_bytes=1086 joint_velocity=0.033 rad/s endpoint_deg=[84.93, 43.26, -16.56, -46.19, 90.02, -11.26]
+[INFO] [1793020073.782043941] [track1_arm_motion_check]: [motion:linear] no_gripper_return: completed 0.010 m with 5 waypoint(s), joint_velocity=0.033 rad/s, max_joint_step=0.380 deg
+[INFO] [1793020073.783790461] [track1_arm_motion_check]: [result] out-and-back complete; return error=0.01 mm; no gripper command was sent
+
+[完成] 无夹爪运动验证结束。

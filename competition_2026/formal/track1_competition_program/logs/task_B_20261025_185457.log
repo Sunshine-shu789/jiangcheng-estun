@@ -1,0 +1,35 @@
+
+===== 任务B 任意摆放抓取 =====
+配置：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/track1_task_b_arbitrary_single_preflight.yaml
+视觉后端：realsense_yolo
+模式：任意摆放抓取离线试运行（仅使用当前画面识别与 PCA 位姿，逐轮生成候选并完成整条路径逆解预检，机械臂和夹爪不会动作）
+日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/task_B_20261025_185457.log
+
+机械臂状态桥接已在运行（PID=5726），不重复启动。
+[bridge] RobotInfo 已就绪：state=AutoReady fault_flag=0 xyz=(-0.0562, 0.5295, 0.2150)
+[INFO] [1792925698.243212240] [track1_grasp]: [camera] D405 started 640x480@15 fx=392.7 fy=391.7 cx=314.4 cy=246.7
+[INFO] [1792925698.244626357] [track1_grasp]: [task_b_initial_pose] no initial pose file configured; keeping the current arm posture
+[INFO] [1792925698.246106965] [track1_grasp]: [scan] arbitrary_round_1: acquiring the current arbitrary-placement target; no remembered point or previous release XY is used
+[INFO] [1792925698.247536517] [track1_grasp]: [detect] observation 1/5: waiting for a fresh frame
+[INFO] [1792925702.531268821] [track1_grasp]: [yolo] loading /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/models/best.pt
+[INFO] [1792925702.568677015] [track1_grasp]: [vision:realsense_yolo] ready 640x480 rotate180=True anchor=top_center cx=324.6 cy=232.3 stabilizer=on
+[INFO] [1792925705.031858001] [track1_grasp]: [detect] frame 'realsense-000001': 0 detection(s), no confirmed target
+[INFO] [1792925705.084125697] [track1_grasp]: [detect] observation 2/5: waiting for a fresh frame
+[INFO] [1792925705.143562524] [track1_grasp]: [detect] frame 'realsense-000002': 0 detection(s), no confirmed target
+[INFO] [1792925705.195682990] [track1_grasp]: [detect] observation 3/5: waiting for a fresh frame
+[INFO] [1792925705.256685913] [track1_grasp]: [detect] frame 'realsense-000003': 1 detection(s), 8-Plastic_Banana conf=0.94, confirmation 1/3
+[INFO] [1792925705.308733952] [track1_grasp]: [detect] observation 4/5: waiting for a fresh frame
+[INFO] [1792925705.372353762] [track1_grasp]: [detect] frame 'realsense-000004': 1 detection(s), 8-Plastic_Banana conf=0.94, confirmation 2/3
+[INFO] [1792925705.424544281] [track1_grasp]: [detect] observation 5/5: waiting for a fresh frame
+[INFO] [1792925705.511916738] [track1_grasp]: [detect] frame 'realsense-000005': 1 detection(s), 8-Plastic_Banana conf=0.94, confirmation 3/3
+[INFO] [1792925705.514082438] [track1_grasp]: [select] selected '8-Plastic_Banana' conf=0.94 graspability=1.00: 8-Plastic_Banana confirmed in 3 consecutive frames
+[INFO] [1792925705.519845765] [track1_grasp]: [pose] loaded camera transform from /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/camera_to_flange.d405_calibrated_20261025.yaml
+[INFO] [1792925705.521717005] [track1_grasp]: [adaptive-plan] support_tip_base=(0.050221, 0.637277, -0.038701) m; commanded_tip_base=(0.050221, 0.637277, -0.023701) m; flange_target=(0.050221, 0.637277, 0.141299) m; tip_offset_base=(0.000000, -0.000000, -0.165000) m
+[INFO] [1792925705.523661861] [track1_grasp]: [adaptive-plan] support_tip_base=(0.050221, 0.637277, -0.038701) m; commanded_tip_base=(0.050221, 0.637277, -0.023701) m; flange_target=(0.050221, 0.637277, 0.141299) m; tip_offset_base=(0.000000, -0.000000, -0.165000) m
+[INFO] [1792925705.525525978] [track1_grasp]: [adaptive-plan] support_tip_base=(0.050221, 0.637277, -0.038701) m; commanded_tip_base=(0.050221, 0.637277, -0.023701) m; flange_target=(0.050221, 0.637277, 0.141299) m; tip_offset_base=(-0.000000, -0.000000, -0.165000) m
+[INFO] [1792925705.527729672] [track1_grasp]: [plan] arbitrary_round_1: generated 3 object-relative grasp candidate(s)
+[INFO] [1792925812.940710663] [track1_grasp]: [plan] adaptive candidate 1/3 rejected: Cartesian plan for 'target 1' needs 669 base waypoints, above the configured maximum 600
+[INFO] [1792925949.935789926] [track1_grasp]: [plan] adaptive candidate 2/3 rejected: joint-step limit cannot be satisfied at the minimum spacing (0.512 deg > 0.500 deg) at target 1 path waypoint, depth=1
+[INFO] [1792925974.286416573] [track1_grasp]: [plan] adaptive candidate 3/3 rejected: joint-step limit cannot be satisfied at the minimum spacing (0.504 deg > 0.500 deg) at target 1 path waypoint, depth=3
+[INFO] [1792925974.288391105] [track1_grasp]: [plan] arbitrary_round_1: all 3 adaptive grasp candidate(s) were rejected before any motion or gripper command. candidate 1: Task B point 'arbitrary_round_1' visual_xy=(0.050221, 0.637277) failed_waypoint='pregrasp': full-route precheck rejected before motion: Cartesian plan for 'target 1' needs 669 base waypoints, above the configured maximum 600; no arm or gripper command was issued. | candidate 2: Task B point 'arbitrary_round_1' visual_xy=(0.050221, 0.637277) failed_waypoint='pregrasp': full-route precheck rejected before motion: joint-step limit cannot be satisfied at the minimum spacing (0.512 deg > 0.500 deg) at target 1 path waypoint, depth=1; no arm or gripper command was issued. | candidate 3: Task B point 'arbitrary_round_1' visual_xy=(0.050221, 0.637277) failed_waypoint='pregrasp': full-route precheck rejected before motion: joint-step limit cannot be satisfied at the minimum spacing (0.504 deg > 0.500 deg) at target 1 path waypoint, depth=3; no arm or gripper command was issued.
+[INFO] [1792925974.289938197] [track1_grasp]: [run] requested=1 attempts=1 successes=0 rate=0.00%

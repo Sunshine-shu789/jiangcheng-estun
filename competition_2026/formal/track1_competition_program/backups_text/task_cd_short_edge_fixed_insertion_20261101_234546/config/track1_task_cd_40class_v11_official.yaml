@@ -1,0 +1,454 @@
+# 赛道一 C/D 正式抓取配置（V11 40 类，2026-11-01 固化）
+# - V11 权重已复制到 models/official，并启用加载前 SHA256 校验。
+# - 40 类顺序与 V11 模型完全一致，17-Eggs_Plush 和 26-Plastic_Strawberry 已启用。
+# - 仅改变 Task C/D 默认模型链路；Task A/B 默认配置不变。
+# - 2026-11-01 已获操作员明确实机运动授权，并完成固定观察/放置位、最低
+#   抓取位、相机测距和 MS42DC 夹爪连接检查。启动仍须经过显式真机确认。
+task:
+  mode: C
+  max_picks: 40
+  stop_on_error: false
+  sample_period_s: 0.2
+# 固定观察位由现场当前姿态只读采集（30 个 RobotInfo 样本，无 RobotMove）。
+# 固定放置位由现场当前姿态只读采集；操作员确认保持约 17 度倾斜释放。
+task_cd:
+  enabled: true
+  observation_pose_file: task_cd_observation_pose_20261101_194651.yaml
+  observation_pose_tolerance_deg: 0.5
+  return_to_observation_after_each_pick: true
+  place_pose_verified: true
+  exclude_completed_tracks: true
+  # 所有物品按 PCA 长轴的垂直方向闭合：工具 +Y 对齐长轴，夹爪跨短边。
+  # PCA、置信度或水平投影任一无效时该候选被跳过，不张爪、不预检、不运动。
+  short_edge_grasp:
+    enabled: true
+    min_pose_confidence: 0.50
+    require_validated_extrinsics: true
+    pca:
+      min_valid_points: 200
+      min_depth_m: 0.08
+      max_depth_m: 1.20
+      trim_percentile: 5.0
+      # 现场俯视点云受遮挡影响会低估长宽比；1.02 仅作为数值可辨识下限，
+      # 点数、置信度和水平投影无效时仍立即拒绝，不发力。
+      min_axis_ratio: 1.02
+      support_plane_required: false
+vision:
+  backend: realsense_yolo
+  weights: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/models/official/track1_40class_v11_official_f43234a9.pt
+  min_confidence: 0.15
+  require_depth: true
+  camera_frame_id: camera_color_optical_frame
+  width: 640
+  height: 480
+  fps: 15
+  serial: ''
+  warmup_frames: 20
+  imgsz: 640
+  device: cpu
+  depth_window: 5
+  target_class: ''
+  classes:
+  - 1-Cheez-it
+  - 2-Starkist_Tuna
+  - 3-Scissors
+  - 4-Frenchs_Mustard
+  - 5-Tomato_Soup
+  - 6-Foam_Brick
+  - 7-Clamp
+  - 8-Plastic_Banana
+  - 9-Mug
+  - 10-meat_can
+  - 11-Padlock
+  - 12-Baseball
+  - 13-Bowl
+  - 14-Sleeve
+  - 15-Coca_cola_half
+  - 16-ICRA_Duckie
+  - 17-Eggs_Plush
+  - 18-Dice
+  - 19-Elmers_Glue
+  - 20-Scotch_Tape
+  - 21-Haribo_Golden_Bear
+  - 22-E27_Adapter
+  - 23-GU24_Adapter
+  - 24-Spoon
+  - 25-Flat_Screwdriver
+  - 26-Plastic_Strawberry
+  - 27-Coca_cola_full
+  - 28-Kong_Duck_Dog_Toy
+  - 29-Paper_Towels
+  - 30-Stabilo_OHPen
+  - 31-Plastic_White_Cup
+  - 32-Wine_Glass
+  - 33-Key
+  - 34-Nail
+  - 35-Book
+  - 36-Adjustable_Wrench
+  - 37-T-shirt
+  - 38-Jumbo_Pencil_Cup
+  - 39-Glove
+  - 40-Pringles
+  anchor: top_center
+  rotate_180: true
+  output_dir: ../logs/vision
+  continuous: true
+  show: true
+  window_name: Track 1 - D405 + YOLO
+  preview_fps: 30
+  capture_timeout_s: 20.0
+  stale_after_s: 2.0
+  stabilizer:
+    enabled: true
+    inference_min_confidence: 0.1
+    confirm_hits: 3
+    max_misses: 3
+    match_iou: 0.2
+    confidence_alpha: 0.25
+    box_alpha: 0.55
+    depth_alpha: 0.25
+    duplicate_iou: 0.55
+    containment_ratio: 0.9
+    cross_class_iou: 0.4
+    cross_class_containment: 0.6
+    cross_class_conf_ratio: 1.5
+    # 清空模式必须保留同类别的多个独立实例。
+    max_per_class: 0
+    # unknown/object are physical instances, not mutually exclusive classes.
+    instance_tracking_labels:
+    - unknown
+    - object
+    class_switch_hits: 3
+    edge_margin_px: 8
+    edge_suppress_confidence: 0.55
+  # Task D only; the task-mode gate forcibly enables this for D and disables it
+  # for A/B/C/E even if this YAML value is changed by mistake.
+  unknown_proposer:
+    enabled: false
+    label: unknown
+    min_depth_m: 0.08
+    max_depth_m: 1.2
+    plane_max_samples: 18000
+    plane_ransac_iterations: 128
+    plane_ransac_threshold_m: 0.003
+    plane_min_inliers: 300
+    plane_min_inlier_ratio: 0.22
+    plane_max_rms_m: 0.006
+    plane_min_normal_z: 0.5
+    min_object_height_m: 0.008
+    max_object_height_m: 0.35
+    min_area_px: 400
+    max_area_ratio: 0.6
+    min_component_width_px: 12
+    min_component_height_px: 8
+    min_valid_ratio: 0.35
+    min_depth_points: 120
+    morph_open_px: 3
+    morph_close_px: 5
+    edge_margin_px: 2
+    max_proposals: 8
+    known_overlap_iou: 0.25
+    known_containment: 0.7
+    min_pose_confidence: 0.55
+    graspability_scale: 0.9
+    seed: 20261101
+  save_annotated: false
+  save_interval_s: 2.0
+  weights_sha256: f43234a94f1d71b24cb187082c18eb22fea84c88922c605df5f7b1a79ffcaaa6
+task_a:
+  iou_threshold: 0.75
+  ground_truth_file: ''
+  output_dir: ../logs/task_a_annotated
+  save_annotated: true
+  draw_labels: true
+  draw_ground_truth: true
+  max_frames: 0
+  min_positions: 10
+  patrol:
+    enabled: true
+    position_count: 10
+    min_move_distance_m: 0.15
+    stride_m: 0.2
+    linear_step_m: 0.01
+    settle_s: 0.8
+    axes:
+    - x
+    - y
+task_b:
+  place_poses_file: task_b_place_poses.yaml
+  rounds: 5
+  keep_same_target: true
+  place_names:
+  - corner_front_left
+  - corner_front_right
+  - corner_back_right
+  - corner_back_left
+  - centre
+target:
+  policy: any
+  known_classes:
+  - 1-Cheez-it
+  - 2-Starkist_Tuna
+  - 3-Scissors
+  - 4-Frenchs_Mustard
+  - 5-Tomato_Soup
+  - 6-Foam_Brick
+  - 7-Clamp
+  - 8-Plastic_Banana
+  - 9-Mug
+  - 10-meat_can
+  - 11-Padlock
+  - 12-Baseball
+  - 13-Bowl
+  - 14-Sleeve
+  - 15-Coca_cola_half
+  - 16-ICRA_Duckie
+  - 17-Eggs_Plush
+  - 18-Dice
+  - 19-Elmers_Glue
+  - 20-Scotch_Tape
+  - 21-Haribo_Golden_Bear
+  - 22-E27_Adapter
+  - 23-GU24_Adapter
+  - 24-Spoon
+  - 25-Flat_Screwdriver
+  - 26-Plastic_Strawberry
+  - 27-Coca_cola_full
+  - 28-Kong_Duck_Dog_Toy
+  - 29-Paper_Towels
+  - 30-Stabilo_OHPen
+  - 31-Plastic_White_Cup
+  - 32-Wine_Glass
+  - 33-Key
+  - 34-Nail
+  - 35-Book
+  - 36-Adjustable_Wrench
+  - 37-T-shirt
+  - 38-Jumbo_Pencil_Cup
+  - 39-Glove
+  - 40-Pringles
+  unknown_labels:
+  - unknown
+  - object
+  unknown_min_graspability: 0.65
+  max_attempts_per_target: 2
+  order:
+  - 1-Cheez-it
+  - 2-Starkist_Tuna
+  - 3-Scissors
+  - 4-Frenchs_Mustard
+  - 5-Tomato_Soup
+  - 6-Foam_Brick
+  - 7-Clamp
+  - 8-Plastic_Banana
+  - 9-Mug
+  - 10-meat_can
+  - 11-Padlock
+  - 12-Baseball
+  - 13-Bowl
+  - 14-Sleeve
+  - 15-Coca_cola_half
+  - 16-ICRA_Duckie
+  - 17-Eggs_Plush
+  - 18-Dice
+  - 19-Elmers_Glue
+  - 20-Scotch_Tape
+  - 21-Haribo_Golden_Bear
+  - 22-E27_Adapter
+  - 23-GU24_Adapter
+  - 24-Spoon
+  - 25-Flat_Screwdriver
+  - 26-Plastic_Strawberry
+  - 27-Coca_cola_full
+  - 28-Kong_Duck_Dog_Toy
+  - 29-Paper_Towels
+  - 30-Stabilo_OHPen
+  - 31-Plastic_White_Cup
+  - 32-Wine_Glass
+  - 33-Key
+  - 34-Nail
+  - 35-Book
+  - 36-Adjustable_Wrench
+  - 37-T-shirt
+  - 38-Jumbo_Pencil_Cup
+  - 39-Glove
+  - 40-Pringles
+pose:
+  camera_frame: flange
+  extrinsics_file: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/camera_to_flange.d405_calibrated_20261025.yaml
+  use_detection_base_xyz: false
+  fallback_camera_to_base: false
+  # 控制器 RobotInfo/RobotMove 使用法兰坐标；不能与 TCP 坐标混用。
+  robot_pose_frame: flange
+  # 从法兰原点到闭合夹爪最低尖端的偏移，单位为米。
+  # 0.165 m 来自现场装配标定，不是 MS42DC 官方成品尺寸。
+  gripper_tip_offset_flange_m: [0.0, 0.0, 0.165]
+motion:
+  backend: robotmove
+  dry_run: false
+  motion_mode: joint_ik
+  workspace_min:
+  - -0.65
+  - -0.65
+  - 0.02
+  workspace_max:
+  - 0.65
+  - 0.65
+  - 0.8
+  workspace_margin: 0.01
+  approach_height: 0.08
+  grasp_z_offset: 0.0
+  # 2026-11-01 现场短边抓取只读验证：10 cm 抬升在肉罐头/芥末酱的
+  # grasp->lift 段触发接近奇异；8 cm 仍满足已验证的 8 cm 接近高度和
+  # 收纳盒越过余量，并使完整六段最低雅可比裕量分别提升到约 0.0205/0.0157。
+  lift_height: 0.08
+  # C/D release target is the closed-jaw low point, not the controller flange.
+  # Planner converts jaw-tip XYZ to flange XYZ with the configured tool offset.
+  place_pose_frame: jaw_tip
+  # 2026-11-01 19:50 现场只读采集；操作员确认当前倾斜姿态就是释放姿态。
+  # XYZ 是闭合夹爪尖，姿态与控制器法兰 RPY 一致。
+  place_pose:
+  - 0.270377682201
+  - 0.335654065085
+  - 0.246477463808
+  - -2.84530955462
+  - 0.015450189026
+  - -0.92808733871
+  place_approach_height: 0.08
+  retreat_height: 0.08
+  speed_mps: 0.01
+  orientation: fixed
+  fixed_rpy:
+  - 3.14159265
+  - 0.0
+  - 0.0
+  # C/D 抓取必须使用显式固定姿态；visual 目标点按夹爪尖解释。
+  grasp_rpy: [3.14159265, 0.0, 0.0]
+  grasp_safety:
+    enabled: true
+    require_flange_tip_offset: true
+    require_tool_down: true
+    # 抓取和抬升仍严格限制工具轴竖直；放置段单独允许现场确认的倾斜姿态。
+    maximum_tool_tilt_deg: 2.0
+    maximum_place_tool_tilt_deg: 18.0
+    minimum_approach_height_m: 0.05
+    maximum_approach_height_m: 0.12
+    maximum_approach_xy_error_m: 0.001
+    # 2026-11-01 22:18 现场同步标定：操作员确认这是收纳盒内整个水平范围
+    # 都可安全到达的最低抓取高度。30 帧稳定 /RobotInfo 的夹爪尖实测 Z 为
+    # 0.000103 m；同一静止状态下 D405 到空盒底部深度中值为 0.179600 m。
+    minimum_grasp_flange_z_m: 0.164621
+    minimum_grasp_tip_z_m: 0.000103
+    minimum_route_flange_z_m: 0.164621
+    minimum_route_tip_z_m: 0.000103
+    # 2026-11-01 操作员明确要求：不设置“最高抓取点位”。这两个上限保持
+    # null；live 仍强制最低边界、路线包络、工具倾角、接近高度和机器人
+    # 关节/工作空间预检查。不得把当前临时姿态或推测值写成抓取上限。
+    maximum_grasp_flange_z_m: null
+    maximum_grasp_tip_z_m: null
+    # 以下值不是新示教点，而是由已确认的固定放置位和固定 8 cm 接近量推导：
+    # flange 0.404269299444 + 0.080000000000 = 0.484269299444 m；
+    # jaw-tip 0.246477463808 + 0.080000000000 = 0.326477463808 m。
+    maximum_route_flange_z_m: 0.4842692994444904
+    maximum_route_tip_z_m: 0.32647746380750964
+    # 最低安全抓取位已由操作员确认覆盖收纳盒整个水平范围；该姿态实测的
+    # flange/jaw-tip 最大水平半径为 0.584604610412 m，因此把它作为水平包络。
+    maximum_horizontal_reach_m: 0.584604610412
+  move_timeout_s: 30.0
+  position_tolerance_m: 0.003
+  poll_period_s: 0.05
+  robotmove_topic: RobotMove
+  robotinfo_topic: RobotInfo
+  robot_info_timeout_s: 2.0
+  joint_max_step_deg: 1.0
+  joint_tolerance_deg: 0.35
+  joint_start_tolerance_deg: 0.05
+  joint_limit_margin_deg: 2.0
+  joint_move_timeout_s: 8.0
+  joint_reject_timeout_s: 2.0
+  cartesian_step_m: 0.002
+  cartesian_min_step_m: 0.0005
+  cartesian_orientation_step_deg: 1.0
+  cartesian_min_orientation_step_deg: 0.1
+  cartesian_max_waypoints: 600
+  # 2026-11-01 现场短边姿态预检：0.517°/0.520° 被 0.500° 误拒绝；
+  # 0.600° 仍低于控制器 joint_max_step_deg=1.000°，且加速度保护不变。
+  cartesian_joint_step_deg: 0.6
+  cartesian_joint_branch_jump_deg: 5.0
+  cartesian_joint_acceleration_limit_deg: 0.25
+  cartesian_min_jacobian_singular_value: 0.01
+servo:
+  desired_standoff_m: 0.18
+  min_depth_m: 0.12
+  center_tolerance_px: 35
+  depth_tolerance_m: 0.015
+  max_steps: 36
+  max_step_m: 0.005
+  max_total_travel_m: 0.35
+  speed_mps: 0.01
+  lateral_gain: 0.8
+  forward_gain: 0.8
+  settle_s_after_move: 0.25
+  convergence_frames: 2
+  camera_to_tool:
+  - - 1.0
+    - 0.0
+    - 0.0
+  - - 0.0
+    - 1.0
+    - 0.0
+  - - 0.0
+    - 0.0
+    - 1.0
+search:
+  # 固定观察位清空模式：不离开观察位做搜索。
+  enabled: false
+  yaw_offsets_deg:
+  - 0
+  pitch_down_offsets_deg:
+  - 0
+  - 5
+  - 10
+  - 15
+  - 20
+  - 25
+  - 30
+  - 35
+  - 40
+  - 45
+  - 50
+  - 55
+  - 60
+  - 65
+  - 70
+  - 75
+  - 80
+  settle_s: 0.8
+  observe_frames: 8
+  confirm_hits: 2
+  return_to_initial_on_miss: true
+gripper:
+  backend: ms42dc
+  serial_port: /dev/serial/by-id/usb-1a86_USB_Single_Serial_5CF0022496-if00
+  serial_baudrate: 115200
+  device_id: 1
+  subdivide: 32
+  motion_mode: 2
+  open_angle_deg: 1957.9
+  close_angle_deg: 1957.9
+  speed_rad_s: 5.0
+  status_timeout_s: 1.0
+  motion_timeout_s: 15.0
+  invert_direction: false
+  hold_min_angle_deg: 1950.0
+  require_feedback: true
+  settle_time_s: 0.3
+  open_before_approach: true
+grasp_consensus:
+  enabled: false
+  report_file: ''
+  minimum_distinct_frames: 4
+  maximum_translation_tolerance_m: 0.025
+  maximum_jaw_rotation_tolerance_deg: 15.0
+  maximum_pose_translation_error_m: 0.025
+  maximum_pose_jaw_rotation_error_deg: 15.0

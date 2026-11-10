@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+APP_DIR="$ROOT/app/track1_grasp"
+PYTHON="${TRACK1_PYTHON:-/usr/bin/python3}"
+
+"$ROOT/bin/ensure_runtime"
+
+export PYTHONPATH="$APP_DIR${PYTHONPATH:+:$PYTHONPATH}"
+exec "$PYTHON" -m track1_grasp.tools.arm_speed_control "$@"

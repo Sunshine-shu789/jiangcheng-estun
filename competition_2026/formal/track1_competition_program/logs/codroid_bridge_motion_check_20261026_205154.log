@@ -1,0 +1,38 @@
+[INFO] [1793019115.480456698] [codroid_udp_bridge]: listening for RobotInfo on udp/9006, sending RobotMove to 192.168.101.100:9005
+[INFO] [1793019119.261067641] [codroid_udp_bridge]: sent move to 192.168.101.100:9005: ['Joint1', 'Joint2', 'Joint3', 'Joint4', 'Joint5', 'Joint6'] -> [array('d', [1.4777839710373142, 0.7565367183512921, -0.29331907980647326, -0.8092379158179313, 1.5697981533685774, -0.20074353839498973]), array('d', [1.4733065147540827, 0.7584977618134437, -0.298694583410236, -0.8126617774126993, 1.5684817529442583, -0.20502322298965162]), array('d', [1.4688271186731092, 0.7603674856578237, -0.3038516669766573, -0.8159628670633013, 1.5671646706026598, -0.209304791477892]), array('d', [1.46434607997047, 0.7621463298974273, -0.3087911279571899, -0.8191431425627482, 1.565847241752185, -0.2135879749180784]), array('d', [1.459867801760286, 0.763679139875418, -0.3131823469686969, -0.8220810914654861, 1.56453861212821, -0.21786875415118076]), array('d', [1.4553841592168384, 0.7652875211564719, -0.31771016978178823, -0.8250337976481364, 1.5632210564810356, -0.22215464409473437])]
+[INFO] [1793019120.472452607] [codroid_udp_bridge]: rx=100 decoded=100 tx=1
+[INFO] [1793019120.618691375] [codroid_udp_bridge]: sent move to 192.168.101.100:9005: ['Joint1', 'Joint2', 'Joint3', 'Joint4', 'Joint5', 'Joint6'] -> [array('d', [1.460751433114398, 0.7638321434101967, -0.31327759205725014, -0.8218614853012185, 1.5647741919728628, -0.2170245658824907]), array('d', [1.4661332842659347, 0.7616506924427789, -0.3072631903773383, -0.8180464218766581, 1.5663625322811618, -0.21188049368878656]), array('d', [1.4715091734304673, 0.7594854628822839, -0.3012486135725725, -0.8141763578427538, 1.5679424232053898, -0.20674209305004956]), array('d', [1.4768823155832966, 0.7571938579875634, -0.29493036161287456, -0.8101350327621673, 1.5695212941180643, -0.20160637167226295]), array('d', [1.4822525160915907, 0.7547618982194328, -0.2882789106937838, -0.8059082699037137, 1.5710992439330167, -0.19647349634952802])]
+[INFO] [1793019125.472504359] [codroid_udp_bridge]: rx=200 decoded=200 tx=2
+Traceback (most recent call last):
+  File "/media/sunshine/ESTUN_RUNTIME/ros2_ws/build/taskA_grasp/taskA_grasp/nodes/udp_bridge.py", line 146, in main
+    rclpy.spin(node)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 229, in spin
+    executor.spin_once()
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 808, in spin_once
+    self._spin_once_impl(timeout_sec)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 797, in _spin_once_impl
+    handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 780, in wait_for_ready_callbacks
+    return next(self._cb_iter)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 681, in _wait_for_ready_callbacks
+    raise ExternalShutdownException()
+rclpy.executors.ExternalShutdownException
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/media/sunshine/ESTUN_RUNTIME/ros2_ws/build/taskA_grasp/taskA_grasp/nodes/udp_bridge.py", line 155, in <module>
+    main()
+  File "/media/sunshine/ESTUN_RUNTIME/ros2_ws/build/taskA_grasp/taskA_grasp/nodes/udp_bridge.py", line 151, in main
+    rclpy.shutdown()
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 130, in shutdown
+    _shutdown(context=context)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/utilities.py", line 58, in shutdown
+    return context.shutdown()
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 102, in shutdown
+    self.__context.shutdown()
+rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241

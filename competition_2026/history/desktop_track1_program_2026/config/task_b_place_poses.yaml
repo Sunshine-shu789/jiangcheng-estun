@@ -1,0 +1,24 @@
+# Task B reference pick-point windows (example values only).
+#
+# IMPORTANT: these coordinates are placeholders and must be replaced with the
+# five calibrated pick points for the actual competition cell.  They are used
+# only to decide whether a visual detection is close enough to the expected
+# point before any motion is commanded.  The release pose is not taken from
+# this file: after a successful grasp the object is returned to the observed
+# grasp XY, so each object goes back exactly where it was picked.
+#
+# Every pose is [x, y, z, rx, ry, rz] in the ROBOT BASE frame: metres for xyz,
+# radians for the rpy triple.  The five XY points must be distinguishable:
+# return_to_pick relies on the observed release XY to reject an object left at
+# an already completed point.
+places:
+  - name: pick_1
+    pose: [0.30, -0.30, 0.08, 3.14159265, 0.0, 0.0]
+  - name: pick_2
+    pose: [0.30, 0.30, 0.08, 3.14159265, 0.0, 0.0]
+  - name: pick_3
+    pose: [-0.30, 0.30, 0.08, 3.14159265, 0.0, 0.0]
+  - name: pick_4
+    pose: [-0.30, -0.30, 0.08, 3.14159265, 0.0, 0.0]
+  - name: pick_5
+    pose: [0.00, 0.00, 0.08, 3.14159265, 0.0, 0.0]

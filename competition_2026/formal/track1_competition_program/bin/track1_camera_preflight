@@ -1,0 +1,172 @@
+#!/usr/bin/env bash
+# Release known Track 1 camera previews and verify that the D405 is idle before
+# a real C/D task starts.  This script never sends robot or gripper commands.
+set -o pipefail
+set -u
+
+ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)"
+LOG_DIR="$ROOT/logs"
+LOG_FILE="$LOG_DIR/camera_preflight.log"
+MODE="${1:---release}"
+mkdir -p -- "$LOG_DIR"
+
+log() {
+    printf '%s [camera-preflight pid=%s] %s\n' \
+        "$(date '+%F %T')" "$$" "$*" >>"$LOG_FILE"
+}
+
+fail() {
+    printf '相机预检失败：%s\n' "$*" >&2
+    log "ERROR: $*"
+    exit 2
+}
+
+process_alive() {
+    local pid="$1"
+    [[ "$pid" =~ ^[0-9]+$ ]] || return 1
+    kill -0 "$pid" 2>/dev/null || return 1
+    [ -r "/proc/$pid/stat" ] || return 1
+    local state
+    state="$(awk '{print $3}' "/proc/$pid/stat" 2>/dev/null || true)"
+    [ "$state" != "Z" ]
+}
+
+process_cmdline() {
+    local pid="$1"
+    tr '\0' ' ' < "/proc/$pid/cmdline" 2>/dev/null || true
+}
+
+matching_pids() {
+    local needle="$1"
+    local pid cmd exe
+    for pid in $(/usr/bin/pgrep -f -- "$needle" 2>/dev/null || true); do
+        [ "$pid" = "$$" ] && continue
+        process_alive "$pid" || continue
+        # pgrep -f also matches a shell whose -c script merely contains the
+        # pattern.  Restrict matches to the actual Python camera programs (or
+        # RealSense Viewer) so a diagnostic command can never stop its caller.
+        exe="$(readlink -f -- "/proc/$pid/exe" 2>/dev/null || true)"
+        case "$exe" in
+            */python|*/python3|*/python3.*|*/realsense-viewer) ;;
+            *) continue ;;
+        esac
+        cmd="$(process_cmdline "$pid")"
+        [[ "$cmd" == *"$needle"* ]] || continue
+        printf '%s\n' "$pid"
+    done
+}
+
+stop_known_processes() {
+    local label="$1"
+    local needle="$2"
+    local -a pids=()
+    local pid alive _
+    mapfile -t pids < <(matching_pids "$needle")
+    [ "${#pids[@]}" -gt 0 ] || return 0
+
+    local joined
+    joined="$(IFS=,; printf '%s' "${pids[*]}")"
+    printf '检测到%s占用 D405（PID=%s），正在自动停止...\n' "$label" "$joined"
+    log "stopping $label pids=$joined pattern=$needle"
+    for pid in "${pids[@]}"; do
+        kill -TERM "$pid" 2>/dev/null || true
+    done
+
+    for _ in $(seq 1 50); do
+        alive=0
+        for pid in "${pids[@]}"; do
+            if process_alive "$pid"; then
+                alive=1
+                break
+            fi
+        done
+        [ "$alive" -eq 0 ] && return 0
+        sleep 0.1
+    done
+
+    printf '进程未在 5 秒内退出，正在强制停止：PID=%s\n' "$joined" >&2
+    log "force stopping $label pids=$joined"
+    for pid in "${pids[@]}"; do
+        process_alive "$pid" && kill -KILL "$pid" 2>/dev/null || true
+    done
+    for _ in $(seq 1 20); do
+        alive=0
+        for pid in "${pids[@]}"; do
+            if process_alive "$pid"; then
+                alive=1
+                break
+            fi
+        done
+        [ "$alive" -eq 0 ] && return 0
+        sleep 0.1
+    done
+    return 1
+}
+
+realsense_video_devices() {
+    local dev
+    for dev in /dev/video*; do
+        [ -e "$dev" ] || continue
+        if udevadm info -q property -n "$dev" 2>/dev/null \
+            | grep -Eiq '^(ID_MODEL|ID_MODEL_FROM_DATABASE)=.*(RealSense|Depth.Camera.405)'; then
+            printf '%s\n' "$dev"
+        fi
+    done
+}
+
+camera_holders() {
+    local dev pid
+    declare -A seen=()
+    for dev in $(realsense_video_devices); do
+        for pid in $(fuser "$dev" 2>/dev/null | tr ' ' '\n' || true); do
+            [[ "$pid" =~ ^[0-9]+$ ]] || continue
+            [ -n "${seen[$pid]:-}" ] && continue
+            seen[$pid]=1
+            printf '%s|%s\n' "$pid" "$dev"
+        done
+    done
+}
+
+case "$MODE" in
+    --release|release) RELEASE=1 ;;
+    --check|check) RELEASE=0 ;;
+    *)
+        printf '用法：%s [--release|--check]\n' "$0" >&2
+        exit 64
+        ;;
+esac
+
+if [ "$RELEASE" = "1" ]; then
+    while IFS='|' read -r label needle; do
+        [ -n "${needle:-}" ] || continue
+        if ! stop_known_processes "$label" "$needle"; then
+            fail "$label 无法停止，请关闭对应预览窗口后重试。"
+        fi
+    done <<'KNOWN'
+赛道一实时相机预览|track1_capture_web/live_camera_preview.py
+旧版视觉预览|codex/easton/taskA/live_camera_preview.py
+旧版相机识别|camera_recognition.py
+抓取识别预览|track1_grasp.nodes.search_approach_node
+RealSense Viewer|/usr/bin/realsense-viewer
+KNOWN
+    sleep 0.3
+fi
+
+mapfile -t DEVICES < <(realsense_video_devices)
+[ "${#DEVICES[@]}" -gt 0 ] || fail '未检测到 Intel RealSense D405 视频设备。'
+
+HOLDERS="$(camera_holders)"
+if [ -n "$HOLDERS" ]; then
+    DETAIL=""
+    while IFS='|' read -r pid dev; do
+        [ -n "${pid:-}" ] || continue
+        cmd="$(process_cmdline "$pid")"
+        line="PID=$pid 设备=$dev 命令=${cmd:-<已退出>}"
+        DETAIL="${DETAIL}${DETAIL:+; }$line"
+    done <<<"$HOLDERS"
+    fail "D405 仍被其他程序占用：$DETAIL。请关闭该程序后再启动任务。"
+fi
+
+printf 'D405 相机预检通过：设备空闲，可启动任务。\n'
+log "camera ready devices=${DEVICES[*]}"
+exit 0

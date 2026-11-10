@@ -1,0 +1,254 @@
+# 赛道一 C/D 安全配置（2026-10-29）
+# - 显式使用 40 类 v5 权重，17/26 两个空槽不进入可用类别列表。
+# - 当前只用于已知物体链路和 dry-run；实体运动关闭，夹爪为 mock。
+# - Task D 的 unknown/object 分支仍需独立类别无关分割器提供候选。
+
+task:
+  mode: C
+  max_picks: 38
+  stop_on_error: false
+  sample_period_s: 0.2
+vision:
+  backend: realsense_yolo
+  weights: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_train_40class_v5/track1_40class_v5_20261029_234800/weights/best.pt
+  min_confidence: 0.15
+  require_depth: true
+  camera_frame_id: camera_color_optical_frame
+  width: 640
+  height: 480
+  fps: 15
+  serial: ''
+  warmup_frames: 20
+  imgsz: 640
+  device: cpu
+  depth_window: 5
+  target_class: ''
+  classes: &id001
+  - 1-Cheez-it
+  - 2-Starkist_Tuna
+  - 3-Scissors
+  - 4-Frenchs_Mustard
+  - 5-Tomato_Soup
+  - 6-Foam_Brick
+  - 7-Clamp
+  - 8-Plastic_Banana
+  - 9-Mug
+  - 10-meat_can
+  - 11-Padlock
+  - 12-Baseball
+  - 13-Bowl
+  - 14-Sleeve
+  - 15-Coca_cola_half
+  - 16-ICRA_Duckie
+  - 18-Dice
+  - 19-Elmers_Glue
+  - 20-Scotch_Tape
+  - 21-Haribo_Golden_Bear
+  - 22-E27_Adapter
+  - 23-GU24_Adapter
+  - 24-Spoon
+  - 25-Flat_Screwdriver
+  - 27-Coca_cola_full
+  - 28-Kong_Duck_Dog_Toy
+  - 29-Paper_Towels
+  - 30-Stabilo_OHPen
+  - 31-Plastic_White_Cup
+  - 32-Wine_Glass
+  - 33-Key
+  - 34-Nail
+  - 35-Book
+  - 36-Adjustable_Wrench
+  - 37-T-shirt
+  - 38-Jumbo_Pencil_Cup
+  - 39-Glove
+  - 40-Pringles
+  anchor: top_center
+  rotate_180: true
+  output_dir: ../logs/vision
+  continuous: true
+  show: true
+  window_name: Track 1 - D405 + YOLO
+  preview_fps: 30
+  capture_timeout_s: 20.0
+  stale_after_s: 2.0
+  stabilizer:
+    enabled: true
+    inference_min_confidence: 0.1
+    confirm_hits: 3
+    max_misses: 3
+    match_iou: 0.2
+    confidence_alpha: 0.25
+    box_alpha: 0.55
+    depth_alpha: 0.25
+    duplicate_iou: 0.55
+    containment_ratio: 0.9
+    cross_class_iou: 0.4
+    cross_class_containment: 0.6
+    cross_class_conf_ratio: 1.5
+    max_per_class: 1
+    class_switch_hits: 3
+    edge_margin_px: 8
+    edge_suppress_confidence: 0.55
+  save_annotated: false
+  save_interval_s: 2.0
+task_a:
+  iou_threshold: 0.75
+  ground_truth_file: ''
+  output_dir: ../logs/task_a_annotated
+  save_annotated: true
+  draw_labels: true
+  draw_ground_truth: true
+  max_frames: 0
+  min_positions: 10
+  patrol:
+    enabled: true
+    position_count: 10
+    min_move_distance_m: 0.15
+    stride_m: 0.2
+    linear_step_m: 0.01
+    settle_s: 0.8
+    axes:
+    - x
+    - y
+task_b:
+  place_poses_file: task_b_place_poses.yaml
+  rounds: 5
+  keep_same_target: true
+  place_names:
+  - corner_front_left
+  - corner_front_right
+  - corner_back_right
+  - corner_back_left
+  - centre
+target:
+  policy: any
+  known_classes: *id001
+  unknown_labels:
+  - unknown
+  - object
+  unknown_min_graspability: 0.65
+  max_attempts_per_target: 2
+  order: *id001
+pose:
+  camera_frame: flange
+  extrinsics_file: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/camera_to_flange.d405_calibrated_20261025.yaml
+  use_detection_base_xyz: false
+  fallback_camera_to_base: false
+motion:
+  backend: robotmove
+  dry_run: true
+  motion_mode: joint_ik
+  workspace_min:
+  - -0.65
+  - -0.65
+  - 0.02
+  workspace_max:
+  - 0.65
+  - 0.65
+  - 0.8
+  workspace_margin: 0.01
+  approach_height: 0.08
+  grasp_z_offset: 0.0
+  lift_height: 0.1
+  place_pose:
+  - 0.25
+  - 0.25
+  - 0.08
+  - 3.14159265
+  - 0.0
+  - 0.0
+  place_approach_height: 0.08
+  retreat_height: 0.08
+  speed_mps: 0.01
+  orientation: current
+  fixed_rpy:
+  - 3.14159265
+  - 0.0
+  - 0.0
+  move_timeout_s: 30.0
+  position_tolerance_m: 0.003
+  poll_period_s: 0.05
+  robotmove_topic: RobotMove
+  robotinfo_topic: RobotInfo
+  robot_info_timeout_s: 2.0
+  joint_max_step_deg: 1.0
+  joint_tolerance_deg: 0.35
+  joint_start_tolerance_deg: 0.05
+  joint_limit_margin_deg: 2.0
+  joint_move_timeout_s: 8.0
+  joint_reject_timeout_s: 2.0
+  cartesian_step_m: 0.002
+  cartesian_min_step_m: 0.0005
+  cartesian_orientation_step_deg: 1.0
+  cartesian_min_orientation_step_deg: 0.1
+  cartesian_max_waypoints: 600
+  cartesian_joint_step_deg: 0.5
+  cartesian_joint_branch_jump_deg: 5.0
+  cartesian_joint_acceleration_limit_deg: 0.25
+  cartesian_min_jacobian_singular_value: 0.01
+servo:
+  desired_standoff_m: 0.18
+  min_depth_m: 0.12
+  center_tolerance_px: 35
+  depth_tolerance_m: 0.015
+  max_steps: 36
+  max_step_m: 0.005
+  max_total_travel_m: 0.35
+  speed_mps: 0.01
+  lateral_gain: 0.8
+  forward_gain: 0.8
+  settle_s_after_move: 0.25
+  convergence_frames: 2
+  camera_to_tool:
+  - - 1.0
+    - 0.0
+    - 0.0
+  - - 0.0
+    - 1.0
+    - 0.0
+  - - 0.0
+    - 0.0
+    - 1.0
+search:
+  enabled: true
+  yaw_offsets_deg:
+  - 0
+  pitch_down_offsets_deg:
+  - 0
+  - 5
+  - 10
+  - 15
+  - 20
+  - 25
+  - 30
+  - 35
+  - 40
+  - 45
+  - 50
+  - 55
+  - 60
+  - 65
+  - 70
+  - 75
+  - 80
+  settle_s: 0.8
+  observe_frames: 8
+  confirm_hits: 2
+  return_to_initial_on_miss: true
+gripper:
+  backend: mock
+  settle_time_s: 0.3
+  open_before_approach: true
+
+# Per-scene GraspNet multi-frame consensus gate.  Disabled by default because
+# a report generated for one scene/object must never be reused as evidence for
+# a different scene.  When enabled, validation requires Task C/D, dry-run
+# motion, mock gripper and search.enabled=false.
+grasp_consensus:
+  enabled: false
+  report_file: ""
+  minimum_distinct_frames: 4
+  maximum_translation_tolerance_m: 0.025
+  maximum_jaw_rotation_tolerance_deg: 15.0
+  maximum_pose_translation_error_m: 0.025
+  maximum_pose_jaw_rotation_error_deg: 15.0

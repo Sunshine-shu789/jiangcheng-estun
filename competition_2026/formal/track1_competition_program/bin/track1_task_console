@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+# Console wrapper used by task launchers. It keeps the terminal open after
+# completion and logs the launch before starting ROS.
+set -o pipefail
+set -u
+
+ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)"
+LOG_DIR="$ROOT/logs"
+LAUNCH_LOG="$LOG_DIR/desktop_launch.log"
+TASK="${1:-}"
+mkdir -p -- "$LOG_DIR"
+
+log() {
+    printf '%s [task-console pid=%s ppid=%s] %s\n' \
+        "$(date '+%F %T')" "$$" "$PPID" "$*" >>"$LAUNCH_LOG"
+}
+
+case "$TASK" in
+    B) RUNNER="$ROOT/bin/run_task_b_full_live" ;;
+    C) RUNNER="$ROOT/bin/run_task_c" ;;
+    D) RUNNER="$ROOT/bin/run_task_d" ;;
+    *)
+        log "ERROR invalid task=${TASK:-<empty>}"
+        printf '无效任务：%s\n' "${TASK:-<空>}" >&2
+        exit 2
+        ;;
+esac
+
+cd -- "$ROOT" || {
+    log "ERROR cannot cd to $ROOT"
+    printf '无法进入程序目录：%s\n' "$ROOT" >&2
+    exit 2
+}
+
+log "starting task=$TASK runner=$RUNNER pwd=$PWD"
+printf '\n===== 启动任务 %s =====\n' "$TASK"
+printf '程序目录：%s\n' "$ROOT"
+printf '启动日志：%s\n\n' "$LAUNCH_LOG"
+TRACK1_CONSOLE_WRAPPER=1 "$RUNNER"
+rc=$?
+log "runner finished task=$TASK rc=$rc"
+
+printf '\n===== 任务 %s 已结束（退出码 %s）=====\n' "$TASK" "$rc"
+if [ "$rc" -eq 0 ]; then
+    printf '任务正常完成。\n'
+else
+    printf '任务异常结束，请查看上方错误以及 logs/ 下的任务日志。\n'
+fi
+printf '本窗口保留显示。按回车键关闭。\n'
+if [ "${TRACK1_CONSOLE_NO_PAUSE:-0}" != "1" ] && [ -t 0 ]; then
+    read -r -p '> ' _ || true
+fi
+exit "$rc"

@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Track 1 task E entry point.
+set -o pipefail
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+RUNNER_TASK="E"
+if [ "${1:-}" = "--check" ]; then
+    # Validate E against its shared profile without starting vision, ROS
+    # hardware bridges, the gripper, or any motion path.
+    RUNNER_TASK="check"
+    export TRACK1_CHECK_TASK=E
+    shift
+fi
+
+exec "$ROOT/bin/track1_task_runner" "$RUNNER_TASK" "$@"

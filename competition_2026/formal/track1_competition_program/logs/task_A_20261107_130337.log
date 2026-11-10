@@ -1,0 +1,32 @@
+
+===== 任务A 十点位巡检 =====
+配置：/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/config/track1_task_a_legacy.yaml
+视觉后端：legacy_http
+模式：十点位巡检（J1-J4运动，J5/J6锁定，J1以启动当前位置为中心严格左右各90度，间距不足自动三弧，十类识别，识别后停3秒，第10点后回原点，旧视觉识别，真机运动）
+日志：/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/task_A_20261107_130337.log
+
+正在启动机械臂状态桥接，日志：/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/codroid_bridge_20261107_130337.log
+[bridge] RobotInfo 已就绪：state=AutoReady fault_flag=0 xyz=(-0.1126, 0.3261, 0.3102)
+[INFO] [1794027819.577922926] [track1_grasp]: [patrol] J1 centered on current startup (two_arc): startup=90.987 deg, left=90.000 deg, right=90.000 deg, total=180.000 deg, span=[0.987, 180.987] deg
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/nodes/track1_node.py", line 275, in <module>
+    raise SystemExit(main())
+  File "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/nodes/track1_node.py", line 262, in main
+    raise error[0]
+  File "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/nodes/track1_node.py", line 204, in worker
+    report = pipeline.run()
+  File "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/vision_pipeline.py", line 72, in run
+    return self._run_patrol()
+  File "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/vision_pipeline.py", line 131, in _run_patrol
+    route = self._precheck_joint_patrol_route(state)
+  File "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/vision_pipeline.py", line 720, in _precheck_joint_patrol_route
+    route = self.motion.precheck_joint_route(
+  File "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/motion.py", line 1887, in precheck_joint_route
+    return _build_joint_route_plan(
+  File "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/motion.py", line 444, in _build_joint_route_plan
+    raise RuntimeError(
+RuntimeError: patrol target 1 changes a locked joint by 0.000687 degrees; Task A may move only Joint1, Joint2, Joint3 and Joint4
