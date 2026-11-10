@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT='/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序'
+REPORT="$ROOT/reports/track1_v11_offline_acceptance_20261101/index.html"
+DATA="$ROOT/reports/track1_v11_offline_acceptance_20261101/review_data.json"
+
+[[ -f "$REPORT" && -f "$DATA" ]] || {
+  echo "错误：v11 离线验收页面不存在，请先运行 build_v11_offline_acceptance.py。"
+  exit 1
+}
+
+setsid xdg-open "$REPORT" >/dev/null 2>&1 &
+echo "已打开 v11 离线视觉验收：$REPORT"

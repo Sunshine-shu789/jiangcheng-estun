@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Read-only audit for the Track-1 self-collected RGB-D session.
+set -euo pipefail
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+PYTHON="${TRACK1_CURATION_PYTHON:-/usr/bin/python3}"
+SITE_PACKAGES="${TRACK1_CURATION_SITE_PACKAGES:-/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages}"
+exec env PYTHONNOUSERSITE=1 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH="$SITE_PACKAGES" \
+    "$PYTHON" "$ROOT/bin/track1_selfcollected_curation.py" audit "$@"

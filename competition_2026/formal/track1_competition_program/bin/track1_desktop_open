@@ -1,0 +1,111 @@
+#!/usr/bin/env bash
+# Execute only launchers explicitly marked by this project.  Desktop copies
+# are resolved to the canonical launcher under the formal data-disk root so
+# the copied entry and the formal entry always execute the same command.
+set -u
+
+ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)"
+SELF_TEST="${TRACK1_DESKTOP_OPEN_SELF_TEST:-0}"
+
+show_error() {
+    local message="$1"
+    printf '%s\n' "$message" >&2
+    if [ "$SELF_TEST" != "1" ]; then
+        if command -v notify-send >/dev/null 2>&1; then
+            notify-send --app-name="埃斯顿赛道一" "无法启动程序" "$message" >/dev/null 2>&1 || true
+        fi
+        if command -v zenity >/dev/null 2>&1; then
+            zenity --error --title="埃斯顿赛道一" --text="$message" --width=620 >/dev/null 2>&1 || true
+        fi
+    fi
+}
+
+[ "$#" -ge 1 ] || { show_error "没有收到启动器文件。"; exit 2; }
+
+path="$1"
+case "$path" in
+    file://*)
+        path="$(/usr/bin/python3 -c 'import sys, urllib.parse; print(urllib.parse.unquote(urllib.parse.urlparse(sys.argv[1]).path))' "$path")"
+        ;;
+esac
+
+[ -f "$path" ] || { show_error "启动器不存在：$path"; exit 2; }
+path="$(realpath -e -- "$path")" || { show_error "无法解析启动器路径。"; exit 2; }
+source_path="$path"
+
+case "$path" in
+    *.desktop) ;;
+    *) show_error "不是桌面启动器：$path"; exit 2 ;;
+esac
+
+grep -qx 'X-Track1-Launcher=true' "$path" || {
+    show_error "该启动器缺少项目执行标记：$path"
+    exit 2
+}
+
+case "$path" in
+    "$ROOT"/*.desktop)
+        ;;
+    /home/sunshine/Desktop/*.desktop)
+        canonical="$ROOT/$(basename -- "$path")"
+        [ -f "$canonical" ] || {
+            show_error "桌面启动器在正式目录中没有对应文件：$path"
+            exit 2
+        }
+        path="$(realpath -e -- "$canonical")" || {
+            show_error "无法解析正式启动器：$canonical"
+            exit 2
+        }
+        ;;
+    *)
+        show_error "这个文件不在赛道一正式程序或桌面入口目录中：$path"
+        exit 2
+        ;;
+esac
+
+launcher_dir="$(dirname -- "$path")"
+launcher_name="$(basename -- "$path")"
+if [ "$launcher_dir" != "$ROOT" ]; then
+    parent_dir="$(dirname -- "$launcher_dir")"
+    copy_name="$(basename -- "$launcher_dir")"
+    case "$copy_name" in
+        任务CD_程序与逻辑_修改副本_*) ;;
+        *)
+            show_error "启动器没有解析到正式程序目录：$path"
+            exit 2
+            ;;
+    esac
+    [ "$parent_dir" = "$ROOT" ] || {
+        show_error "修改副本启动器层级不安全：$path"
+        exit 2
+    }
+    case "$launcher_name" in
+        任务C_无序抓取.desktop|任务D_未知物体抓取.desktop) ;;
+        *)
+            show_error "修改副本只允许任务C/任务D启动器：$path"
+            exit 2
+            ;;
+    esac
+fi
+
+[ "$(stat -c '%u' -- "$path" 2>/dev/null || true)" = "$(id -u)" ] || {
+    show_error "启动器所有者不安全：$path"
+    exit 2
+}
+
+desktop-file-validate "$path" >/dev/null 2>&1 || {
+    show_error "启动器格式无效：$path"
+    exit 2
+}
+
+[ -x "$path" ] || {
+    show_error "启动器不可执行：$path"
+    exit 2
+}
+
+if [ "$SELF_TEST" = "1" ]; then
+    printf 'OK source=%s canonical=%s\n' "$source_path" "$path"
+    exit 0
+fi
+
+exec gio launch "$path"

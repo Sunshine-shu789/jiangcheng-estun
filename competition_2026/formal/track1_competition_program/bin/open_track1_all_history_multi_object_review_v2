@@ -1,0 +1,132 @@
+#!/usr/bin/env bash
+# Start/stop/open the independent all-history Track-1 multi-object review v2.
+set -o pipefail
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+SERVER="$ROOT/bin/track1_all_history_multi_object_review_server_v2"
+STATE_DIR="${TRACK1_ALL_HISTORY_REVIEW_STATE:-$ROOT/state/track1_all_history_multi_object_review_20261031_v2}"
+LOG_DIR="${TRACK1_ALL_HISTORY_REVIEW_LOGS:-$ROOT/logs/track1_all_history_multi_object_review_20261031_v2}"
+PID_FILE="$STATE_DIR/review.pid"
+LOG_FILE="$LOG_DIR/review.log"
+HOST="${TRACK1_ALL_HISTORY_REVIEW_HOST:-127.0.0.1}"
+PORT="${TRACK1_ALL_HISTORY_REVIEW_PORT:-9131}"
+URL="http://$HOST:$PORT"
+MODE="${1:-start}"
+
+mkdir -p "$STATE_DIR" "$LOG_DIR"
+
+process_alive() {
+  local pid="$1"
+  [[ "$pid" =~ ^[0-9]+$ ]] || return 1
+  kill -0 "$pid" 2>/dev/null || return 1
+  [ -r "/proc/$pid/stat" ] || return 1
+  [ "$(awk '{print $3}' "/proc/$pid/stat" 2>/dev/null || true)" != "Z" ]
+}
+
+read_pid() {
+  [ -r "$PID_FILE" ] || return 1
+  local pid
+  pid="$(tr -d '[:space:]' < "$PID_FILE" 2>/dev/null || true)"
+  [[ "$pid" =~ ^[0-9]+$ ]] || return 1
+  printf '%s\n' "$pid"
+}
+
+is_review_process() {
+  local pid="$1"
+  local cmd
+  process_alive "$pid" || return 1
+  cmd="$(tr '\0' ' ' < "/proc/$pid/cmdline" 2>/dev/null || true)"
+  [[ "$cmd" == *"review_server.py"* && "$cmd" == *"track1_all_history_multi_object_review_20261031_v2.yaml"* ]]
+}
+
+http_ok() {
+  curl --silent --show-error --fail --max-time 1 "$URL/status.json" >/dev/null 2>&1
+}
+
+open_page() {
+  if { [ -n "${DISPLAY:-}" ] || [ -n "${WAYLAND_DISPLAY:-}" ]; } && command -v xdg-open >/dev/null 2>&1; then
+    xdg-open "$URL/" >/dev/null 2>&1 &
+  fi
+}
+
+show_error() {
+  printf '错误：%s\n' "$1" >&2
+  if { [ -n "${DISPLAY:-}" ] || [ -n "${WAYLAND_DISPLAY:-}" ]; } && command -v zenity >/dev/null 2>&1; then
+    zenity --error --title='赛道一全历史多物品复核 v2' --text="$1" --width=720 >/dev/null 2>&1 || true
+  fi
+}
+
+stop_server() {
+  local pid
+  pid="$(read_pid)" || { printf '未运行\n'; return 0; }
+  if ! is_review_process "$pid"; then
+    rm -f "$PID_FILE"
+    printf '未运行\n'
+    return 0
+  fi
+  kill "$pid" 2>/dev/null || true
+  for _ in $(seq 1 60); do
+    process_alive "$pid" || break
+    sleep 0.1
+  done
+  if process_alive "$pid"; then
+    show_error "复核网页未能停止（PID=$pid），没有强制结束进程。"
+    return 1
+  fi
+  rm -f "$PID_FILE"
+  printf '已停止\n'
+}
+
+case "$MODE" in
+  stop|--stop)
+    stop_server
+    exit $?
+    ;;
+  status|--status)
+    if pid="$(read_pid)" && is_review_process "$pid"; then
+      printf 'running pid=%s url=%s/\n' "$pid" "$URL"
+      exit 0
+    fi
+    rm -f "$PID_FILE" 2>/dev/null || true
+    printf 'stopped\n'
+    exit 1
+    ;;
+  start|--start|'')
+    if [ -x "$ROOT/bin/ensure_runtime" ]; then
+      "$ROOT/bin/ensure_runtime"
+    fi
+    ;;
+  *)
+    printf '用法：%s [start|stop|status]\n' "$0" >&2
+    exit 2
+    ;;
+esac
+
+if pid="$(read_pid)" && is_review_process "$pid" && http_ok; then
+  open_page
+  printf '复核网页已运行：%s/\n' "$URL"
+  exit 0
+fi
+
+[ -x "$SERVER" ] || { show_error "找不到复核服务启动器：$SERVER"; exit 1; }
+if command -v ss >/dev/null 2>&1 && ss -ltn 2>/dev/null | awk '{print $4}' | grep -Eq "[:.]$PORT$"; then
+  show_error "端口 $PORT 已被其他程序占用；复核服务未启动。"
+  exit 1
+fi
+
+nohup "$SERVER" --host "$HOST" --port "$PORT" --open-browser >>"$LOG_FILE" 2>&1 &
+pid=$!
+printf '%s\n' "$pid" > "$PID_FILE"
+for _ in $(seq 1 180); do
+  if http_ok; then
+    printf '复核网页已启动：%s/\n' "$URL"
+    exit 0
+  fi
+  if ! process_alive "$pid"; then
+    rm -f "$PID_FILE"
+    show_error "复核服务启动失败。请查看日志：$LOG_FILE"
+    exit 1
+  fi
+  sleep 0.1
+done
+show_error "复核服务启动超时。请查看日志：$LOG_FILE"
+exit 1

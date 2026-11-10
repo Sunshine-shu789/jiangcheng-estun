@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+# Track-1 v11 full retraining. Without --execute this only runs preflight.
+set -euo pipefail
+ROOT="/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序"
+PYTHON="${TRACK1_PREP_PYTHON:-/usr/bin/python3}"
+SITE_PACKAGES="${TRACK1_PREP_SITE_PACKAGES:-/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages}"
+APP_DIR="$ROOT/app/track1_training_prep"
+CONFIG="$ROOT/config/track1_train_40class_v11_full_v10aug_from_yolo11s.yaml"
+CACHE_ROOT="$ROOT/cache/track1_training"
+mkdir -p "$CACHE_ROOT/tmp" "$CACHE_ROOT/matplotlib" "$CACHE_ROOT/numba" "$CACHE_ROOT/cuda" "$CACHE_ROOT/torch" "$CACHE_ROOT/xdg" "$ROOT/config/ultralytics" "$ROOT/state" "$ROOT/reports" "$ROOT/logs" "$ROOT/runs/track1_train_40class_v11_full_v10aug_from_yolo11s"
+
+"$ROOT/bin/ensure_runtime"
+TMP_ALIAS="/tmp/track1_training_tmp_$(id -u)"
+if [ -L "$TMP_ALIAS" ]; then
+  [ "$(readlink -f "$TMP_ALIAS")" = "$(readlink -f "$CACHE_ROOT/tmp")" ] || { echo "临时目录别名指向错误：$TMP_ALIAS" >&2; exit 1; }
+elif [ -e "$TMP_ALIAS" ]; then
+  echo "临时目录别名被普通文件占用：$TMP_ALIAS" >&2
+  exit 1
+else
+  ln -s "$CACHE_ROOT/tmp" "$TMP_ALIAS"
+fi
+
+RUN_ENV=(
+  env
+  TRACK1_PROJECT_ROOT="$ROOT"
+  PYTHONNOUSERSITE=1
+  PYTHONDONTWRITEBYTECODE=1
+  PYTHONPATH="$SITE_PACKAGES:$APP_DIR:$ROOT/app"
+  TMPDIR="$TMP_ALIAS"
+  TEMP="$TMP_ALIAS"
+  TMP="$TMP_ALIAS"
+  MPLCONFIGDIR="$CACHE_ROOT/matplotlib"
+  NUMBA_CACHE_DIR="$CACHE_ROOT/numba"
+  CUDA_CACHE_PATH="$CACHE_ROOT/cuda"
+  TORCH_HOME="$CACHE_ROOT/torch"
+  XDG_CACHE_HOME="$CACHE_ROOT/xdg"
+  YOLO_CONFIG_DIR="$ROOT/config/ultralytics"
+  WANDB_MODE=disabled
+  PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+)
+
+EXECUTE=0
+for arg in "$@"; do
+  if [ "$arg" = "--execute" ]; then EXECUTE=1; fi
+done
+
+if [ "$EXECUTE" -eq 0 ]; then
+  echo "安全模式：未提供 --execute，只做 v11 全量训练预检。"
+  exec "${RUN_ENV[@]}" "$PYTHON" "$APP_DIR/training_preflight_v11_full_v10aug.py" --config "$CONFIG" "$@"
+fi
+
+LOG="$ROOT/logs/track1_train_40class_v11_full_v10aug_$(date +%Y%m%d_%H%M%S).log"
+echo "训练日志：$LOG"
+set -o pipefail
+"${RUN_ENV[@]}" "$PYTHON" "$APP_DIR/training_preflight_v11_full_v10aug.py" --config "$CONFIG" "$@" 2>&1 | tee "$LOG"
+exit "${PIPESTATUS[0]}"

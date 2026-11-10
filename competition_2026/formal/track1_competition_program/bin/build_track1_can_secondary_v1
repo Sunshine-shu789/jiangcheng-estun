@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+ROOT="/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序"
+SP="/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages"
+exec env PYTHONNOUSERSITE=1 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH="$SP:$ROOT/app" \
+  /usr/bin/python3 "$ROOT/app/track1_can_secondary/build_secondary_dataset.py" "$@"

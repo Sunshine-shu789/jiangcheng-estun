@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Dedicated front-10 reviewer only; the old 9120 reviewer is not modified.
+set -euo pipefail
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+PYTHON="${TRACK1_REVIEW_PYTHON:-/usr/bin/python3}"
+SITE_PACKAGES="${TRACK1_REVIEW_SITE_PACKAGES:-/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages}"
+CONFIG="${TRACK1_REVIEW_CONFIG:-$ROOT/config/track1_front10_bbox_review_v1.yaml}"
+APP_DIR="$ROOT/app/track1_bbox_review"
+exec env PYTHONNOUSERSITE=1 PYTHONDONTWRITEBYTECODE=1 \
+  PYTHONPATH="$SITE_PACKAGES:$ROOT/app/track1_capture_web:$APP_DIR" \
+  "$PYTHON" "$APP_DIR/front10_review_server.py" --config "$CONFIG" "$@"

@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# Shared Task C/D launcher.
+# The task C and D desktop entries differ only by the C/D argument below.
+set -o pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+TASK="${1:-}"
+
+case "$TASK" in
+    C)
+        CONFIG="${TRACK1_CONFIG:-$ROOT/config/track1_task_c_v11_official_20261102.yaml}"
+        ;;
+    D)
+        CONFIG="${TRACK1_CONFIG:-$ROOT/config/track1_task_d_v11_official_20261102.yaml}"
+        ;;
+    *)
+        printf '用法：%s {C|D} [--check] [--no-pause] [--emergency-cpu]\n' "$0" >&2
+        exit 2
+        ;;
+esac
+
+shift
+RUNNER_TASK="$TASK"
+if [ "${1:-}" = "--check" ]; then
+    # Validate the exact C or D entry configuration without starting vision,
+    # RobotInfo, the arm bridge, the gripper, or any motion path.
+    RUNNER_TASK="check"
+    export TRACK1_CHECK_TASK="$TASK"
+    shift
+fi
+# C/D formal entries always clear the whole bin.  Ignore legacy
+# acceptance-count variables that could silently stop after one pick.
+unset TRACK1_TASK_C_ACCEPTANCE_PICKS TRACK1_TASK_C_PICKS
+unset TRACK1_TASK_D_ACCEPTANCE_PICKS TRACK1_TASK_D_PICKS
+exec env TRACK1_CONFIG="$CONFIG" "$ROOT/bin/track1_task_runner" "$RUNNER_TASK" "$@"

@@ -1,0 +1,140 @@
+#!/usr/bin/env bash
+# Formal Task B five-point continuous live launcher.
+#
+# This wrapper deliberately fixes the live profile instead of inheriting
+# TRACK1_CONFIG.  It validates the five-point/speed/gripper gates, displays a
+# safety summary, and requires an exact terminal confirmation before any
+# RobotMove or gripper command can be issued.  --check validates only; it does
+# not start vision, the robot bridge, the gripper, or any motion path.
+set -o pipefail
+set -u
+
+ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+CONFIG="$ROOT/config/track1_task_b_five_point_full_live_20261106.yaml"
+MODE="run"
+
+case "${1:-}" in
+    "") ;;
+    --check) MODE="check" ;;
+    --help|-h)
+        printf '用法：%s [--check]\n' "$0"
+        exit 0
+        ;;
+    *)
+        printf '错误：未知参数：%s\n' "$1" >&2
+        printf '用法：%s [--check]\n' "$0" >&2
+        exit 2
+        ;;
+esac
+if [ "$#" -gt 1 ]; then
+    printf '错误：参数过多。\n' >&2
+    exit 2
+fi
+
+printf '===== 任务B 五点位连续拾放（实机）=====\n'
+printf '程序目录：%s\n' "$ROOT"
+printf '实机配置：%s\n' "$CONFIG"
+printf '安全策略：5 个点位；抓取速度 0.12 m/s；机械臂失败不自动重试；任一点失败立即停止。\n'
+printf '释放策略：仅原地开爪未验证到硬限位时最多重发 2 次，仍失败则禁止撤臂。\n'
+printf '夹爪后端：MS42DC 直连 USB；规划：当前香蕉位姿 + 腰部短轴 + GPU 视觉。\n'
+printf '手腕姿态：第 4 点使用 2026-11-06 验证成功的观察关节姿态。\n\n'
+
+"$ROOT/bin/ensure_runtime" || {
+    printf '错误：ROS 运行环境准备失败，任务未启动。\n' >&2
+    exit 1
+}
+
+if [ ! -r "$CONFIG" ]; then
+    printf '错误：找不到实机配置：%s\n' "$CONFIG" >&2
+    exit 1
+fi
+
+# This check is static and fail-closed.  It does not open the camera, serial
+# port, ROS topics, or the robot controller.
+/usr/bin/python3 - "$CONFIG" <<'PY' || {
+import sys
+import yaml
+
+path = sys.argv[1]
+with open(path, encoding='utf-8') as handle:
+    cfg = yaml.safe_load(handle)
+
+errors = []
+if cfg.get('task', {}).get('mode') != 'B':
+    errors.append('task.mode must be B')
+if int(cfg.get('task', {}).get('max_picks', 0)) != 5:
+    errors.append('task.max_picks must be 5')
+if cfg.get('task', {}).get('stop_on_error') is not True:
+    errors.append('task.stop_on_error must be true')
+motion = cfg.get('motion', {})
+if motion.get('backend') != 'robotmove':
+    errors.append('motion.backend must be robotmove')
+if motion.get('dry_run') is not False:
+    errors.append('motion.dry_run must be false')
+if abs(float(motion.get('speed_mps', -1.0)) - 0.12) > 1e-9:
+    errors.append('motion.speed_mps must be 0.12')
+gripper = cfg.get('gripper', {})
+if gripper.get('backend') != 'ms42dc':
+    errors.append('gripper.backend must be ms42dc')
+if gripper.get('require_close_travel_evidence') is not True:
+    errors.append('gripper.require_close_travel_evidence must be true')
+if gripper.get('accept_contact_without_arrival') is not True:
+    errors.append('gripper.accept_contact_without_arrival must be true')
+if gripper.get('require_open_hard_stop_evidence') is not True:
+    errors.append('gripper.require_open_hard_stop_evidence must be true')
+if int(gripper.get('open_max_retries', 0)) != 2:
+    errors.append('gripper.open_max_retries must be 2')
+adaptive = cfg.get('adaptive_inverse', {})
+if adaptive.get('enabled') is not True:
+    errors.append('adaptive_inverse.enabled must be true')
+if adaptive.get('pca', {}).get('waist_midline_enabled') is not True:
+    errors.append('adaptive_inverse.pca.waist_midline_enabled must be true')
+observations = cfg.get('task_b', {}).get('point_observation_joints_deg', [])
+if len(observations) != 5 or any(len(value or []) != 6 for value in observations):
+    errors.append('task_b must contain five six-axis observation poses')
+if errors:
+    for error in errors:
+        print(f'错误：{error}', file=sys.stderr)
+    raise SystemExit(1)
+print('静态实机配置检查通过：五点、0.12 m/s、动态腰部短轴、MS42DC、开爪最多重发2次。')
+PY
+    printf '错误：实机配置安全检查失败，任务未启动。\n' >&2
+    exit 1
+}
+
+if [ "$MODE" = "check" ]; then
+    printf '\n执行无运动环境检查（不会打开相机、机械臂或夹爪）...\n'
+    exec env TRACK1_CONFIG="$CONFIG" TRACK1_CHECK_TASK=B \
+        "$ROOT/bin/track1_task_runner" check
+fi
+
+if [ ! -t 0 ]; then
+    printf '错误：实机连续任务必须在交互式终端中启动，任务未启动。\n' >&2
+    exit 2
+fi
+
+printf '\n即将启动真实机械臂和真实夹爪的连续五点任务。\n'
+printf '请确认：控制器 AutoReady 且无故障、急停可立即按下、工作区内无人、香蕉已摆好。\n'
+printf '如确认执行，请完整输入“确认执行”；其他任何输入都会取消。\n'
+printf '确认执行 > '
+IFS= read -r REPLY || REPLY=''
+if [ "$REPLY" != "确认执行" ]; then
+    printf '\n已取消，任务未启动。\n'
+    exit 0
+fi
+
+# Force exactly five picks and do not inherit a legacy short-run or CPU-mode
+# switch.  TRACK1_CONFIRM is set only after the exact interactive gate above,
+# so the runner will not replace this gate with a desktop dialog.
+unset TRACK1_TASK_B_PICKS
+unset TRACK1_CPU_EMERGENCY
+export TRACK1_CONFIG="$CONFIG"
+export TRACK1_CONFIRM=1
+
+RUNNER_ARGS=(B)
+if [ "${TRACK1_CONSOLE_WRAPPER:-0}" = "1" ]; then
+    # track1_task_console performs the final keep-open pause.
+    RUNNER_ARGS+=(--no-pause)
+fi
+
+exec "$ROOT/bin/track1_task_runner" "${RUNNER_ARGS[@]}"

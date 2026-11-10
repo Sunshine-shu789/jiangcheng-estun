@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Dedicated Task D field test for the height-adaptive grasp path.
+# Do not run this until Task C has completed its single-live acceptance test.
+set -o pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+CONFIG="$ROOT/config/track1_task_d_v11_official_20261102.yaml"
+
+exec env TRACK1_CONFIG="$CONFIG" \
+    "$ROOT/bin/track1_task_runner" D --single-live-acceptance --no-pause "$@"

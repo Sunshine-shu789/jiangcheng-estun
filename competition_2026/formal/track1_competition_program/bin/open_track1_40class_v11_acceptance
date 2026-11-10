@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT='/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序'
+APP="$ROOT/app/track1_acceptance_web/acceptance_server.py"
+CONFIG="$ROOT/config/track1_acceptance_40class_v11.yaml"
+PYTHON='/usr/bin/python3'
+PYTHONPATH_VALUE='/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages'
+STATE="$ROOT/state/track1_acceptance_web_v11"
+LOG="$ROOT/logs/track1_acceptance_web_v11/server.log"
+PID_FILE="$STATE/server.pid"
+URL='http://127.0.0.1:9121/'
+HEALTH_URL='http://127.0.0.1:9121/api/health'
+UNIT='track1-40class-v11-acceptance.service'
+
+open_page() {
+  setsid xdg-open "$URL" >/dev/null 2>&1 &
+}
+
+service_healthy() {
+  curl -fsS --max-time 1 "$HEALTH_URL" >/dev/null 2>&1
+}
+
+[[ -f "$APP" && -f "$CONFIG" ]] || {
+  echo "错误：v11 验收程序或配置文件不存在。"
+  exit 1
+}
+
+mkdir -p "$STATE" "$(dirname "$LOG")"
+
+if service_healthy; then
+  echo "v11 40 类视觉验收已在运行：$URL"
+  open_page
+  exit 0
+fi
+
+if command -v systemctl >/dev/null 2>&1 && command -v systemd-run >/dev/null 2>&1 \
+  && systemctl --user is-system-running >/dev/null 2>&1; then
+  systemctl --user stop "$UNIT" >/dev/null 2>&1 || true
+  systemctl --user reset-failed "$UNIT" >/dev/null 2>&1 || true
+
+  systemd-run --user \
+    --unit="${UNIT%.service}" \
+    --collect \
+    --description='赛道一 40 类 v11 独立视觉验收（只读 D405）' \
+    --working-directory="$ROOT" \
+    --property=Restart=on-failure \
+    --property=RestartSec=2 \
+    --property=StartLimitIntervalSec=30 \
+    --property=StartLimitBurst=3 \
+    --property="StandardOutput=append:$LOG" \
+    --property="StandardError=append:$LOG" \
+    --setenv="PYTHONPATH=$PYTHONPATH_VALUE" \
+    --setenv=OMP_NUM_THREADS=4 \
+    --setenv=MKL_NUM_THREADS=4 \
+    "$PYTHON" "$APP" --config "$CONFIG" >/dev/null
+else
+  nohup env "PYTHONPATH=$PYTHONPATH_VALUE" OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 \
+    "$PYTHON" "$APP" --config "$CONFIG" >>"$LOG" 2>&1 &
+fi
+
+for _ in $(seq 1 80); do
+  if service_healthy; then
+    MAIN_PID="$(systemctl --user show "$UNIT" --property=MainPID --value 2>/dev/null || true)"
+    if [[ ! "$MAIN_PID" =~ ^[1-9][0-9]*$ ]]; then
+      MAIN_PID="$(pgrep -f "$APP --config $CONFIG" | head -n 1 || true)"
+    fi
+    [[ "$MAIN_PID" =~ ^[1-9][0-9]*$ ]] && printf '%s\n' "$MAIN_PID" >"$PID_FILE"
+    echo "v11 40 类视觉验收已启动：$URL"
+    echo "日志：$LOG"
+    open_page
+    exit 0
+  fi
+
+  if systemctl --user is-failed --quiet "$UNIT" 2>/dev/null; then
+    echo "v11 验收启动失败，日志末尾："
+    tail -n 80 "$LOG" || true
+    exit 1
+  fi
+  sleep 0.25
+done
+
+echo "v11 验收服务启动超时，日志末尾："
+tail -n 80 "$LOG" || true
+exit 1

@@ -1,0 +1,1078 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>赛道一 RGB-D 自采数据</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: Inter, "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+      background: #0b1117;
+      color: #eef4fa;
+      --panel: #131c24;
+      --panel-2: #18232d;
+      --line: #2d3d4b;
+      --muted: #9eb0c0;
+      --accent: #31d0a5;
+      --accent-2: #55a9ff;
+      --danger: #ff6d7a;
+      --warn: #ffd166;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: radial-gradient(circle at 15% -10%, #18334a 0, #0b1117 44%); }
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; }
+    main { width: min(100%, 1480px); margin: 0 auto; padding: 18px; }
+    header { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; margin-bottom: 13px; }
+    h1 { margin: 0 0 5px; font-size: clamp(20px, 2vw, 28px); letter-spacing: .01em; }
+    h2 { margin: 0 0 12px; font-size: 16px; }
+    .subhead { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
+    .header-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+    #status { color: #b8c7d5; font-size: 13px; line-height: 1.45; text-align: right; font-variant-numeric: tabular-nums; max-width: 480px; }
+    .workspace { display: grid; grid-template-columns: minmax(0, 1.8fr) minmax(320px, .82fr); gap: 14px; align-items: start; }
+    .card { border: 1px solid var(--line); border-radius: 12px; background: rgba(19, 28, 36, .94); box-shadow: 0 12px 35px rgba(0,0,0,.16); }
+    .video-card { padding: 10px; }
+    .view { position: relative; overflow: hidden; border: 1px solid #314252; border-radius: 8px; background: #030608; aspect-ratio: 4 / 3; }
+    .view img { display: block; width: 100%; height: 100%; object-fit: contain; }
+    .stream-foot { display: flex; justify-content: space-between; gap: 12px; padding: 9px 3px 1px; color: var(--muted); font-size: 13px; }
+    #model-status { text-align: right; }
+    .control-card { padding: 15px; }
+    .field { display: grid; gap: 6px; margin-bottom: 11px; }
+    .field > span, .field-label { color: #c8d4df; font-size: 12px; font-weight: 650; letter-spacing: .02em; }
+    .required-mark { color: var(--danger); font-weight: 800; }
+    .field input, .field select, .field textarea {
+      width: 100%; min-height: 38px; border: 1px solid #415261; border-radius: 7px;
+      background: #0f1820; color: #eef4fa; padding: 8px 10px; outline: none;
+    }
+    .field textarea { min-height: 62px; resize: vertical; }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--accent-2); box-shadow: 0 0 0 2px rgba(85,169,255,.14); }
+    .field input:disabled, .field select:disabled { opacity: .7; cursor: not-allowed; }
+    .inline { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 7px; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+    .hint { margin: -5px 0 11px; color: var(--muted); font-size: 12px; line-height: 1.5; overflow-wrap: anywhere; }
+    .warning { padding: 9px 10px; border: 1px solid rgba(255,209,102,.35); border-radius: 8px; background: rgba(255,209,102,.08); color: #f4df9c; font-size: 12px; line-height: 1.5; }
+    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 13px; }
+    button.primary, button.secondary, button.ghost, button.danger {
+      min-height: 38px; border-radius: 7px; padding: 8px 12px; border: 1px solid transparent; color: #f5f9fc;
+    }
+    button.primary { background: linear-gradient(135deg, #1fb98f, #17876c); border-color: #31d0a5; font-weight: 700; }
+    button.secondary { background: #2268a8; border-color: #438ed9; }
+    button.ghost { background: #1a2630; border-color: #415261; }
+    button.danger { background: #51242c; border-color: #a34857; color: #ffd8dd; }
+    button:hover:not(:disabled) { filter: brightness(1.12); }
+    button:disabled { cursor: not-allowed; opacity: .55; }
+    #capture-status { margin-top: 11px; min-height: 39px; padding: 9px 10px; border-radius: 8px; background: #0e171f; border: 1px solid #2d3d4b; color: #b9c8d6; font-size: 12px; line-height: 1.55; }
+    .progress { height: 7px; overflow: hidden; border-radius: 999px; background: #0a1117; border: 1px solid #2d3d4b; margin: 9px 0; display: none; }
+    .progress.visible { display: block; }
+    #progress-bar { width: 0; height: 100%; background: linear-gradient(90deg, #31d0a5, #55a9ff); transition: width .16s ease; }
+    .output { margin-top: 11px; color: var(--muted); font-size: 11px; line-height: 1.55; overflow-wrap: anywhere; }
+    .output strong { color: #c8d4df; font-size: 11px; }
+    .recent-card { margin-top: 14px; padding: 14px; }
+    .recent-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+    .recent-head h2 { margin: 0; }
+    #session-total { color: var(--muted); font-size: 13px; }
+    .counts { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 11px; }
+    .count-chip { padding: 5px 8px; border-radius: 999px; border: 1px solid #344655; background: #111b23; color: #b9c8d6; font-size: 11px; }
+    .recent-grid { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 8px; }
+    .recent-item { min-width: 0; color: var(--muted); font-size: 10px; text-decoration: none; }
+    .recent-item img { display: block; width: 100%; aspect-ratio: 4/3; object-fit: cover; border: 1px solid #354756; border-radius: 6px; background: #060a0d; }
+    .recent-item span { display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; padding-top: 4px; }
+    .empty { color: var(--muted); font-size: 12px; padding: 8px 0; }
+    details.scene-card { margin-top: 14px; padding: 13px 14px; }
+    details.scene-card summary { cursor: pointer; color: #cbd8e3; font-weight: 650; }
+    .scene-copy { margin: 10px 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
+    .scene-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    #scene-status { margin-left: auto; color: var(--muted); font-size: 12px; text-align: right; }
+    #scene-preview-wrap { display: none; margin-top: 10px; }
+    #scene-preview-wrap.visible { display: block; }
+    #scene-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; touch-action: none; }
+    #scene-preview-wrap.drawing #scene-canvas { pointer-events: auto; cursor: crosshair; }
+    .assignments { display: grid; gap: 1px; margin-top: 10px; border: 1px solid var(--line); border-radius: 7px; overflow: hidden; background: var(--line); }
+    .assignment { display: grid; grid-template-columns: minmax(140px, .8fr) minmax(220px, 1.2fr); align-items: center; gap: 9px; padding: 8px 10px; background: #111a22; }
+    .assignment span { color: #c1cfda; font-size: 12px; }
+    .assignment-controls { display: grid; grid-template-columns: minmax(180px, 1fr) auto; gap: 7px; }
+    .banner { display: none; margin: 0 0 12px; padding: 10px 12px; border: 1px solid #a34857; border-radius: 9px; background: #3c1e24; color: #ffd9de; white-space: pre-wrap; }
+    .banner.visible { display: block; }
+    @media (max-width: 980px) {
+      .workspace { grid-template-columns: 1fr; }
+      .recent-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    }
+    @media (max-width: 600px) {
+      main { padding: 10px; }
+      header { display: block; }
+      .header-right { margin-top: 10px; justify-content: flex-start; }
+      #status { text-align: left; }
+      .two-col { grid-template-columns: 1fr; }
+      .recent-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .assignment { grid-template-columns: 1fr; }
+      .assignment-controls { grid-template-columns: 1fr auto; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1>赛道一 RGB-D 自采数据</h1>
+      <p class="subhead">D405 实时预览 + 40 类手动标签采集。只采图、不控制机械臂和夹爪。</p>
+    </div>
+    <div class="header-right">
+      <div id="status">正在加载采集服务...</div>
+      <button id="stop-service" class="danger" type="button">停止服务</button>
+    </div>
+  </header>
+
+  <div id="error-banner" class="banner" role="alert"></div>
+
+  <div class="workspace">
+    <section class="card video-card">
+      <div class="view">
+        <img id="stream" src="/stream.mjpg" alt="D405 实时画面">
+      </div>
+      <div class="stream-foot">
+        <span id="stream-meta">正在连接 D405...</span>
+        <span id="model-status">模型加载中</span>
+      </div>
+    </section>
+
+    <aside class="card control-card">
+      <h2>采集设置</h2>
+      <label class="field">
+        <span>采集会话 ID</span>
+        <div class="inline">
+          <input id="session-id" autocomplete="off" spellcheck="false" placeholder="20261027_session_001">
+          <button id="new-session" class="ghost" type="button">新会话</button>
+        </div>
+      </label>
+      <p class="hint" id="session-hint">同一批采集使用同一个会话；照片会统一进入 photos 根目录。</p>
+
+      <label class="field">
+        <span>物品名称（40 类 + 空背景 + 多物品提示）</span>
+        <select id="class-select" aria-label="物品类别"></select>
+      </label>
+      <p class="hint" id="class-hint">正在加载类别表...</p>
+
+      <label class="field">
+        <span>采集场景 <span class="required-mark">*</span></span>
+        <select id="scene-select" aria-label="采集场景"></select>
+      </label>
+      <p class="hint" id="scene-hint">正在加载采集场景...</p>
+
+      <label class="field">
+        <span>本帧主物品实例 ID <span id="instance-required" class="required-mark">*</span></span>
+        <input id="instance-id" autocomplete="off" spellcheck="false" placeholder="例如：11-Padlock#01；混放时写本次主实例">
+      </label>
+      <p class="hint" id="instance-hint">正类样本必须填写可追踪的物理实例 ID；同一实际物品始终复用同一 ID。</p>
+
+      <div class="two-col">
+        <label class="field">
+          <span>光照 / 场地 ID</span>
+          <input id="lighting-id" value="site_A" autocomplete="off" spellcheck="false">
+        </label>
+        <label class="field">
+          <span>布局 / 遮挡备注 <span id="notes-required" class="required-mark" hidden>*</span></span>
+          <input id="notes" autocomplete="off" placeholder="例如：3 件混放，左侧被箱壁遮挡">
+        </label>
+      </div>
+      <p class="hint">困难场景必须填写布局、遮挡、贴壁或相机角度；空箱负样本请选择“空 11L 收纳盒”。</p>
+
+      <div class="warning" id="model-warning">当前模型只识别前 10 类；第 11–40 类必须手动选择标签采集。</div>
+
+      <div class="actions">
+        <button id="capture-one" class="primary" type="button" disabled>采一张 RGB-D</button>
+        <button id="capture-burst" class="secondary" type="button" disabled>连拍</button>
+      </div>
+      <div class="two-col" style="margin-top:8px">
+        <label class="field">
+          <span>连拍张数（建议 5 张以内）</span>
+          <input id="burst-count" type="number" min="2" max="10" value="5">
+        </label>
+        <label class="field">
+          <span>间隔（毫秒）</span>
+          <input id="burst-interval" type="number" min="100" max="5000" step="50" value="700">
+        </label>
+      </div>
+      <p class="hint">采集有效性按已复核 bbox 和独立布局计算；同一位置 20 张连拍不等于 20 个有效样本。</p>
+      <div class="progress" id="progress"><div id="progress-bar"></div></div>
+      <div id="capture-status">等待类别表、相机和模型就绪...</div>
+      <div class="output">
+        <strong>统一照片目录</strong><br>
+        <span id="photos-root">加载中...</span><br>
+        <strong>当前会话目录</strong><br>
+        <span id="session-path">加载中...</span>
+      </div>
+    </aside>
+  </div>
+
+  <section class="card recent-card">
+    <div class="recent-head">
+      <h2>最近采集</h2>
+      <span id="session-total">本会话 0 张</span>
+    </div>
+    <div class="counts" id="counts"><span class="empty">本会话还没有采集记录。</span></div>
+    <div class="recent-grid" id="recent-grid"></div>
+  </section>
+
+  <details class="card scene-card">
+    <summary>高级：冻结当前 RGB-D 并做场景框选标注（可选）</summary>
+    <p class="scene-copy">这一区域用于从当前帧做多物体 bbox 标注，保存到独立 annotations 目录；普通分类采集不需要使用。</p>
+    <div class="scene-actions">
+      <button id="scene-freeze" class="ghost" type="button">冻结并分割</button>
+      <button id="scene-draw" class="ghost" type="button" disabled>手动框选</button>
+      <button id="scene-save" class="ghost" type="button" disabled>保存标注</button>
+      <button id="scene-discard" class="ghost" type="button" disabled>放弃</button>
+      <div id="scene-status">放置物品后冻结当前画面</div>
+    </div>
+    <div class="view" id="scene-preview-wrap">
+      <img id="scene-preview" alt="待标注的 RGB-D 场景">
+      <canvas id="scene-canvas" width="640" height="480"></canvas>
+    </div>
+    <div class="assignments" id="assignments" hidden></div>
+  </details>
+</main>
+
+<script>
+  const statusEl = document.getElementById("status");
+  const stream = document.getElementById("stream");
+  const stopService = document.getElementById("stop-service");
+  const errorBanner = document.getElementById("error-banner");
+  const classSelect = document.getElementById("class-select");
+  const classHint = document.getElementById("class-hint");
+  const sessionInput = document.getElementById("session-id");
+  const sessionHint = document.getElementById("session-hint");
+  const newSessionButton = document.getElementById("new-session");
+  const sceneSelect = document.getElementById("scene-select");
+  const sceneHint = document.getElementById("scene-hint");
+  const instanceInput = document.getElementById("instance-id");
+  const instanceRequired = document.getElementById("instance-required");
+  const instanceHint = document.getElementById("instance-hint");
+  const lightingInput = document.getElementById("lighting-id");
+  const notesInput = document.getElementById("notes");
+  const notesRequired = document.getElementById("notes-required");
+  const modelWarning = document.getElementById("model-warning");
+  const captureOne = document.getElementById("capture-one");
+  const captureBurst = document.getElementById("capture-burst");
+  const burstCount = document.getElementById("burst-count");
+  const burstInterval = document.getElementById("burst-interval");
+  const captureStatus = document.getElementById("capture-status");
+  const progress = document.getElementById("progress");
+  const progressBar = document.getElementById("progress-bar");
+  const photosRoot = document.getElementById("photos-root");
+  const sessionPath = document.getElementById("session-path");
+  const sessionTotal = document.getElementById("session-total");
+  const countsEl = document.getElementById("counts");
+  const recentGrid = document.getElementById("recent-grid");
+  const streamMeta = document.getElementById("stream-meta");
+  const modelStatus = document.getElementById("model-status");
+
+  const sceneFreeze = document.getElementById("scene-freeze");
+  const sceneDraw = document.getElementById("scene-draw");
+  const sceneSave = document.getElementById("scene-save");
+  const sceneDiscard = document.getElementById("scene-discard");
+  const sceneStatus = document.getElementById("scene-status");
+  const scenePreviewWrap = document.getElementById("scene-preview-wrap");
+  const scenePreview = document.getElementById("scene-preview");
+  const sceneCanvas = document.getElementById("scene-canvas");
+  const sceneContext = sceneCanvas.getContext("2d");
+  const assignments = document.getElementById("assignments");
+
+  let catalog = [];
+  let backgroundEntry = null;
+  let multiObjectHint = null;
+  let modelSupport = null;
+  let sceneTypes = {};
+  let captureControls = {};
+  const REQUIRED_SCENE_TYPES = [
+    "tabletop",
+    "box_11l",
+    "box_11l_empty",
+    "box_11l_clutter",
+    "box_11l_near_wall",
+    "box_11l_low_angle"
+  ];
+  let catalogReady = false;
+  let serviceReady = false;
+  let captureBusy = false;
+  let sessionLocked = false;
+  let reconnectTimer = 0;
+  let currentSession = "";
+  let pendingCandidates = [];
+  let manualBoxes = [];
+  let sceneFrozen = false;
+  let drawMode = false;
+  let dragStart = null;
+  let dragBox = null;
+
+  function showError(message) {
+    errorBanner.textContent = message;
+    errorBanner.classList.add("visible");
+  }
+
+  function clearError() {
+    errorBanner.textContent = "";
+    errorBanner.classList.remove("visible");
+  }
+
+  async function requestJson(url, options = {}) {
+    const response = await fetch(url, {cache: "no-store", ...options});
+    const text = await response.text();
+    let value = null;
+    try {
+      value = text ? JSON.parse(text) : null;
+    } catch {
+      value = null;
+    }
+    if (!response.ok) {
+      const message = value && value.error ? value.error : (text || `HTTP ${response.status}`);
+      throw new Error(message);
+    }
+    return value;
+  }
+
+  function reconnectStream() {
+    if (reconnectTimer) return;
+    reconnectTimer = window.setTimeout(() => {
+      reconnectTimer = 0;
+      stream.src = `/stream.mjpg?reconnect=${Date.now()}`;
+    }, 1200);
+  }
+  stream.addEventListener("error", reconnectStream);
+
+  function selectedCatalogEntry() {
+    const id = Number(classSelect.value);
+    if (multiObjectHint && id === Number(multiObjectHint.class_id)) return multiObjectHint;
+    if (id === 0) return backgroundEntry;
+    return catalog.find(item => item.class_id === id) || null;
+  }
+
+  function classOptionLabel(entry) {
+    if (entry.is_background) return "00 | 空箱 / 无目标（负样本）";
+    if (entry.is_collection_hint) return `${entry.class_id} | ${entry.display_name}`;
+    return `${String(entry.class_id).padStart(2, "0")} | ${entry.display_name} | ${entry.canonical_label}`;
+  }
+
+  function classOptions(selectedValue = "") {
+    return [backgroundEntry, ...catalog].map(entry => {
+      const option = document.createElement("option");
+      option.value = String(entry.class_id);
+      option.textContent = classOptionLabel(entry);
+      if (String(entry.class_id) === String(selectedValue)) option.selected = true;
+      return option;
+    });
+  }
+
+  function captureClassOptions(selectedValue = "") {
+    return [multiObjectHint, backgroundEntry, ...catalog].filter(Boolean).map(entry => {
+      const option = document.createElement("option");
+      option.value = String(entry.class_id);
+      option.textContent = classOptionLabel(entry);
+      if (String(entry.class_id) === String(selectedValue)) option.selected = true;
+      return option;
+    });
+  }
+
+  function classIndexByCanonicalLabel(label) {
+    const index = catalog.findIndex(item =>
+      item.canonical_label === label ||
+      item.model_class_names.includes(label) ||
+      item.english_name === label
+    );
+    return index >= 0 ? index : "";
+  }
+
+  function updateClassHint() {
+    const entry = selectedCatalogEntry();
+    if (!entry) return;
+    if (entry.is_collection_hint) {
+      classHint.textContent = "多物品混放提示：99 不是 YOLO 类别；拍完后必须在复核页把每个可见官方物品分别框成 1–40 类。";
+      return;
+    }
+    if (entry.is_background) {
+      classHint.textContent = "空箱/无目标：画面中不摆放待识别物品，作为负样本。";
+      return;
+    }
+    if (!modelSupport) return;
+    const supported = modelSupport.supported_class_ids.includes(entry.class_id);
+    classHint.textContent = supported
+      ? `模型辅助类别：${entry.canonical_label}；采集标签仍以这里的选择为准。`
+      : `当前模型不识别 ${entry.canonical_label}；请人工确认标签，模型框只作环境提示。`;
+  }
+
+  function sceneRequiresNotes(sceneType) {
+    return Array.isArray(captureControls.require_notes_scene_types)
+      && captureControls.require_notes_scene_types.includes(sceneType);
+  }
+
+  function populateSceneSelect() {
+    const entries = Object.entries(sceneTypes);
+    if (!entries.length) throw new Error("服务端没有返回采集场景");
+    sceneSelect.replaceChildren(...entries.map(([key, scene]) => {
+      const option = document.createElement("option");
+      option.value = key;
+      option.textContent = scene.label || key;
+      return option;
+    }));
+    const preferred = captureControls.default_scene_type;
+    sceneSelect.value = sceneTypes[preferred] ? preferred : entries[0][0];
+  }
+
+  function applyCaptureControls() {
+    const defaultCount = Number(captureControls.burst_default_count) || 5;
+    const maxCount = Math.max(2, Math.min(10, Number(captureControls.burst_max_count) || 10));
+    const defaultInterval = Number(captureControls.burst_default_interval_ms) || 700;
+    burstCount.min = "2";
+    burstCount.max = String(maxCount);
+    burstCount.value = String(Math.max(2, Math.min(maxCount, defaultCount)));
+    burstInterval.min = "100";
+    burstInterval.max = "5000";
+    burstInterval.step = "50";
+    burstInterval.value = String(Math.max(100, Math.min(5000, defaultInterval)));
+  }
+
+  function updateCaptureForm({adjustScene = false} = {}) {
+    const entry = selectedCatalogEntry();
+    const isCaptureHint = Boolean(entry?.is_collection_hint);
+    const positive = Boolean(entry && !entry.is_background && !isCaptureHint);
+    const hintScene = isCaptureHint ? String(entry.default_scene_type || "") : "";
+    if (isCaptureHint) {
+      if (sceneTypes[hintScene]) sceneSelect.value = hintScene;
+      if (!notesInput.value.trim() && entry.default_notes) notesInput.value = entry.default_notes;
+      instanceInput.value = "";
+      if (drawMode) {
+        drawMode = false;
+        scenePreviewWrap.classList.remove("drawing");
+        sceneDraw.textContent = "手动框选";
+      }
+    } else if (adjustScene && entry) {
+      if (entry.is_background && sceneTypes.box_11l_empty) {
+        sceneSelect.value = "box_11l_empty";
+      } else if (positive && sceneSelect.value === "box_11l_empty") {
+        const fallback = captureControls.default_scene_type;
+        sceneSelect.value = fallback && fallback !== "box_11l_empty" && sceneTypes[fallback]
+          ? fallback
+          : (sceneTypes.box_11l ? "box_11l" : Object.keys(sceneTypes)[0]);
+      }
+    }
+    for (const option of sceneSelect.options) {
+      if (isCaptureHint) {
+        option.disabled = option.value !== hintScene;
+      } else if (entry) {
+        option.disabled = entry.is_background ? option.value !== "box_11l_empty" : option.value === "box_11l_empty";
+      }
+    }
+    const sceneType = sceneSelect.value;
+    const scene = sceneTypes[sceneType] || {};
+    const notesNeeded = sceneRequiresNotes(sceneType);
+    const instanceNeeded = positive && captureControls.require_positive_instance_id !== false;
+    const instanceField = instanceInput.closest("label");
+    if (instanceField) instanceField.hidden = isCaptureHint;
+    sceneSelect.disabled = captureBusy || isCaptureHint;
+    instanceInput.disabled = captureBusy || isCaptureHint;
+    if (isCaptureHint) {
+      sceneHint.textContent = `${scene.label || hintScene}：已自动锁定。99 仅作采集提示；图片中每个可见已知物品都必须在复核页分别框选为官方 1–40 类。`;
+      instanceHint.textContent = "多物品混放不需要实例 ID；按整张图记录一次，复核时逐件框选。";
+    } else {
+      sceneHint.textContent = `${scene.label || sceneType || "未选择场景"}：${scene.description || "无场景说明"}${notesNeeded ? "（本场景备注必填）" : ""}`;
+      instanceHint.textContent = positive
+        ? "正类样本必须填写可追踪的物理实例 ID；同一实际物品始终复用同一 ID。"
+        : "空箱负样本不需要实例 ID；请确认箱内没有 40 类目标物品。";
+    }
+    instanceRequired.hidden = !instanceNeeded;
+    instanceInput.required = instanceNeeded;
+    notesRequired.hidden = !notesNeeded;
+    notesInput.required = notesNeeded;
+    setSceneBusy(captureBusy);
+  }
+
+  function validateCaptureSelection() {
+    const entry = selectedCatalogEntry();
+    if (!entry) throw new Error("请选择物品类别");
+    const isCaptureHint = Boolean(entry.is_collection_hint);
+    const sceneType = sceneSelect.value.trim();
+    if (!sceneType || !sceneTypes[sceneType]) throw new Error("请选择采集场景");
+    if (isCaptureHint) {
+      if (sceneType !== entry.default_scene_type) {
+        throw new Error(`多物品混放必须使用场景：${sceneTypes[entry.default_scene_type]?.label || entry.default_scene_type}`);
+      }
+      if (!notesInput.value.trim() && entry.default_notes) notesInput.value = entry.default_notes;
+      instanceInput.value = "";
+    }
+    const enforcing = captureControls.enforce_label_scene_consistency !== false;
+    if (enforcing && entry.is_background && sceneType !== "box_11l_empty") {
+      throw new Error("空箱/无目标样本必须选择“空 11L 收纳盒”场景");
+    }
+    if (enforcing && !entry.is_background && !isCaptureHint && sceneType === "box_11l_empty") {
+      throw new Error("“空 11L 收纳盒”场景不能采集正类别");
+    }
+    const instance = instanceInput.value.trim();
+    if (!isCaptureHint && !entry.is_background && captureControls.require_positive_instance_id !== false && !instance) {
+      throw new Error("正类样本必须填写物理实例 ID");
+    }
+    if (instance.length > 100 || /[\/\\\0]/.test(instance)) {
+      throw new Error("实例 ID 不能超过 100 个字符，且不能包含路径分隔符");
+    }
+    const notes = notesInput.value.trim();
+    if (sceneRequiresNotes(sceneType) && !notes) {
+      throw new Error(`场景“${sceneTypes[sceneType].label || sceneType}”必须填写布局、遮挡或视角备注`);
+    }
+    if (notes.length > 1000) throw new Error("备注不能超过 1000 个字符");
+  }
+
+  async function loadCatalog() {
+    const value = await requestJson("/api/classes");
+    catalog = Array.isArray(value.classes) ? value.classes : [];
+    backgroundEntry = value.background;
+    modelSupport = value.model_support || {};
+    sceneTypes = value.scene_types && typeof value.scene_types === "object" ? value.scene_types : {};
+    captureControls = value.capture && typeof value.capture === "object" ? value.capture : {};
+    multiObjectHint = captureControls.multi_object_hint && typeof captureControls.multi_object_hint === "object"
+      ? captureControls.multi_object_hint
+      : null;
+    if (catalog.length !== 40 || !backgroundEntry) {
+      throw new Error("类别表不是 40 类，请检查 class_map.yaml");
+    }
+    if (!multiObjectHint || multiObjectHint.enabled !== true || multiObjectHint.is_collection_hint !== true) {
+      throw new Error("服务端未启用多物品混放采集提示类");
+    }
+    if (Number(multiObjectHint.class_id) !== 99 || !multiObjectHint.default_scene_type || !sceneTypes[multiObjectHint.default_scene_type]) {
+      throw new Error("多物品混放提示类必须使用 99 和已配置的混放场景");
+    }
+    if ([backgroundEntry, ...catalog].some(entry => Number(entry.class_id) === Number(multiObjectHint.class_id))) {
+      throw new Error("多物品提示类 99 不得与官方类别重叠");
+    }
+    const missingScenes = REQUIRED_SCENE_TYPES.filter(scene => !sceneTypes[scene]);
+    const extraScenes = Object.keys(sceneTypes).filter(scene => !REQUIRED_SCENE_TYPES.includes(scene));
+    if (missingScenes.length || extraScenes.length) {
+      throw new Error(`采集场景配置不完整；缺少 ${missingScenes.join(", ") || "无"}，额外 ${extraScenes.join(", ") || "无"}`);
+    }
+    if (!value.capture) throw new Error("服务端没有返回增量采集质量策略");
+    classSelect.replaceChildren(...captureClassOptions(Number(multiObjectHint.class_id)));
+    populateSceneSelect();
+    applyCaptureControls();
+    catalogReady = true;
+    updateClassHint();
+    updateCaptureForm({adjustScene: true});
+    const supported = modelSupport.supported_class_ids || [];
+    modelWarning.textContent = supported.length
+      ? `当前模型只识别第 ${supported[0]}–${supported[supported.length - 1]} 类；第 11–40 类必须手动选择标签采集。`
+      : "当前没有可用模型；40 类全部手动选择标签采集。";
+    updateCaptureButtons();
+  }
+
+  function updateCaptureButtons() {
+    const canCapture = catalogReady && serviceReady && !captureBusy && Boolean(sceneSelect.value);
+    const captureHint = Boolean(selectedCatalogEntry()?.is_collection_hint);
+    captureOne.disabled = !canCapture;
+    captureBurst.disabled = !canCapture;
+    newSessionButton.disabled = captureBusy || !catalogReady;
+    sessionInput.disabled = captureBusy || sessionLocked;
+    classSelect.disabled = captureBusy || !catalogReady;
+    sceneSelect.disabled = captureBusy || !catalogReady || captureHint;
+    instanceInput.disabled = captureBusy || captureHint;
+    lightingInput.disabled = captureBusy;
+    notesInput.disabled = captureBusy;
+    burstCount.disabled = captureBusy;
+    burstInterval.disabled = captureBusy;
+  }
+
+  function setCaptureBusy(busy) {
+    captureBusy = busy;
+    updateCaptureButtons();
+  }
+
+  function normalizeOverlayUrl(url) {
+    if (!url) return "";
+    return `${url}${url.includes("?") ? "&" : "?"}v=${Date.now()}`;
+  }
+
+  function renderCaptureSummary(value) {
+    const session = value.session || {};
+    const total = Number(session.total_frames || 0);
+    sessionTotal.textContent = `本会话 ${total} 张`;
+    const counts = session.counts_by_class || {};
+    const entries = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+    if (!entries.length) {
+      countsEl.innerHTML = '<span class="empty">本会话还没有采集记录。</span>';
+    } else {
+      countsEl.replaceChildren(...entries.map(([label, count]) => {
+        const chip = document.createElement("span");
+        chip.className = "count-chip";
+        chip.textContent = `${label} × ${count}`;
+        return chip;
+      }));
+    }
+    const recent = Array.isArray(value.recent) ? value.recent : [];
+    recentGrid.replaceChildren(...recent.map(item => {
+      const anchor = document.createElement("a");
+      anchor.className = "recent-item";
+      anchor.target = "_blank";
+      anchor.rel = "noopener";
+      anchor.href = item.overlay_url || "#";
+      if (item.overlay_url) {
+        const img = document.createElement("img");
+        img.loading = "lazy";
+        img.src = normalizeOverlayUrl(item.overlay_url);
+        img.alt = `${item.canonical_label || ""} ${item.frame_id || ""}`;
+        anchor.append(img);
+      }
+      const caption = document.createElement("span");
+      caption.textContent = `#${item.frame_id || "?"} ${item.display_name || item.canonical_label || ""}`;
+      anchor.append(caption);
+      return anchor;
+    }));
+    if (!recent.length) {
+      const empty = document.createElement("span");
+      empty.className = "empty";
+      empty.textContent = "还没有可显示的缩略图。";
+      recentGrid.append(empty);
+    }
+    photosRoot.textContent = value.photosRoot || "未知";
+    sessionPath.textContent = value.sessionPath || "未知";
+  }
+
+  async function loadCaptureSummary() {
+    const session = sessionInput.value.trim();
+    const query = session ? `?session_id=${encodeURIComponent(session)}` : "";
+    const value = await requestJson(`/api/capture/summary${query}`);
+    currentSession = value.sessionId || session;
+    if (!sessionInput.value.trim()) sessionInput.value = currentSession;
+    renderCaptureSummary(value);
+  }
+
+  async function nextSession() {
+    clearError();
+    try {
+      const value = await requestJson("/api/session/next");
+      sessionInput.value = value.sessionId;
+      sessionLocked = false;
+      sessionHint.textContent = "已切换到新会话；采下第一张后会话 ID 会锁定。";
+      updateCaptureButtons();
+      await loadCaptureSummary();
+      captureStatus.textContent = `新会话：${value.sessionId}`;
+    } catch (error) {
+      showError(`新建会话失败：${error.message}`);
+    }
+  }
+
+  function capturePayload(mode, group = "") {
+    const captureHint = Boolean(selectedCatalogEntry()?.is_collection_hint);
+    return {
+      session_id: sessionInput.value.trim(),
+      class_id: Number(classSelect.value),
+      scene_type: sceneSelect.value,
+      instance_id: captureHint ? "" : instanceInput.value.trim(),
+      lighting_id: lightingInput.value.trim(),
+      notes: notesInput.value.trim(),
+      capture_mode: mode,
+      capture_group: group
+    };
+  }
+
+  async function captureFrame(mode = "single", group = "") {
+    const value = await requestJson("/api/capture", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(capturePayload(mode, group))
+    });
+    sessionLocked = true;
+    updateCaptureButtons();
+    const summary = {
+      photosRoot: photosRoot.textContent,
+      sessionId: value.session_id,
+      sessionPath: value.session_path,
+      session: {
+        total_frames: value.total_frames,
+        counts_by_class: value.counts_by_class
+      },
+      recent: value.recent
+    };
+    renderCaptureSummary(summary);
+    return value;
+  }
+
+  captureOne.addEventListener("click", async () => {
+    clearError();
+    try {
+      validateCaptureSelection();
+    } catch (error) {
+      showError(`采图前检查失败：${error.message}`);
+      captureStatus.textContent = "请先修正采集场景、实例 ID 或困难场景备注。";
+      return;
+    }
+    setCaptureBusy(true);
+    captureStatus.textContent = "正在读取同一对齐帧的 RGB 与深度并写入 PNG...";
+    try {
+      const value = await captureFrame("single");
+      captureStatus.textContent = `已保存 #${value.frame_id} · ${value.class_name} · 本会话共 ${value.total_frames} 张`;
+    } catch (error) {
+      showError(`采图失败：${error.message}`);
+      captureStatus.textContent = "采图失败，请查看上方错误提示。";
+    } finally {
+      setCaptureBusy(false);
+    }
+  });
+
+  captureBurst.addEventListener("click", async () => {
+    clearError();
+    try {
+      validateCaptureSelection();
+    } catch (error) {
+      showError(`采图前检查失败：${error.message}`);
+      captureStatus.textContent = "请先修正采集场景、实例 ID 或困难场景备注。";
+      return;
+    }
+    const defaultCount = Number(captureControls.burst_default_count) || 5;
+    const maxCount = Math.max(2, Math.min(10, Number(captureControls.burst_max_count) || 10));
+    const count = Math.max(2, Math.min(maxCount, Number(burstCount.value) || defaultCount));
+    const defaultInterval = Number(captureControls.burst_default_interval_ms) || 700;
+    const interval = Math.max(100, Math.min(5000, Number(burstInterval.value) || defaultInterval));
+    const group = `burst-${Date.now()}`;
+    setCaptureBusy(true);
+    progress.classList.add("visible");
+    progressBar.style.width = "0%";
+    try {
+      for (let index = 0; index < count; index += 1) {
+        const value = await captureFrame("burst", group);
+        const percent = ((index + 1) / count) * 100;
+        progressBar.style.width = `${percent.toFixed(1)}%`;
+        captureStatus.textContent = `连拍 ${index + 1}/${count} · #${value.frame_id} · ${value.class_name}`;
+        if (index + 1 < count) await new Promise(resolve => setTimeout(resolve, interval));
+      }
+      captureStatus.textContent = `连拍完成：本次 ${count} 张。`;
+    } catch (error) {
+      showError(`连拍中断：${error.message}`);
+      captureStatus.textContent = "连拍中断；已完成部分仍保留在会话中。";
+    } finally {
+      setCaptureBusy(false);
+      setTimeout(() => progress.classList.remove("visible"), 700);
+    }
+  });
+
+  classSelect.addEventListener("change", () => {
+    updateClassHint();
+    updateCaptureForm({adjustScene: true});
+  });
+  sceneSelect.addEventListener("change", () => updateCaptureForm());
+  sessionInput.addEventListener("change", async () => {
+    sessionLocked = false;
+    updateCaptureButtons();
+    try { await loadCaptureSummary(); } catch (error) { showError(`读取会话失败：${error.message}`); }
+  });
+  newSessionButton.addEventListener("click", nextSession);
+
+  stopService.addEventListener("click", async () => {
+    if (!window.confirm("确认停止视觉采集服务？已保存的数据不会删除。")) return;
+    try {
+      await requestJson("/api/stop", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: "{}"
+      });
+      serviceReady = false;
+      updateCaptureButtons();
+      statusEl.textContent = "采集服务正在停止...";
+      captureStatus.textContent = "服务已请求停止，可以关闭网页。";
+    } catch (error) {
+      showError(`停止服务失败：${error.message}`);
+    }
+  });
+
+  function clearScene() {
+    pendingCandidates = [];
+    manualBoxes = [];
+    sceneFrozen = false;
+    drawMode = false;
+    dragStart = null;
+    dragBox = null;
+    sceneCanvas.width = 640;
+    sceneCanvas.height = 480;
+    sceneContext.clearRect(0, 0, sceneCanvas.width, sceneCanvas.height);
+    assignments.replaceChildren();
+    assignments.hidden = true;
+    scenePreviewWrap.classList.remove("visible", "drawing");
+    sceneDraw.textContent = "手动框选";
+    scenePreview.removeAttribute("src");
+    setSceneBusy(false);
+  }
+
+  function setSceneBusy(busy) {
+    const annotationUnavailable = Boolean(selectedCatalogEntry()?.is_collection_hint);
+    sceneFreeze.disabled = busy || annotationUnavailable;
+    sceneDraw.disabled = busy || annotationUnavailable || !sceneFrozen;
+    sceneSave.disabled = busy || annotationUnavailable || !sceneFrozen || (pendingCandidates.length === 0 && manualBoxes.length === 0);
+    sceneDiscard.disabled = busy || !sceneFrozen;
+    if (annotationUnavailable) {
+      sceneStatus.textContent = "已选择多物品混放提示类：请直接拍照，之后在复核页逐件框选官方 1–40 类。";
+    }
+  }
+
+  function renderAssignments(candidates) {
+    const candidateRows = candidates.map((candidate, index) => {
+      const row = document.createElement("label");
+      row.className = "assignment";
+      const [x, y, width, height] = candidate.bbox_xywh;
+      const summary = document.createElement("span");
+      summary.textContent = `#${index + 1}  ${width}×${height}px  ${candidate.area_pixels}px²`;
+      const select = document.createElement("select");
+      select.dataset.candidateId = String(index + 1);
+      const suggestedIndex = candidate.suggested_class
+        ? classIndexByCanonicalLabel(candidate.suggested_class)
+        : "";
+      select.append(
+        ...classOptions(suggestedIndex),
+        Object.assign(document.createElement("option"), {value: "ignore", textContent: "忽略此候选"})
+      );
+      if (suggestedIndex === "") select.value = "ignore";
+      row.append(summary, select);
+      return row;
+    });
+    const manualRows = manualBoxes.map((box, index) => {
+      const row = document.createElement("div");
+      row.className = "assignment";
+      const [x1, y1, x2, y2] = box.bbox_xyxy;
+      const summary = document.createElement("span");
+      summary.textContent = `手动 M${index + 1}  ${Math.round(x2 - x1)}×${Math.round(y2 - y1)}px`;
+      const controls = document.createElement("div");
+      controls.className = "assignment-controls";
+      const select = document.createElement("select");
+      select.dataset.manualIndex = String(index);
+      select.append(...classOptions(String(box.classId + 1)));
+      select.value = String(box.classId + 1);
+      select.addEventListener("change", () => {
+        manualBoxes[index].classId = Number(select.value) - 1;
+        drawSceneCanvas();
+      });
+      const remove = document.createElement("button");
+      remove.type = "button";
+      remove.className = "ghost";
+      remove.textContent = "删除";
+      remove.addEventListener("click", () => {
+        manualBoxes.splice(index, 1);
+        renderAssignments(pendingCandidates);
+        drawSceneCanvas();
+        setSceneBusy(false);
+      });
+      controls.append(select, remove);
+      row.append(summary, controls);
+      return row;
+    });
+    assignments.replaceChildren(...candidateRows, ...manualRows);
+    assignments.hidden = false;
+  }
+
+  function drawSceneCanvas() {
+    sceneContext.clearRect(0, 0, sceneCanvas.width, sceneCanvas.height);
+    sceneContext.lineWidth = 2;
+    manualBoxes.forEach((box, index) => {
+      const [x1, y1, x2, y2] = box.bbox_xyxy;
+      sceneContext.strokeStyle = "#f06edc";
+      sceneContext.strokeRect(x1, y1, x2 - x1, y2 - y1);
+      sceneContext.fillStyle = "rgba(240, 110, 220, 0.88)";
+      sceneContext.fillRect(x1, Math.max(0, y1 - 20), 34, 20);
+      sceneContext.fillStyle = "#10161c";
+      sceneContext.font = "13px sans-serif";
+      sceneContext.fillText(`M${index + 1}`, x1 + 4, Math.max(14, y1 - 5));
+    });
+    if (dragBox !== null) {
+      const [x1, y1, x2, y2] = dragBox;
+      sceneContext.setLineDash([6, 4]);
+      sceneContext.strokeStyle = "#ffd24d";
+      sceneContext.strokeRect(x1, y1, x2 - x1, y2 - y1);
+      sceneContext.setLineDash([]);
+    }
+  }
+
+  function canvasPoint(event) {
+    const bounds = sceneCanvas.getBoundingClientRect();
+    return {
+      x: Math.max(0, Math.min(sceneCanvas.width, (event.clientX - bounds.left) * sceneCanvas.width / bounds.width)),
+      y: Math.max(0, Math.min(sceneCanvas.height, (event.clientY - bounds.top) * sceneCanvas.height / bounds.height))
+    };
+  }
+
+  sceneDraw.addEventListener("click", () => {
+    if (selectedCatalogEntry()?.is_collection_hint) {
+      sceneStatus.textContent = "多物品混放提示类不能用于本页框选；请直接拍照后到复核页逐件框选官方 1–40 类。";
+      return;
+    }
+    if (!drawMode && selectedCatalogEntry()?.is_background) {
+      sceneStatus.textContent = "手动框选前请先在上方类别中选择物品";
+      return;
+    }
+    drawMode = !drawMode;
+    scenePreviewWrap.classList.toggle("drawing", drawMode);
+    sceneDraw.textContent = drawMode ? "结束框选" : "手动框选";
+    sceneStatus.textContent = drawMode
+      ? `拖动鼠标框住物体；当前类别：${selectedCatalogEntry()?.canonical_label || ""}`
+      : "框选已结束，可调整类别或保存";
+  });
+
+  sceneCanvas.addEventListener("pointerdown", event => {
+    if (!drawMode) return;
+    event.preventDefault();
+    dragStart = canvasPoint(event);
+    dragBox = [dragStart.x, dragStart.y, dragStart.x, dragStart.y];
+    sceneCanvas.setPointerCapture(event.pointerId);
+    drawSceneCanvas();
+  });
+
+  sceneCanvas.addEventListener("pointermove", event => {
+    if (dragStart === null) return;
+    const point = canvasPoint(event);
+    dragBox = [
+      Math.min(dragStart.x, point.x), Math.min(dragStart.y, point.y),
+      Math.max(dragStart.x, point.x), Math.max(dragStart.y, point.y)
+    ];
+    drawSceneCanvas();
+  });
+
+  sceneCanvas.addEventListener("pointerup", event => {
+    if (dragStart === null || dragBox === null) return;
+    sceneCanvas.releasePointerCapture(event.pointerId);
+    const [x1, y1, x2, y2] = dragBox;
+    dragStart = null;
+    dragBox = null;
+    if (x2 - x1 < 8 || y2 - y1 < 8) {
+      drawSceneCanvas();
+      return;
+    }
+    if (selectedCatalogEntry()?.is_background || selectedCatalogEntry()?.is_collection_hint) {
+      sceneStatus.textContent = "请先在上方类别中选择官方物品，再拖框";
+      drawSceneCanvas();
+      return;
+    }
+    manualBoxes.push({bbox_xyxy: [x1, y1, x2, y2], classId: Number(classSelect.value) - 1});
+    renderAssignments(pendingCandidates);
+    drawSceneCanvas();
+    sceneStatus.textContent = `已添加 M${manualBoxes.length}，可继续框选或保存`;
+  });
+
+  sceneCanvas.addEventListener("pointercancel", () => {
+    dragStart = null;
+    dragBox = null;
+    drawSceneCanvas();
+  });
+
+  scenePreview.addEventListener("load", () => {
+    sceneCanvas.width = scenePreview.naturalWidth || 640;
+    sceneCanvas.height = scenePreview.naturalHeight || 480;
+    drawSceneCanvas();
+  });
+
+  sceneFreeze.addEventListener("click", async () => {
+    if (selectedCatalogEntry()?.is_collection_hint) {
+      sceneStatus.textContent = "多物品混放提示类不生成 YOLO 框；请直接拍照，并在照片复核页逐件框选官方 1–40 类。";
+      return;
+    }
+    sceneFreeze.disabled = true;
+    sceneFrozen = false;
+    sceneStatus.textContent = "正在分割深度候选...";
+    try {
+      const value = await requestJson("/api/scene/freeze", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: "{}"
+      });
+      pendingCandidates = value.candidates || [];
+      manualBoxes = [];
+      sceneFrozen = true;
+      renderAssignments(pendingCandidates);
+      scenePreview.src = `/api/scene/preview.jpg?t=${Date.now()}`;
+      scenePreviewWrap.classList.add("visible");
+      drawSceneCanvas();
+      sceneStatus.textContent = `已找到 ${pendingCandidates.length} 个候选，请逐个选择类别`;
+    } catch (error) {
+      clearScene();
+      sceneStatus.textContent = `分割失败：${error.message}`;
+    } finally {
+      setSceneBusy(false);
+    }
+  });
+
+  sceneSave.addEventListener("click", async () => {
+    sceneSave.disabled = true;
+    const selected = {};
+    assignments.querySelectorAll("select[data-candidate-id]").forEach(select => {
+      if (select.value !== "ignore") selected[select.dataset.candidateId] = Number(select.value) - 1;
+    });
+    try {
+      const value = await requestJson("/api/scene/save", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+          assignments: selected,
+          manual_boxes: manualBoxes.map(box => ({class_id: box.classId, bbox_xyxy: box.bbox_xyxy}))
+        })
+      });
+      sceneStatus.textContent = `已保存 ${value.objects} 个标注 · ${value.scene}`;
+      clearScene();
+    } catch (error) {
+      sceneStatus.textContent = `保存失败：${error.message}`;
+      sceneSave.disabled = false;
+    }
+  });
+
+  sceneDiscard.addEventListener("click", async () => {
+    sceneDiscard.disabled = true;
+    try {
+      await requestJson("/api/scene/discard", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: "{}"
+      });
+    } finally {
+      clearScene();
+      sceneStatus.textContent = "已放弃当前场景";
+    }
+  });
+
+  async function refreshStatus() {
+    try {
+      const value = await requestJson("/status.json");
+      if (!value.ready) {
+        serviceReady = false;
+        statusEl.textContent = value.error ? `识别服务错误：${value.error}` : "正在加载 D405、YOLO 和深度模块...";
+        if (value.error) showError(value.error);
+        updateCaptureButtons();
+        return;
+      }
+      serviceReady = true;
+      clearError();
+      const parts = [
+        `${Number(value.fps || 0).toFixed(1)} FPS`,
+        `${value.width}x${value.height}`,
+        `推理 ${Number(value.inferenceMs || 0).toFixed(0)} ms`
+      ];
+      if (value.depth) parts.push(`深度候选 ${value.depth.objectComponents ?? 0}`);
+      statusEl.textContent = parts.join(" · ");
+      streamMeta.textContent = `D405 实时画面 · ${value.width}x${value.height}`;
+      const labels = (value.detections || []).map(item =>
+        `${item.class} ${((item.stableConfidence ?? item.confidence) * 100).toFixed(1)}%`
+      );
+      modelStatus.textContent = labels.length ? `模型辅助：${labels.join(" | ")}` : "模型辅助：未识别到前 10 类物品";
+      updateCaptureButtons();
+    } catch {
+      serviceReady = false;
+      statusEl.textContent = "采集服务暂时不可用";
+      updateCaptureButtons();
+      reconnectStream();
+    }
+  }
+
+  async function boot() {
+    try {
+      await loadCatalog();
+      await loadCaptureSummary();
+    } catch (error) {
+      showError(`初始化失败：${error.message}`);
+      captureStatus.textContent = "初始化失败，请检查类别表和采集目录。";
+    }
+    await refreshStatus();
+    window.setInterval(refreshStatus, 500);
+  }
+
+  boot();
+</script>
+</body>
+</html>

@@ -1,0 +1,281 @@
+#!/usr/bin/env bash
+# 新增的“赛道一 照片采集”桌面包装器。
+# 只负责处理“视觉识别/抓取识别”对 D405 的已知占用；不启动机器人。
+
+set -o pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+CAPTURE_LAUNCHER="$ROOT/bin/collect_track1_dataset"
+TASK_A_STOPPER="$ROOT/bin/run_task_a"
+TASK_A_PID_FILE="${XDG_STATE_HOME:-$HOME/.local/state}/task-a-camera-recognition/preview.pid"
+TASK_A_EXPECTED="/home/sunshine/codex/easton/taskA/live_camera_preview.py"
+TASK_A_PORT=9100
+GRAB_STOPPER="/home/sunshine/.local/bin/track1_camera_recognition"
+GRAB_PID_FILE="${XDG_STATE_HOME:-$HOME/.local/state}/track1-camera-recognition/recognition.pid"
+GRAB_EXPECTED="track1_grasp.nodes.search_approach_node"
+LOG_DIR="$ROOT/logs/track1_capture_web"
+LAUNCHER_LOG="$LOG_DIR/launcher.log"
+APP_TITLE="赛道一 照片采集"
+PYTHON="/usr/bin/python3"
+
+MODE="${1:-start}"
+
+gui_available() {
+    [ -n "${DISPLAY:-}" ] || [ -n "${WAYLAND_DISPLAY:-}" ]
+}
+
+log_event() {
+    mkdir -p "$LOG_DIR" 2>/dev/null || true
+    printf '%s [%s] %s\n' \
+        "$(date '+%F %T')" "$$" "$*" >> "$LAUNCHER_LOG" 2>/dev/null || true
+}
+
+notify() {
+    if gui_available && command -v notify-send >/dev/null 2>&1; then
+        notify-send --app-name="$APP_TITLE" "$APP_TITLE" "$1" >/dev/null 2>&1 || true
+    fi
+}
+
+show_error() {
+    local message="$1"
+    printf '错误：%s\n' "$message" >&2
+    log_event "ERROR: $message"
+    notify "$message"
+    if gui_available && command -v zenity >/dev/null 2>&1; then
+        zenity --error --title="$APP_TITLE 启动失败" --text="$message" \
+            --width=720 >/dev/null 2>&1 || true
+    fi
+}
+
+process_alive() {
+    local pid="$1"
+    local state
+    [[ "$pid" =~ ^[0-9]+$ ]] || return 1
+    kill -0 "$pid" 2>/dev/null || return 1
+    [ -r "/proc/$pid/stat" ] || return 1
+    state="$(awk '{print $3}' "/proc/$pid/stat" 2>/dev/null || true)"
+    [ "$state" != "Z" ]
+}
+
+process_cmdline() {
+    local pid="$1"
+    tr '\0' ' ' < "/proc/$pid/cmdline" 2>/dev/null || true
+}
+
+read_pid_file() {
+    local path="$1"
+    local pid
+    [ -r "$path" ] || return 1
+    pid="$(tr -d '[:space:]' < "$path" 2>/dev/null || true)"
+    [[ "$pid" =~ ^[0-9]+$ ]] || return 1
+    printf '%s\n' "$pid"
+}
+
+is_task_a_process() {
+    local pid="$1"
+    local cmd
+    process_alive "$pid" || return 1
+    cmd="$(process_cmdline "$pid")"
+    [[ "$cmd" == *"$TASK_A_EXPECTED"* ]] \
+        && [[ "$cmd" == *"--port $TASK_A_PORT"* ]]
+}
+
+is_grab_process() {
+    local pid="$1"
+    local cmd
+    process_alive "$pid" || return 1
+    cmd="$(process_cmdline "$pid")"
+    [[ "$cmd" == *"$GRAB_EXPECTED"* ]]
+}
+
+find_task_a_pid() {
+    local pid
+    if pid="$(read_pid_file "$TASK_A_PID_FILE")" && is_task_a_process "$pid"; then
+        printf '%s\n' "$pid"
+        return 0
+    fi
+    for pid in $(/usr/bin/pgrep -f "$TASK_A_EXPECTED" 2>/dev/null || true); do
+        [ "$pid" = "$$" ] && continue
+        if is_task_a_process "$pid"; then
+            printf '%s\n' "$pid"
+            return 0
+        fi
+    done
+    return 1
+}
+
+find_grab_pid() {
+    local pid
+    if pid="$(read_pid_file "$GRAB_PID_FILE")" && is_grab_process "$pid"; then
+        printf '%s\n' "$pid"
+        return 0
+    fi
+    for pid in $(/usr/bin/pgrep -f "$GRAB_EXPECTED" 2>/dev/null || true); do
+        [ "$pid" = "$$" ] && continue
+        if is_grab_process "$pid"; then
+            printf '%s\n' "$pid"
+            return 0
+        fi
+    done
+    return 1
+}
+
+confirm_switch() {
+    local program="$1"
+    local pid="$2"
+    local message
+    message="D405 正在被“$program”占用（PID=$pid）。
+
+照片采集需要独占相机。是否现在停止“$program”并启动照片采集？"
+    log_event "检测到 $program 占用 D405（PID=$pid），等待用户确认"
+    if gui_available && command -v zenity >/dev/null 2>&1; then
+        zenity --question \
+            --title="$APP_TITLE" \
+            --text="$message" \
+            --ok-label="停止$program并启动采集" \
+            --cancel-label="取消" \
+            --default-cancel \
+            --width=700 >/dev/null 2>&1
+        return $?
+    fi
+
+    # 终端诊断模式：只有明确输入 y/yes 才继续。
+    local answer
+    printf '%s\n继续？[y/N] ' "$message"
+    IFS= read -r answer || true
+    [[ "$answer" =~ ^([yY]|[yY][eE][sS])$ ]]
+}
+
+wait_for_exit() {
+    local pid="$1"
+    local attempts="${2:-80}"
+    local _
+    for _ in $(seq 1 "$attempts"); do
+        process_alive "$pid" || return 0
+        sleep 0.1
+    done
+    return 1
+}
+
+port_in_use() {
+    "$PYTHON" - "$1" "$2" <<'PY'
+import socket
+import sys
+host, port = sys.argv[1], int(sys.argv[2])
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.settimeout(0.5)
+try:
+    in_use = sock.connect_ex((host, port)) == 0
+finally:
+    sock.close()
+raise SystemExit(0 if in_use else 1)
+PY
+}
+
+capture_already_running() {
+    local status_json
+    status_json="$("$CAPTURE_LAUNCHER" status 2>/dev/null)" || return 1
+    STATUS_JSON="$status_json" "$PYTHON" - <<'PY'
+import json
+import os
+try:
+    payload = json.loads(os.environ.get("STATUS_JSON", "{}"))
+except json.JSONDecodeError:
+    raise SystemExit(1)
+raise SystemExit(0 if payload.get("running") else 1)
+PY
+}
+
+stop_task_a() {
+    local pid="$1"
+    if ! "$TASK_A_STOPPER" --stop >> "$LAUNCHER_LOG" 2>&1; then
+        show_error "“视觉识别”停止失败（PID=$pid）。照片采集未启动，也没有强制结束未知进程。"
+        return 1
+    fi
+    if ! wait_for_exit "$pid" 80; then
+        show_error "“视觉识别”进程仍未退出（PID=$pid）。照片采集未启动。"
+        return 1
+    fi
+    if port_in_use 127.0.0.1 "$TASK_A_PORT"; then
+        show_error "“视觉识别”已退出，但端口 $TASK_A_PORT 仍被其他程序占用。照片采集未启动。"
+        return 1
+    fi
+    log_event "视觉识别已由用户确认停止（PID=$pid）"
+    return 0
+}
+
+stop_grab() {
+    local pid="$1"
+    [ -x "$GRAB_STOPPER" ] || {
+        show_error "找不到“抓取识别”的停止程序：$GRAB_STOPPER"
+        return 1
+    }
+    if ! "$GRAB_STOPPER" stop >> "$LAUNCHER_LOG" 2>&1; then
+        show_error "“抓取识别”停止失败（PID=$pid）。照片采集未启动。"
+        return 1
+    fi
+    if ! wait_for_exit "$pid" 80; then
+        show_error "“抓取识别”进程仍未退出（PID=$pid）。照片采集未启动。"
+        return 1
+    fi
+    log_event "抓取识别已由用户确认停止（PID=$pid）"
+    return 0
+}
+
+show_check() {
+    local task_pid="" grab_pid=""
+    task_pid="$(find_task_a_pid 2>/dev/null || true)"
+    grab_pid="$(find_grab_pid 2>/dev/null || true)"
+    printf '采集入口=%s\n' "$CAPTURE_LAUNCHER"
+    printf '视觉识别占用PID=%s\n' "${task_pid:-无}"
+    printf '抓取识别占用PID=%s\n' "${grab_pid:-无}"
+    "$CAPTURE_LAUNCHER" --check
+}
+
+case "$MODE" in
+    --check|check)
+        show_check
+        exit $?
+        ;;
+    ""|--start|start)
+        ;;
+    *)
+        printf '用法：%s [start|check]\n' "$0" >&2
+        exit 2
+        ;;
+esac
+
+[ -x "$CAPTURE_LAUNCHER" ] || {
+    show_error "找不到照片采集启动器：$CAPTURE_LAUNCHER"
+    exit 1
+}
+
+# 新采集服务已经运行：直接打开网页，不检查、也不停止任何其他程序。
+if capture_already_running; then
+    log_event "照片采集已在运行，打开现有网页"
+    "$CAPTURE_LAUNCHER" start
+    exit $?
+fi
+
+# 只在用户明确确认后释放两个已知桌面识别程序；其他相机占用不做自动处理。
+if pid="$(find_task_a_pid)"; then
+    if ! confirm_switch "视觉识别" "$pid"; then
+        log_event "用户取消切换；未停止视觉识别"
+        exit 0
+    fi
+    stop_task_a "$pid" || exit 1
+fi
+
+if pid="$(find_grab_pid)"; then
+    if ! confirm_switch "抓取识别" "$pid"; then
+        log_event "用户取消切换；未停止抓取识别"
+        exit 0
+    fi
+    stop_grab "$pid" || exit 1
+fi
+
+log_event "启动照片采集网页"
+"$CAPTURE_LAUNCHER" start
+status=$?
+log_event "照片采集启动命令退出码=$status"
+exit "$status"

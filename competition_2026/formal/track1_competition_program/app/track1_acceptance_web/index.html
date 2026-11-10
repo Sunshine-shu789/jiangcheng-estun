@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>赛道一 40 类 + 三罐头独立复核验收</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: Inter, "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+      background: #081118;
+      color: #edf6fc;
+      --panel: rgba(16, 29, 39, .96);
+      --panel2: #132432;
+      --line: #294151;
+      --muted: #91a8b8;
+      --green: #35d6a2;
+      --blue: #5fb6ff;
+      --yellow: #ffd166;
+      --red: #ff7182;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: radial-gradient(circle at 15% -20%, #17415c 0, #081118 48%); }
+    main { width: min(1540px, 100%); margin: 0 auto; padding: 18px; }
+    header { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; margin-bottom: 14px; }
+    h1 { margin: 0 0 5px; font-size: clamp(21px, 2.2vw, 30px); }
+    h2 { margin: 0 0 12px; font-size: 16px; }
+    p { margin: 0; }
+    .subhead { color: var(--muted); font-size: 13px; line-height: 1.6; }
+    .safety { color: #f0d98d; }
+    .header-right { text-align: right; color: var(--muted); font-size: 12px; line-height: 1.7; max-width: 560px; }
+    #model-hash { white-space: pre-line; }
+    .pill { display: inline-block; padding: 4px 9px; border-radius: 999px; border: 1px solid var(--line); background: #0e1b25; }
+    .pill.ok { color: var(--green); border-color: rgba(53,214,162,.45); }
+    .pill.bad { color: var(--red); border-color: rgba(255,113,130,.45); }
+    .layout { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(350px, .9fr); gap: 14px; align-items: start; }
+    .card { border: 1px solid var(--line); border-radius: 13px; background: var(--panel); box-shadow: 0 14px 40px rgba(0,0,0,.22); }
+    .video-card { padding: 10px; }
+    .view { position: relative; overflow: hidden; border: 1px solid #345166; border-radius: 9px; aspect-ratio: 4 / 3; background: #010508; }
+    .view img { display: block; width: 100%; height: 100%; object-fit: contain; }
+    .view .loading { position: absolute; inset: 0; display: grid; place-items: center; color: var(--muted); font-size: 14px; background: rgba(2,8,12,.6); }
+    .view .loading.hidden { display: none; }
+    .stream-foot { display: flex; justify-content: space-between; gap: 12px; padding: 9px 3px 1px; color: var(--muted); font-size: 12px; }
+    .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 9px; }
+    .metric { padding: 9px 10px; border: 1px solid var(--line); border-radius: 8px; background: #0d1922; }
+    .metric span { display: block; color: var(--muted); font-size: 11px; margin-bottom: 3px; }
+    .metric strong { font-size: 16px; font-variant-numeric: tabular-nums; }
+    .side { display: grid; gap: 14px; }
+    .controls { padding: 14px; }
+    .row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 9px; }
+    input[type=range] { width: 100%; accent-color: var(--green); }
+    .threshold { display: grid; grid-template-columns: 1fr 76px; gap: 10px; align-items: center; }
+    output { padding: 7px; border: 1px solid var(--line); border-radius: 7px; text-align: center; font-variant-numeric: tabular-nums; background: #0b1720; }
+    button { min-height: 38px; border: 1px solid #3a6b61; border-radius: 8px; padding: 8px 12px; background: linear-gradient(135deg,#1b9f7c,#15745d); color: white; font: inherit; font-weight: 700; cursor: pointer; }
+    button.secondary { border-color: #3a6383; background: #17364e; }
+    button.danger { border-color: #893d49; background: #4a2028; color: #ffdce1; }
+    button:disabled { opacity: .5; cursor: wait; }
+    .buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+    .message { min-height: 42px; margin-top: 10px; padding: 9px 10px; border: 1px solid var(--line); border-radius: 8px; color: var(--muted); background: #0b1720; font-size: 12px; line-height: 1.55; overflow-wrap: anywhere; }
+    .detections { padding: 14px; }
+    .detect-list { display: grid; gap: 7px; }
+    .detect { display: grid; grid-template-columns: auto 1fr auto; gap: 9px; align-items: center; border: 1px solid var(--line); border-radius: 8px; padding: 9px; background: #0b1720; }
+    .id { min-width: 38px; color: #061016; background: var(--green); border-radius: 6px; padding: 3px 5px; text-align: center; font-weight: 800; font-size: 11px; }
+    .detect-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; }
+    .score { color: var(--green); font-weight: 750; font-variant-numeric: tabular-nums; }
+    .empty { color: var(--muted); font-size: 12px; padding: 8px 0; }
+    .classes { padding: 14px; }
+    .class-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; max-height: 428px; overflow: auto; padding-right: 3px; }
+    .class-item { display: grid; grid-template-columns: 32px minmax(0,1fr) auto; gap: 6px; align-items: center; min-height: 28px; padding: 4px 6px; border-radius: 6px; border: 1px solid #223746; background: #0b1720; font-size: 10.5px; color: #9eb2c0; }
+    .class-item.active { border-color: var(--green); color: #eafff8; background: rgba(53,214,162,.13); }
+    .class-item.reserved { opacity: .48; border-style: dashed; }
+    .class-id { font-variant-numeric: tabular-nums; color: #6f8798; }
+    .class-name { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+    .tag { font-size: 8px; border-radius: 4px; padding: 2px 4px; background: #244252; color: #bdd5e4; }
+    .tag.front { background: #234b3e; color: #9cf4d7; }
+    .tag.reserved { background: #403a28; color: #e7d796; }
+    .error { display: none; margin-bottom: 14px; padding: 11px 13px; border: 1px solid rgba(255,113,130,.5); border-radius: 9px; color: #ffdce1; background: rgba(88,25,36,.55); font-size: 13px; }
+    .error.visible { display: block; }
+    @media (max-width: 980px) { .layout { grid-template-columns: 1fr; } .class-grid { max-height: 360px; } }
+    @media (max-width: 620px) { main { padding: 10px; } header { display: block; } .header-right { margin-top: 10px; text-align: left; } .metrics { grid-template-columns: 1fr 1fr; } .class-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1>赛道一 · 40 类 + 三罐头独立复核验收</h1>
+      <p class="subhead">只读 D405。原 40 类模型负责其他 37 类；2-Starkist_Tuna、5-Tomato_Soup、10-meat_can 由独立三分类模型决定，避免重复报类。</p>
+      <p class="subhead safety">安全隔离：不连接 ROS，不运动机械臂，不控制夹爪。</p>
+    </div>
+    <div class="header-right">
+      <span id="phase" class="pill">正在连接服务</span>
+      <div id="model-hash">模型哈希加载中</div>
+    </div>
+  </header>
+  <div id="error" class="error"></div>
+  <div class="layout">
+    <section class="card video-card">
+      <div class="view">
+        <img id="stream" src="/stream.mjpg" alt="D405 实时识别画面">
+        <div id="loading" class="loading">正在初始化模型和 D405 相机…</div>
+      </div>
+      <div class="stream-foot">
+        <span id="camera-info">D405：等待中</span>
+        <span id="frame-info">frame -</span>
+      </div>
+      <div class="metrics">
+        <div class="metric"><span>画面 FPS</span><strong id="fps">-</strong></div>
+        <div class="metric"><span>推理耗时</span><strong id="infer">-</strong></div>
+        <div class="metric"><span>识别框</span><strong id="box-count">-</strong></div>
+        <div class="metric"><span>类别总数</span><strong>40</strong></div>
+      </div>
+    </section>
+    <aside class="side">
+      <section class="card controls">
+        <h2>现场验收控制</h2>
+        <div class="row"><span>识别置信度阈值</span><span id="conf-hint" class="subhead">小目标可临时降低</span></div>
+        <div class="threshold">
+          <input id="conf" type="range" min="0.05" max="0.60" step="0.01" value="0.15">
+          <output id="conf-value">0.15</output>
+        </div>
+        <div class="buttons">
+          <button id="snapshot">保存验收截图</button>
+          <button id="reload" class="secondary">刷新页面</button>
+        </div>
+        <div class="buttons">
+          <button id="stop" class="danger">停止验收服务</button>
+          <button id="open-snapshot" class="secondary" disabled>打开最近截图</button>
+        </div>
+        <div id="message" class="message">等待实时画面。</div>
+      </section>
+      <section class="card detections">
+        <h2>当前识别结果</h2>
+        <div id="detect-list" class="detect-list"><div class="empty">暂无目标</div></div>
+      </section>
+    </aside>
+  </div>
+  <section class="card classes" style="margin-top:14px">
+    <h2>40 类状态盘 · ID 00–39（官方编号 = ID + 1）</h2>
+    <div id="class-grid" class="class-grid"></div>
+  </section>
+</main>
+<script>
+  const phaseEl = document.getElementById('phase');
+  const errorEl = document.getElementById('error');
+  const hashEl = document.getElementById('model-hash');
+  const loadingEl = document.getElementById('loading');
+  const cameraEl = document.getElementById('camera-info');
+  const frameEl = document.getElementById('frame-info');
+  const fpsEl = document.getElementById('fps');
+  const inferEl = document.getElementById('infer');
+  const boxCountEl = document.getElementById('box-count');
+  const confEl = document.getElementById('conf');
+  const confValueEl = document.getElementById('conf-value');
+  const detectListEl = document.getElementById('detect-list');
+  const classGridEl = document.getElementById('class-grid');
+  const messageEl = document.getElementById('message');
+  const snapshotButton = document.getElementById('snapshot');
+  const openSnapshotButton = document.getElementById('open-snapshot');
+  let classes = [];
+  let activeIds = new Set();
+  let confDebounce = null;
+  let latestSnapshot = '';
+
+  function esc(value) {
+    return String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+  }
+  function colorFor(id) { return `hsl(${(id * 37) % 360} 72% 58%)`; }
+
+  async function requestJson(url, options) {
+    const response = await fetch(url, {cache: 'no-store', ...options});
+    const value = await response.json().catch(() => ({error: `HTTP ${response.status}`}));
+    if (!response.ok) throw new Error(value.error || `HTTP ${response.status}`);
+    return value;
+  }
+
+  async function loadClasses() {
+    const value = await requestJson('/api/model');
+    classes = value.classes;
+    const secondary = value.can_secondary || {enabled:false};
+    hashEl.textContent = `主模型: ${value.weights.split('/').pop()} · sha256: ${value.sha256.slice(0,16)}…\n三罐头: ${secondary.enabled ? `${secondary.weights.split('/').pop()} · sha256: ${secondary.sha256.slice(0,16)}…` : '未启用（旧模式）'}`;
+    classGridEl.innerHTML = classes.map(item => {
+      const tag = item.reserved_empty ? '<span class="tag reserved">空槽</span>' : (item.front_ten ? '<span class="tag front">前10</span>' : '<span class="tag">验收</span>');
+      return `<div class="class-item ${item.reserved_empty ? 'reserved' : ''}" id="class-${item.id}" title="${esc(item.name)}">
+        <span class="class-id">${String(item.id).padStart(2,'0')}</span>
+        <span class="class-name">${esc(item.name)}</span>${tag}
+      </div>`;
+    }).join('');
+  }
+
+  function renderDetections(detections) {
+    const active = new Set();
+    if (!detections || !detections.length) {
+      detectListEl.innerHTML = '<div class="empty">当前画面未识别到目标</div>';
+    } else {
+      detectListEl.innerHTML = detections.map(item => {
+        active.add(item.id);
+        const sourceTag = item.source === 'secondary_model' ? '<small>CAN3</small> ' : (item.source === 'primary_can_fallback' ? '<small>兜底</small> ' : '');
+        return `<div class="detect"><span class="id" style="background:${colorFor(item.id)}">${String(item.id).padStart(2,'0')}</span><span class="detect-name" title="${esc(item.name)}">${sourceTag}${esc(item.name)}</span><span class="score">${(item.confidence * 100).toFixed(1)}%</span></div>`;
+      }).join('');
+    }
+    for (const id of activeIds) {
+      if (!active.has(id)) document.getElementById(`class-${id}`)?.classList.remove('active');
+    }
+    for (const id of active) document.getElementById(`class-${id}`)?.classList.add('active');
+    activeIds = active;
+  }
+
+  async function refreshStatus() {
+    try {
+      const value = await requestJson('/status.json');
+      const running = value.phase === 'running' && value.ok;
+      phaseEl.textContent = running ? '识别正常运行' : (value.phase === 'error' ? '识别故障' : '正在初始化');
+      phaseEl.className = `pill ${value.ok ? (running ? 'ok' : '') : 'bad'}`;
+      loadingEl.classList.toggle('hidden', Boolean(value.frameSequence));
+      errorEl.classList.toggle('visible', !value.ok);
+      errorEl.textContent = value.ok ? '' : `识别错误：${value.error || '未知错误'}`;
+      cameraEl.textContent = value.cameraSerial ? `D405 ${value.cameraModel || ''} · SN ${value.cameraSerial}` : 'D405：等待中';
+      frameEl.textContent = `frame ${value.frameSequence || '-'} · ${value.frameWidth || '-'}×${value.frameHeight || '-'}`;
+      fpsEl.textContent = value.fps ? value.fps.toFixed(1) : '-';
+      inferEl.textContent = value.inferenceMs ? `${value.inferenceMs.toFixed(0)} ms` : '-';
+      boxCountEl.textContent = String((value.detections || []).length);
+      if (document.activeElement !== confEl) {
+        confEl.value = Number(value.conf || 0.15).toFixed(2);
+        confValueEl.textContent = Number(value.conf || 0.15).toFixed(2);
+      }
+      renderDetections(value.detections || []);
+    } catch (error) {
+      phaseEl.textContent = '服务连接失败';
+      phaseEl.className = 'pill bad';
+      errorEl.classList.add('visible');
+      errorEl.textContent = `无法连接验收服务：${error.message}`;
+    }
+  }
+
+  confEl.addEventListener('input', () => { confValueEl.textContent = Number(confEl.value).toFixed(2); });
+  confEl.addEventListener('change', () => {
+    clearTimeout(confDebounce);
+    confDebounce = setTimeout(async () => {
+      try {
+        const value = await requestJson('/api/settings', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({conf:Number(confEl.value)})});
+        messageEl.textContent = `识别阈值已更新为 ${Number(value.conf).toFixed(2)}。`;
+      } catch (error) { messageEl.textContent = `阈值更新失败：${error.message}`; }
+    }, 120);
+  });
+
+  snapshotButton.addEventListener('click', async () => {
+    snapshotButton.disabled = true;
+    messageEl.textContent = '正在保存截图和检测元数据…';
+    try {
+      const value = await requestJson('/api/snapshot', {method:'POST', headers:{'Content-Type':'application/json'}, body:'{}'});
+      latestSnapshot = value.image;
+      openSnapshotButton.disabled = false;
+      messageEl.textContent = `已保存：${value.image}`;
+    } catch (error) { messageEl.textContent = `保存失败：${error.message}`; }
+    snapshotButton.disabled = false;
+  });
+  openSnapshotButton.addEventListener('click', async () => {
+    if (!latestSnapshot) return;
+    const response = await fetch('/api/snapshot/latest.jpg', {cache:'no-store'});
+    if (!response.ok) return;
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement('a');
+    anchor.href = url;
+    anchor.download = latestSnapshot.split('/').pop() || 'acceptance.jpg';
+    anchor.click();
+    setTimeout(() => URL.revokeObjectURL(url), 3000);
+  });
+  document.getElementById('reload').addEventListener('click', () => location.reload());
+  document.getElementById('stop').addEventListener('click', async () => {
+    if (!confirm('停止 40 类视觉验收服务？不会操作机械臂或夹爪。')) return;
+    try { await requestJson('/api/stop', {method:'POST', headers:{'Content-Type':'application/json'}, body:'{}'}); } catch (_) {}
+    phaseEl.textContent = '服务已停止';
+    phaseEl.className = 'pill bad';
+  });
+
+  loadClasses().then(() => requestJson('/status.json')).then(value => {
+    confEl.value = Number(value.conf || 0.15).toFixed(2);
+    confValueEl.textContent = Number(value.conf || 0.15).toFixed(2);
+  }).catch(error => {
+    errorEl.classList.add('visible');
+    errorEl.textContent = `加载模型类别失败：${error.message}`;
+  });
+  refreshStatus();
+  setInterval(refreshStatus, 350);
+</script>
+</body>
+</html>

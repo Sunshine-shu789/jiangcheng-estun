@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# One-time in-place release for the successful Task B pick_4 grasp/lift run.
+# --preflight-only is read-only. --execute is the only mode that can move the
+# real arm or command the gripper, and it performs the full safety checks first.
+set -o pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+APP_DIR="$ROOT/app/track1_grasp"
+RUNTIME_MOUNT="${TRACK1_RUNTIME_MOUNT:-/media/sunshine/ESTUN_RUNTIME}"
+ROS2_SETUP="$RUNTIME_MOUNT/ros2_ws/install/setup.bash"
+MS42DC_ROS_SETUP="$RUNTIME_MOUNT/ms42dc_vendor_ws/install/setup.bash"
+TASK_PYTHON="${TRACK1_PYTHON:-/usr/bin/python3}"
+TASK_SITE_PACKAGES="${TRACK1_SITE_PACKAGES:-/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages}"
+STATE_DIR="$ROOT/state"
+
+"$ROOT/bin/ensure_runtime" || exit 1
+source /opt/ros/humble/setup.bash || exit 1
+source "$ROS2_SETUP" || exit 1
+source "$MS42DC_ROS_SETUP" || exit 1
+if [ -d "$TASK_SITE_PACKAGES" ]; then
+    export PYTHONPATH="$APP_DIR:$TASK_SITE_PACKAGES${PYTHONPATH:+:$PYTHONPATH}"
+else
+    export PYTHONPATH="$APP_DIR${PYTHONPATH:+:$PYTHONPATH}"
+fi
+export PYTHONUNBUFFERED=1
+
+mkdir -p "$STATE_DIR" "$ROOT/logs"
+exec 9>"$STATE_DIR/task.lock"
+if ! flock -n 9; then
+    printf '已有任务正在运行，拒绝同时启动pick_4原位释放。\n' >&2
+    exit 1
+fi
+
+exec "$TASK_PYTHON" -m track1_grasp.tools.release_pick4_in_place_once "$@"

@@ -1,0 +1,106 @@
+schema_version: 2
+program: track1_capture_web
+description: '赛道一任务 C/D 全 40 类 RGB-D 增量自采网页；只读取 D405、运行 YOLO 并写数据集，不连接机器人。'
+
+paths:
+  project_root: '/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序'
+  app_root: '/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_capture_web'
+  data_root: '/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_selfcollected_v1'
+  photos_root: '/media/sunshine/新加卷/赛道一_C_D自采照片'
+  annotation_root: '/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_selfcollected_v1/annotations'
+  class_map: '/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_selfcollected_v1/manifests/class_map.yaml'
+  models_root: '/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/models'
+  weights: '/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/models/best.pt'
+  logs: '/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/track1_capture_web'
+  state: '/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/state/track1_capture_web'
+
+runtime:
+  python_executable: '/usr/bin/python3'
+  venv_site_packages: '/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages'
+  ensure_runtime: '/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/bin/ensure_runtime'
+
+camera:
+  device: 'auto'
+  width: 640
+  height: 480
+  fps: 15
+  rotate_degrees: 180
+  warmup_frames: 30
+  default_lighting_id: 'site_A'
+
+model:
+  enabled: true
+  device: 'cpu'
+  imgsz: 640
+  detection_scale: '1.0'
+  inference_conf: 0.05
+  display_conf: 0.10
+  iou: 0.60
+  max_det: 100
+  primary_classes: '0,1,2,3,4,5,6,7,8,9'
+  supported_class_count: 10
+  warning: '当前权重只识别前 10 类。11-40 类仍可采集，但必须手动选择正确标签。'
+
+server:
+  host: '127.0.0.1'
+  port: 9110
+  open_browser: true
+
+capture:
+  session_id_regex: '^[0-9A-Za-z][0-9A-Za-z._-]{0,63}$'
+  default_notes: ''
+  default_scene_type: 'box_11l'
+  require_scene_selection: true
+  require_positive_instance_id: true
+  enforce_label_scene_consistency: true
+  require_notes_scene_types:
+    - box_11l_clutter
+    - box_11l_near_wall
+    - box_11l_low_angle
+  # 99 只是采集提示，不是 YOLO 类别；复核时必须逐件框官方 1-40 类。
+  multi_object_hint:
+    enabled: true
+    class_id: 99
+    canonical_label: '99-Multi_Object'
+    english_name: 'Multi Object'
+    display_name: '多物品混放'
+    default_scene_type: 'box_11l_clutter'
+    default_notes: '多物品混放'
+    require_instance_id: false
+  # 困难布局用单拍或 3-5 张静态变化；禁止用 20 张连拍堆近似重复帧。
+  burst_default_count: 5
+  burst_default_interval_ms: 700
+  burst_max_count: 10
+  save_overlay_jpeg: true
+  # 所有场景仍以同一个 11L 收纳盒为主；细分的是布局和观察条件，不是箱体类别。
+  scene_types:
+    tabletop:
+      label: '台面'
+      box_type: none
+      description: '物品直接放在台面，用于隔离背景且保留俯视基础视角'
+    box_11l:
+      label: '11L 箱内标准视角'
+      box_type: box_11l
+      description: '单个或少量物品放在 11L 收纳盒内，透镜正常俯视观察位'
+    box_11l_empty:
+      label: '空 11L 收纳盒（负样本）'
+      box_type: box_11l
+      description: '箱内无 40 类目标，记录透明箱体、反光、阴影和空标签负样本'
+    box_11l_clutter:
+      label: '11L 箱内多物体混放'
+      box_type: box_11l
+      description: '多类物品随机混放，包含互相遮挡、堆叠和不同朝向'
+    box_11l_near_wall:
+      label: '11L 箱内靠壁/角落'
+      box_type: box_11l
+      description: '目标贴近透明箱壁、箱沿或角落，覆盖反光与截断边界'
+    box_11l_low_angle:
+      label: '11L 箱侧视/低角度'
+      box_type: box_11l
+      description: '围绕同一布局改变相机高度和角度，覆盖侧视、低角度、遮挡和反光'
+
+safety:
+  robot_control: false
+  allow_ros_topics: false
+  allow_motion_commands: false
+  note: '本程序不得导入或启动机器人控制节点，不得发布 /RobotMove 或夹爪命令。'

@@ -1,0 +1,533 @@
+#!/usr/bin/env bash
+# Track 1 self-collection controller: D405 RGB-D only, no robot commands.
+
+set -o pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+APP_DIR="$ROOT/app/track1_capture_web"
+SERVICE="$APP_DIR/live_camera_preview.py"
+SERVICE_MATCH="track1_capture_web/live_camera_preview.py"
+CONFIG="$ROOT/config/track1_capture_web.yaml"
+CLASS_MAP="$ROOT/datasets/track1_selfcollected_v1/manifests/class_map.yaml"
+PHOTOS_ROOT="${TRACK1_CAPTURE_PHOTOS:-/media/sunshine/新加卷/赛道一_C_D自采照片}"
+SCENE_ROOT="$ROOT/datasets/track1_selfcollected_v1/annotations"
+WEIGHTS="${TRACK1_CAPTURE_WEIGHTS:-$ROOT/models/best.pt}"
+SITE_PACKAGES="${TRACK1_SITE_PACKAGES:-/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages}"
+PYTHON="${TRACK1_PYTHON:-/usr/bin/python3}"
+ENSURE_RUNTIME="${TRACK1_ENSURE_RUNTIME:-$ROOT/bin/ensure_runtime}"
+STATE_DIR="${TRACK1_CAPTURE_STATE:-$ROOT/state/track1_capture_web}"
+LOG_DIR="${TRACK1_CAPTURE_LOGS:-$ROOT/logs/track1_capture_web}"
+PID_FILE="$STATE_DIR/preview.pid"
+LOCK_FILE="$STATE_DIR/preview.lock"
+LOG_FILE="$LOG_DIR/preview.log"
+HOST="${TRACK1_CAPTURE_HOST:-127.0.0.1}"
+PORT="${TRACK1_CAPTURE_PORT:-9110}"
+URL="http://$HOST:$PORT/"
+TASK_PID_FILE="$ROOT/state/task.pid"
+GRAB_PID_FILE="${TRACK1_GRAB_STATE:-${XDG_STATE_HOME:-$HOME/.local/state}/track1-camera-recognition/recognition.pid}"
+APP_TITLE="赛道一 RGB-D 自采"
+MODE="${1:-start}"
+JSON_MODE=0
+case "$MODE" in
+    --status|status|--check|check|--stop|stop) JSON_MODE=1 ;;
+esac
+
+json_error() {
+    "$PYTHON" -c 'import json,sys; print(json.dumps({"ok": False, "error": sys.argv[1]}, ensure_ascii=False))' "$1"
+}
+
+notify() {
+    local message="$1"
+    if { [ -n "${DISPLAY:-}" ] || [ -n "${WAYLAND_DISPLAY:-}" ]; } \
+        && command -v notify-send >/dev/null 2>&1; then
+        notify-send --app-name="$APP_TITLE" "$APP_TITLE" "$message" >/dev/null 2>&1 || true
+    fi
+}
+
+show_error() {
+    local message="$1"
+    printf '错误：%s\n' "$message" >&2
+    if [ "$JSON_MODE" = "1" ]; then
+        json_error "$message"
+    fi
+    notify "$message"
+    if [ "$JSON_MODE" = "0" ] \
+        && { [ -n "${DISPLAY:-}" ] || [ -n "${WAYLAND_DISPLAY:-}" ]; } \
+        && command -v zenity >/dev/null 2>&1; then
+        zenity --error --title="$APP_TITLE 启动失败" --text="$message" \
+            --width=680 >/dev/null 2>&1 || true
+    fi
+}
+
+process_alive() {
+    local pid="$1"
+    [[ "$pid" =~ ^[0-9]+$ ]] || return 1
+    kill -0 "$pid" 2>/dev/null || return 1
+    [ -r "/proc/$pid/stat" ] || return 1
+    local state
+    state="$(awk '{print $3}' "/proc/$pid/stat" 2>/dev/null || true)"
+    [ "$state" != "Z" ]
+}
+
+process_cmdline() {
+    local pid="$1"
+    tr '\0' ' ' < "/proc/$pid/cmdline" 2>/dev/null || true
+}
+
+is_target_process() {
+    local pid="$1"
+    process_alive "$pid" || return 1
+    # /media/sunshine/新加卷 and 新加卷1 are separate bind-mount-style
+    # views of the same files. Match the stable app-relative suffix so a
+    # preview started through either path is still recognized and stopped.
+    process_cmdline "$pid" | grep -F -- "$SERVICE_MATCH" >/dev/null 2>&1
+}
+
+read_pid() {
+    [ -r "$PID_FILE" ] || return 1
+    local pid
+    pid="$(tr -d '[:space:]' < "$PID_FILE" 2>/dev/null || true)"
+    [[ "$pid" =~ ^[0-9]+$ ]] || return 1
+    printf '%s\n' "$pid"
+}
+
+running_pid() {
+    local pid
+    pid="$(read_pid)" || return 1
+    if is_target_process "$pid"; then
+        printf '%s\n' "$pid"
+        return 0
+    fi
+    rm -f "$PID_FILE" 2>/dev/null || true
+    return 1
+}
+
+port_available() {
+    "$PYTHON" - "$HOST" "$PORT" <<'PY'
+import socket
+import sys
+host, port = sys.argv[1], int(sys.argv[2])
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+try:
+    sock.bind((host, port))
+except OSError:
+    raise SystemExit(1)
+finally:
+    sock.close()
+PY
+}
+
+http_available() {
+    curl --silent --show-error --fail --max-time 1 "$URL/status.json" >/dev/null 2>&1
+}
+
+open_browser() {
+    if { [ -n "${DISPLAY:-}" ] || [ -n "${WAYLAND_DISPLAY:-}" ]; } \
+        && command -v xdg-open >/dev/null 2>&1; then
+        xdg-open "$URL" >/dev/null 2>&1 &
+    fi
+}
+
+check_required_files() {
+    local path
+    for path in \
+        "$PYTHON" \
+        "$ENSURE_RUNTIME" \
+        "$SERVICE" \
+        "$CONFIG" \
+        "$CLASS_MAP" \
+        "$WEIGHTS" \
+        "$SITE_PACKAGES"; do
+        [ -e "$path" ] || {
+            show_error "缺少运行文件：$path"
+            return 1
+        }
+    done
+    [ -d "$SITE_PACKAGES" ] || {
+        show_error "Python 依赖目录不存在：$SITE_PACKAGES"
+        return 1
+    }
+    return 0
+}
+
+check_python_stack() {
+    env PYTHONNOUSERSITE=1 PYTHONPATH="$SITE_PACKAGES" PYTHONDONTWRITEBYTECODE=1 \
+        "$PYTHON" - "$APP_DIR" "$CONFIG" "$CLASS_MAP" <<'PY'
+import sys
+from pathlib import Path
+
+app_dir, config_path, class_map = map(Path, sys.argv[1:4])
+sys.path.insert(0, str(app_dir))
+import cv2
+import numpy as np
+import pyrealsense2
+import yaml
+from ultralytics import YOLO
+from capture_store import load_class_catalog
+from live_camera_preview import load_capture_controls, load_scene_types
+
+catalog = load_class_catalog(class_map)
+if len(catalog.entries) != 40:
+    raise RuntimeError(f"类别表应含 40 类，实际 {len(catalog.entries)} 类")
+args = type("ConfigArgs", (), {
+    "config": str(config_path),
+    "scene_types_json": "",
+})()
+scenes = load_scene_types(args)
+expected_scenes = {
+    "tabletop",
+    "box_11l",
+    "box_11l_empty",
+    "box_11l_clutter",
+    "box_11l_near_wall",
+    "box_11l_low_angle",
+}
+if set(scenes) != expected_scenes:
+    missing = sorted(expected_scenes - set(scenes))
+    extra = sorted(set(scenes) - expected_scenes)
+    raise RuntimeError(f"采集场景不匹配；缺少 {missing}，额外 {extra}")
+controls = load_capture_controls(args)
+if not controls["require_positive_instance_id"]:
+    raise RuntimeError("正类实例 ID 必须启用必填校验")
+if not controls["enforce_label_scene_consistency"]:
+    raise RuntimeError("必须启用空箱负样本与场景一致性校验")
+if not {"box_11l_clutter", "box_11l_near_wall", "box_11l_low_angle"}.issubset(
+    set(controls["require_notes_scene_types"])
+):
+    raise RuntimeError("混放、靠壁和低角度场景必须强制填写备注")
+if not 2 <= controls["burst_default_count"] <= controls["burst_max_count"] <= 10:
+    raise RuntimeError("连拍策略必须满足 2 <= 默认值 <= 上限 <= 10")
+hint = controls.get("multi_object_hint")
+if not isinstance(hint, dict) or hint.get("enabled") is not True:
+    raise RuntimeError("必须启用 99 多物品混放采集提示类")
+official_ids = {entry.class_id for entry in catalog.entries}
+if int(hint.get("class_id", -1)) != 99 or 99 in official_ids:
+    raise RuntimeError("多物品混放提示类必须为 99，且不得占用官方 1-40 类")
+if hint.get("canonical_label") != "99-Multi_Object":
+    raise RuntimeError("多物品混放提示类标签必须为 99-Multi_Object")
+if hint.get("display_name") != "多物品混放":
+    raise RuntimeError("多物品混放提示类显示名必须为 多物品混放")
+if hint.get("default_scene_type") != "box_11l_clutter":
+    raise RuntimeError("多物品混放提示类必须自动锁定 box_11l_clutter 场景")
+if hint.get("default_notes") != "多物品混放":
+    raise RuntimeError("多物品混放提示类默认备注必须为 多物品混放")
+if hint.get("require_instance_id") is not False:
+    raise RuntimeError("多物品混放提示类不得要求实例 ID")
+print("imports=ok")
+print(f"class_count={len(catalog.entries)}")
+print(f"scene_count={len(scenes)}")
+print(f"burst_default={controls['burst_default_count']}")
+print(f"burst_max={controls['burst_max_count']}")
+print(f"multi_object_hint={hint['class_id']}:{hint['default_scene_type']}")
+PY
+}
+
+detect_camera_blocker() {
+    local pid cmd
+    if [ -r "$TASK_PID_FILE" ]; then
+        pid="$(tr -d '[:space:]' < "$TASK_PID_FILE" 2>/dev/null || true)"
+        if process_alive "$pid"; then
+            cmd="$(process_cmdline "$pid")"
+            if [[ "$cmd" == *track1_grasp.nodes.track1_node* ]]; then
+                printf '任务B/C/D/E 正在运行并占用 D405（PID=%s）。请先停止当前任务。\n' "$pid"
+                return 0
+            fi
+        fi
+    fi
+
+    if [ -r "$GRAB_PID_FILE" ]; then
+        pid="$(tr -d '[:space:]' < "$GRAB_PID_FILE" 2>/dev/null || true)"
+        if process_alive "$pid"; then
+            cmd="$(process_cmdline "$pid")"
+            if [[ "$cmd" == *track1_grasp.nodes.search_approach_node* ]]; then
+                printf '桌面“抓取识别”正在占用 D405（PID=%s）。请先停止抓取识别。\n' "$pid"
+                return 0
+            fi
+        fi
+    fi
+
+    for pid in $(/usr/bin/pgrep -f 'live_camera_preview.py|camera_recognition.py|realsense-viewer' 2>/dev/null || true); do
+        [ "$pid" = "$$" ] && continue
+        process_alive "$pid" || continue
+        cmd="$(process_cmdline "$pid")"
+        [[ "$cmd" == *"$SERVICE_MATCH"* ]] && continue
+        if [[ "$cmd" == *live_camera_preview.py* ]] \
+            || [[ "$cmd" == *camera_recognition.py* ]] \
+            || [[ "$cmd" == *realsense-viewer* ]]; then
+            printf '检测到其他视觉程序正在占用 D405（PID=%s）：%s\n请先关闭该程序。\n' "$pid" "$cmd"
+            return 0
+        fi
+    done
+    return 1
+}
+
+status_payload() {
+    local pid="" running=false http_ready=false ready=false service_error=""
+    if pid="$(running_pid)"; then
+        running=true
+        if http_available; then
+            http_ready=true
+            local status_json
+            status_json="$(curl --silent --show-error --fail --max-time 2 "$URL/status.json" 2>/dev/null || true)"
+            if [ -n "$status_json" ]; then
+                local parsed
+                parsed="$(STATUS_JSON="$status_json" "$PYTHON" - <<'PY'
+import json
+import os
+payload = json.loads(os.environ.get("STATUS_JSON", "{}"))
+print("true" if payload.get("ready") else "false")
+print(str(payload.get("error") or ""))
+PY
+)"
+                ready="$(printf '%s\n' "$parsed" | sed -n '1p')"
+                service_error="$(printf '%s\n' "$parsed" | sed -n '2,$p')"
+            fi
+        fi
+    else
+        pid=""
+    fi
+    "$PYTHON" - "$running" "$pid" "$http_ready" "$ready" "$service_error" \
+        "$URL" "$PID_FILE" "$LOG_FILE" "$PHOTOS_ROOT" <<'PY'
+import json
+import sys
+running, pid, http_ready, ready, error, url, pid_file, log_file, photos = sys.argv[1:]
+print(json.dumps({
+    "ok": True,
+    "running": running == "true",
+    "pid": int(pid) if pid else None,
+    "http_ready": http_ready == "true",
+    "ready": ready == "true",
+    "error": error or None,
+    "url": url,
+    "pid_file": pid_file,
+    "log_file": log_file,
+    "photos_root": photos,
+}, ensure_ascii=False))
+PY
+}
+
+stop_service() {
+    local pid
+    if ! pid="$(running_pid)"; then
+        notify "采集网页当前没有运行"
+        "$PYTHON" - "$URL" <<'PY'
+import json
+import sys
+print(json.dumps({"ok": True, "stopped": False, "running": False, "url": sys.argv[1]}, ensure_ascii=False))
+PY
+        return 0
+    fi
+
+    curl --silent --show-error --fail --max-time 2 \
+        -X POST -H 'Content-Type: application/json' -d '{}' \
+        "$URL/api/stop" >/dev/null 2>&1 || true
+    local _
+    for _ in $(seq 1 60); do
+        process_alive "$pid" || break
+        sleep 0.1
+    done
+    if process_alive "$pid"; then
+        kill -TERM "$pid" 2>/dev/null || true
+        for _ in $(seq 1 30); do
+            process_alive "$pid" || break
+            sleep 0.1
+        done
+    fi
+    if process_alive "$pid"; then
+        show_error "采集服务未能在安全超时内停止（PID=$pid）。未强制结束进程。"
+        return 1
+    fi
+    rm -f "$PID_FILE" 2>/dev/null || true
+    notify "采集网页已停止，已采集数据未删除"
+    "$PYTHON" - "$pid" <<'PY'
+import json
+import sys
+print(json.dumps({"ok": True, "stopped": True, "pid": int(sys.argv[1])}, ensure_ascii=False))
+PY
+}
+
+check_only() {
+    check_required_files || return 1
+    check_python_stack >/tmp/track1_capture_stack.$$ 2>&1 || {
+        local detail
+        detail="$(tail -n 20 /tmp/track1_capture_stack.$$ 2>/dev/null | tr '\n' ' ')"
+        rm -f "/tmp/track1_capture_stack.$$"
+        show_error "Python 视觉依赖或类别配置检查失败：$detail"
+        return 1
+    }
+    rm -f "/tmp/track1_capture_stack.$$"
+    "$PYTHON" - "$URL" "$CLASS_MAP" "$PHOTOS_ROOT" "$WEIGHTS" <<'PY'
+import json
+import sys
+url, class_map, photos_root, weights = sys.argv[1:]
+print(json.dumps({
+    "ok": True,
+    "camera_checked": False,
+    "url": url,
+    "class_map": class_map,
+    "photos_root": photos_root,
+    "weights": weights,
+    "note": "离线检查通过；未打开 D405，也未发送任何机器人命令。",
+}, ensure_ascii=False))
+PY
+}
+
+start_service() {
+    local pid blocker
+    if pid="$(running_pid)"; then
+        open_browser
+        notify "采集网页已经在运行"
+        "$PYTHON" - "$pid" "$URL" <<'PY'
+import json
+import sys
+print(json.dumps({"ok": True, "already_running": True, "pid": int(sys.argv[1]), "url": sys.argv[2]}, ensure_ascii=False))
+PY
+        return 0
+    fi
+
+    check_required_files || return 1
+    if blocker="$(detect_camera_blocker)"; then
+        show_error "$blocker"
+        return 1
+    fi
+    if ! port_available; then
+        show_error "端口 $PORT 已被其他程序占用；请先停止占用程序，或设置 TRACK1_CAPTURE_PORT。"
+        return 1
+    fi
+
+    mkdir -p "$STATE_DIR" "$LOG_DIR" "$PHOTOS_ROOT" "$SCENE_ROOT" || {
+        show_error "无法创建状态、日志或数据集目录。"
+        return 1
+    }
+
+    exec 9>"$LOCK_FILE"
+    if command -v flock >/dev/null 2>&1 && ! flock -n 9; then
+        show_error "另一个采集启动操作正在进行，请稍后重试。"
+        return 1
+    fi
+
+    "$ENSURE_RUNTIME" || {
+        show_error "正式 ROS 运行环境检查失败：$ENSURE_RUNTIME"
+        return 1
+    }
+
+    if [ -f "$LOG_FILE" ] && [ "$(stat -c '%s' "$LOG_FILE" 2>/dev/null || printf 0)" -gt 10485760 ]; then
+        mv -f "$LOG_FILE" "$LOG_FILE.1" 2>/dev/null || true
+    fi
+    printf '\n===== %s =====\n' "$(date '+%F %T')" >> "$LOG_FILE"
+    printf '启动赛道一 RGB-D 自采网页（禁止机器人控制）\n' >> "$LOG_FILE"
+
+    cd "$ROOT" || {
+        show_error "无法进入比赛程序目录：$ROOT"
+        return 1
+    }
+    nohup env \
+        PYTHONNOUSERSITE=1 \
+        PYTHONPATH="$SITE_PACKAGES" \
+        PYTHONUNBUFFERED=1 \
+        "$PYTHON" "$SERVICE" \
+        --config "$CONFIG" \
+        --class-map "$CLASS_MAP" \
+        --photos-root "$PHOTOS_ROOT" \
+        --scene-root "$SCENE_ROOT" \
+        --weights "$WEIGHTS" \
+        --primary-classes "0,1,2,3,4,5,6,7,8,9" \
+        --device "${TRACK1_CAPTURE_DEVICE:-cpu}" \
+        --camera-width 640 \
+        --camera-height 480 \
+        --camera-fps 15 \
+        --rotate 180 \
+        --rgbd \
+        --save-overlay-jpeg \
+        --default-lighting-id site_A \
+        --host "$HOST" \
+        --port "$PORT" \
+        >> "$LOG_FILE" 2>&1 &
+    pid=$!
+    printf '%s\n' "$pid" > "$PID_FILE"
+
+    local i
+    for i in $(seq 1 600); do
+        if ! process_alive "$pid"; then
+            local detail
+            detail="$(tail -n 40 "$LOG_FILE" 2>/dev/null | tr '\n' ' ')"
+            rm -f "$PID_FILE"
+            show_error "采集网页启动失败。日志：$LOG_FILE；末尾信息：$detail"
+            return 1
+        fi
+        if http_available; then
+            break
+        fi
+        sleep 0.1
+    done
+
+    if ! http_available; then
+        kill -TERM "$pid" 2>/dev/null || true
+        rm -f "$PID_FILE"
+        show_error "采集网页 60 秒内未就绪。请查看日志：$LOG_FILE"
+        return 1
+    fi
+
+    open_browser
+    local current_status ready service_error
+    current_status="$(status_payload)"
+    ready="$(STATUS_PAYLOAD="$current_status" "$PYTHON" -c 'import json,os; print("true" if json.loads(os.environ["STATUS_PAYLOAD"]).get("ready") else "false")')"
+    service_error="$(STATUS_PAYLOAD="$current_status" "$PYTHON" -c 'import json,os; print(json.loads(os.environ["STATUS_PAYLOAD"]).get("error") or "")')"
+    if [ "$ready" = "true" ]; then
+        notify "D405 与视觉模型已就绪，采集网页已打开"
+    else
+        notify "采集网页已打开，但相机/模型暂未就绪：${service_error:-正在加载}"
+    fi
+    "$PYTHON" - "$pid" "$URL" "$ready" "$service_error" "$LOG_FILE" <<'PY'
+import json
+import sys
+pid, url, ready, error, log_file = sys.argv[1:]
+print(json.dumps({
+    "ok": True,
+    "started": True,
+    "pid": int(pid),
+    "url": url,
+    "ready": ready == "true",
+    "service_error": error or None,
+    "log_file": log_file,
+}, ensure_ascii=False))
+PY
+}
+
+case "$MODE" in
+    start|--start|"")
+        start_service
+        ;;
+    --stop|stop)
+        stop_service
+        ;;
+    --status|status)
+        status_payload
+        ;;
+    --check|check)
+        check_only
+        ;;
+    --restart|restart)
+        stop_service >/dev/null || exit 1
+        start_service
+        ;;
+    --help|-h)
+        cat <<'HELP'
+用法：collect_track1_dataset [start|stop|status|check|restart]
+
+  start     启动 RGB-D 自采网页（默认）
+  stop      只停止本采集网页，不停止任务B/C/D/E
+  status    输出 JSON 状态
+  check     离线检查路径、Python 依赖、40 类表和场景配置
+  restart   仅重启本采集网页
+
+环境变量：TRACK1_CAPTURE_PORT（默认 9110）
+HELP
+        ;;
+    *)
+        printf '未知参数：%s\n' "$MODE" >&2
+        printf '使用 --help 查看用法。\n' >&2
+        exit 2
+        ;;
+esac

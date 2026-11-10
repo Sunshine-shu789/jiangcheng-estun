@@ -1,0 +1,404 @@
+# Task B five-point live validation configuration (2026-10-27).
+# Scope: operator-authorized sequential live validation from point 1 through
+# point 5, one attempt per point, with an operator gate after every pick.
+# Point geometry is the previously taught five-point sequence.  The live RGB-D
+# detection supplies the current object centre and PCA frame; adaptive IK then
+# applies the learned object-frame jaw-tip offset and checks the complete route.
+# The default bin/run_task_b entry remains the dry-run point-2 safe config.
+task:
+  mode: B
+  max_picks: 5
+  stop_on_error: true
+  sample_period_s: 0.2
+vision:
+  backend: realsense_yolo
+  weights: ../models/best.pt
+  min_confidence: 0.35
+  require_depth: true
+  camera_frame_id: camera_color_optical_frame
+  width: 640
+  height: 480
+  fps: 15
+  serial: ''
+  warmup_frames: 20
+  imgsz: 960
+  device: 0
+  depth_window: 5
+  target_class: 8-Plastic_Banana
+  classes:
+  - 1-Cheez-it
+  - 2-Starkist_Tuna
+  - 3-Scissors
+  - 4-Frenchs_Mustard
+  - 5-Tomato_Soup
+  - 6-Foam_Brick
+  - 7-Clamp
+  - 8-Plastic_Banana
+  - 9-Mug
+  - 10-meat_can
+  anchor: top_center
+  rotate_180: true
+  output_dir: ../logs/vision
+  continuous: false
+  show: false
+  window_name: Track 1 - D405 + YOLO
+  preview_fps: 30
+  capture_timeout_s: 20.0
+  stale_after_s: 2.0
+  stabilizer:
+    enabled: true
+    inference_min_confidence: 0.1
+    confirm_hits: 3
+    max_misses: 3
+    match_iou: 0.2
+    confidence_alpha: 0.25
+    box_alpha: 0.55
+    depth_alpha: 0.25
+    duplicate_iou: 0.55
+    containment_ratio: 0.9
+    cross_class_iou: 0.4
+    cross_class_containment: 0.6
+    cross_class_conf_ratio: 1.5
+    max_per_class: 1
+    class_switch_hits: 3
+    edge_margin_px: 8
+    edge_suppress_confidence: 0.55
+  save_annotated: false
+  save_interval_s: 2.0
+task_a:
+  iou_threshold: 0.75
+  ground_truth_file: ''
+  output_dir: ../logs/task_a_annotated
+  save_annotated: true
+  draw_labels: true
+  draw_ground_truth: true
+  max_frames: 0
+  min_positions: 10
+  patrol:
+    enabled: true
+    position_count: 10
+    min_move_distance_m: 0.15
+    stride_m: 0.2
+    linear_step_m: 0.01
+    settle_s: 0.8
+    axes:
+    - x
+    - y
+task_b:
+  initial_pose_file: task_b_initial_pose_20261019_233355.yaml
+  initial_pose_tolerance_deg: 0.5
+  # Previously taught point-1 through point-5 reference windows.  These are
+  # assignment gates only; the final grasp XY always comes from the current
+  # RGB-D detection and the learned object-relative jaw-tip offset.
+  place_poses_file: task_b_place_poses_20261020.yaml
+  rounds: 5
+  return_to_pick: true
+  target_class: 8-Plastic_Banana
+  keep_same_target: true
+  pick_pose_tolerance_m: 0.08
+  # Point 1 and point 2 are 0.086 m apart. During the operator-confirmed
+  # point-1 live check, the banana was 0.065 m from point 1 and only
+  # 0.0008 m closer to point 1 than point 2, so the historical 0.010 m
+  # buffer rejected a valid current-point observation. Keep the strict
+  # nearest-reference gate (zero buffer) and the 0.080 m point window.
+  point_assignment_margin_m: 0.0
+  # Zero waits for fresh visual confirmation indefinitely; it never advances or
+  # moves on timeout.
+  next_point_timeout_s: 0.0
+  next_point_poll_s: 0.5
+  lift_hold_s: 2.0
+  # After the in-place release and retreat, return to the completed point's
+  # taught observation posture and verify all six axes there.  The operator
+  # must then reposition the banana and press Enter before the next point.
+  return_to_initial_after_each_pick: false
+  return_to_observation_after_each_pick: true
+  return_to_initial_after_task: false
+  operator_pause_after_each_pick: true
+  place_names: [pick_1, pick_2, pick_3, pick_4, pick_5]
+  # Previous five-point grasp heights.  Point 3 was historically 0.162180295
+  # m, which is below the current hard safety floor, so this validation raises
+  # it to 0.166534092 m.  This is a floor-respecting revalidation value, not a
+  # claim that the original calibration used this height.
+  point_grasp_z_m:
+    - 0.166534092
+    - 0.166534092
+    - 0.166534092
+    - 0.169903173540
+    - 0.167454634
+  # Live visual XY is used for every point.  The old fixed flange-XY offsets
+  # are intentionally not applied in adaptive mode.
+  point_grasp_xy_from_observation: [false, false, false, false, false]
+  # Learned once from the operator-confirmed successful banana grasp in the
+  # current five-point sequence, with the same banana and gripper.  It is
+  # reused for points 1-5 as an object-PCA-frame offset.  It is NOT claimed as
+  # five independently learned point-specific samples.  Every round still
+  # redetects the object centre and PCA major axis from a new frame.
+  point_grasp_jaw_tip_object_offset_m:
+    - [0.004288649, -0.023589442]
+    - [0.004288649, -0.023589442]
+    - [0.004288649, -0.023589442]
+    - [0.004288649, -0.023589442]
+    - [0.004288649, -0.023589442]
+  # Previous per-point grasp orientations.  Point 1 uses the exact RPY read
+  # back from its successful 2026-10-27 supervised grasp.
+  point_grasp_rpy:
+    - [-3.097917195, -0.059032434, 1.530610652]
+    - [3.128682244906, 0.048279522802, 0.365742992703]
+    - [3.045178411, 0.059528589, -0.397915592]
+    - [3.083158245, 0.050086616, -0.347881105]
+    - [3.110527879, 0.030249596, -0.514993193]
+  # Every point uses a straight vertical approach, descent, lift and retreat.
+  point_vertical_grasp_descent: [true, true, true, true, true]
+  # Point 2 keeps its historically validated 0.060 m branch; the successful
+  # point-1 branch used 0.075 m.  All values remain subject to full-route IK,
+  # Jacobian, joint-limit, branch-continuity and acceleration prechecks.
+  point_vertical_grasp_approach_height_m: [0.075, 0.060, 0.075, 0.075, 0.075]
+  # Operator-taught observation postures from the previous five-point sequence.
+  # The arm moves to the current point's posture before acquisition and returns
+  # there after completing that point.
+  point_observation_joints_deg:
+    - [81.722065854, 83.401050762, -48.371075259, -55.140793165, 87.911188382, -3.395002883]
+    - [91.405846375, 74.366790849, -18.643502588, -35.900559036, 87.641336807, -19.600974643]
+    - [88.606279345, 94.897322912, -79.332457850, -73.643387215, 84.809611892, 21.237936864]
+    - [66.769885390, 93.322318979, -80.589018615, -75.774917104, 87.317606471, -3.217390651]
+    - [72.779312861, 88.137392207, -54.227518175, -57.451217024, 87.927919637, 12.231898069]
+  observation_pose_tolerance_deg: 0.5
+
+target:
+  policy: any
+  known_classes:
+  - 1-Cheez-it
+  - 2-Starkist_Tuna
+  - 3-Scissors
+  - 4-Frenchs_Mustard
+  - 5-Tomato_Soup
+  - 6-Foam_Brick
+  - 7-Clamp
+  - 8-Plastic_Banana
+  - 9-Mug
+  - 10-meat_can
+  unknown_labels:
+  - unknown
+  - object
+  unknown_min_graspability: 0.65
+  max_attempts_per_target: 1
+  order:
+  - 1-Cheez-it
+  - 2-Starkist_Tuna
+  - 3-Scissors
+  - 4-Frenchs_Mustard
+  - 5-Tomato_Soup
+  - 6-Foam_Brick
+  - 7-Clamp
+  - 8-Plastic_Banana
+  - 9-Mug
+  - 10-meat_can
+pose:
+  camera_frame: flange
+  extrinsics_file: camera_to_flange.d405_calibrated_20261025.yaml
+  use_detection_base_xyz: false
+  fallback_camera_to_base: false
+  # RobotInfo end_positions are the controller flange pose.  Adaptive visual
+  # planning needs this frame and the real flange-to-jaw-tip offset explicitly.
+  robot_pose_frame: flange
+  gripper_tip_offset_flange_m: [0.0, 0.0, 0.165]
+# Keep the observed object fixed.  Live vision supplies only grasp XY and
+# object-relative yaw alignment.  The flange grasp Z is the taught fixed
+# anchor below and must never be replaced by a visual depth estimate.
+# Every candidate must satisfy the hard depth floor and the complete
+# six-leg route precheck before any gripper or motion command.
+adaptive_inverse:
+  enabled: true
+  arbitrary_placement: false
+  tilted_visual_grasp: false
+  require_validated_extrinsics: true
+  min_pose_confidence: 0.50
+  candidates:
+    max_count: 35
+    # Keep the operator-taught wrist heading.  Live vision supplies the grasp
+    # XY plus the learned object-frame jaw-tip offset.  Only small pitch
+    # branches around the taught RPY are considered to recover a well-
+    # conditioned IK branch; no PCA yaw correction is applied.
+    lock_taught_orientation: true
+    yaw_offsets_deg: [0.0]
+    pitch_offsets_deg: [0.0]
+    taught_pitch_offsets_deg: [0.0, -5.0, -10.0]
+    axis_alignment_offset_deg: 0.0
+    max_orientation_change_deg: 120.0
+    use_visual_grasp_z: false
+    jaw_tip_clearance_m: 0.0
+    # Fail closed if the point-specific learned jaw-tip sample is missing.
+    require_jaw_tip_object_offset: true
+    # Hard lower bound for the planned flange Z.  It equals the lowest
+    # validated point-1/point-2 grasp height after the point-3 safety raise.
+    # Visual depth never lowers this guard.
+    minimum_grasp_flange_z_m: 0.166534092
+    approach_height_m: 0.075
+  selection:
+    stop_after_first_valid: true
+    min_sigma_margin: 0.001
+    sigma_weight: 10.0
+    joint_travel_weight: 1.0
+    orientation_weight: 1.0
+  # These previously taught points have no complete validated box geometry,
+  # so this flag cannot claim six-dimensional collision clearance.  The hard
+  # Z floor is an additional
+  # depth guard only; Cartesian route, workspace, joint, branch, acceleration
+  # and singularity guards remain active and fail closed.
+  box_clearance:
+    required: false
+motion:
+  backend: robotmove
+  # Operator-authorized physical five-point validation.  One attempt per
+  # point; any failure stops the run before retrying or skipping points.
+  dry_run: false
+  motion_mode: joint_ik
+  workspace_min:
+  - -0.65
+  - -0.65
+  - 0.02
+  workspace_max:
+  - 0.65
+  - 0.65
+  - 0.8
+  workspace_margin: 0.01
+  approach_height: 0.08
+  grasp_z_offset: 0.0
+  # Global fallback only; every configured point supplies its own authoritative
+  # grasp Z, RPY and observation anchor.
+  grasp_z_m: 0.166534092
+  grasp_rpy: [-3.097917195, -0.059032434, 1.530610652]
+  # The final lift remains 0.08 m; the approach height above is the
+  # separately validated 0.075 m pregrasp clearance.
+  lift_height: 0.08
+  place_pose:
+  - 0.25
+  - 0.25
+  - 0.08
+  - 3.14159265
+  - 0.0
+  - 0.0
+  place_approach_height: 0.08
+  retreat_height: 0.08
+  speed_mps: 0.01
+  orientation: current
+  fixed_rpy:
+  - 3.14159265
+  - 0.0
+  - 0.0
+  move_timeout_s: 30.0
+  position_tolerance_m: 0.003
+  ik_position_tolerance_m: 0.0002
+  ik_orientation_tolerance_rad: 0.0002
+  # Absolute numerical IK seeds only, never taught trajectories or permission
+  # to move.  The first seed is the previously validated point-1/point-2 branch;
+  # the second is the operator-confirmed point-3 posture captured on 2026-10-27.
+  # Every accepted waypoint still passes the measured-start, joint-limit,
+  # step, pose, continuity, acceleration and 0.01 Jacobian-singularity gates.
+  ik_fallback_seeds_deg:
+  - [95.162161976, 87.247202447, -21.787902852, -20.862341925, 87.957880257, -82.543682644]
+  - [94.286689312, 71.868409304, 3.275334570, -24.686269192, 88.027918070, -87.619364160]
+  poll_period_s: 0.05
+  robotmove_topic: RobotMove
+  robotinfo_topic: RobotInfo
+  robot_info_timeout_s: 2.0
+  joint_max_step_deg: 1.0
+  joint_tolerance_deg: 0.35
+  joint_start_tolerance_deg: 0.05
+  joint_limit_margin_deg: 2.0
+  joint_move_timeout_s: 8.0
+  joint_reject_timeout_s: 2.0
+  cartesian_step_m: 0.002
+  cartesian_min_step_m: 0.0001
+  cartesian_orientation_step_deg: 1.0
+  cartesian_min_orientation_step_deg: 0.1
+  cartesian_max_waypoints: 6000
+  cartesian_joint_step_deg: 0.5
+  cartesian_joint_branch_jump_deg: 5.0
+  cartesian_joint_acceleration_limit_deg: 0.25
+  cartesian_min_jacobian_singular_value: 0.01
+servo:
+  desired_standoff_m: 0.18
+  min_depth_m: 0.12
+  center_tolerance_px: 35
+  depth_tolerance_m: 0.015
+  max_steps: 36
+  max_step_m: 0.005
+  max_total_travel_m: 0.35
+  speed_mps: 0.01
+  lateral_gain: 0.8
+  forward_gain: 0.8
+  settle_s_after_move: 0.25
+  convergence_frames: 2
+  camera_to_tool:
+  - - 1.0
+    - 0.0
+    - 0.0
+  - - 0.0
+    - 1.0
+    - 0.0
+  - - 0.0
+    - 0.0
+    - 1.0
+search:
+  # The arm is already in the current point observation posture.  If the
+  # banana is not confirmed there, abort instead of searching or advancing.
+  enabled: false
+  observation_offsets_xy_m:
+  - - 0.0
+    - 0.0
+  - - -0.1
+    - 0.0
+  - - 0.1
+    - 0.0
+  - - 0.0
+    - -0.1
+  - - 0.0
+    - 0.1
+  observation_clearance_m: 0.2
+  yaw_offsets_deg:
+  - 0
+  pitch_down_offsets_deg:
+  - 0
+  - 5
+  - 10
+  - 15
+  - 20
+  - 25
+  - 30
+  - 35
+  - 40
+  - 45
+  - 50
+  - 55
+  - 60
+  - 65
+  - 70
+  - 75
+  - 80
+  settle_s: 0.8
+  observe_frames: 8
+  confirm_hits: 2
+  return_to_initial_on_miss: true
+gripper:
+  # Direct USB-C serial transport.  The vendor ROS motor_node has a blocking
+  # serial callback that can queue status queries and return stale frames.
+  backend: ms42dc
+  serial_port: /dev/motor_serial
+  serial_baudrate: 115200
+  serial_bytesize: 8
+  serial_parity: N
+  serial_stopbits: 1
+  device_id: 1
+  subdivide: 32
+  motion_mode: 2
+  open_angle_deg: 3000.0
+  close_angle_deg: 3000.0
+  speed_rad_s: 10.0
+  status_timeout_s: 1.0
+  motion_timeout_s: 8.0
+  invert_direction: false
+  require_feedback: true
+  hold_min_angle_deg: 0.0
+  settle_time_s: 0.3
+  open_before_approach: true

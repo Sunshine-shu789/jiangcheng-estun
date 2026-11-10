@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- GENERATED FILE. Do not hand-edit. Source of truth: track1_grasp/kinematics.py CONTROLLER_DH. -->
+<!-- Collision primitives are STEP-derived conservative envelopes, not accepted manufacturing geometry. -->
+<robot name="estun_s3_60_g2" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <material name="estun_blue">
+      <color rgba="0.10 0.32 0.68 1"/>
+    </material>
+    <material name="estun_dark">
+      <color rgba="0.16 0.17 0.19 1"/>
+    </material>
+    <material name="d405_black">
+      <color rgba="0.02 0.02 0.02 1"/>
+    </material>
+    <material name="gripper_dark">
+      <color rgba="0.12 0.14 0.16 1"/>
+    </material>
+    <material name="gripper_silicone">
+      <color rgba="0.08 0.52 0.62 1"/>
+    </material>
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://estun_s3_60_g2_description/mesh/link_local/visual/base_link.stl" scale="1 1 1"/>
+      </geometry>
+      <material name="estun_dark">
+        <color rgba="0.18 0.42 0.78 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://estun_s3_60_g2_description/mesh/link_local/collision/base_link.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="link1">
+    <visual>
+      <geometry>
+        <mesh filename="package://estun_s3_60_g2_description/mesh/link_local/visual/link1.stl" scale="1 1 1"/>
+      </geometry>
+      <material name="estun_blue">
+        <color rgba="0.18 0.42 0.78 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://estun_s3_60_g2_description/mesh/link_local/collision/link1.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="link2">
+    <visual>
+      <geometry>
+        <mesh filename="package://estun_s3_60_g2_description/mesh/link_local/visual/link2.stl" scale="1 1 1"/>
+      </geometry>
+      <material name="estun_blue">
+        <color rgba="0.18 0.42 0.78 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://estun_s3_60_g2_description/mesh/link_local/collision/link2.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="link3">
+    <visual>
+      <geometry>
+        <mesh filename="package://estun_s3_60_g2_description/mesh/link_local/visual/link3.stl" scale="1 1 1"/>
+      </geometry>
+      <material name="estun_blue">
+        <color rgba="0.18 0.42 0.78 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://estun_s3_60_g2_description/mesh/link_local/collision/link3.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="link4">
+    <visual>
+      <geometry>
+        <mesh filename="package://estun_s3_60_g2_description/mesh/link_local/visual/link4.stl" scale="1 1 1"/>
+      </geometry>
+      <material name="estun_blue">
+        <color rgba="0.18 0.42 0.78 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://estun_s3_60_g2_description/mesh/link_local/collision/link4.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="link5">
+    <visual>
+      <geometry>
+        <mesh filename="package://estun_s3_60_g2_description/mesh/link_local/visual/link5.stl" scale="1 1 1"/>
+      </geometry>
+      <material name="estun_blue">
+        <color rgba="0.18 0.42 0.78 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://estun_s3_60_g2_description/mesh/link_local/collision/link5.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="link6">
+    <visual>
+      <geometry>
+        <mesh filename="package://estun_s3_60_g2_description/mesh/link_local/visual/link6.stl" scale="1 1 1"/>
+      </geometry>
+      <material name="estun_blue">
+        <color rgba="0.18 0.42 0.78 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://estun_s3_60_g2_description/mesh/link_local/collision/link6.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="joint1" type="revolute">
+      <origin xyz="0 0 0.176" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="link1"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.49065850398866" upper="3.49065850398866" effort="80" velocity="2.617994"/>
+  </joint>
+  <joint name="joint2" type="revolute">
+      <origin xyz="0 0.158964 0" rpy="0 -1.5707963267949 -1.5707963267949"/>
+    <parent link="link1"/>
+    <child link="link2"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.49065850398866" upper="3.49065850398866" effort="100" velocity="2.617994"/>
+  </joint>
+  <joint name="joint3" type="revolute">
+      <origin xyz="0.249388 0 -0.158" rpy="0 0 0"/>
+    <parent link="link2"/>
+    <child link="link3"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-2.84488668075076" upper="2.84488668075076" effort="80" velocity="2.617994"/>
+  </joint>
+  <joint name="joint4" type="revolute">
+      <origin xyz="0.220792 0 0.106" rpy="3.14159265358979 0 1.5707963267949"/>
+    <parent link="link3"/>
+    <child link="link4"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.49065850398866" upper="3.49065850398866" effort="50" velocity="3.141593"/>
+  </joint>
+  <joint name="joint5" type="revolute">
+      <origin xyz="0 0.105546 0" rpy="1.5707963267949 0 0"/>
+    <parent link="link4"/>
+    <child link="link5"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.49065850398866" upper="3.49065850398866" effort="50" velocity="3.141593"/>
+  </joint>
+  <joint name="joint6" type="revolute">
+      <origin xyz="0 -0.1235 0" rpy="1.5707963267949 0 0"/>
+    <parent link="link5"/>
+    <child link="link6"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.49065850398866" upper="3.49065850398866" effort="50" velocity="3.141593"/>
+  </joint>
+  <link name="flange_link"/>
+  <joint name="flange_fixed" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="link6"/>
+    <child link="flange_link"/>
+  </joint>
+  <link name="gripper_body_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://estun_s3_60_g2_description/mesh/gripper/visual/gripper_body_link.stl" scale="1 1 1"/>
+      </geometry>
+      <material name="gripper_dark">
+        <color rgba="0.18 0.42 0.78 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://estun_s3_60_g2_description/mesh/gripper/collision/gripper_body_link.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="gripper_left_finger_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://estun_s3_60_g2_description/mesh/gripper/visual/gripper_left_finger_link.stl" scale="1 1 1"/>
+      </geometry>
+      <material name="gripper_silicone">
+        <color rgba="0.18 0.42 0.78 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://estun_s3_60_g2_description/mesh/gripper/collision/gripper_left_finger_link.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="gripper_right_finger_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://estun_s3_60_g2_description/mesh/gripper/visual/gripper_right_finger_link.stl" scale="1 1 1"/>
+      </geometry>
+      <material name="gripper_silicone">
+        <color rgba="0.18 0.42 0.78 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://estun_s3_60_g2_description/mesh/gripper/collision/gripper_right_finger_link.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="grasp_tcp"/>
+  <joint name="gripper_body_fixed" type="fixed">
+      <origin xyz="0 0 0.091751924" rpy="0 -1.5707963267949 0"/>
+    <parent link="flange_link"/>
+    <child link="gripper_body_link"/>
+  </joint>
+  <joint name="gripper_left_finger_joint" type="prismatic">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="gripper_body_link"/>
+    <child link="gripper_left_finger_link"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-0.0362745" upper="0" effort="30" velocity="0.02"/>
+  </joint>
+  <joint name="gripper_right_finger_joint" type="prismatic">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="gripper_body_link"/>
+    <child link="gripper_right_finger_link"/>
+    <axis xyz="0 -1 0"/>
+    <limit lower="-0.0362745" upper="0" effort="30" velocity="0.02"/>
+  </joint>
+  <joint name="grasp_tcp_fixed" type="fixed">
+    <origin xyz="0.05 0 0" rpy="0 0 0"/>
+    <parent link="gripper_body_link"/>
+    <child link="grasp_tcp"/>
+  </joint>
+  <link name="d405_camera_link">
+    <visual>
+      <origin xyz="0.009 0 0.0038" rpy="0 0 3.14159265358979"/>
+      <geometry>
+        <mesh filename="package://estun_s3_60_g2_description/mesh/camera/d405.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="d405_black">
+        <color rgba="0.02 0.02 0.02 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.009 0 -0.0078" rpy="0 -1.5707963267949 1.5707963267949"/>
+      <geometry>
+        <box size="0.023 0.042 0.042"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="d405_camera_fixed" type="fixed">
+      <origin xyz="0.00797601909706754 -0.0595318771945913 0.0253557056202472" rpy="-0.0141212308275403 -0.00492795336758099 -0.00583638479200423"/>
+    <parent link="flange_link"/>
+    <child link="d405_camera_link"/>
+  </joint>
+</robot>

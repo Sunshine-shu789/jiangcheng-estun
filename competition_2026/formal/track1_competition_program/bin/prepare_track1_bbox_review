@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Build the representative-frame index and optional depth/YOLO-World candidates.
+set -euo pipefail
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+PYTHON="${TRACK1_REVIEW_PYTHON:-/usr/bin/python3}"
+SITE_PACKAGES="${TRACK1_REVIEW_SITE_PACKAGES:-/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages}"
+CONFIG="${TRACK1_REVIEW_CONFIG:-$ROOT/config/track1_bbox_review.yaml}"
+APP_DIR="$ROOT/app/track1_bbox_review"
+YOLO_CONFIG_DIR="${TRACK1_REVIEW_YOLO_CONFIG_DIR:-$ROOT/config/ultralytics}"
+exec env PYTHONNOUSERSITE=1 PYTHONDONTWRITEBYTECODE=1 YOLO_OFFLINE=1 YOLO_CONFIG_DIR="$YOLO_CONFIG_DIR" \
+  PYTHONPATH="$SITE_PACKAGES:$ROOT/app/track1_capture_web:$APP_DIR" \
+  "$PYTHON" "$APP_DIR/prepare_review.py" --config "$CONFIG" "$@"

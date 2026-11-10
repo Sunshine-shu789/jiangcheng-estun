@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+# Open Task C/D in a real terminal, independent of the desktop entry's
+# Terminal=true handling.  The first line is logged before any GUI call so a
+# failed double-click can still be diagnosed from disk.
+set -u
+
+ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)"
+LOG_DIR="$ROOT/logs"
+LAUNCH_LOG="$LOG_DIR/desktop_launch.log"
+TASK="${1:-}"
+mkdir -p -- "$LOG_DIR"
+
+log() {
+    printf '%s [desktop-launch pid=%s ppid=%s] %s\n' \
+        "$(date '+%F %T')" "$$" "$PPID" "$*" >>"$LAUNCH_LOG"
+}
+
+show_error() {
+    local message="$1"
+    printf '%s\n' "$message" >&2
+    log "ERROR: $message"
+    if command -v notify-send >/dev/null 2>&1; then
+        notify-send --app-name="埃斯顿赛道一" "无法启动任务" "$message" >/dev/null 2>&1 || true
+    fi
+    if command -v zenity >/dev/null 2>&1; then
+        zenity --error --title="埃斯顿赛道一" --text="$message" --width=620 >/dev/null 2>&1 || true
+    fi
+}
+
+case "$TASK" in
+    C)
+        TITLE="任务C 无序抓取"
+        ;;
+    D)
+        TITLE="任务D 未知物体抓取"
+        ;;
+    *)
+        show_error "无效的任务参数：${TASK:-<空>}（只允许 C 或 D）"
+        exit 2
+        ;;
+esac
+
+CONSOLE="$ROOT/bin/track1_task_console"
+[ -x "$CONSOLE" ] || {
+    show_error "缺少任务终端包装器：$CONSOLE"
+    exit 2
+}
+
+# DING normally supplies the graphical session environment.  Keep a narrow
+# fallback for a desktop launcher that was started without DISPLAY.
+if [ -z "${DISPLAY:-}" ] && [ -z "${WAYLAND_DISPLAY:-}" ] && [ -S /tmp/.X11-unix/X1 ]; then
+    export DISPLAY=:1
+fi
+if [ -z "${DBUS_SESSION_BUS_ADDRESS:-}" ] && [ -S "${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/bus" ]; then
+    export DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/bus"
+fi
+
+log "task=$TASK DISPLAY=${DISPLAY:-<unset>} WAYLAND_DISPLAY=${WAYLAND_DISPLAY:-<unset>} DBUS=${DBUS_SESSION_BUS_ADDRESS:-<unset>}"
+
+if [ "${TRACK1_DESKTOP_DRY_RUN:-0}" = "1" ]; then
+    printf 'DRY_RUN task=%s root=%s console=%s title=%s\n' "$TASK" "$ROOT" "$CONSOLE" "$TITLE"
+    exit 0
+fi
+
+[ -x /usr/bin/gnome-terminal ] || {
+    show_error "找不到 /usr/bin/gnome-terminal，无法打开任务终端。"
+    exit 2
+}
+
+# Do not use gnome-terminal --wait here.  Its exit status is the task's exit
+# status, not a terminal-launch status; a safely aborted task was therefore
+# incorrectly shown as "terminal failed to start".  The task console already
+# keeps its window open and reports the real task result.
+if /usr/bin/gnome-terminal \
+    --title="$TITLE" \
+    --working-directory="$ROOT" \
+    -- "$CONSOLE" "$TASK"; then
+    log "terminal opened task=$TASK"
+    exit 0
+else
+    rc=$?
+    show_error "无法打开任务终端（退出码 $rc）。请查看：$LAUNCH_LOG"
+    exit "$rc"
+fi

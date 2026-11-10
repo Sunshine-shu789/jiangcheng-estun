@@ -1,0 +1,98 @@
+# STEP-derived geometry representation for the offline model.
+#
+# The raw component STLs in ../mesh are extracted from the official S3-60-G2
+# STEP assembly.  generate_link_meshes.py transforms them into each
+# controller-DH link frame at q=0 and produces decimated visual/collision mesh
+# variants.  The original STEP remains the manufacturing source of truth.
+schema_version: 1
+status: step_component_link_local_meshes
+source_step: ../source/S3-60-G2.STEP
+coordinate_note: STEP q=0 assembly is rigidly aligned to the controller-DH base frame
+
+mesh_representation:
+  enabled: true
+  visual_dir: mesh/link_local/visual
+  collision_dir: mesh/link_local/collision
+  visual_voxel_mm: 1.0
+  collision_voxel_mm: 5.0
+  caveat: Voxel decimation is for offline visualization and collision checking,
+    not manufacturing acceptance.
+
+base_link:
+  radius_m: 0.0750
+  source_component: NAUO7
+  source_bbox_span_mm: [134.4170, 78.0000, 148.3088]
+
+link1:
+  radius_m: 0.0600
+  source_component: NAUO3
+  source_bbox_span_mm: [102.0059, 155.9742, 119.4408]
+
+link2:
+  radius_m: 0.0780
+  source_component: NAUO1
+  source_bbox_span_mm: [102.0116, 351.0001, 156.0000]
+
+link3:
+  radius_m: 0.0655
+  source_component: NAUO2
+  source_bbox_span_mm: [103.7663, 313.3020, 130.7600]
+
+link4:
+  radius_m: 0.0465
+  source_component: NAUO4
+  source_bbox_span_mm: [82.9814, 130.7600, 92.4877]
+
+link5:
+  radius_m: 0.0655
+  source_component: NAUO5
+  source_bbox_span_mm: [82.9814, 92.4877, 130.7600]
+
+link6:
+  radius_m: 0.0450
+  source_component: NAUO6
+  source_bbox_span_mm: [85.0000, 86.6752, 61.0000]
+
+d405_camera_link:
+  frame_semantics: camera_color_optical_frame
+  status: official_d405_case_geometry_rebased_to_optical_frame
+  model: Intel RealSense D405 aluminum peripheral evaluation case
+  source:
+    repository: https://github.com/IntelRealSense/realsense-ros
+    commit: f48ba88c8fc512711247c46af58d3f1f1d12745a
+    xacro_path: realsense2_description/urdf/_d405.urdf.xacro
+    xacro_sha256: 81118e87388c06e4cf1b3dc8b114096de21c1b235bd283dafad84d2bd97aebb1
+    mesh_path: realsense2_description/meshes/d405.stl
+    mesh_git_blob_sha1: 413d260f6d2294e19401298bf698be7e4cfa502f
+    license: Apache-2.0
+    packaged_mesh: mesh/camera/d405.stl
+    packaged_mesh_sha256: a248f41149d12b28311829feecbe7a80cf1481fd05e0f5df2c4c7ecd556edd48
+    packaged_license: mesh/camera/LICENSE.realsense-ros.txt
+    packaged_license_sha256: 7092398b52290edddcb41c6e2297f4c6343eb315ea6c83edfdbeea2a73adfbdb
+    provenance_readme: mesh/camera/README.md
+  nominal_body_dimensions_m: [0.023, 0.042, 0.042]  # depth, width, height
+  visual:
+    mesh_path: mesh/camera/d405.stl
+    mesh_scale: [0.001, 0.001, 0.001]
+    # Upstream mesh origin relative to camera_link is [0.0038, -0.009, 0]
+    # with rpy [pi/2, 0, pi/2].  This is that transform rebased into the
+    # camera_color_optical_frame, which remains the calibrated URDF link frame.
+    xyz_m: [0.009, 0.0, 0.0038]
+    rpy_rad: [0.0, 0.0, 3.141592653589793]
+  collision:
+    shape: box
+    box_size_m: [0.023, 0.042, 0.042]  # official xacro collision box
+    # Official camera_link collision center [-0.0078, -0.009, 0] rebased into
+    # the color optical frame.  Do not recenter this box on the optical origin.
+    xyz_m: [0.009, 0.0, -0.0078]
+    rpy_rad: [0.0, -1.5707963267948966, 1.5707963267948966]
+  derivation:
+    optical_from_camera_link_rpy_rad: [-1.5707963267948966, 0.0, -1.5707963267948966]
+    zero_depth_to_glass_m: 0.0037
+    glass_to_front_m: 0.0001
+    depth_py_m: 0.009
+    note: The calibrated T_flange_camera maps the color optical frame to flange.
+  not_represented:
+    - USB plug and cable
+    - custom 3D-printed mounting bracket
+    - manufacturing tolerance and silicone/rubber covers

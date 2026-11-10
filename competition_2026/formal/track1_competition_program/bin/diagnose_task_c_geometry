@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+# Read-only Task C D405/V11/PCA short-edge geometry diagnosis.
+# No RobotInfo, robot bridge, motion backend or gripper backend is started.
+set -o pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+APP_DIR="$ROOT/app/track1_grasp"
+CONFIG="${TRACK1_CONFIG:-$ROOT/config/track1_task_c_v11_official_20261102.yaml}"
+TASK_PYTHON="${TRACK1_PYTHON:-/usr/bin/python3}"
+TASK_SITE_PACKAGES="${TRACK1_SITE_PACKAGES:-/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages}"
+YOLO_CONFIG_DIR="${YOLO_CONFIG_DIR:-$ROOT/config/ultralytics}"
+RUNTIME_MOUNT="${TRACK1_RUNTIME_MOUNT:-/media/sunshine/ESTUN_RUNTIME}"
+ROS2_SETUP="$RUNTIME_MOUNT/ros2_ws/install/setup.bash"
+
+configured_vision_device() {
+    [ -r "$CONFIG" ] || return 0
+    awk '
+        /^[[:space:]]*#/ { next }
+        /^vision:[[:space:]]*$/ { in_vision = 1; next }
+        /^[^[:space:]#]/ { in_vision = 0 }
+        in_vision && /^[[:space:]]+device:/ {
+            value = $0
+            sub(/^[[:space:]]+device:[[:space:]]*/, "", value)
+            sub(/[[:space:]]*#.*$/, "", value)
+            gsub(/[[:space:]"]/, "", value)
+            print value
+            exit
+        }
+    ' "$CONFIG"
+}
+
+"$ROOT/bin/ensure_runtime" || exit 1
+if [ ! -r /opt/ros/humble/setup.bash ] || [ ! -r "$ROS2_SETUP" ]; then
+    printf 'ROS 运行环境不完整：/opt/ros/humble 或 %s\n' "$ROS2_SETUP" >&2
+    exit 1
+fi
+source /opt/ros/humble/setup.bash || exit 1
+source "$ROS2_SETUP" || exit 1
+# See pytorch/pytorch#129992: hide CUDA for this CPU-only diagnosis path. An
+# explicitly supplied CUDA_VISIBLE_DEVICES remains an operator override.
+if [ "$(configured_vision_device)" = "cpu" ] \
+    && [ -z "${CUDA_VISIBLE_DEVICES+x}" ]; then
+    export CUDA_VISIBLE_DEVICES=
+fi
+mkdir -p "$YOLO_CONFIG_DIR"
+
+if [ -d "$TASK_SITE_PACKAGES" ]; then
+    export PYTHONPATH="$APP_DIR:$TASK_SITE_PACKAGES${PYTHONPATH:+:$PYTHONPATH}"
+else
+    export PYTHONPATH="$APP_DIR${PYTHONPATH:+:$PYTHONPATH}"
+fi
+export YOLO_CONFIG_DIR
+export PYTHONUNBUFFERED=1
+export PYTHONDONTWRITEBYTECODE=1
+
+exec "$TASK_PYTHON" -m track1_grasp.tools.diagnose_task_c_geometry \
+    --config "$CONFIG" "$@"

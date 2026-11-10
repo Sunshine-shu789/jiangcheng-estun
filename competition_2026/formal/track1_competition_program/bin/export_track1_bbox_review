@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Export reviewed multi-object labels as YOLO format without modifying source data.
+set -euo pipefail
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+PYTHON="${TRACK1_REVIEW_PYTHON:-/usr/bin/python3}"
+SITE_PACKAGES="${TRACK1_REVIEW_SITE_PACKAGES:-/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages}"
+CONFIG="${TRACK1_REVIEW_CONFIG:-$ROOT/config/track1_bbox_review.yaml}"
+APP_DIR="$ROOT/app/track1_bbox_review"
+exec env PYTHONNOUSERSITE=1 PYTHONDONTWRITEBYTECODE=1 \
+  PYTHONPATH="$SITE_PACKAGES:$ROOT/app/track1_capture_web:$APP_DIR" \
+  "$PYTHON" "$APP_DIR/export_review_cli.py" --config "$CONFIG" "$@"

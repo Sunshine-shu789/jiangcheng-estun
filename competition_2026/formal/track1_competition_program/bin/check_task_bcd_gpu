@@ -1,0 +1,323 @@
+#!/usr/bin/python3
+"""Fail-closed GPU preflight for every formal Task B/C/D YOLO configuration.
+
+This probe never imports ROS, opens the RealSense camera, connects to the
+robot, or commands the gripper.  It loads each distinct formal B/C/D weight
+set, performs one synthetic-frame inference, and verifies Ultralytics really
+selected CUDA with all core model tensors on the GPU.
+
+Run from the formal program directory:
+
+    ./bin/check_task_bcd_gpu
+
+Exit codes: 0 = all checks passed, 1 = GPU/model failure, 2 = config failure.
+"""
+
+from __future__ import annotations
+
+from collections import defaultdict
+from dataclasses import dataclass
+from hashlib import sha256
+from pathlib import Path
+from types import SimpleNamespace
+import gc
+import os
+import subprocess
+import sys
+import traceback
+
+ROOT = Path(__file__).resolve().parents[1]
+RUNTIME_MOUNT = Path(os.environ.get("TRACK1_RUNTIME_MOUNT", "/media/sunshine/ESTUN_RUNTIME"))
+RUNTIME_SETUP = RUNTIME_MOUNT / "ros2_ws/install/setup.bash"
+TASK_SITE_PACKAGES = Path(
+    os.environ.get(
+        "TRACK1_SITE_PACKAGES",
+        "/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages",
+    )
+)
+FORMAL_CONFIG_DIRS = (
+    ROOT / "config",
+    ROOT / "app/track1_grasp/config",
+)
+GPU_TASKS = frozenset({"B", "C", "D"})
+
+
+@dataclass(frozen=True)
+class FormalYoloConfig:
+    path: Path
+    mode: str
+    weights: Path
+    weights_sha256: str
+    imgsz: int
+    device: str
+    width: int
+    height: int
+    confidence: float
+    classes: tuple[str, ...]
+    anchor: str
+    depth_window: int
+
+
+def fail(message: str) -> None:
+    print(f"GPU 自检失败：{message}", file=sys.stderr)
+    raise SystemExit(1)
+
+
+def fail_config(message: str) -> None:
+    print(f"GPU 配置自检失败：{message}", file=sys.stderr)
+    raise SystemExit(2)
+
+
+def explicit_cuda_device(value: object) -> bool:
+    normalized = str(value).strip().lower()
+    if normalized == "cuda":
+        return True
+    if normalized.startswith("cuda:"):
+        normalized = normalized.removeprefix("cuda:")
+    return normalized.isdigit() and int(normalized) >= 0
+
+
+def ensure_runtime() -> None:
+    script = ROOT / "bin/ensure_runtime"
+    if not script.is_file():
+        fail_config(f"缺少运行区检查程序：{script}")
+    result = subprocess.run(
+        [str(script)],
+        check=False,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+    )
+    if result.returncode != 0:
+        detail = (result.stderr or result.stdout).strip()
+        fail_config(f"无法挂载正式 ROS 运行区。{detail}")
+    if not RUNTIME_SETUP.is_file():
+        fail_config(f"运行区缺少 ROS 环境：{RUNTIME_SETUP}")
+
+
+def add_import_paths() -> None:
+    import_paths = [
+        ROOT / "app/track1_grasp",
+        TASK_SITE_PACKAGES,
+        RUNTIME_MOUNT / "ros2_ws/src/taskA_grasp",
+        RUNTIME_MOUNT / "ros2_ws/build/taskA_grasp",
+    ]
+    for path in reversed(import_paths):
+        text = str(path)
+        if path.is_dir() and text not in sys.path:
+            sys.path.insert(0, text)
+
+
+def load_formal_configs() -> list[FormalYoloConfig]:
+    try:
+        import yaml
+    except Exception as exc:  # pragma: no cover - environment dependent
+        fail_config(f"无法导入 PyYAML：{exc}")
+
+    configs: list[FormalYoloConfig] = []
+    offenders: list[str] = []
+    for config_dir in FORMAL_CONFIG_DIRS:
+        if not config_dir.is_dir():
+            fail_config(f"配置目录不存在：{config_dir}")
+        for path in sorted(config_dir.glob("*.yaml")):
+            try:
+                payload = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+            except Exception as exc:
+                fail_config(f"无法读取配置 {path}: {exc}")
+            if not isinstance(payload, dict):
+                continue
+            task = payload.get("task", {})
+            vision = payload.get("vision", {})
+            if not isinstance(task, dict) or not isinstance(vision, dict):
+                continue
+            mode = str(task.get("mode", "")).strip().upper()
+            if mode not in GPU_TASKS or vision.get("backend") != "realsense_yolo":
+                continue
+            device = str(vision.get("device", "")).strip()
+            if not explicit_cuda_device(device):
+                offenders.append(f"{path}: device={device!r}")
+                continue
+            raw_weights = str(vision.get("weights", "")).strip()
+            if not raw_weights:
+                offenders.append(f"{path}: 未配置 vision.weights")
+                continue
+            weights = Path(raw_weights).expanduser()
+            if not weights.is_absolute():
+                weights = (path.parent / weights).resolve()
+            if not weights.is_file():
+                offenders.append(f"{path}: 模型不存在 {weights}")
+                continue
+            classes = vision.get("classes", ())
+            if not isinstance(classes, (list, tuple)):
+                offenders.append(f"{path}: classes 不是列表")
+                continue
+            configs.append(
+                FormalYoloConfig(
+                    path=path,
+                    mode=mode,
+                    weights=weights,
+                    weights_sha256=str(vision.get("weights_sha256", "")).strip().lower(),
+                    imgsz=int(vision.get("imgsz", 640)),
+                    device=device,
+                    width=int(vision.get("width", 640)),
+                    height=int(vision.get("height", 480)),
+                    confidence=float(vision.get("min_confidence", 0.35)),
+                    classes=tuple(str(item) for item in classes),
+                    anchor=str(vision.get("anchor", "center")),
+                    depth_window=int(vision.get("depth_window", 5)),
+                )
+            )
+
+    if offenders:
+        fail_config("B/C/D 正式 YOLO 配置存在非 CUDA 或不可用项：\n  " + "\n  ".join(offenders))
+    if not configs:
+        fail_config("没有找到任何 Task B/C/D 正式 YOLO 配置")
+    return configs
+
+
+def verify_weight_hashes(configs: list[FormalYoloConfig]) -> None:
+    expected_by_path: dict[Path, str] = {}
+    for config in configs:
+        if not config.weights_sha256:
+            continue
+        previous = expected_by_path.setdefault(config.weights, config.weights_sha256)
+        if previous != config.weights_sha256:
+            fail_config(
+                f"同一模型配置了不同 SHA256：{config.weights} "
+                f"({previous} != {config.weights_sha256})"
+            )
+    for path, expected in sorted(expected_by_path.items()):
+        digest = sha256(path.read_bytes()).hexdigest()
+        if digest != expected:
+            fail_config(f"模型 SHA256 不匹配：{path} expected={expected} actual={digest}")
+        print(f"[PASS] 权重 SHA256：{path} ({digest})")
+
+
+def representative_configs(configs: list[FormalYoloConfig]) -> list[FormalYoloConfig]:
+    groups: dict[tuple[Path, int, str], list[FormalYoloConfig]] = defaultdict(list)
+    for config in configs:
+        groups[(config.weights, config.imgsz, config.device)].append(config)
+    return [items[0] for _, items in sorted(groups.items(), key=lambda item: tuple(map(str, item[0])))]
+
+
+def probe_gpu_model(config: FormalYoloConfig) -> None:
+    import numpy as np
+    import torch
+    from taskA_grasp.detector import Intrinsics, YoloDetector
+
+    if not torch.cuda.is_available():
+        fail(
+            "PyTorch 检测不到 CUDA，拒绝回退 CPU。"
+            "请检查 NVIDIA 驱动、CUDA 与 torch 安装。"
+        )
+    try:
+        torch.cuda.empty_cache()
+        gc.collect()
+        detector = YoloDetector(
+            SimpleNamespace(
+                weights=str(config.weights),
+                imgsz=config.imgsz,
+                confidence=config.confidence,
+                device=config.device,
+                classes=list(config.classes),
+                camera=SimpleNamespace(
+                    anchor=config.anchor,
+                    depth_window=config.depth_window,
+                ),
+            ),
+            None,
+        )
+        detector.load()
+        color = np.zeros((config.height, config.width, 3), dtype=np.uint8)
+        depth = np.ones((config.height, config.width), dtype=np.float32)
+        intrinsics = Intrinsics(
+            width=config.width,
+            height=config.height,
+            fx=600.0,
+            fy=600.0,
+            cx=config.width / 2.0,
+            cy=config.height / 2.0,
+        )
+        detections = detector.detect(color, depth, intrinsics)
+        torch.cuda.synchronize()
+
+        predictor = detector._model.predictor
+        core_model = predictor.model.model
+        parameters = list(core_model.named_parameters())
+        buffers = list(core_model.named_buffers())
+        non_cuda = [
+            name
+            for name, tensor in (*parameters, *buffers)
+            if tensor.device.type != "cuda"
+        ]
+        allocated = torch.cuda.memory_allocated()
+        peak = torch.cuda.max_memory_allocated()
+        if predictor.device.type != "cuda":
+            fail(f"{config.path}: predictor.device={predictor.device}")
+        if predictor.model.device.type != "cuda":
+            fail(f"{config.path}: predictor.model.device={predictor.model.device}")
+        if not parameters:
+            fail(f"{config.path}: 核心模型没有参数")
+        if non_cuda:
+            fail(f"{config.path}: 以下核心张量仍在 CPU：{non_cuda[:10]}")
+        if allocated <= 0:
+            fail(f"{config.path}: 推理后没有检测到实际 CUDA 显存分配")
+        print(
+            "[PASS] "
+            f"Task {config.mode} {config.path.name}: "
+            f"weights={config.weights.name}, imgsz={config.imgsz}, "
+            f"predictor={predictor.device}, params={len(parameters)}/CUDA, "
+            f"buffers={len(buffers)}/CUDA, detections={len(detections)}, "
+            f"allocated={allocated / 1024**2:.1f} MiB, "
+            f"peak={peak / 1024**2:.1f} MiB"
+        )
+        del detections, detector, core_model, predictor, color, depth, intrinsics
+    except SystemExit:
+        raise
+    except Exception as exc:
+        traceback.print_exc()
+        fail(f"{config.path}: GPU 模型推理失败：{type(exc).__name__}: {exc}")
+    finally:
+        try:
+            import torch
+
+            torch.cuda.empty_cache()
+        except Exception:
+            pass
+
+
+def main() -> int:
+    ensure_runtime()
+    add_import_paths()
+    configs = load_formal_configs()
+    verify_weight_hashes(configs)
+
+    try:
+        import torch
+    except Exception as exc:
+        fail(f"无法导入 PyTorch：{exc}")
+    if not torch.cuda.is_available():
+        fail("PyTorch 检测不到 CUDA，拒绝回退 CPU")
+    print(
+        f"[PASS] CUDA 可用：{torch.cuda.get_device_name(0)}，"
+        f"torch={torch.__version__}, CUDA={torch.version.cuda}"
+    )
+    print(
+        f"发现 {len(configs)} 个 Task B/C/D 正式 YOLO 配置，"
+        f"设备全部显式指定 CUDA"
+    )
+
+    probes = representative_configs(configs)
+    print(f"将对 {len(probes)} 套不同模型/尺寸执行无相机合成帧推理")
+    for config in probes:
+        probe_gpu_model(config)
+
+    print(
+        f"GPU 自检完成：{len(configs)} 个正式配置通过，"
+        f"{len(probes)} 套模型均确认只使用 CUDA；未打开相机或连接机器人。"
+    )
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

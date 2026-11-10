@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+# Ensure the ESTUN ROS runtime ext4 image is mounted before any ROS command.
+set -o pipefail
+
+RUNTIME_MOUNT="${TRACK1_RUNTIME_MOUNT:-/media/sunshine/ESTUN_RUNTIME}"
+RUNTIME_IMAGE="${TRACK1_RUNTIME_IMAGE:-/media/sunshine/新加卷1/埃斯顿比赛_2026/运行环境/ESTUN_ROS_RUNTIME.ext4}"
+ROS2_SETUP="$RUNTIME_MOUNT/ros2_ws/install/setup.bash"
+
+if [ -r "$ROS2_SETUP" ]; then
+    exit 0
+fi
+
+fail() {
+    printf '无法挂载新加卷 ext4 ROS 运行区。\n' >&2
+    printf '  镜像：%s\n' "$RUNTIME_IMAGE" >&2
+    printf '  挂载点：%s\n' "$RUNTIME_MOUNT" >&2
+    printf '错误：%s\n' "$1" >&2
+    exit 1
+}
+
+[ -r "$RUNTIME_IMAGE" ] || fail "找不到运行镜像"
+command -v udisksctl >/dev/null 2>&1 || fail "缺少 udisksctl"
+command -v losetup >/dev/null 2>&1 || fail "缺少 losetup"
+
+device="$(losetup -j "$RUNTIME_IMAGE" 2>/dev/null | awk -F: 'NR == 1 {print $1}')"
+if [ -n "$device" ]; then
+    udisksctl mount -b "$device" --no-user-interaction >/dev/null 2>&1 || true
+else
+    udisksctl loop-setup --file "$RUNTIME_IMAGE" --no-user-interaction >/dev/null 2>&1 || true
+fi
+
+for _ in $(seq 1 100); do
+    if [ -r "$ROS2_SETUP" ]; then
+        exit 0
+    fi
+    sleep 0.1
+done
+
+fail "等待挂载超时"

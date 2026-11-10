@@ -1,0 +1,114 @@
+schema_version: 1
+purpose: >-
+  赛道一 40 类 v8 分类行重建：从已通过审计的 v5 best 特征重新训练第 17、26 类
+  三个尺度分类行；禁止移植 v7 分类行。前 10 类、其他类别和其他网络参数保持冻结，
+  数据集继续使用 v7 的仅训练集过采样版本，验证集保持原样。
+dataset_yaml: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v7_oversample_new2/dataset.yaml
+base_weights: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_train_40class_v5/track1_40class_v5_20261029_234800/weights/best.pt
+output_root: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_train_40class_v8_v5rowfix_from_v5
+preflight_report: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/reports/track1_training_preflight_v8_v5rowfix_latest.json
+expected:
+  nc: 40
+  source_nc: 40
+  empty_slots: []
+  images:
+    train: 634
+    val: 121
+  boxes: 1023
+  review_records: 348
+  reviewed_with_boxes: 346
+  empty_review_records: 2
+  skipped_review_records: 0
+  postclass_boxes: 602
+  min_free_gb: 5
+  min_gpu_memory_gb: 6
+  front10_names:
+  - 1-Cheez-it
+  - 2-Starkist_Tuna
+  - 3-Scissors
+  - 4-Frenchs_Mustard
+  - 5-Tomato_Soup
+  - 6-Foam_Brick
+  - 7-Clamp
+  - 8-Plastic_Banana
+  - 9-Mug
+  - 10-meat_can
+  front10_images:
+    train: 75
+    val: 23
+  front10_boxes: 143
+  front10_review_records: 71
+  front10_empty_records: 0
+  front10_skipped_records: 0
+  official_front10_images_used: false
+  # Internal zero-based indices: official class IDs 17 and 26.
+  required_ap50:
+    16: 0.30
+    25: 0.30
+  front10_ap50_min: 0.50
+  max_front10_ap50_drop: 0.03
+  front10_baseline_metrics: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_train_40class_v5/track1_40class_v5_20261029_234800/post_train_audit.json
+  row_finetune_class_indices:
+  - 16
+  - 25
+train:
+  epochs: 40
+  imgsz: 640
+  batch: 8
+  device: 0
+  workers: 4
+  cache: false
+  amp: true
+  pretrained: true
+  optimizer: AdamW
+  lr0: 0.002
+  lrf: 0.10
+  momentum: 0.9
+  weight_decay: 0.0
+  warmup_epochs: 0.0
+  warmup_momentum: 0.8
+  warmup_bias_lr: 0.002
+  cos_lr: true
+  patience: 15
+  save: true
+  save_period: 5
+  val: true
+  plots: true
+  verbose: true
+  seed: 42
+  deterministic: true
+  close_mosaic: 0
+  mosaic: 0.0
+  mixup: 0.0
+  copy_paste: 0.0
+  degrees: 3.0
+  translate: 0.05
+  scale: 0.2
+  shear: 1.0
+  perspective: 0.0
+  flipud: 0.0
+  fliplr: 0.5
+  hsv_h: 0.015
+  hsv_s: 0.5
+  hsv_v: 0.3
+  multi_scale: 0.0
+  rect: false
+  fraction: 1.0
+  freeze: 0
+  cls_pw: 0.5
+row_finetune:
+  enabled: true
+  class_indices:
+  - 16
+  - 25
+  class_names:
+  - 17-Eggs_Plush
+  - 26-Plastic_Strawberry
+  freeze_all_other_parameters: true
+  mask_unselected_class_rows: true
+  keep_batch_norm_eval: true
+  require_zero_weight_decay: true
+cpu_profile:
+  batch: 2
+  workers: 2
+  amp: false

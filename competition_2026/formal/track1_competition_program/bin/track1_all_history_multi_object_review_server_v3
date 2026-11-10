@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Foreground Track-1 all-history multi-object bbox review server v3.
+# No camera, no ROS import, no robot command.
+set -euo pipefail
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+PYTHON="${TRACK1_REVIEW_PYTHON:-/usr/bin/python3}"
+SITE_PACKAGES="${TRACK1_REVIEW_SITE_PACKAGES:-/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages}"
+CONFIG="${TRACK1_REVIEW_CONFIG:-$ROOT/config/track1_all_history_multi_object_review_20261031_v3.yaml}"
+APP_DIR="$ROOT/app/track1_all_history_bbox_review_v2"
+[ -d "$SITE_PACKAGES" ] || { echo "缺少 Python 依赖目录：$SITE_PACKAGES" >&2; exit 2; }
+[ -f "$CONFIG" ] || { echo "缺少复核配置：$CONFIG" >&2; exit 2; }
+[ -f "$APP_DIR/review_server.py" ] || { echo "缺少复核服务：$APP_DIR/review_server.py" >&2; exit 2; }
+exec env \
+  PYTHONNOUSERSITE=1 \
+  PYTHONDONTWRITEBYTECODE=1 \
+  PYTHONPATH="$SITE_PACKAGES:$ROOT/app/track1_capture_web:$APP_DIR" \
+  "$PYTHON" "$APP_DIR/review_server.py" --config "$CONFIG" "$@"
