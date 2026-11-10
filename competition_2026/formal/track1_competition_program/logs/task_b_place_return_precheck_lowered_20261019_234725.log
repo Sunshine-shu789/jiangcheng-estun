@@ -1,0 +1,35 @@
+[state] controller state=AutoReady fault=False
+[start] joints_deg=[82.657, 54.3102, -32.1926, -53.4526, 84.445, -2.0572]
+[start] tcp_xyz_m=(-0.064452, 0.430294, 0.433296)
+[start] tcp_rpy_rad=(-2.885492, 0.084843, -0.069042)
+[targets]
+  lower_safe: xyz=(-0.06445197399647049, 0.43029370778358295, 0.3) rpy=(-2.8854920489719142, 0.08484341869632674, -0.06904158475550755)
+  align_low: xyz=(-0.063443253, 0.543732009, 0.3) rpy=(-2.8854920489719142, 0.08484341869632674, -0.06904158475550755)
+  rotate_low: xyz=(-0.063443253, 0.543732009, 0.3) rpy=(3.082206718, 0.098641098, -0.072880619)
+  descend_above_release: xyz=(-0.063443253, 0.543732009, 0.211534092) rpy=(3.082206718, 0.098641098, -0.072880619)
+  release: xyz=(-0.063443253, 0.543732009, 0.161534092) rpy=(3.082206718, 0.098641098, -0.072880619)
+  retreat: xyz=(-0.063443253, 0.543732009, 0.211534092) rpy=(3.082206718, 0.098641098, -0.072880619)
+[motion:cartesian-precheck] target 1: 144 waypoint(s), planning_step=2.000 mm, max_joint_step=0.498 deg, max_joint_accel=0.247 deg, min_sigma=0.02989, axis_step_deg=0.001,0.463,0.498,0.181,0.003,0.000, axis_travel_deg=0.003,35.922,48.571,12.661,0.007,0.002
+[motion:cartesian-precheck] target 2: 149 waypoint(s), planning_step=2.000 mm, max_joint_step=0.496 deg, max_joint_accel=0.246 deg, min_sigma=0.02779, axis_step_deg=0.017,0.177,0.496,0.338,0.005,0.017, axis_travel_deg=1.538,15.334,52.546,37.373,0.390,1.498
+Traceback (most recent call last):
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/motion.py", line 801, in _plan_cartesian_segment
+    waypoints, joint_waypoints, minimum_singular = plan_once(
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/motion.py", line 790, in plan_once
+    visit(
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/motion.py", line 715, in visit
+    end_q, singular = self._solve_checked_waypoint(
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/motion.py", line 561, in _solve_checked_waypoint
+    minimum = self._validate_joint_pose(
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/motion.py", line 535, in _validate_joint_pose
+    raise _CartesianPathError(
+track1_grasp.motion._CartesianPathError: near-singular posture at target 3 path waypoint: minimum weighted Jacobian singular value=0.009632 < 0.010000
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<stdin>", line 37, in <module>
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/motion.py", line 897, in precheck_linear_targets
+    segment = self._plan_cartesian_segment(
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/motion.py", line 823, in _plan_cartesian_segment
+    raise RuntimeError(str(exc)) from exc
+RuntimeError: near-singular posture at target 3 path waypoint: minimum weighted Jacobian singular value=0.009632 < 0.010000

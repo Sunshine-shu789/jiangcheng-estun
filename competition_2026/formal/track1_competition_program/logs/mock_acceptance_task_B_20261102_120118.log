@@ -1,0 +1,150 @@
+=== TASK B ===
+[vision:mock] loaded 5 frame(s), 0 dynamically projected detection(s)
+[task_b_initial_pose] no initial pose file configured; keeping the current arm posture
+[scan] round 1/5: waiting for 8-Plastic_Banana at 'pick_1' xy=(0.150, -0.150) within 0.080 m, completed_points_excluded=0 (wait attempt 1)
+[detect] observation 1/1: waiting for a fresh frame
+[detect] frame 'task_b_pick_1': 1 detection(s), 8-Plastic_Banana conf=0.96, confirmation 1/1
+[scan] round 1/5: target confirmed at expected point 'pick_1'
+[select] selected '8-Plastic_Banana' conf=0.96 graspability=1.00: 8-Plastic_Banana confirmed in 1 consecutive frames
+[plan] planned 6 waypoint(s)
+[plan] full-route precheck passed: 6 segment(s)
+[open_gripper] opening jaws before entering approach corridor
+[gripper:mock] open
+[approach] move to pregrasp: xyz=(0.15, -0.15, 0.115)
+[motion:mock-prechecked] pregrasp: distance=0.281 m waypoints=141 v=0.050
+[grasp] move to grasp: xyz=(0.15, -0.15, 0.035)
+[motion:mock-prechecked] grasp: distance=0.080 m waypoints=40 v=0.050
+[grasp] reached grasp pose; closing jaws
+[gripper:mock] close
+[verify_hold] checking whether the object is held
+[verify_hold] mock hold verifier accepted
+[lift] move to lift: xyz=(0.15, -0.15, 0.155)
+[motion:mock-prechecked] lift: distance=0.120 m waypoints=60 v=0.050
+[transfer] move to transfer: xyz=(0.15, -0.15, 0.115)
+[motion:mock-prechecked] transfer: distance=0.040 m waypoints=20 v=0.050
+[release] move to release: xyz=(0.15, -0.15, 0.035)
+[motion:mock-prechecked] release: distance=0.080 m waypoints=40 v=0.050
+[release] opening jaws to release the object
+[gripper:mock] open
+[retreat] move to retreat: xyz=(0.15, -0.15, 0.115)
+[motion:mock-prechecked] retreat: distance=0.080 m waypoints=40 v=0.050
+[done] pick_1: object returned at its pick point and arm retreated; next round waits for visual confirmation at expected point 2/5
+[scan] round 2/5: waiting for 8-Plastic_Banana at 'pick_2' xy=(-0.150, -0.100) within 0.080 m, completed_points_excluded=1 (wait attempt 1)
+[detect] observation 1/1: waiting for a fresh frame
+[detect] frame 'task_b_pick_2': 1 detection(s), 8-Plastic_Banana conf=0.95, confirmation 1/1
+[scan] round 2/5: target confirmed at expected point 'pick_2'
+[select] selected '8-Plastic_Banana' conf=0.95 graspability=1.00: 8-Plastic_Banana confirmed in 1 consecutive frames
+[plan] planned 6 waypoint(s)
+[plan] full-route precheck passed: 6 segment(s)
+[approach] move to pregrasp: xyz=(-0.15, -0.1, 0.115)
+[motion:mock-prechecked] pregrasp: distance=0.304 m waypoints=153 v=0.050
+[grasp] move to grasp: xyz=(-0.15, -0.1, 0.035)
+[motion:mock-prechecked] grasp: distance=0.080 m waypoints=40 v=0.050
+[grasp] reached grasp pose; closing jaws
+[gripper:mock] close
+[verify_hold] checking whether the object is held
+[verify_hold] mock hold verifier accepted
+[lift] move to lift: xyz=(-0.15, -0.1, 0.155)
+[motion:mock-prechecked] lift: distance=0.120 m waypoints=60 v=0.050
+[transfer] move to transfer: xyz=(-0.15, -0.1, 0.115)
+[motion:mock-prechecked] transfer: distance=0.040 m waypoints=20 v=0.050
+[release] move to release: xyz=(-0.15, -0.1, 0.035)
+[motion:mock-prechecked] release: distance=0.080 m waypoints=40 v=0.050
+[release] opening jaws to release the object
+[gripper:mock] open
+[retreat] move to retreat: xyz=(-0.15, -0.1, 0.115)
+[motion:mock-prechecked] retreat: distance=0.080 m waypoints=40 v=0.050
+[done] pick_2: object returned at its pick point and arm retreated; next round waits for visual confirmation at expected point 3/5
+[scan] round 3/5: waiting for 8-Plastic_Banana at 'pick_3' xy=(0.120, 0.120) within 0.080 m, completed_points_excluded=2 (wait attempt 1)
+[detect] observation 1/1: waiting for a fresh frame
+[detect] frame 'task_b_pick_3': 1 detection(s), 8-Plastic_Banana conf=0.94, confirmation 1/1
+[scan] round 3/5: target confirmed at expected point 'pick_3'
+[select] selected '8-Plastic_Banana' conf=0.94 graspability=1.00: 8-Plastic_Banana confirmed in 1 consecutive frames
+[plan] planned 6 waypoint(s)
+[plan] full-route precheck passed: 6 segment(s)
+[approach] move to pregrasp: xyz=(0.12, 0.12, 0.115)
+[motion:mock-prechecked] pregrasp: distance=0.348 m waypoints=175 v=0.050
+[grasp] move to grasp: xyz=(0.12, 0.12, 0.035)
+[motion:mock-prechecked] grasp: distance=0.080 m waypoints=40 v=0.050
+[grasp] reached grasp pose; closing jaws
+[gripper:mock] close
+[verify_hold] checking whether the object is held
+[verify_hold] mock hold verifier accepted
+[lift] move to lift: xyz=(0.12, 0.12, 0.155)
+[motion:mock-prechecked] lift: distance=0.120 m waypoints=60 v=0.050
+[transfer] move to transfer: xyz=(0.12, 0.12, 0.115)
+[motion:mock-prechecked] transfer: distance=0.040 m waypoints=20 v=0.050
+[release] move to release: xyz=(0.12, 0.12, 0.035)
+[motion:mock-prechecked] release: distance=0.080 m waypoints=40 v=0.050
+[release] opening jaws to release the object
+[gripper:mock] open
+[retreat] move to retreat: xyz=(0.12, 0.12, 0.115)
+[motion:mock-prechecked] retreat: distance=0.080 m waypoints=40 v=0.050
+[done] pick_3: object returned at its pick point and arm retreated; next round waits for visual confirmation at expected point 4/5
+[scan] round 4/5: waiting for 8-Plastic_Banana at 'pick_4' xy=(-0.120, 0.120) within 0.080 m, completed_points_excluded=3 (wait attempt 1)
+[detect] observation 1/1: waiting for a fresh frame
+[detect] frame 'task_b_pick_4': 1 detection(s), 8-Plastic_Banana conf=0.93, confirmation 1/1
+[scan] round 4/5: target confirmed at expected point 'pick_4'
+[select] selected '8-Plastic_Banana' conf=0.93 graspability=1.00: 8-Plastic_Banana confirmed in 1 consecutive frames
+[plan] planned 6 waypoint(s)
+[plan] full-route precheck passed: 6 segment(s)
+[approach] move to pregrasp: xyz=(-0.12, 0.12, 0.115)
+[motion:mock-prechecked] pregrasp: distance=0.240 m waypoints=120 v=0.050
+[grasp] move to grasp: xyz=(-0.12, 0.12, 0.035)
+[motion:mock-prechecked] grasp: distance=0.080 m waypoints=40 v=0.050
+[grasp] reached grasp pose; closing jaws
+[gripper:mock] close
+[verify_hold] checking whether the object is held
+[verify_hold] mock hold verifier accepted
+[lift] move to lift: xyz=(-0.12, 0.12, 0.155)
+[motion:mock-prechecked] lift: distance=0.120 m waypoints=60 v=0.050
+[transfer] move to transfer: xyz=(-0.12, 0.12, 0.115)
+[motion:mock-prechecked] transfer: distance=0.040 m waypoints=20 v=0.050
+[release] move to release: xyz=(-0.12, 0.12, 0.035)
+[motion:mock-prechecked] release: distance=0.080 m waypoints=40 v=0.050
+[release] opening jaws to release the object
+[gripper:mock] open
+[retreat] move to retreat: xyz=(-0.12, 0.12, 0.115)
+[motion:mock-prechecked] retreat: distance=0.080 m waypoints=40 v=0.050
+[done] pick_4: object returned at its pick point and arm retreated; next round waits for visual confirmation at expected point 5/5
+[scan] round 5/5: waiting for 8-Plastic_Banana at 'pick_5' xy=(0.000, 0.000) within 0.080 m, completed_points_excluded=4 (wait attempt 1)
+[detect] observation 1/1: waiting for a fresh frame
+[detect] frame 'task_b_pick_5': 1 detection(s), 8-Plastic_Banana conf=0.95, confirmation 1/1
+[scan] round 5/5: target confirmed at expected point 'pick_5'
+[select] selected '8-Plastic_Banana' conf=0.95 graspability=1.00: 8-Plastic_Banana confirmed in 1 consecutive frames
+[plan] planned 6 waypoint(s)
+[plan] full-route precheck passed: 6 segment(s)
+[approach] move to pregrasp: xyz=(0.0, 0.0, 0.115)
+[motion:mock-prechecked] pregrasp: distance=0.170 m waypoints=85 v=0.050
+[grasp] move to grasp: xyz=(0.0, 0.0, 0.035)
+[motion:mock-prechecked] grasp: distance=0.080 m waypoints=40 v=0.050
+[grasp] reached grasp pose; closing jaws
+[gripper:mock] close
+[verify_hold] checking whether the object is held
+[verify_hold] mock hold verifier accepted
+[lift] move to lift: xyz=(0.0, 0.0, 0.155)
+[motion:mock-prechecked] lift: distance=0.120 m waypoints=60 v=0.050
+[transfer] move to transfer: xyz=(0.0, 0.0, 0.115)
+[motion:mock-prechecked] transfer: distance=0.040 m waypoints=20 v=0.050
+[release] move to release: xyz=(0.0, 0.0, 0.035)
+[motion:mock-prechecked] release: distance=0.080 m waypoints=40 v=0.050
+[release] opening jaws to release the object
+[gripper:mock] open
+[retreat] move to retreat: xyz=(0.0, 0.0, 0.115)
+[motion:mock-prechecked] retreat: distance=0.080 m waypoints=40 v=0.050
+[done] pick_5: object returned at its pick point and arm retreated; all expected points completed
+[run] requested=5 attempts=5 successes=5 rate=100.00%
+
+=== Track 1 pick summary ===
+task=B requested=5 attempts=5 successes=5 rate=100.0%
+01. status=success  target=8-Plastic_Banana -> pick_1 message=pick_1: object returned at its pick point and arm retreated; next round waits for visual confirmation at expected point 2/5
+    idle -> scan -> detect -> detect -> scan -> select -> plan -> plan -> open_gripper -> approach -> grasp -> grasp -> verify_hold -> verify_hold -> lift -> transfer -> release -> release -> retreat -> done
+02. status=success  target=8-Plastic_Banana -> pick_2 message=pick_2: object returned at its pick point and arm retreated; next round waits for visual confirmation at expected point 3/5
+    idle -> scan -> detect -> detect -> scan -> select -> plan -> plan -> approach -> grasp -> grasp -> verify_hold -> verify_hold -> lift -> transfer -> release -> release -> retreat -> done
+03. status=success  target=8-Plastic_Banana -> pick_3 message=pick_3: object returned at its pick point and arm retreated; next round waits for visual confirmation at expected point 4/5
+    idle -> scan -> detect -> detect -> scan -> select -> plan -> plan -> approach -> grasp -> grasp -> verify_hold -> verify_hold -> lift -> transfer -> release -> release -> retreat -> done
+04. status=success  target=8-Plastic_Banana -> pick_4 message=pick_4: object returned at its pick point and arm retreated; next round waits for visual confirmation at expected point 5/5
+    idle -> scan -> detect -> detect -> scan -> select -> plan -> plan -> approach -> grasp -> grasp -> verify_hold -> verify_hold -> lift -> transfer -> release -> release -> retreat -> done
+05. status=success  target=8-Plastic_Banana -> pick_5 message=pick_5: object returned at its pick point and arm retreated; all expected points completed
+    idle -> scan -> detect -> detect -> scan -> select -> plan -> plan -> approach -> grasp -> grasp -> verify_hold -> verify_hold -> lift -> transfer -> release -> release -> retreat -> done
+TASK_B_RC=0

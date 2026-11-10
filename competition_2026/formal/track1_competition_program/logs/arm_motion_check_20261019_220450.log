@@ -1,0 +1,30 @@
+
+===== 无夹爪运动验证 =====
+配置：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/track1_live.yaml
+模式：真机运动（一次往返）
+参数：轴=x 方向=auto 距离=5 mm
+夹爪：完全不调用，不会发出开合命令
+日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/arm_motion_check_20261019_220450.log
+
+[bridge] state=AutoReady fault_flag=0 xyz=(-0.1133, 0.3860, 0.5192)
+[INFO] [1792418692.189489991] [track1_arm_motion_check]: [start] EXECUTE no-gripper check: base +x 5.0 mm out-and-back, step=2.5 mm
+[INFO] [1792418692.189752384] [track1_arm_motion_check]: [robot] controller state=AutoReady; start_xyz=(-0.11327402084338653, 0.38601278630291824, 0.5192268187811099) joints_deg=[90.0, 33.35, -6.69, -36.51, 87.06, -0.01]
+[INFO] [1792418699.979968187] [track1_arm_motion_check]: [motion:linear-precheck] validated 2 segment(s), 4 Cartesian waypoint(s)
+[INFO] [1792418699.980999951] [track1_arm_motion_check]: [precheck] outbound=5.0 mm return=5.0 mm; all IK, joint limits and workspace checks passed
+[INFO] [1792418699.981832248] [track1_arm_motion_check]: [motion:robotmove] no_gripper_out_p001: 2 step(s), max_delta=1.28 deg
+[INFO] [1792418699.982566000] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_out_p001_step_01: joints=[89.78, 33.61, -7.33, -36.91, 86.96, -0.21] deg
+[INFO] [1792418700.434097431] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_out_p001_step_02: joints=[89.56, 33.86, -7.97, -37.31, 86.87, -0.4] deg
+[INFO] [1792418700.885472139] [track1_arm_motion_check]: [motion:robotmove] no_gripper_out_p002: 2 step(s), max_delta=1.17 deg
+[INFO] [1792418700.885806958] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_out_p002_step_01: joints=[89.35, 34.09, -8.56, -37.67, 86.77, -0.59] deg
+[INFO] [1792418701.287467034] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_out_p002_step_02: joints=[89.13, 34.32, -9.14, -38.05, 86.67, -0.79] deg
+[INFO] [1792418701.688905085] [track1_arm_motion_check]: [motion:linear] no_gripper_out: completed 0.005 m with 2 waypoint(s)
+[INFO] [1792418701.689277898] [track1_arm_motion_check]: [motion:robotmove] no_gripper_return_p001: 1 step(s), max_delta=0.84 deg
+[INFO] [1792418701.689740945] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_return_p001_step_01: joints=[89.56, 34.02, -8.3, -37.46, 86.86, -0.4] deg
+[INFO] [1792418702.191562848] [track1_arm_motion_check]: [motion:robotmove] no_gripper_return_p002: 2 step(s), max_delta=1.38 deg
+[INFO] [1792418702.192052016] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_return_p002_step_01: joints=[89.78, 33.74, -7.62, -37.05, 86.96, -0.21] deg
+[INFO] [1792418702.643833968] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_return_p002_step_02: joints=[90.0, 33.46, -6.93, -36.62, 87.06, -0.01] deg
+[INFO] [1792418703.095537558] [track1_arm_motion_check]: [motion:linear] no_gripper_return: completed 0.005 m with 2 waypoint(s)
+[INFO] [1792418703.095937678] [track1_arm_motion_check]: [result] out-and-back complete; return error=0.05 mm; no gripper command was sent
+The following exception was never retrieved: cannot use Destroyable because destruction was requested
+
+[完成] 无夹爪运动验证结束。

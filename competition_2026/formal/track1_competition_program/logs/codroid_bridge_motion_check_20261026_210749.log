@@ -1,0 +1,36 @@
+[INFO] [1793020069.983959478] [codroid_udp_bridge]: listening for RobotInfo on udp/9006, sending RobotMove to 192.168.101.100:9005
+[INFO] [1793020071.168174231] [codroid_udp_bridge]: sent move to 192.168.101.100:9005: ['Joint1', 'Joint2', 'Joint3', 'Joint4', 'Joint5', 'Joint6'] -> [array('d', [1.476924994086596, 0.757240048979794, -0.29502811053185046, -0.8101607173561796, 1.5695715809640496, -0.2016586250506525]), array('d', [1.4715510723179115, 0.7595503416077163, -0.30139160782801916, -0.8142191643987611, 1.5679910033542173, -0.20679503022684684]), array('d', [1.4661744210385175, 0.7617310410163838, -0.3074446010480622, -0.8181034538258644, 1.5664094719056985, -0.21193407031557543]), array('d', [1.4607954857827181, 0.7637852441958844, -0.3131934440020953, -0.8218187074081911, 1.5648274208521409, -0.21707534688269098]), array('d', [1.4554145706371648, 0.7657207551403163, -0.31865451660955985, -0.8253734914414889, 1.5632449804805253, -0.2222185971488646])]
+[INFO] [1793020072.475614283] [codroid_udp_bridge]: sent move to 192.168.101.100:9005: ['Joint1', 'Joint2', 'Joint3', 'Joint4', 'Joint5', 'Joint6'] -> [array('d', [1.4607901645482877, 0.7639656328753702, -0.3135830358092218, -0.8219644414699938, 1.5648159963371353, -0.21708119415696828]), array('d', [1.4661684394259469, 0.7619382920347216, -0.30789647738661874, -0.8182737045654419, 1.5663966786674386, -0.21194061275203266]), array('d', [1.471544522160974, 0.7597833910053793, -0.30190347283415314, -0.8144134320491239, 1.5679770132256676, -0.20680221363165113]), array('d', [1.476917978952234, 0.7574976291803306, -0.2955972379577744, -0.810378440379777, 1.5695565903641067, -0.20166638133681888]), array('d', [1.482288496263161, 0.7550719001095798, -0.2889586278899707, -0.8061585171763582, 1.5711352550262483, -0.1965333923136234])]
+Traceback (most recent call last):
+  File "/media/sunshine/ESTUN_RUNTIME/ros2_ws/build/taskA_grasp/taskA_grasp/nodes/udp_bridge.py", line 146, in main
+    rclpy.spin(node)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 229, in spin
+    executor.spin_once()
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 808, in spin_once
+    self._spin_once_impl(timeout_sec)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 797, in _spin_once_impl
+    handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 780, in wait_for_ready_callbacks
+    return next(self._cb_iter)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 681, in _wait_for_ready_callbacks
+    raise ExternalShutdownException()
+rclpy.executors.ExternalShutdownException
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/media/sunshine/ESTUN_RUNTIME/ros2_ws/build/taskA_grasp/taskA_grasp/nodes/udp_bridge.py", line 155, in <module>
+    main()
+  File "/media/sunshine/ESTUN_RUNTIME/ros2_ws/build/taskA_grasp/taskA_grasp/nodes/udp_bridge.py", line 151, in main
+    rclpy.shutdown()
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 130, in shutdown
+    _shutdown(context=context)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/utilities.py", line 58, in shutdown
+    return context.shutdown()
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 102, in shutdown
+    self.__context.shutdown()
+rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241

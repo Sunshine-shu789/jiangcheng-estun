@@ -1,0 +1,158 @@
+
+===== 任务B 任意摆放抓取 =====
+配置：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/track1_task_b_arbitrary_single_live.yaml
+视觉后端：realsense_yolo
+模式：任意摆放抓取（仅使用当前画面识别与 PCA 位姿，逐轮生成候选并完成整条路径逆解预检，真机运动）
+日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/task_B_20261025_202437.log
+
+机械臂状态桥接已在运行（PID=5726），不重复启动。
+[bridge] RobotInfo 已就绪：state=AutoReady fault_flag=0 xyz=(-0.0562, 0.5295, 0.2150)
+[INFO] [1792931082.978135713] [track1_grasp]: [camera] D405 started 640x480@15 fx=392.7 fy=391.7 cx=314.4 cy=246.7
+[INFO] [1792931082.979264816] [track1_grasp]: [gripper:ms42dc] /dev/motor_serial @ 115200 id=1 subdivide=32
+[INFO] [1792931082.980828465] [track1_grasp]: [task_b_initial_pose] no initial pose file configured; keeping the current arm posture
+[INFO] [1792931083.032565395] [track1_grasp]: [scan] arbitrary_round_1: acquiring the current arbitrary-placement target; no remembered point or previous release XY is used
+[INFO] [1792931083.033738428] [track1_grasp]: [detect] observation 1/5: waiting for a fresh frame
+[INFO] [1792931087.269793546] [track1_grasp]: [yolo] loading /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/models/best.pt
+[INFO] [1792931087.307996670] [track1_grasp]: [vision:realsense_yolo] ready 640x480 rotate180=True anchor=top_center cx=324.6 cy=232.3 stabilizer=on
+[INFO] [1792931089.770053114] [track1_grasp]: [detect] frame 'realsense-000001': 0 detection(s), no confirmed target
+[INFO] [1792931089.821919463] [track1_grasp]: [detect] observation 2/5: waiting for a fresh frame
+[INFO] [1792931089.905867320] [track1_grasp]: [detect] frame 'realsense-000002': 0 detection(s), no confirmed target
+[INFO] [1792931089.957671930] [track1_grasp]: [detect] observation 3/5: waiting for a fresh frame
+[INFO] [1792931090.037991458] [track1_grasp]: [detect] frame 'realsense-000003': 1 detection(s), 8-Plastic_Banana conf=0.91, confirmation 1/3
+[INFO] [1792931090.089792508] [track1_grasp]: [detect] observation 4/5: waiting for a fresh frame
+[INFO] [1792931090.171243514] [track1_grasp]: [detect] frame 'realsense-000004': 1 detection(s), 8-Plastic_Banana conf=0.91, confirmation 2/3
+[INFO] [1792931090.222942458] [track1_grasp]: [detect] observation 5/5: waiting for a fresh frame
+[INFO] [1792931090.301373023] [track1_grasp]: [detect] frame 'realsense-000005': 1 detection(s), 8-Plastic_Banana conf=0.91, confirmation 3/3
+[INFO] [1792931090.305115331] [track1_grasp]: [select] selected '8-Plastic_Banana' conf=0.91 graspability=1.00: 8-Plastic_Banana confirmed in 3 consecutive frames
+[INFO] [1792931090.310276439] [track1_grasp]: [pose] loaded camera transform from /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/camera_to_flange.d405_calibrated_20261025.yaml
+[INFO] [1792931090.312179650] [track1_grasp]: [adaptive-plan] yaw_offset=82.065 deg pitch_offset=0.000 deg support_tip_base=(-0.049341, 0.556822, -0.036507) m; commanded_tip_base=(-0.049341, 0.556822, -0.021507) m; flange_target=(-0.049341, 0.556822, 0.143493) m; tip_offset_base=(0.000000, -0.000000, -0.165000) m
+[INFO] [1792931090.313704118] [track1_grasp]: [adaptive-plan] yaw_offset=82.065 deg pitch_offset=20.000 deg support_tip_base=(-0.049341, 0.556822, -0.036507) m; commanded_tip_base=(-0.049341, 0.556822, -0.021507) m; flange_target=(-0.041551, 0.612715, 0.133543) m; tip_offset_base=(-0.007791, -0.055893, -0.155049) m
+[INFO] [1792931090.315216714] [track1_grasp]: [adaptive-plan] yaw_offset=82.065 deg pitch_offset=-20.000 deg support_tip_base=(-0.049341, 0.556822, -0.036507) m; commanded_tip_base=(-0.049341, 0.556822, -0.021507) m; flange_target=(-0.057132, 0.500929, 0.133543) m; tip_offset_base=(0.007791, 0.055893, -0.155049) m
+[INFO] [1792931090.316840913] [track1_grasp]: [adaptive-plan] yaw_offset=82.065 deg pitch_offset=16.000 deg support_tip_base=(-0.049341, 0.556822, -0.036507) m; commanded_tip_base=(-0.049341, 0.556822, -0.021507) m; flange_target=(-0.043063, 0.601867, 0.137102) m; tip_offset_base=(-0.006279, -0.045045, -0.158608) m
+[INFO] [1792931090.320465681] [track1_grasp]: [adaptive-plan] yaw_offset=82.065 deg pitch_offset=-16.000 deg support_tip_base=(-0.049341, 0.556822, -0.036507) m; commanded_tip_base=(-0.049341, 0.556822, -0.021507) m; flange_target=(-0.055620, 0.511778, 0.137102) m; tip_offset_base=(0.006279, 0.045045, -0.158608) m
+[INFO] [1792931090.322083944] [track1_grasp]: [adaptive-plan] yaw_offset=82.065 deg pitch_offset=30.000 deg support_tip_base=(-0.049341, 0.556822, -0.036507) m; commanded_tip_base=(-0.049341, 0.556822, -0.021507) m; flange_target=(-0.037952, 0.638532, 0.121388) m; tip_offset_base=(-0.011389, -0.081710, -0.142894) m
+[INFO] [1792931090.323706957] [track1_grasp]: [adaptive-plan] yaw_offset=82.065 deg pitch_offset=-30.000 deg support_tip_base=(-0.049341, 0.556822, -0.036507) m; commanded_tip_base=(-0.049341, 0.556822, -0.021507) m; flange_target=(-0.060730, 0.475112, 0.121388) m; tip_offset_base=(0.011389, 0.081710, -0.142894) m
+[INFO] [1792931090.325541305] [track1_grasp]: [adaptive-plan] yaw_offset=37.065 deg pitch_offset=0.000 deg support_tip_base=(-0.049341, 0.556822, -0.036507) m; commanded_tip_base=(-0.049341, 0.556822, -0.021507) m; flange_target=(-0.049341, 0.556822, 0.143493) m; tip_offset_base=(0.000000, -0.000000, -0.165000) m
+[INFO] [1792931090.331471771] [track1_grasp]: [adaptive-plan] yaw_offset=37.065 deg pitch_offset=20.000 deg support_tip_base=(-0.049341, 0.556822, -0.036507) m; commanded_tip_base=(-0.049341, 0.556822, -0.021507) m; flange_target=(-0.004310, 0.590836, 0.133543) m; tip_offset_base=(-0.045031, -0.034014, -0.155049) m
+[INFO] [1792931090.333196890] [track1_grasp]: [adaptive-plan] yaw_offset=37.065 deg pitch_offset=-20.000 deg support_tip_base=(-0.049341, 0.556822, -0.036507) m; commanded_tip_base=(-0.049341, 0.556822, -0.021507) m; flange_target=(-0.094372, 0.522809, 0.133543) m; tip_offset_base=(0.045031, 0.034014, -0.155049) m
+[INFO] [1792931090.334815153] [track1_grasp]: [adaptive-plan] yaw_offset=37.065 deg pitch_offset=16.000 deg support_tip_base=(-0.049341, 0.556822, -0.036507) m; commanded_tip_base=(-0.049341, 0.556822, -0.021507) m; flange_target=(-0.013050, 0.584234, 0.137102) m; tip_offset_base=(-0.036291, -0.027412, -0.158608) m
+[INFO] [1792931090.336333685] [track1_grasp]: [adaptive-plan] yaw_offset=37.065 deg pitch_offset=-16.000 deg support_tip_base=(-0.049341, 0.556822, -0.036507) m; commanded_tip_base=(-0.049341, 0.556822, -0.021507) m; flange_target=(-0.085632, 0.529410, 0.137102) m; tip_offset_base=(0.036291, 0.027412, -0.158608) m
+[INFO] [1792931090.338064740] [track1_grasp]: [adaptive-plan] yaw_offset=37.065 deg pitch_offset=30.000 deg support_tip_base=(-0.049341, 0.556822, -0.036507) m; commanded_tip_base=(-0.049341, 0.556822, -0.021507) m; flange_target=(0.016490, 0.606547, 0.121388) m; tip_offset_base=(-0.065831, -0.049724, -0.142894) m
+[INFO] [1792931090.339739993] [track1_grasp]: [adaptive-plan] yaw_offset=37.065 deg pitch_offset=-30.000 deg support_tip_base=(-0.049341, 0.556822, -0.036507) m; commanded_tip_base=(-0.049341, 0.556822, -0.021507) m; flange_target=(-0.115172, 0.507098, 0.121388) m; tip_offset_base=(0.065831, 0.049724, -0.142894) m
+[INFO] [1792931090.341741748] [track1_grasp]: [adaptive-plan] yaw_offset=-7.935 deg pitch_offset=0.000 deg support_tip_base=(-0.049341, 0.556822, -0.036507) m; commanded_tip_base=(-0.049341, 0.556822, -0.021507) m; flange_target=(-0.049341, 0.556822, 0.143493) m; tip_offset_base=(-0.000000, -0.000000, -0.165000) m
+[INFO] [1792931090.343386132] [track1_grasp]: [adaptive-plan] yaw_offset=-7.935 deg pitch_offset=20.000 deg support_tip_base=(-0.049341, 0.556822, -0.036507) m; commanded_tip_base=(-0.049341, 0.556822, -0.021507) m; flange_target=(0.006552, 0.549032, 0.133543) m; tip_offset_base=(-0.055893, 0.007791, -0.155049) m
+[INFO] [1792931090.345018642] [track1_grasp]: [adaptive-plan] yaw_offset=-7.935 deg pitch_offset=-20.000 deg support_tip_base=(-0.049341, 0.556822, -0.036507) m; commanded_tip_base=(-0.049341, 0.556822, -0.021507) m; flange_target=(-0.105234, 0.564613, 0.133543) m; tip_offset_base=(0.055893, -0.007791, -0.155049) m
+[INFO] [1792931090.346406573] [track1_grasp]: [adaptive-plan] yaw_offset=-7.935 deg pitch_offset=16.000 deg support_tip_base=(-0.049341, 0.556822, -0.036507) m; commanded_tip_base=(-0.049341, 0.556822, -0.021507) m; flange_target=(-0.004297, 0.550544, 0.137102) m; tip_offset_base=(-0.045045, 0.006279, -0.158608) m
+[INFO] [1792931090.347908483] [track1_grasp]: [adaptive-plan] yaw_offset=-7.935 deg pitch_offset=-16.000 deg support_tip_base=(-0.049341, 0.556822, -0.036507) m; commanded_tip_base=(-0.049341, 0.556822, -0.021507) m; flange_target=(-0.094386, 0.563101, 0.137102) m; tip_offset_base=(0.045045, -0.006279, -0.158608) m
+[INFO] [1792931090.349429390] [track1_grasp]: [adaptive-plan] yaw_offset=-7.935 deg pitch_offset=30.000 deg support_tip_base=(-0.049341, 0.556822, -0.036507) m; commanded_tip_base=(-0.049341, 0.556822, -0.021507) m; flange_target=(0.032369, 0.545433, 0.121388) m; tip_offset_base=(-0.081710, 0.011389, -0.142894) m
+[INFO] [1792931090.351299356] [track1_grasp]: [adaptive-plan] yaw_offset=-7.935 deg pitch_offset=-30.000 deg support_tip_base=(-0.049341, 0.556822, -0.036507) m; commanded_tip_base=(-0.049341, 0.556822, -0.021507) m; flange_target=(-0.131051, 0.568211, 0.121388) m; tip_offset_base=(0.081710, -0.011389, -0.142894) m
+[INFO] [1792931090.353369974] [track1_grasp]: [plan] arbitrary_round_1: generated 21 object-relative grasp candidate(s)
+[INFO] [1792931092.892932213] [track1_grasp]: [plan] candidate 1: pregrasp endpoint condition check rejected: IK failed for adaptive candidate 1 candidate endpoint: pose IK did not converge for any damping: damping=0.005: pose IK did not converge (position=0.001435 m, rotation=0.021649 rad)
+[INFO] [1792931095.412611168] [track1_grasp]: [plan] candidate 2: pregrasp endpoint condition check rejected: IK failed for adaptive candidate 2 candidate endpoint: pose IK did not converge for any damping: damping=0.005: pose IK did not converge (position=0.034136 m, rotation=0.477436 rad)
+[INFO] [1792931095.695379859] [track1_grasp]: [plan] adaptive candidate 3/21 passed pregrasp endpoint condition: min_sigma=0.068220
+[INFO] [1792931109.754886767] [track1_grasp]: [motion:cartesian-precheck] target 1: 197 waypoint(s), planning_step=2.000 mm, max_joint_step=0.500 deg, max_joint_accel=0.249 deg, min_sigma=0.03506, axis_step_deg=0.020,0.138,0.282,0.053,0.090,0.500, axis_travel_deg=1.959,21.050,39.535,4.544,8.107,84.432
+[INFO] [1792931109.909369819] [track1_grasp]: [motion:cartesian-precheck] target 2: 40 waypoint(s), planning_step=2.000 mm, max_joint_step=0.405 deg, max_joint_accel=0.007 deg, min_sigma=0.06834, axis_step_deg=0.002,0.405,0.249,0.277,0.006,0.007, axis_travel_deg=0.002,15.337,6.574,8.761,0.007,0.008
+[INFO] [1792931109.910726881] [track1_grasp]: [motion:cartesian-precheck-reuse] target 3: exact endpoint and joint posture match
+[INFO] [1792931109.912081569] [track1_grasp]: [motion:cartesian-precheck] target 3: 40 waypoint(s), planning_step=2.000 mm, max_joint_step=0.405 deg, max_joint_accel=0.007 deg, min_sigma=0.06834, axis_step_deg=0.002,0.405,0.249,0.277,0.006,0.007, axis_travel_deg=0.002,15.337,6.574,8.761,0.007,0.008
+[INFO] [1792931109.914006151] [track1_grasp]: [motion:cartesian-precheck] target 4: 0 waypoint(s), planning_step=2.000 mm, max_joint_step=0.000 deg, max_joint_accel=0.000 deg, min_sigma=0.06822, axis_step_deg=0.000,0.000,0.000,0.000,0.000,0.000, axis_travel_deg=0.000,0.000,0.000,0.000,0.000,0.000
+[INFO] [1792931109.915306224] [track1_grasp]: [motion:cartesian-precheck-reuse] target 5: exact endpoint and joint posture match
+[INFO] [1792931109.916606296] [track1_grasp]: [motion:cartesian-precheck] target 5: 40 waypoint(s), planning_step=2.000 mm, max_joint_step=0.405 deg, max_joint_accel=0.007 deg, min_sigma=0.06834, axis_step_deg=0.002,0.405,0.249,0.277,0.006,0.007, axis_travel_deg=0.002,15.337,6.574,8.761,0.007,0.008
+[INFO] [1792931109.917855316] [track1_grasp]: [motion:cartesian-precheck-reuse] target 6: exact endpoint and joint posture match
+[INFO] [1792931109.919126894] [track1_grasp]: [motion:cartesian-precheck] target 6: 40 waypoint(s), planning_step=2.000 mm, max_joint_step=0.405 deg, max_joint_accel=0.007 deg, min_sigma=0.06834, axis_step_deg=0.002,0.405,0.249,0.277,0.006,0.007, axis_travel_deg=0.002,15.337,6.574,8.761,0.007,0.008
+[INFO] [1792931109.920492267] [track1_grasp]: [motion:linear-precheck] validated 6 segment(s), 357 Cartesian waypoint(s), min_sigma=0.03481
+[INFO] [1792931109.921982304] [track1_grasp]: [plan] adaptive candidate 3/21 passed full-route precheck: yaw_offset=82.06 deg, pitch_offset=-20.00 deg, min_sigma=0.035063, joint_travel=282.39 deg, orientation_change=84.05 deg
+[INFO] [1792931109.923358363] [track1_grasp]: [plan] adaptive winner: yaw_offset=82.06 deg, pitch_offset=-20.00 deg, selection=first_safe_candidate, min_sigma=0.035063, joint_travel=282.39 deg
+[INFO] [1792931109.924816344] [track1_grasp]: [plan] arbitrary_round_1: vertical grasp column locked; xy=(-0.0571, 0.5009), straight_descent=0.0800 m, lateral=0.0000 m, rotation=0.0000 rad
+[INFO] [1792931109.926338438] [track1_grasp]: [plan] selected adaptive full-route candidate; planned 6 waypoint(s)
+[INFO] [1792931109.927595768] [track1_grasp]: [open_gripper] opening jaws before entering approach corridor
+[INFO] [1792931109.929176039] [track1_grasp]: [gripper:ms42dc] open: 7b 01 02 00 20 75 30 00 64 79 7d
+[INFO] [1792931109.936260544] [track1_grasp]: [gripper:ms42dc] arrived, angle=21.0 deg
+[INFO] [1792931110.238339237] [track1_grasp]: [approach] move to pregrasp: xyz=(-0.0571, 0.5009, 0.2135)
+[INFO] [1792931110.244627076] [track1_grasp]: [motion:robotmove] pregrasp: split 197 points into 5 controller-safe chunks points=[40, 40, 40, 40, 37] max_points=40 max_payload_bytes=7600
+[INFO] [1792931110.247449243] [track1_grasp]: [motion:robotmove] sent continuous pregrasp chunk 1/5: points=40 payload_bytes=7353 joint_velocity=0.200 rad/s endpoint_deg=[85.12, 91.18, -47.37, -42.12, 92.92, -21.93]
+[INFO] [1792931111.361543784] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (108,388)
+[INFO] [1792931111.596739386] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (104,388)
+[INFO] [1792931111.817605695] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (104,387)
+[INFO] [1792931111.818902206] [track1_grasp]: [depth] skip 3-Scissors: no valid depth at (104,387)
+[INFO] [1792931119.734808583] [track1_grasp]: [motion:robotmove] sent continuous pregrasp chunk 2/5: points=40 payload_bytes=7338 joint_velocity=0.200 rad/s endpoint_deg=[85.43, 96.39, -57.34, -42.08, 94.36, -41.11]
+[INFO] [1792931129.424942665] [track1_grasp]: [motion:robotmove] sent continuous pregrasp chunk 3/5: points=40 payload_bytes=7311 joint_velocity=0.200 rad/s endpoint_deg=[85.33, 101.22, -66.17, -41.05, 94.07, -60.75]
+[INFO] [1792931130.708133686] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: no distinct object/support depth modes
+[INFO] [1792931132.292301726] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: no distinct object/support depth modes
+[INFO] [1792931132.423321779] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: no distinct object/support depth modes
+[INFO] [1792931138.789227561] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: no distinct object/support depth modes
+[INFO] [1792931139.064428705] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: no distinct object/support depth modes
+[INFO] [1792931139.147563337] [track1_grasp]: [depth] skip 3-Scissors: no valid depth at (369,421)
+[INFO] [1792931139.150689449] [track1_grasp]: [vision:adaptive] PCA rejection for '4-Frenchs_Mustard': ValueError: no reliable support plane for visual grasp: no distinct object/support depth modes
+[INFO] [1792931139.222445176] [track1_grasp]: [motion:robotmove] sent continuous pregrasp chunk 4/5: points=40 payload_bytes=7305 joint_velocity=0.200 rad/s endpoint_deg=[84.87, 104.94, -72.76, -39.86, 92.36, -77.96]
+[INFO] [1792931139.663945270] [track1_grasp]: [vision:adaptive] PCA rejection for '4-Frenchs_Mustard': ValueError: no reliable support plane for visual grasp: no distinct object/support depth modes
+[INFO] [1792931141.709681053] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: no distinct object/support depth modes
+[INFO] [1792931141.880418063] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: no distinct object/support depth modes
+[INFO] [1792931142.043383128] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: no distinct object/support depth modes
+[INFO] [1792931142.136436313] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: no distinct object/support depth modes
+[INFO] [1792931142.271430216] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: no distinct object/support depth modes
+[INFO] [1792931142.425387379] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: no distinct object/support depth modes
+[INFO] [1792931142.551182225] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: no distinct object/support depth modes
+[INFO] [1792931142.736278219] [track1_grasp]: [vision:adaptive] PCA rejection for '8-Plastic_Banana': ValueError: no reliable support plane for visual grasp: no distinct object/support depth modes
+[INFO] [1792931142.824106178] [track1_grasp]: [vision:adaptive] PCA rejection for '4-Frenchs_Mustard': ValueError: no reliable support plane for visual grasp: no distinct object/support depth modes
+[INFO] [1792931144.047135521] [track1_grasp]: [vision:adaptive] PCA rejection for '4-Frenchs_Mustard': ValueError: no reliable support plane for visual grasp: no distinct object/support depth modes
+[INFO] [1792931144.184232104] [track1_grasp]: [vision:adaptive] PCA rejection for '4-Frenchs_Mustard': ValueError: no reliable support plane for visual grasp: no distinct object/support depth modes
+[INFO] [1792931144.525403380] [track1_grasp]: [vision:adaptive] PCA rejection for '4-Frenchs_Mustard': ValueError: no reliable support plane for visual grasp: no distinct object/support depth modes
+[INFO] [1792931148.409014347] [track1_grasp]: [motion:robotmove] sent continuous pregrasp chunk 5/5: points=37 payload_bytes=6771 joint_velocity=0.200 rad/s endpoint_deg=[84.47, 106.82, -76.04, -39.24, 90.83, -87.74]
+[INFO] [1792931155.133619567] [track1_grasp]: [motion:linear] pregrasp: completed 0.029 m with 197 waypoint(s), joint_velocity=0.200 rad/s, max_joint_step=0.500 deg
+[INFO] [1792931155.135011061] [track1_grasp]: [grasp] move to grasp: xyz=(-0.0571, 0.5009, 0.1335)
+[INFO] [1792931155.137454487] [track1_grasp]: [motion:robotmove] grasp: split 40 points into 2 controller-safe chunks points=[38, 2] max_points=40 max_payload_bytes=7600
+[INFO] [1792931155.139580909] [track1_grasp]: [motion:robotmove] sent continuous grasp chunk 1/2: points=38 payload_bytes=7561 joint_velocity=0.035 rad/s endpoint_deg=[84.46, 121.44, -82.45, -31.03, 90.82, -87.75]
+[INFO] [1792931163.853983219] [track1_grasp]: [vision:adaptive] PCA rejection for '4-Frenchs_Mustard': ValueError: no reliable support plane for visual grasp: no distinct object/support depth modes
+[INFO] [1792931163.892652988] [track1_grasp]: [depth] skip 4-Frenchs_Mustard: no valid depth at (446,40)
+[INFO] [1792931164.323684972] [track1_grasp]: [depth] skip 4-Frenchs_Mustard: no valid depth at (461,40)
+[INFO] [1792931164.414069177] [track1_grasp]: [depth] skip 4-Frenchs_Mustard: no valid depth at (463,41)
+[INFO] [1792931164.498519346] [track1_grasp]: [depth] skip 4-Frenchs_Mustard: no valid depth at (465,40)
+[INFO] [1792931164.626377727] [track1_grasp]: [motion:robotmove] sent continuous grasp chunk 2/2: points=2 payload_bytes=483 joint_velocity=0.035 rad/s endpoint_deg=[84.46, 122.15, -82.61, -30.48, 90.82, -87.75]
+[INFO] [1792931165.232415059] [track1_grasp]: [motion:linear] grasp: completed 0.080 m with 40 waypoint(s), joint_velocity=0.035 rad/s, max_joint_step=0.405 deg
+[INFO] [1792931165.233814864] [track1_grasp]: [grasp] reached grasp pose; closing jaws
+[INFO] [1792931165.235212295] [track1_grasp]: [gripper:ms42dc] close: 7b 01 02 01 20 75 30 00 64 78 7d
+[INFO] [1792931169.107019241] [track1_grasp]: [gripper:ms42dc] arrived, angle=2158.9 deg
+[INFO] [1792931169.408755068] [track1_grasp]: [verify_hold] checking whether the object is held
+[INFO] [1792931169.410083636] [track1_grasp]: [verify_hold] jaws settled at 2158.9 deg
+[INFO] [1792931169.413359347] [track1_grasp]: [lift] move to lift: xyz=(-0.0571, 0.5009, 0.2135)
+[INFO] [1792931169.416202887] [track1_grasp]: [motion:robotmove] lift: split 40 points into 2 controller-safe chunks points=[38, 2] max_points=40 max_payload_bytes=7600
+[INFO] [1792931169.418563204] [track1_grasp]: [motion:robotmove] sent continuous lift chunk 1/2: points=38 payload_bytes=7561 joint_velocity=0.035 rad/s endpoint_deg=[84.46, 107.63, -76.53, -38.93, 90.82, -87.74]
+[INFO] [1792931178.806720109] [track1_grasp]: [motion:robotmove] sent continuous lift chunk 2/2: points=2 payload_bytes=483 joint_velocity=0.035 rad/s endpoint_deg=[84.47, 106.82, -76.04, -39.24, 90.83, -87.74]
+[INFO] [1792931179.460536163] [track1_grasp]: [motion:linear] lift: completed 0.080 m with 40 waypoint(s), joint_velocity=0.035 rad/s, max_joint_step=0.405 deg
+[INFO] [1792931179.461795869] [track1_grasp]: [transfer] move to transfer: xyz=(-0.0571, 0.5009, 0.2135)
+[INFO] [1792931179.463047264] [track1_grasp]: [motion:linear] transfer: completed 0.000 m with 0 waypoint(s), joint_velocity=0.100 rad/s, max_joint_step=0.000 deg
+[INFO] [1792931179.464232172] [track1_grasp]: [release] move to release: xyz=(-0.0571, 0.5009, 0.1335)
+[INFO] [1792931179.466459513] [track1_grasp]: [motion:robotmove] release: split 40 points into 2 controller-safe chunks points=[38, 2] max_points=40 max_payload_bytes=7600
+[INFO] [1792931179.468437525] [track1_grasp]: [motion:robotmove] sent continuous release chunk 1/2: points=38 payload_bytes=7561 joint_velocity=0.035 rad/s endpoint_deg=[84.46, 121.44, -82.45, -31.03, 90.82, -87.75]
+[INFO] [1792931188.909663646] [track1_grasp]: [motion:robotmove] sent continuous release chunk 2/2: points=2 payload_bytes=483 joint_velocity=0.035 rad/s endpoint_deg=[84.46, 122.15, -82.61, -30.48, 90.82, -87.75]
+[INFO] [1792931189.513622245] [track1_grasp]: [motion:linear] release: completed 0.080 m with 40 waypoint(s), joint_velocity=0.035 rad/s, max_joint_step=0.405 deg
+[INFO] [1792931189.515271380] [track1_grasp]: [release] opening jaws to release the object
+[INFO] [1792931189.516656938] [track1_grasp]: [gripper:ms42dc] open: 7b 01 02 00 20 75 30 00 64 79 7d
+[INFO] [1792931189.523742639] [track1_grasp]: [gripper:ms42dc] arrived, angle=2158.9 deg
+[INFO] [1792931189.826576782] [track1_grasp]: [retreat] move to retreat: xyz=(-0.0571, 0.5009, 0.2135)
+[INFO] [1792931189.829883363] [track1_grasp]: [motion:robotmove] retreat: split 40 points into 2 controller-safe chunks points=[38, 2] max_points=40 max_payload_bytes=7600
+[INFO] [1792931189.832780332] [track1_grasp]: [motion:robotmove] sent continuous retreat chunk 1/2: points=38 payload_bytes=7561 joint_velocity=0.035 rad/s endpoint_deg=[84.46, 107.63, -76.53, -38.93, 90.82, -87.74]
+[INFO] [1792931192.312021593] [track1_grasp]: [vision:adaptive] PCA rejection for '4-Frenchs_Mustard': ValueError: no reliable support plane for visual grasp: no distinct object/support depth modes
+[INFO] [1792931194.708162670] [track1_grasp]: [vision:adaptive] PCA rejection for '10-meat_can': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.336 is below 0.350
+[INFO] [1792931195.293463172] [track1_grasp]: [vision:adaptive] PCA rejection for '10-meat_can': ValueError: no reliable support plane for visual grasp: support plane normal is too vertical in the image (|nz|=0.066)
+[INFO] [1792931195.580951716] [track1_grasp]: [vision:adaptive] PCA rejection for '10-meat_can': ValueError: no reliable support plane for visual grasp: support plane normal is too vertical in the image (|nz|=0.249)
+[INFO] [1792931195.928335090] [track1_grasp]: [vision:adaptive] PCA rejection for '10-meat_can': ValueError: no reliable support plane for visual grasp: support plane normal is too vertical in the image (|nz|=0.233)
+[INFO] [1792931196.293963436] [track1_grasp]: [vision:adaptive] PCA rejection for '10-meat_can': ValueError: no reliable support plane for visual grasp: support plane normal is too vertical in the image (|nz|=0.160)
+[INFO] [1792931196.434592281] [track1_grasp]: [vision:adaptive] PCA rejection for '10-meat_can': ValueError: no reliable support plane for visual grasp: support plane normal is too vertical in the image (|nz|=0.242)
+[INFO] [1792931196.507670696] [track1_grasp]: [vision:adaptive] PCA rejection for '10-meat_can': ValueError: no reliable support plane for visual grasp: support plane normal is too vertical in the image (|nz|=0.190)
+[INFO] [1792931196.802861144] [track1_grasp]: [vision:adaptive] PCA rejection for '10-meat_can': ValueError: no reliable support plane for visual grasp: support plane normal is too vertical in the image (|nz|=0.322)
+[INFO] [1792931196.875315049] [track1_grasp]: [vision:adaptive] PCA rejection for '10-meat_can': ValueError: no reliable support plane for visual grasp: support plane normal is too vertical in the image (|nz|=0.251)
+[INFO] [1792931197.234758845] [track1_grasp]: [vision:adaptive] PCA rejection for '10-meat_can': ValueError: no reliable support plane for visual grasp: support plane normal is too vertical in the image (|nz|=0.248)
+[INFO] [1792931197.305784450] [track1_grasp]: [vision:adaptive] PCA rejection for '10-meat_can': ValueError: no reliable support plane for visual grasp: support plane normal is too vertical in the image (|nz|=0.278)
+[INFO] [1792931197.587702272] [track1_grasp]: [vision:adaptive] PCA rejection for '10-meat_can': ValueError: no reliable support plane for visual grasp: support plane normal is too vertical in the image (|nz|=0.289)
+[INFO] [1792931197.718186978] [track1_grasp]: [vision:adaptive] PCA rejection for '10-meat_can': ValueError: no reliable support plane for visual grasp: support plane normal is too vertical in the image (|nz|=0.250)
+[INFO] [1792931197.784388655] [track1_grasp]: [vision:adaptive] PCA rejection for '10-meat_can': ValueError: no reliable support plane for visual grasp: support plane normal is too vertical in the image (|nz|=0.353)
+[INFO] [1792931197.853010013] [track1_grasp]: [vision:adaptive] PCA rejection for '10-meat_can': ValueError: no reliable support plane for visual grasp: support plane normal is too vertical in the image (|nz|=0.282)
+[INFO] [1792931198.247509513] [track1_grasp]: [vision:adaptive] PCA rejection for '10-meat_can': ValueError: no reliable support plane for visual grasp: support plane normal is too vertical in the image (|nz|=0.283)
+[INFO] [1792931198.326710746] [track1_grasp]: [vision:adaptive] PCA rejection for '10-meat_can': ValueError: no reliable support plane for visual grasp: support plane normal is too vertical in the image (|nz|=0.228)
+[INFO] [1792931199.179020398] [track1_grasp]: [vision:adaptive] PCA rejection for '10-meat_can': ValueError: no reliable support plane for visual grasp: support plane normal is too vertical in the image (|nz|=0.125)
+[INFO] [1792931199.222049886] [track1_grasp]: [motion:robotmove] sent continuous retreat chunk 2/2: points=2 payload_bytes=483 joint_velocity=0.035 rad/s endpoint_deg=[84.47, 106.82, -76.04, -39.24, 90.83, -87.74]
+[INFO] [1792931199.483894332] [track1_grasp]: [vision:adaptive] PCA rejection for '10-meat_can': ValueError: no reliable support plane for visual grasp: support plane inlier ratio 0.349 is below 0.350
+[INFO] [1792931199.875969408] [track1_grasp]: [motion:linear] retreat: completed 0.080 m with 40 waypoint(s), joint_velocity=0.035 rad/s, max_joint_step=0.405 deg
+[INFO] [1792931199.877854812] [track1_grasp]: [done] arbitrary_round_1: arbitrary-placement target returned in place and the arm retreated; all rounds completed without retaining any object-position history
+[INFO] [1792931199.879243933] [track1_grasp]: [run] requested=1 attempts=1 successes=1 rate=100.00%

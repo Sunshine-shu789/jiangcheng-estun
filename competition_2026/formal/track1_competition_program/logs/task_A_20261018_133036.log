@@ -1,0 +1,58 @@
+
+===== 任务A 十点位巡检 =====
+配置：/home/sunshine/Desktop/赛道一比赛程序/config/track1_live.yaml
+模式：十点位巡检安全试运行（机械臂不会运动，视觉持续刷新）
+日志：/home/sunshine/Desktop/赛道一比赛程序/logs/task_A_20261018_133036.log
+
+正在启动机械臂状态桥接，日志：/home/sunshine/Desktop/赛道一比赛程序/logs/codroid_bridge_20261018_133036.log
+[bridge] RobotInfo 已就绪：state=AutoReady xyz=(-0.0783, 0.4988, 0.3260)
+[INFO] [1792301437.859118368] [track1_grasp]: [camera] D405 started 640x480@15 fx=392.7 fy=391.7 cx=314.4 cy=246.7
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+[INFO] [1792301439.005088313] [track1_grasp]: [patrol] axis x rejected during pre-check: IK failed for patrol target 1 waypoint 18/20: pose IK did not converge (position=0.000063 m, rotation=0.000987 rad)
+[INFO] [1792301441.349823712] [track1_grasp]: [motion:linear-precheck] validated 10 segment(s), 200 Cartesian waypoint(s)
+[INFO] [1792301441.352976267] [track1_grasp]: [patrol] route ready: 10 move(s), minimum distance=0.200 m
+[INFO] [1792301441.353846634] [track1_grasp]: [patrol] position 1/10 target xyz=(-0.07834368522888464, 0.29880690885323963, 0.3260112008056777) distance=0.200 m
+[INFO] [1792301441.354554326] [track1_grasp]: [patrol] position 2/10 target xyz=(-0.07834368522888464, 0.49880690885323964, 0.3260112008056777) distance=0.200 m
+[INFO] [1792301441.354781120] [track1_grasp]: [patrol] position 3/10 target xyz=(-0.07834368522888464, 0.29880690885323963, 0.3260112008056777) distance=0.200 m
+[INFO] [1792301441.355001977] [track1_grasp]: [patrol] position 4/10 target xyz=(-0.07834368522888464, 0.49880690885323964, 0.3260112008056777) distance=0.200 m
+[INFO] [1792301441.355224022] [track1_grasp]: [patrol] position 5/10 target xyz=(-0.07834368522888464, 0.29880690885323963, 0.3260112008056777) distance=0.200 m
+[INFO] [1792301441.355427067] [track1_grasp]: [patrol] position 6/10 target xyz=(-0.07834368522888464, 0.49880690885323964, 0.3260112008056777) distance=0.200 m
+[INFO] [1792301441.355650299] [track1_grasp]: [patrol] position 7/10 target xyz=(-0.07834368522888464, 0.29880690885323963, 0.3260112008056777) distance=0.200 m
+[INFO] [1792301441.355867594] [track1_grasp]: [patrol] position 8/10 target xyz=(-0.07834368522888464, 0.49880690885323964, 0.3260112008056777) distance=0.200 m
+[INFO] [1792301441.356064703] [track1_grasp]: [patrol] position 9/10 target xyz=(-0.07834368522888464, 0.29880690885323963, 0.3260112008056777) distance=0.200 m
+[INFO] [1792301441.356257062] [track1_grasp]: [patrol] position 10/10 target xyz=(-0.07834368522888464, 0.49880690885323964, 0.3260112008056777) distance=0.200 m
+[INFO] [1792301441.356500480] [track1_grasp]: [motion:robotmove:dry-run-linear] task-a-patrol-01: distance=0.200 m waypoints=20 target_xyz=(-0.07834368522888464, 0.29880690885323963, 0.3260112008056777) v=0.010
+[INFO] [1792301442.158007134] [track1_grasp]: [scan] capturing frame 0
+[INFO] [1792301443.107803824] [track1_grasp]: [yolo] loading /home/sunshine/Desktop/赛道一比赛程序/models/best.pt
+[INFO] [1792301443.144322409] [track1_grasp]: [vision:realsense_yolo] ready 640x480 rotate180=True anchor=top_center cx=324.6 cy=232.3 stabilizer=on
+[INFO] [1792301468.385184894] [track1_grasp]: [vision:live] capture worker did not stop cleanly
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/sunshine/Desktop/赛道一比赛程序/app/track1_grasp/track1_grasp/nodes/track1_node.py", line 107, in <module>
+    raise SystemExit(main())
+  File "/home/sunshine/Desktop/赛道一比赛程序/app/track1_grasp/track1_grasp/nodes/track1_node.py", line 94, in main
+    raise error[0]
+  File "/home/sunshine/Desktop/赛道一比赛程序/app/track1_grasp/track1_grasp/nodes/track1_node.py", line 69, in worker
+    report = pipeline.run()
+  File "/home/sunshine/Desktop/赛道一比赛程序/app/track1_grasp/track1_grasp/vision_pipeline.py", line 55, in run
+    return self._run_patrol()
+  File "/home/sunshine/Desktop/赛道一比赛程序/app/track1_grasp/track1_grasp/vision_pipeline.py", line 149, in _run_patrol
+    frame, matches, report = self.run_once(index - 1)
+  File "/home/sunshine/Desktop/赛道一比赛程序/app/track1_grasp/track1_grasp/vision_pipeline.py", line 278, in run_once
+    frame = self.vision.capture()
+  File "/home/sunshine/Desktop/赛道一比赛程序/app/track1_grasp/track1_grasp/vision_runtime.py", line 131, in capture
+    raise TimeoutError(
+TimeoutError: vision produced no frame within 20.0s
+terminate called without an active exception

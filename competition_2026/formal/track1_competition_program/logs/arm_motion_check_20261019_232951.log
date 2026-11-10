@@ -1,0 +1,55 @@
+
+===== 无夹爪运动验证 =====
+配置：config/track1_live.yaml
+模式：真机运动（一次往返）
+参数：多轴协作 径向内收=0 mm 向上=20 mm
+去程终点停留：5 秒
+夹爪：完全不调用，不会发出开合命令
+日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/arm_motion_check_20261019_232951.log
+
+[bridge] state=AutoReady fault_flag=0 xyz=(-0.0635, 0.5438, 0.1615)
+[INFO] [1792423792.616841151] [track1_arm_motion_check]: [start] EXECUTE no-gripper check: coordinated radial-in 0.0 mm + up 20.0 mm (20.0 mm) out-and-back, hold=5.0 s, step=2.5 mm
+[INFO] [1792423792.617107106] [track1_arm_motion_check]: [robot] controller state=AutoReady; start_xyz=(-0.06346079911038403, 0.5437591368856107, 0.16152794388480324) joints_deg=[84.12, 90.43, -32.35, -35.53, 84.47, -2.06]
+[INFO] [1792423799.639812916] [track1_arm_motion_check]: [motion:cartesian-precheck] target 1: 16 waypoint(s), planning_step=2.000 mm, max_joint_step=0.496 deg, max_joint_accel=0.242 deg, min_sigma=0.02579, axis_step_deg=0.001,0.475,0.496,0.042,0.002,0.000, axis_travel_deg=0.001,4.852,5.195,0.378,0.002,0.000
+[INFO] [1792423806.594505424] [track1_arm_motion_check]: [motion:cartesian-precheck] target 2: 16 waypoint(s), planning_step=2.000 mm, max_joint_step=0.497 deg, max_joint_accel=0.243 deg, min_sigma=0.02601, axis_step_deg=0.002,0.476,0.497,0.040,0.004,0.001, axis_travel_deg=0.002,4.832,5.156,0.352,0.004,0.001
+[INFO] [1792423806.594750008] [track1_arm_motion_check]: [motion:linear-precheck] validated 2 segment(s), 32 Cartesian waypoint(s), min_sigma=0.02579
+[INFO] [1792423806.594982718] [track1_arm_motion_check]: [precheck] outbound=20.0 mm return=20.0 mm; all IK, joint limits and workspace checks passed
+[INFO] [1792423806.595176248] [track1_arm_motion_check]: [precheck] Joint1 travel=0.002 deg, max_step=0.002 deg
+[INFO] [1792423806.595658292] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_out_p001: joints=[84.12, 89.99, -31.93, -35.54, 84.47, -2.06] deg
+[INFO] [1792423806.997291061] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_out_p002: joints=[84.12, 89.53, -31.47, -35.53, 84.47, -2.06] deg
+[INFO] [1792423807.398786102] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_out_p003: joints=[84.12, 89.06, -30.98, -35.52, 84.47, -2.06] deg
+[INFO] [1792423807.800499607] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_out_p004: joints=[84.12, 88.59, -30.49, -35.5, 84.47, -2.06] deg
+[INFO] [1792423808.202169182] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_out_p005: joints=[84.12, 88.35, -30.23, -35.49, 84.47, -2.06] deg
+[INFO] [1792423808.503656745] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_out_p006: joints=[84.12, 88.1, -29.98, -35.47, 84.47, -2.06] deg
+[INFO] [1792423808.805121749] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_out_p007: joints=[84.12, 87.86, -29.71, -35.45, 84.47, -2.06] deg
+[INFO] [1792423809.106472773] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_out_p008: joints=[84.12, 87.62, -29.45, -35.43, 84.47, -2.06] deg
+[INFO] [1792423809.407841606] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_out_p009: joints=[84.12, 87.37, -29.18, -35.41, 84.47, -2.06] deg
+[INFO] [1792423809.709168884] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_out_p010: joints=[84.12, 87.12, -28.9, -35.38, 84.47, -2.06] deg
+[INFO] [1792423810.010557902] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_out_p011: joints=[84.12, 86.87, -28.62, -35.36, 84.47, -2.06] deg
+[INFO] [1792423810.311881617] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_out_p012: joints=[84.12, 86.61, -28.34, -35.32, 84.47, -2.06] deg
+[INFO] [1792423810.613261136] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_out_p013: joints=[84.12, 86.36, -28.05, -35.29, 84.47, -2.06] deg
+[INFO] [1792423810.914719017] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_out_p014: joints=[84.12, 86.1, -27.75, -35.25, 84.47, -2.06] deg
+[INFO] [1792423811.216060542] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_out_p015: joints=[84.12, 85.84, -27.46, -35.22, 84.47, -2.06] deg
+[INFO] [1792423811.517639528] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_out_p016: joints=[84.12, 85.58, -27.15, -35.17, 84.47, -2.06] deg
+[INFO] [1792423811.819168647] [track1_arm_motion_check]: [motion:linear] no_gripper_out: completed 0.020 m with 16 waypoint(s), max_joint_step=0.496 deg
+[INFO] [1792423816.819758650] [track1_arm_motion_check]: [hold] completed 5.0 s command-free hold; max_tcp_error=0.02 mm
+[INFO] [1792423816.820493589] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_return_p001: joints=[84.12, 85.79, -27.36, -35.19, 84.47, -2.06] deg
+[INFO] [1792423817.122010835] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_return_p002: joints=[84.12, 86.05, -27.66, -35.23, 84.47, -2.06] deg
+[INFO] [1792423817.473583467] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_return_p003: joints=[84.12, 86.31, -27.96, -35.27, 84.47, -2.06] deg
+[INFO] [1792423817.775125646] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_return_p004: joints=[84.12, 86.57, -28.25, -35.3, 84.47, -2.06] deg
+[INFO] [1792423818.126843129] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_return_p005: joints=[84.12, 86.82, -28.53, -35.33, 84.47, -2.06] deg
+[INFO] [1792423818.478583171] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_return_p006: joints=[84.12, 87.07, -28.81, -35.36, 84.47, -2.06] deg
+[INFO] [1792423818.780036303] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_return_p007: joints=[84.12, 87.32, -29.09, -35.39, 84.47, -2.06] deg
+[INFO] [1792423819.131643367] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_return_p008: joints=[84.12, 87.57, -29.36, -35.41, 84.47, -2.06] deg
+[INFO] [1792423819.433110746] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_return_p009: joints=[84.12, 87.82, -29.63, -35.43, 84.47, -2.06] deg
+[INFO] [1792423819.784767677] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_return_p010: joints=[84.12, 88.06, -29.89, -35.45, 84.47, -2.06] deg
+[INFO] [1792423820.086255240] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_return_p011: joints=[84.12, 88.3, -30.15, -35.47, 84.47, -2.06] deg
+[INFO] [1792423820.437916920] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_return_p012: joints=[84.12, 88.54, -30.4, -35.48, 84.47, -2.06] deg
+[INFO] [1792423820.739463848] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_return_p013: joints=[84.12, 89.02, -30.9, -35.5, 84.47, -2.06] deg
+[INFO] [1792423821.091168271] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_return_p014: joints=[84.12, 89.49, -31.38, -35.52, 84.47, -2.06] deg
+[INFO] [1792423821.492988633] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_return_p015: joints=[84.12, 89.95, -31.85, -35.52, 84.47, -2.06] deg
+[INFO] [1792423821.894816118] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_return_p016: joints=[84.12, 90.41, -32.31, -35.52, 84.47, -2.06] deg
+[INFO] [1792423822.296469071] [track1_arm_motion_check]: [motion:linear] no_gripper_return: completed 0.020 m with 16 waypoint(s), max_joint_step=0.497 deg
+[INFO] [1792423822.296844258] [track1_arm_motion_check]: [result] out-and-back complete; return error=0.01 mm; no gripper command was sent
+
+[完成] 无夹爪运动验证结束。

@@ -1,0 +1,41 @@
+
+===== 任务B 五点位拾放 =====
+配置：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/track1_task_b_point2_random_preflight_20261026.yaml
+视觉后端：realsense_yolo
+模式：安全试运行（机械臂不会运动）
+日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/task_B_20261026_214508.log
+
+机械臂状态桥接已在运行（PID=54451），不重复启动。
+[bridge] RobotInfo 已就绪：state=AutoReady fault_flag=0 xyz=(-0.1249, 0.5217, 0.2412)
+[INFO] [1793022309.646041903] [track1_grasp]: [task_b_initial_pose] current_deg=[91.407, 74.366, -18.642, -35.9, 87.642, -19.602] target_deg=[82.657, 54.31, -32.193, -53.453, 84.446, -2.058] max_delta_deg=20.056 tolerance_deg=0.500
+[INFO] [1793022309.648770322] [track1_grasp]: [task_b_initial_pose] moving six axes together: dry_run=True estimated_steps=21 max_step_deg=1.000 total_abs_deg=[8.75, 20.056, 13.551, 17.553, 3.196, 17.544]
+[INFO] [1793022309.649948125] [track1_grasp]: [motion:robotmove:dry-run] task_b_initial_pose: would send joints=[82.66, 54.31, -32.19, -53.45, 84.45, -2.06] deg joint_velocity=0.600 rad/s
+[INFO] [1793022309.651068938] [track1_grasp]: [task_b_initial_pose] dry-run completed; no physical motion or final-position verification was performed
+[INFO] [1793022309.652917567] [track1_grasp]: [task_b_observation_pose] pick_2: current_deg=[91.407, 74.366, -18.642, -35.9, 87.642, -19.602] target_deg=[91.406, 74.367, -18.644, -35.901, 87.641, -19.601] max_delta_deg=0.001 tolerance_deg=0.500
+[INFO] [1793022309.654266342] [track1_grasp]: [task_b_observation_pose] pick_2: already inside tolerance; no joint motion command sent
+[INFO] [1793022309.655470266] [track1_grasp]: [scan] round 1/1: waiting for 8-Plastic_Banana at 'pick_2' xy=(-0.149, 0.515) within 0.250 m, completed_points_excluded=0 (wait attempt 1)
+[INFO] [1793022309.656681314] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793022309.907897739] [track1_grasp]: [camera] D405 started 640x480@15 fx=392.7 fy=391.7 cx=314.4 cy=246.7
+[INFO] [1793022314.273304655] [track1_grasp]: [yolo] loading /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/models/best.pt
+[INFO] [1793022314.311001485] [track1_grasp]: [vision:realsense_yolo] ready 640x480 rotate180=True anchor=top_center cx=324.6 cy=232.3 stabilizer=on
+[INFO] [1793022316.704749014] [track1_grasp]: [detect] frame 'realsense-000001': 0 detection(s), no confirmed target
+[INFO] [1793022316.756232792] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793022316.799760461] [track1_grasp]: [detect] frame 'realsense-000002': 0 detection(s), no confirmed target
+[INFO] [1793022316.851191998] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793022316.900608683] [track1_grasp]: [pose] loaded camera transform from /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/camera_to_flange.d405_calibrated_20261025.yaml
+[INFO] [1793022316.901989515] [track1_grasp]: [detect] frame 'realsense-000003': 1 detection(s), 8-Plastic_Banana conf=0.94, confirmation 1/2
+[INFO] [1793022316.953463795] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793022316.994024397] [track1_grasp]: [detect] frame 'realsense-000004': 1 detection(s), 8-Plastic_Banana conf=0.94, confirmation 2/2
+[INFO] [1793022316.995255629] [track1_grasp]: [scan] round 1/1: target confirmed at expected point 'pick_2'
+[INFO] [1793022316.996455991] [track1_grasp]: [select] selected '8-Plastic_Banana' conf=0.94 graspability=1.00: 8-Plastic_Banana confirmed in 2 consecutive frames
+[INFO] [1793022316.997760835] [track1_grasp]: [task_b_anchor_pose] pick_2: fixed high anchor xyz=(-0.124884, 0.521709, 0.241216) rpy=(3.128682, 0.04828, 0.365743)
+[INFO] [1793022316.999146417] [track1_grasp]: [plan] pick_2: vertical grasp column locked; xy=(-0.2188, 0.6124), straight_descent=0.0800 m, lateral=0.0000 m, rotation=0.0000 rad
+[INFO] [1793022317.000321845] [track1_grasp]: [plan] planned 6 waypoint(s)
+[INFO] [1793022317.104758093] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=9, damping=0.01, iterations=5, step=3.400 deg, pos_err=0.0488 mm, rot_err=0.000508 rad, min_sigma=0.012229
+[INFO] [1793022317.229609995] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=9, damping=0.03, iterations=6, step=3.812 deg, pos_err=0.0718 mm, rot_err=0.000695 rad, min_sigma=0.008754
+[INFO] [1793022317.369845765] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=9, damping=0.01, iterations=6, step=6.710 deg, pos_err=0.1417 mm, rot_err=0.000997 rad, min_sigma=0.002969
+[INFO] [1793022317.488156821] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=9, damping=0.01, iterations=6, step=5.009 deg, pos_err=0.1190 mm, rot_err=0.000935 rad, min_sigma=0.002709
+[INFO] [1793022318.140885450] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=9, damping=0.01, iterations=6, step=5.043 deg, pos_err=0.1283 mm, rot_err=0.001006 rad, min_sigma=0.002471
+[INFO] [1793022321.585107690] [track1_grasp]: [motion:ik-restart-selected] target 1 path waypoint: seed=9, damping=0.05, iterations=2, step=0.165 deg, pos_err=0.1955 mm, rot_err=0.001940 rad, min_sigma=0.001230
+[INFO] [1793022323.596819514] [track1_grasp]: [plan] Task B point 'pick_2' visual_xy=(-0.218760, 0.612387) failed_waypoint='pregrasp': full-route precheck rejected before motion: IK failed for target 1 path waypoint: pose IK did not converge for any deterministic seed/damping: seed=12, damping=0.01: pose IK did not converge (position=0.000162 m, rotation=0.002529 rad, iterations=9, damping=0.01); seed=12, damping=0.02: pose IK did not converge (position=0.000162 m, rotation=0.002529 rad, iterations=25, damping=0.02); seed=12, damping=0.03: pose IK did not converge (position=0.000162 m, rotation=0.002529 rad, iterations=40, damping=0.03); seed=12, damping=0.05: pose IK did not converge (position=0.000162 m, rotation=0.002529 rad, iterations=69, damping=0.05); no arm or gripper command was issued.
+[INFO] [1793022323.598265647] [track1_grasp]: [run] requested=1 attempts=1 successes=0 rate=0.00%

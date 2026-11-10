@@ -1,0 +1,133 @@
+
+===== 任务B 五点位拾放 =====
+配置：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/track1_task_b_point2_safe_20261027.yaml
+视觉后端：realsense_yolo
+模式：安全试运行（机械臂不会运动）
+日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/task_B_20261027_005526.log
+
+正在启动机械臂状态桥接，日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/codroid_bridge_20261027_005526.log
+[bridge] RobotInfo 已就绪：state=AutoReady fault_flag=0 xyz=(-0.0976, 0.4339, 0.3764)
+[INFO] [1793033728.138765232] [track1_grasp]: [task_b_initial_pose] current_deg=[87.289, 76.382, -65.229, -57.008, 84.882, -4.153] target_deg=[82.657, 54.31, -32.193, -53.453, 84.446, -2.058] max_delta_deg=33.035 tolerance_deg=0.500
+[INFO] [1793033728.140227987] [track1_grasp]: [task_b_initial_pose] moving six axes together: dry_run=True estimated_steps=34 max_step_deg=1.000 total_abs_deg=[4.632, 22.072, 33.035, 3.555, 0.437, 2.095]
+[INFO] [1793033728.141659873] [track1_grasp]: [motion:robotmove:dry-run] task_b_initial_pose: would send joints=[82.66, 54.31, -32.19, -53.45, 84.45, -2.06] deg joint_velocity=0.600 rad/s
+[INFO] [1793033728.143069200] [track1_grasp]: [task_b_initial_pose] dry-run completed; no physical motion or final-position verification was performed
+[INFO] [1793033728.145240775] [track1_grasp]: [task_b_observation_pose] pick_2: current_deg=[82.657, 54.31, -32.193, -53.453, 84.446, -2.058] target_deg=[91.406, 74.367, -18.644, -35.901, 87.641, -19.601] max_delta_deg=20.057 tolerance_deg=0.500
+[INFO] [1793033728.146661975] [track1_grasp]: [task_b_observation_pose] pick_2: moving six axes together: dry_run=True estimated_steps=21 max_step_deg=1.000 total_abs_deg=[8.749, 20.057, 13.55, 17.552, 3.196, 17.543]
+[INFO] [1793033728.148262458] [track1_grasp]: [motion:robotmove:dry-run] task_b_observation_pick_2: would send joints=[91.41, 74.37, -18.64, -35.9, 87.64, -19.6] deg joint_velocity=0.600 rad/s
+[INFO] [1793033728.149733525] [track1_grasp]: [task_b_observation_pose] pick_2: dry-run completed; no physical motion or final-position verification was performed
+[INFO] [1793033728.151381500] [track1_grasp]: [scan] round 1/1: waiting for 8-Plastic_Banana at 'pick_2' xy=(-0.149, 0.515) within 0.250 m, completed_points_excluded=0 (wait attempt 1)
+[INFO] [1793033728.152913119] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793033728.395350636] [track1_grasp]: [camera] D405 started 640x480@15 fx=392.7 fy=391.7 cx=314.4 cy=246.7
+[INFO] [1793033732.760770612] [track1_grasp]: [yolo] loading /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/models/best.pt
+[INFO] [1793033732.798866375] [track1_grasp]: [vision:realsense_yolo] ready 640x480 rotate180=True anchor=top_center cx=324.6 cy=232.3 stabilizer=on
+[INFO] [1793033735.604392706] [track1_grasp]: [detect] frame 'realsense-000001': 0 detection(s), no confirmed target
+[INFO] [1793033735.655728071] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793033735.721891648] [track1_grasp]: [detect] frame 'realsense-000002': 0 detection(s), no confirmed target
+[INFO] [1793033735.773286378] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793033735.828457915] [track1_grasp]: [detect] frame 'realsense-000003': 0 detection(s), no confirmed target
+[INFO] [1793033735.880141160] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793033735.938302323] [track1_grasp]: [detect] frame 'realsense-000004': 1 detection(s), no confirmed target
+[INFO] [1793033735.990012875] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793033736.028779464] [track1_grasp]: [detect] frame 'realsense-000005': 0 detection(s), no confirmed target
+[INFO] [1793033736.080465084] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793033736.143050133] [track1_grasp]: [detect] frame 'realsense-000006': 1 detection(s), no confirmed target
+[INFO] [1793033736.194304762] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793033736.257660370] [track1_grasp]: [pose] loaded camera transform from /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/camera_to_flange.d405_calibrated_20261025.yaml
+[INFO] [1793033736.258964027] [track1_grasp]: [detect] frame 'realsense-000007': 1 detection(s), 8-Plastic_Banana conf=0.42, confirmation 1/2
+[INFO] [1793033736.310264960] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793033736.369957743] [track1_grasp]: [detect] frame 'realsense-000008': 0 detection(s), no confirmed target
+[INFO] [1793033736.371286333] [track1_grasp]: [scan] target not yet confirmed at 'pick_2'; 21.8 s remaining; no pick motion will be issued
+[INFO] [1793033736.873212206] [track1_grasp]: [scan] round 1/1: waiting for 8-Plastic_Banana at 'pick_2' xy=(-0.149, 0.515) within 0.250 m, completed_points_excluded=0 (wait attempt 2)
+[INFO] [1793033736.874429191] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793033736.946601701] [track1_grasp]: [detect] frame 'realsense-000009': 0 detection(s), no confirmed target
+[INFO] [1793033736.998213708] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793033737.077354493] [track1_grasp]: [detect] frame 'realsense-000010': 0 detection(s), no confirmed target
+[INFO] [1793033737.128845394] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793033737.209327830] [track1_grasp]: [detect] frame 'realsense-000011': 0 detection(s), no confirmed target
+[INFO] [1793033737.260941024] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793033737.332973433] [track1_grasp]: [detect] frame 'realsense-000012': 0 detection(s), no confirmed target
+[INFO] [1793033737.384589001] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793033737.452296070] [track1_grasp]: [detect] frame 'realsense-000013': 0 detection(s), no confirmed target
+[INFO] [1793033737.503921137] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793033737.571703006] [track1_grasp]: [detect] frame 'realsense-000014': 0 detection(s), no confirmed target
+[INFO] [1793033737.623197470] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793033737.685908373] [track1_grasp]: [detect] frame 'realsense-000015': 0 detection(s), no confirmed target
+[INFO] [1793033737.737883694] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793033737.807678039] [track1_grasp]: [detect] frame 'realsense-000016': 0 detection(s), no confirmed target
+[INFO] [1793033737.809003068] [track1_grasp]: [scan] target not yet confirmed at 'pick_2'; 20.3 s remaining; no pick motion will be issued
+[INFO] [1793033738.311422859] [track1_grasp]: [scan] round 1/1: waiting for 8-Plastic_Banana at 'pick_2' xy=(-0.149, 0.515) within 0.250 m, completed_points_excluded=0 (wait attempt 3)
+[INFO] [1793033738.312923608] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793033738.393371612] [track1_grasp]: [detect] frame 'realsense-000017': 0 detection(s), no confirmed target
+[INFO] [1793033738.445180711] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793033738.531352696] [track1_grasp]: [detect] frame 'realsense-000018': 0 detection(s), no confirmed target
+[INFO] [1793033738.583085807] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793033738.650241968] [track1_grasp]: [detect] frame 'realsense-000019': 0 detection(s), no confirmed target
+[INFO] [1793033738.701946584] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793033738.764186129] [track1_grasp]: [detect] frame 'realsense-000020': 0 detection(s), no confirmed target
+[INFO] [1793033738.815810008] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793033738.861689722] [track1_grasp]: [detect] frame 'realsense-000021': 0 detection(s), no confirmed target
+[INFO] [1793033738.913453703] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793033738.971388092] [track1_grasp]: [detect] frame 'realsense-000022': 0 detection(s), no confirmed target
+[INFO] [1793033739.022981101] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793033739.083060944] [track1_grasp]: [detect] frame 'realsense-000023': 0 detection(s), no confirmed target
+[INFO] [1793033739.134587465] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793033739.202288597] [track1_grasp]: [detect] frame 'realsense-000024': 0 detection(s), no confirmed target
+[INFO] [1793033739.203954381] [track1_grasp]: [scan] target not yet confirmed at 'pick_2'; 18.9 s remaining; no pick motion will be issued
+[INFO] [1793033739.706121277] [track1_grasp]: [scan] round 1/1: waiting for 8-Plastic_Banana at 'pick_2' xy=(-0.149, 0.515) within 0.250 m, completed_points_excluded=0 (wait attempt 4)
+[INFO] [1793033739.707825055] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793033739.755053543] [track1_grasp]: [detect] frame 'realsense-000025': 0 detection(s), no confirmed target
+[INFO] [1793033739.806736788] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793033739.910509335] [track1_grasp]: [detect] frame 'realsense-000026': 0 detection(s), no confirmed target
+[INFO] [1793033739.962514338] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793033740.031266232] [track1_grasp]: [detect] frame 'realsense-000027': 0 detection(s), no confirmed target
+[INFO] [1793033740.083261737] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793033740.169843342] [track1_grasp]: [detect] frame 'realsense-000028': 0 detection(s), no confirmed target
+[INFO] [1793033740.221721304] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793033740.291152335] [track1_grasp]: [detect] frame 'realsense-000029': 1 detection(s), 8-Plastic_Banana conf=0.40, confirmation 1/2
+[INFO] [1793033740.342824894] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793033740.406718350] [track1_grasp]: [detect] frame 'realsense-000030': 0 detection(s), no confirmed target
+[INFO] [1793033740.458395658] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793033740.512052198] [track1_grasp]: [detect] frame 'realsense-000031': 0 detection(s), no confirmed target
+[INFO] [1793033740.563660643] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793033740.624602466] [track1_grasp]: [detect] frame 'realsense-000032': 0 detection(s), no confirmed target
+[INFO] [1793033740.626257565] [track1_grasp]: [scan] target not yet confirmed at 'pick_2'; 17.5 s remaining; no pick motion will be issued
+[INFO] [1793033741.128967057] [track1_grasp]: [scan] round 1/1: waiting for 8-Plastic_Banana at 'pick_2' xy=(-0.149, 0.515) within 0.250 m, completed_points_excluded=0 (wait attempt 5)
+[INFO] [1793033741.130768194] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793033741.219433513] [track1_grasp]: [detect] frame 'realsense-000033': 0 detection(s), no confirmed target
+[INFO] [1793033741.271417145] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793033741.360482585] [track1_grasp]: [detect] frame 'realsense-000034': 0 detection(s), no confirmed target
+[INFO] [1793033741.412183639] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793033741.478750899] [track1_grasp]: [detect] frame 'realsense-000035': 0 detection(s), no confirmed target
+[INFO] [1793033741.530839013] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793033741.629216461] [track1_grasp]: [detect] frame 'realsense-000036': 0 detection(s), no confirmed target
+[INFO] [1793033741.680789286] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793033741.762451900] [track1_grasp]: [detect] frame 'realsense-000037': 0 detection(s), no confirmed target
+[INFO] [1793033741.814129208] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1793033741.875874835] [track1_grasp]: [detect] frame 'realsense-000038': 0 detection(s), no confirmed target
+[INFO] [1793033741.927743298] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1793033741.986752195] [track1_grasp]: [detect] frame 'realsense-000039': 0 detection(s), no confirmed target
+[INFO] [1793033742.038613535] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1793033742.101365993] [track1_grasp]: [detect] frame 'realsense-000040': 0 detection(s), no confirmed target
+[INFO] [1793033742.103079270] [track1_grasp]: [scan] target not yet confirmed at 'pick_2'; 16.0 s remaining; no pick motion will be issued
+[INFO] [1793033742.605686654] [track1_grasp]: [scan] round 1/1: waiting for 8-Plastic_Banana at 'pick_2' xy=(-0.149, 0.515) within 0.250 m, completed_points_excluded=0 (wait attempt 6)
+[INFO] [1793033742.607417740] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793033742.691638989] [track1_grasp]: [detect] frame 'realsense-000041': 0 detection(s), no confirmed target
+[INFO] [1793033742.743660615] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793033742.827325019] [track1_grasp]: [detect] frame 'realsense-000042': 0 detection(s), no confirmed target
+[INFO] [1793033742.879274219] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793033742.958933855] [track1_grasp]: [detect] frame 'realsense-000043': 0 detection(s), no confirmed target
+[INFO] [1793033743.010756014] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793033743.060640496] [track1_grasp]: [detect] frame 'realsense-000044': 1 detection(s), 8-Plastic_Banana conf=0.45, confirmation 1/2
+[INFO] [1793033743.112375982] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1793033743.170714053] [track1_grasp]: [detect] frame 'realsense-000045': 1 detection(s), 8-Plastic_Banana conf=0.48, confirmation 2/2
+[INFO] [1793033743.172130504] [track1_grasp]: [scan] round 1/1: target confirmed at expected point 'pick_2'
+[INFO] [1793033743.173343926] [track1_grasp]: [select] selected '8-Plastic_Banana' conf=0.48 graspability=1.00: 8-Plastic_Banana confirmed in 2 consecutive frames
+[INFO] [1793033743.174734257] [track1_grasp]: [task_b_anchor_pose] pick_2: fixed high anchor xyz=(-0.124884, 0.521709, 0.241216) rpy=(3.128682, 0.04828, 0.365743)
+[INFO] [1793033743.175961927] [track1_grasp]: [plan] pick_2: RGB-D coordinates use live RobotInfo flange_xyz=(-0.09756, 0.433916, 0.376426); route planning uses the dry-run virtual flange_xyz=(-0.124884, 0.521709, 0.241216)
+[INFO] [1793033743.177683514] [track1_grasp]: [plan] pick_2: generated 4 object-relative grasp candidate(s)
+[INFO] [1793033746.988218023] [track1_grasp]: [plan] candidate 1: pregrasp endpoint condition check rejected: IK failed for adaptive candidate 1 candidate endpoint: pose IK did not converge for any deterministic seed/damping: seed=12, damping=0.01: pose IK did not converge (position=0.018744 m, rotation=0.247228 rad, iterations=221, damping=0.01); seed=12, damping=0.02: pose IK did not converge (position=0.018744 m, rotation=0.247227 rad, iterations=133, damping=0.02); seed=12, damping=0.03: pose IK did not converge (position=0.018744 m, rotation=0.247228 rad, iterations=159, damping=0.03); seed=12, damping=0.05: pose IK did not converge (position=0.018743 m, rotation=0.247230 rad, iterations=90, damping=0.05)
+[INFO] [1793033751.139645858] [track1_grasp]: [plan] candidate 2: pregrasp endpoint condition check rejected: IK failed for adaptive candidate 2 candidate endpoint: pose IK did not converge for any deterministic seed/damping: seed=12, damping=0.01: pose IK did not converge (position=0.020444 m, rotation=0.272255 rad, iterations=338, damping=0.01); seed=12, damping=0.02: pose IK did not converge (position=0.020443 m, rotation=0.272266 rad, iterations=119, damping=0.02); seed=12, damping=0.03: pose IK did not converge (position=0.020444 m, rotation=0.272257 rad, iterations=130, damping=0.03); seed=12, damping=0.05: pose IK did not converge (position=0.020444 m, rotation=0.272255 rad, iterations=83, damping=0.05)
+[INFO] [1793033755.334171558] [track1_grasp]: [plan] candidate 3: pregrasp endpoint condition check rejected: IK failed for adaptive candidate 3 candidate endpoint: pose IK did not converge for any deterministic seed/damping: seed=12, damping=0.01: pose IK did not converge (position=0.017416 m, rotation=0.226802 rad, iterations=395, damping=0.01); seed=12, damping=0.02: pose IK did not converge (position=0.017416 m, rotation=0.226806 rad, iterations=166, damping=0.02); seed=12, damping=0.03: pose IK did not converge (position=0.017416 m, rotation=0.226804 rad, iterations=120, damping=0.03); seed=12, damping=0.05: pose IK did not converge (position=0.017416 m, rotation=0.226803 rad, iterations=104, damping=0.05)
+[INFO] [1793033760.207598767] [track1_grasp]: [plan] candidate 4: pregrasp endpoint condition check rejected: IK failed for adaptive candidate 4 candidate endpoint: pose IK did not converge for any deterministic seed/damping: seed=12, damping=0.01: pose IK did not converge (position=0.021524 m, rotation=0.287036 rad, iterations=367, damping=0.01); seed=12, damping=0.02: pose IK did not converge (position=0.021526 m, rotation=0.287021 rad, iterations=250, damping=0.02); seed=12, damping=0.03: pose IK did not converge (position=0.021525 m, rotation=0.287027 rad, iterations=175, damping=0.03); seed=12, damping=0.05: pose IK did not converge (position=0.021525 m, rotation=0.287024 rad, iterations=82, damping=0.05)
+[INFO] [1793033760.208840684] [track1_grasp]: [plan] pick_2: all 4 adaptive grasp candidate(s) were rejected before any motion or gripper command. candidate 1: pregrasp endpoint condition check rejected: IK failed for adaptive candidate 1 candidate endpoint: pose IK did not converge for any deterministic seed/damping: seed=12, damping=0.01: pose IK did not converge (position=0.018744 m, rotation=0.247228 rad, iterations=221, damping=0.01); seed=12, damping=0.02: pose IK did not converge (position=0.018744 m, rotation=0.247227 rad, iterations=133, damping=0.02); seed=12, damping=0.03: pose IK did not converge (position=0.018744 m, rotation=0.247228 rad, iterations=159, damping=0.03); seed=12, damping=0.05: pose IK did not converge (position=0.018743 m, rotation=0.247230 rad, iterations=90, damping=0.05) | candidate 2: pregrasp endpoint condition check rejected: IK failed for adaptive candidate 2 candidate endpoint: pose IK did not converge for any deterministic seed/damping: seed=12, damping=0.01: pose IK did not converge (position=0.020444 m, rotation=0.272255 rad, iterations=338, damping=0.01); seed=12, damping=0.02: pose IK did not converge (position=0.020443 m, rotation=0.272266 rad, iterations=119, damping=0.02); seed=12, damping=0.03: pose IK did not converge (position=0.020444 m, rotation=0.272257 rad, iterations=130, damping=0.03); seed=12, damping=0.05: pose IK did not converge (position=0.020444 m, rotation=0.272255 rad, iterations=83, damping=0.05) | candidate 3: pregrasp endpoint condition check rejected: IK failed for adaptive candidate 3 candidate endpoint: pose IK did not converge for any deterministic seed/damping: seed=12, damping=0.01: pose IK did not converge (position=0.017416 m, rotation=0.226802 rad, iterations=395, damping=0.01); seed=12, damping=0.02: pose IK did not converge (position=0.017416 m, rotation=0.226806 rad, iterations=166, damping=0.02); seed=12, damping=0.03: pose IK did not converge (position=0.017416 m, rotation=0.226804 rad, iterations=120, damping=0.03); seed=12, damping=0.05: pose IK did not converge (position=0.017416 m, rotation=0.226803 rad, iterations=104, damping=0.05) | candidate 4: pregrasp endpoint condition check rejected: IK failed for adaptive candidate 4 candidate endpoint: pose IK did not converge for any deterministic seed/damping: seed=12, damping=0.01: pose IK did not converge (position=0.021524 m, rotation=0.287036 rad, iterations=367, damping=0.01); seed=12, damping=0.02: pose IK did not converge (position=0.021526 m, rotation=0.287021 rad, iterations=250, damping=0.02); seed=12, damping=0.03: pose IK did not converge (position=0.021525 m, rotation=0.287027 rad, iterations=175, damping=0.03); seed=12, damping=0.05: pose IK did not converge (position=0.021525 m, rotation=0.287024 rad, iterations=82, damping=0.05)
+[INFO] [1793033760.210075478] [track1_grasp]: [run] requested=1 attempts=1 successes=0 rate=0.00%

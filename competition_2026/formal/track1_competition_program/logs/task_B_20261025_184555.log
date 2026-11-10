@@ -1,0 +1,18 @@
+
+===== 任务B 任意摆放抓取 =====
+配置：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/track1_task_b_arbitrary_single_preflight.yaml
+视觉后端：realsense_yolo
+模式：任意摆放抓取离线试运行（仅使用当前画面识别与 PCA 位姿，逐轮生成候选并完成整条路径逆解预检，机械臂和夹爪不会动作）
+日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/task_B_20261025_184555.log
+
+机械臂状态桥接已在运行（PID=5726），不重复启动。
+[bridge] RobotInfo 已就绪：state=AutoReady fault_flag=0 xyz=(-0.0437, 0.4738, 0.3317)
+[INFO] [1792925156.417081090] [track1_grasp]: [camera] D405 started 640x480@15 fx=392.7 fy=391.7 cx=314.4 cy=246.7
+[INFO] [1792925156.417909841] [track1_grasp]: [task_b_initial_pose] no initial pose file configured; keeping the current arm posture
+[INFO] [1792925156.419145844] [track1_grasp]: [scan] arbitrary_round_1: acquiring the current arbitrary-placement target; no remembered point or previous release XY is used
+[INFO] [1792925156.420335541] [track1_grasp]: [detect] observation 1/1: waiting for a fresh frame
+[INFO] [1792925160.716596142] [track1_grasp]: [yolo] loading /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/models/best.pt
+[INFO] [1792925160.754190330] [track1_grasp]: [vision:realsense_yolo] ready 640x480 rotate180=True anchor=top_center cx=324.6 cy=232.3 stabilizer=on
+[INFO] [1792925163.202516683] [track1_grasp]: [detect] frame 'realsense-000001': 0 detection(s), no confirmed target
+[INFO] [1792925163.204222866] [track1_grasp]: [select] target not confirmed in 1 frame(s): no usable detection with expected class '8-Plastic_Banana'
+[INFO] [1792925163.205758073] [track1_grasp]: [run] requested=1 attempts=1 successes=0 rate=0.00%

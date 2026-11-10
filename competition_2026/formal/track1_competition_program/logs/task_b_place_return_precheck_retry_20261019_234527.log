@@ -1,0 +1,33 @@
+[state] controller state=AutoReady fault=False
+[start] joints_deg=[82.657, 54.3102, -32.1933, -53.4526, 84.4457, -2.0579]
+[start] tcp_xyz_m=(-0.064451, 0.430292, 0.433298)
+[start] tcp_rpy_rad=(-2.88548, 0.084828, -0.069032)
+[targets]
+  high_align: xyz=(-0.063443253, 0.543732009, 0.4332983525202293) rpy=(3.082206718, 0.098641098, -0.072880619)
+  descend_above_release: xyz=(-0.063443253, 0.543732009, 0.211534092) rpy=(3.082206718, 0.098641098, -0.072880619)
+  release: xyz=(-0.063443253, 0.543732009, 0.161534092) rpy=(3.082206718, 0.098641098, -0.072880619)
+  retreat: xyz=(-0.063443253, 0.543732009, 0.211534092) rpy=(3.082206718, 0.098641098, -0.072880619)
+Traceback (most recent call last):
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/motion.py", line 801, in _plan_cartesian_segment
+    waypoints, joint_waypoints, minimum_singular = plan_once(
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/motion.py", line 790, in plan_once
+    visit(
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/motion.py", line 782, in visit
+    visit(
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/motion.py", line 772, in visit
+    visit(
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/motion.py", line 772, in visit
+    visit(
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/motion.py", line 750, in visit
+    raise _CartesianPathError(
+track1_grasp.motion._CartesianPathError: joint-step limit cannot be satisfied at the minimum spacing (0.508 deg > 0.500 deg) at target 1 path waypoint, depth=4
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<stdin>", line 37, in <module>
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/motion.py", line 897, in precheck_linear_targets
+    segment = self._plan_cartesian_segment(
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/motion.py", line 823, in _plan_cartesian_segment
+    raise RuntimeError(str(exc)) from exc
+RuntimeError: joint-step limit cannot be satisfied at the minimum spacing (0.508 deg > 0.500 deg) at target 1 path waypoint, depth=4

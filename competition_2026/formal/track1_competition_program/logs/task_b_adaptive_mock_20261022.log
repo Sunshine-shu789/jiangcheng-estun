@@ -1,0 +1,175 @@
+# Task B adaptive inverse Mock run (2026-10-22T22:43:40+08:00 -> 2026-10-22T22:43:40+08:00)
+# No ROS process, physical camera, robot, or physical gripper was started.
+# Mock route precheck validates workspace/step geometry; real IK and singularity
+# metrics are not emulated by the Mock backend and remain live-validation gates.
+[vision:mock] loaded 5 frame(s)
+[task_b_initial_pose] no initial pose file configured; keeping the current arm posture
+[scan] round 1/5: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 1)
+[detect] observation 1/1: waiting for a fresh frame
+[pose] loaded camera transform from /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/camera_to_flange.d405_assumed.yaml
+[detect] frame 'adaptive_mock_pick_1': 1 detection(s), 8-Plastic_Banana conf=0.95, confirmation 1/1
+[scan] round 1/5: target confirmed at expected point 'pick_1'
+[select] selected '8-Plastic_Banana' conf=0.95 graspability=1.00: 8-Plastic_Banana confirmed in 1 consecutive frames
+[plan] pick_1: generated 5 object-relative grasp candidate(s)
+[plan] adaptive candidate 1/5 passed full-route precheck: min_sigma=0.000000, joint_travel=0.00 deg, orientation_change=0.00 deg
+[plan] adaptive candidate 2/5 passed full-route precheck: min_sigma=0.000000, joint_travel=0.00 deg, orientation_change=45.00 deg
+[plan] adaptive candidate 3/5 passed full-route precheck: min_sigma=0.000000, joint_travel=0.00 deg, orientation_change=45.00 deg
+[plan] adaptive candidate 4/5 passed full-route precheck: min_sigma=0.000000, joint_travel=0.00 deg, orientation_change=90.00 deg
+[plan] adaptive candidate 5/5 passed full-route precheck: min_sigma=0.000000, joint_travel=0.00 deg, orientation_change=90.00 deg
+[plan] adaptive winner: yaw_offset=0.00 deg, score=2.0000, min_sigma=0.000000, joint_travel=0.00 deg
+[plan] pick_1: vertical grasp column locked; xy=(-0.0412, 0.4907), straight_descent=0.0800 m, lateral=0.0000 m, rotation=0.0000 rad
+[plan] selected adaptive full-route candidate; planned 6 waypoint(s)
+[open_gripper] opening jaws before entering approach corridor
+[gripper:mock] open
+[approach] move to pregrasp: xyz=(-0.0412, 0.4907, 0.246)
+[motion:mock-prechecked] pregrasp: distance=0.495 m waypoints=248 v=0.120
+[grasp] move to grasp: xyz=(-0.0412, 0.4907, 0.166)
+[motion:mock-prechecked] grasp: distance=0.080 m waypoints=40 v=0.120
+[grasp] reached grasp pose; closing jaws
+[gripper:mock] close
+[verify_hold] checking whether the object is held
+[verify_hold] mock hold verifier accepted
+[lift] move to lift: xyz=(-0.0412, 0.4907, 0.246)
+[motion:mock-prechecked] lift: distance=0.080 m waypoints=40 v=0.120
+[transfer] move to transfer: xyz=(-0.0412, 0.4907, 0.246)
+[motion:mock-prechecked] transfer: distance=0.000 m waypoints=0 v=0.120
+[release] move to release: xyz=(-0.0412, 0.4907, 0.166)
+[motion:mock-prechecked] release: distance=0.080 m waypoints=40 v=0.120
+[release] opening jaws to release the object
+[gripper:mock] open
+[retreat] move to retreat: xyz=(-0.0412, 0.4907, 0.246)
+[motion:mock-prechecked] retreat: distance=0.080 m waypoints=40 v=0.120
+[done] pick_1: object returned at its pick point and arm retreated; next round waits for visual confirmation at expected point 2/5
+[scan] round 2/5: waiting for 8-Plastic_Banana at 'pick_2' xy=(-0.125, 0.522) within 0.080 m, completed_points_excluded=1 (wait attempt 1)
+[detect] observation 1/1: waiting for a fresh frame
+[detect] frame 'adaptive_mock_pick_2': 1 detection(s), 8-Plastic_Banana conf=0.95, confirmation 1/1
+[scan] round 2/5: target confirmed at expected point 'pick_2'
+[select] selected '8-Plastic_Banana' conf=0.95 graspability=1.00: 8-Plastic_Banana confirmed in 1 consecutive frames
+[plan] pick_2: generated 5 object-relative grasp candidate(s)
+[plan] adaptive candidate 1/5 passed full-route precheck: min_sigma=0.000000, joint_travel=0.00 deg, orientation_change=0.00 deg
+[plan] adaptive candidate 2/5 passed full-route precheck: min_sigma=0.000000, joint_travel=0.00 deg, orientation_change=45.00 deg
+[plan] adaptive candidate 3/5 passed full-route precheck: min_sigma=0.000000, joint_travel=0.00 deg, orientation_change=45.00 deg
+[plan] adaptive candidate 4/5 passed full-route precheck: min_sigma=0.000000, joint_travel=0.00 deg, orientation_change=90.00 deg
+[plan] adaptive candidate 5/5 passed full-route precheck: min_sigma=0.000000, joint_travel=0.00 deg, orientation_change=90.00 deg
+[plan] adaptive winner: yaw_offset=0.00 deg, score=2.0000, min_sigma=0.000000, joint_travel=0.00 deg
+[plan] pick_2: vertical grasp column locked; xy=(-0.1249, 0.5217), straight_descent=0.0800 m, lateral=0.0000 m, rotation=0.0000 rad
+[plan] selected adaptive full-route candidate; planned 6 waypoint(s)
+[approach] move to pregrasp: xyz=(-0.1249, 0.5217, 0.246)
+[motion:mock-prechecked] pregrasp: distance=0.089 m waypoints=45 v=0.120
+[grasp] move to grasp: xyz=(-0.1249, 0.5217, 0.166)
+[motion:mock-prechecked] grasp: distance=0.080 m waypoints=40 v=0.120
+[grasp] reached grasp pose; closing jaws
+[gripper:mock] close
+[verify_hold] checking whether the object is held
+[verify_hold] mock hold verifier accepted
+[lift] move to lift: xyz=(-0.1249, 0.5217, 0.246)
+[motion:mock-prechecked] lift: distance=0.080 m waypoints=40 v=0.120
+[transfer] move to transfer: xyz=(-0.1249, 0.5217, 0.246)
+[motion:mock-prechecked] transfer: distance=0.000 m waypoints=0 v=0.120
+[release] move to release: xyz=(-0.1249, 0.5217, 0.166)
+[motion:mock-prechecked] release: distance=0.080 m waypoints=40 v=0.120
+[release] opening jaws to release the object
+[gripper:mock] open
+[retreat] move to retreat: xyz=(-0.1249, 0.5217, 0.246)
+[motion:mock-prechecked] retreat: distance=0.080 m waypoints=40 v=0.120
+[done] pick_2: object returned at its pick point and arm retreated; next round waits for visual confirmation at expected point 3/5
+[scan] round 3/5: waiting for 8-Plastic_Banana at 'pick_3' xy=(-0.108, 0.418) within 0.080 m, completed_points_excluded=2 (wait attempt 1)
+[detect] observation 1/1: waiting for a fresh frame
+[detect] frame 'adaptive_mock_pick_3': 1 detection(s), 8-Plastic_Banana conf=0.95, confirmation 1/1
+[scan] round 3/5: target confirmed at expected point 'pick_3'
+[select] selected '8-Plastic_Banana' conf=0.95 graspability=1.00: 8-Plastic_Banana confirmed in 1 consecutive frames
+[plan] pick_3: generated 5 object-relative grasp candidate(s)
+[plan] adaptive candidate 1/5 passed full-route precheck: min_sigma=0.000000, joint_travel=0.00 deg, orientation_change=0.00 deg
+[plan] adaptive candidate 2/5 passed full-route precheck: min_sigma=0.000000, joint_travel=0.00 deg, orientation_change=45.00 deg
+[plan] adaptive candidate 3/5 passed full-route precheck: min_sigma=0.000000, joint_travel=0.00 deg, orientation_change=45.00 deg
+[plan] adaptive candidate 4/5 passed full-route precheck: min_sigma=0.000000, joint_travel=0.00 deg, orientation_change=90.00 deg
+[plan] adaptive candidate 5/5 passed full-route precheck: min_sigma=0.000000, joint_travel=0.00 deg, orientation_change=90.00 deg
+[plan] adaptive winner: yaw_offset=0.00 deg, score=2.0000, min_sigma=0.000000, joint_travel=0.00 deg
+[plan] pick_3: vertical grasp column locked; xy=(-0.1080, 0.4177), straight_descent=0.0800 m, lateral=0.0000 m, rotation=0.0000 rad
+[plan] selected adaptive full-route candidate; planned 6 waypoint(s)
+[approach] move to pregrasp: xyz=(-0.108, 0.4177, 0.246)
+[motion:mock-prechecked] pregrasp: distance=0.105 m waypoints=53 v=0.120
+[grasp] move to grasp: xyz=(-0.108, 0.4177, 0.166)
+[motion:mock-prechecked] grasp: distance=0.080 m waypoints=40 v=0.120
+[grasp] reached grasp pose; closing jaws
+[gripper:mock] close
+[verify_hold] checking whether the object is held
+[verify_hold] mock hold verifier accepted
+[lift] move to lift: xyz=(-0.108, 0.4177, 0.246)
+[motion:mock-prechecked] lift: distance=0.080 m waypoints=40 v=0.120
+[transfer] move to transfer: xyz=(-0.108, 0.4177, 0.246)
+[motion:mock-prechecked] transfer: distance=0.000 m waypoints=0 v=0.120
+[release] move to release: xyz=(-0.108, 0.4177, 0.166)
+[motion:mock-prechecked] release: distance=0.080 m waypoints=40 v=0.120
+[release] opening jaws to release the object
+[gripper:mock] open
+[retreat] move to retreat: xyz=(-0.108, 0.4177, 0.246)
+[motion:mock-prechecked] retreat: distance=0.080 m waypoints=40 v=0.120
+[done] pick_3: object returned at its pick point and arm retreated; next round waits for visual confirmation at expected point 4/5
+[scan] round 4/5: waiting for 8-Plastic_Banana at 'pick_4' xy=(0.057, 0.418) within 0.080 m, completed_points_excluded=3 (wait attempt 1)
+[detect] observation 1/1: waiting for a fresh frame
+[detect] frame 'adaptive_mock_pick_4': 1 detection(s), 8-Plastic_Banana conf=0.95, confirmation 1/1
+[scan] round 4/5: target confirmed at expected point 'pick_4'
+[select] selected '8-Plastic_Banana' conf=0.95 graspability=1.00: 8-Plastic_Banana confirmed in 1 consecutive frames
+[plan] pick_4: generated 5 object-relative grasp candidate(s)
+[plan] adaptive candidate 1/5 passed full-route precheck: min_sigma=0.000000, joint_travel=0.00 deg, orientation_change=0.00 deg
+[plan] adaptive candidate 2/5 passed full-route precheck: min_sigma=0.000000, joint_travel=0.00 deg, orientation_change=45.00 deg
+[plan] adaptive candidate 3/5 passed full-route precheck: min_sigma=0.000000, joint_travel=0.00 deg, orientation_change=45.00 deg
+[plan] adaptive candidate 4/5 passed full-route precheck: min_sigma=0.000000, joint_travel=0.00 deg, orientation_change=90.00 deg
+[plan] adaptive candidate 5/5 passed full-route precheck: min_sigma=0.000000, joint_travel=0.00 deg, orientation_change=90.00 deg
+[plan] adaptive winner: yaw_offset=0.00 deg, score=2.0000, min_sigma=0.000000, joint_travel=0.00 deg
+[plan] pick_4: vertical grasp column locked; xy=(0.0567, 0.4179), straight_descent=0.0800 m, lateral=0.0000 m, rotation=0.0000 rad
+[plan] selected adaptive full-route candidate; planned 6 waypoint(s)
+[approach] move to pregrasp: xyz=(0.0567, 0.4179, 0.246)
+[motion:mock-prechecked] pregrasp: distance=0.165 m waypoints=83 v=0.120
+[grasp] move to grasp: xyz=(0.0567, 0.4179, 0.166)
+[motion:mock-prechecked] grasp: distance=0.080 m waypoints=40 v=0.120
+[grasp] reached grasp pose; closing jaws
+[gripper:mock] close
+[verify_hold] checking whether the object is held
+[verify_hold] mock hold verifier accepted
+[lift] move to lift: xyz=(0.0567, 0.4179, 0.246)
+[motion:mock-prechecked] lift: distance=0.080 m waypoints=40 v=0.120
+[transfer] move to transfer: xyz=(0.0567, 0.4179, 0.246)
+[motion:mock-prechecked] transfer: distance=0.000 m waypoints=0 v=0.120
+[release] move to release: xyz=(0.0567, 0.4179, 0.166)
+[motion:mock-prechecked] release: distance=0.080 m waypoints=40 v=0.120
+[release] opening jaws to release the object
+[gripper:mock] open
+[retreat] move to retreat: xyz=(0.0567, 0.4179, 0.246)
+[motion:mock-prechecked] retreat: distance=0.080 m waypoints=40 v=0.120
+[done] pick_4: object returned at its pick point and arm retreated; next round waits for visual confirmation at expected point 5/5
+[scan] round 5/5: waiting for 8-Plastic_Banana at 'pick_5' xy=(0.034, 0.487) within 0.080 m, completed_points_excluded=4 (wait attempt 1)
+[detect] observation 1/1: waiting for a fresh frame
+[detect] frame 'adaptive_mock_pick_5': 1 detection(s), 8-Plastic_Banana conf=0.95, confirmation 1/1
+[scan] round 5/5: target confirmed at expected point 'pick_5'
+[select] selected '8-Plastic_Banana' conf=0.95 graspability=1.00: 8-Plastic_Banana confirmed in 1 consecutive frames
+[plan] pick_5: generated 5 object-relative grasp candidate(s)
+[plan] adaptive candidate 1/5 passed full-route precheck: min_sigma=0.000000, joint_travel=0.00 deg, orientation_change=0.00 deg
+[plan] adaptive candidate 2/5 passed full-route precheck: min_sigma=0.000000, joint_travel=0.00 deg, orientation_change=45.00 deg
+[plan] adaptive candidate 3/5 passed full-route precheck: min_sigma=0.000000, joint_travel=0.00 deg, orientation_change=45.00 deg
+[plan] adaptive candidate 4/5 passed full-route precheck: min_sigma=0.000000, joint_travel=0.00 deg, orientation_change=90.00 deg
+[plan] adaptive candidate 5/5 passed full-route precheck: min_sigma=0.000000, joint_travel=0.00 deg, orientation_change=90.00 deg
+[plan] adaptive winner: yaw_offset=0.00 deg, score=2.0000, min_sigma=0.000000, joint_travel=0.00 deg
+[plan] pick_5: vertical grasp column locked; xy=(0.0342, 0.4867), straight_descent=0.0800 m, lateral=0.0000 m, rotation=0.0000 rad
+[plan] selected adaptive full-route candidate; planned 6 waypoint(s)
+[approach] move to pregrasp: xyz=(0.0342, 0.4867, 0.246)
+[motion:mock-prechecked] pregrasp: distance=0.072 m waypoints=37 v=0.120
+[grasp] move to grasp: xyz=(0.0342, 0.4867, 0.166)
+[motion:mock-prechecked] grasp: distance=0.080 m waypoints=40 v=0.120
+[grasp] reached grasp pose; closing jaws
+[gripper:mock] close
+[verify_hold] checking whether the object is held
+[verify_hold] mock hold verifier accepted
+[lift] move to lift: xyz=(0.0342, 0.4867, 0.246)
+[motion:mock-prechecked] lift: distance=0.080 m waypoints=40 v=0.120
+[transfer] move to transfer: xyz=(0.0342, 0.4867, 0.246)
+[motion:mock-prechecked] transfer: distance=0.000 m waypoints=0 v=0.120
+[release] move to release: xyz=(0.0342, 0.4867, 0.166)
+[motion:mock-prechecked] release: distance=0.080 m waypoints=40 v=0.120
+[release] opening jaws to release the object
+[gripper:mock] open
+[retreat] move to retreat: xyz=(0.0342, 0.4867, 0.246)
+[motion:mock-prechecked] retreat: distance=0.080 m waypoints=40 v=0.120
+[done] pick_5: object returned at its pick point and arm retreated; all expected points completed
+[run] requested=5 attempts=5 successes=5 rate=100.00%

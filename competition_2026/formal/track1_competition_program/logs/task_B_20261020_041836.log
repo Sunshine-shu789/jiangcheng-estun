@@ -1,0 +1,1149 @@
+
+===== 任务B 五点位拾放 =====
+配置：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/track1_task_b_resume2_final_20261020_live.yaml
+视觉后端：realsense_yolo
+模式：真机执行
+日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/task_B_20261020_041836.log
+
+夹爪 ROS 节点已在运行（PID=49232），不重复启动。
+机械臂状态桥接已在运行（PID=48121），不重复启动。
+[bridge] RobotInfo 已就绪：state=AutoReady fault_flag=0 xyz=(-0.1249, 0.5217, 0.2412)
+[INFO] [1792441118.043950724] [track1_grasp]: [camera] D405 started 640x480@15 fx=392.7 fy=391.7 cx=314.4 cy=246.7
+[INFO] [1792441118.072179972] [track1_grasp]: [gripper:ms42dc_ros] control=/motor_control state=/motor_state id=1
+[INFO] [1792441118.127693377] [track1_grasp]: [task_b_initial_pose] current_deg=[91.408, 74.364, -18.642, -35.898, 87.64, -19.604] target_deg=[82.657, 54.31, -32.193, -53.453, 84.446, -2.058] max_delta_deg=20.054 tolerance_deg=0.500
+[INFO] [1792441118.127945085] [track1_grasp]: [task_b_initial_pose] moving six axes together: dry_run=False estimated_steps=21 max_step_deg=1.000 total_abs_deg=[8.751, 20.054, 13.552, 17.555, 3.194, 17.546]
+[INFO] [1792441118.128202729] [track1_grasp]: [motion:robotmove] task_b_initial_pose: 21 step(s), max_delta=20.05 deg
+[INFO] [1792441118.129636988] [track1_grasp]: [motion:robotmove] sent task_b_initial_pose_step_01: joints=[90.99, 73.41, -19.29, -36.73, 87.49, -18.77] deg
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+[INFO] [1792441118.631323539] [track1_grasp]: [motion:robotmove] sent task_b_initial_pose_step_02: joints=[90.57, 72.45, -19.93, -37.57, 87.34, -17.93] deg
+[INFO] [1792441119.133141881] [track1_grasp]: [motion:robotmove] sent task_b_initial_pose_step_03: joints=[90.16, 71.5, -20.58, -38.41, 87.18, -17.1] deg
+[INFO] [1792441119.634887797] [track1_grasp]: [motion:robotmove] sent task_b_initial_pose_step_04: joints=[89.74, 70.54, -21.22, -39.24, 87.03, -16.26] deg
+[INFO] [1792441120.358096060] [track1_grasp]: [motion:robotmove] sent task_b_initial_pose_step_05: joints=[89.32, 69.59, -21.87, -40.08, 86.88, -15.43] deg
+[INFO] [1792441120.895751869] [track1_grasp]: [yolo] loading /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/models/best.pt
+[INFO] [1792441120.928496420] [track1_grasp]: [motion:robotmove] sent task_b_initial_pose_step_06: joints=[88.91, 68.63, -22.51, -40.91, 86.73, -14.59] deg
+[INFO] [1792441120.931974022] [track1_grasp]: [vision:realsense_yolo] ready 640x480 rotate180=True anchor=top_center cx=324.6 cy=232.3 stabilizer=on
+[INFO] [1792441121.449406548] [track1_grasp]: [motion:robotmove] sent task_b_initial_pose_step_07: joints=[88.49, 67.68, -23.16, -41.75, 86.58, -13.76] deg
+[INFO] [1792441121.933094816] [track1_grasp]: [motion:robotmove] sent task_b_initial_pose_step_08: joints=[88.07, 66.72, -23.8, -42.59, 86.42, -12.92] deg
+[INFO] [1792441122.435559049] [track1_grasp]: [motion:robotmove] sent task_b_initial_pose_step_09: joints=[87.66, 65.77, -24.45, -43.42, 86.27, -12.08] deg
+[INFO] [1792441122.939655820] [track1_grasp]: [motion:robotmove] sent task_b_initial_pose_step_10: joints=[87.24, 64.81, -25.09, -44.26, 86.12, -11.25] deg
+[INFO] [1792441123.441692625] [track1_grasp]: [motion:robotmove] sent task_b_initial_pose_step_11: joints=[86.82, 63.86, -25.74, -45.09, 85.97, -10.41] deg
+[INFO] [1792441123.944242343] [track1_grasp]: [motion:robotmove] sent task_b_initial_pose_step_12: joints=[86.41, 62.9, -26.39, -45.93, 85.81, -9.58] deg
+[INFO] [1792441123.972623566] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,390)
+[INFO] [1792441124.037850274] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (103,390)
+[INFO] [1792441124.446578348] [track1_grasp]: [motion:robotmove] sent task_b_initial_pose_step_13: joints=[85.99, 61.95, -27.03, -46.77, 85.66, -8.74] deg
+[INFO] [1792441124.949278854] [track1_grasp]: [motion:robotmove] sent task_b_initial_pose_step_14: joints=[85.57, 60.99, -27.68, -47.6, 85.51, -7.91] deg
+[INFO] [1792441125.451392833] [track1_grasp]: [motion:robotmove] sent task_b_initial_pose_step_15: joints=[85.16, 60.04, -28.32, -48.44, 85.36, -7.07] deg
+[INFO] [1792441126.006308424] [track1_grasp]: [motion:robotmove] sent task_b_initial_pose_step_16: joints=[84.74, 59.08, -28.97, -49.27, 85.21, -6.24] deg
+[INFO] [1792441126.558881473] [track1_grasp]: [motion:robotmove] sent task_b_initial_pose_step_17: joints=[84.32, 58.13, -29.61, -50.11, 85.05, -5.4] deg
+[INFO] [1792441127.111111391] [track1_grasp]: [motion:robotmove] sent task_b_initial_pose_step_18: joints=[83.91, 57.17, -30.26, -50.94, 84.9, -4.56] deg
+[INFO] [1792441127.663676128] [track1_grasp]: [motion:robotmove] sent task_b_initial_pose_step_19: joints=[83.49, 56.22, -30.9, -51.78, 84.75, -3.73] deg
+[INFO] [1792441128.216415398] [track1_grasp]: [motion:robotmove] sent task_b_initial_pose_step_20: joints=[83.07, 55.27, -31.55, -52.62, 84.6, -2.89] deg
+[INFO] [1792441128.769337513] [track1_grasp]: [motion:robotmove] sent task_b_initial_pose_step_21: joints=[82.66, 54.31, -32.19, -53.45, 84.45, -2.06] deg
+[INFO] [1792441129.273396290] [track1_grasp]: [task_b_initial_pose] verified residual_deg=0.010; starting visual search
+[INFO] [1792441129.275335151] [track1_grasp]: [task_b_observation_pose] pick_2: current_deg=[82.66, 54.313, -32.19, -53.442, 84.453, -2.062] target_deg=[91.406, 74.367, -18.644, -35.901, 87.641, -19.601] max_delta_deg=20.054 tolerance_deg=0.500
+[INFO] [1792441129.275692528] [track1_grasp]: [task_b_observation_pose] pick_2: moving six axes together: dry_run=False estimated_steps=21 max_step_deg=1.000 total_abs_deg=[8.745, 20.054, 13.546, 17.542, 3.188, 17.539]
+[INFO] [1792441129.276549759] [track1_grasp]: [motion:robotmove] task_b_observation_pick_2: 21 step(s), max_delta=20.05 deg
+[INFO] [1792441129.278913674] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_01: joints=[83.08, 55.27, -31.54, -52.61, 84.61, -2.9] deg
+[INFO] [1792441129.781013405] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_02: joints=[83.49, 56.22, -30.9, -51.77, 84.76, -3.73] deg
+[INFO] [1792441130.283810082] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_03: joints=[83.91, 57.18, -30.25, -50.94, 84.91, -4.57] deg
+[INFO] [1792441130.786057039] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_04: joints=[84.33, 58.13, -29.61, -50.1, 85.06, -5.4] deg
+[INFO] [1792441131.288569952] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_05: joints=[84.74, 59.09, -28.96, -49.27, 85.21, -6.24] deg
+[INFO] [1792441131.791733504] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_06: joints=[85.16, 60.04, -28.32, -48.43, 85.36, -7.07] deg
+[INFO] [1792441132.294413826] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_07: joints=[85.58, 61.0, -27.67, -47.6, 85.52, -7.91] deg
+[INFO] [1792441132.796711837] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_08: joints=[85.99, 61.95, -27.03, -46.76, 85.67, -8.74] deg
+[INFO] [1792441133.299257994] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_09: joints=[86.41, 62.91, -26.38, -45.92, 85.82, -9.58] deg
+[INFO] [1792441133.801837395] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_10: joints=[86.82, 63.86, -25.74, -45.09, 85.97, -10.41] deg
+[INFO] [1792441134.304326561] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_11: joints=[87.24, 64.82, -25.09, -44.25, 86.12, -11.25] deg
+[INFO] [1792441134.808361592] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_12: joints=[87.66, 65.77, -24.45, -43.42, 86.28, -12.08] deg
+[INFO] [1792441135.361170913] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_13: joints=[88.07, 66.73, -23.8, -42.58, 86.43, -12.92] deg
+[INFO] [1792441135.441583190] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (103,388)
+[INFO] [1792441135.913949364] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_14: joints=[88.49, 67.68, -23.16, -41.75, 86.58, -13.75] deg
+[INFO] [1792441136.466553282] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_15: joints=[88.91, 68.64, -22.51, -40.91, 86.73, -14.59] deg
+[INFO] [1792441136.968947464] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_16: joints=[89.32, 69.59, -21.87, -40.08, 86.88, -15.43] deg
+[INFO] [1792441137.307453859] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (104,385)
+[INFO] [1792441137.450036733] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (103,386)
+[INFO] [1792441137.471268034] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_17: joints=[89.74, 70.55, -21.22, -39.24, 87.03, -16.26] deg
+[INFO] [1792441137.640943910] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,385)
+[INFO] [1792441137.845017059] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,386)
+[INFO] [1792441137.974234495] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (104,387)
+[INFO] [1792441137.975092913] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_18: joints=[90.16, 71.5, -20.58, -38.41, 87.19, -17.1] deg
+[INFO] [1792441138.309652722] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,387)
+[INFO] [1792441138.385553258] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (103,386)
+[INFO] [1792441138.445403871] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (103,388)
+[INFO] [1792441138.477865844] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_19: joints=[90.57, 72.46, -19.93, -37.57, 87.34, -17.93] deg
+[INFO] [1792441138.511049696] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,386)
+[INFO] [1792441138.578789918] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,387)
+[INFO] [1792441138.708140332] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,386)
+[INFO] [1792441138.907877460] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,386)
+[INFO] [1792441138.980254090] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_20: joints=[90.99, 73.41, -19.29, -36.74, 87.49, -18.77] deg
+[INFO] [1792441139.109426409] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (104,386)
+[INFO] [1792441139.183657601] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,386)
+[INFO] [1792441139.252479454] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (103,389)
+[INFO] [1792441139.483017522] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_21: joints=[91.41, 74.37, -18.64, -35.9, 87.64, -19.6] deg
+[INFO] [1792441139.985165934] [track1_grasp]: [task_b_observation_pose] pick_2: verified residual_deg=0.014; visual search may start
+[INFO] [1792441139.985456822] [track1_grasp]: [scan] round 1/4: waiting for 8-Plastic_Banana at 'pick_2' xy=(-0.125, 0.522) within 0.080 m, completed_points_excluded=0 (wait attempt 1)
+[INFO] [1792441139.985865253] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792441139.987991708] [track1_grasp]: [pose] loaded camera transform from /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/camera_to_flange.d405_assumed.yaml
+[INFO] [1792441139.988435758] [track1_grasp]: [detect] frame 'realsense-000274': 3 detection(s), 8-Plastic_Banana conf=0.87, confirmation 1/2
+[INFO] [1792441140.039152471] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792441140.045935517] [track1_grasp]: [detect] frame 'realsense-000275': 3 detection(s), 8-Plastic_Banana conf=0.82, confirmation 2/2
+[INFO] [1792441140.046348697] [track1_grasp]: [scan] round 1/4: target confirmed at expected point 'pick_2'
+[INFO] [1792441140.046732195] [track1_grasp]: [select] selected '8-Plastic_Banana' conf=0.82 graspability=1.00: 8-Plastic_Banana confirmed in 2 consecutive frames
+[INFO] [1792441140.047170309] [track1_grasp]: [task_b_anchor_pose] pick_2: fixed high anchor xyz=(-0.124884, 0.521709, 0.241216) rpy=(3.128682, 0.04828, 0.365743)
+[INFO] [1792441140.047522937] [track1_grasp]: [plan] planned 6 waypoint(s)
+[INFO] [1792441140.049043868] [track1_grasp]: [motion:cartesian-precheck] target 1: 1 waypoint(s), planning_step=2.000 mm, max_joint_step=0.000 deg, max_joint_accel=0.000 deg, min_sigma=0.01724, axis_step_deg=0.000,0.000,0.000,0.000,0.000,0.000, axis_travel_deg=0.000,0.000,0.000,0.000,0.000,0.000
+[INFO] [1792441148.059101352] [track1_grasp]: [motion:cartesian-precheck] target 2: 57 waypoint(s), planning_step=2.000 mm, max_joint_step=0.498 deg, max_joint_accel=0.244 deg, min_sigma=0.01754, axis_step_deg=0.078,0.433,0.498,0.130,0.105,0.247, axis_travel_deg=3.565,17.947,18.111,3.725,4.554,11.287
+[INFO] [1792441156.203954209] [track1_grasp]: [motion:cartesian-precheck] target 3: 57 waypoint(s), planning_step=2.000 mm, max_joint_step=0.496 deg, max_joint_accel=0.242 deg, min_sigma=0.01730, axis_step_deg=0.078,0.432,0.496,0.134,0.105,0.247, axis_travel_deg=3.566,17.913,18.043,3.741,4.547,11.290
+[INFO] [1792441156.206582891] [track1_grasp]: [motion:cartesian-precheck] target 4: 0 waypoint(s), planning_step=2.000 mm, max_joint_step=0.000 deg, max_joint_accel=0.000 deg, min_sigma=0.01730, axis_step_deg=0.000,0.000,0.000,0.000,0.000,0.000, axis_travel_deg=0.000,0.000,0.000,0.000,0.000,0.000
+[INFO] [1792441164.062544252] [track1_grasp]: [motion:cartesian-precheck] target 5: 57 waypoint(s), planning_step=2.000 mm, max_joint_step=0.498 deg, max_joint_accel=0.244 deg, min_sigma=0.01754, axis_step_deg=0.078,0.433,0.498,0.130,0.105,0.247, axis_travel_deg=3.566,17.913,18.043,3.709,4.547,11.290
+[INFO] [1792441172.108738403] [track1_grasp]: [motion:cartesian-precheck] target 6: 57 waypoint(s), planning_step=2.000 mm, max_joint_step=0.496 deg, max_joint_accel=0.242 deg, min_sigma=0.01730, axis_step_deg=0.078,0.432,0.496,0.134,0.105,0.247, axis_travel_deg=3.566,17.913,18.043,3.741,4.547,11.290
+[INFO] [1792441172.109822408] [track1_grasp]: [motion:linear-precheck] validated 6 segment(s), 229 Cartesian waypoint(s), min_sigma=0.01724
+[INFO] [1792441172.111117752] [track1_grasp]: [plan] full-route precheck passed: 6 segment(s)
+[INFO] [1792441172.111501250] [track1_grasp]: [open_gripper] opening jaws before entering approach corridor
+[INFO] [1792441172.111853878] [track1_grasp]: [gripper:ms42dc_ros] open: dir=0 angle_wire=30000 speed_wire=100
+[INFO] [1792441172.375720649] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,386)
+[INFO] [1792441174.424494905] [track1_grasp]: [approach] move to pregrasp: xyz=(-0.1249, 0.5217, 0.2412)
+[INFO] [1792441174.425190663] [track1_grasp]: [motion:robotmove] pregrasp_p001: already within startup tolerance (0.008 deg <= 0.050 deg); no joint command sent
+[INFO] [1792441174.425614529] [track1_grasp]: [motion:linear] pregrasp: completed 0.000 m with 1 waypoint(s), max_joint_step=0.000 deg
+[INFO] [1792441174.425938662] [track1_grasp]: [grasp] move to grasp: xyz=(-0.1672, 0.516, 0.1615)
+[INFO] [1792441174.426585741] [track1_grasp]: [motion:robotmove] sent grasp_p001: joints=[91.45, 74.61, -18.96, -36.01, 87.6, -19.48] deg
+[INFO] [1792441174.728093488] [track1_grasp]: [motion:robotmove] sent grasp_p002: joints=[91.49, 74.88, -19.33, -36.14, 87.55, -19.35] deg
+[INFO] [1792441175.079981943] [track1_grasp]: [motion:robotmove] sent grasp_p003: joints=[91.53, 75.15, -19.69, -36.27, 87.5, -19.23] deg
+[INFO] [1792441175.432228962] [track1_grasp]: [motion:robotmove] sent grasp_p004: joints=[91.56, 75.41, -20.05, -36.39, 87.46, -19.1] deg
+[INFO] [1792441175.784020057] [track1_grasp]: [motion:robotmove] sent grasp_p005: joints=[91.6, 75.67, -20.4, -36.5, 87.41, -18.98] deg
+[INFO] [1792441176.135654429] [track1_grasp]: [motion:robotmove] sent grasp_p006: joints=[91.64, 75.93, -20.74, -36.62, 87.37, -18.86] deg
+[INFO] [1792441176.487990496] [track1_grasp]: [motion:robotmove] sent grasp_p007: joints=[91.68, 76.18, -21.07, -36.72, 87.32, -18.73] deg
+[INFO] [1792441176.839945439] [track1_grasp]: [motion:robotmove] sent grasp_p008: joints=[91.72, 76.43, -21.4, -36.83, 87.27, -18.61] deg
+[INFO] [1792441177.191731785] [track1_grasp]: [motion:robotmove] sent grasp_p009: joints=[91.76, 76.68, -21.72, -36.93, 87.23, -18.48] deg
+[INFO] [1792441177.544483407] [track1_grasp]: [motion:robotmove] sent grasp_p010: joints=[91.8, 76.93, -22.03, -37.02, 87.18, -18.36] deg
+[INFO] [1792441177.845924665] [track1_grasp]: [motion:robotmove] sent grasp_p011: joints=[91.84, 77.17, -22.34, -37.12, 87.13, -18.24] deg
+[INFO] [1792441178.197621964] [track1_grasp]: [motion:robotmove] sent grasp_p012: joints=[91.88, 77.41, -22.64, -37.21, 87.09, -18.11] deg
+[INFO] [1792441178.499532207] [track1_grasp]: [motion:robotmove] sent grasp_p013: joints=[91.92, 77.65, -22.94, -37.29, 87.04, -17.99] deg
+[INFO] [1792441178.851447969] [track1_grasp]: [motion:robotmove] sent grasp_p014: joints=[91.96, 77.88, -23.23, -37.38, 86.99, -17.87] deg
+[INFO] [1792441179.110255654] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,385)
+[INFO] [1792441179.203095401] [track1_grasp]: [motion:robotmove] sent grasp_p015: joints=[92.0, 78.11, -23.51, -37.46, 86.94, -17.74] deg
+[INFO] [1792441179.555184509] [track1_grasp]: [motion:robotmove] sent grasp_p016: joints=[92.04, 78.35, -23.8, -37.54, 86.9, -17.62] deg
+[INFO] [1792441179.907271243] [track1_grasp]: [motion:robotmove] sent grasp_p017: joints=[92.08, 78.57, -24.07, -37.61, 86.85, -17.49] deg
+[INFO] [1792441180.210554004] [track1_grasp]: [motion:robotmove] sent grasp_p018: joints=[92.12, 78.8, -24.34, -37.68, 86.8, -17.37] deg
+[INFO] [1792441180.310629158] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,384)
+[INFO] [1792441180.562651423] [track1_grasp]: [motion:robotmove] sent grasp_p019: joints=[92.15, 79.02, -24.61, -37.75, 86.75, -17.25] deg
+[INFO] [1792441180.864270776] [track1_grasp]: [motion:robotmove] sent grasp_p020: joints=[92.19, 79.25, -24.87, -37.82, 86.71, -17.12] deg
+[INFO] [1792441181.216399065] [track1_grasp]: [motion:robotmove] sent grasp_p021: joints=[92.23, 79.47, -25.13, -37.88, 86.66, -17.0] deg
+[INFO] [1792441181.467967781] [track1_grasp]: [motion:robotmove] sent grasp_p022: joints=[92.27, 79.69, -25.39, -37.95, 86.61, -16.88] deg
+[INFO] [1792441181.769537268] [track1_grasp]: [motion:robotmove] sent grasp_p023: joints=[92.35, 80.12, -25.88, -38.06, 86.52, -16.63] deg
+[INFO] [1792441181.846785390] [track1_grasp]: [depth] skip 1-Cheez-it: no valid depth at (418,107)
+[INFO] [1792441182.171549973] [track1_grasp]: [motion:robotmove] sent grasp_p024: joints=[92.43, 80.54, -26.37, -38.17, 86.42, -16.38] deg
+[INFO] [1792441182.573749083] [track1_grasp]: [motion:robotmove] sent grasp_p025: joints=[92.51, 80.97, -26.84, -38.27, 86.32, -16.14] deg
+[INFO] [1792441182.647068429] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,380)
+[INFO] [1792441182.923912391] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,380)
+[INFO] [1792441182.978014096] [track1_grasp]: [motion:robotmove] sent grasp_p026: joints=[92.58, 81.38, -27.29, -38.36, 86.23, -15.89] deg
+[INFO] [1792441183.110776811] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (103,382)
+[INFO] [1792441183.310624358] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,384)
+[INFO] [1792441183.329593852] [track1_grasp]: [motion:robotmove] sent grasp_p027: joints=[92.66, 81.79, -27.73, -38.45, 86.13, -15.65] deg
+[INFO] [1792441183.510749734] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,383)
+[INFO] [1792441183.578560007] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,385)
+[INFO] [1792441183.644830351] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (103,386)
+[INFO] [1792441183.681559481] [track1_grasp]: [motion:robotmove] sent grasp_p028: joints=[92.74, 82.19, -28.16, -38.52, 86.03, -15.4] deg
+[INFO] [1792441183.712942199] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (106,383)
+[INFO] [1792441183.779814505] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,384)
+[INFO] [1792441183.848206555] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,385)
+[INFO] [1792441184.033522736] [track1_grasp]: [motion:robotmove] sent grasp_p029: joints=[92.82, 82.59, -28.58, -38.59, 85.94, -15.15] deg
+[INFO] [1792441184.245674274] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,383)
+[INFO] [1792441184.385361323] [track1_grasp]: [motion:robotmove] sent grasp_p030: joints=[92.9, 82.99, -28.99, -38.65, 85.84, -14.91] deg
+[INFO] [1792441184.511217513] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,385)
+[INFO] [1792441184.578554053] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,385)
+[INFO] [1792441184.644598811] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,383)
+[INFO] [1792441184.737097803] [track1_grasp]: [motion:robotmove] sent grasp_p031: joints=[92.97, 83.37, -29.38, -38.71, 85.74, -14.66] deg
+[INFO] [1792441184.845484059] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (105,381)
+[INFO] [1792441185.089147730] [track1_grasp]: [motion:robotmove] sent grasp_p032: joints=[93.05, 83.76, -29.77, -38.75, 85.64, -14.42] deg
+[INFO] [1792441185.441350819] [track1_grasp]: [motion:robotmove] sent grasp_p033: joints=[93.13, 84.14, -30.14, -38.8, 85.54, -14.17] deg
+[INFO] [1792441185.795024973] [track1_grasp]: [motion:robotmove] sent grasp_p034: joints=[93.21, 84.52, -30.51, -38.83, 85.44, -13.93] deg
+[INFO] [1792441186.147448899] [track1_grasp]: [motion:robotmove] sent grasp_p035: joints=[93.28, 84.89, -30.86, -38.86, 85.34, -13.68] deg
+[INFO] [1792441186.499907258] [track1_grasp]: [motion:robotmove] sent grasp_p036: joints=[93.36, 85.26, -31.21, -38.88, 85.24, -13.43] deg
+[INFO] [1792441186.851927502] [track1_grasp]: [motion:robotmove] sent grasp_p037: joints=[93.44, 85.63, -31.55, -38.9, 85.14, -13.19] deg
+[INFO] [1792441187.203656859] [track1_grasp]: [motion:robotmove] sent grasp_p038: joints=[93.52, 85.99, -31.88, -38.91, 85.04, -12.95] deg
+[INFO] [1792441187.444296477] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,381)
+[INFO] [1792441187.555844513] [track1_grasp]: [motion:robotmove] sent grasp_p039: joints=[93.59, 86.35, -32.2, -38.92, 84.94, -12.7] deg
+[INFO] [1792441187.777294986] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,385)
+[INFO] [1792441187.844681393] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,381)
+[INFO] [1792441187.907899189] [track1_grasp]: [motion:robotmove] sent grasp_p040: joints=[93.67, 86.7, -32.51, -38.92, 84.84, -12.46] deg
+[INFO] [1792441188.252405011] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (103,385)
+[INFO] [1792441188.261103172] [track1_grasp]: [motion:robotmove] sent grasp_p041: joints=[93.75, 87.05, -32.82, -38.92, 84.74, -12.21] deg
+[INFO] [1792441188.578463751] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (104,385)
+[INFO] [1792441188.613487918] [track1_grasp]: [motion:robotmove] sent grasp_p042: joints=[93.82, 87.4, -33.12, -38.91, 84.64, -11.97] deg
+[INFO] [1792441188.780519676] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,387)
+[INFO] [1792441188.965429800] [track1_grasp]: [motion:robotmove] sent grasp_p043: joints=[93.9, 87.75, -33.41, -38.9, 84.54, -11.72] deg
+[INFO] [1792441189.315390079] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,383)
+[INFO] [1792441189.317097417] [track1_grasp]: [motion:robotmove] sent grasp_p044: joints=[93.98, 88.09, -33.69, -38.88, 84.44, -11.48] deg
+[INFO] [1792441189.523857426] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (104,385)
+[INFO] [1792441189.668951439] [track1_grasp]: [motion:robotmove] sent grasp_p045: joints=[94.05, 88.43, -33.96, -38.85, 84.34, -11.23] deg
+[INFO] [1792441189.850742526] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (333,200)
+[INFO] [1792441189.851008481] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (333,201)
+[INFO] [1792441189.851219821] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (105,387)
+[INFO] [1792441189.970623034] [track1_grasp]: [motion:robotmove] sent grasp_p046: joints=[94.13, 88.77, -34.23, -38.82, 84.23, -10.99] deg
+[INFO] [1792441190.179946424] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (332,200)
+[INFO] [1792441190.272052420] [track1_grasp]: [motion:robotmove] sent grasp_p047: joints=[94.21, 89.11, -34.49, -38.79, 84.13, -10.75] deg
+[INFO] [1792441190.573849868] [track1_grasp]: [motion:robotmove] sent grasp_p048: joints=[94.28, 89.44, -34.75, -38.75, 84.03, -10.5] deg
+[INFO] [1792441190.578132460] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (109,384)
+[INFO] [1792441190.877615861] [track1_grasp]: [motion:robotmove] sent grasp_p049: joints=[94.36, 89.77, -35.0, -38.71, 83.93, -10.26] deg
+[INFO] [1792441190.912914294] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (105,385)
+[INFO] [1792441191.177850822] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (103,383)
+[INFO] [1792441191.179003691] [track1_grasp]: [motion:robotmove] sent grasp_p050: joints=[94.44, 90.09, -35.24, -38.66, 83.82, -10.01] deg
+[INFO] [1792441191.481165640] [track1_grasp]: [motion:robotmove] sent grasp_p051: joints=[94.51, 90.42, -35.47, -38.61, 83.72, -9.77] deg
+[INFO] [1792441191.782695946] [track1_grasp]: [motion:robotmove] sent grasp_p052: joints=[94.59, 90.74, -35.7, -38.55, 83.61, -9.53] deg
+[INFO] [1792441192.084771223] [track1_grasp]: [motion:robotmove] sent grasp_p053: joints=[94.67, 91.06, -35.93, -38.49, 83.51, -9.28] deg
+[INFO] [1792441192.386259974] [track1_grasp]: [motion:robotmove] sent grasp_p054: joints=[94.74, 91.38, -36.14, -38.43, 83.41, -9.04] deg
+[INFO] [1792441192.737859914] [track1_grasp]: [motion:robotmove] sent grasp_p055: joints=[94.82, 91.69, -36.35, -38.36, 83.3, -8.8] deg
+[INFO] [1792441192.913537593] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (105,384)
+[INFO] [1792441193.039672798] [track1_grasp]: [motion:robotmove] sent grasp_p056: joints=[94.89, 92.0, -36.56, -38.29, 83.2, -8.55] deg
+[INFO] [1792441193.391327354] [track1_grasp]: [motion:robotmove] sent grasp_p057: joints=[94.97, 92.31, -36.76, -38.21, 83.09, -8.31] deg
+[INFO] [1792441193.693262529] [track1_grasp]: [motion:linear] grasp: completed 0.090 m with 57 waypoint(s), max_joint_step=0.498 deg
+[INFO] [1792441193.693727951] [track1_grasp]: [grasp] reached grasp pose; closing jaws
+[INFO] [1792441193.694627925] [track1_grasp]: [gripper:ms42dc_ros] close: dir=1 angle_wire=30000 speed_wire=100
+[INFO] [1792441194.052526492] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (270,142)
+[INFO] [1792441194.978640787] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (227,146)
+[INFO] [1792441195.377862149] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (208,144)
+[INFO] [1792441195.577333322] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (197,137)
+[INFO] [1792441195.847553336] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (186,148)
+[INFO] [1792441195.847834726] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (186,149)
+[INFO] [1792441195.913094679] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (186,146)
+[INFO] [1792441195.980010915] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (185,149)
+[INFO] [1792441196.007530157] [track1_grasp]: [verify_hold] checking whether the object is held
+[INFO] [1792441196.047278592] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (186,148)
+[INFO] [1792441196.111366679] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (186,145)
+[INFO] [1792441196.184539987] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (186,148)
+[INFO] [1792441196.184919923] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (187,149)
+[INFO] [1792441196.244623310] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (186,146)
+[INFO] [1792441196.244990186] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (187,148)
+[INFO] [1792441196.311406569] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (187,150)
+[INFO] [1792441196.444994457] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (191,141)
+[INFO] [1792441196.511095018] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (191,141)
+[INFO] [1792441196.577633692] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (191,139)
+[INFO] [1792441197.579105928] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (184,151)
+[INFO] [1792441197.718778729] [track1_grasp]: [verify_hold] jaws settled at 20.8 deg
+[INFO] [1792441197.719214468] [track1_grasp]: [lift] move to lift: xyz=(-0.1249, 0.5217, 0.2412)
+[INFO] [1792441197.719766563] [track1_grasp]: [motion:robotmove] sent lift_p001: joints=[94.89, 92.04, -36.62, -38.3, 83.19, -8.55] deg
+[INFO] [1792441198.071469798] [track1_grasp]: [motion:robotmove] sent lift_p002: joints=[94.82, 91.72, -36.42, -38.37, 83.3, -8.8] deg
+[INFO] [1792441198.111938924] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (162,148)
+[INFO] [1792441198.373350358] [track1_grasp]: [motion:robotmove] sent lift_p003: joints=[94.74, 91.41, -36.21, -38.44, 83.4, -9.04] deg
+[INFO] [1792441198.674944778] [track1_grasp]: [motion:robotmove] sent lift_p004: joints=[94.66, 91.09, -35.99, -38.51, 83.51, -9.28] deg
+[INFO] [1792441198.976841960] [track1_grasp]: [motion:robotmove] sent lift_p005: joints=[94.59, 90.77, -35.77, -38.57, 83.61, -9.53] deg
+[INFO] [1792441199.280285006] [track1_grasp]: [motion:robotmove] sent lift_p006: joints=[94.51, 90.45, -35.54, -38.62, 83.71, -9.77] deg
+[INFO] [1792441199.582044461] [track1_grasp]: [motion:robotmove] sent lift_p007: joints=[94.44, 90.13, -35.31, -38.67, 83.82, -10.01] deg
+[INFO] [1792441199.888250355] [track1_grasp]: [motion:robotmove] sent lift_p008: joints=[94.36, 89.8, -35.07, -38.72, 83.92, -10.26] deg
+[INFO] [1792441200.240242105] [track1_grasp]: [motion:robotmove] sent lift_p009: joints=[94.28, 89.47, -34.82, -38.77, 84.02, -10.5] deg
+[INFO] [1792441200.591934655] [track1_grasp]: [motion:robotmove] sent lift_p010: joints=[94.21, 89.14, -34.56, -38.8, 84.13, -10.75] deg
+[INFO] [1792441200.945537570] [track1_grasp]: [motion:robotmove] sent lift_p011: joints=[94.13, 88.81, -34.3, -38.84, 84.23, -10.99] deg
+[INFO] [1792441201.297469955] [track1_grasp]: [motion:robotmove] sent lift_p012: joints=[94.05, 88.47, -34.04, -38.87, 84.33, -11.23] deg
+[INFO] [1792441201.650132529] [track1_grasp]: [motion:robotmove] sent lift_p013: joints=[93.98, 88.13, -33.76, -38.89, 84.43, -11.48] deg
+[INFO] [1792441202.002048291] [track1_grasp]: [motion:robotmove] sent lift_p014: joints=[93.9, 87.79, -33.48, -38.91, 84.53, -11.72] deg
+[INFO] [1792441202.353974739] [track1_grasp]: [motion:robotmove] sent lift_p015: joints=[93.82, 87.44, -33.19, -38.92, 84.64, -11.97] deg
+[INFO] [1792441202.705630482] [track1_grasp]: [motion:robotmove] sent lift_p016: joints=[93.75, 87.09, -32.89, -38.93, 84.74, -12.21] deg
+[INFO] [1792441203.045653059] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (151,146)
+[INFO] [1792441203.057159185] [track1_grasp]: [motion:robotmove] sent lift_p017: joints=[93.67, 86.74, -32.59, -38.94, 84.84, -12.46] deg
+[INFO] [1792441203.112413759] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (150,144)
+[INFO] [1792441203.311949046] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (154,147)
+[INFO] [1792441203.378946019] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (150,141)
+[INFO] [1792441203.408692636] [track1_grasp]: [motion:robotmove] sent lift_p018: joints=[93.59, 86.38, -32.28, -38.94, 84.94, -12.7] deg
+[INFO] [1792441203.457590405] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (150,141)
+[INFO] [1792441203.515538964] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (151,144)
+[INFO] [1792441203.584749063] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (148,150)
+[INFO] [1792441203.585015019] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (151,148)
+[INFO] [1792441203.652706562] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (150,143)
+[INFO] [1792441203.652978453] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (151,144)
+[INFO] [1792441203.760268831] [track1_grasp]: [motion:robotmove] sent lift_p019: joints=[93.51, 86.03, -31.96, -38.93, 85.04, -12.94] deg
+[INFO] [1792441203.921380711] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (154,148)
+[INFO] [1792441204.046648000] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (151,146)
+[INFO] [1792441204.112936154] [track1_grasp]: [motion:robotmove] sent lift_p020: joints=[93.44, 85.66, -31.63, -38.92, 85.14, -13.19] deg
+[INFO] [1792441204.181461182] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (150,146)
+[INFO] [1792441204.312032140] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (150,148)
+[INFO] [1792441204.380602285] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (150,155)
+[INFO] [1792441204.446426205] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (151,147)
+[INFO] [1792441204.464230958] [track1_grasp]: [motion:robotmove] sent lift_p021: joints=[93.36, 85.3, -31.29, -38.9, 85.24, -13.43] deg
+[INFO] [1792441204.592762135] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (150,139)
+[INFO] [1792441204.593062522] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (155,148)
+[INFO] [1792441204.646358051] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (151,147)
+[INFO] [1792441204.793737618] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (150,156)
+[INFO] [1792441204.815966251] [track1_grasp]: [motion:robotmove] sent lift_p022: joints=[93.28, 84.93, -30.94, -38.88, 85.34, -13.68] deg
+[INFO] [1792441204.850793326] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (150,152)
+[INFO] [1792441204.911790871] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (151,154)
+[INFO] [1792441205.167871327] [track1_grasp]: [motion:robotmove] sent lift_p023: joints=[93.2, 84.56, -30.59, -38.85, 85.44, -13.92] deg
+[INFO] [1792441205.569498159] [track1_grasp]: [motion:robotmove] sent lift_p024: joints=[93.13, 84.18, -30.22, -38.82, 85.54, -14.17] deg
+[INFO] [1792441205.918182090] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (151,140)
+[INFO] [1792441205.971219975] [track1_grasp]: [motion:robotmove] sent lift_p025: joints=[93.05, 83.8, -29.85, -38.77, 85.64, -14.42] deg
+[INFO] [1792441206.372966724] [track1_grasp]: [motion:robotmove] sent lift_p026: joints=[92.97, 83.42, -29.47, -38.73, 85.74, -14.66] deg
+[INFO] [1792441206.715886313] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (152,143)
+[INFO] [1792441206.774931937] [track1_grasp]: [motion:robotmove] sent lift_p027: joints=[92.89, 83.03, -29.07, -38.67, 85.83, -14.91] deg
+[INFO] [1792441206.925234636] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (149,149)
+[INFO] [1792441207.177100177] [track1_grasp]: [motion:robotmove] sent lift_p028: joints=[92.82, 82.63, -28.67, -38.61, 85.93, -15.15] deg
+[INFO] [1792441207.529577533] [track1_grasp]: [motion:robotmove] sent lift_p029: joints=[92.74, 82.24, -28.25, -38.55, 86.03, -15.4] deg
+[INFO] [1792441207.579195993] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (154,147)
+[INFO] [1792441207.881612025] [track1_grasp]: [motion:robotmove] sent lift_p030: joints=[92.66, 81.83, -27.82, -38.47, 86.13, -15.65] deg
+[INFO] [1792441208.233185845] [track1_grasp]: [motion:robotmove] sent lift_p031: joints=[92.58, 81.42, -27.38, -38.39, 86.22, -15.89] deg
+[INFO] [1792441208.584746604] [track1_grasp]: [motion:robotmove] sent lift_p032: joints=[92.5, 81.01, -26.93, -38.3, 86.32, -16.14] deg
+[INFO] [1792441208.936365541] [track1_grasp]: [motion:robotmove] sent lift_p033: joints=[92.43, 80.59, -26.46, -38.2, 86.42, -16.38] deg
+[INFO] [1792441209.287901367] [track1_grasp]: [motion:robotmove] sent lift_p034: joints=[92.35, 80.17, -25.98, -38.09, 86.51, -16.63] deg
+[INFO] [1792441209.689633869] [track1_grasp]: [motion:robotmove] sent lift_p035: joints=[92.27, 79.73, -25.49, -37.98, 86.61, -16.88] deg
+[INFO] [1792441210.091530218] [track1_grasp]: [motion:robotmove] sent lift_p036: joints=[92.23, 79.52, -25.23, -37.91, 86.66, -17.0] deg
+[INFO] [1792441210.392891928] [track1_grasp]: [motion:robotmove] sent lift_p037: joints=[92.19, 79.3, -24.97, -37.85, 86.7, -17.12] deg
+[INFO] [1792441210.694388989] [track1_grasp]: [motion:robotmove] sent lift_p038: joints=[92.15, 79.07, -24.71, -37.78, 86.75, -17.25] deg
+[INFO] [1792441210.996933250] [track1_grasp]: [motion:robotmove] sent lift_p039: joints=[92.11, 78.85, -24.44, -37.71, 86.8, -17.37] deg
+[INFO] [1792441211.298467118] [track1_grasp]: [motion:robotmove] sent lift_p040: joints=[92.07, 78.62, -24.18, -37.64, 86.85, -17.5] deg
+[INFO] [1792441211.599757589] [track1_grasp]: [motion:robotmove] sent lift_p041: joints=[92.04, 78.4, -23.9, -37.57, 86.89, -17.62] deg
+[INFO] [1792441211.901141857] [track1_grasp]: [motion:robotmove] sent lift_p042: joints=[92.0, 78.17, -23.62, -37.49, 86.94, -17.74] deg
+[INFO] [1792441212.202289853] [track1_grasp]: [motion:robotmove] sent lift_p043: joints=[91.96, 77.93, -23.34, -37.41, 86.99, -17.87] deg
+[INFO] [1792441212.503701429] [track1_grasp]: [motion:robotmove] sent lift_p044: joints=[91.92, 77.7, -23.05, -37.33, 87.03, -17.99] deg
+[INFO] [1792441212.855446220] [track1_grasp]: [motion:robotmove] sent lift_p045: joints=[91.88, 77.46, -22.75, -37.24, 87.08, -18.11] deg
+[INFO] [1792441213.206976109] [track1_grasp]: [motion:robotmove] sent lift_p046: joints=[91.84, 77.22, -22.45, -37.15, 87.13, -18.24] deg
+[INFO] [1792441213.558571300] [track1_grasp]: [motion:robotmove] sent lift_p047: joints=[91.8, 76.98, -22.15, -37.06, 87.18, -18.36] deg
+[INFO] [1792441213.910114250] [track1_grasp]: [motion:robotmove] sent lift_p048: joints=[91.76, 76.74, -21.83, -36.97, 87.22, -18.48] deg
+[INFO] [1792441214.263130640] [track1_grasp]: [motion:robotmove] sent lift_p049: joints=[91.72, 76.49, -21.52, -36.87, 87.27, -18.61] deg
+[INFO] [1792441214.614784009] [track1_grasp]: [motion:robotmove] sent lift_p050: joints=[91.68, 76.24, -21.19, -36.76, 87.32, -18.73] deg
+[INFO] [1792441214.966297276] [track1_grasp]: [motion:robotmove] sent lift_p051: joints=[91.64, 75.99, -20.86, -36.66, 87.36, -18.86] deg
+[INFO] [1792441215.267905944] [track1_grasp]: [motion:robotmove] sent lift_p052: joints=[91.6, 75.73, -20.52, -36.55, 87.41, -18.98] deg
+[INFO] [1792441215.568985076] [track1_grasp]: [motion:robotmove] sent lift_p053: joints=[91.56, 75.47, -20.18, -36.43, 87.45, -19.1] deg
+[INFO] [1792441215.870223306] [track1_grasp]: [motion:robotmove] sent lift_p054: joints=[91.52, 75.21, -19.82, -36.31, 87.5, -19.23] deg
+[INFO] [1792441216.171558895] [track1_grasp]: [motion:robotmove] sent lift_p055: joints=[91.48, 74.94, -19.46, -36.19, 87.55, -19.35] deg
+[INFO] [1792441216.472912294] [track1_grasp]: [motion:robotmove] sent lift_p056: joints=[91.44, 74.67, -19.09, -36.06, 87.59, -19.48] deg
+[INFO] [1792441216.874749278] [track1_grasp]: [motion:robotmove] sent lift_p057: joints=[91.41, 74.4, -18.71, -35.92, 87.64, -19.6] deg
+[INFO] [1792441217.276214637] [track1_grasp]: [motion:linear] lift: completed 0.090 m with 57 waypoint(s), max_joint_step=0.496 deg
+[INFO] [1792441217.276650376] [track1_grasp]: [lift] lift pose reached; holding for 2.0 s before return
+[INFO] [1792441219.279933227] [track1_grasp]: [transfer] move to transfer: xyz=(-0.1249, 0.5217, 0.2412)
+[INFO] [1792441219.280404585] [track1_grasp]: [motion:linear] transfer: completed 0.000 m with 0 waypoint(s), max_joint_step=0.000 deg
+[INFO] [1792441219.280680039] [track1_grasp]: [release] move to release: xyz=(-0.1672, 0.516, 0.1615)
+[INFO] [1792441219.281226197] [track1_grasp]: [motion:robotmove] sent release_p001: joints=[91.45, 74.61, -18.96, -36.01, 87.6, -19.48] deg
+[INFO] [1792441219.583138813] [track1_grasp]: [motion:robotmove] sent release_p002: joints=[91.49, 74.88, -19.33, -36.14, 87.55, -19.35] deg
+[INFO] [1792441219.935084258] [track1_grasp]: [motion:robotmove] sent release_p003: joints=[91.53, 75.15, -19.69, -36.27, 87.5, -19.23] deg
+[INFO] [1792441220.287610293] [track1_grasp]: [motion:robotmove] sent release_p004: joints=[91.56, 75.41, -20.05, -36.39, 87.46, -19.1] deg
+[INFO] [1792441220.639837127] [track1_grasp]: [motion:robotmove] sent release_p005: joints=[91.6, 75.67, -20.4, -36.5, 87.41, -18.98] deg
+[INFO] [1792441220.991659093] [track1_grasp]: [motion:robotmove] sent release_p006: joints=[91.64, 75.93, -20.74, -36.62, 87.37, -18.86] deg
+[INFO] [1792441221.343441878] [track1_grasp]: [motion:robotmove] sent release_p007: joints=[91.68, 76.18, -21.07, -36.72, 87.32, -18.73] deg
+[INFO] [1792441221.697997008] [track1_grasp]: [motion:robotmove] sent release_p008: joints=[91.72, 76.43, -21.4, -36.83, 87.27, -18.61] deg
+[INFO] [1792441222.050139544] [track1_grasp]: [motion:robotmove] sent release_p009: joints=[91.76, 76.68, -21.72, -36.93, 87.23, -18.48] deg
+[INFO] [1792441222.402225091] [track1_grasp]: [motion:robotmove] sent release_p010: joints=[91.8, 76.93, -22.03, -37.02, 87.18, -18.36] deg
+[INFO] [1792441222.754760624] [track1_grasp]: [motion:robotmove] sent release_p011: joints=[91.84, 77.17, -22.34, -37.12, 87.13, -18.24] deg
+[INFO] [1792441223.106873478] [track1_grasp]: [motion:robotmove] sent release_p012: joints=[91.88, 77.41, -22.64, -37.21, 87.09, -18.11] deg
+[INFO] [1792441223.458664573] [track1_grasp]: [motion:robotmove] sent release_p013: joints=[91.92, 77.65, -22.94, -37.29, 87.04, -17.99] deg
+[INFO] [1792441223.810474666] [track1_grasp]: [motion:robotmove] sent release_p014: joints=[91.96, 77.88, -23.23, -37.38, 86.99, -17.87] deg
+[INFO] [1792441224.164804209] [track1_grasp]: [motion:robotmove] sent release_p015: joints=[92.0, 78.11, -23.51, -37.46, 86.94, -17.74] deg
+[INFO] [1792441224.516545438] [track1_grasp]: [motion:robotmove] sent release_p016: joints=[92.04, 78.35, -23.8, -37.54, 86.9, -17.62] deg
+[INFO] [1792441224.868607238] [track1_grasp]: [motion:robotmove] sent release_p017: joints=[92.08, 78.57, -24.07, -37.61, 86.85, -17.49] deg
+[INFO] [1792441225.170719322] [track1_grasp]: [motion:robotmove] sent release_p018: joints=[92.12, 78.8, -24.34, -37.68, 86.8, -17.37] deg
+[INFO] [1792441225.472303056] [track1_grasp]: [motion:robotmove] sent release_p019: joints=[92.15, 79.02, -24.61, -37.75, 86.75, -17.25] deg
+[INFO] [1792441225.774152746] [track1_grasp]: [motion:robotmove] sent release_p020: joints=[92.19, 79.25, -24.87, -37.82, 86.71, -17.12] deg
+[INFO] [1792441226.075582131] [track1_grasp]: [motion:robotmove] sent release_p021: joints=[92.23, 79.47, -25.13, -37.88, 86.66, -17.0] deg
+[INFO] [1792441226.377518494] [track1_grasp]: [motion:robotmove] sent release_p022: joints=[92.27, 79.69, -25.39, -37.95, 86.61, -16.88] deg
+[INFO] [1792441226.681336728] [track1_grasp]: [motion:robotmove] sent release_p023: joints=[92.35, 80.12, -25.88, -38.06, 86.52, -16.63] deg
+[INFO] [1792441227.083743616] [track1_grasp]: [motion:robotmove] sent release_p024: joints=[92.43, 80.54, -26.37, -38.17, 86.42, -16.38] deg
+[INFO] [1792441227.485922542] [track1_grasp]: [motion:robotmove] sent release_p025: joints=[92.51, 80.97, -26.84, -38.27, 86.32, -16.14] deg
+[INFO] [1792441227.888347240] [track1_grasp]: [motion:robotmove] sent release_p026: joints=[92.58, 81.38, -27.29, -38.36, 86.23, -15.89] deg
+[INFO] [1792441228.240372234] [track1_grasp]: [motion:robotmove] sent release_p027: joints=[92.66, 81.79, -27.73, -38.45, 86.13, -15.65] deg
+[INFO] [1792441228.592323615] [track1_grasp]: [motion:robotmove] sent release_p028: joints=[92.74, 82.19, -28.16, -38.52, 86.03, -15.4] deg
+[INFO] [1792441228.944246501] [track1_grasp]: [motion:robotmove] sent release_p029: joints=[92.82, 82.59, -28.58, -38.59, 85.94, -15.15] deg
+[INFO] [1792441229.180548912] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (153,144)
+[INFO] [1792441229.298295841] [track1_grasp]: [motion:robotmove] sent release_p030: joints=[92.9, 82.99, -28.99, -38.65, 85.84, -14.91] deg
+[INFO] [1792441229.649943274] [track1_grasp]: [motion:robotmove] sent release_p031: joints=[92.97, 83.37, -29.38, -38.71, 85.74, -14.66] deg
+[INFO] [1792441229.913602267] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (154,147)
+[INFO] [1792441229.993439891] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (153,143)
+[INFO] [1792441230.001822230] [track1_grasp]: [motion:robotmove] sent release_p032: joints=[93.05, 83.76, -29.77, -38.75, 85.64, -14.42] deg
+[INFO] [1792441230.263099499] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (152,139)
+[INFO] [1792441230.353854347] [track1_grasp]: [motion:robotmove] sent release_p033: joints=[93.13, 84.14, -30.14, -38.8, 85.54, -14.17] deg
+[INFO] [1792441230.395293497] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (151,145)
+[INFO] [1792441230.583409331] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (151,149)
+[INFO] [1792441230.649438654] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (151,145)
+[INFO] [1792441230.706171417] [track1_grasp]: [motion:robotmove] sent release_p034: joints=[93.21, 84.52, -30.51, -38.83, 85.44, -13.93] deg
+[INFO] [1792441230.915988723] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (150,144)
+[INFO] [1792441231.058154855] [track1_grasp]: [motion:robotmove] sent release_p035: joints=[93.28, 84.89, -30.86, -38.86, 85.34, -13.68] deg
+[INFO] [1792441231.315991329] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (152,153)
+[INFO] [1792441231.410435119] [track1_grasp]: [motion:robotmove] sent release_p036: joints=[93.36, 85.26, -31.21, -38.88, 85.24, -13.43] deg
+[INFO] [1792441231.515536115] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (151,152)
+[INFO] [1792441231.762878042] [track1_grasp]: [motion:robotmove] sent release_p037: joints=[93.44, 85.63, -31.55, -38.9, 85.14, -13.19] deg
+[INFO] [1792441231.782768881] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (150,152)
+[INFO] [1792441231.783038399] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (154,153)
+[INFO] [1792441231.983360866] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (149,155)
+[INFO] [1792441232.049539788] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (151,150)
+[INFO] [1792441232.049814055] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (152,149)
+[INFO] [1792441232.116017911] [track1_grasp]: [motion:robotmove] sent release_p038: joints=[93.52, 85.99, -31.88, -38.91, 85.04, -12.95] deg
+[INFO] [1792441232.116837148] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (150,148)
+[INFO] [1792441232.117204024] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (154,149)
+[INFO] [1792441232.185458347] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (150,149)
+[INFO] [1792441232.248902917] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (150,152)
+[INFO] [1792441232.315065218] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (149,152)
+[INFO] [1792441232.315352544] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (150,148)
+[INFO] [1792441232.383331414] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (150,155)
+[INFO] [1792441232.468137889] [track1_grasp]: [motion:robotmove] sent release_p039: joints=[93.59, 86.35, -32.2, -38.92, 84.94, -12.7] deg
+[INFO] [1792441232.515758123] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (150,146)
+[INFO] [1792441232.583647945] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (151,148)
+[INFO] [1792441232.784344412] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (151,152)
+[INFO] [1792441232.870365494] [track1_grasp]: [motion:robotmove] sent release_p040: joints=[93.67, 86.7, -32.51, -38.92, 84.84, -12.46] deg
+[INFO] [1792441233.116224484] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (150,147)
+[INFO] [1792441233.172802898] [track1_grasp]: [motion:robotmove] sent release_p041: joints=[93.75, 87.05, -32.82, -38.92, 84.74, -12.21] deg
+[INFO] [1792441233.185358597] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (150,146)
+[INFO] [1792441233.185639987] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (148,145)
+[INFO] [1792441233.521167445] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (149,143)
+[INFO] [1792441233.575042376] [track1_grasp]: [motion:robotmove] sent release_p042: joints=[93.82, 87.4, -33.12, -38.91, 84.64, -11.97] deg
+[INFO] [1792441233.788523691] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (149,145)
+[INFO] [1792441233.788809831] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (150,144)
+[INFO] [1792441233.977297290] [track1_grasp]: [motion:robotmove] sent release_p043: joints=[93.9, 87.75, -33.41, -38.9, 84.54, -11.72] deg
+[INFO] [1792441233.993325842] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (151,144)
+[INFO] [1792441234.281395726] [track1_grasp]: [motion:robotmove] sent release_p044: joints=[93.98, 88.09, -33.69, -38.88, 84.44, -11.48] deg
+[INFO] [1792441234.633469400] [track1_grasp]: [motion:robotmove] sent release_p045: joints=[94.05, 88.43, -33.96, -38.85, 84.34, -11.23] deg
+[INFO] [1792441234.985252184] [track1_grasp]: [motion:robotmove] sent release_p046: joints=[94.13, 88.77, -34.23, -38.82, 84.23, -10.99] deg
+[INFO] [1792441235.182189659] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (153,142)
+[INFO] [1792441235.337064651] [track1_grasp]: [motion:robotmove] sent release_p047: joints=[94.21, 89.11, -34.49, -38.79, 84.13, -10.75] deg
+[INFO] [1792441235.689246369] [track1_grasp]: [motion:robotmove] sent release_p048: joints=[94.28, 89.44, -34.75, -38.75, 84.03, -10.5] deg
+[INFO] [1792441236.041311731] [track1_grasp]: [motion:robotmove] sent release_p049: joints=[94.36, 89.77, -35.0, -38.71, 83.93, -10.26] deg
+[INFO] [1792441236.393295169] [track1_grasp]: [motion:robotmove] sent release_p050: joints=[94.44, 90.09, -35.24, -38.66, 83.82, -10.01] deg
+[INFO] [1792441236.745191934] [track1_grasp]: [motion:robotmove] sent release_p051: joints=[94.51, 90.42, -35.47, -38.61, 83.72, -9.77] deg
+[INFO] [1792441237.099135605] [track1_grasp]: [motion:robotmove] sent release_p052: joints=[94.59, 90.74, -35.7, -38.55, 83.61, -9.53] deg
+[INFO] [1792441237.451166536] [track1_grasp]: [motion:robotmove] sent release_p053: joints=[94.67, 91.06, -35.93, -38.49, 83.51, -9.28] deg
+[INFO] [1792441237.803054990] [track1_grasp]: [motion:robotmove] sent release_p054: joints=[94.74, 91.38, -36.14, -38.43, 83.41, -9.04] deg
+[INFO] [1792441238.155760307] [track1_grasp]: [motion:robotmove] sent release_p055: joints=[94.82, 91.69, -36.35, -38.36, 83.3, -8.8] deg
+[INFO] [1792441238.507925402] [track1_grasp]: [motion:robotmove] sent release_p056: joints=[94.89, 92.0, -36.56, -38.29, 83.2, -8.55] deg
+[INFO] [1792441238.657341188] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (162,150)
+[INFO] [1792441238.859717685] [track1_grasp]: [motion:robotmove] sent release_p057: joints=[94.97, 92.31, -36.76, -38.21, 83.09, -8.31] deg
+[INFO] [1792441239.211375803] [track1_grasp]: [motion:linear] release: completed 0.090 m with 57 waypoint(s), max_joint_step=0.498 deg
+[INFO] [1792441239.211648882] [track1_grasp]: [release] opening jaws to release the object
+[INFO] [1792441239.211969453] [track1_grasp]: [gripper:ms42dc_ros] open: dir=0 angle_wire=30000 speed_wire=100
+[INFO] [1792441239.581978482] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (171,141)
+[INFO] [1792441240.515985949] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (184,147)
+[INFO] [1792441240.589136698] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (186,147)
+[INFO] [1792441240.589524945] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (187,140)
+[INFO] [1792441240.649775678] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (186,146)
+[INFO] [1792441240.650155614] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (188,141)
+[INFO] [1792441240.783756563] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (187,141)
+[INFO] [1792441240.916564395] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (187,145)
+[INFO] [1792441240.916982324] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (188,147)
+[INFO] [1792441240.983658726] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (186,145)
+[INFO] [1792441240.984036287] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (187,144)
+[INFO] [1792441241.190305941] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (188,141)
+[INFO] [1792441241.247672722] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (187,141)
+[INFO] [1792441241.322638853] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (189,137)
+[INFO] [1792441241.322980795] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (190,144)
+[INFO] [1792441241.381792521] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (192,143)
+[INFO] [1792441241.524610480] [track1_grasp]: [retreat] move to retreat: xyz=(-0.1249, 0.5217, 0.2412)
+[INFO] [1792441241.525333546] [track1_grasp]: [motion:robotmove] sent retreat_p001: joints=[94.89, 92.04, -36.62, -38.3, 83.19, -8.55] deg
+[INFO] [1792441241.588050301] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (201,139)
+[INFO] [1792441241.648635853] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (205,133)
+[INFO] [1792441241.718405171] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (211,135)
+[INFO] [1792441241.718805291] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (214,134)
+[INFO] [1792441241.877042718] [track1_grasp]: [motion:robotmove] sent retreat_p002: joints=[94.82, 91.72, -36.42, -38.37, 83.3, -8.8] deg
+[INFO] [1792441241.917182961] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (211,141)
+[INFO] [1792441241.982064165] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (211,139)
+[INFO] [1792441242.047885710] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (212,142)
+[INFO] [1792441242.123681764] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (211,140)
+[INFO] [1792441242.178910217] [track1_grasp]: [motion:robotmove] sent retreat_p003: joints=[94.74, 91.41, -36.21, -38.44, 83.4, -9.04] deg
+[INFO] [1792441242.188462047] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (212,136)
+[INFO] [1792441242.250712193] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (211,137)
+[INFO] [1792441242.314108084] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (212,128)
+[INFO] [1792441242.448021293] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (212,141)
+[INFO] [1792441242.483054958] [track1_grasp]: [motion:robotmove] sent retreat_p004: joints=[94.66, 91.09, -35.99, -38.51, 83.51, -9.28] deg
+[INFO] [1792441242.715427406] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (210,141)
+[INFO] [1792441242.784980635] [track1_grasp]: [motion:robotmove] sent retreat_p005: joints=[94.59, 90.77, -35.77, -38.57, 83.61, -9.53] deg
+[INFO] [1792441243.136946264] [track1_grasp]: [motion:robotmove] sent retreat_p006: joints=[94.51, 90.45, -35.54, -38.62, 83.71, -9.77] deg
+[INFO] [1792441243.438918246] [track1_grasp]: [motion:robotmove] sent retreat_p007: joints=[94.44, 90.13, -35.31, -38.67, 83.82, -10.01] deg
+[INFO] [1792441243.790701030] [track1_grasp]: [motion:robotmove] sent retreat_p008: joints=[94.36, 89.8, -35.07, -38.72, 83.92, -10.26] deg
+[INFO] [1792441244.142636977] [track1_grasp]: [motion:robotmove] sent retreat_p009: joints=[94.28, 89.47, -34.82, -38.77, 84.02, -10.5] deg
+[INFO] [1792441244.494829380] [track1_grasp]: [motion:robotmove] sent retreat_p010: joints=[94.21, 89.14, -34.56, -38.8, 84.13, -10.75] deg
+[INFO] [1792441244.846844875] [track1_grasp]: [motion:robotmove] sent retreat_p011: joints=[94.13, 88.81, -34.3, -38.84, 84.23, -10.99] deg
+[INFO] [1792441245.199781716] [track1_grasp]: [motion:robotmove] sent retreat_p012: joints=[94.05, 88.47, -34.04, -38.87, 84.33, -11.23] deg
+[INFO] [1792441245.551824519] [track1_grasp]: [motion:robotmove] sent retreat_p013: joints=[93.98, 88.13, -33.76, -38.89, 84.43, -11.48] deg
+[INFO] [1792441245.581414413] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (204,139)
+[INFO] [1792441245.714812333] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (205,141)
+[INFO] [1792441245.903901754] [track1_grasp]: [motion:robotmove] sent retreat_p014: joints=[93.9, 87.79, -33.48, -38.91, 84.53, -11.72] deg
+[INFO] [1792441246.182635897] [track1_grasp]: [depth] skip 3-Scissors: no valid depth at (104,389)
+[INFO] [1792441246.255670291] [track1_grasp]: [motion:robotmove] sent retreat_p015: joints=[93.82, 87.44, -33.19, -38.92, 84.64, -11.97] deg
+[INFO] [1792441246.607371152] [track1_grasp]: [motion:robotmove] sent retreat_p016: joints=[93.75, 87.09, -32.89, -38.93, 84.74, -12.21] deg
+[INFO] [1792441246.959531498] [track1_grasp]: [motion:robotmove] sent retreat_p017: joints=[93.67, 86.74, -32.59, -38.94, 84.84, -12.46] deg
+[INFO] [1792441247.311518498] [track1_grasp]: [motion:robotmove] sent retreat_p018: joints=[93.59, 86.38, -32.28, -38.94, 84.94, -12.7] deg
+[INFO] [1792441247.663366584] [track1_grasp]: [motion:robotmove] sent retreat_p019: joints=[93.51, 86.03, -31.96, -38.93, 85.04, -12.94] deg
+[INFO] [1792441247.924612984] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (198,141)
+[INFO] [1792441248.016303424] [track1_grasp]: [motion:robotmove] sent retreat_p020: joints=[93.44, 85.66, -31.63, -38.92, 85.14, -13.19] deg
+[INFO] [1792441248.369596455] [track1_grasp]: [motion:robotmove] sent retreat_p021: joints=[93.36, 85.3, -31.29, -38.9, 85.24, -13.43] deg
+[INFO] [1792441248.518089709] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (197,140)
+[INFO] [1792441248.715893913] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (195,140)
+[INFO] [1792441248.771859680] [track1_grasp]: [motion:robotmove] sent retreat_p022: joints=[93.28, 84.93, -30.94, -38.88, 85.34, -13.68] deg
+[INFO] [1792441248.782754346] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (246,186)
+[INFO] [1792441248.783154466] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (196,136)
+[INFO] [1792441248.858539714] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (194,141)
+[INFO] [1792441248.930101855] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (196,139)
+[INFO] [1792441249.125635941] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (195,138)
+[INFO] [1792441249.174241634] [track1_grasp]: [motion:robotmove] sent retreat_p023: joints=[93.2, 84.56, -30.59, -38.85, 85.44, -13.92] deg
+[INFO] [1792441249.316100255] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (195,141)
+[INFO] [1792441249.576579659] [track1_grasp]: [motion:robotmove] sent retreat_p024: joints=[93.13, 84.18, -30.22, -38.82, 85.54, -14.17] deg
+[INFO] [1792441249.588585638] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (193,136)
+[INFO] [1792441249.716435305] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (193,142)
+[INFO] [1792441249.849329810] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (194,143)
+[INFO] [1792441249.928709135] [track1_grasp]: [motion:robotmove] sent retreat_p025: joints=[93.05, 83.8, -29.85, -38.77, 85.64, -14.42] deg
+[INFO] [1792441250.182044554] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (192,140)
+[INFO] [1792441250.283057676] [track1_grasp]: [motion:robotmove] sent retreat_p026: joints=[92.97, 83.42, -29.47, -38.73, 85.74, -14.66] deg
+[INFO] [1792441250.518574094] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (191,140)
+[INFO] [1792441250.635462605] [track1_grasp]: [motion:robotmove] sent retreat_p027: joints=[92.89, 83.03, -29.07, -38.67, 85.83, -14.91] deg
+[INFO] [1792441250.987592082] [track1_grasp]: [motion:robotmove] sent retreat_p028: joints=[92.82, 82.63, -28.67, -38.61, 85.93, -15.15] deg
+[INFO] [1792441251.339669317] [track1_grasp]: [motion:robotmove] sent retreat_p029: joints=[92.74, 82.24, -28.25, -38.55, 86.03, -15.4] deg
+[INFO] [1792441251.691856971] [track1_grasp]: [motion:robotmove] sent retreat_p030: joints=[92.66, 81.83, -27.82, -38.47, 86.13, -15.65] deg
+[INFO] [1792441252.044088555] [track1_grasp]: [motion:robotmove] sent retreat_p031: joints=[92.58, 81.42, -27.38, -38.39, 86.22, -15.89] deg
+[INFO] [1792441252.446279354] [track1_grasp]: [motion:robotmove] sent retreat_p032: joints=[92.5, 81.01, -26.93, -38.3, 86.32, -16.14] deg
+[INFO] [1792441252.850349650] [track1_grasp]: [motion:robotmove] sent retreat_p033: joints=[92.43, 80.59, -26.46, -38.2, 86.42, -16.38] deg
+[INFO] [1792441252.915761576] [track1_grasp]: [depth] skip 3-Scissors: no valid depth at (103,389)
+[INFO] [1792441253.252323173] [track1_grasp]: [motion:robotmove] sent retreat_p034: joints=[92.35, 80.17, -25.98, -38.09, 86.51, -16.63] deg
+[INFO] [1792441253.655137305] [track1_grasp]: [motion:robotmove] sent retreat_p035: joints=[92.27, 79.73, -25.49, -37.98, 86.61, -16.88] deg
+[INFO] [1792441254.057230746] [track1_grasp]: [motion:robotmove] sent retreat_p036: joints=[92.23, 79.52, -25.23, -37.91, 86.66, -17.0] deg
+[INFO] [1792441254.359731076] [track1_grasp]: [motion:robotmove] sent retreat_p037: joints=[92.19, 79.3, -24.97, -37.85, 86.7, -17.12] deg
+[INFO] [1792441254.528187595] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (218,180)
+[INFO] [1792441254.661280379] [track1_grasp]: [motion:robotmove] sent retreat_p038: joints=[92.15, 79.07, -24.71, -37.78, 86.75, -17.25] deg
+[INFO] [1792441254.912985635] [track1_grasp]: [motion:robotmove] sent retreat_p039: joints=[92.11, 78.85, -24.44, -37.71, 86.8, -17.37] deg
+[INFO] [1792441255.266487630] [track1_grasp]: [motion:robotmove] sent retreat_p040: joints=[92.07, 78.62, -24.18, -37.64, 86.85, -17.5] deg
+[INFO] [1792441255.516049809] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (224,184)
+[INFO] [1792441255.568231650] [track1_grasp]: [motion:robotmove] sent retreat_p041: joints=[92.04, 78.4, -23.9, -37.57, 86.89, -17.62] deg
+[INFO] [1792441255.869926991] [track1_grasp]: [motion:robotmove] sent retreat_p042: joints=[92.0, 78.17, -23.62, -37.49, 86.94, -17.74] deg
+[INFO] [1792441256.172016515] [track1_grasp]: [motion:robotmove] sent retreat_p043: joints=[91.96, 77.93, -23.34, -37.41, 86.99, -17.87] deg
+[INFO] [1792441256.473690485] [track1_grasp]: [motion:robotmove] sent retreat_p044: joints=[91.92, 77.7, -23.05, -37.33, 87.03, -17.99] deg
+[INFO] [1792441256.775605476] [track1_grasp]: [motion:robotmove] sent retreat_p045: joints=[91.88, 77.46, -22.75, -37.24, 87.08, -18.11] deg
+[INFO] [1792441257.077534715] [track1_grasp]: [motion:robotmove] sent retreat_p046: joints=[91.84, 77.22, -22.45, -37.15, 87.13, -18.24] deg
+[INFO] [1792441257.379691915] [track1_grasp]: [motion:robotmove] sent retreat_p047: joints=[91.8, 76.98, -22.15, -37.06, 87.18, -18.36] deg
+[INFO] [1792441257.683292873] [track1_grasp]: [motion:robotmove] sent retreat_p048: joints=[91.76, 76.74, -21.83, -36.97, 87.22, -18.48] deg
+[INFO] [1792441257.985216175] [track1_grasp]: [motion:robotmove] sent retreat_p049: joints=[91.72, 76.49, -21.52, -36.87, 87.27, -18.61] deg
+[INFO] [1792441258.287243960] [track1_grasp]: [motion:robotmove] sent retreat_p050: joints=[91.68, 76.24, -21.19, -36.76, 87.32, -18.73] deg
+[INFO] [1792441258.588963047] [track1_grasp]: [motion:robotmove] sent retreat_p051: joints=[91.64, 75.99, -20.86, -36.66, 87.36, -18.86] deg
+[INFO] [1792441258.941087774] [track1_grasp]: [motion:robotmove] sent retreat_p052: joints=[91.6, 75.73, -20.52, -36.55, 87.41, -18.98] deg
+[INFO] [1792441259.293214876] [track1_grasp]: [motion:robotmove] sent retreat_p053: joints=[91.56, 75.47, -20.18, -36.43, 87.45, -19.1] deg
+[INFO] [1792441259.645313482] [track1_grasp]: [motion:robotmove] sent retreat_p054: joints=[91.52, 75.21, -19.82, -36.31, 87.5, -19.23] deg
+[INFO] [1792441259.997254178] [track1_grasp]: [motion:robotmove] sent retreat_p055: joints=[91.48, 74.94, -19.46, -36.19, 87.55, -19.35] deg
+[INFO] [1792441260.350447475] [track1_grasp]: [motion:robotmove] sent retreat_p056: joints=[91.44, 74.67, -19.09, -36.06, 87.59, -19.48] deg
+[INFO] [1792441260.702599510] [track1_grasp]: [motion:robotmove] sent retreat_p057: joints=[91.41, 74.4, -18.71, -35.92, 87.64, -19.6] deg
+[INFO] [1792441261.054111590] [track1_grasp]: [motion:linear] retreat: completed 0.090 m with 57 waypoint(s), max_joint_step=0.496 deg
+[INFO] [1792441261.054484402] [track1_grasp]: [done] pick_2: object returned at its pick point and arm retreated; next round waits for visual confirmation at expected point 2/4
+[INFO] [1792441261.055034122] [track1_grasp]: [operator_pause] pick_2 completed; no motion will be issued until the operator continues
+
+[人工确认] pick_2 已完成原位拾放并撤回。
+请将香蕉移动到下一个点位，确认机械臂周围安全后按回车继续。
+当前进度：1/4
+
+按回车继续 > [INFO] [1792441303.921716210] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (106,386)
+[INFO] [1792441304.319375085] [track1_grasp]: [depth] skip 1-Cheez-it: no valid depth at (415,96)
+[INFO] [1792441304.394293724] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,389)
+[INFO] [1792441305.986856211] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,386)
+[INFO] [1792441306.062683135] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,386)
+[INFO] [1792441306.187124062] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441306.525657765] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,391)
+[INFO] [1792441306.658916771] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,388)
+[INFO] [1792441306.792036863] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,390)
+[INFO] [1792441307.254084212] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,389)
+[INFO] [1792441307.521111576] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,390)
+[INFO] [1792441307.787502547] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,390)
+[INFO] [1792441308.334273259] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,390)
+[INFO] [1792441308.390374378] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,391)
+[INFO] [1792441308.653578636] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,390)
+[INFO] [1792441308.867844756] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,387)
+[INFO] [1792441309.119788659] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,390)
+[INFO] [1792441309.719715986] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441310.194234735] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,389)
+[INFO] [1792441310.255246528] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,389)
+[INFO] [1792441310.325979934] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,391)
+[INFO] [1792441311.186379541] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,390)
+[INFO] [1792441311.386634332] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,391)
+[INFO] [1792441313.522177669] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,390)
+[INFO] [1792441314.396110123] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,391)
+[INFO] [1792441314.660798506] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,389)
+[INFO] [1792441316.129594452] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,380)
+[INFO] [1792441316.594852260] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,374)
+[INFO] [1792441319.589326515] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,387)
+[INFO] [1792441320.326632779] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792441320.462598830] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,387)
+[INFO] [1792441321.520731402] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,387)
+[INFO] [1792441321.787985541] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792441322.056647817] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,388)
+[INFO] [1792441322.328933733] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,390)
+[INFO] [1792441322.401934882] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,386)
+[INFO] [1792441322.728687005] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441322.855823105] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,384)
+[INFO] [1792441323.127924989] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,373)
+[INFO] [1792441324.120962644] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441324.455755164] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,385)
+[INFO] [1792441324.525069746] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,387)
+[INFO] [1792441324.724214412] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,384)
+[INFO] [1792441324.791185264] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441324.991199033] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,389)
+[INFO] [1792441325.126826703] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,387)
+[INFO] [1792441326.856071183] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,380)
+[INFO] [1792441327.387898535] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,390)
+[INFO] [1792441327.388234541] [track1_grasp]: [depth] skip 3-Scissors: no valid depth at (101,390)
+[INFO] [1792441327.453748576] [track1_grasp]: [depth] skip 3-Scissors: no valid depth at (100,389)
+[INFO] [1792441327.656641548] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,391)
+[INFO] [1792441329.201398582] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,387)
+[INFO] [1792441330.925156548] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,387)
+[INFO] [1792441330.991650105] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,385)
+[INFO] [1792441331.524959209] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441332.398161473] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,383)
+[INFO] [1792441332.857682247] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441334.921873596] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,380)
+[INFO] [1792441335.189341448] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,383)
+[INFO] [1792441338.927212816] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441339.256883323] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,392)
+[INFO] [1792441339.328617623] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441339.723670374] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,375)
+[INFO] [1792441339.923818308] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441340.123249113] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,384)
+[INFO] [1792441340.387219179] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,385)
+[INFO] [1792441340.922445773] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,388)
+[INFO] [1792441341.724446835] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,384)
+[INFO] [1792441342.122068903] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441342.336460877] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,386)
+[INFO] [1792441344.656809857] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,386)
+[INFO] [1792441344.732444438] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,386)
+[INFO] [1792441344.923637754] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792441344.988885833] [track1_grasp]: [depth] skip 3-Scissors: no valid depth at (103,381)
+[INFO] [1792441345.056159447] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,388)
+[INFO] [1792441345.122981886] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,385)
+[INFO] [1792441345.331243829] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441347.259425197] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,386)
+[INFO] [1792441348.792552627] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,378)
+[INFO] [1792441348.856286898] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,384)
+[INFO] [1792441349.132338931] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,391)
+[INFO] [1792441349.265394909] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,386)
+[INFO] [1792441349.455753553] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,378)
+[INFO] [1792441349.532570685] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792441349.593038694] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,391)
+[INFO] [1792441349.934020609] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441350.198580763] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,386)
+[INFO] [1792441350.932329877] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,387)
+[INFO] [1792441351.331843314] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,389)
+[INFO] [1792441351.527979361] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441351.793807552] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,378)
+[INFO] [1792441352.057386997] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441352.456395832] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,390)
+[INFO] [1792441352.858650745] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,387)
+[INFO] [1792441353.532885252] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,388)
+[INFO] [1792441353.723051554] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,388)
+[INFO] [1792441354.589566944] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,386)
+[INFO] [1792441354.723063410] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441354.998297392] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,382)
+[INFO] [1792441355.337423557] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792441355.725413060] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,385)
+[INFO] [1792441356.459608598] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441356.857146368] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,378)
+[INFO] [1792441357.329879418] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441357.525354139] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,389)
+[INFO] [1792441357.789682770] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441360.392518948] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,390)
+[INFO] [1792441360.926984482] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,388)
+[INFO] [1792441361.130962647] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441361.197069144] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,387)
+[INFO] [1792441361.457535487] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,387)
+[INFO] [1792441362.258803985] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,389)
+[INFO] [1792441362.857577257] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,387)
+[INFO] [1792441364.206903500] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,388)
+[INFO] [1792441364.725097085] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,391)
+[INFO] [1792441365.268188355] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,385)
+[INFO] [1792441365.338671240] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,391)
+[INFO] [1792441366.134353491] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,390)
+[INFO] [1792441366.794288155] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,382)
+[INFO] [1792441369.126956560] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,384)
+[INFO] [1792441369.393431830] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,389)
+[INFO] [1792441369.803888613] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441370.128090415] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,378)
+[INFO] [1792441370.192278235] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,390)
+[INFO] [1792441370.458537416] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,385)
+[INFO] [1792441370.672789289] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,389)
+[INFO] [1792441370.925336340] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,390)
+[INFO] [1792441371.924506400] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441372.257952522] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441372.524972762] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,383)
+[INFO] [1792441373.992780874] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792441375.063244746] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,389)
+[INFO] [1792441376.601243668] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441376.791852833] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441377.272790127] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441378.205542617] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441378.339454638] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441379.192213969] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,391)
+[INFO] [1792441380.328882884] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441380.662451297] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,391)
+[INFO] [1792441383.192462047] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,384)
+[INFO] [1792441383.401786624] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,377)
+[INFO] [1792441383.658584210] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792441384.992379380] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441385.599721396] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441385.926224186] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,386)
+[INFO] [1792441386.671231280] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,388)
+[INFO] [1792441386.793000782] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,388)
+[INFO] [1792441386.926025890] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,384)
+[INFO] [1792441388.673338704] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,386)
+[INFO] [1792441389.258820150] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792441389.458255704] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441389.526363989] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,385)
+[INFO] [1792441389.726736323] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,385)
+[INFO] [1792441389.926303668] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441390.530734424] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792441390.992441018] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441391.203799440] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,390)
+[INFO] [1792441391.470254525] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441392.593246930] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,383)
+[INFO] [1792441392.726704215] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,389)
+[INFO] [1792441393.328450486] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,389)
+[INFO] [1792441393.459837120] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441393.596083373] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,384)
+[INFO] [1792441394.592802846] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,392)
+[INFO] [1792441397.194577578] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,386)
+[INFO] [1792441397.593788254] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441398.796675273] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,384)
+[INFO] [1792441399.594054176] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441399.928451324] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,387)
+[INFO] [1792441399.995487478] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441400.327266629] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,388)
+[INFO] [1792441400.993679203] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441401.929449810] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,385)
+[INFO] [1792441402.462248374] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,390)
+[INFO] [1792441404.526928890] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441404.793982375] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,391)
+[INFO] [1792441405.460625284] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441405.792573032] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,391)
+[INFO] [1792441406.127796542] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,387)
+[INFO] [1792441406.195433469] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,389)
+[INFO] [1792441406.396088381] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441406.459807217] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441406.927183169] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,390)
+[INFO] [1792441407.460557574] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,385)
+[INFO] [1792441407.593398650] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441407.661461818] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,388)
+[INFO] [1792441407.861292744] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,384)
+[INFO] [1792441408.397032250] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441408.462644831] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,385)
+[INFO] [1792441409.529886370] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,387)
+[INFO] [1792441409.662241841] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,391)
+[INFO] [1792441409.730401180] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,383)
+[INFO] [1792441409.795536466] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441410.061407399] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,391)
+[INFO] [1792441410.402703949] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,378)
+[INFO] [1792441410.796305819] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441411.329339469] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,388)
+[INFO] [1792441411.461661695] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441411.662273864] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441412.197081340] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,386)
+[INFO] [1792441412.262450524] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,385)
+[INFO] [1792441412.730180291] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,390)
+[INFO] [1792441413.193728388] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,391)
+[INFO] [1792441413.996789709] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,391)
+[INFO] [1792441414.463269249] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441414.929201444] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,387)
+[INFO] [1792441415.060451538] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,386)
+[INFO] [1792441415.204961400] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441415.928354882] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441416.327642733] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,388)
+[INFO] [1792441416.532551740] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441416.797755411] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,390)
+[INFO] [1792441417.864953020] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441418.004719619] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,390)
+[INFO] [1792441418.065326542] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,385)
+[INFO] [1792441419.130668401] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441419.461767230] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,381)
+[INFO] [1792441419.663103651] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,381)
+[INFO] [1792441420.402405767] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,383)
+[INFO] [1792441421.328346717] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,386)
+[INFO] [1792441421.531447466] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441421.875093683] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,386)
+[INFO] [1792441422.676831165] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441423.075223791] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441424.276639745] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441424.871746633] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,391)
+[INFO] [1792441425.932613558] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,384)
+[INFO] [1792441426.863085245] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,390)
+[INFO] [1792441426.996341876] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441427.401707516] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441427.600916296] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792441428.610793429] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441429.129612721] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441429.528911258] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,386)
+[INFO] [1792441429.996069934] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,387)
+[INFO] [1792441430.329229916] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,387)
+[INFO] [1792441430.396873967] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,390)
+[INFO] [1792441430.537626024] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,387)
+[INFO] [1792441430.729860603] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,389)
+[INFO] [1792441432.597717625] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,380)
+[INFO] [1792441433.065879569] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,390)
+[INFO] [1792441433.262118912] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,392)
+[INFO] [1792441433.338307962] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,386)
+[INFO] [1792441433.598383683] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441433.664953228] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,391)
+[INFO] [1792441433.795660726] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441434.397136292] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441434.528912360] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441435.271619653] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,390)
+[INFO] [1792441435.328870079] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792441435.528264078] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441435.610365882] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441435.671450100] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,386)
+[INFO] [1792441436.864234382] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441437.866428496] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,380)
+[INFO] [1792441438.132769600] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,382)
+[INFO] [1792441438.531375940] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,382)
+[INFO] [1792441439.071642623] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,388)
+[INFO] [1792441439.610672138] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,386)
+[INFO] [1792441440.129217164] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,388)
+[INFO] [1792441440.196360175] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,387)
+[INFO] [1792441440.338494249] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,391)
+[INFO] [1792441440.596637046] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441441.073547018] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441441.132197271] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,390)
+[INFO] [1792441441.862820223] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441441.996704936] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,385)
+[INFO] [1792441442.075336263] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,391)
+[INFO] [1792441442.262338410] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441443.263450893] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,385)
+[INFO] [1792441443.663503365] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,387)
+[INFO] [1792441443.742088387] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,384)
+[INFO] [1792441443.814035213] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441443.814354597] [track1_grasp]: [depth] skip 3-Scissors: no valid depth at (102,390)
+[INFO] [1792441443.875885240] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441444.138999262] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,381)
+[INFO] [1792441444.796657871] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,387)
+[INFO] [1792441444.862944838] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,390)
+[INFO] [1792441445.411893059] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,391)
+[INFO] [1792441445.477144700] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,390)
+[INFO] [1792441445.730522862] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,386)
+[INFO] [1792441445.800236377] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,390)
+[INFO] [1792441445.998115381] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,387)
+[INFO] [1792441446.131863555] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,389)
+[INFO] [1792441446.332060168] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,388)
+[INFO] [1792441446.596604887] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441447.073615780] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,386)
+[INFO] [1792441447.074044395] [track1_grasp]: [depth] skip 3-Scissors: no valid depth at (107,373)
+[INFO] [1792441447.198358282] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,388)
+[INFO] [1792441447.464257711] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,381)
+[INFO] [1792441447.531623934] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,389)
+[INFO] [1792441447.598766944] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441447.799785169] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441447.865649457] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,381)
+[INFO] [1792441448.132470231] [track1_grasp]: [depth] skip 3-Scissors: no valid depth at (101,389)
+[INFO] [1792441448.132796739] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441448.203054037] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,392)
+[INFO] [1792441448.533206588] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,390)
+[INFO] [1792441449.805875985] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441449.930993674] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441450.130504028] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,380)
+[INFO] [1792441450.265003763] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,390)
+[INFO] [1792441450.865033198] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441450.929768363] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441451.196754172] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,390)
+[INFO] [1792441451.404605309] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,389)
+[INFO] [1792441451.666870412] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,384)
+[INFO] [1792441453.462506341] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,392)
+[INFO] [1792441454.197497371] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,388)
+[INFO] [1792441455.531260484] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441456.264158303] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,391)
+[INFO] [1792441456.403436921] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,391)
+[INFO] [1792441456.802642848] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,388)
+[INFO] [1792441456.871039647] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792441457.268334021] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441457.337952552] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,390)
+[INFO] [1792441457.670658985] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441457.813552932] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,389)
+[INFO] [1792441458.397882697] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441458.538147962] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,391)
+[INFO] [1792441459.074113055] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,391)
+[INFO] [1792441459.863780444] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441460.263887531] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792441460.799250664] [track1_grasp]: [depth] skip 3-Scissors: no valid depth at (101,391)
+[INFO] [1792441460.866133656] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,390)
+[INFO] [1792441461.066193730] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,387)
+[INFO] [1792441461.399637476] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,385)
+[INFO] [1792441462.215019411] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792441462.263684469] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441462.597800228] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441462.864282621] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,380)
+[INFO] [1792441462.930802298] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441463.131799152] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441463.269496286] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,387)
+[INFO] [1792441464.268909743] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441464.803305226] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441464.935285510] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,390)
+[INFO] [1792441465.069623772] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,388)
+[INFO] [1792441465.466199829] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,379)
+[INFO] [1792441467.134977487] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792441467.210296246] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,391)
+[INFO] [1792441467.338943778] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441467.465805611] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,385)
+[INFO] [1792441467.533357053] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441467.666931881] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,388)
+[INFO] [1792441467.946186062] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,377)
+[INFO] [1792441468.133969452] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441468.205258515] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441468.932985642] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441468.999916125] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441469.332503829] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441469.479515332] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441469.600657940] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,380)
+[INFO] [1792441469.932846711] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,390)
+[INFO] [1792441470.267909935] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,386)
+[INFO] [1792441470.399580333] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,390)
+[INFO] [1792441470.466862258] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441470.737095332] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441470.798065569] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441470.875137970] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,386)
+[INFO] [1792441471.064754552] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,388)
+[INFO] [1792441471.131566306] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441472.275196362] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,387)
+[INFO] [1792441472.334602924] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792441473.332655735] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441473.400477881] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792441473.532517530] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,386)
+[INFO] [1792441473.600914329] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,380)
+[INFO] [1792441473.999581222] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,384)
+[INFO] [1792441474.075765523] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441474.265731171] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441474.413776813] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441474.532006974] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,385)
+[INFO] [1792441475.000571413] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,386)
+[INFO] [1792441475.546405346] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441475.613657588] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,390)
+[INFO] [1792441476.202326935] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,380)
+[INFO] [1792441476.465470640] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441476.542336451] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,387)
+[INFO] [1792441476.798770724] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441476.935107212] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441477.069249569] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,390)
+[INFO] [1792441477.400363833] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792441477.665601935] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,387)
+[INFO] [1792441477.941293028] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,387)
+[INFO] [1792441478.004782716] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441478.598765231] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,382)
+[INFO] [1792441479.865069513] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,386)
+[INFO] [1792441480.200713326] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,387)
+[INFO] [1792441480.334714395] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441480.472929192] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,388)
+[INFO] [1792441480.600396548] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,389)
+[INFO] [1792441480.733035783] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,387)
+[INFO] [1792441480.875730264] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,388)
+[INFO] [1792441481.132625208] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,389)
+[INFO] [1792441481.332817073] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,390)
+[INFO] [1792441481.543834740] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441481.735375935] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,382)
+[INFO] [1792441482.600100876] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,391)
+[INFO] [1792441482.666025717] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,386)
+[INFO] [1792441483.133187955] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,387)
+[INFO] [1792441483.198998814] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,388)
+[INFO] [1792441483.736417163] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,391)
+[INFO] [1792441483.807896194] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441483.871536669] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441484.066059175] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,388)
+[INFO] [1792441484.132499304] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,391)
+[INFO] [1792441484.401509459] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,381)
+[INFO] [1792441484.467913968] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441484.546763758] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,387)
+[INFO] [1792441484.868028180] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792441485.142939217] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441485.265850902] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (104,380)
+[INFO] [1792441485.466768207] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441485.544569611] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,385)
+[INFO] [1792441485.808181112] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,387)
+[INFO] [1792441486.010535050] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,391)
+[INFO] [1792441486.070214692] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,386)
+[INFO] [1792441487.414737119] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,387)
+[INFO] [1792441487.669877234] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,390)
+[INFO] [1792441488.133071514] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,390)
+[INFO] [1792441488.809978634] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792441488.938780515] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441489.068824312] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441489.470946248] [track1_grasp]: [depth] skip 3-Scissors: no valid depth at (107,382)
+[INFO] [1792441489.734023465] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,387)
+[INFO] [1792441489.801377814] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792441489.868779656] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,390)
+[INFO] [1792441490.135558874] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,390)
+[INFO] [1792441490.600790562] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,387)
+[INFO] [1792441490.737898795] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441490.801603384] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,389)
+[INFO] [1792441491.000493968] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,388)
+[INFO] [1792441491.068180762] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441491.135297651] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,385)
+[INFO] [1792441491.341591051] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,390)
+[INFO] [1792441491.543179180] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441491.603673310] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441491.801378968] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,390)
+[INFO] [1792441492.203300250] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,390)
+[INFO] [1792441492.269026811] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,390)
+[INFO] [1792441492.599895304] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441492.933276124] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,391)
+[INFO] [1792441492.999782741] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441493.066725098] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441493.543884403] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441493.946323348] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441494.803492311] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,390)
+[INFO] [1792441495.002866126] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792441495.069597143] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,388)
+[INFO] [1792441495.142465315] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,388)
+[INFO] [1792441495.347229472] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441496.334921902] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,390)
+[INFO] [1792441496.402267940] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441496.736443064] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792441497.135947003] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,391)
+[INFO] [1792441497.347075089] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,390)
+[INFO] [1792441497.481210322] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792441497.876530216] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441498.068123653] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441498.734880543] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441500.002075299] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,381)
+[INFO] [1792441500.813966571] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,387)
+[INFO] [1792441501.470249100] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441502.334888555] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,387)
+[INFO] [1792441502.411312691] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,391)
+[INFO] [1792441502.473090292] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,391)
+[INFO] [1792441502.947512870] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,388)
+[INFO] [1792441503.070893539] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441503.136301904] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441503.402358056] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441503.467068289] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,386)
+[INFO] [1792441503.939391720] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,385)
+[INFO] [1792441504.810841530] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,390)
+[INFO] [1792441504.934752922] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441505.534550833] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,389)
+[INFO] [1792441505.601515748] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,383)
+[INFO] [1792441505.872977678] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441505.934731533] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,390)
+[INFO] [1792441506.082246452] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441506.202544890] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441506.350378005] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441506.411136903] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441506.481187611] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,380)
+[INFO] [1792441507.082958815] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,381)
+[INFO] [1792441507.202512816] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441507.268354545] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,391)
+[INFO] [1792441507.402417354] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,391)
+[INFO] [1792441508.137153114] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,390)
+[INFO] [1792441508.476855119] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441508.536171447] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,390)
+[INFO] [1792441509.740696940] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,390)
+[INFO] [1792441510.005462497] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,391)
+[INFO] [1792441510.336562513] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,387)
+[INFO] [1792441510.477030806] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441510.609975177] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,389)
+[INFO] [1792441510.738965839] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792441511.204121540] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,382)
+[INFO] [1792441511.271237242] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,387)
+[INFO] [1792441511.806403283] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,388)
+[INFO] [1792441511.806684673] [track1_grasp]: [depth] skip 3-Scissors: no valid depth at (102,381)
+[INFO] [1792441512.071312504] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,389)
+[INFO] [1792441512.137082995] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441512.271022324] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,387)
+[INFO] [1792441512.404476047] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,391)
+[INFO] [1792441512.610571168] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,390)
+[INFO] [1792441513.068100840] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,388)
+[INFO] [1792441513.335715917] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,390)
+[INFO] [1792441513.744670766] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,389)
+[INFO] [1792441513.804339722] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,384)
+[INFO] [1792441514.078720035] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,387)
+[INFO] [1792441514.406438621] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,391)
+[INFO] [1792441514.473107898] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,389)
+[INFO] [1792441514.606153190] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,386)
+[INFO] [1792441514.678516759] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,389)
+[INFO] [1792441514.882694390] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441515.269013361] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,391)
+[INFO] [1792441515.604672610] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792441516.006462102] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,390)
+[INFO] [1792441516.404587586] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441516.604742644] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,388)
+[INFO] [1792441517.007986579] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441517.219387743] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,383)
+[INFO] [1792441517.419069069] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441517.602852445] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,384)
+[INFO] [1792441518.144092713] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441518.269205653] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,392)
+[INFO] [1792441518.406056242] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,390)
+[INFO] [1792441518.740357220] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,389)
+[INFO] [1792441519.336254850] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792441519.680571891] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441519.884729338] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,388)
+[INFO] [1792441520.007935474] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,392)
+[INFO] [1792441520.211806781] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,386)
+[INFO] [1792441520.335783475] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,388)
+[INFO] [1792441520.740329878] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441521.280268865] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,387)
+[INFO] [1792441521.405388929] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,390)
+[INFO] [1792441521.940850607] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,390)
+[INFO] [1792441522.138267751] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,388)
+[INFO] [1792441522.202918618] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441522.550759567] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,386)
+[INFO] [1792441522.952625046] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441523.136948644] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441523.539500382] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,391)
+[INFO] [1792441523.603749942] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,384)
+[INFO] [1792441523.678472677] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441524.008958859] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441524.073406698] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441524.338465518] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792441524.472655367] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,387)
+[INFO] [1792441524.539823311] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,387)
+[INFO] [1792441524.750770927] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441525.408198013] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441525.886258479] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441526.471733989] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,390)
+[INFO] [1792441526.610612486] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,389)
+[INFO] [1792441526.671617155] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441527.016356875] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441527.337861131] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,391)
+[INFO] [1792441527.470911173] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,392)
+[INFO] [1792441527.737482613] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792441527.814045663] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792441527.937692287] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441528.078110713] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441528.272502616] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,387)
+[INFO] [1792441528.338299228] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441528.410197376] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,391)
+[INFO] [1792441528.604458676] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,391)
+[INFO] [1792441528.748385574] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,391)
+[INFO] [1792441529.211993035] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,388)
+[INFO] [1792441529.338042755] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792441529.404457950] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441529.603417397] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,391)
+[INFO] [1792441530.073912386] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,384)
+[INFO] [1792441530.139184211] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792441530.275792591] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792441530.538385389] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,387)
+[INFO] [1792441531.208410916] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,384)
+[INFO] [1792441531.541581584] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,388)
+[INFO] [1792441531.875138124] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,391)
+[INFO] [1792441532.072837845] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441532.537859381] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441532.805204942] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441532.872600847] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,391)
+[INFO] [1792441533.614027043] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,387)
+[INFO] [1792441533.740057766] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441534.140992402] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,387)
+[INFO] [1792441534.207345857] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441534.478760295] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,391)
+[INFO] [1792441534.603940911] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,391)
+[INFO] [1792441534.684387620] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,391)
+[INFO] [1792441535.139344412] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,391)
+[INFO] [1792441535.540515321] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,386)
+[INFO] [1792441536.138204587] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,390)
+[INFO] [1792441536.340208271] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,390)
+[INFO] [1792441537.012093111] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,382)
+[INFO] [1792441537.277803759] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441538.338179142] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,377)
+[INFO] [1792441538.410674501] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441539.147406112] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441539.806965589] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441539.878251090] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441540.339374719] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441540.538094331] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,391)
+[INFO] [1792441540.943474219] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,384)
+[INFO] [1792441541.205362948] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441541.887062010] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,391)
+[INFO] [1792441542.204819147] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441542.479751555] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441542.542594165] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792441542.674044913] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792441542.941427279] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792441543.949436789] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,390)
+[INFO] [1792441544.606292783] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792441544.940727926] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,392)
+[INFO] [1792441545.609035430] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,391)

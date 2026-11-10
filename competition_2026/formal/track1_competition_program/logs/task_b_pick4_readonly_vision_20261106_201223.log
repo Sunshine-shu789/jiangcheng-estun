@@ -1,0 +1,38 @@
+ROBOT state=AutoReady fault=0 xyz=(0.05667, 0.417882, 0.256345) rpy=(-3.112912, 0.045245, -0.347998)
+POINTS pick_1=(-0.041246, 0.490700) pick_2=(-0.124884, 0.521709) pick_3=(-0.108009, 0.417709) pick_4=(0.056674, 0.417881) pick_5=(0.034196, 0.486713)
+THRESHOLDS min_confidence=0.350 min_pose_confidence=0.500 assignment_margin=0.000 tolerance=0.080
+VISION [camera] D405 started 640x480@15 fx=392.7 fy=391.7 cx=314.4 cy=246.7
+VISION [yolo] loading /media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/models/best.pt
+VISION [vision:realsense_yolo] model input size verified imgsz=640
+VISION [vision:realsense_yolo] ready 640x480 rotate180=True anchor=top_center cx=324.6 cy=232.3 stabilizer=off unknown_proposer=off
+FRAME 01 detections=1 banana=1 image=/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/vision_banana_center_diagnostics/frame_000001.jpg
+PLANNER [pose] loaded camera transform from /media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/config/camera_to_flange.d405_calibrated_20261025.yaml
+  BANANA conf=0.0536 pose_conf=0.4679168807810894 anchor_base=(0.127027,0.497750,-0.034230) center_base=(0.059536,0.458688,-0.032944) formal=False distances=pick_5=0.037782 pick_4=0.040907 pick_1=0.105744 pick_3=0.172483 pick_2=0.194890
+FRAME 02 detections=0 banana=0 image=
+FRAME 03 detections=1 banana=1 image=
+  BANANA conf=0.1410 pose_conf=0.47175504362913334 anchor_base=(0.126782,0.496594,-0.035557) center_base=(0.057582,0.458325,-0.034901) formal=False distances=pick_5=0.036780 pick_4=0.040454 pick_1=0.103996 pick_3=0.170499 pick_2=0.193161
+FRAME 04 detections=1 banana=1 image=/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/vision_banana_center_diagnostics/frame_000004.jpg
+  BANANA conf=0.0902 pose_conf=0.47924385837176064 anchor_base=(0.124678,0.490808,-0.035346) center_base=(0.058633,0.459177,-0.036510) formal=False distances=pick_5=0.036815 pick_4=0.041343 pick_1=0.104735 pick_3=0.171723 pick_2=0.193877
+FRAME 05 detections=0 banana=0 image=
+FRAME 06 detections=0 banana=0 image=
+FRAME 07 detections=0 banana=0 image=
+FRAME 08 detections=0 banana=0 image=
+FRAME 09 detections=0 banana=0 image=
+FRAME 10 detections=1 banana=1 image=/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/vision_banana_center_diagnostics/frame_000010.jpg
+  BANANA conf=0.0388 pose_conf=0.4738529962546816 anchor_base=(0.126478,0.492198,-0.034377) center_base=(0.056011,0.458874,-0.034877) formal=False distances=pick_5=0.035368 pick_4=0.040998 pick_1=0.102332 pick_3=0.169106 pick_2=0.191497
+FRAME 11 detections=0 banana=0 image=
+FRAME 12 detections=1 banana=1 image=
+  BANANA conf=0.1036 pose_conf=0.4693036354326677 anchor_base=(0.128092,0.499282,-0.032725) center_base=(0.056802,0.458394,-0.041002) formal=False distances=pick_5=0.036235 pick_4=0.040513 pick_1=0.103233 pick_3=0.169758 pick_2=0.192402
+FRAME 13 detections=0 banana=0 image=
+FRAME 14 detections=0 banana=0 image=/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/vision_banana_center_diagnostics/frame_000014.jpg
+FRAME 15 detections=1 banana=1 image=
+  BANANA conf=0.1186 pose_conf=0.4764466978126991 anchor_base=(0.125254,0.492673,-0.034612) center_base=(0.057080,0.458920,-0.035524) formal=False distances=pick_5=0.036001 pick_4=0.041041 pick_1=0.103335 pick_3=0.170155 pick_2=0.192492
+FRAME 16 detections=0 banana=0 image=
+FRAME 17 detections=0 banana=0 image=
+FRAME 18 detections=0 banana=0 image=
+FRAME 19 detections=1 banana=1 image=/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/vision_banana_center_diagnostics/frame_000019.jpg
+  BANANA conf=0.1197 pose_conf=0.4649706339922093 anchor_base=(0.128929,0.499180,-0.033966) center_base=(0.059762,0.458600,-0.032288) formal=False distances=pick_5=0.037999 pick_4=0.040836 pick_1=0.105986 pick_3=0.172682 pick_2=0.195133
+FRAME 20 detections=0 banana=0 image=
+SUMMARY frames_with_banana=7/20 unique_banana_frames=7/20 formal_candidate_frames=0/20 formal_centers=0 all_centers=7
+CENTER_MEDIAN=unavailable
+VERDICT=NOT_READY

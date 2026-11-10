@@ -1,0 +1,41 @@
+........................................................................ [  6%]
+........................................................................ [ 13%]
+........................................................................ [ 20%]
+........................................................................ [ 26%]
+........................................................................ [ 33%]
+........................................................................ [ 40%]
+........................................................................ [ 46%]
+........................................................................ [ 53%]
+........................................................................ [ 60%]
+........................................................................ [ 66%]
+........................................................................ [ 73%]
+........................................................................ [ 80%]
+........................................................................ [ 86%]
+........................................................................ [ 93%]
+....................................................F.................   [100%]
+=================================== FAILURES ===================================
+_________ test_cd_official_configs_differ_only_in_mode_specific_logic __________
+
+    def test_cd_official_configs_differ_only_in_mode_specific_logic():
+        c_payload = yaml.safe_load(TASK_C_CONFIG.read_text(encoding="utf-8"))
+        d_payload = yaml.safe_load(TASK_D_CONFIG.read_text(encoding="utf-8"))
+>       assert _mapping_differences(c_payload, d_payload) == {
+            ("task", "mode"),
+            ("target", "policy"),
+            ("vision", "unknown_proposer", "enabled"),
+        }
+E       AssertionError: assert {('target', '...action'), ...} == {('target', '...', 'enabled')}
+E         Extra items in the left set:
+E         ('task_cd', 'short_edge_grasp', 'pca', 'support_plane_target_depth_center_fraction')
+E         ('task_cd', 'short_edge_grasp', 'pca', 'support_plane_roi_far_min_local_normal_z')
+E         ('task_cd', 'fixed_view_no_progress_cycles')
+E         ('task_cd', 'short_edge_grasp', 'pca', 'support_plane_roi_far_max_local_depth_span_m')
+E         Full diff:
+E           {...
+E         
+E         ...Full output truncated (23 lines hidden), use '-vv' to show
+
+test/test_v11_official_model.py:160: AssertionError
+=========================== short test summary info ============================
+FAILED test/test_v11_official_model.py::test_cd_official_configs_differ_only_in_mode_specific_logic
+1 failed, 1077 passed in 111.86s (0:01:51)

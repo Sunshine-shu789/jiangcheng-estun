@@ -1,0 +1,130 @@
+
+===== 任务B 五点位拾放 =====
+配置：/home/sunshine/Desktop/赛道一比赛程序/app/track1_grasp/config/track1_mock.yaml
+模式：安全试运行（机械臂不会运动）
+日志：/home/sunshine/Desktop/赛道一比赛程序/logs/task_B_20261017_203230.log
+
+getifaddrs: Operation not permitted
+getifaddrs: Operation not permitted
+getifaddrs: Operation not permitted
+[37;1m2026-10-17 20:32:31.153 [31;1m[[37;1mTRANSPORT_UDP[31;1m Error] [37mError creating socket: Operation not permitted[34;1m -> Function [36minit[m
+[37;1m2026-10-17 20:32:31.153 [31;1m[[37;1mRTPS_PARTICIPANT[31;1m Error] [37mUser transport failed to register.[34;1m -> Function [36mRTPSParticipantImpl[m
+[INFO] [1792240351.257461775] [track1_grasp]: [vision:mock] loaded 6 frame(s)
+[INFO] [1792240351.258395025] [track1_grasp]: [scan] capturing a frame
+[INFO] [1792240351.258644367] [track1_grasp]: [detect] frame 'mock_00_known_mug': 1 raw detection(s)
+[INFO] [1792240351.258879461] [track1_grasp]: [select] selected 'mug' conf=0.96 graspability=1.00: accepted by unordered policy
+[INFO] [1792240351.260538177] [track1_grasp]: [plan] planned 6 waypoint(s)
+[INFO] [1792240351.260762584] [track1_grasp]: [open_gripper] opening jaws before entering approach corridor
+[INFO] [1792240351.260957308] [track1_grasp]: [gripper:mock] open
+[INFO] [1792240351.261160344] [track1_grasp]: [approach] move to pregrasp: xyz=(-0.16, -0.1, 0.115)
+[INFO] [1792240351.261349131] [track1_grasp]: [motion:mock] pregrasp: xyz=(-0.16, -0.1, 0.115) rpy=(3.14159265, 0.0, 0.0) v=0.050
+[INFO] [1792240351.261534356] [track1_grasp]: [grasp] move to grasp: xyz=(-0.16, -0.1, 0.035)
+[INFO] [1792240351.261729080] [track1_grasp]: [motion:mock] grasp: xyz=(-0.16, -0.1, 0.035) rpy=(3.14159265, 0.0, 0.0) v=0.050
+[INFO] [1792240351.261915493] [track1_grasp]: [grasp] reached grasp pose; closing jaws
+[INFO] [1792240351.262104280] [track1_grasp]: [gripper:mock] close
+[INFO] [1792240351.262289505] [track1_grasp]: [verify_hold] checking whether the object is held
+[INFO] [1792240351.262477105] [track1_grasp]: [verify_hold] mock hold verifier accepted
+[INFO] [1792240351.262663518] [track1_grasp]: [lift] move to lift: xyz=(-0.16, -0.1, 0.155)
+[INFO] [1792240351.262859429] [track1_grasp]: [motion:mock] lift: xyz=(-0.16, -0.1, 0.155) rpy=(3.14159265, 0.0, 0.0) v=0.050
+[INFO] [1792240351.263045842] [track1_grasp]: [transfer] move to transfer: xyz=(0.3, -0.3, 0.16)
+[INFO] [1792240351.263229880] [track1_grasp]: [motion:mock] transfer: xyz=(0.3, -0.3, 0.16) rpy=(3.14159265, 0.0, 0.0) v=0.050
+[INFO] [1792240351.263502968] [track1_grasp]: [release] move to release: xyz=(0.3, -0.3, 0.08)
+[INFO] [1792240351.263766558] [track1_grasp]: [motion:mock] release: xyz=(0.3, -0.3, 0.08) rpy=(3.14159265, 0.0, 0.0) v=0.050
+[INFO] [1792240351.263981467] [track1_grasp]: [release] opening jaws to release the object
+[INFO] [1792240351.264179753] [track1_grasp]: [gripper:mock] open
+[INFO] [1792240351.264383976] [track1_grasp]: [retreat] move to retreat: xyz=(0.3, -0.3, 0.16)
+[INFO] [1792240351.264582262] [track1_grasp]: [motion:mock] retreat: xyz=(0.3, -0.3, 0.16) rpy=(3.14159265, 0.0, 0.0) v=0.050
+[INFO] [1792240351.264786484] [track1_grasp]: [done] object picked, transferred and released
+[INFO] [1792240351.264999019] [track1_grasp]: [scan] capturing a frame
+[INFO] [1792240351.265192555] [track1_grasp]: [detect] frame 'mock_01_unseen_object': 1 raw detection(s)
+[INFO] [1792240351.265397965] [track1_grasp]: [select] selected 'object' conf=0.82 graspability=0.82: accepted by unordered policy
+[INFO] [1792240351.267017499] [track1_grasp]: [plan] planned 6 waypoint(s)
+[INFO] [1792240351.267235970] [track1_grasp]: [approach] move to pregrasp: xyz=(0.02, -0.08, 0.115)
+[INFO] [1792240351.267448504] [track1_grasp]: [motion:mock] pregrasp: xyz=(0.02, -0.08, 0.115) rpy=(3.14159265, 0.0, 0.0) v=0.050
+[INFO] [1792240351.267653914] [track1_grasp]: [grasp] move to grasp: xyz=(0.02, -0.08, 0.035)
+[INFO] [1792240351.267866448] [track1_grasp]: [motion:mock] grasp: xyz=(0.02, -0.08, 0.035) rpy=(3.14159265, 0.0, 0.0) v=0.050
+[INFO] [1792240351.268064734] [track1_grasp]: [grasp] reached grasp pose; closing jaws
+[INFO] [1792240351.268260646] [track1_grasp]: [gripper:mock] close
+[INFO] [1792240351.268457744] [track1_grasp]: [verify_hold] checking whether the object is held
+[INFO] [1792240351.268650094] [track1_grasp]: [verify_hold] mock hold verifier accepted
+[INFO] [1792240351.268919620] [track1_grasp]: [lift] move to lift: xyz=(0.02, -0.08, 0.155)
+[INFO] [1792240351.269144028] [track1_grasp]: [motion:mock] lift: xyz=(0.02, -0.08, 0.155) rpy=(3.14159265, 0.0, 0.0) v=0.050
+[INFO] [1792240351.269354187] [track1_grasp]: [transfer] move to transfer: xyz=(0.3, 0.3, 0.16)
+[INFO] [1792240351.269563159] [track1_grasp]: [motion:mock] transfer: xyz=(0.3, 0.3, 0.16) rpy=(3.14159265, 0.0, 0.0) v=0.050
+[INFO] [1792240351.269782817] [track1_grasp]: [release] move to release: xyz=(0.3, 0.3, 0.08)
+[INFO] [1792240351.269978729] [track1_grasp]: [motion:mock] release: xyz=(0.3, 0.3, 0.08) rpy=(3.14159265, 0.0, 0.0) v=0.050
+[INFO] [1792240351.270167516] [track1_grasp]: [release] opening jaws to release the object
+[INFO] [1792240351.270358678] [track1_grasp]: [gripper:mock] open
+[INFO] [1792240351.270546278] [track1_grasp]: [retreat] move to retreat: xyz=(0.3, 0.3, 0.16)
+[INFO] [1792240351.270802744] [track1_grasp]: [motion:mock] retreat: xyz=(0.3, 0.3, 0.16) rpy=(3.14159265, 0.0, 0.0) v=0.050
+[INFO] [1792240351.271015278] [track1_grasp]: [done] object picked, transferred and released
+[INFO] [1792240351.271224250] [track1_grasp]: [scan] capturing a frame
+[INFO] [1792240351.271422536] [track1_grasp]: [detect] frame 'mock_02_known_bowl': 1 raw detection(s)
+[INFO] [1792240351.271623197] [track1_grasp]: [select] selected 'bowl' conf=0.91 graspability=0.95: accepted by unordered policy
+[INFO] [1792240351.273118059] [track1_grasp]: [plan] planned 6 waypoint(s)
+[INFO] [1792240351.273334156] [track1_grasp]: [approach] move to pregrasp: xyz=(0.18, 0.05, 0.115)
+[INFO] [1792240351.273534816] [track1_grasp]: [motion:mock] pregrasp: xyz=(0.18, 0.05, 0.115) rpy=(3.14159265, 0.0, 0.0) v=0.050
+[INFO] [1792240351.273736664] [track1_grasp]: [grasp] move to grasp: xyz=(0.18, 0.05, 0.035)
+[INFO] [1792240351.273925452] [track1_grasp]: [motion:mock] grasp: xyz=(0.18, 0.05, 0.035) rpy=(3.14159265, 0.0, 0.0) v=0.050
+[INFO] [1792240351.274114239] [track1_grasp]: [grasp] reached grasp pose; closing jaws
+[INFO] [1792240351.274300651] [track1_grasp]: [gripper:mock] close
+[INFO] [1792240351.274488251] [track1_grasp]: [verify_hold] checking whether the object is held
+[INFO] [1792240351.274669915] [track1_grasp]: [verify_hold] mock hold verifier accepted
+[INFO] [1792240351.274867013] [track1_grasp]: [lift] move to lift: xyz=(0.18, 0.05, 0.155)
+[INFO] [1792240351.275058175] [track1_grasp]: [motion:mock] lift: xyz=(0.18, 0.05, 0.155) rpy=(3.14159265, 0.0, 0.0) v=0.050
+[INFO] [1792240351.275248150] [track1_grasp]: [transfer] move to transfer: xyz=(-0.3, 0.3, 0.16)
+[INFO] [1792240351.275438125] [track1_grasp]: [motion:mock] transfer: xyz=(-0.3, 0.3, 0.16) rpy=(3.14159265, 0.0, 0.0) v=0.050
+[INFO] [1792240351.275624537] [track1_grasp]: [release] move to release: xyz=(-0.3, 0.3, 0.08)
+[INFO] [1792240351.275829947] [track1_grasp]: [motion:mock] release: xyz=(-0.3, 0.3, 0.08) rpy=(3.14159265, 0.0, 0.0) v=0.050
+[INFO] [1792240351.276017547] [track1_grasp]: [release] opening jaws to release the object
+[INFO] [1792240351.276203960] [track1_grasp]: [gripper:mock] open
+[INFO] [1792240351.276391560] [track1_grasp]: [retreat] move to retreat: xyz=(-0.3, 0.3, 0.16)
+[INFO] [1792240351.276581534] [track1_grasp]: [motion:mock] retreat: xyz=(-0.3, 0.3, 0.16) rpy=(3.14159265, 0.0, 0.0) v=0.050
+[INFO] [1792240351.276783382] [track1_grasp]: [done] object picked, transferred and released
+[INFO] [1792240351.276969795] [track1_grasp]: [scan] capturing a frame
+[INFO] [1792240351.277150271] [track1_grasp]: [detect] frame 'mock_03_known_book': 1 raw detection(s)
+[INFO] [1792240351.277343808] [track1_grasp]: [select] selected 'book' conf=0.88 graspability=0.90: accepted by unordered policy
+[INFO] [1792240351.278750807] [track1_grasp]: [plan] planned 6 waypoint(s)
+[INFO] [1792240351.278957405] [track1_grasp]: [approach] move to pregrasp: xyz=(-0.05, 0.17, 0.115)
+[INFO] [1792240351.279152129] [track1_grasp]: [motion:mock] pregrasp: xyz=(-0.05, 0.17, 0.115) rpy=(3.14159265, 0.0, 0.0) v=0.050
+[INFO] [1792240351.279343291] [track1_grasp]: [grasp] move to grasp: xyz=(-0.05, 0.17, 0.035)
+[INFO] [1792240351.279558199] [track1_grasp]: [motion:mock] grasp: xyz=(-0.05, 0.17, 0.035) rpy=(3.14159265, 0.0, 0.0) v=0.050
+[INFO] [1792240351.279839599] [track1_grasp]: [grasp] reached grasp pose; closing jaws
+[INFO] [1792240351.280079442] [track1_grasp]: [gripper:mock] close
+[INFO] [1792240351.280313349] [track1_grasp]: [verify_hold] checking whether the object is held
+[INFO] [1792240351.280573376] [track1_grasp]: [verify_hold] mock hold verifier accepted
+[INFO] [1792240351.280823905] [track1_grasp]: [lift] move to lift: xyz=(-0.05, 0.17, 0.155)
+[INFO] [1792240351.281064936] [track1_grasp]: [motion:mock] lift: xyz=(-0.05, 0.17, 0.155) rpy=(3.14159265, 0.0, 0.0) v=0.050
+[INFO] [1792240351.281307153] [track1_grasp]: [transfer] move to transfer: xyz=(-0.3, -0.3, 0.16)
+[INFO] [1792240351.281563619] [track1_grasp]: [motion:mock] transfer: xyz=(-0.3, -0.3, 0.16) rpy=(3.14159265, 0.0, 0.0) v=0.050
+[INFO] [1792240351.281829584] [track1_grasp]: [release] move to release: xyz=(-0.3, -0.3, 0.08)
+[INFO] [1792240351.282081300] [track1_grasp]: [motion:mock] release: xyz=(-0.3, -0.3, 0.08) rpy=(3.14159265, 0.0, 0.0) v=0.050
+[INFO] [1792240351.282337766] [track1_grasp]: [release] opening jaws to release the object
+[INFO] [1792240351.282596606] [track1_grasp]: [gripper:mock] open
+[INFO] [1792240351.282898191] [track1_grasp]: [retreat] move to retreat: xyz=(-0.3, -0.3, 0.16)
+[INFO] [1792240351.283191464] [track1_grasp]: [motion:mock] retreat: xyz=(-0.3, -0.3, 0.16) rpy=(3.14159265, 0.0, 0.0) v=0.050
+[INFO] [1792240351.283481176] [track1_grasp]: [done] object picked, transferred and released
+[INFO] [1792240351.283781573] [track1_grasp]: [scan] capturing a frame
+[INFO] [1792240351.284066535] [track1_grasp]: [detect] frame 'mock_04_known_mug_second': 1 raw detection(s)
+[INFO] [1792240351.284356246] [track1_grasp]: [select] selected 'mug' conf=0.94 graspability=0.98: accepted by unordered policy
+[INFO] [1792240351.286449529] [track1_grasp]: [plan] planned 6 waypoint(s)
+[INFO] [1792240351.286790296] [track1_grasp]: [approach] move to pregrasp: xyz=(-0.03, -0.02, 0.115)
+[INFO] [1792240351.287099005] [track1_grasp]: [motion:mock] pregrasp: xyz=(-0.03, -0.02, 0.115) rpy=(3.14159265, 0.0, 0.0) v=0.050
+[INFO] [1792240351.287399402] [track1_grasp]: [grasp] move to grasp: xyz=(-0.03, -0.02, 0.035)
+[INFO] [1792240351.287698612] [track1_grasp]: [motion:mock] grasp: xyz=(-0.03, -0.02, 0.035) rpy=(3.14159265, 0.0, 0.0) v=0.050
+[INFO] [1792240351.287991886] [track1_grasp]: [grasp] reached grasp pose; closing jaws
+[INFO] [1792240351.288270911] [track1_grasp]: [gripper:mock] close
+[INFO] [1792240351.288554686] [track1_grasp]: [verify_hold] checking whether the object is held
+[INFO] [1792240351.288845584] [track1_grasp]: [verify_hold] mock hold verifier accepted
+[INFO] [1792240351.289140045] [track1_grasp]: [lift] move to lift: xyz=(-0.03, -0.02, 0.155)
+[INFO] [1792240351.289427382] [track1_grasp]: [motion:mock] lift: xyz=(-0.03, -0.02, 0.155) rpy=(3.14159265, 0.0, 0.0) v=0.050
+[INFO] [1792240351.289733716] [track1_grasp]: [transfer] move to transfer: xyz=(0.0, 0.0, 0.16)
+[INFO] [1792240351.290031738] [track1_grasp]: [motion:mock] transfer: xyz=(0.0, 0.0, 0.16) rpy=(3.14159265, 0.0, 0.0) v=0.050
+[INFO] [1792240351.290317888] [track1_grasp]: [release] move to release: xyz=(0.0, 0.0, 0.08)
+[INFO] [1792240351.290601662] [track1_grasp]: [motion:mock] release: xyz=(0.0, 0.0, 0.08) rpy=(3.14159265, 0.0, 0.0) v=0.050
+[INFO] [1792240351.290888999] [track1_grasp]: [release] opening jaws to release the object
+[INFO] [1792240351.291177523] [track1_grasp]: [gripper:mock] open
+[INFO] [1792240351.291467234] [track1_grasp]: [retreat] move to retreat: xyz=(0.0, 0.0, 0.16)
+[INFO] [1792240351.291771194] [track1_grasp]: [motion:mock] retreat: xyz=(0.0, 0.0, 0.16) rpy=(3.14159265, 0.0, 0.0) v=0.050
+[INFO] [1792240351.292065654] [track1_grasp]: [done] object picked, transferred and released
+[INFO] [1792240351.292369614] [track1_grasp]: [run] requested=5 attempts=5 successes=5 rate=100.00%

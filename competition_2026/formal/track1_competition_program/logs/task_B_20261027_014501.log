@@ -1,0 +1,39 @@
+
+===== 任务B 五点位拾放 =====
+配置：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/track1_task_b_point2_safe_20261027.yaml
+视觉后端：realsense_yolo
+模式：安全试运行（机械臂不会运动）
+日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/task_B_20261027_014501.log
+
+正在启动机械臂状态桥接，日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/codroid_bridge_20261027_014501.log
+[bridge] RobotInfo 已就绪：state=AutoReady fault_flag=0 xyz=(-0.1554, 0.4821, 0.3292)
+[INFO] [1793036703.328790160] [track1_grasp]: [task_b_initial_pose] current_deg=[95.162, 46.084, 18.476, -20.862, 87.957, 3.024] target_deg=[82.657, 54.31, -32.193, -53.453, 84.446, -2.058] max_delta_deg=50.669 tolerance_deg=0.500
+[INFO] [1793036703.330065322] [track1_grasp]: [task_b_initial_pose] moving six axes together: dry_run=True estimated_steps=51 max_step_deg=1.000 total_abs_deg=[12.505, 8.227, 50.669, 32.59, 3.512, 5.082]
+[INFO] [1793036703.331270433] [track1_grasp]: [motion:robotmove:dry-run] task_b_initial_pose: would send joints=[82.66, 54.31, -32.19, -53.45, 84.45, -2.06] deg joint_velocity=0.600 rad/s
+[INFO] [1793036703.332431614] [track1_grasp]: [task_b_initial_pose] dry-run completed; no physical motion or final-position verification was performed
+[INFO] [1793036703.334420345] [track1_grasp]: [task_b_observation_pose] pick_2: current_deg=[82.657, 54.31, -32.193, -53.453, 84.446, -2.058] target_deg=[91.406, 74.367, -18.644, -35.901, 87.641, -19.601] max_delta_deg=20.057 tolerance_deg=0.500
+[INFO] [1793036703.335589837] [track1_grasp]: [task_b_observation_pose] pick_2: moving six axes together: dry_run=True estimated_steps=21 max_step_deg=1.000 total_abs_deg=[8.749, 20.057, 13.55, 17.552, 3.196, 17.543]
+[INFO] [1793036703.336754580] [track1_grasp]: [motion:robotmove:dry-run] task_b_observation_pick_2: would send joints=[91.41, 74.37, -18.64, -35.9, 87.64, -19.6] deg joint_velocity=0.600 rad/s
+[INFO] [1793036703.337907450] [track1_grasp]: [task_b_observation_pose] pick_2: dry-run completed; no physical motion or final-position verification was performed
+[INFO] [1793036703.339174301] [track1_grasp]: [scan] round 1/1: waiting for 8-Plastic_Banana at 'pick_2' xy=(-0.149, 0.515) within 0.250 m, completed_points_excluded=0 (wait attempt 1)
+[INFO] [1793036703.340342606] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1793036703.581068033] [track1_grasp]: [camera] D405 started 640x480@15 fx=392.7 fy=391.7 cx=314.4 cy=246.7
+[INFO] [1793036707.910177948] [track1_grasp]: [yolo] loading /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/models/best.pt
+[INFO] [1793036707.948792562] [track1_grasp]: [vision:realsense_yolo] ready 640x480 rotate180=True anchor=top_center cx=324.6 cy=232.3 stabilizer=on
+[INFO] [1793036710.497471095] [track1_grasp]: [detect] frame 'realsense-000001': 0 detection(s), no confirmed target
+[INFO] [1793036710.549372803] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1793036710.683171023] [track1_grasp]: [detect] frame 'realsense-000002': 0 detection(s), no confirmed target
+[INFO] [1793036710.734593062] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1793036710.824066933] [track1_grasp]: [pose] loaded camera transform from /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/camera_to_flange.d405_calibrated_20261025.yaml
+[INFO] [1793036710.825372965] [track1_grasp]: [detect] frame 'realsense-000003': 1 detection(s), 8-Plastic_Banana conf=0.83, confirmation 1/2
+[INFO] [1793036710.876970724] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1793036711.003975204] [track1_grasp]: [detect] frame 'realsense-000004': 1 detection(s), 8-Plastic_Banana conf=0.82, confirmation 2/2
+[INFO] [1793036711.005559064] [track1_grasp]: [scan] round 1/1: target confirmed at expected point 'pick_2'
+[INFO] [1793036711.006971953] [track1_grasp]: [select] selected '8-Plastic_Banana' conf=0.82 graspability=1.00: 8-Plastic_Banana confirmed in 2 consecutive frames
+[INFO] [1793036711.008907255] [track1_grasp]: [task_b_anchor_pose] pick_2: fixed high anchor xyz=(-0.124884, 0.521709, 0.241216) rpy=(3.128682, 0.04828, 0.365743)
+[INFO] [1793036711.010385446] [track1_grasp]: [plan] pick_2: RGB-D coordinates use live RobotInfo flange_xyz=(-0.155375, 0.482064, 0.329227); route planning uses the dry-run virtual flange_xyz=(-0.124884, 0.521709, 0.241216)
+[INFO] [1793036711.012021548] [track1_grasp]: [plan] pick_2: generated 1 object-relative grasp candidate(s)
+[INFO] [1793036711.013559103] [track1_grasp]: [plan] candidate 1: object_center_base=(-0.172242, 0.584562, -0.031106) major_axis_base=(0.997294, -0.018604, -0.071123) yaw_offset=0.000 deg pitch_offset=0.000 deg grasp_xyz=(-0.172242, 0.584562, 0.166534) grasp_rpy=(3.128682, 0.04828, 0.365743) pregrasp_xyz=(-0.172242, 0.584562, 0.241534) pregrasp_rpy=(3.128682, 0.04828, 0.365743)
+[INFO] [1793036715.874276247] [track1_grasp]: [plan] candidate 1: pregrasp endpoint condition check rejected: IK failed for adaptive candidate 1 candidate endpoint: pose IK did not converge for any deterministic seed/damping: seed=13 (offset[11]), damping=0.01: pose IK did not converge (position=0.021098 m, rotation=0.277692 rad, iterations=342, damping=0.01); seed=13 (offset[11]), damping=0.02: pose IK did not converge (position=0.021099 m, rotation=0.277679 rad, iterations=154, damping=0.02); seed=13 (offset[11]), damping=0.03: pose IK did not converge (position=0.021099 m, rotation=0.277679 rad, iterations=136, damping=0.03); seed=13 (offset[11]), damping=0.05: pose IK did not converge (position=0.021099 m, rotation=0.277678 rad, iterations=71, damping=0.05)
+[INFO] [1793036715.875537161] [track1_grasp]: [plan] pick_2: all 1 adaptive grasp candidate(s) were rejected before any motion or gripper command. candidate 1: pregrasp endpoint condition check rejected: IK failed for adaptive candidate 1 candidate endpoint: pose IK did not converge for any deterministic seed/damping: seed=13 (offset[11]), damping=0.01: pose IK did not converge (position=0.021098 m, rotation=0.277692 rad, iterations=342, damping=0.01); seed=13 (offset[11]), damping=0.02: pose IK did not converge (position=0.021099 m, rotation=0.277679 rad, iterations=154, damping=0.02); seed=13 (offset[11]), damping=0.03: pose IK did not converge (position=0.021099 m, rotation=0.277679 rad, iterations=136, damping=0.03); seed=13 (offset[11]), damping=0.05: pose IK did not converge (position=0.021099 m, rotation=0.277678 rad, iterations=71, damping=0.05)
+[INFO] [1793036715.876777892] [track1_grasp]: [run] requested=1 attempts=1 successes=0 rate=0.00%

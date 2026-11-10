@@ -1,0 +1,44 @@
+........................................................................ [ 24%]
+........................................................................ [ 48%]
+........................................................................ [ 72%]
+...................................................................F.... [ 96%]
+...........                                                              [100%]
+=================================== FAILURES ===================================
+______ test_final_live_launcher_config_is_the_validated_complete_workflow ______
+
+    def test_final_live_launcher_config_is_the_validated_complete_workflow():
+        config = load_config(FORMAL_TASK_B_FINAL_LIVE_CONFIG)
+    
+        assert config.task.mode is TaskMode.B
+        assert config.task_b.rounds == 5
+        assert config.task_b.place_names == (
+            "pick_1",
+            "pick_2",
+            "pick_3",
+            "pick_4",
+            "pick_5",
+        )
+        assert config.task_b.return_to_pick is True
+        assert config.task_b.return_to_initial_after_each_pick is True
+        assert config.task_b.return_to_initial_after_task is False
+        assert config.task_b.operator_pause_after_each_pick is True
+        assert config.task_b.keep_same_target is True
+        assert config.task_b.target_class == "8-Plastic_Banana"
+        assert config.task_b.next_point_timeout_s == 0.0
+        assert config.task_b.place_poses_file.endswith("task_b_place_poses_20261020.yaml")
+        assert config.motion.backend == "robotmove"
+        assert config.motion.dry_run is False
+        assert config.motion.speed_mps == pytest.approx(0.12)
+        assert config.motion.joint_speed_rad_s == pytest.approx(0.6)
+        assert config.motion.joint_speed_safety_limit_rad_s == pytest.approx(0.7)
+>       assert config.gripper.backend == "ms42dc_ros"
+E       AssertionError: assert 'ms42dc' == 'ms42dc_ros'
+E         - ms42dc_ros
+E         ?       ----
+E         + ms42dc
+
+test/test_task_b.py:1926: AssertionError
+=========================== short test summary info ============================
+FAILED test/test_task_b.py::test_final_live_launcher_config_is_the_validated_complete_workflow
+1 failed, 298 passed in 19.45s
+FULL_EXIT=1 (1 expected due to pre-existing ms42dc/ms42dc_ros assertion)

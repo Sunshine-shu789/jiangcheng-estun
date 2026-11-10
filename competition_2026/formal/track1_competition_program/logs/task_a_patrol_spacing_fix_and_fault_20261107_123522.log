@@ -1,0 +1,17 @@
+===== 任务A十点位巡检修复与实机故障 2026-11-07 12:35:22 CST =====
+
+问题1：启动预检报 patrol target 6 distance=0.147 m < 0.150 m。
+处理：第2弧 J2 偏移 -9 deg -> -12 deg，保持安全门槛 0.150 m 不变。
+实测当前姿态：第5->6点间距 0.165440 m；全部11段路线预检通过。
+备份：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/backups/task_a_low_elbow_patrol_spacing_fix_20261107_123100
+
+离线测试：
+  Task A joint patrol: 21 passed, 1 skipped
+  Task A combined:     35 passed, 1 skipped
+  Config:              142 passed, 5 skipped
+
+实机运行：task_A_20261107_123214.log
+结果：第1-4点完成后，在执行第5点（J1目标 -72 deg）时控制器 fault_flag=1。
+停止反馈：state=AutoRunning, joints_deg=(-70.312, 15.009, 88.871, -0.001, 89.983, -0.008)
+安全动作：程序立即停止后续运动并退出；未自动重启。
+待现场确认：示教器故障代码、是否存在碰撞/线缆干涉、控制器J1实际限位和故障复位条件。

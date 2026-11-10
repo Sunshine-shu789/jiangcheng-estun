@@ -1,0 +1,32 @@
+[start] one-shot pick_4 grasp; log=/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/task_b_pick4_grasp_once_20261106_204727.log
+[authorization] exactly one pick_4 grasp at 0.12 m/s; no automatic retry; no release; no retreat; no continuation
+[gates] target=8-Plastic_Banana imgsz=640 padding=80 speed=0.120 grasp_z=0.169903174 approach=0.075
+ROBOT state=AutoReady fault=0 xyz=(0.038596, 0.440595, 0.256350) rpy=(-3.121085, 0.049619, -0.522535)
+JOINTS_DEG=[70.252, 92.064, -73.739, -70.014, 87.411, 10.258]
+START_CHECK position_error=0.004 mm rotation_error=0.000027 rad
+[preflight] existing /RobotMove bridge subscriber confirmed
+[camera] D405 started 640x480@15 fx=392.7 fy=391.7 cx=314.4 cy=246.7
+[yolo] loading /media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/models/best.pt
+[vision:realsense_yolo] model input size verified imgsz=640
+[vision:realsense_yolo] ready 640x480 rotate180=True anchor=top_center cx=324.6 cy=232.3 inference_padding_px=80 stabilizer=on unknown_proposer=off
+FRAME 01 frame=realsense-000001 banana_count=0 all_detections=0 formal=False image=/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/vision_banana_center_diagnostics/frame_000001.jpg
+FRAME 02 frame=realsense-000002 banana_count=0 all_detections=0 formal=False image=
+[pose] loaded camera transform from /media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/config/camera_to_flange.d405_calibrated_20261025.yaml
+FORMAL 03 frame=realsense-000003 conf=0.9400 pose_conf=0.5657 center_base=(0.037098,0.437452,-0.034141) short_deg=16.290 nearest=pick_4:0.027681 margin=0.021665 tcp_distance=0.003481 image=
+FORMAL 04 frame=realsense-000004 conf=0.9394 pose_conf=0.5661 center_base=(0.037442,0.436501,-0.034170) short_deg=19.363 nearest=pick_4:0.026769 margin=0.023549 tcp_distance=0.004253 image=
+FORMAL 05 frame=realsense-000005 conf=0.9389 pose_conf=0.5645 center_base=(0.037457,0.436105,-0.034276) short_deg=20.774 nearest=pick_4:0.026484 margin=0.024229 tcp_distance=0.004630 image=
+FORMAL 06 frame=realsense-000006 conf=0.9384 pose_conf=0.5651 center_base=(0.037513,0.435658,-0.034371) short_deg=22.898 nearest=pick_4:0.026137 margin=0.025026 tcp_distance=0.005051 image=
+FORMAL 07 frame=realsense-000007 conf=0.9384 pose_conf=0.5646 center_base=(0.037639,0.436353,-0.032365) short_deg=21.918 nearest=pick_4:0.026525 margin=0.023952 tcp_distance=0.004345 image=
+FORMAL 08 frame=realsense-000008 conf=0.9376 pose_conf=0.5661 center_base=(0.037487,0.435991,-0.032910) short_deg=22.425 nearest=pick_4:0.026384 margin=0.024445 tcp_distance=0.004734 image=
+FORMAL 09 frame=realsense-000009 conf=0.9374 pose_conf=0.5670 center_base=(0.037658,0.435564,-0.032979) short_deg=23.352 nearest=pick_4:0.025967 margin=0.025299 tcp_distance=0.005115 image=
+FORMAL 10 frame=realsense-000010 conf=0.9368 pose_conf=0.5663 center_base=(0.037507,0.436612,-0.033177) short_deg=21.034 nearest=pick_4:0.026799 margin=0.023411 tcp_distance=0.004128 image=
+FORMAL 11 frame=realsense-000011 conf=0.9370 pose_conf=0.5671 center_base=(0.037889,0.436104,-0.032695) short_deg=22.483 nearest=pick_4:0.026172 margin=0.024571 tcp_distance=0.004544 image=
+FORMAL 12 frame=realsense-000012 conf=0.9366 pose_conf=0.5690 center_base=(0.038277,0.435959,-0.031329) short_deg=24.204 nearest=pick_4:0.025793 margin=0.025125 tcp_distance=0.004645 image=
+VISION_SUMMARY stable=10/12 formal=10 median_xy=(0.037510,0.436105) center_spread=0.001409 short_axis_spread_deg=5.187 assignment=pick_4 min_margin=0.021665 selected_tcp_center_distance=0.004645 max_observed_tcp_center_distance=0.005115
+VISION_CHECKS stable_frames=1 formal_frames=1 pick_4_only=1 assignment_margin=1 center_spread=1 short_axis_stable=1 short_axis_orthogonal=1 tcp_center_aligned=1
+[vision] selected frame=realsense-000012 image=
+CLOSE_WIDTH measured=0.037319 m required_opening=0.042319 m maximum_opening=0.105497 m
+[ABORT] stage=PRE_MOTION TypeError: unsupported format string passed to NoneType.__format__
+SAFETY_STOP close_attempted=0 lift_attempted=0; no retry, release or retreat sent
+VERDICT=ABORTED_NO_RETRY
+LOG=/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/task_b_pick4_grasp_once_20261106_204727.log

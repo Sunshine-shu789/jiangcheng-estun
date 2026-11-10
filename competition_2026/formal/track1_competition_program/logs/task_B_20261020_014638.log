@@ -1,0 +1,408 @@
+
+===== 任务B 五点位拾放 =====
+配置：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/track1_task_b_point5_live_once.yaml
+视觉后端：realsense_yolo
+模式：真机执行
+日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/task_B_20261020_014638.log
+
+夹爪 ROS 节点已在运行（PID=49232），不重复启动。
+机械臂状态桥接已在运行（PID=48121），不重复启动。
+[bridge] RobotInfo 已就绪：state=AutoReady fault_flag=0 xyz=(0.0344, 0.5058, 0.2621)
+[INFO] [1792431999.141746420] [track1_grasp]: [gripper:ms42dc_ros] control=/motor_control state=/motor_state id=1
+[INFO] [1792431999.143174742] [track1_grasp]: [task_b_initial_pose] no initial pose file configured; keeping the current arm posture
+[INFO] [1792431999.193971004] [track1_grasp]: [scan] round 1/1: waiting for 8-Plastic_Banana at 'pick_5' xy=(0.034, 0.506) within 0.080 m, completed_points_excluded=0 (wait attempt 1)
+[INFO] [1792431999.194176407] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792431999.432879538] [track1_grasp]: [camera] D405 started 640x480@15 fx=392.7 fy=391.7 cx=314.4 cy=246.7
+[INFO] [1792432002.385285374] [track1_grasp]: [yolo] loading /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/models/best.pt
+[INFO] [1792432002.422540478] [track1_grasp]: [vision:realsense_yolo] ready 640x480 rotate180=True anchor=top_center cx=324.6 cy=232.3 stabilizer=on
+[INFO] [1792432003.352587111] [track1_grasp]: [detect] frame 'realsense-000001': 0 detection(s), no confirmed target
+[INFO] [1792432003.403039056] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792432003.441304552] [track1_grasp]: [detect] frame 'realsense-000002': 0 detection(s), no confirmed target
+[INFO] [1792432003.491674574] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792432003.531437255] [track1_grasp]: [pose] loaded camera transform from /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/camera_to_flange.d405_assumed.yaml
+[INFO] [1792432003.531875369] [track1_grasp]: [detect] frame 'realsense-000003': 2 detection(s), 8-Plastic_Banana conf=0.92, confirmation 1/2
+[INFO] [1792432003.582348685] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792432003.624887275] [track1_grasp]: [detect] frame 'realsense-000004': 2 detection(s), 8-Plastic_Banana conf=0.92, confirmation 2/2
+[INFO] [1792432003.625179351] [track1_grasp]: [scan] round 1/1: target confirmed at expected point 'pick_5'
+[INFO] [1792432003.625415624] [track1_grasp]: [select] selected '8-Plastic_Banana' conf=0.92 graspability=1.00: 8-Plastic_Banana confirmed in 2 consecutive frames
+[INFO] [1792432003.625749255] [track1_grasp]: [plan] planned 6 waypoint(s)
+[INFO] [1792432003.800207576] [track1_grasp]: [motion:cartesian-precheck] target 1: 29 waypoint(s), planning_step=1.000 mm, max_joint_step=0.359 deg, max_joint_accel=0.022 deg, min_sigma=0.04200, axis_step_deg=0.048,0.191,0.359,0.314,0.098,0.236, axis_travel_deg=1.298,5.313,9.759,8.584,2.658,6.630
+[INFO] [1792432004.127518917] [track1_grasp]: [motion:cartesian-precheck] target 2: 80 waypoint(s), planning_step=1.000 mm, max_joint_step=0.243 deg, max_joint_accel=0.010 deg, min_sigma=0.05004, axis_step_deg=0.000,0.234,0.243,0.073,0.001,0.000, axis_travel_deg=0.002,17.150,14.394,2.840,0.005,0.001
+[INFO] [1792432004.453403124] [track1_grasp]: [motion:cartesian-precheck] target 3: 80 waypoint(s), planning_step=1.000 mm, max_joint_step=0.244 deg, max_joint_accel=0.036 deg, min_sigma=0.04987, axis_step_deg=0.002,0.234,0.244,0.073,0.004,0.001, axis_travel_deg=0.004,17.129,14.352,2.840,0.009,0.002
+[INFO] [1792432004.454558367] [track1_grasp]: [motion:cartesian-precheck] target 4: 0 waypoint(s), planning_step=1.000 mm, max_joint_step=0.000 deg, max_joint_accel=0.000 deg, min_sigma=0.04987, axis_step_deg=0.000,0.000,0.000,0.000,0.000,0.000, axis_travel_deg=0.000,0.000,0.000,0.000,0.000,0.000
+[INFO] [1792432004.781115773] [track1_grasp]: [motion:cartesian-precheck] target 5: 80 waypoint(s), planning_step=1.000 mm, max_joint_step=0.244 deg, max_joint_accel=0.044 deg, min_sigma=0.05004, axis_step_deg=0.002,0.235,0.244,0.073,0.004,0.001, axis_travel_deg=0.004,17.129,14.352,2.839,0.010,0.003
+[INFO] [1792432005.107445217] [track1_grasp]: [motion:cartesian-precheck] target 6: 80 waypoint(s), planning_step=1.000 mm, max_joint_step=0.244 deg, max_joint_accel=0.036 deg, min_sigma=0.04987, axis_step_deg=0.002,0.234,0.244,0.073,0.004,0.001, axis_travel_deg=0.004,17.129,14.352,2.840,0.009,0.002
+[INFO] [1792432005.108031743] [track1_grasp]: [motion:linear-precheck] validated 6 segment(s), 349 Cartesian waypoint(s), min_sigma=0.04171
+[INFO] [1792432005.108504289] [track1_grasp]: [plan] full-route precheck passed: 6 segment(s)
+[INFO] [1792432005.109044510] [track1_grasp]: [open_gripper] opening jaws before entering approach corridor
+[INFO] [1792432005.109765201] [track1_grasp]: [gripper:ms42dc_ros] open: dir=0 angle_wire=30000 speed_wire=100
+[INFO] [1792432007.422283936] [track1_grasp]: [approach] move to pregrasp: xyz=(0.0342, 0.4867, 0.2415)
+[INFO] [1792432007.423160164] [track1_grasp]: [motion:robotmove] sent pregrasp_p001: joints=[74.04, 82.98, -44.76, -49.18, 90.51, 5.84] deg
+[INFO] [1792432007.774885958] [track1_grasp]: [motion:robotmove] sent pregrasp_p002: joints=[74.0, 83.18, -45.12, -49.49, 90.42, 6.08] deg
+[INFO] [1792432008.126513206] [track1_grasp]: [motion:robotmove] sent pregrasp_p003: joints=[73.95, 83.37, -45.48, -49.81, 90.33, 6.31] deg
+[INFO] [1792432008.478098899] [track1_grasp]: [motion:robotmove] sent pregrasp_p004: joints=[73.91, 83.55, -45.83, -50.12, 90.25, 6.54] deg
+[INFO] [1792432008.829777201] [track1_grasp]: [motion:robotmove] sent pregrasp_p005: joints=[73.87, 83.74, -46.19, -50.43, 90.16, 6.78] deg
+[INFO] [1792432009.181444818] [track1_grasp]: [motion:robotmove] sent pregrasp_p006: joints=[73.83, 83.93, -46.54, -50.74, 90.07, 7.01] deg
+[INFO] [1792432009.532708752] [track1_grasp]: [motion:robotmove] sent pregrasp_p007: joints=[73.78, 84.12, -46.89, -51.04, 89.98, 7.24] deg
+[INFO] [1792432009.884178090] [track1_grasp]: [motion:robotmove] sent pregrasp_p008: joints=[73.74, 84.31, -47.24, -51.35, 89.9, 7.47] deg
+[INFO] [1792432010.235664049] [track1_grasp]: [motion:robotmove] sent pregrasp_p009: joints=[73.7, 84.49, -47.58, -51.65, 89.81, 7.7] deg
+[INFO] [1792432010.587193939] [track1_grasp]: [motion:robotmove] sent pregrasp_p010: joints=[73.65, 84.68, -47.93, -51.95, 89.72, 7.94] deg
+[INFO] [1792432010.938875803] [track1_grasp]: [motion:robotmove] sent pregrasp_p011: joints=[73.61, 84.86, -48.27, -52.25, 89.63, 8.17] deg
+[INFO] [1792432011.290371261] [track1_grasp]: [motion:robotmove] sent pregrasp_p012: joints=[73.57, 85.05, -48.61, -52.55, 89.54, 8.4] deg
+[INFO] [1792432011.641822789] [track1_grasp]: [motion:robotmove] sent pregrasp_p013: joints=[73.52, 85.23, -48.95, -52.85, 89.45, 8.63] deg
+[INFO] [1792432011.993476158] [track1_grasp]: [motion:robotmove] sent pregrasp_p014: joints=[73.48, 85.42, -49.29, -53.15, 89.35, 8.85] deg
+[INFO] [1792432012.344960930] [track1_grasp]: [motion:robotmove] sent pregrasp_p015: joints=[73.43, 85.6, -49.62, -53.44, 89.26, 9.08] deg
+[INFO] [1792432012.696463512] [track1_grasp]: [motion:robotmove] sent pregrasp_p016: joints=[73.39, 85.78, -49.96, -53.74, 89.17, 9.31] deg
+[INFO] [1792432013.047875859] [track1_grasp]: [motion:robotmove] sent pregrasp_p017: joints=[73.34, 85.96, -50.29, -54.03, 89.08, 9.54] deg
+[INFO] [1792432013.399340447] [track1_grasp]: [motion:robotmove] sent pregrasp_p018: joints=[73.3, 86.15, -50.62, -54.32, 88.98, 9.77] deg
+[INFO] [1792432013.751010438] [track1_grasp]: [motion:robotmove] sent pregrasp_p019: joints=[73.25, 86.33, -50.95, -54.61, 88.89, 9.99] deg
+[INFO] [1792432014.102432283] [track1_grasp]: [motion:robotmove] sent pregrasp_p020: joints=[73.2, 86.51, -51.28, -54.9, 88.8, 10.22] deg
+[INFO] [1792432014.453909932] [track1_grasp]: [motion:robotmove] sent pregrasp_p021: joints=[73.16, 86.69, -51.61, -55.19, 88.7, 10.44] deg
+[INFO] [1792432014.805489688] [track1_grasp]: [motion:robotmove] sent pregrasp_p022: joints=[73.11, 86.87, -51.93, -55.48, 88.61, 10.67] deg
+[INFO] [1792432015.157121685] [track1_grasp]: [motion:robotmove] sent pregrasp_p023: joints=[73.07, 87.05, -52.26, -55.76, 88.51, 10.9] deg
+[INFO] [1792432015.509369892] [track1_grasp]: [motion:robotmove] sent pregrasp_p024: joints=[73.02, 87.23, -52.58, -56.05, 88.42, 11.12] deg
+[INFO] [1792432015.810825398] [track1_grasp]: [motion:robotmove] sent pregrasp_p025: joints=[72.97, 87.4, -52.91, -56.33, 88.32, 11.34] deg
+[INFO] [1792432016.112231037] [track1_grasp]: [motion:robotmove] sent pregrasp_p026: joints=[72.92, 87.58, -53.23, -56.61, 88.22, 11.57] deg
+[INFO] [1792432016.413700791] [track1_grasp]: [motion:robotmove] sent pregrasp_p027: joints=[72.88, 87.76, -53.55, -56.89, 88.13, 11.79] deg
+[INFO] [1792432016.715176481] [track1_grasp]: [motion:robotmove] sent pregrasp_p028: joints=[72.83, 87.94, -53.87, -57.17, 88.03, 12.01] deg
+[INFO] [1792432017.016731721] [track1_grasp]: [motion:robotmove] sent pregrasp_p029: joints=[72.78, 88.12, -54.19, -57.45, 87.93, 12.23] deg
+[INFO] [1792432017.318153982] [track1_grasp]: [motion:linear] pregrasp: completed 0.028 m with 29 waypoint(s), max_joint_step=0.359 deg
+[INFO] [1792432017.318513734] [track1_grasp]: [grasp] move to grasp: xyz=(0.0342, 0.4867, 0.1615)
+[INFO] [1792432017.319037334] [track1_grasp]: [motion:robotmove] sent grasp_p001: joints=[72.78, 88.35, -54.43, -57.46, 87.93, 12.23] deg
+[INFO] [1792432017.620394294] [track1_grasp]: [motion:robotmove] sent grasp_p002: joints=[72.78, 88.59, -54.67, -57.47, 87.93, 12.23] deg
+[INFO] [1792432017.921849800] [track1_grasp]: [motion:robotmove] sent grasp_p003: joints=[72.78, 88.82, -54.91, -57.48, 87.93, 12.23] deg
+[INFO] [1792432018.223249503] [track1_grasp]: [motion:robotmove] sent grasp_p004: joints=[72.78, 89.05, -55.15, -57.48, 87.93, 12.23] deg
+[INFO] [1792432018.524676514] [track1_grasp]: [motion:robotmove] sent grasp_p005: joints=[72.78, 89.28, -55.39, -57.49, 87.93, 12.23] deg
+[INFO] [1792432018.826205633] [track1_grasp]: [motion:robotmove] sent grasp_p006: joints=[72.78, 89.51, -55.62, -57.49, 87.93, 12.23] deg
+[INFO] [1792432019.127664701] [track1_grasp]: [motion:robotmove] sent grasp_p007: joints=[72.78, 89.74, -55.85, -57.49, 87.93, 12.23] deg
+[INFO] [1792432019.428975357] [track1_grasp]: [motion:robotmove] sent grasp_p008: joints=[72.78, 89.98, -56.09, -57.49, 87.93, 12.23] deg
+[INFO] [1792432019.730442736] [track1_grasp]: [motion:robotmove] sent grasp_p009: joints=[72.78, 90.2, -56.31, -57.49, 87.93, 12.23] deg
+[INFO] [1792432020.031819880] [track1_grasp]: [motion:robotmove] sent grasp_p010: joints=[72.78, 90.43, -56.54, -57.49, 87.93, 12.23] deg
+[INFO] [1792432020.333212459] [track1_grasp]: [motion:robotmove] sent grasp_p011: joints=[72.78, 90.66, -56.77, -57.49, 87.93, 12.23] deg
+[INFO] [1792432020.634739204] [track1_grasp]: [motion:robotmove] sent grasp_p012: joints=[72.78, 90.89, -56.99, -57.48, 87.93, 12.23] deg
+[INFO] [1792432020.936198272] [track1_grasp]: [motion:robotmove] sent grasp_p013: joints=[72.78, 91.12, -57.21, -57.48, 87.93, 12.23] deg
+[INFO] [1792432021.237683460] [track1_grasp]: [motion:robotmove] sent grasp_p014: joints=[72.78, 91.34, -57.43, -57.47, 87.93, 12.23] deg
+[INFO] [1792432021.539066541] [track1_grasp]: [motion:robotmove] sent grasp_p015: joints=[72.78, 91.57, -57.65, -57.46, 87.93, 12.23] deg
+[INFO] [1792432021.840575476] [track1_grasp]: [motion:robotmove] sent grasp_p016: joints=[72.78, 91.8, -57.87, -57.45, 87.93, 12.23] deg
+[INFO] [1792432022.141826766] [track1_grasp]: [motion:robotmove] sent grasp_p017: joints=[72.78, 92.02, -58.08, -57.44, 87.93, 12.23] deg
+[INFO] [1792432022.443069746] [track1_grasp]: [motion:robotmove] sent grasp_p018: joints=[72.78, 92.25, -58.3, -57.43, 87.93, 12.23] deg
+[INFO] [1792432022.744537125] [track1_grasp]: [motion:robotmove] sent grasp_p019: joints=[72.78, 92.47, -58.5, -57.42, 87.93, 12.23] deg
+[INFO] [1792432023.045971260] [track1_grasp]: [motion:robotmove] sent grasp_p020: joints=[72.78, 92.69, -58.71, -57.41, 87.93, 12.23] deg
+[INFO] [1792432023.347450512] [track1_grasp]: [motion:robotmove] sent grasp_p021: joints=[72.78, 92.91, -58.92, -57.39, 87.93, 12.23] deg
+[INFO] [1792432023.648827656] [track1_grasp]: [motion:robotmove] sent grasp_p022: joints=[72.78, 93.14, -59.13, -57.38, 87.93, 12.23] deg
+[INFO] [1792432023.950246356] [track1_grasp]: [motion:robotmove] sent grasp_p023: joints=[72.78, 93.36, -59.33, -57.36, 87.93, 12.23] deg
+[INFO] [1792432024.251681678] [track1_grasp]: [motion:robotmove] sent grasp_p024: joints=[72.78, 93.58, -59.54, -57.34, 87.93, 12.23] deg
+[INFO] [1792432024.553176365] [track1_grasp]: [motion:robotmove] sent grasp_p025: joints=[72.78, 93.8, -59.74, -57.32, 87.93, 12.23] deg
+[INFO] [1792432024.854669865] [track1_grasp]: [motion:robotmove] sent grasp_p026: joints=[72.78, 94.02, -59.94, -57.3, 87.93, 12.23] deg
+[INFO] [1792432025.156282095] [track1_grasp]: [motion:robotmove] sent grasp_p027: joints=[72.78, 94.24, -60.14, -57.28, 87.93, 12.23] deg
+[INFO] [1792432025.408488391] [track1_grasp]: [motion:robotmove] sent grasp_p028: joints=[72.78, 94.46, -60.33, -57.26, 87.93, 12.23] deg
+[INFO] [1792432025.709966456] [track1_grasp]: [motion:robotmove] sent grasp_p029: joints=[72.78, 94.68, -60.53, -57.23, 87.93, 12.23] deg
+[INFO] [1792432026.011539505] [track1_grasp]: [motion:robotmove] sent grasp_p030: joints=[72.78, 94.9, -60.72, -57.21, 87.93, 12.23] deg
+[INFO] [1792432026.312834725] [track1_grasp]: [motion:robotmove] sent grasp_p031: joints=[72.78, 95.11, -60.91, -57.18, 87.93, 12.23] deg
+[INFO] [1792432026.614251051] [track1_grasp]: [motion:robotmove] sent grasp_p032: joints=[72.78, 95.33, -61.11, -57.15, 87.93, 12.23] deg
+[INFO] [1792432026.915691122] [track1_grasp]: [motion:robotmove] sent grasp_p033: joints=[72.78, 95.55, -61.29, -57.13, 87.93, 12.23] deg
+[INFO] [1792432027.217133568] [track1_grasp]: [motion:robotmove] sent grasp_p034: joints=[72.78, 95.76, -61.48, -57.1, 87.93, 12.23] deg
+[INFO] [1792432027.468526563] [track1_grasp]: [motion:robotmove] sent grasp_p035: joints=[72.78, 95.98, -61.67, -57.07, 87.93, 12.23] deg
+[INFO] [1792432027.770054495] [track1_grasp]: [motion:robotmove] sent grasp_p036: joints=[72.78, 96.2, -61.85, -57.04, 87.93, 12.23] deg
+[INFO] [1792432028.021226653] [track1_grasp]: [motion:robotmove] sent grasp_p037: joints=[72.78, 96.41, -62.03, -57.0, 87.93, 12.23] deg
+[INFO] [1792432028.272511604] [track1_grasp]: [motion:robotmove] sent grasp_p038: joints=[72.78, 96.62, -62.21, -56.97, 87.93, 12.23] deg
+[INFO] [1792432028.573949301] [track1_grasp]: [motion:robotmove] sent grasp_p039: joints=[72.78, 96.84, -62.39, -56.94, 87.93, 12.23] deg
+[INFO] [1792432028.825218817] [track1_grasp]: [motion:robotmove] sent grasp_p040: joints=[72.78, 97.05, -62.57, -56.9, 87.93, 12.23] deg
+[INFO] [1792432029.126674323] [track1_grasp]: [motion:robotmove] sent grasp_p041: joints=[72.78, 97.26, -62.75, -56.86, 87.93, 12.23] deg
+[INFO] [1792432029.427988541] [track1_grasp]: [motion:robotmove] sent grasp_p042: joints=[72.78, 97.48, -62.92, -56.83, 87.93, 12.23] deg
+[INFO] [1792432029.729489164] [track1_grasp]: [motion:robotmove] sent grasp_p043: joints=[72.78, 97.69, -63.1, -56.79, 87.93, 12.23] deg
+[INFO] [1792432030.030806944] [track1_grasp]: [motion:robotmove] sent grasp_p044: joints=[72.78, 97.9, -63.27, -56.75, 87.93, 12.23] deg
+[INFO] [1792432030.332161529] [track1_grasp]: [motion:robotmove] sent grasp_p045: joints=[72.78, 98.11, -63.44, -56.71, 87.93, 12.23] deg
+[INFO] [1792432030.633650280] [track1_grasp]: [motion:robotmove] sent grasp_p046: joints=[72.78, 98.32, -63.61, -56.67, 87.93, 12.23] deg
+[INFO] [1792432030.935105786] [track1_grasp]: [motion:robotmove] sent grasp_p047: joints=[72.78, 98.53, -63.78, -56.62, 87.93, 12.23] deg
+[INFO] [1792432031.236606410] [track1_grasp]: [motion:robotmove] sent grasp_p048: joints=[72.78, 98.75, -63.95, -56.58, 87.93, 12.23] deg
+[INFO] [1792432031.538114157] [track1_grasp]: [motion:robotmove] sent grasp_p049: joints=[72.78, 98.96, -64.11, -56.54, 87.93, 12.23] deg
+[INFO] [1792432031.839580349] [track1_grasp]: [motion:robotmove] sent grasp_p050: joints=[72.78, 99.16, -64.28, -56.49, 87.93, 12.23] deg
+[INFO] [1792432032.140953931] [track1_grasp]: [motion:robotmove] sent grasp_p051: joints=[72.78, 99.37, -64.44, -56.45, 87.93, 12.23] deg
+[INFO] [1792432032.442290707] [track1_grasp]: [motion:robotmove] sent grasp_p052: joints=[72.78, 99.58, -64.6, -56.4, 87.93, 12.23] deg
+[INFO] [1792432032.743837636] [track1_grasp]: [motion:robotmove] sent grasp_p053: joints=[72.78, 99.79, -64.76, -56.35, 87.93, 12.23] deg
+[INFO] [1792432033.045294329] [track1_grasp]: [motion:robotmove] sent grasp_p054: joints=[72.78, 100.0, -64.92, -56.3, 87.93, 12.23] deg
+[INFO] [1792432033.346645353] [track1_grasp]: [motion:robotmove] sent grasp_p055: joints=[72.78, 100.21, -65.08, -56.25, 87.93, 12.23] deg
+[INFO] [1792432033.647942948] [track1_grasp]: [motion:robotmove] sent grasp_p056: joints=[72.78, 100.41, -65.23, -56.2, 87.93, 12.23] deg
+[INFO] [1792432033.949381832] [track1_grasp]: [motion:robotmove] sent grasp_p057: joints=[72.78, 100.62, -65.39, -56.15, 87.93, 12.23] deg
+[INFO] [1792432034.250774411] [track1_grasp]: [motion:robotmove] sent grasp_p058: joints=[72.78, 100.83, -65.54, -56.09, 87.93, 12.23] deg
+[INFO] [1792432034.552128997] [track1_grasp]: [motion:robotmove] sent grasp_p059: joints=[72.78, 101.03, -65.69, -56.04, 87.93, 12.23] deg
+[INFO] [1792432034.853590440] [track1_grasp]: [motion:robotmove] sent grasp_p060: joints=[72.78, 101.24, -65.84, -55.98, 87.93, 12.23] deg
+[INFO] [1792432035.155072066] [track1_grasp]: [motion:robotmove] sent grasp_p061: joints=[72.78, 101.44, -65.99, -55.93, 87.93, 12.23] deg
+[INFO] [1792432035.456525198] [track1_grasp]: [motion:robotmove] sent grasp_p062: joints=[72.78, 101.65, -66.14, -55.87, 87.93, 12.23] deg
+[INFO] [1792432035.708185336] [track1_grasp]: [motion:robotmove] sent grasp_p063: joints=[72.78, 101.85, -66.28, -55.81, 87.93, 12.23] deg
+[INFO] [1792432036.009379636] [track1_grasp]: [motion:robotmove] sent grasp_p064: joints=[72.78, 102.05, -66.43, -55.76, 87.93, 12.23] deg
+[INFO] [1792432036.310718787] [track1_grasp]: [motion:robotmove] sent grasp_p065: joints=[72.78, 102.26, -66.57, -55.7, 87.93, 12.23] deg
+[INFO] [1792432036.612237220] [track1_grasp]: [motion:robotmove] sent grasp_p066: joints=[72.78, 102.46, -66.71, -55.64, 87.93, 12.23] deg
+[INFO] [1792432036.913661856] [track1_grasp]: [motion:robotmove] sent grasp_p067: joints=[72.78, 102.66, -66.86, -55.57, 87.93, 12.23] deg
+[INFO] [1792432037.215025941] [track1_grasp]: [motion:robotmove] sent grasp_p068: joints=[72.78, 102.87, -67.0, -55.51, 87.93, 12.23] deg
+[INFO] [1792432037.516524189] [track1_grasp]: [motion:robotmove] sent grasp_p069: joints=[72.78, 103.07, -67.13, -55.45, 87.93, 12.23] deg
+[INFO] [1792432037.768140398] [track1_grasp]: [motion:robotmove] sent grasp_p070: joints=[72.78, 103.27, -67.27, -55.38, 87.93, 12.23] deg
+[INFO] [1792432038.019475216] [track1_grasp]: [motion:robotmove] sent grasp_p071: joints=[72.78, 103.47, -67.41, -55.32, 87.93, 12.23] deg
+[INFO] [1792432038.270674681] [track1_grasp]: [motion:robotmove] sent grasp_p072: joints=[72.78, 103.67, -67.54, -55.25, 87.93, 12.23] deg
+[INFO] [1792432038.521946572] [track1_grasp]: [motion:robotmove] sent grasp_p073: joints=[72.78, 103.87, -67.68, -55.19, 87.93, 12.23] deg
+[INFO] [1792432038.773350254] [track1_grasp]: [motion:robotmove] sent grasp_p074: joints=[72.78, 104.07, -67.81, -55.12, 87.93, 12.23] deg
+[INFO] [1792432039.024680322] [track1_grasp]: [motion:robotmove] sent grasp_p075: joints=[72.78, 104.27, -67.94, -55.05, 87.93, 12.23] deg
+[INFO] [1792432039.275961712] [track1_grasp]: [motion:robotmove] sent grasp_p076: joints=[72.78, 104.47, -68.07, -54.98, 87.93, 12.23] deg
+[INFO] [1792432039.527148117] [track1_grasp]: [motion:robotmove] sent grasp_p077: joints=[72.78, 104.67, -68.2, -54.91, 87.93, 12.23] deg
+[INFO] [1792432039.828591750] [track1_grasp]: [motion:robotmove] sent grasp_p078: joints=[72.78, 104.87, -68.33, -54.84, 87.93, 12.23] deg
+[INFO] [1792432040.079781718] [track1_grasp]: [motion:robotmove] sent grasp_p079: joints=[72.78, 105.07, -68.46, -54.77, 87.93, 12.23] deg
+[INFO] [1792432040.330936066] [track1_grasp]: [motion:robotmove] sent grasp_p080: joints=[72.78, 105.27, -68.58, -54.69, 87.93, 12.23] deg
+[INFO] [1792432040.632205166] [track1_grasp]: [motion:linear] grasp: completed 0.080 m with 80 waypoint(s), max_joint_step=0.243 deg
+[INFO] [1792432040.632545921] [track1_grasp]: [grasp] reached grasp pose; closing jaws
+[INFO] [1792432040.632931794] [track1_grasp]: [gripper:ms42dc_ros] close: dir=1 angle_wire=30000 speed_wire=100
+[INFO] [1792432042.945691551] [track1_grasp]: [verify_hold] checking whether the object is held
+[INFO] [1792432044.656338161] [track1_grasp]: [verify_hold] jaws settled at 20.8 deg
+[INFO] [1792432044.656669418] [track1_grasp]: [lift] move to lift: xyz=(0.0342, 0.4867, 0.2415)
+[INFO] [1792432044.657390109] [track1_grasp]: [motion:robotmove] sent lift_p001: joints=[72.78, 105.09, -68.49, -54.76, 87.93, 12.23] deg
+[INFO] [1792432044.908669124] [track1_grasp]: [motion:robotmove] sent lift_p002: joints=[72.78, 104.89, -68.36, -54.83, 87.93, 12.23] deg
+[INFO] [1792432045.209711449] [track1_grasp]: [motion:robotmove] sent lift_p003: joints=[72.78, 104.69, -68.23, -54.9, 87.93, 12.23] deg
+[INFO] [1792432045.510809578] [track1_grasp]: [motion:robotmove] sent lift_p004: joints=[72.78, 104.49, -68.1, -54.98, 87.93, 12.23] deg
+[INFO] [1792432045.812142793] [track1_grasp]: [motion:robotmove] sent lift_p005: joints=[72.78, 104.29, -67.97, -55.04, 87.93, 12.23] deg
+[INFO] [1792432046.113474819] [track1_grasp]: [motion:robotmove] sent lift_p006: joints=[72.78, 104.09, -67.84, -55.11, 87.93, 12.23] deg
+[INFO] [1792432046.414764104] [track1_grasp]: [motion:robotmove] sent lift_p007: joints=[72.78, 103.89, -67.71, -55.18, 87.93, 12.23] deg
+[INFO] [1792432046.716187553] [track1_grasp]: [motion:robotmove] sent lift_p008: joints=[72.78, 103.69, -67.58, -55.25, 87.93, 12.23] deg
+[INFO] [1792432047.017688176] [track1_grasp]: [motion:robotmove] sent lift_p009: joints=[72.78, 103.49, -67.44, -55.31, 87.93, 12.23] deg
+[INFO] [1792432047.268950569] [track1_grasp]: [motion:robotmove] sent lift_p010: joints=[72.78, 103.29, -67.31, -55.38, 87.93, 12.23] deg
+[INFO] [1792432047.520335253] [track1_grasp]: [motion:robotmove] sent lift_p011: joints=[72.78, 103.09, -67.17, -55.44, 87.93, 12.23] deg
+[INFO] [1792432047.771736560] [track1_grasp]: [motion:robotmove] sent lift_p012: joints=[72.78, 102.89, -67.03, -55.51, 87.93, 12.23] deg
+[INFO] [1792432048.023088000] [track1_grasp]: [motion:robotmove] sent lift_p013: joints=[72.78, 102.68, -66.89, -55.57, 87.93, 12.23] deg
+[INFO] [1792432048.274395510] [track1_grasp]: [motion:robotmove] sent lift_p014: joints=[72.78, 102.48, -66.75, -55.63, 87.93, 12.23] deg
+[INFO] [1792432048.525710144] [track1_grasp]: [motion:robotmove] sent lift_p015: joints=[72.78, 102.28, -66.61, -55.69, 87.93, 12.23] deg
+[INFO] [1792432048.777392841] [track1_grasp]: [motion:robotmove] sent lift_p016: joints=[72.78, 102.07, -66.46, -55.75, 87.93, 12.23] deg
+[INFO] [1792432049.028743094] [track1_grasp]: [motion:robotmove] sent lift_p017: joints=[72.78, 101.87, -66.32, -55.81, 87.93, 12.23] deg
+[INFO] [1792432049.330360073] [track1_grasp]: [motion:robotmove] sent lift_p018: joints=[72.78, 101.67, -66.17, -55.87, 87.93, 12.23] deg
+[INFO] [1792432049.581570224] [track1_grasp]: [motion:robotmove] sent lift_p019: joints=[72.78, 101.46, -66.02, -55.92, 87.93, 12.23] deg
+[INFO] [1792432049.883096969] [track1_grasp]: [motion:robotmove] sent lift_p020: joints=[72.78, 101.26, -65.88, -55.98, 87.93, 12.23] deg
+[INFO] [1792432050.184457491] [track1_grasp]: [motion:robotmove] sent lift_p021: joints=[72.78, 101.05, -65.72, -56.04, 87.93, 12.23] deg
+[INFO] [1792432050.485809702] [track1_grasp]: [motion:robotmove] sent lift_p022: joints=[72.78, 100.84, -65.57, -56.09, 87.93, 12.23] deg
+[INFO] [1792432050.787414808] [track1_grasp]: [motion:robotmove] sent lift_p023: joints=[72.78, 100.64, -65.42, -56.14, 87.93, 12.23] deg
+[INFO] [1792432051.088930866] [track1_grasp]: [motion:robotmove] sent lift_p024: joints=[72.78, 100.43, -65.26, -56.19, 87.93, 12.23] deg
+[INFO] [1792432051.390526474] [track1_grasp]: [motion:robotmove] sent lift_p025: joints=[72.78, 100.22, -65.11, -56.25, 87.93, 12.23] deg
+[INFO] [1792432051.691987916] [track1_grasp]: [motion:robotmove] sent lift_p026: joints=[72.78, 100.02, -64.95, -56.3, 87.93, 12.23] deg
+[INFO] [1792432051.993464794] [track1_grasp]: [motion:robotmove] sent lift_p027: joints=[72.78, 99.81, -64.79, -56.35, 87.93, 12.23] deg
+[INFO] [1792432052.294929799] [track1_grasp]: [motion:robotmove] sent lift_p028: joints=[72.78, 99.6, -64.63, -56.39, 87.93, 12.23] deg
+[INFO] [1792432052.596399552] [track1_grasp]: [motion:robotmove] sent lift_p029: joints=[72.78, 99.39, -64.47, -56.44, 87.93, 12.23] deg
+[INFO] [1792432052.897947668] [track1_grasp]: [motion:robotmove] sent lift_p030: joints=[72.78, 99.18, -64.31, -56.49, 87.93, 12.23] deg
+[INFO] [1792432053.199347371] [track1_grasp]: [motion:robotmove] sent lift_p031: joints=[72.78, 98.97, -64.14, -56.53, 87.93, 12.23] deg
+[INFO] [1792432053.500750636] [track1_grasp]: [motion:robotmove] sent lift_p032: joints=[72.78, 98.76, -63.98, -56.58, 87.93, 12.23] deg
+[INFO] [1792432053.802178834] [track1_grasp]: [motion:robotmove] sent lift_p033: joints=[72.78, 98.55, -63.81, -56.62, 87.93, 12.23] deg
+[INFO] [1792432054.103635528] [track1_grasp]: [motion:robotmove] sent lift_p034: joints=[72.78, 98.34, -63.65, -56.66, 87.93, 12.23] deg
+[INFO] [1792432054.405069662] [track1_grasp]: [motion:robotmove] sent lift_p035: joints=[72.78, 98.13, -63.48, -56.71, 87.93, 12.23] deg
+[INFO] [1792432054.706490737] [track1_grasp]: [motion:robotmove] sent lift_p036: joints=[72.78, 97.92, -63.31, -56.75, 87.93, 12.23] deg
+[INFO] [1792432055.008091094] [track1_grasp]: [motion:robotmove] sent lift_p037: joints=[72.78, 97.71, -63.13, -56.79, 87.93, 12.23] deg
+[INFO] [1792432055.309394625] [track1_grasp]: [motion:robotmove] sent lift_p038: joints=[72.78, 97.5, -62.96, -56.82, 87.93, 12.23] deg
+[INFO] [1792432055.610725465] [track1_grasp]: [motion:robotmove] sent lift_p039: joints=[72.78, 97.28, -62.78, -56.86, 87.93, 12.23] deg
+[INFO] [1792432055.912107359] [track1_grasp]: [motion:robotmove] sent lift_p040: joints=[72.78, 97.07, -62.61, -56.9, 87.93, 12.23] deg
+[INFO] [1792432056.213400205] [track1_grasp]: [motion:robotmove] sent lift_p041: joints=[72.78, 96.86, -62.43, -56.93, 87.93, 12.23] deg
+[INFO] [1792432056.514752416] [track1_grasp]: [motion:robotmove] sent lift_p042: joints=[72.78, 96.64, -62.25, -56.97, 87.93, 12.23] deg
+[INFO] [1792432056.816187738] [track1_grasp]: [motion:robotmove] sent lift_p043: joints=[72.78, 96.43, -62.07, -57.0, 87.93, 12.23] deg
+[INFO] [1792432057.118526595] [track1_grasp]: [motion:robotmove] sent lift_p044: joints=[72.78, 96.21, -61.88, -57.03, 87.93, 12.23] deg
+[INFO] [1792432057.369777115] [track1_grasp]: [motion:robotmove] sent lift_p045: joints=[72.78, 96.0, -61.7, -57.07, 87.93, 12.23] deg
+[INFO] [1792432057.621168923] [track1_grasp]: [motion:robotmove] sent lift_p046: joints=[72.78, 95.78, -61.51, -57.1, 87.93, 12.23] deg
+[INFO] [1792432057.872552420] [track1_grasp]: [motion:robotmove] sent lift_p047: joints=[72.78, 95.57, -61.33, -57.12, 87.93, 12.23] deg
+[INFO] [1792432058.173997241] [track1_grasp]: [motion:robotmove] sent lift_p048: joints=[72.78, 95.35, -61.14, -57.15, 87.93, 12.23] deg
+[INFO] [1792432058.475392195] [track1_grasp]: [motion:robotmove] sent lift_p049: joints=[72.78, 95.13, -60.95, -57.18, 87.93, 12.23] deg
+[INFO] [1792432058.776809707] [track1_grasp]: [motion:robotmove] sent lift_p050: joints=[72.78, 94.91, -60.76, -57.21, 87.93, 12.23] deg
+[INFO] [1792432059.078229594] [track1_grasp]: [motion:robotmove] sent lift_p051: joints=[72.78, 94.7, -60.57, -57.23, 87.93, 12.23] deg
+[INFO] [1792432059.379653044] [track1_grasp]: [motion:robotmove] sent lift_p052: joints=[72.78, 94.48, -60.37, -57.25, 87.93, 12.23] deg
+[INFO] [1792432059.681027813] [track1_grasp]: [motion:robotmove] sent lift_p053: joints=[72.78, 94.26, -60.17, -57.28, 87.93, 12.23] deg
+[INFO] [1792432059.982342031] [track1_grasp]: [motion:robotmove] sent lift_p054: joints=[72.78, 94.04, -59.98, -57.3, 87.93, 12.23] deg
+[INFO] [1792432060.283644375] [track1_grasp]: [motion:robotmove] sent lift_p055: joints=[72.78, 93.82, -59.78, -57.32, 87.93, 12.23] deg
+[INFO] [1792432060.584956218] [track1_grasp]: [motion:robotmove] sent lift_p056: joints=[72.78, 93.6, -59.58, -57.34, 87.93, 12.23] deg
+[INFO] [1792432060.886307242] [track1_grasp]: [motion:robotmove] sent lift_p057: joints=[72.78, 93.38, -59.37, -57.36, 87.93, 12.23] deg
+[INFO] [1792432061.187613148] [track1_grasp]: [motion:robotmove] sent lift_p058: joints=[72.78, 93.16, -59.17, -57.37, 87.93, 12.23] deg
+[INFO] [1792432061.488992667] [track1_grasp]: [motion:robotmove] sent lift_p059: joints=[72.78, 92.94, -58.97, -57.39, 87.93, 12.23] deg
+[INFO] [1792432061.790379310] [track1_grasp]: [motion:robotmove] sent lift_p060: joints=[72.78, 92.71, -58.76, -57.41, 87.93, 12.23] deg
+[INFO] [1792432062.091787324] [track1_grasp]: [motion:robotmove] sent lift_p061: joints=[72.78, 92.49, -58.55, -57.42, 87.93, 12.23] deg
+[INFO] [1792432062.393141910] [track1_grasp]: [motion:robotmove] sent lift_p062: joints=[72.78, 92.26, -58.33, -57.43, 87.93, 12.23] deg
+[INFO] [1792432062.694592667] [track1_grasp]: [motion:robotmove] sent lift_p063: joints=[72.78, 92.04, -58.12, -57.44, 87.93, 12.23] deg
+[INFO] [1792432062.995940128] [track1_grasp]: [motion:robotmove] sent lift_p064: joints=[72.78, 91.81, -57.91, -57.45, 87.93, 12.23] deg
+[INFO] [1792432063.297383762] [track1_grasp]: [motion:robotmove] sent lift_p065: joints=[72.78, 91.59, -57.69, -57.46, 87.93, 12.23] deg
+[INFO] [1792432063.598845204] [track1_grasp]: [motion:robotmove] sent lift_p066: joints=[72.78, 91.36, -57.47, -57.47, 87.93, 12.23] deg
+[INFO] [1792432063.900335142] [track1_grasp]: [motion:robotmove] sent lift_p067: joints=[72.78, 91.14, -57.25, -57.48, 87.93, 12.23] deg
+[INFO] [1792432064.201684979] [track1_grasp]: [motion:robotmove] sent lift_p068: joints=[72.78, 90.91, -57.03, -57.48, 87.93, 12.23] deg
+[INFO] [1792432064.503007507] [track1_grasp]: [motion:robotmove] sent lift_p069: joints=[72.78, 90.68, -56.81, -57.49, 87.93, 12.23] deg
+[INFO] [1792432064.804305102] [track1_grasp]: [motion:robotmove] sent lift_p070: joints=[72.78, 90.46, -56.58, -57.49, 87.93, 12.23] deg
+[INFO] [1792432065.105697682] [track1_grasp]: [motion:robotmove] sent lift_p071: joints=[72.78, 90.23, -56.36, -57.49, 87.93, 12.23] deg
+[INFO] [1792432065.407738527] [track1_grasp]: [motion:robotmove] sent lift_p072: joints=[72.78, 90.0, -56.13, -57.49, 87.93, 12.23] deg
+[INFO] [1792432065.708926890] [track1_grasp]: [motion:robotmove] sent lift_p073: joints=[72.78, 89.77, -55.9, -57.49, 87.93, 12.23] deg
+[INFO] [1792432066.010188867] [track1_grasp]: [motion:robotmove] sent lift_p074: joints=[72.78, 89.54, -55.67, -57.49, 87.93, 12.23] deg
+[INFO] [1792432066.311463903] [track1_grasp]: [motion:robotmove] sent lift_p075: joints=[72.78, 89.3, -55.43, -57.49, 87.93, 12.23] deg
+[INFO] [1792432066.612975212] [track1_grasp]: [motion:robotmove] sent lift_p076: joints=[72.78, 89.07, -55.19, -57.48, 87.93, 12.23] deg
+[INFO] [1792432066.914275182] [track1_grasp]: [motion:robotmove] sent lift_p077: joints=[72.78, 88.84, -54.95, -57.48, 87.93, 12.23] deg
+[INFO] [1792432067.215659450] [track1_grasp]: [motion:robotmove] sent lift_p078: joints=[72.78, 88.61, -54.71, -57.47, 87.93, 12.23] deg
+[INFO] [1792432067.516996227] [track1_grasp]: [motion:robotmove] sent lift_p079: joints=[72.78, 88.37, -54.47, -57.46, 87.93, 12.23] deg
+[INFO] [1792432067.818728374] [track1_grasp]: [motion:robotmove] sent lift_p080: joints=[72.78, 88.14, -54.23, -57.45, 87.93, 12.23] deg
+[INFO] [1792432068.119902490] [track1_grasp]: [motion:linear] lift: completed 0.080 m with 80 waypoint(s), max_joint_step=0.244 deg
+[INFO] [1792432068.120234934] [track1_grasp]: [lift] lift pose reached; holding for 2.0 s before return
+[INFO] [1792432070.122700922] [track1_grasp]: [transfer] move to transfer: xyz=(0.0342, 0.4867, 0.2415)
+[INFO] [1792432070.123162782] [track1_grasp]: [motion:linear] transfer: completed 0.000 m with 0 waypoint(s), max_joint_step=0.000 deg
+[INFO] [1792432070.123465544] [track1_grasp]: [release] move to release: xyz=(0.0342, 0.4867, 0.1615)
+[INFO] [1792432070.123989143] [track1_grasp]: [motion:robotmove] sent release_p001: joints=[72.78, 88.35, -54.43, -57.46, 87.93, 12.23] deg
+[INFO] [1792432070.375095999] [track1_grasp]: [motion:robotmove] sent release_p002: joints=[72.78, 88.59, -54.67, -57.47, 87.93, 12.23] deg
+[INFO] [1792432070.676547943] [track1_grasp]: [motion:robotmove] sent release_p003: joints=[72.78, 88.82, -54.91, -57.48, 87.93, 12.23] deg
+[INFO] [1792432070.977985640] [track1_grasp]: [motion:robotmove] sent release_p004: joints=[72.78, 89.05, -55.15, -57.48, 87.93, 12.23] deg
+[INFO] [1792432071.279585997] [track1_grasp]: [motion:robotmove] sent release_p005: joints=[72.78, 89.28, -55.39, -57.49, 87.93, 12.23] deg
+[INFO] [1792432071.581014195] [track1_grasp]: [motion:robotmove] sent release_p006: joints=[72.78, 89.51, -55.62, -57.49, 87.93, 12.23] deg
+[INFO] [1792432071.882492260] [track1_grasp]: [motion:robotmove] sent release_p007: joints=[72.78, 89.74, -55.85, -57.49, 87.93, 12.23] deg
+[INFO] [1792432072.183939455] [track1_grasp]: [motion:robotmove] sent release_p008: joints=[72.78, 89.98, -56.09, -57.49, 87.93, 12.23] deg
+[INFO] [1792432072.485237050] [track1_grasp]: [motion:robotmove] sent release_p009: joints=[72.78, 90.2, -56.31, -57.49, 87.93, 12.23] deg
+[INFO] [1792432072.786618944] [track1_grasp]: [motion:robotmove] sent release_p010: joints=[72.78, 90.43, -56.54, -57.49, 87.93, 12.23] deg
+[INFO] [1792432073.088080387] [track1_grasp]: [motion:robotmove] sent release_p011: joints=[72.78, 90.66, -56.77, -57.49, 87.93, 12.23] deg
+[INFO] [1792432073.389510959] [track1_grasp]: [motion:robotmove] sent release_p012: joints=[72.78, 90.89, -56.99, -57.48, 87.93, 12.23] deg
+[INFO] [1792432073.690884542] [track1_grasp]: [motion:robotmove] sent release_p013: joints=[72.78, 91.12, -57.21, -57.48, 87.93, 12.23] deg
+[INFO] [1792432073.992395851] [track1_grasp]: [motion:robotmove] sent release_p014: joints=[72.78, 91.34, -57.43, -57.47, 87.93, 12.23] deg
+[INFO] [1792432074.293699383] [track1_grasp]: [motion:robotmove] sent release_p015: joints=[72.78, 91.57, -57.65, -57.46, 87.93, 12.23] deg
+[INFO] [1792432074.595055156] [track1_grasp]: [motion:robotmove] sent release_p016: joints=[72.78, 91.8, -57.87, -57.45, 87.93, 12.23] deg
+[INFO] [1792432074.896508287] [track1_grasp]: [motion:robotmove] sent release_p017: joints=[72.78, 92.02, -58.08, -57.44, 87.93, 12.23] deg
+[INFO] [1792432075.197982790] [track1_grasp]: [motion:robotmove] sent release_p018: joints=[72.78, 92.25, -58.3, -57.43, 87.93, 12.23] deg
+[INFO] [1792432075.499389617] [track1_grasp]: [motion:robotmove] sent release_p019: joints=[72.78, 92.47, -58.5, -57.42, 87.93, 12.23] deg
+[INFO] [1792432075.800795257] [track1_grasp]: [motion:robotmove] sent release_p020: joints=[72.78, 92.69, -58.71, -57.41, 87.93, 12.23] deg
+[INFO] [1792432076.102198522] [track1_grasp]: [motion:robotmove] sent release_p021: joints=[72.78, 92.91, -58.92, -57.39, 87.93, 12.23] deg
+[INFO] [1792432076.403578041] [track1_grasp]: [motion:robotmove] sent release_p022: joints=[72.78, 93.14, -59.13, -57.38, 87.93, 12.23] deg
+[INFO] [1792432076.705069166] [track1_grasp]: [motion:robotmove] sent release_p023: joints=[72.78, 93.36, -59.33, -57.36, 87.93, 12.23] deg
+[INFO] [1792432077.006551980] [track1_grasp]: [motion:robotmove] sent release_p024: joints=[72.78, 93.58, -59.54, -57.34, 87.93, 12.23] deg
+[INFO] [1792432077.308027670] [track1_grasp]: [motion:robotmove] sent release_p025: joints=[72.78, 93.8, -59.74, -57.32, 87.93, 12.23] deg
+[INFO] [1792432077.609347824] [track1_grasp]: [motion:robotmove] sent release_p026: joints=[72.78, 94.02, -59.94, -57.3, 87.93, 12.23] deg
+[INFO] [1792432077.910835387] [track1_grasp]: [motion:robotmove] sent release_p027: joints=[72.78, 94.24, -60.14, -57.28, 87.93, 12.23] deg
+[INFO] [1792432078.212347884] [track1_grasp]: [motion:robotmove] sent release_p028: joints=[72.78, 94.46, -60.33, -57.26, 87.93, 12.23] deg
+[INFO] [1792432078.513725028] [track1_grasp]: [motion:robotmove] sent release_p029: joints=[72.78, 94.68, -60.53, -57.23, 87.93, 12.23] deg
+[INFO] [1792432078.815293328] [track1_grasp]: [motion:robotmove] sent release_p030: joints=[72.78, 94.9, -60.72, -57.21, 87.93, 12.23] deg
+[INFO] [1792432079.116799888] [track1_grasp]: [motion:robotmove] sent release_p031: joints=[72.78, 95.11, -60.91, -57.18, 87.93, 12.23] deg
+[INFO] [1792432079.369294698] [track1_grasp]: [motion:robotmove] sent release_p032: joints=[72.78, 95.33, -61.11, -57.15, 87.93, 12.23] deg
+[INFO] [1792432079.620648513] [track1_grasp]: [motion:robotmove] sent release_p033: joints=[72.78, 95.55, -61.29, -57.13, 87.93, 12.23] deg
+[INFO] [1792432079.922026845] [track1_grasp]: [motion:robotmove] sent release_p034: joints=[72.78, 95.76, -61.48, -57.1, 87.93, 12.23] deg
+[INFO] [1792432080.173365224] [track1_grasp]: [motion:robotmove] sent release_p035: joints=[72.78, 95.98, -61.67, -57.07, 87.93, 12.23] deg
+[INFO] [1792432080.474630763] [track1_grasp]: [motion:robotmove] sent release_p036: joints=[72.78, 96.2, -61.85, -57.04, 87.93, 12.23] deg
+[INFO] [1792432080.776018593] [track1_grasp]: [motion:robotmove] sent release_p037: joints=[72.78, 96.41, -62.03, -57.0, 87.93, 12.23] deg
+[INFO] [1792432081.077464600] [track1_grasp]: [motion:robotmove] sent release_p038: joints=[72.78, 96.62, -62.21, -56.97, 87.93, 12.23] deg
+[INFO] [1792432081.378851243] [track1_grasp]: [motion:robotmove] sent release_p039: joints=[72.78, 96.84, -62.39, -56.94, 87.93, 12.23] deg
+[INFO] [1792432081.680229575] [track1_grasp]: [motion:robotmove] sent release_p040: joints=[72.78, 97.05, -62.57, -56.9, 87.93, 12.23] deg
+[INFO] [1792432081.981533107] [track1_grasp]: [motion:robotmove] sent release_p041: joints=[72.78, 97.26, -62.75, -56.86, 87.93, 12.23] deg
+[INFO] [1792432082.282855635] [track1_grasp]: [motion:robotmove] sent release_p042: joints=[72.78, 97.48, -62.92, -56.83, 87.93, 12.23] deg
+[INFO] [1792432082.584217345] [track1_grasp]: [motion:robotmove] sent release_p043: joints=[72.78, 97.69, -63.1, -56.79, 87.93, 12.23] deg
+[INFO] [1792432082.885682349] [track1_grasp]: [motion:robotmove] sent release_p044: joints=[72.78, 97.9, -63.27, -56.75, 87.93, 12.23] deg
+[INFO] [1792432083.186911081] [track1_grasp]: [motion:robotmove] sent release_p045: joints=[72.78, 98.11, -63.44, -56.71, 87.93, 12.23] deg
+[INFO] [1792432083.488220549] [track1_grasp]: [motion:robotmove] sent release_p046: joints=[72.78, 98.32, -63.61, -56.67, 87.93, 12.23] deg
+[INFO] [1792432083.789627376] [track1_grasp]: [motion:robotmove] sent release_p047: joints=[72.78, 98.53, -63.78, -56.62, 87.93, 12.23] deg
+[INFO] [1792432084.090916660] [track1_grasp]: [motion:robotmove] sent release_p048: joints=[72.78, 98.75, -63.95, -56.58, 87.93, 12.23] deg
+[INFO] [1792432084.392354357] [track1_grasp]: [motion:robotmove] sent release_p049: joints=[72.78, 98.96, -64.11, -56.54, 87.93, 12.23] deg
+[INFO] [1792432084.693846669] [track1_grasp]: [motion:robotmove] sent release_p050: joints=[72.78, 99.16, -64.28, -56.49, 87.93, 12.23] deg
+[INFO] [1792432084.995289115] [track1_grasp]: [motion:robotmove] sent release_p051: joints=[72.78, 99.37, -64.44, -56.45, 87.93, 12.23] deg
+[INFO] [1792432085.296711377] [track1_grasp]: [motion:robotmove] sent release_p052: joints=[72.78, 99.58, -64.6, -56.4, 87.93, 12.23] deg
+[INFO] [1792432085.598109893] [track1_grasp]: [motion:robotmove] sent release_p053: joints=[72.78, 99.79, -64.76, -56.35, 87.93, 12.23] deg
+[INFO] [1792432085.899408675] [track1_grasp]: [motion:robotmove] sent release_p054: joints=[72.78, 100.0, -64.92, -56.3, 87.93, 12.23] deg
+[INFO] [1792432086.200918797] [track1_grasp]: [motion:robotmove] sent release_p055: joints=[72.78, 100.21, -65.08, -56.25, 87.93, 12.23] deg
+[INFO] [1792432086.502246075] [track1_grasp]: [motion:robotmove] sent release_p056: joints=[72.78, 100.41, -65.23, -56.2, 87.93, 12.23] deg
+[INFO] [1792432086.803669524] [track1_grasp]: [motion:robotmove] sent release_p057: joints=[72.78, 100.62, -65.39, -56.15, 87.93, 12.23] deg
+[INFO] [1792432087.104938624] [track1_grasp]: [motion:robotmove] sent release_p058: joints=[72.78, 100.83, -65.54, -56.09, 87.93, 12.23] deg
+[INFO] [1792432087.406255216] [track1_grasp]: [motion:robotmove] sent release_p059: joints=[72.78, 101.03, -65.69, -56.04, 87.93, 12.23] deg
+[INFO] [1792432087.708036043] [track1_grasp]: [motion:robotmove] sent release_p060: joints=[72.78, 101.24, -65.84, -55.98, 87.93, 12.23] deg
+[INFO] [1792432088.009302768] [track1_grasp]: [motion:robotmove] sent release_p061: joints=[72.78, 101.44, -65.99, -55.93, 87.93, 12.23] deg
+[INFO] [1792432088.310676350] [track1_grasp]: [motion:robotmove] sent release_p062: joints=[72.78, 101.65, -66.14, -55.87, 87.93, 12.23] deg
+[INFO] [1792432088.611982257] [track1_grasp]: [motion:robotmove] sent release_p063: joints=[72.78, 101.85, -66.28, -55.81, 87.93, 12.23] deg
+[INFO] [1792432088.913362963] [track1_grasp]: [motion:robotmove] sent release_p064: joints=[72.78, 102.05, -66.43, -55.76, 87.93, 12.23] deg
+[INFO] [1792432089.214755542] [track1_grasp]: [motion:robotmove] sent release_p065: joints=[72.78, 102.26, -66.57, -55.7, 87.93, 12.23] deg
+[INFO] [1792432089.516004458] [track1_grasp]: [motion:robotmove] sent release_p066: joints=[72.78, 102.46, -66.71, -55.64, 87.93, 12.23] deg
+[INFO] [1792432089.817364980] [track1_grasp]: [motion:robotmove] sent release_p067: joints=[72.78, 102.66, -66.86, -55.57, 87.93, 12.23] deg
+[INFO] [1792432090.068524078] [track1_grasp]: [motion:robotmove] sent release_p068: joints=[72.78, 102.87, -67.0, -55.51, 87.93, 12.23] deg
+[INFO] [1792432090.319684363] [track1_grasp]: [motion:robotmove] sent release_p069: joints=[72.78, 103.07, -67.13, -55.45, 87.93, 12.23] deg
+[INFO] [1792432090.570947943] [track1_grasp]: [motion:robotmove] sent release_p070: joints=[72.78, 103.27, -67.27, -55.38, 87.93, 12.23] deg
+[INFO] [1792432090.822283948] [track1_grasp]: [motion:robotmove] sent release_p071: joints=[72.78, 103.47, -67.41, -55.32, 87.93, 12.23] deg
+[INFO] [1792432091.073503598] [track1_grasp]: [motion:robotmove] sent release_p072: joints=[72.78, 103.67, -67.54, -55.25, 87.93, 12.23] deg
+[INFO] [1792432091.324631825] [track1_grasp]: [motion:robotmove] sent release_p073: joints=[72.78, 103.87, -67.68, -55.19, 87.93, 12.23] deg
+[INFO] [1792432091.575917964] [track1_grasp]: [motion:robotmove] sent release_p074: joints=[72.78, 104.07, -67.81, -55.12, 87.93, 12.23] deg
+[INFO] [1792432091.827230223] [track1_grasp]: [motion:robotmove] sent release_p075: joints=[72.78, 104.27, -67.94, -55.05, 87.93, 12.23] deg
+[INFO] [1792432092.128677418] [track1_grasp]: [motion:robotmove] sent release_p076: joints=[72.78, 104.47, -68.07, -54.98, 87.93, 12.23] deg
+[INFO] [1792432092.379988490] [track1_grasp]: [motion:robotmove] sent release_p077: joints=[72.78, 104.67, -68.2, -54.91, 87.93, 12.23] deg
+[INFO] [1792432092.681406003] [track1_grasp]: [motion:robotmove] sent release_p078: joints=[72.78, 104.87, -68.33, -54.84, 87.93, 12.23] deg
+[INFO] [1792432092.982747528] [track1_grasp]: [motion:robotmove] sent release_p079: joints=[72.78, 105.07, -68.46, -54.77, 87.93, 12.23] deg
+[INFO] [1792432093.234011108] [track1_grasp]: [motion:robotmove] sent release_p080: joints=[72.78, 105.27, -68.58, -54.69, 87.93, 12.23] deg
+[INFO] [1792432093.535135358] [track1_grasp]: [motion:linear] release: completed 0.080 m with 80 waypoint(s), max_joint_step=0.244 deg
+[INFO] [1792432093.535505795] [track1_grasp]: [release] opening jaws to release the object
+[INFO] [1792432093.535896417] [track1_grasp]: [gripper:ms42dc_ros] open: dir=0 angle_wire=30000 speed_wire=100
+[INFO] [1792432095.847766886] [track1_grasp]: [retreat] move to retreat: xyz=(0.0342, 0.4867, 0.2415)
+[INFO] [1792432095.848411590] [track1_grasp]: [motion:robotmove] sent retreat_p001: joints=[72.78, 105.09, -68.49, -54.76, 87.93, 12.23] deg
+[INFO] [1792432096.149641509] [track1_grasp]: [motion:robotmove] sent retreat_p002: joints=[72.78, 104.89, -68.36, -54.83, 87.93, 12.23] deg
+[INFO] [1792432096.450980660] [track1_grasp]: [motion:robotmove] sent retreat_p003: joints=[72.78, 104.69, -68.23, -54.9, 87.93, 12.23] deg
+[INFO] [1792432096.752481284] [track1_grasp]: [motion:robotmove] sent retreat_p004: joints=[72.78, 104.49, -68.1, -54.98, 87.93, 12.23] deg
+[INFO] [1792432097.053983094] [track1_grasp]: [motion:robotmove] sent retreat_p005: joints=[72.78, 104.29, -67.97, -55.04, 87.93, 12.23] deg
+[INFO] [1792432097.355450474] [track1_grasp]: [motion:robotmove] sent retreat_p006: joints=[72.78, 104.09, -67.84, -55.11, 87.93, 12.23] deg
+[INFO] [1792432097.656819307] [track1_grasp]: [motion:robotmove] sent retreat_p007: joints=[72.78, 103.89, -67.71, -55.18, 87.93, 12.23] deg
+[INFO] [1792432097.908409394] [track1_grasp]: [motion:robotmove] sent retreat_p008: joints=[72.78, 103.69, -67.58, -55.25, 87.93, 12.23] deg
+[INFO] [1792432098.209874399] [track1_grasp]: [motion:robotmove] sent retreat_p009: joints=[72.78, 103.49, -67.44, -55.31, 87.93, 12.23] deg
+[INFO] [1792432098.511331092] [track1_grasp]: [motion:robotmove] sent retreat_p010: joints=[72.78, 103.29, -67.31, -55.38, 87.93, 12.23] deg
+[INFO] [1792432098.812781849] [track1_grasp]: [motion:robotmove] sent retreat_p011: joints=[72.78, 103.09, -67.17, -55.44, 87.93, 12.23] deg
+[INFO] [1792432099.114257540] [track1_grasp]: [motion:robotmove] sent retreat_p012: joints=[72.78, 102.89, -67.03, -55.51, 87.93, 12.23] deg
+[INFO] [1792432099.415608563] [track1_grasp]: [motion:robotmove] sent retreat_p013: joints=[72.78, 102.68, -66.89, -55.57, 87.93, 12.23] deg
+[INFO] [1792432099.717078317] [track1_grasp]: [motion:robotmove] sent retreat_p014: joints=[72.78, 102.48, -66.75, -55.63, 87.93, 12.23] deg
+[INFO] [1792432099.969080398] [track1_grasp]: [motion:robotmove] sent retreat_p015: joints=[72.78, 102.28, -66.61, -55.69, 87.93, 12.23] deg
+[INFO] [1792432100.220206251] [track1_grasp]: [motion:robotmove] sent retreat_p016: joints=[72.78, 102.07, -66.46, -55.75, 87.93, 12.23] deg
+[INFO] [1792432100.471373659] [track1_grasp]: [motion:robotmove] sent retreat_p017: joints=[72.78, 101.87, -66.32, -55.81, 87.93, 12.23] deg
+[INFO] [1792432100.722833144] [track1_grasp]: [motion:robotmove] sent retreat_p018: joints=[72.78, 101.67, -66.17, -55.87, 87.93, 12.23] deg
+[INFO] [1792432100.974107410] [track1_grasp]: [motion:robotmove] sent retreat_p019: joints=[72.78, 101.46, -66.02, -55.92, 87.93, 12.23] deg
+[INFO] [1792432101.275496427] [track1_grasp]: [motion:robotmove] sent retreat_p020: joints=[72.78, 101.26, -65.88, -55.98, 87.93, 12.23] deg
+[INFO] [1792432101.526695893] [track1_grasp]: [motion:robotmove] sent retreat_p021: joints=[72.78, 101.05, -65.72, -56.04, 87.93, 12.23] deg
+[INFO] [1792432101.778069891] [track1_grasp]: [motion:robotmove] sent retreat_p022: joints=[72.78, 100.84, -65.57, -56.09, 87.93, 12.23] deg
+[INFO] [1792432102.079362738] [track1_grasp]: [motion:robotmove] sent retreat_p023: joints=[72.78, 100.64, -65.42, -56.14, 87.93, 12.23] deg
+[INFO] [1792432102.380622339] [track1_grasp]: [motion:robotmove] sent retreat_p024: joints=[72.78, 100.43, -65.26, -56.19, 87.93, 12.23] deg
+[INFO] [1792432102.681956741] [track1_grasp]: [motion:robotmove] sent retreat_p025: joints=[72.78, 100.22, -65.11, -56.25, 87.93, 12.23] deg
+[INFO] [1792432102.983419371] [track1_grasp]: [motion:robotmove] sent retreat_p026: joints=[72.78, 100.02, -64.95, -56.3, 87.93, 12.23] deg
+[INFO] [1792432103.284785829] [track1_grasp]: [motion:robotmove] sent retreat_p027: joints=[72.78, 99.81, -64.79, -56.35, 87.93, 12.23] deg
+[INFO] [1792432103.586173659] [track1_grasp]: [motion:robotmove] sent retreat_p028: joints=[72.78, 99.6, -64.63, -56.39, 87.93, 12.23] deg
+[INFO] [1792432103.887505686] [track1_grasp]: [motion:robotmove] sent retreat_p029: joints=[72.78, 99.39, -64.47, -56.44, 87.93, 12.23] deg
+[INFO] [1792432104.188849586] [track1_grasp]: [motion:robotmove] sent retreat_p030: joints=[72.78, 99.18, -64.31, -56.49, 87.93, 12.23] deg
+[INFO] [1792432104.490201797] [track1_grasp]: [motion:robotmove] sent retreat_p031: joints=[72.78, 98.97, -64.14, -56.53, 87.93, 12.23] deg
+[INFO] [1792432104.791628808] [track1_grasp]: [motion:robotmove] sent retreat_p032: joints=[72.78, 98.76, -63.98, -56.58, 87.93, 12.23] deg
+[INFO] [1792432105.093095000] [track1_grasp]: [motion:robotmove] sent retreat_p033: joints=[72.78, 98.55, -63.81, -56.62, 87.93, 12.23] deg
+[INFO] [1792432105.394641928] [track1_grasp]: [motion:robotmove] sent retreat_p034: joints=[72.78, 98.34, -63.65, -56.66, 87.93, 12.23] deg
+[INFO] [1792432105.696097435] [track1_grasp]: [motion:robotmove] sent retreat_p035: joints=[72.78, 98.13, -63.48, -56.71, 87.93, 12.23] deg
+[INFO] [1792432105.997555315] [track1_grasp]: [motion:robotmove] sent retreat_p036: joints=[72.78, 97.92, -63.31, -56.75, 87.93, 12.23] deg
+[INFO] [1792432106.298882593] [track1_grasp]: [motion:robotmove] sent retreat_p037: joints=[72.78, 97.71, -63.13, -56.79, 87.93, 12.23] deg
+[INFO] [1792432106.600306042] [track1_grasp]: [motion:robotmove] sent retreat_p038: joints=[72.78, 97.5, -62.96, -56.82, 87.93, 12.23] deg
+[INFO] [1792432106.901691498] [track1_grasp]: [motion:robotmove] sent retreat_p039: joints=[72.78, 97.28, -62.78, -56.86, 87.93, 12.23] deg
+[INFO] [1792432107.203145816] [track1_grasp]: [motion:robotmove] sent retreat_p040: joints=[72.78, 97.07, -62.61, -56.9, 87.93, 12.23] deg
+[INFO] [1792432107.504446974] [track1_grasp]: [motion:robotmove] sent retreat_p041: joints=[72.78, 96.86, -62.43, -56.93, 87.93, 12.23] deg
+[INFO] [1792432107.805793248] [track1_grasp]: [motion:robotmove] sent retreat_p042: joints=[72.78, 96.64, -62.25, -56.97, 87.93, 12.23] deg
+[INFO] [1792432108.107295059] [track1_grasp]: [motion:robotmove] sent retreat_p043: joints=[72.78, 96.43, -62.07, -57.0, 87.93, 12.23] deg
+[INFO] [1792432108.408400312] [track1_grasp]: [motion:robotmove] sent retreat_p044: joints=[72.78, 96.21, -61.88, -57.03, 87.93, 12.23] deg
+[INFO] [1792432108.709606485] [track1_grasp]: [motion:robotmove] sent retreat_p045: joints=[72.78, 96.0, -61.7, -57.07, 87.93, 12.23] deg
+[INFO] [1792432109.010910016] [track1_grasp]: [motion:robotmove] sent retreat_p046: joints=[72.78, 95.78, -61.51, -57.1, 87.93, 12.23] deg
+[INFO] [1792432109.312236107] [track1_grasp]: [motion:robotmove] sent retreat_p047: joints=[72.78, 95.57, -61.33, -57.12, 87.93, 12.23] deg
+[INFO] [1792432109.613627499] [track1_grasp]: [motion:robotmove] sent retreat_p048: joints=[72.78, 95.35, -61.14, -57.15, 87.93, 12.23] deg
+[INFO] [1792432109.915148307] [track1_grasp]: [motion:robotmove] sent retreat_p049: joints=[72.78, 95.13, -60.95, -57.18, 87.93, 12.23] deg
+[INFO] [1792432110.216680987] [track1_grasp]: [motion:robotmove] sent retreat_p050: joints=[72.78, 94.91, -60.76, -57.21, 87.93, 12.23] deg
+[INFO] [1792432110.467990872] [track1_grasp]: [motion:robotmove] sent retreat_p051: joints=[72.78, 94.7, -60.57, -57.23, 87.93, 12.23] deg
+[INFO] [1792432110.719357747] [track1_grasp]: [motion:robotmove] sent retreat_p052: joints=[72.78, 94.48, -60.37, -57.25, 87.93, 12.23] deg
+[INFO] [1792432111.020833437] [track1_grasp]: [motion:robotmove] sent retreat_p053: joints=[72.78, 94.26, -60.17, -57.28, 87.93, 12.23] deg
+[INFO] [1792432111.322286569] [track1_grasp]: [motion:robotmove] sent retreat_p054: joints=[72.78, 94.04, -59.98, -57.3, 87.93, 12.23] deg
+[INFO] [1792432111.573590517] [track1_grasp]: [motion:robotmove] sent retreat_p055: joints=[72.78, 93.82, -59.78, -57.32, 87.93, 12.23] deg
+[INFO] [1792432111.875215807] [track1_grasp]: [motion:robotmove] sent retreat_p056: joints=[72.78, 93.6, -59.58, -57.34, 87.93, 12.23] deg
+[INFO] [1792432112.176812602] [track1_grasp]: [motion:robotmove] sent retreat_p057: joints=[72.78, 93.38, -59.37, -57.36, 87.93, 12.23] deg
+[INFO] [1792432112.478372590] [track1_grasp]: [motion:robotmove] sent retreat_p058: joints=[72.78, 93.16, -59.17, -57.37, 87.93, 12.23] deg
+[INFO] [1792432112.779798414] [track1_grasp]: [motion:robotmove] sent retreat_p059: joints=[72.78, 92.94, -58.97, -57.39, 87.93, 12.23] deg
+[INFO] [1792432113.081084136] [track1_grasp]: [motion:robotmove] sent retreat_p060: joints=[72.78, 92.71, -58.76, -57.41, 87.93, 12.23] deg
+[INFO] [1792432113.382612068] [track1_grasp]: [motion:robotmove] sent retreat_p061: joints=[72.78, 92.49, -58.55, -57.42, 87.93, 12.23] deg
+[INFO] [1792432113.684047390] [track1_grasp]: [motion:robotmove] sent retreat_p062: joints=[72.78, 92.26, -58.33, -57.43, 87.93, 12.23] deg
+[INFO] [1792432113.985532579] [track1_grasp]: [motion:robotmove] sent retreat_p063: joints=[72.78, 92.04, -58.12, -57.44, 87.93, 12.23] deg
+[INFO] [1792432114.286838485] [track1_grasp]: [motion:robotmove] sent retreat_p064: joints=[72.78, 91.81, -57.91, -57.45, 87.93, 12.23] deg
+[INFO] [1792432114.588264309] [track1_grasp]: [motion:robotmove] sent retreat_p065: joints=[72.78, 91.59, -57.69, -57.46, 87.93, 12.23] deg
+[INFO] [1792432114.889985770] [track1_grasp]: [motion:robotmove] sent retreat_p066: joints=[72.78, 91.36, -57.47, -57.47, 87.93, 12.23] deg
+[INFO] [1792432115.191451962] [track1_grasp]: [motion:robotmove] sent retreat_p067: joints=[72.78, 91.14, -57.25, -57.48, 87.93, 12.23] deg
+[INFO] [1792432115.493020261] [track1_grasp]: [motion:robotmove] sent retreat_p068: joints=[72.78, 90.91, -57.03, -57.48, 87.93, 12.23] deg
+[INFO] [1792432115.794571939] [track1_grasp]: [motion:robotmove] sent retreat_p069: joints=[72.78, 90.68, -56.81, -57.49, 87.93, 12.23] deg
+[INFO] [1792432116.096117680] [track1_grasp]: [motion:robotmove] sent retreat_p070: joints=[72.78, 90.46, -56.58, -57.49, 87.93, 12.23] deg
+[INFO] [1792432116.397504323] [track1_grasp]: [motion:robotmove] sent retreat_p071: joints=[72.78, 90.23, -56.36, -57.49, 87.93, 12.23] deg
+[INFO] [1792432116.698957454] [track1_grasp]: [motion:robotmove] sent retreat_p072: joints=[72.78, 90.0, -56.13, -57.49, 87.93, 12.23] deg
+[INFO] [1792432117.000345284] [track1_grasp]: [motion:robotmove] sent retreat_p073: joints=[72.78, 89.77, -55.9, -57.49, 87.93, 12.23] deg
+[INFO] [1792432117.301658314] [track1_grasp]: [motion:robotmove] sent retreat_p074: joints=[72.78, 89.54, -55.67, -57.49, 87.93, 12.23] deg
+[INFO] [1792432117.603103135] [track1_grasp]: [motion:robotmove] sent retreat_p075: joints=[72.78, 89.3, -55.43, -57.49, 87.93, 12.23] deg
+[INFO] [1792432117.904582387] [track1_grasp]: [motion:robotmove] sent retreat_p076: joints=[72.78, 89.07, -55.19, -57.48, 87.93, 12.23] deg
+[INFO] [1792432118.205900166] [track1_grasp]: [motion:robotmove] sent retreat_p077: joints=[72.78, 88.84, -54.95, -57.48, 87.93, 12.23] deg
+[INFO] [1792432118.507760542] [track1_grasp]: [motion:robotmove] sent retreat_p078: joints=[72.78, 88.61, -54.71, -57.47, 87.93, 12.23] deg
+[INFO] [1792432118.809138874] [track1_grasp]: [motion:robotmove] sent retreat_p079: joints=[72.78, 88.37, -54.47, -57.46, 87.93, 12.23] deg
+[INFO] [1792432119.110448342] [track1_grasp]: [motion:robotmove] sent retreat_p080: joints=[72.78, 88.14, -54.23, -57.45, 87.93, 12.23] deg
+[INFO] [1792432119.411631956] [track1_grasp]: [motion:linear] retreat: completed 0.080 m with 80 waypoint(s), max_joint_step=0.244 deg
+[INFO] [1792432119.411963213] [track1_grasp]: [done] pick_5: object returned at its pick point and arm retreated; all expected points completed
+[INFO] [1792432119.412389454] [track1_grasp]: [run] requested=1 attempts=1 successes=1 rate=100.00%

@@ -1,0 +1,112 @@
+[start] one-shot pick_4 grasp; log=/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/task_b_pick4_grasp_once_20261106_204931.log
+[authorization] exactly one pick_4 grasp at 0.12 m/s; no automatic retry; no release; no retreat; no continuation
+[gates] target=8-Plastic_Banana imgsz=640 padding=80 speed=0.120 tcp_gate=0.006 grasp_z=0.169903174 approach=0.075
+ROBOT state=AutoReady fault=0 xyz=(0.038591, 0.440596, 0.256352) rpy=(-3.121074, 0.049621, -0.522534)
+JOINTS_DEG=[70.253, 92.064, -73.739, -70.013, 87.411, 10.258]
+START_CHECK position_error=0.006 mm rotation_error=0.000017 rad
+[preflight] existing /RobotMove bridge subscriber confirmed
+[camera] D405 started 640x480@15 fx=392.7 fy=391.7 cx=314.4 cy=246.7
+[yolo] loading /media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/models/best.pt
+[vision:realsense_yolo] model input size verified imgsz=640
+[vision:realsense_yolo] ready 640x480 rotate180=True anchor=top_center cx=324.6 cy=232.3 inference_padding_px=80 stabilizer=on unknown_proposer=off
+FRAME 01 frame=realsense-000001 banana_count=0 all_detections=0 formal=False image=/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/vision_banana_center_diagnostics/frame_000001.jpg
+FRAME 02 frame=realsense-000002 banana_count=0 all_detections=0 formal=False image=
+[pose] loaded camera transform from /media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/config/camera_to_flange.d405_calibrated_20261025.yaml
+FORMAL 03 frame=realsense-000003 conf=0.9364 pose_conf=0.5694 center_base=(0.037348,0.434687,-0.035592) short_deg=26.450 nearest=pick_4:0.025612 margin=0.026510 tcp_distance=0.006039 image=
+FORMAL 04 frame=realsense-000004 conf=0.9367 pose_conf=0.5677 center_base=(0.037380,0.434913,-0.035011) short_deg=25.604 nearest=pick_4:0.025736 margin=0.026161 tcp_distance=0.005810 image=
+FORMAL 05 frame=realsense-000005 conf=0.9367 pose_conf=0.5674 center_base=(0.037287,0.435399,-0.033781) short_deg=24.288 nearest=pick_4:0.026129 margin=0.025278 tcp_distance=0.005359 image=
+FORMAL 06 frame=realsense-000006 conf=0.9368 pose_conf=0.5668 center_base=(0.037076,0.435463,-0.033710) short_deg=24.188 nearest=pick_4:0.026329 margin=0.025002 tcp_distance=0.005351 image=
+FORMAL 07 frame=realsense-000007 conf=0.9366 pose_conf=0.5679 center_base=(0.037403,0.435329,-0.033302) short_deg=24.202 nearest=pick_4:0.025996 margin=0.025488 tcp_distance=0.005398 image=
+FORMAL 08 frame=realsense-000008 conf=0.9371 pose_conf=0.5670 center_base=(0.037427,0.435031,-0.033836) short_deg=24.710 nearest=pick_4:0.025779 margin=0.026003 tcp_distance=0.005685 image=
+FORMAL 09 frame=realsense-000009 conf=0.9370 pose_conf=0.5670 center_base=(0.037569,0.435249,-0.033890) short_deg=24.229 nearest=pick_4:0.025819 margin=0.025755 tcp_distance=0.005443 image=
+FORMAL 10 frame=realsense-000010 conf=0.9370 pose_conf=0.5675 center_base=(0.037655,0.434979,-0.033986) short_deg=25.122 nearest=pick_4:0.025574 margin=0.026276 tcp_distance=0.005693 image=
+FORMAL 11 frame=realsense-000011 conf=0.9374 pose_conf=0.5674 center_base=(0.037448,0.435036,-0.033855) short_deg=24.941 nearest=pick_4:0.025767 margin=0.026012 tcp_distance=0.005675 image=
+FORMAL 12 frame=realsense-000012 conf=0.9382 pose_conf=0.5670 center_base=(0.036983,0.435557,-0.034609) short_deg=22.760 nearest=pick_4:0.026461 margin=0.024771 tcp_distance=0.005289 image=/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/vision_banana_center_diagnostics/frame_000012.jpg
+VISION_SUMMARY stable=10/12 formal=10 median_xy=(0.037391,0.435143) center_spread=0.000582 short_axis_spread_deg=1.889 assignment=pick_4 min_margin=0.024771 selected_tcp_center_distance=0.005289 max_observed_tcp_center_distance=0.006039
+VISION_CHECKS stable_frames=1 formal_frames=1 pick_4_only=1 assignment_margin=1 center_spread=1 short_axis_stable=1 short_axis_orthogonal=1 tcp_center_aligned=1
+[vision] selected frame=realsense-000012 image=/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/vision_banana_center_diagnostics/frame_000012.jpg
+CLOSE_WIDTH measured=0.036614 m required_opening=0.041614 m maximum_opening=0.105497 m
+GRASP_SAFETY enabled=False; C/D flange/jaw-tip envelope is not configured; workspace, route, joint, branch, singularity and acceleration prechecks remain active
+BOX_CLEARANCE allowed=True reason=box clearance is disabled
+PLAN grasp_xyz=(0.036983, 0.435557, 0.169903) grasp_rpy=(3.141593, -0.0, 0.397242) pregrasp_xyz=(0.036983, 0.435557, 0.244903) lift_xyz=(0.036983, 0.435557, 0.244903) tip_xy_error=0.000000
+[precheck] solving the complete three-segment grasp route before any actuator command
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.976 deg, pos_err=0.0052 mm, rot_err=0.000200 rad, min_sigma=0.064661
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.976 deg, pos_err=0.0052 mm, rot_err=0.000200 rad, min_sigma=0.064679
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.976 deg, pos_err=0.0052 mm, rot_err=0.000200 rad, min_sigma=0.064698
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.976 deg, pos_err=0.0052 mm, rot_err=0.000199 rad, min_sigma=0.064718
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.975 deg, pos_err=0.0052 mm, rot_err=0.000199 rad, min_sigma=0.064737
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.975 deg, pos_err=0.0052 mm, rot_err=0.000199 rad, min_sigma=0.064757
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.975 deg, pos_err=0.0052 mm, rot_err=0.000199 rad, min_sigma=0.064778
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.975 deg, pos_err=0.0052 mm, rot_err=0.000199 rad, min_sigma=0.064799
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.974 deg, pos_err=0.0052 mm, rot_err=0.000198 rad, min_sigma=0.064820
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.974 deg, pos_err=0.0052 mm, rot_err=0.000198 rad, min_sigma=0.064842
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.974 deg, pos_err=0.0052 mm, rot_err=0.000198 rad, min_sigma=0.064865
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.974 deg, pos_err=0.0052 mm, rot_err=0.000198 rad, min_sigma=0.064888
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.974 deg, pos_err=0.0052 mm, rot_err=0.000198 rad, min_sigma=0.064911
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.973 deg, pos_err=0.0052 mm, rot_err=0.000198 rad, min_sigma=0.064935
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.973 deg, pos_err=0.0053 mm, rot_err=0.000197 rad, min_sigma=0.064959
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.973 deg, pos_err=0.0053 mm, rot_err=0.000197 rad, min_sigma=0.064984
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.973 deg, pos_err=0.0053 mm, rot_err=0.000197 rad, min_sigma=0.065009
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.973 deg, pos_err=0.0053 mm, rot_err=0.000197 rad, min_sigma=0.065035
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.972 deg, pos_err=0.0053 mm, rot_err=0.000197 rad, min_sigma=0.065061
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.972 deg, pos_err=0.0053 mm, rot_err=0.000197 rad, min_sigma=0.065088
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.972 deg, pos_err=0.0053 mm, rot_err=0.000197 rad, min_sigma=0.065115
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.972 deg, pos_err=0.0053 mm, rot_err=0.000197 rad, min_sigma=0.065142
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.972 deg, pos_err=0.0053 mm, rot_err=0.000197 rad, min_sigma=0.065171
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.972 deg, pos_err=0.0054 mm, rot_err=0.000197 rad, min_sigma=0.065199
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.971 deg, pos_err=0.0054 mm, rot_err=0.000197 rad, min_sigma=0.065228
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.971 deg, pos_err=0.0054 mm, rot_err=0.000197 rad, min_sigma=0.065258
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.971 deg, pos_err=0.0054 mm, rot_err=0.000197 rad, min_sigma=0.065288
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.971 deg, pos_err=0.0054 mm, rot_err=0.000196 rad, min_sigma=0.065319
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.971 deg, pos_err=0.0054 mm, rot_err=0.000196 rad, min_sigma=0.065350
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.971 deg, pos_err=0.0054 mm, rot_err=0.000196 rad, min_sigma=0.065381
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.971 deg, pos_err=0.0055 mm, rot_err=0.000196 rad, min_sigma=0.065414
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.971 deg, pos_err=0.0055 mm, rot_err=0.000197 rad, min_sigma=0.065446
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.970 deg, pos_err=0.0055 mm, rot_err=0.000197 rad, min_sigma=0.065479
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.970 deg, pos_err=0.0055 mm, rot_err=0.000197 rad, min_sigma=0.065513
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.970 deg, pos_err=0.0055 mm, rot_err=0.000197 rad, min_sigma=0.065547
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.970 deg, pos_err=0.0055 mm, rot_err=0.000197 rad, min_sigma=0.065581
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.970 deg, pos_err=0.0056 mm, rot_err=0.000197 rad, min_sigma=0.065616
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.970 deg, pos_err=0.0056 mm, rot_err=0.000197 rad, min_sigma=0.065652
+[motion:ik-restart-selected] target 1 path waypoint: seed=3, source=offset[0], damping=0.05, iterations=4, step=0.970 deg, pos_err=0.0056 mm, rot_err=0.000197 rad, min_sigma=0.065688
+[motion:plan-timing] target 1: total_s=6.488, attempts=1, waypoints=106, planning_step_mm=2.000, max_joint_step=0.494 deg, max_joint_accel=0.004 deg, min_sigma=0.064435
+[motion:cartesian-precheck] target 1: 106 waypoint(s), planning_step=2.000 mm, max_joint_step=0.494 deg, max_joint_accel=0.004 deg, min_sigma=0.06444, axis_step_deg=0.009,0.025,0.030,0.022,0.030,0.494, axis_travel_deg=0.731,1.882,1.861,1.641,2.592,52.031
+[motion:plan-timing] target 2: total_s=0.068, attempts=1, waypoints=38, planning_step_mm=2.000, max_joint_step=0.443 deg, max_joint_accel=0.009 deg, min_sigma=0.065922
+[motion:cartesian-precheck] target 2: 38 waypoint(s), planning_step=2.000 mm, max_joint_step=0.443 deg, max_joint_accel=0.009 deg, min_sigma=0.06592, axis_step_deg=0.000,0.443,0.401,0.176,0.000,0.003, axis_travel_deg=0.000,16.370,12.233,4.131,0.001,0.004
+[motion:cartesian-precheck-reuse] target 3: exact endpoint and joint posture match
+[motion:cartesian-precheck] target 3: 38 waypoint(s), planning_step=2.000 mm, max_joint_step=0.443 deg, max_joint_accel=0.009 deg, min_sigma=0.06592, axis_step_deg=0.000,0.443,0.401,0.176,0.000,0.003, axis_travel_deg=0.000,16.370,12.233,4.131,0.001,0.004
+[motion:linear-precheck] validated 3 segment(s), 182 Cartesian waypoint(s), min_sigma=0.06443, total_s=6.558
+ROUTE pregrasp: distance=0.012610 m waypoints=106 max_joint_step=0.494 deg max_joint_accel=0.004 deg min_sigma=0.064435
+ROUTE grasp: distance=0.075000 m waypoints=38 max_joint_step=0.443 deg max_joint_accel=0.009 deg min_sigma=0.065922
+ROUTE lift: distance=0.075000 m waypoints=38 max_joint_step=0.443 deg max_joint_accel=0.009 deg min_sigma=0.065922
+[precheck-pass] segments=3 min_sigma=0.064435 required_sigma=0.011000
+[post-precheck-pass] drift_from_route_start=0.006 mm/0.000021 rad capture_to_start=0.004 mm/0.000016 rad
+[gripper:ms42dc] /dev/serial/by-id/usb-1a86_USB_Single_Serial_5CF0022496-if00 @ 115200 id=1 subdivide=32
+[gripper] opening jaws once before entering the approach corridor
+[gripper:ms42dc] stable arrival after 4 samples, angle=21.0 deg, speed=0.00 rad/s
+[gripper:ms42dc] already at verified open hard stop angle=21.0 deg; no motion command sent
+[motion] executing prechecked pregrasp
+[motion:robotmove] pick4_pregrasp: split 106 points into 3 controller-safe chunks points=[40, 40, 26] max_points=40 max_payload_bytes=7600
+[motion:robotmove] sent continuous pick4_pregrasp chunk 1/3: points=40 payload_bytes=7340 joint_velocity=0.600 rad/s endpoint_deg=[70.47, 92.62, -74.18, -70.79, 88.2, -9.45]
+[motion:robotmove] sent continuous pick4_pregrasp chunk 2/3: points=40 payload_bytes=7343 joint_velocity=0.600 rad/s endpoint_deg=[70.77, 93.35, -74.91, -71.38, 89.24, -29.06]
+[motion:robotmove] sent continuous pick4_pregrasp chunk 3/3: points=26 payload_bytes=4788 joint_velocity=0.600 rad/s endpoint_deg=[70.98, 93.95, -75.6, -71.65, 90.0, -41.77]
+[motion:linear] pick4_pregrasp: completed 0.013 m with 106 waypoint(s), cartesian_speed=0.120 m/s, speed_scale=1.00, joint_velocity=0.600 rad/s, max_joint_step=0.494 deg
+[motion] executing prechecked grasp descent
+[motion:robotmove] sent continuous pick4_grasp: points=38 payload_bytes=7528 joint_velocity=0.470 rad/s endpoint_deg=[70.98, 110.32, -87.83, -67.52, 90.0, -41.78]
+[motion:linear] pick4_grasp: completed 0.075 m with 38 waypoint(s), cartesian_speed=0.120 m/s, speed_scale=1.00, joint_velocity=0.470 rad/s, max_joint_step=0.443 deg
+[gripper] closing exactly once for width=0.036614 m
+[gripper:ms42dc] stable arrival after 4 samples, angle=21.0 deg, speed=0.00 rad/s
+[gripper:ms42dc] close_for_width width=0.036614 m: 7b 01 02 01 20 75 30 00 14 08 7d
+[gripper:ms42dc] no status reply
+[gripper:ms42dc] no status reply
+[gripper:ms42dc] MS42DC stable contact evidence accepted: travel=1957.1 deg >= 1736.6 deg, angle=1978.1 deg; object-specific CAD travel is authoritative and no fixed empty-close angle is used, arrived=False, stable_samples=4
+[gripper:ms42dc] width-aware close evidence accepted at 1978.1 deg with 1957.1 deg travel
+HOLD_VERIFY held=1 reason=width-aware close evidence accepted at 1978.1 deg with 1957.1 deg travel
+[motion] hold verified; executing prechecked lift
+[motion:robotmove] sent continuous pick4_lift: points=38 payload_bytes=7522 joint_velocity=0.470 rad/s endpoint_deg=[70.98, 93.95, -75.6, -71.65, 90.0, -41.77]
+[motion:linear] pick4_lift: completed 0.075 m with 38 waypoint(s), cartesian_speed=0.120 m/s, speed_scale=1.00, joint_velocity=0.470 rad/s, max_joint_step=0.443 deg
+FINAL_STATE state=AutoReady xyz=(0.036971, 0.435557, 0.244906) rpy=(3.141524, 0.000014, 0.397240) joints_deg=[70.985, 93.945, -75.598, -71.656, 90.002, -41.775]
+FINAL_CHECK lift_position_error=0.012 mm rotation_error=0.000070 rad
+[success] pick_4 grasped and lifted once; jaws remain CLOSED and no release/retreat/retry/next point was executed
+VERDICT=PICK4_GRASP_HOLD_SUCCESS_NO_RELEASE
+LOG=/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/task_b_pick4_grasp_once_20261106_204931.log

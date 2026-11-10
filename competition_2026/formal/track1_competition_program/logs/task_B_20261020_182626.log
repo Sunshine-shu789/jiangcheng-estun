@@ -1,0 +1,820 @@
+
+===== 任务B 五点位拾放 =====
+配置：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/track1_task_b_final_20261020_live.yaml
+视觉后端：realsense_yolo
+模式：真机执行
+日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/task_B_20261020_182626.log
+
+正在启动 MS42DC 夹爪 ROS 节点，日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/motor_node_20261020_182626.log
+夹爪 ROS 节点已就绪（PID=6078）。
+正在启动机械臂状态桥接，日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/codroid_bridge_20261020_182626.log
+[bridge] RobotInfo 已就绪：state=AutoReady fault_flag=0 xyz=(-0.0644, 0.4304, 0.4331)
+[INFO] [1792491991.772633417] [track1_grasp]: [camera] D405 started 640x480@15 fx=392.7 fy=391.7 cx=314.4 cy=246.7
+[INFO] [1792491991.772934956] [track1_grasp]: [gripper:ms42dc_ros] control=/motor_control state=/motor_state id=1
+[INFO] [1792491991.852270473] [track1_grasp]: [task_b_initial_pose] current_deg=[82.657, 54.338, -32.182, -53.453, 84.448, -2.059] target_deg=[82.657, 54.31, -32.193, -53.453, 84.446, -2.058] max_delta_deg=0.027 tolerance_deg=0.500
+[INFO] [1792491991.852593380] [track1_grasp]: [task_b_initial_pose] already inside tolerance; no joint motion command sent
+[INFO] [1792491991.855048427] [track1_grasp]: [task_b_observation_pose] pick_1: current_deg=[82.657, 54.338, -32.182, -53.453, 84.448, -2.059] target_deg=[81.722, 83.401, -48.371, -55.141, 87.911, -3.395] max_delta_deg=29.063 tolerance_deg=0.500
+[INFO] [1792491991.855366586] [track1_grasp]: [task_b_observation_pose] pick_1: moving six axes together: dry_run=False estimated_steps=30 max_step_deg=1.000 total_abs_deg=[0.935, 29.063, 16.189, 1.688, 3.463, 1.336]
+[INFO] [1792491991.855735792] [track1_grasp]: [motion:robotmove] task_b_observation_pick_1: 30 step(s), max_delta=29.06 deg
+[INFO] [1792491991.894686506] [track1_grasp]: [motion:robotmove] sent continuous task_b_observation_pick_1: points=30 payload_bytes=5465 endpoint_deg=[81.72, 83.4, -48.37, -55.14, 87.91, -3.4]
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+[INFO] [1792492003.959807438] [track1_grasp]: [task_b_observation_pose] pick_1: verified residual_deg=0.003; visual search may start
+[INFO] [1792492004.184174757] [track1_grasp]: [scan] round 1/5: waiting for 8-Plastic_Banana at 'pick_1' xy=(-0.041, 0.491) within 0.080 m, completed_points_excluded=0 (wait attempt 1)
+[INFO] [1792492004.258060039] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792492032.503338805] [track1_grasp]: [yolo] loading /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/models/best.pt
+[INFO] [1792492033.120028259] [track1_grasp]: [vision:realsense_yolo] ready 640x480 rotate180=True anchor=top_center cx=324.6 cy=232.3 stabilizer=on
+[INFO] [1792492059.398101385] [track1_grasp]: [detect] frame 'realsense-000001': 0 detection(s), no confirmed target
+[INFO] [1792492059.448612690] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792492059.505756661] [track1_grasp]: [detect] frame 'realsense-000002': 0 detection(s), no confirmed target
+[INFO] [1792492059.556321388] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792492059.629112134] [track1_grasp]: [pose] loaded camera transform from /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/camera_to_flange.d405_assumed.yaml
+[INFO] [1792492059.629755575] [track1_grasp]: [detect] frame 'realsense-000003': 1 detection(s), no confirmed target
+[INFO] [1792492059.680632525] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792492059.686950593] [track1_grasp]: [detect] frame 'realsense-000004': 1 detection(s), no confirmed target
+[INFO] [1792492059.737438155] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792492059.761332134] [track1_grasp]: [detect] frame 'realsense-000005': 1 detection(s), no confirmed target
+[INFO] [1792492059.812130732] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792492059.871150416] [track1_grasp]: [detect] frame 'realsense-000006': 2 detection(s), no confirmed target
+[INFO] [1792492059.922024992] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792492059.952222794] [track1_grasp]: [detect] frame 'realsense-000007': 2 detection(s), no confirmed target
+[INFO] [1792492060.003042760] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792492060.026578217] [track1_grasp]: [detect] frame 'realsense-000008': 2 detection(s), no confirmed target
+[INFO] [1792492060.090307367] [track1_grasp]: [motion:cartesian-precheck] target 1: 1 waypoint(s), planning_step=2.000 mm, max_joint_step=0.000 deg, max_joint_accel=0.000 deg, min_sigma=0.04479, axis_step_deg=0.000,0.000,0.000,0.000,0.000,0.000, axis_travel_deg=0.000,0.000,0.000,0.000,0.000,0.000
+[INFO] [1792492060.214515222] [track1_grasp]: [motion:cartesian-precheck] target 2: 40 waypoint(s), planning_step=2.000 mm, max_joint_step=0.238 deg, max_joint_accel=0.016 deg, min_sigma=0.04438, axis_step_deg=0.236,0.034,0.095,0.057,0.005,0.238, axis_travel_deg=9.313,0.589,1.725,1.153,0.055,9.314
+[INFO] [1792492065.245810667] [track1_grasp]: [motion:cartesian-precheck] target 3: 94 waypoint(s), planning_step=2.000 mm, max_joint_step=0.499 deg, max_joint_accel=0.247 deg, min_sigma=0.04469, axis_step_deg=0.164,0.136,0.499,0.382,0.002,0.164, axis_travel_deg=7.660,8.436,32.405,23.713,0.052,7.663
+[INFO] [1792492065.246538396] [track1_grasp]: [motion:linear-precheck] validated 3 segment(s), 135 Cartesian waypoint(s), min_sigma=0.04438
+[INFO] [1792492065.247524926] [track1_grasp]: [scan] active search route precheck passed for Task B point 'pick_1': 3 segment(s)
+[INFO] [1792492065.248821306] [track1_grasp]: [scan] active search move 1/3: xyz=(-0.041, 0.491, 0.262)
+[INFO] [1792492065.251005681] [track1_grasp]: [motion:cartesian-precheck] target 1: 1 waypoint(s), planning_step=2.000 mm, max_joint_step=0.000 deg, max_joint_accel=0.000 deg, min_sigma=0.04479, axis_step_deg=0.000,0.000,0.000,0.000,0.000,0.000, axis_travel_deg=0.000,0.000,0.000,0.000,0.000,0.000
+[INFO] [1792492065.251319091] [track1_grasp]: [motion:linear-precheck] validated 1 segment(s), 1 Cartesian waypoint(s), min_sigma=0.04479
+[INFO] [1792492065.251850939] [track1_grasp]: [motion:robotmove] task_search_position_01: already within startup tolerance (0.000 deg <= 0.050 deg); no joint command sent
+[INFO] [1792492065.252267633] [track1_grasp]: [motion:linear] task_search_position_01: completed 0.000 m with 1 waypoint(s), max_joint_step=0.000 deg
+[INFO] [1792492066.053781428] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792492066.103822618] [track1_grasp]: [detect] frame 'realsense-000019': 1 detection(s), no confirmed target
+[INFO] [1792492066.155500902] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792492066.186266167] [track1_grasp]: [detect] frame 'realsense-000020': 1 detection(s), no confirmed target
+[INFO] [1792492066.237042209] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792492066.269474247] [track1_grasp]: [detect] frame 'realsense-000021': 1 detection(s), no confirmed target
+[INFO] [1792492066.320155317] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792492066.344749721] [track1_grasp]: [detect] frame 'realsense-000022': 1 detection(s), no confirmed target
+[INFO] [1792492066.395483026] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792492066.427664573] [track1_grasp]: [detect] frame 'realsense-000023': 1 detection(s), no confirmed target
+[INFO] [1792492066.478362263] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792492066.500676132] [track1_grasp]: [detect] frame 'realsense-000024': 1 detection(s), no confirmed target
+[INFO] [1792492066.551507971] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792492066.572777139] [track1_grasp]: [detect] frame 'realsense-000025': 1 detection(s), no confirmed target
+[INFO] [1792492066.624377071] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792492066.652352508] [track1_grasp]: [detect] frame 'realsense-000026': 1 detection(s), no confirmed target
+[INFO] [1792492066.652843993] [track1_grasp]: [scan] active search view 1/3: no confirmed target: target not confirmed in 8 frame(s): no target at expected point 'pick_1' within 0.080 m (expected class '8-Plastic_Banana'); nearest detection '7-Clamp' was 0.198 m from 'pick_1' (expected class '8-Plastic_Banana')
+[INFO] [1792492066.653175210] [track1_grasp]: [scan] active search move 2/3: xyz=(0.039, 0.491, 0.262)
+[INFO] [1792492066.776400097] [track1_grasp]: [motion:cartesian-precheck] target 1: 41 waypoint(s), planning_step=2.000 mm, max_joint_step=0.232 deg, max_joint_accel=0.017 deg, min_sigma=0.04438, axis_step_deg=0.231,0.034,0.093,0.055,0.005,0.232, axis_travel_deg=9.313,0.589,1.724,1.152,0.055,9.314
+[INFO] [1792492066.776820352] [track1_grasp]: [motion:linear-precheck] validated 1 segment(s), 41 Cartesian waypoint(s), min_sigma=0.04438
+[INFO] [1792492066.777800947] [track1_grasp]: [motion:robotmove] task_search_position_02: split 41 points into 2 controller-safe chunks points=[40, 1] max_points=40 max_payload_bytes=7600
+[INFO] [1792492066.778973861] [track1_grasp]: [motion:robotmove] sent continuous task_search_position_02 chunk 1/2: points=40 payload_bytes=7236 endpoint_deg=[72.63, 83.19, -48.02, -55.32, 87.96, -12.49]
+[INFO] [1792492073.564149467] [track1_grasp]: [motion:robotmove] sent continuous task_search_position_02 chunk 2/2: points=1 payload_bytes=269 endpoint_deg=[72.41, 83.16, -47.93, -55.26, 87.97, -12.71]
+[INFO] [1792492073.865651440] [track1_grasp]: [motion:linear] task_search_position_02: completed 0.080 m with 41 waypoint(s), max_joint_step=0.232 deg
+[INFO] [1792492074.667216295] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792492074.677581393] [track1_grasp]: [detect] frame 'realsense-000127': 1 detection(s), no confirmed target
+[INFO] [1792492074.728187672] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792492074.763302694] [track1_grasp]: [detect] frame 'realsense-000128': 1 detection(s), no confirmed target
+[INFO] [1792492074.813825872] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792492074.863804143] [track1_grasp]: [detect] frame 'realsense-000129': 1 detection(s), no confirmed target
+[INFO] [1792492074.914501833] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792492074.946517178] [track1_grasp]: [detect] frame 'realsense-000130': 1 detection(s), no confirmed target
+[INFO] [1792492074.997113960] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792492075.033853017] [track1_grasp]: [detect] frame 'realsense-000131': 1 detection(s), no confirmed target
+[INFO] [1792492075.084683670] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792492075.112723215] [track1_grasp]: [detect] frame 'realsense-000132': 0 detection(s), no confirmed target
+[INFO] [1792492075.163318809] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792492075.197323836] [track1_grasp]: [detect] frame 'realsense-000133': 1 detection(s), no confirmed target
+[INFO] [1792492075.248150927] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792492075.273849391] [track1_grasp]: [detect] frame 'realsense-000134': 0 detection(s), no confirmed target
+[INFO] [1792492075.274166363] [track1_grasp]: [scan] active search view 2/3: no confirmed target: target not confirmed in 8 frame(s): no target at expected point 'pick_1' within 0.080 m (expected class '8-Plastic_Banana'); no detection had a usable base-frame position
+[INFO] [1792492075.274418041] [track1_grasp]: [scan] active search move 3/3: xyz=(-0.041, 0.411, 0.262)
+[INFO] [1792492080.439507793] [track1_grasp]: [motion:cartesian-precheck] target 1: 94 waypoint(s), planning_step=2.000 mm, max_joint_step=0.498 deg, max_joint_accel=0.247 deg, min_sigma=0.04471, axis_step_deg=0.164,0.137,0.498,0.382,0.002,0.164, axis_travel_deg=7.660,8.439,32.408,23.715,0.053,7.665
+[INFO] [1792492080.441045166] [track1_grasp]: [motion:linear-precheck] validated 1 segment(s), 94 Cartesian waypoint(s), min_sigma=0.04438
+[INFO] [1792492080.444370403] [track1_grasp]: [motion:robotmove] task_search_position_03: split 94 points into 3 controller-safe chunks points=[40, 40, 14] max_points=40 max_payload_bytes=7600
+[INFO] [1792492080.446428939] [track1_grasp]: [motion:robotmove] sent continuous task_search_position_03 chunk 1/3: points=40 payload_bytes=7227 endpoint_deg=[74.75, 87.52, -61.93, -64.83, 87.95, -10.37]
+[INFO] [1792492088.740429934] [track1_grasp]: [motion:robotmove] sent continuous task_search_position_03 chunk 2/3: points=40 payload_bytes=7235 endpoint_deg=[77.89, 90.5, -74.19, -74.01, 87.93, -7.23]
+[INFO] [1792492096.524471930] [track1_grasp]: [motion:robotmove] sent continuous task_search_position_03 chunk 3/3: points=14 payload_bytes=2589 endpoint_deg=[80.07, 91.6, -80.33, -78.98, 87.92, -5.05]
+[INFO] [1792492099.838973165] [track1_grasp]: [motion:linear] task_search_position_03: completed 0.113 m with 94 waypoint(s), max_joint_step=0.498 deg
+[INFO] [1792492100.640143903] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792492100.709228338] [track1_grasp]: [detect] frame 'realsense-000389': 2 detection(s), 8-Plastic_Banana conf=0.77, confirmation 1/2
+[INFO] [1792492100.759978265] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792492100.789571803] [track1_grasp]: [detect] frame 'realsense-000390': 2 detection(s), 8-Plastic_Banana conf=0.75, confirmation 2/2
+[INFO] [1792492100.790108400] [track1_grasp]: [scan] round 1/5: target confirmed at expected point 'pick_1'
+[INFO] [1792492100.790389757] [track1_grasp]: [select] selected '8-Plastic_Banana' conf=0.75 graspability=1.00: 8-Plastic_Banana confirmed in 2 consecutive frames
+[INFO] [1792492100.790840878] [track1_grasp]: [task_b_anchor_pose] pick_1: fixed high anchor xyz=(-0.041247, 0.4907, 0.261723) rpy=(3.140775, 0.036569, -0.085293)
+[INFO] [1792492100.791746681] [track1_grasp]: [plan] pick_1: vertical grasp column locked; xy=(-0.0485, 0.4690), straight_descent=0.0952 m, lateral=0.0000 m, rotation=0.0000 rad
+[INFO] [1792492100.791997172] [track1_grasp]: [plan] planned 6 waypoint(s)
+[INFO] [1792492109.692710953] [track1_grasp]: [motion:cartesian-precheck] target 1: 92 waypoint(s), planning_step=2.000 mm, max_joint_step=0.500 deg, max_joint_accel=0.244 deg, min_sigma=0.04498, axis_step_deg=0.035,0.150,0.500,0.242,0.024,0.013, axis_travel_deg=1.786,9.705,31.387,15.225,1.395,0.378
+[INFO] [1792492111.811309394] [track1_grasp]: [motion:cartesian-precheck] target 2: 59 waypoint(s), planning_step=2.000 mm, max_joint_step=0.498 deg, max_joint_accel=0.246 deg, min_sigma=0.04520, axis_step_deg=0.002,0.470,0.498,0.125,0.004,0.001, axis_travel_deg=0.004,21.361,20.048,2.827,0.011,0.001
+[INFO] [1792492113.891130423] [track1_grasp]: [motion:cartesian-precheck] target 3: 59 waypoint(s), planning_step=2.000 mm, max_joint_step=0.496 deg, max_joint_accel=0.245 deg, min_sigma=0.04498, axis_step_deg=0.002,0.469,0.496,0.121,0.004,0.001, axis_travel_deg=0.004,21.361,20.047,2.829,0.012,0.001
+[INFO] [1792492113.893102297] [track1_grasp]: [motion:cartesian-precheck] target 4: 0 waypoint(s), planning_step=2.000 mm, max_joint_step=0.000 deg, max_joint_accel=0.000 deg, min_sigma=0.04498, axis_step_deg=0.000,0.000,0.000,0.000,0.000,0.000, axis_travel_deg=0.000,0.000,0.000,0.000,0.000,0.000
+[INFO] [1792492115.941182216] [track1_grasp]: [motion:cartesian-precheck] target 5: 59 waypoint(s), planning_step=2.000 mm, max_joint_step=0.498 deg, max_joint_accel=0.246 deg, min_sigma=0.04520, axis_step_deg=0.002,0.470,0.498,0.125,0.004,0.001, axis_travel_deg=0.004,21.361,20.047,2.827,0.011,0.001
+[INFO] [1792492118.026503364] [track1_grasp]: [motion:cartesian-precheck] target 6: 59 waypoint(s), planning_step=2.000 mm, max_joint_step=0.496 deg, max_joint_accel=0.245 deg, min_sigma=0.04498, axis_step_deg=0.002,0.469,0.496,0.121,0.004,0.001, axis_travel_deg=0.004,21.361,20.047,2.829,0.012,0.001
+[INFO] [1792492118.027829423] [track1_grasp]: [motion:linear-precheck] validated 6 segment(s), 328 Cartesian waypoint(s), min_sigma=0.04498
+[INFO] [1792492118.028544093] [track1_grasp]: [plan] full-route precheck passed: 6 segment(s)
+[INFO] [1792492118.029017770] [track1_grasp]: [open_gripper] opening jaws before entering approach corridor
+[INFO] [1792492118.029453458] [track1_grasp]: [gripper:ms42dc_ros] open: dir=0 angle_wire=30000 speed_wire=100
+[INFO] [1792492122.364156602] [track1_grasp]: [approach] move to pregrasp: xyz=(-0.0485, 0.469, 0.2617)
+[INFO] [1792492122.366240069] [track1_grasp]: [motion:robotmove] pregrasp: split 92 points into 3 controller-safe chunks points=[40, 40, 12] max_points=40 max_payload_bytes=7600
+[INFO] [1792492122.367327508] [track1_grasp]: [motion:robotmove] sent continuous pregrasp chunk 1/3: points=40 payload_bytes=7221 endpoint_deg=[81.15, 87.15, -64.38, -71.12, 87.15, -4.75]
+[INFO] [1792492131.147931581] [track1_grasp]: [motion:robotmove] sent continuous pregrasp chunk 2/3: points=40 payload_bytes=7249 endpoint_deg=[81.7, 83.31, -52.89, -65.63, 86.67, -4.68]
+[INFO] [1792492138.683084323] [track1_grasp]: [motion:robotmove] sent continuous pregrasp chunk 3/3: points=12 payload_bytes=2230 endpoint_deg=[81.86, 81.89, -48.95, -63.75, 86.52, -4.67]
+[INFO] [1792492141.193875526] [track1_grasp]: [motion:linear] pregrasp: completed 0.059 m with 92 waypoint(s), max_joint_step=0.500 deg
+[INFO] [1792492141.194359887] [track1_grasp]: [grasp] move to grasp: xyz=(-0.0485, 0.469, 0.1665)
+[INFO] [1792492141.196023099] [track1_grasp]: [motion:robotmove] grasp: split 59 points into 2 controller-safe chunks points=[40, 19] max_points=40 max_payload_bytes=7600
+[INFO] [1792492141.197244687] [track1_grasp]: [motion:robotmove] sent continuous grasp chunk 1/2: points=40 payload_bytes=7230 endpoint_deg=[81.86, 95.33, -62.8, -64.19, 86.53, -4.67]
+[INFO] [1792492149.533897038] [track1_grasp]: [motion:robotmove] sent continuous grasp chunk 2/2: points=19 payload_bytes=3486 endpoint_deg=[81.86, 103.25, -69.0, -62.46, 86.53, -4.67]
+[INFO] [1792492153.901681627] [track1_grasp]: [motion:linear] grasp: completed 0.095 m with 59 waypoint(s), max_joint_step=0.498 deg
+[INFO] [1792492153.902087636] [track1_grasp]: [grasp] reached grasp pose; closing jaws
+[INFO] [1792492153.902780938] [track1_grasp]: [gripper:ms42dc_ros] close: dir=1 angle_wire=30000 speed_wire=100
+[INFO] [1792492156.216008443] [track1_grasp]: [verify_hold] checking whether the object is held
+[INFO] [1792492157.885774732] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (390,380)
+[INFO] [1792492157.925903134] [track1_grasp]: [verify_hold] jaws settled at 19.1 deg
+[INFO] [1792492157.926519270] [track1_grasp]: [lift] move to lift: xyz=(-0.0485, 0.469, 0.2617)
+[INFO] [1792492157.930243393] [track1_grasp]: [motion:robotmove] lift: split 59 points into 2 controller-safe chunks points=[40, 19] max_points=40 max_payload_bytes=7600
+[INFO] [1792492157.931624061] [track1_grasp]: [motion:robotmove] sent continuous lift chunk 1/2: points=40 payload_bytes=7229 endpoint_deg=[81.86, 86.55, -54.23, -64.38, 86.52, -4.67]
+[INFO] [1792492157.975223720] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (391,381)
+[INFO] [1792492158.137738881] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (392,382)
+[INFO] [1792492158.218247363] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (391,382)
+[INFO] [1792492158.301146786] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (392,382)
+[INFO] [1792492158.386809920] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (390,382)
+[INFO] [1792492158.467521406] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (389,382)
+[INFO] [1792492158.547772274] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (390,383)
+[INFO] [1792492158.624075834] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (389,382)
+[INFO] [1792492158.709496786] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (390,382)
+[INFO] [1792492158.784595377] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (389,382)
+[INFO] [1792492158.858323985] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (389,382)
+[INFO] [1792492159.006761796] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (389,382)
+[INFO] [1792492159.081565971] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (389,382)
+[INFO] [1792492159.158955783] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (389,382)
+[INFO] [1792492159.233133137] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (389,382)
+[INFO] [1792492159.318594453] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (388,382)
+[INFO] [1792492159.410071112] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (389,382)
+[INFO] [1792492159.490333852] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (389,381)
+[INFO] [1792492159.571380117] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (389,382)
+[INFO] [1792492159.735963312] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (388,381)
+[INFO] [1792492159.812219385] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (388,381)
+[INFO] [1792492159.885793662] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (389,381)
+[INFO] [1792492159.959549574] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (391,382)
+[INFO] [1792492160.033837335] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (388,381)
+[INFO] [1792492160.109768126] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (388,382)
+[INFO] [1792492160.272487478] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (388,381)
+[INFO] [1792492160.358257456] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (391,382)
+[INFO] [1792492160.451326097] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (392,381)
+[INFO] [1792492160.527778051] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (389,381)
+[INFO] [1792492160.605868287] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (389,381)
+[INFO] [1792492160.687971126] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (388,381)
+[INFO] [1792492160.774716950] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (388,381)
+[INFO] [1792492164.988608731] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (389,382)
+[INFO] [1792492165.160510771] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (389,382)
+[INFO] [1792492165.248780909] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (389,382)
+[INFO] [1792492165.333277063] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (390,382)
+[INFO] [1792492165.508491281] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (388,382)
+[INFO] [1792492165.593474171] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (389,382)
+[INFO] [1792492165.840898618] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (389,381)
+[INFO] [1792492167.072011447] [track1_grasp]: [motion:robotmove] sent continuous lift chunk 2/2: points=19 payload_bytes=3480 endpoint_deg=[81.86, 81.89, -48.95, -63.75, 86.52, -4.67]
+[INFO] [1792492168.965165744] [track1_grasp]: [depth] skip 6-Foam_Brick: no valid depth at (187,149)
+[INFO] [1792492170.556159182] [track1_grasp]: [depth] skip 6-Foam_Brick: no valid depth at (208,165)
+[INFO] [1792492170.693720227] [track1_grasp]: [motion:linear] lift: completed 0.095 m with 59 waypoint(s), max_joint_step=0.496 deg
+[INFO] [1792492170.694210524] [track1_grasp]: [lift] lift pose reached; holding for 2.0 s before return
+[INFO] [1792492172.697098823] [track1_grasp]: [transfer] move to transfer: xyz=(-0.0485, 0.469, 0.2617)
+[INFO] [1792492172.697936959] [track1_grasp]: [motion:linear] transfer: completed 0.000 m with 0 waypoint(s), max_joint_step=0.000 deg
+[INFO] [1792492172.698683683] [track1_grasp]: [release] move to release: xyz=(-0.0485, 0.469, 0.1665)
+[INFO] [1792492172.700627065] [track1_grasp]: [motion:robotmove] release: split 59 points into 2 controller-safe chunks points=[40, 19] max_points=40 max_payload_bytes=7600
+[INFO] [1792492172.702152566] [track1_grasp]: [motion:robotmove] sent continuous release chunk 1/2: points=40 payload_bytes=7233 endpoint_deg=[81.86, 95.33, -62.8, -64.19, 86.53, -4.67]
+[INFO] [1792492173.378301063] [track1_grasp]: [depth] skip 6-Foam_Brick: no valid depth at (208,159)
+[INFO] [1792492175.782904323] [track1_grasp]: [depth] skip 6-Foam_Brick: no valid depth at (181,140)
+[INFO] [1792492177.272820534] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (391,382)
+[INFO] [1792492177.508062340] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (392,382)
+[INFO] [1792492177.581660360] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (389,380)
+[INFO] [1792492177.726911832] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (388,381)
+[INFO] [1792492177.800286666] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (389,382)
+[INFO] [1792492177.874056825] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (389,381)
+[INFO] [1792492177.953489739] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (393,381)
+[INFO] [1792492178.030012923] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (388,381)
+[INFO] [1792492178.105462914] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (391,382)
+[INFO] [1792492178.180937835] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (390,382)
+[INFO] [1792492178.261125784] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (388,382)
+[INFO] [1792492178.348809465] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (391,382)
+[INFO] [1792492178.432795140] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (388,382)
+[INFO] [1792492178.515896381] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (388,381)
+[INFO] [1792492178.600143232] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (389,381)
+[INFO] [1792492178.683105575] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (391,382)
+[INFO] [1792492178.768424432] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (397,382)
+[INFO] [1792492178.851146969] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (389,382)
+[INFO] [1792492178.926065112] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (387,381)
+[INFO] [1792492179.003019235] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (388,381)
+[INFO] [1792492179.080563377] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (391,382)
+[INFO] [1792492179.246194835] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (389,381)
+[INFO] [1792492180.819564874] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (388,381)
+[INFO] [1792492180.977966524] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (389,381)
+[INFO] [1792492181.056079316] [track1_grasp]: [motion:robotmove] sent continuous release chunk 2/2: points=19 payload_bytes=3487 endpoint_deg=[81.86, 103.25, -69.0, -62.46, 86.53, -4.67]
+[INFO] [1792492181.851822371] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (387,380)
+[INFO] [1792492183.141178486] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (389,381)
+[INFO] [1792492183.375255687] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (388,381)
+[INFO] [1792492183.452941102] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (388,381)
+[INFO] [1792492183.526769431] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (390,382)
+[INFO] [1792492183.600401879] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (388,382)
+[INFO] [1792492183.673069166] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (388,382)
+[INFO] [1792492183.747705952] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (388,381)
+[INFO] [1792492183.825746327] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (387,381)
+[INFO] [1792492183.904345855] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (387,381)
+[INFO] [1792492183.982070446] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (388,382)
+[INFO] [1792492184.062635912] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (389,382)
+[INFO] [1792492184.140559945] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (389,382)
+[INFO] [1792492184.221412704] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (388,382)
+[INFO] [1792492184.379400034] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (389,383)
+[INFO] [1792492184.469243160] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (389,382)
+[INFO] [1792492184.702096399] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (389,381)
+[INFO] [1792492184.788037328] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (389,381)
+[INFO] [1792492184.949444868] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (391,382)
+[INFO] [1792492185.288049184] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (390,382)
+[INFO] [1792492185.433395629] [track1_grasp]: [motion:linear] release: completed 0.095 m with 59 waypoint(s), max_joint_step=0.498 deg
+[INFO] [1792492185.433939348] [track1_grasp]: [release] opening jaws to release the object
+[INFO] [1792492185.434687259] [track1_grasp]: [gripper:ms42dc_ros] open: dir=0 angle_wire=30000 speed_wire=100
+[INFO] [1792492185.518573213] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (390,383)
+[INFO] [1792492185.601555738] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (389,381)
+[INFO] [1792492187.747914770] [track1_grasp]: [retreat] move to retreat: xyz=(-0.0485, 0.469, 0.2617)
+[INFO] [1792492187.749795232] [track1_grasp]: [motion:robotmove] retreat: split 59 points into 2 controller-safe chunks points=[40, 19] max_points=40 max_payload_bytes=7600
+[INFO] [1792492187.751127226] [track1_grasp]: [motion:robotmove] sent continuous retreat chunk 1/2: points=40 payload_bytes=7234 endpoint_deg=[81.86, 86.55, -54.23, -64.38, 86.52, -4.67]
+[INFO] [1792492187.786927241] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (449,382)
+[INFO] [1792492187.936637688] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (450,382)
+[INFO] [1792492189.419287290] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,386)
+[INFO] [1792492190.098074846] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,386)
+[INFO] [1792492190.183428131] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,384)
+[INFO] [1792492190.268723244] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (162,384)
+[INFO] [1792492190.584570879] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,385)
+[INFO] [1792492190.736768428] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (163,385)
+[INFO] [1792492191.746836706] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (105,387)
+[INFO] [1792492196.851254452] [track1_grasp]: [motion:robotmove] sent continuous retreat chunk 2/2: points=19 payload_bytes=3496 endpoint_deg=[81.86, 81.89, -48.95, -63.75, 86.52, -4.67]
+[INFO] [1792492200.469076473] [track1_grasp]: [motion:linear] retreat: completed 0.095 m with 59 waypoint(s), max_joint_step=0.496 deg
+[INFO] [1792492200.473601929] [track1_grasp]: [done] pick_1: object returned at its pick point and arm retreated; next round waits for visual confirmation at expected point 2/5
+[INFO] [1792492200.476005929] [track1_grasp]: [task_b_return_initial_pick_1] current_deg=[81.858, 81.891, -48.948, -63.756, 86.523, -4.671] target_deg=[82.657, 54.31, -32.193, -53.453, 84.446, -2.058] max_delta_deg=27.581 tolerance_deg=0.500
+[INFO] [1792492200.476435681] [track1_grasp]: [task_b_return_initial_pick_1] moving six axes together: dry_run=False estimated_steps=28 max_step_deg=1.000 total_abs_deg=[0.799, 27.581, 16.755, 10.304, 2.078, 2.613]
+[INFO] [1792492200.476841690] [track1_grasp]: [motion:robotmove] task_b_return_initial_pick_1: 28 step(s), max_delta=27.58 deg
+[INFO] [1792492200.480006660] [track1_grasp]: [motion:robotmove] sent continuous task_b_return_initial_pick_1: points=28 payload_bytes=4964 endpoint_deg=[82.66, 54.31, -32.19, -53.45, 84.45, -2.06]
+[INFO] [1792492210.172302648] [track1_grasp]: [task_b_return_initial_pick_1] verified residual_deg=0.005; pick_1 complete at the initial pose
+[INFO] [1792492210.172654047] [track1_grasp]: [operator_pause] pick_1 completed and the arm is at the initial pose; no motion will be issued until the operator continues
+
+[人工确认] pick_1 已完成原位拾放和撤回，机械臂已返回初始位。
+请将香蕉放到下一个点位，确认机械臂周围安全后按回车继续。
+当前进度：1/5；下一步：2/5
+
+按回车继续 > [INFO] [1792492225.863797125] [track1_grasp]: [depth] skip 6-Foam_Brick: no valid depth at (563,146)
+[INFO] [1792492225.947265199] [track1_grasp]: [depth] skip 6-Foam_Brick: no valid depth at (562,150)
+[INFO] [1792492226.029328862] [track1_grasp]: [depth] skip 6-Foam_Brick: no valid depth at (563,144)
+[INFO] [1792492235.425863975] [track1_grasp]: [task_b_observation_pose] pick_2: current_deg=[82.657, 54.31, -32.193, -53.452, 84.447, -2.059] target_deg=[91.406, 74.367, -18.644, -35.901, 87.641, -19.601] max_delta_deg=20.057 tolerance_deg=0.500
+[INFO] [1792492235.426254550] [track1_grasp]: [task_b_observation_pose] pick_2: moving six axes together: dry_run=False estimated_steps=21 max_step_deg=1.000 total_abs_deg=[8.749, 20.057, 13.549, 17.551, 3.194, 17.542]
+[INFO] [1792492235.426732976] [track1_grasp]: [motion:robotmove] task_b_observation_pick_2: 21 step(s), max_delta=20.06 deg
+[INFO] [1792492235.429369660] [track1_grasp]: [motion:robotmove] sent continuous task_b_observation_pick_2: points=21 payload_bytes=3839 endpoint_deg=[91.41, 74.37, -18.64, -35.9, 87.64, -19.6]
+[INFO] [1792492239.445651449] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (97,387)
+[INFO] [1792492241.960539557] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,387)
+[INFO] [1792492242.114744594] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,387)
+[INFO] [1792492242.194267733] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (97,386)
+[INFO] [1792492242.273280393] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (97,386)
+[INFO] [1792492242.351896541] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,386)
+[INFO] [1792492242.606616090] [track1_grasp]: [task_b_observation_pose] pick_2: verified residual_deg=0.013; visual search may start
+[INFO] [1792492242.606966303] [track1_grasp]: [scan] round 2/5: waiting for 8-Plastic_Banana at 'pick_2' xy=(-0.125, 0.522) within 0.080 m, completed_points_excluded=1 (wait attempt 1)
+[INFO] [1792492242.607543263] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792492242.614872792] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (97,386)
+[INFO] [1792492242.619854118] [track1_grasp]: [detect] frame 'realsense-001952': 1 detection(s), 8-Plastic_Banana conf=0.59, confirmation 1/2
+[INFO] [1792492242.670443779] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792492242.698108182] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (96,387)
+[INFO] [1792492242.704251739] [track1_grasp]: [detect] frame 'realsense-001953': 1 detection(s), 8-Plastic_Banana conf=0.64, confirmation 2/2
+[INFO] [1792492242.704743223] [track1_grasp]: [scan] round 2/5: target confirmed at expected point 'pick_2'
+[INFO] [1792492242.705066131] [track1_grasp]: [select] selected '8-Plastic_Banana' conf=0.64 graspability=1.00: 8-Plastic_Banana confirmed in 2 consecutive frames
+[INFO] [1792492242.705885271] [track1_grasp]: [task_b_anchor_pose] pick_2: fixed high anchor xyz=(-0.124884, 0.521709, 0.241216) rpy=(3.128682, 0.04828, 0.365743)
+[INFO] [1792492242.706424242] [track1_grasp]: [plan] pick_2: vertical grasp column locked; xy=(-0.1249, 0.5217), straight_descent=0.0747 m, lateral=0.0000 m, rotation=0.0000 rad
+[INFO] [1792492242.706792262] [track1_grasp]: [plan] planned 6 waypoint(s)
+[INFO] [1792492242.710346621] [track1_grasp]: [motion:cartesian-precheck] target 1: 1 waypoint(s), planning_step=2.000 mm, max_joint_step=0.000 deg, max_joint_accel=0.000 deg, min_sigma=0.01724, axis_step_deg=0.000,0.000,0.000,0.000,0.000,0.000, axis_travel_deg=0.000,0.000,0.000,0.000,0.000,0.000
+[INFO] [1792492259.300512170] [track1_grasp]: [motion:cartesian-precheck] target 2: 68 waypoint(s), planning_step=2.000 mm, max_joint_step=0.499 deg, max_joint_accel=0.242 deg, min_sigma=0.01747, axis_step_deg=0.001,0.471,0.499,0.148,0.002,0.002, axis_travel_deg=0.003,20.012,23.736,4.342,0.007,0.003
+[INFO] [1792492275.649719736] [track1_grasp]: [motion:cartesian-precheck] target 3: 68 waypoint(s), planning_step=2.000 mm, max_joint_step=0.498 deg, max_joint_accel=0.243 deg, min_sigma=0.01730, axis_step_deg=0.002,0.468,0.498,0.153,0.004,0.001, axis_travel_deg=0.003,19.979,23.667,4.340,0.009,0.002
+[INFO] [1792492275.651576455] [track1_grasp]: [motion:cartesian-precheck] target 4: 0 waypoint(s), planning_step=2.000 mm, max_joint_step=0.000 deg, max_joint_accel=0.000 deg, min_sigma=0.01730, axis_step_deg=0.000,0.000,0.000,0.000,0.000,0.000, axis_travel_deg=0.000,0.000,0.000,0.000,0.000,0.000
+[INFO] [1792492291.141546869] [track1_grasp]: [motion:cartesian-precheck] target 5: 67 waypoint(s), planning_step=2.000 mm, max_joint_step=0.499 deg, max_joint_accel=0.242 deg, min_sigma=0.01775, axis_step_deg=0.001,0.471,0.499,0.162,0.004,0.001, axis_travel_deg=0.003,19.979,23.667,4.322,0.009,0.001
+[INFO] [1792492307.511194967] [track1_grasp]: [motion:cartesian-precheck] target 6: 68 waypoint(s), planning_step=2.000 mm, max_joint_step=0.498 deg, max_joint_accel=0.243 deg, min_sigma=0.01730, axis_step_deg=0.002,0.468,0.498,0.153,0.004,0.001, axis_travel_deg=0.003,19.979,23.667,4.340,0.009,0.002
+[INFO] [1792492307.512889045] [track1_grasp]: [motion:linear-precheck] validated 6 segment(s), 272 Cartesian waypoint(s), min_sigma=0.01724
+[INFO] [1792492307.513994291] [track1_grasp]: [plan] full-route precheck passed: 6 segment(s)
+[INFO] [1792492307.514453722] [track1_grasp]: [approach] move to pregrasp: xyz=(-0.1249, 0.5217, 0.2412)
+[INFO] [1792492307.515093602] [track1_grasp]: [motion:robotmove] pregrasp: already within startup tolerance (0.005 deg <= 0.050 deg); no joint command sent
+[INFO] [1792492307.515569653] [track1_grasp]: [motion:linear] pregrasp: completed 0.000 m with 1 waypoint(s), max_joint_step=0.000 deg
+[INFO] [1792492307.515903245] [track1_grasp]: [grasp] move to grasp: xyz=(-0.1249, 0.5217, 0.1665)
+[INFO] [1792492307.517589014] [track1_grasp]: [motion:robotmove] grasp: split 68 points into 2 controller-safe chunks points=[40, 28] max_points=40 max_payload_bytes=7600
+[INFO] [1792492307.518793982] [track1_grasp]: [motion:robotmove] sent continuous grasp chunk 1/2: points=40 payload_bytes=7239 endpoint_deg=[91.41, 84.54, -32.37, -39.46, 87.64, -19.6]
+[INFO] [1792492307.572961745] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (97,386)
+[INFO] [1792492307.661149969] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (97,386)
+[INFO] [1792492307.848147943] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (97,386)
+[INFO] [1792492307.936625834] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (97,386)
+[INFO] [1792492308.098952237] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (97,387)
+[INFO] [1792492308.178538295] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (97,386)
+[INFO] [1792492308.346720961] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,387)
+[INFO] [1792492308.428046210] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,386)
+[INFO] [1792492308.580411148] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,387)
+[INFO] [1792492308.658236648] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (97,386)
+[INFO] [1792492308.739958408] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (97,387)
+[INFO] [1792492308.902320425] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (97,386)
+[INFO] [1792492308.984235693] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (97,386)
+[INFO] [1792492309.140361556] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,386)
+[INFO] [1792492309.222393165] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,387)
+[INFO] [1792492309.295102003] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (97,386)
+[INFO] [1792492309.365669202] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (97,387)
+[INFO] [1792492309.437547027] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (97,386)
+[INFO] [1792492309.510650001] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,386)
+[INFO] [1792492309.583088166] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,386)
+[INFO] [1792492309.726789206] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,386)
+[INFO] [1792492309.796825745] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,386)
+[INFO] [1792492309.865149211] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (97,387)
+[INFO] [1792492310.533441081] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,386)
+[INFO] [1792492315.756222303] [track1_grasp]: [motion:robotmove] sent continuous grasp chunk 2/2: points=28 payload_bytes=5090 endpoint_deg=[91.41, 94.38, -42.38, -39.63, 87.64, -19.6]
+[INFO] [1792492321.727307645] [track1_grasp]: [motion:linear] grasp: completed 0.075 m with 68 waypoint(s), max_joint_step=0.499 deg
+[INFO] [1792492321.727809814] [track1_grasp]: [grasp] reached grasp pose; closing jaws
+[INFO] [1792492321.728365405] [track1_grasp]: [gripper:ms42dc_ros] close: dir=1 angle_wire=30000 speed_wire=100
+[INFO] [1792492324.039989064] [track1_grasp]: [verify_hold] checking whether the object is held
+[INFO] [1792492325.751167081] [track1_grasp]: [verify_hold] jaws settled at 20.9 deg
+[INFO] [1792492325.751545786] [track1_grasp]: [lift] move to lift: xyz=(-0.1249, 0.5217, 0.2412)
+[INFO] [1792492325.753219682] [track1_grasp]: [motion:robotmove] lift: split 68 points into 2 controller-safe chunks points=[40, 28] max_points=40 max_payload_bytes=7600
+[INFO] [1792492325.754371228] [track1_grasp]: [motion:robotmove] sent continuous lift chunk 1/2: points=40 payload_bytes=7223 endpoint_deg=[91.41, 81.61, -28.81, -38.82, 87.64, -19.6]
+[INFO] [1792492327.243696236] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (247,180)
+[INFO] [1792492334.036385740] [track1_grasp]: [motion:robotmove] sent continuous lift chunk 2/2: points=28 payload_bytes=5107 endpoint_deg=[91.41, 74.4, -18.71, -35.92, 87.64, -19.6]
+[INFO] [1792492336.571825972] [track1_grasp]: [depth] skip 1-Cheez-it: no valid depth at (301,249)
+[INFO] [1792492339.960668462] [track1_grasp]: [motion:linear] lift: completed 0.075 m with 68 waypoint(s), max_joint_step=0.498 deg
+[INFO] [1792492339.961047166] [track1_grasp]: [lift] lift pose reached; holding for 2.0 s before return
+[INFO] [1792492341.963123452] [track1_grasp]: [transfer] move to transfer: xyz=(-0.1249, 0.5217, 0.2412)
+[INFO] [1792492341.963836935] [track1_grasp]: [motion:linear] transfer: completed 0.000 m with 0 waypoint(s), max_joint_step=0.000 deg
+[INFO] [1792492341.964182399] [track1_grasp]: [release] move to release: xyz=(-0.1249, 0.5217, 0.1665)
+[INFO] [1792492341.965697216] [track1_grasp]: [motion:robotmove] release: split 67 points into 2 controller-safe chunks points=[40, 27] max_points=40 max_payload_bytes=7600
+[INFO] [1792492341.966935425] [track1_grasp]: [motion:robotmove] sent continuous release chunk 1/2: points=40 payload_bytes=7226 endpoint_deg=[91.41, 84.8, -32.67, -39.51, 87.64, -19.6]
+[INFO] [1792492345.068444690] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (164,97)
+[INFO] [1792492350.246580364] [track1_grasp]: [motion:robotmove] sent continuous release chunk 2/2: points=27 payload_bytes=4913 endpoint_deg=[91.41, 94.38, -42.38, -39.63, 87.64, -19.6]
+[INFO] [1792492355.649850359] [track1_grasp]: [depth] skip 1-Cheez-it: no valid depth at (250,189)
+[INFO] [1792492356.014540155] [track1_grasp]: [motion:linear] release: completed 0.075 m with 67 waypoint(s), max_joint_step=0.499 deg
+[INFO] [1792492356.014975843] [track1_grasp]: [release] opening jaws to release the object
+[INFO] [1792492356.015529060] [track1_grasp]: [gripper:ms42dc_ros] open: dir=0 angle_wire=30000 speed_wire=100
+[INFO] [1792492357.836712938] [track1_grasp]: [depth] skip 1-Cheez-it: no valid depth at (429,102)
+[INFO] [1792492358.327708310] [track1_grasp]: [retreat] move to retreat: xyz=(-0.1249, 0.5217, 0.2412)
+[INFO] [1792492358.331278102] [track1_grasp]: [motion:robotmove] retreat: split 68 points into 2 controller-safe chunks points=[40, 28] max_points=40 max_payload_bytes=7600
+[INFO] [1792492358.333996700] [track1_grasp]: [motion:robotmove] sent continuous retreat chunk 1/2: points=40 payload_bytes=7219 endpoint_deg=[91.41, 81.61, -28.81, -38.82, 87.64, -19.6]
+[INFO] [1792492358.814656652] [track1_grasp]: [depth] skip 1-Cheez-it: no valid depth at (429,103)
+[INFO] [1792492359.360697100] [track1_grasp]: [depth] skip 1-Cheez-it: no valid depth at (429,111)
+[INFO] [1792492359.506945786] [track1_grasp]: [depth] skip 1-Cheez-it: no valid depth at (428,112)
+[INFO] [1792492359.654214244] [track1_grasp]: [depth] skip 1-Cheez-it: no valid depth at (428,110)
+[INFO] [1792492359.732095540] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (419,109)
+[INFO] [1792492359.732404202] [track1_grasp]: [depth] skip 1-Cheez-it: no valid depth at (403,103)
+[INFO] [1792492359.816747213] [track1_grasp]: [depth] skip 1-Cheez-it: no valid depth at (420,108)
+[INFO] [1792492359.986156216] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (419,118)
+[INFO] [1792492360.147738269] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (418,106)
+[INFO] [1792492360.148059989] [track1_grasp]: [depth] skip 1-Cheez-it: no valid depth at (403,101)
+[INFO] [1792492360.296265117] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (428,112)
+[INFO] [1792492360.593913580] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (428,119)
+[INFO] [1792492360.672184265] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (428,121)
+[INFO] [1792492362.412140242] [track1_grasp]: [depth] skip 1-Cheez-it: no valid depth at (223,84)
+[INFO] [1792492362.881135154] [track1_grasp]: [depth] skip 1-Cheez-it: no valid depth at (213,77)
+[INFO] [1792492362.960372187] [track1_grasp]: [depth] skip 1-Cheez-it: no valid depth at (213,77)
+[INFO] [1792492363.117475083] [track1_grasp]: [depth] skip 1-Cheez-it: no valid depth at (214,80)
+[INFO] [1792492363.200125203] [track1_grasp]: [depth] skip 1-Cheez-it: no valid depth at (213,82)
+[INFO] [1792492363.369739585] [track1_grasp]: [depth] skip 1-Cheez-it: no valid depth at (202,75)
+[INFO] [1792492363.455777861] [track1_grasp]: [depth] skip 1-Cheez-it: no valid depth at (204,80)
+[INFO] [1792492363.540875906] [track1_grasp]: [depth] skip 1-Cheez-it: no valid depth at (203,79)
+[INFO] [1792492363.624905507] [track1_grasp]: [depth] skip 1-Cheez-it: no valid depth at (202,79)
+[INFO] [1792492363.707501018] [track1_grasp]: [depth] skip 1-Cheez-it: no valid depth at (204,79)
+[INFO] [1792492363.862491955] [track1_grasp]: [depth] skip 1-Cheez-it: no valid depth at (214,79)
+[INFO] [1792492363.947337135] [track1_grasp]: [depth] skip 1-Cheez-it: no valid depth at (202,84)
+[INFO] [1792492364.337525953] [track1_grasp]: [depth] skip 1-Cheez-it: no valid depth at (203,82)
+[INFO] [1792492364.411833896] [track1_grasp]: [depth] skip 1-Cheez-it: no valid depth at (203,81)
+[INFO] [1792492364.561063543] [track1_grasp]: [depth] skip 1-Cheez-it: no valid depth at (213,81)
+[INFO] [1792492364.637392033] [track1_grasp]: [depth] skip 1-Cheez-it: no valid depth at (212,85)
+[INFO] [1792492366.633721274] [track1_grasp]: [motion:robotmove] sent continuous retreat chunk 2/2: points=28 payload_bytes=5099 endpoint_deg=[91.41, 74.4, -18.71, -35.92, 87.64, -19.6]
+[INFO] [1792492371.638736881] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,388)
+[INFO] [1792492371.970815376] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,388)
+[INFO] [1792492372.057492345] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,388)
+[INFO] [1792492372.212542640] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,388)
+[INFO] [1792492372.296655342] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,388)
+[INFO] [1792492372.376643848] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,388)
+[INFO] [1792492372.470439032] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,387)
+[INFO] [1792492372.555423109] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,388)
+[INFO] [1792492372.563824645] [track1_grasp]: [motion:linear] retreat: completed 0.075 m with 68 waypoint(s), max_joint_step=0.498 deg
+[INFO] [1792492372.564346995] [track1_grasp]: [done] pick_2: object returned at its pick point and arm retreated; next round waits for visual confirmation at expected point 3/5
+[INFO] [1792492372.567507217] [track1_grasp]: [task_b_return_initial_pick_2] current_deg=[91.406, 74.4, -18.712, -35.93, 87.641, -19.602] target_deg=[82.657, 54.31, -32.193, -53.453, 84.446, -2.058] max_delta_deg=20.090 tolerance_deg=0.500
+[INFO] [1792492372.567988017] [track1_grasp]: [task_b_return_initial_pick_2] moving six axes together: dry_run=False estimated_steps=21 max_step_deg=1.000 total_abs_deg=[8.749, 20.09, 13.481, 17.522, 3.195, 17.544]
+[INFO] [1792492372.568522239] [track1_grasp]: [motion:robotmove] task_b_return_initial_pick_2: 21 step(s), max_delta=20.09 deg
+[INFO] [1792492372.572442243] [track1_grasp]: [motion:robotmove] sent continuous task_b_return_initial_pick_2: points=21 payload_bytes=3796 endpoint_deg=[82.66, 54.31, -32.19, -53.45, 84.45, -2.06]
+[INFO] [1792492372.658359429] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,388)
+[INFO] [1792492372.748062470] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,386)
+[INFO] [1792492372.923605532] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,388)
+[INFO] [1792492373.009285286] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,389)
+[INFO] [1792492373.175911584] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,388)
+[INFO] [1792492373.258300529] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792492373.338780519] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792492373.690717836] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,389)
+[INFO] [1792492373.850027664] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,390)
+[INFO] [1792492373.925706777] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,390)
+[INFO] [1792492375.327425270] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (97,314)
+[INFO] [1792492376.051270319] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (97,333)
+[INFO] [1792492376.125810945] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (96,332)
+[INFO] [1792492376.533237335] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (97,340)
+[INFO] [1792492379.764253949] [track1_grasp]: [task_b_return_initial_pick_2] verified residual_deg=0.012; pick_2 complete at the initial pose
+[INFO] [1792492379.764579231] [track1_grasp]: [operator_pause] pick_2 completed and the arm is at the initial pose; no motion will be issued until the operator continues
+
+[人工确认] pick_2 已完成原位拾放和撤回，机械臂已返回初始位。
+请将香蕉放到下一个点位，确认机械臂周围安全后按回车继续。
+当前进度：2/5；下一步：3/5
+
+按回车继续 > [INFO] [1792492399.335689581] [track1_grasp]: [task_b_observation_pose] pick_3: current_deg=[82.658, 54.31, -32.192, -53.452, 84.448, -2.059] target_deg=[88.606, 94.897, -79.332, -73.643, 84.81, 21.238] max_delta_deg=47.141 tolerance_deg=0.500
+[INFO] [1792492399.336265353] [track1_grasp]: [task_b_observation_pose] pick_3: moving six axes together: dry_run=False estimated_steps=48 max_step_deg=1.000 total_abs_deg=[5.948, 40.588, 47.141, 20.191, 0.362, 23.296]
+[INFO] [1792492399.337029885] [track1_grasp]: [motion:robotmove] task_b_observation_pick_3: 48 step(s), max_delta=47.14 deg
+[INFO] [1792492399.341080477] [track1_grasp]: [motion:robotmove] task_b_observation_pick_3: split 48 points into 2 controller-safe chunks points=[40, 8] max_points=40 max_payload_bytes=7600
+[INFO] [1792492399.342248643] [track1_grasp]: [motion:robotmove] sent continuous task_b_observation_pick_3 chunk 1/2: points=40 payload_bytes=7205 endpoint_deg=[87.61, 88.13, -71.48, -70.28, 84.75, 17.36]
+[INFO] [1792492404.658316944] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (104,283)
+[INFO] [1792492413.056378778] [track1_grasp]: [motion:robotmove] sent continuous task_b_observation_pick_3 chunk 2/2: points=8 payload_bytes=1501 endpoint_deg=[88.61, 94.9, -79.33, -73.64, 84.81, 21.24]
+[INFO] [1792492414.073120087] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,336)
+[INFO] [1792492414.533478406] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,319)
+[INFO] [1792492414.730652721] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,327)
+[INFO] [1792492415.049399402] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,364)
+[INFO] [1792492415.846435276] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (105,387)
+[INFO] [1792492415.970374841] [track1_grasp]: [task_b_observation_pose] pick_3: verified residual_deg=0.011; visual search may start
+[INFO] [1792492415.970763043] [track1_grasp]: [scan] round 3/5: waiting for 8-Plastic_Banana at 'pick_3' xy=(-0.108, 0.418) within 0.080 m, completed_points_excluded=2 (wait attempt 1)
+[INFO] [1792492415.971464655] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792492416.010087737] [track1_grasp]: [detect] frame 'realsense-003315': 1 detection(s), 8-Plastic_Banana conf=0.53, confirmation 1/2
+[INFO] [1792492416.060810360] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792492416.096391938] [track1_grasp]: [detect] frame 'realsense-003316': 1 detection(s), 8-Plastic_Banana conf=0.51, confirmation 2/2
+[INFO] [1792492416.096981956] [track1_grasp]: [scan] round 3/5: target confirmed at expected point 'pick_3'
+[INFO] [1792492416.097288244] [track1_grasp]: [select] selected '8-Plastic_Banana' conf=0.51 graspability=1.00: 8-Plastic_Banana confirmed in 2 consecutive frames
+[INFO] [1792492416.097888947] [track1_grasp]: [task_b_anchor_pose] pick_3: fixed high anchor xyz=(-0.108009, 0.417709, 0.245881) rpy=(3.121624, 0.089438, -0.395264)
+[INFO] [1792492416.098661789] [track1_grasp]: [plan] pick_3: vertical grasp column locked; xy=(-0.1080, 0.4177), straight_descent=0.0837 m, lateral=0.0000 m, rotation=0.0000 rad
+[INFO] [1792492416.098912279] [track1_grasp]: [plan] planned 6 waypoint(s)
+[INFO] [1792492417.505358046] [track1_grasp]: [motion:cartesian-precheck] target 1: 19 waypoint(s), planning_step=2.000 mm, max_joint_step=0.494 deg, max_joint_accel=0.241 deg, min_sigma=0.06480, axis_step_deg=0.001,0.255,0.494,0.224,0.002,0.017, axis_travel_deg=0.002,2.595,5.199,2.096,0.011,0.170
+[INFO] [1792492417.676167898] [track1_grasp]: [motion:cartesian-precheck] target 2: 42 waypoint(s), planning_step=2.000 mm, max_joint_step=0.451 deg, max_joint_accel=0.026 deg, min_sigma=0.06505, axis_step_deg=0.002,0.451,0.423,0.180,0.005,0.000, axis_travel_deg=0.004,18.310,13.928,4.361,0.010,0.001
+[INFO] [1792492417.841881270] [track1_grasp]: [motion:cartesian-precheck] target 3: 42 waypoint(s), planning_step=2.000 mm, max_joint_step=0.452 deg, max_joint_accel=0.030 deg, min_sigma=0.06480, axis_step_deg=0.002,0.452,0.428,0.177,0.004,0.001, axis_travel_deg=0.003,18.311,13.929,4.361,0.008,0.002
+[INFO] [1792492417.845326410] [track1_grasp]: [motion:cartesian-precheck] target 4: 0 waypoint(s), planning_step=2.000 mm, max_joint_step=0.000 deg, max_joint_accel=0.000 deg, min_sigma=0.06480, axis_step_deg=0.000,0.000,0.000,0.000,0.000,0.000, axis_travel_deg=0.000,0.000,0.000,0.000,0.000,0.000
+[INFO] [1792492418.014109779] [track1_grasp]: [motion:cartesian-precheck] target 5: 42 waypoint(s), planning_step=2.000 mm, max_joint_step=0.451 deg, max_joint_accel=0.025 deg, min_sigma=0.06505, axis_step_deg=0.002,0.451,0.423,0.180,0.005,0.000, axis_travel_deg=0.004,18.311,13.929,4.361,0.010,0.001
+[INFO] [1792492418.178253724] [track1_grasp]: [motion:cartesian-precheck] target 6: 42 waypoint(s), planning_step=2.000 mm, max_joint_step=0.452 deg, max_joint_accel=0.030 deg, min_sigma=0.06480, axis_step_deg=0.002,0.452,0.428,0.177,0.004,0.001, axis_travel_deg=0.003,18.311,13.929,4.361,0.008,0.002
+[INFO] [1792492418.178679915] [track1_grasp]: [motion:linear-precheck] validated 6 segment(s), 187 Cartesian waypoint(s), min_sigma=0.06480
+[INFO] [1792492418.179009946] [track1_grasp]: [plan] full-route precheck passed: 6 segment(s)
+[INFO] [1792492418.179399334] [track1_grasp]: [approach] move to pregrasp: xyz=(-0.108, 0.4177, 0.2459)
+[INFO] [1792492418.181194321] [track1_grasp]: [motion:robotmove] sent continuous pregrasp: points=19 payload_bytes=3455 endpoint_deg=[88.61, 92.3, -74.13, -75.74, 84.82, 21.07]
+[INFO] [1792492418.232123510] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (103,387)
+[INFO] [1792492421.755270665] [track1_grasp]: [motion:linear] pregrasp: completed 0.000 m with 19 waypoint(s), max_joint_step=0.494 deg
+[INFO] [1792492421.756016202] [track1_grasp]: [grasp] move to grasp: xyz=(-0.108, 0.4177, 0.1622)
+[INFO] [1792492421.758178022] [track1_grasp]: [motion:robotmove] grasp: split 42 points into 2 controller-safe chunks points=[40, 2] max_points=40 max_payload_bytes=7600
+[INFO] [1792492421.759900592] [track1_grasp]: [motion:robotmove] sent continuous grasp chunk 1/2: points=40 payload_bytes=7183 endpoint_deg=[88.61, 109.76, -87.57, -71.73, 84.82, 21.07]
+[INFO] [1792492431.009731151] [track1_grasp]: [motion:robotmove] sent continuous grasp chunk 2/2: points=2 payload_bytes=444 endpoint_deg=[88.61, 110.61, -88.06, -71.38, 84.82, 21.07]
+[INFO] [1792492431.613259850] [track1_grasp]: [motion:linear] grasp: completed 0.084 m with 42 waypoint(s), max_joint_step=0.451 deg
+[INFO] [1792492431.613733527] [track1_grasp]: [grasp] reached grasp pose; closing jaws
+[INFO] [1792492431.614650015] [track1_grasp]: [gripper:ms42dc_ros] close: dir=1 angle_wire=30000 speed_wire=100
+[INFO] [1792492433.927339744] [track1_grasp]: [verify_hold] checking whether the object is held
+[INFO] [1792492435.638571184] [track1_grasp]: [verify_hold] jaws settled at 20.9 deg
+[INFO] [1792492435.639203940] [track1_grasp]: [lift] move to lift: xyz=(-0.108, 0.4177, 0.2459)
+[INFO] [1792492435.640566801] [track1_grasp]: [motion:robotmove] lift: split 42 points into 2 controller-safe chunks points=[40, 2] max_points=40 max_payload_bytes=7600
+[INFO] [1792492435.641713598] [track1_grasp]: [motion:robotmove] sent continuous lift chunk 1/2: points=40 payload_bytes=7173 endpoint_deg=[88.61, 93.2, -74.98, -75.69, 84.82, 21.07]
+[INFO] [1792492444.926035921] [track1_grasp]: [motion:robotmove] sent continuous lift chunk 2/2: points=2 payload_bytes=444 endpoint_deg=[88.61, 92.3, -74.13, -75.74, 84.82, 21.07]
+[INFO] [1792492445.530634251] [track1_grasp]: [motion:linear] lift: completed 0.084 m with 42 waypoint(s), max_joint_step=0.452 deg
+[INFO] [1792492445.530982089] [track1_grasp]: [lift] lift pose reached; holding for 2.0 s before return
+[INFO] [1792492447.533898884] [track1_grasp]: [transfer] move to transfer: xyz=(-0.108, 0.4177, 0.2459)
+[INFO] [1792492447.534649170] [track1_grasp]: [motion:linear] transfer: completed 0.000 m with 0 waypoint(s), max_joint_step=0.000 deg
+[INFO] [1792492447.534998195] [track1_grasp]: [release] move to release: xyz=(-0.108, 0.4177, 0.1622)
+[INFO] [1792492447.536147366] [track1_grasp]: [motion:robotmove] release: split 42 points into 2 controller-safe chunks points=[40, 2] max_points=40 max_payload_bytes=7600
+[INFO] [1792492447.537322655] [track1_grasp]: [motion:robotmove] sent continuous release chunk 1/2: points=40 payload_bytes=7172 endpoint_deg=[88.61, 109.76, -87.57, -71.73, 84.82, 21.07]
+[INFO] [1792492450.592309472] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (126,379)
+[INFO] [1792492452.854300322] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (252,175)
+[INFO] [1792492456.819693286] [track1_grasp]: [motion:robotmove] sent continuous release chunk 2/2: points=2 payload_bytes=440 endpoint_deg=[88.61, 110.61, -88.06, -71.38, 84.82, 21.07]
+[INFO] [1792492457.421841317] [track1_grasp]: [motion:linear] release: completed 0.084 m with 42 waypoint(s), max_joint_step=0.451 deg
+[INFO] [1792492457.422265134] [track1_grasp]: [release] opening jaws to release the object
+[INFO] [1792492457.422915698] [track1_grasp]: [gripper:ms42dc_ros] open: dir=0 angle_wire=30000 speed_wire=100
+[INFO] [1792492459.736407948] [track1_grasp]: [retreat] move to retreat: xyz=(-0.108, 0.4177, 0.2459)
+[INFO] [1792492459.738125769] [track1_grasp]: [motion:robotmove] retreat: split 42 points into 2 controller-safe chunks points=[40, 2] max_points=40 max_payload_bytes=7600
+[INFO] [1792492459.739569357] [track1_grasp]: [motion:robotmove] sent continuous retreat chunk 1/2: points=40 payload_bytes=7169 endpoint_deg=[88.61, 93.2, -74.98, -75.69, 84.82, 21.07]
+[INFO] [1792492463.851296484] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,386)
+[INFO] [1792492468.796157477] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (96,386)
+[INFO] [1792492469.025706848] [track1_grasp]: [motion:robotmove] sent continuous retreat chunk 2/2: points=2 payload_bytes=443 endpoint_deg=[88.61, 92.3, -74.13, -75.74, 84.82, 21.07]
+[INFO] [1792492469.627702922] [track1_grasp]: [motion:linear] retreat: completed 0.084 m with 42 waypoint(s), max_joint_step=0.452 deg
+[INFO] [1792492469.628009210] [track1_grasp]: [done] pick_3: object returned at its pick point and arm retreated; next round waits for visual confirmation at expected point 4/5
+[INFO] [1792492469.630251756] [track1_grasp]: [task_b_return_initial_pick_3] current_deg=[88.609, 92.304, -74.132, -75.737, 84.819, 21.066] target_deg=[82.657, 54.31, -32.193, -53.453, 84.446, -2.058] max_delta_deg=41.939 tolerance_deg=0.500
+[INFO] [1792492469.634197878] [track1_grasp]: [task_b_return_initial_pick_3] moving six axes together: dry_run=False estimated_steps=42 max_step_deg=1.000 total_abs_deg=[5.952, 37.993, 41.939, 22.284, 0.374, 23.123]
+[INFO] [1792492469.634873372] [track1_grasp]: [motion:robotmove] task_b_return_initial_pick_3: 42 step(s), max_delta=41.94 deg
+[INFO] [1792492469.639154274] [track1_grasp]: [motion:robotmove] task_b_return_initial_pick_3: split 42 points into 2 controller-safe chunks points=[40, 2] max_points=40 max_payload_bytes=7600
+[INFO] [1792492469.640432845] [track1_grasp]: [motion:robotmove] sent continuous task_b_return_initial_pick_3 chunk 1/2: points=40 payload_bytes=6999 endpoint_deg=[82.94, 56.12, -34.19, -54.51, 84.46, -0.96]
+[INFO] [1792492469.808209502] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (96,387)
+[INFO] [1792492478.233294673] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,267)
+[INFO] [1792492478.471923448] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (81,271)
+[INFO] [1792492478.551251892] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (91,272)
+[INFO] [1792492478.719457114] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (105,307)
+[INFO] [1792492478.888055286] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (106,278)
+[INFO] [1792492478.965394050] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,283)
+[INFO] [1792492479.287690341] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,270)
+[INFO] [1792492479.366928562] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,270)
+[INFO] [1792492480.254686061] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,267)
+[INFO] [1792492483.460839970] [track1_grasp]: [motion:robotmove] sent continuous task_b_return_initial_pick_3 chunk 2/2: points=2 payload_bytes=407 endpoint_deg=[82.66, 54.31, -32.19, -53.45, 84.45, -2.06]
+[INFO] [1792492484.315292866] [track1_grasp]: [task_b_return_initial_pick_3] verified residual_deg=0.013; pick_3 complete at the initial pose
+[INFO] [1792492484.315863890] [track1_grasp]: [operator_pause] pick_3 completed and the arm is at the initial pose; no motion will be issued until the operator continues
+
+[人工确认] pick_3 已完成原位拾放和撤回，机械臂已返回初始位。
+请将香蕉放到下一个点位，确认机械臂周围安全后按回车继续。
+当前进度：3/5；下一步：4/5
+
+按回车继续 > [INFO] [1792492493.097904505] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (176,149)
+[INFO] [1792492508.606191621] [track1_grasp]: [task_b_observation_pose] pick_4: current_deg=[82.658, 54.31, -32.193, -53.451, 84.446, -2.059] target_deg=[66.77, 93.322, -80.589, -75.775, 87.318, -3.217] max_delta_deg=48.396 tolerance_deg=0.500
+[INFO] [1792492508.606552518] [track1_grasp]: [task_b_observation_pose] pick_4: moving six axes together: dry_run=False estimated_steps=49 max_step_deg=1.000 total_abs_deg=[15.888, 39.012, 48.396, 22.324, 2.871, 1.158]
+[INFO] [1792492508.607099799] [track1_grasp]: [motion:robotmove] task_b_observation_pick_4: 49 step(s), max_delta=48.40 deg
+[INFO] [1792492508.610997247] [track1_grasp]: [motion:robotmove] task_b_observation_pick_4: split 49 points into 2 controller-safe chunks points=[40, 9] max_points=40 max_payload_bytes=7600
+[INFO] [1792492508.612167787] [track1_grasp]: [motion:robotmove] sent continuous task_b_observation_pick_4 chunk 1/2: points=40 payload_bytes=7259 endpoint_deg=[69.69, 86.16, -71.7, -71.67, 86.79, -3.0]
+[INFO] [1792492514.004331895] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (103,385)
+[INFO] [1792492517.578965017] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,350)
+[INFO] [1792492517.664418023] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (96,352)
+[INFO] [1792492517.749150423] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (97,349)
+[INFO] [1792492517.835887937] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,353)
+[INFO] [1792492518.158187790] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (97,353)
+[INFO] [1792492518.233637781] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (97,354)
+[INFO] [1792492518.472879131] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,355)
+[INFO] [1792492518.558782071] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (97,353)
+[INFO] [1792492519.569680176] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,362)
+[INFO] [1792492522.368693801] [track1_grasp]: [motion:robotmove] sent continuous task_b_observation_pick_4 chunk 2/2: points=9 payload_bytes=1695 endpoint_deg=[66.77, 93.32, -80.59, -75.77, 87.32, -3.22]
+[INFO] [1792492522.445297712] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (168,99)
+[INFO] [1792492525.008158979] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (347,254)
+[INFO] [1792492525.632187567] [track1_grasp]: [task_b_observation_pose] pick_4: verified residual_deg=0.010; visual search may start
+[INFO] [1792492525.632617319] [track1_grasp]: [scan] round 4/5: waiting for 8-Plastic_Banana at 'pick_4' xy=(0.057, 0.418) within 0.080 m, completed_points_excluded=3 (wait attempt 1)
+[INFO] [1792492525.633114739] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792492525.679345147] [track1_grasp]: [detect] frame 'realsense-004651': 2 detection(s), 8-Plastic_Banana conf=0.42, confirmation 1/2
+[INFO] [1792492525.729901567] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792492525.769887510] [track1_grasp]: [detect] frame 'realsense-004652': 2 detection(s), 8-Plastic_Banana conf=0.41, confirmation 2/2
+[INFO] [1792492525.770360000] [track1_grasp]: [scan] round 4/5: target confirmed at expected point 'pick_4'
+[INFO] [1792492525.770799249] [track1_grasp]: [select] selected '8-Plastic_Banana' conf=0.41 graspability=1.00: 8-Plastic_Banana confirmed in 2 consecutive frames
+[INFO] [1792492525.771502049] [track1_grasp]: [task_b_anchor_pose] pick_4: fixed high anchor xyz=(0.056674, 0.417881, 0.256334) rpy=(-3.112941, 0.045264, -0.34803)
+[INFO] [1792492525.772156174] [track1_grasp]: [plan] pick_4: vertical grasp column locked; xy=(0.0658, 0.4439), straight_descent=0.0864 m, lateral=0.0000 m, rotation=0.0000 rad
+[INFO] [1792492525.772490953] [track1_grasp]: [plan] planned 6 waypoint(s)
+[INFO] [1792492530.013143720] [track1_grasp]: [motion:cartesian-precheck] target 1: 55 waypoint(s), planning_step=2.000 mm, max_joint_step=0.492 deg, max_joint_accel=0.241 deg, min_sigma=0.05843, axis_step_deg=0.008,0.142,0.492,0.180,0.002,0.001, axis_travel_deg=0.245,4.941,15.471,5.544,0.012,0.010
+[INFO] [1792492530.195713585] [track1_grasp]: [motion:cartesian-precheck] target 2: 44 waypoint(s), planning_step=2.000 mm, max_joint_step=0.464 deg, max_joint_accel=0.025 deg, min_sigma=0.05875, axis_step_deg=0.002,0.454,0.464,0.152,0.004,0.001, axis_travel_deg=0.003,18.914,15.701,3.254,0.008,0.002
+[INFO] [1792492530.380871460] [track1_grasp]: [motion:cartesian-precheck] target 3: 44 waypoint(s), planning_step=2.000 mm, max_joint_step=0.469 deg, max_joint_accel=0.027 deg, min_sigma=0.05843, axis_step_deg=0.001,0.456,0.469,0.148,0.004,0.001, axis_travel_deg=0.003,18.913,15.700,3.250,0.008,0.002
+[INFO] [1792492530.383319386] [track1_grasp]: [motion:cartesian-precheck] target 4: 0 waypoint(s), planning_step=2.000 mm, max_joint_step=0.000 deg, max_joint_accel=0.000 deg, min_sigma=0.05843, axis_step_deg=0.000,0.000,0.000,0.000,0.000,0.000, axis_travel_deg=0.000,0.000,0.000,0.000,0.000,0.000
+[INFO] [1792492530.568375165] [track1_grasp]: [motion:cartesian-precheck] target 5: 44 waypoint(s), planning_step=2.000 mm, max_joint_step=0.464 deg, max_joint_accel=0.026 deg, min_sigma=0.05875, axis_step_deg=0.002,0.454,0.464,0.152,0.004,0.001, axis_travel_deg=0.003,18.913,15.700,3.254,0.008,0.002
+[INFO] [1792492530.753373960] [track1_grasp]: [motion:cartesian-precheck] target 6: 44 waypoint(s), planning_step=2.000 mm, max_joint_step=0.469 deg, max_joint_accel=0.027 deg, min_sigma=0.05843, axis_step_deg=0.001,0.456,0.469,0.148,0.004,0.001, axis_travel_deg=0.003,18.913,15.700,3.250,0.008,0.002
+[INFO] [1792492530.754698832] [track1_grasp]: [motion:linear-precheck] validated 6 segment(s), 231 Cartesian waypoint(s), min_sigma=0.05843
+[INFO] [1792492530.755081097] [track1_grasp]: [plan] full-route precheck passed: 6 segment(s)
+[INFO] [1792492530.755408754] [track1_grasp]: [approach] move to pregrasp: xyz=(0.0658, 0.4439, 0.2563)
+[INFO] [1792492530.756963934] [track1_grasp]: [motion:robotmove] pregrasp: split 55 points into 2 controller-safe chunks points=[40, 15] max_points=40 max_payload_bytes=7600
+[INFO] [1792492530.758770792] [track1_grasp]: [motion:robotmove] sent continuous pregrasp chunk 1/2: points=40 payload_bytes=7238 endpoint_deg=[66.95, 89.88, -69.58, -71.85, 87.32, -3.22]
+[INFO] [1792492538.203824033] [track1_grasp]: [motion:robotmove] sent continuous pregrasp chunk 2/2: points=15 payload_bytes=2775 endpoint_deg=[67.02, 88.38, -65.12, -70.23, 87.32, -3.22]
+[INFO] [1792492541.170641620] [track1_grasp]: [motion:linear] pregrasp: completed 0.028 m with 55 waypoint(s), max_joint_step=0.492 deg
+[INFO] [1792492541.171015575] [track1_grasp]: [grasp] move to grasp: xyz=(0.0658, 0.4439, 0.1699)
+[INFO] [1792492541.172854487] [track1_grasp]: [motion:robotmove] grasp: split 44 points into 2 controller-safe chunks points=[40, 4] max_points=40 max_payload_bytes=7600
+[INFO] [1792492541.174496330] [track1_grasp]: [motion:robotmove] sent continuous grasp chunk 1/2: points=40 payload_bytes=7250 endpoint_deg=[67.02, 105.65, -79.76, -67.62, 87.32, -3.22]
+[INFO] [1792492544.302690591] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (158,386)
+[INFO] [1792492544.376812149] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (159,387)
+[INFO] [1792492544.549378999] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (159,386)
+[INFO] [1792492544.771541857] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (108,387)
+[INFO] [1792492544.845926965] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (162,386)
+[INFO] [1792492550.373091413] [track1_grasp]: [motion:robotmove] sent continuous grasp chunk 2/2: points=4 payload_bytes=808 endpoint_deg=[67.02, 107.29, -80.82, -67.03, 87.32, -3.22]
+[INFO] [1792492551.379497302] [track1_grasp]: [motion:linear] grasp: completed 0.086 m with 44 waypoint(s), max_joint_step=0.464 deg
+[INFO] [1792492551.380049332] [track1_grasp]: [grasp] reached grasp pose; closing jaws
+[INFO] [1792492551.380953948] [track1_grasp]: [gripper:ms42dc_ros] close: dir=1 angle_wire=30000 speed_wire=100
+[INFO] [1792492553.693957088] [track1_grasp]: [verify_hold] checking whether the object is held
+[INFO] [1792492555.404403814] [track1_grasp]: [verify_hold] jaws settled at 21.0 deg
+[INFO] [1792492555.405129170] [track1_grasp]: [lift] move to lift: xyz=(0.0658, 0.4439, 0.2563)
+[INFO] [1792492555.406436233] [track1_grasp]: [motion:robotmove] lift: split 44 points into 2 controller-safe chunks points=[40, 4] max_points=40 max_payload_bytes=7600
+[INFO] [1792492555.407625768] [track1_grasp]: [motion:robotmove] sent continuous lift chunk 1/2: points=40 payload_bytes=7246 endpoint_deg=[67.02, 90.2, -66.96, -70.25, 87.31, -3.22]
+[INFO] [1792492555.416823889] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (435,198)
+[INFO] [1792492556.219115323] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (427,199)
+[INFO] [1792492564.542551055] [track1_grasp]: [motion:robotmove] sent continuous lift chunk 2/2: points=4 payload_bytes=810 endpoint_deg=[67.02, 88.38, -65.12, -70.23, 87.32, -3.22]
+[INFO] [1792492565.648006500] [track1_grasp]: [motion:linear] lift: completed 0.086 m with 44 waypoint(s), max_joint_step=0.469 deg
+[INFO] [1792492565.648303290] [track1_grasp]: [lift] lift pose reached; holding for 2.0 s before return
+[INFO] [1792492567.650821200] [track1_grasp]: [transfer] move to transfer: xyz=(0.0658, 0.4439, 0.2563)
+[INFO] [1792492567.651769741] [track1_grasp]: [motion:linear] transfer: completed 0.000 m with 0 waypoint(s), max_joint_step=0.000 deg
+[INFO] [1792492567.652314648] [track1_grasp]: [release] move to release: xyz=(0.0658, 0.4439, 0.1699)
+[INFO] [1792492567.653624086] [track1_grasp]: [motion:robotmove] release: split 44 points into 2 controller-safe chunks points=[40, 4] max_points=40 max_payload_bytes=7600
+[INFO] [1792492567.654902658] [track1_grasp]: [motion:robotmove] sent continuous release chunk 1/2: points=40 payload_bytes=7248 endpoint_deg=[67.02, 105.65, -79.76, -67.62, 87.32, -3.22]
+[INFO] [1792492576.896660525] [track1_grasp]: [motion:robotmove] sent continuous release chunk 2/2: points=4 payload_bytes=805 endpoint_deg=[67.02, 107.29, -80.82, -67.03, 87.32, -3.22]
+[INFO] [1792492577.951325679] [track1_grasp]: [motion:linear] release: completed 0.086 m with 44 waypoint(s), max_joint_step=0.464 deg
+[INFO] [1792492577.951760180] [track1_grasp]: [release] opening jaws to release the object
+[INFO] [1792492577.952218424] [track1_grasp]: [gripper:ms42dc_ros] open: dir=0 angle_wire=30000 speed_wire=100
+[INFO] [1792492580.264809620] [track1_grasp]: [retreat] move to retreat: xyz=(0.0658, 0.4439, 0.2563)
+[INFO] [1792492580.266235400] [track1_grasp]: [motion:robotmove] retreat: split 44 points into 2 controller-safe chunks points=[40, 4] max_points=40 max_payload_bytes=7600
+[INFO] [1792492580.267436806] [track1_grasp]: [motion:robotmove] sent continuous retreat chunk 1/2: points=40 payload_bytes=7254 endpoint_deg=[67.02, 90.2, -66.96, -70.25, 87.31, -3.22]
+[INFO] [1792492589.452885273] [track1_grasp]: [motion:robotmove] sent continuous retreat chunk 2/2: points=4 payload_bytes=808 endpoint_deg=[67.02, 88.38, -65.12, -70.23, 87.32, -3.22]
+[INFO] [1792492590.556574223] [track1_grasp]: [motion:linear] retreat: completed 0.086 m with 44 waypoint(s), max_joint_step=0.469 deg
+[INFO] [1792492590.557039590] [track1_grasp]: [done] pick_4: object returned at its pick point and arm retreated; next round waits for visual confirmation at expected point 5/5
+[INFO] [1792492590.559295195] [track1_grasp]: [task_b_return_initial_pick_4] current_deg=[67.016, 88.384, -65.119, -70.227, 87.316, -3.219] target_deg=[82.657, 54.31, -32.193, -53.453, 84.446, -2.058] max_delta_deg=34.074 tolerance_deg=0.500
+[INFO] [1792492590.559709514] [track1_grasp]: [task_b_return_initial_pick_4] moving six axes together: dry_run=False estimated_steps=35 max_step_deg=1.000 total_abs_deg=[15.641, 34.074, 32.925, 16.775, 2.87, 1.161]
+[INFO] [1792492590.560241362] [track1_grasp]: [motion:robotmove] task_b_return_initial_pick_4: 35 step(s), max_delta=34.07 deg
+[INFO] [1792492590.564867727] [track1_grasp]: [motion:robotmove] sent continuous task_b_return_initial_pick_4: points=35 payload_bytes=6279 endpoint_deg=[82.66, 54.31, -32.19, -53.45, 84.45, -2.06]
+[INFO] [1792492598.807898260] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,389)
+[INFO] [1792492598.898849007] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,388)
+[INFO] [1792492602.562335163] [track1_grasp]: [task_b_return_initial_pick_4] verified residual_deg=0.008; pick_4 complete at the initial pose
+[INFO] [1792492602.562739985] [track1_grasp]: [operator_pause] pick_4 completed and the arm is at the initial pose; no motion will be issued until the operator continues
+
+[人工确认] pick_4 已完成原位拾放和撤回，机械臂已返回初始位。
+请将香蕉放到下一个点位，确认机械臂周围安全后按回车继续。
+当前进度：4/5；下一步：5/5
+
+按回车继续 > [INFO] [1792492610.185358021] [track1_grasp]: [task_b_observation_pose] pick_5: current_deg=[82.657, 54.31, -32.193, -53.452, 84.447, -2.059] target_deg=[72.779, 88.137, -54.228, -57.451, 87.928, 12.232] max_delta_deg=33.828 tolerance_deg=0.500
+[INFO] [1792492610.185788960] [track1_grasp]: [task_b_observation_pose] pick_5: moving six axes together: dry_run=False estimated_steps=34 max_step_deg=1.000 total_abs_deg=[9.878, 33.828, 22.034, 3.999, 3.481, 14.291]
+[INFO] [1792492610.186200905] [track1_grasp]: [motion:robotmove] task_b_observation_pick_5: 34 step(s), max_delta=33.83 deg
+[INFO] [1792492610.189933338] [track1_grasp]: [motion:robotmove] sent continuous task_b_observation_pick_5: points=34 payload_bytes=6154 endpoint_deg=[72.78, 88.14, -54.23, -57.45, 87.93, 12.23]
+[INFO] [1792492611.245405762] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,286)
+[INFO] [1792492618.257475419] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,391)
+[INFO] [1792492618.330617570] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,392)
+[INFO] [1792492618.413882639] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (97,392)
+[INFO] [1792492621.554274975] [track1_grasp]: [depth] skip 2-Starkist_Tuna: no valid depth at (84,273)
+[INFO] [1792492621.951536896] [track1_grasp]: [task_b_observation_pose] pick_5: verified residual_deg=0.009; visual search may start
+[INFO] [1792492621.952047375] [track1_grasp]: [scan] round 5/5: waiting for 8-Plastic_Banana at 'pick_5' xy=(0.034, 0.487) within 0.080 m, completed_points_excluded=4 (wait attempt 1)
+[INFO] [1792492621.952824965] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792492621.978288373] [track1_grasp]: [detect] frame 'realsense-005797': 2 detection(s), 8-Plastic_Banana conf=0.44, confirmation 1/2
+[INFO] [1792492622.029755346] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792492622.058803978] [track1_grasp]: [detect] frame 'realsense-005798': 1 detection(s), no confirmed target
+[INFO] [1792492622.109652440] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792492622.140701438] [track1_grasp]: [detect] frame 'realsense-005799': 1 detection(s), no confirmed target
+[INFO] [1792492622.191629440] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792492622.223840668] [track1_grasp]: [detect] frame 'realsense-005800': 1 detection(s), no confirmed target
+[INFO] [1792492622.274667762] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792492622.314058937] [track1_grasp]: [detect] frame 'realsense-005801': 2 detection(s), 8-Plastic_Banana conf=0.43, confirmation 1/2
+[INFO] [1792492622.364637914] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792492622.401431582] [track1_grasp]: [detect] frame 'realsense-005802': 1 detection(s), no confirmed target
+[INFO] [1792492622.452186258] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792492622.489775324] [track1_grasp]: [detect] frame 'realsense-005803': 1 detection(s), no confirmed target
+[INFO] [1792492622.540519316] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792492622.568967245] [track1_grasp]: [detect] frame 'realsense-005804': 1 detection(s), no confirmed target
+[INFO] [1792492622.570858392] [track1_grasp]: [motion:cartesian-precheck] target 1: 1 waypoint(s), planning_step=2.000 mm, max_joint_step=0.000 deg, max_joint_accel=0.000 deg, min_sigma=0.04987, axis_step_deg=0.000,0.000,0.000,0.000,0.000,0.000, axis_travel_deg=0.000,0.000,0.000,0.000,0.000,0.000
+[INFO] [1792492622.744871203] [track1_grasp]: [motion:cartesian-precheck] target 2: 40 waypoint(s), planning_step=2.000 mm, max_joint_step=0.269 deg, max_joint_accel=0.022 deg, min_sigma=0.04406, axis_step_deg=0.229,0.098,0.269,0.163,0.006,0.231, axis_travel_deg=8.804,2.411,6.795,4.094,0.228,8.806
+[INFO] [1792492628.975197989] [track1_grasp]: [motion:cartesian-precheck] target 3: 109 waypoint(s), planning_step=2.000 mm, max_joint_step=0.499 deg, max_joint_accel=0.246 deg, min_sigma=0.04443, axis_step_deg=0.118,0.164,0.499,0.414,0.003,0.118, axis_travel_deg=5.403,10.055,37.308,27.090,0.150,5.403
+[INFO] [1792492628.976608336] [track1_grasp]: [motion:linear-precheck] validated 3 segment(s), 150 Cartesian waypoint(s), min_sigma=0.04406
+[INFO] [1792492628.977628107] [track1_grasp]: [scan] active search route precheck passed for Task B point 'pick_5': 3 segment(s)
+[INFO] [1792492628.978075666] [track1_grasp]: [scan] active search move 1/3: xyz=(0.034, 0.487, 0.241)
+[INFO] [1792492628.980229176] [track1_grasp]: [motion:cartesian-precheck] target 1: 1 waypoint(s), planning_step=2.000 mm, max_joint_step=0.000 deg, max_joint_accel=0.000 deg, min_sigma=0.04987, axis_step_deg=0.000,0.000,0.000,0.000,0.000,0.000, axis_travel_deg=0.000,0.000,0.000,0.000,0.000,0.000
+[INFO] [1792492628.980579388] [track1_grasp]: [motion:linear-precheck] validated 1 segment(s), 1 Cartesian waypoint(s), min_sigma=0.04987
+[INFO] [1792492628.981030509] [track1_grasp]: [motion:robotmove] task_search_position_01: already within startup tolerance (0.000 deg <= 0.050 deg); no joint command sent
+[INFO] [1792492628.981328486] [track1_grasp]: [motion:linear] task_search_position_01: completed 0.000 m with 1 waypoint(s), max_joint_step=0.000 deg
+[INFO] [1792492629.782456503] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792492629.832181911] [track1_grasp]: [detect] frame 'realsense-005814': 1 detection(s), no confirmed target
+[INFO] [1792492629.883219132] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792492629.925502231] [track1_grasp]: [detect] frame 'realsense-005815': 1 detection(s), no confirmed target
+[INFO] [1792492629.976364939] [track1_grasp]: [detect] observation 3/8: waiting for a fresh frame
+[INFO] [1792492630.014935786] [track1_grasp]: [detect] frame 'realsense-005816': 1 detection(s), no confirmed target
+[INFO] [1792492630.065813928] [track1_grasp]: [detect] observation 4/8: waiting for a fresh frame
+[INFO] [1792492630.114821104] [track1_grasp]: [detect] frame 'realsense-005817': 1 detection(s), no confirmed target
+[INFO] [1792492630.165508112] [track1_grasp]: [detect] observation 5/8: waiting for a fresh frame
+[INFO] [1792492630.202781393] [track1_grasp]: [detect] frame 'realsense-005818': 1 detection(s), no confirmed target
+[INFO] [1792492630.253616796] [track1_grasp]: [detect] observation 6/8: waiting for a fresh frame
+[INFO] [1792492630.291622555] [track1_grasp]: [detect] frame 'realsense-005819': 1 detection(s), no confirmed target
+[INFO] [1792492630.342619413] [track1_grasp]: [detect] observation 7/8: waiting for a fresh frame
+[INFO] [1792492630.377004332] [track1_grasp]: [detect] frame 'realsense-005820': 1 detection(s), no confirmed target
+[INFO] [1792492630.427759008] [track1_grasp]: [detect] observation 8/8: waiting for a fresh frame
+[INFO] [1792492630.462530942] [track1_grasp]: [detect] frame 'realsense-005821': 1 detection(s), no confirmed target
+[INFO] [1792492630.463434371] [track1_grasp]: [scan] active search view 1/3: no confirmed target: target not confirmed in 8 frame(s): no target at expected point 'pick_5' within 0.080 m (expected class '8-Plastic_Banana'); nearest detection '10-meat_can' was 0.127 m from 'pick_5' (expected class '8-Plastic_Banana')
+[INFO] [1792492630.464121737] [track1_grasp]: [scan] active search move 2/3: xyz=(0.114, 0.487, 0.241)
+[INFO] [1792492630.638407596] [track1_grasp]: [motion:cartesian-precheck] target 1: 41 waypoint(s), planning_step=2.000 mm, max_joint_step=0.258 deg, max_joint_accel=0.021 deg, min_sigma=0.04406, axis_step_deg=0.223,0.093,0.258,0.159,0.008,0.226, axis_travel_deg=8.805,2.408,6.791,4.091,0.230,8.804
+[INFO] [1792492630.638874150] [track1_grasp]: [motion:linear-precheck] validated 1 segment(s), 41 Cartesian waypoint(s), min_sigma=0.04406
+[INFO] [1792492630.639802509] [track1_grasp]: [motion:robotmove] task_search_position_02: split 41 points into 2 controller-safe chunks points=[40, 1] max_points=40 max_payload_bytes=7600
+[INFO] [1792492630.641096514] [track1_grasp]: [motion:robotmove] sent continuous task_search_position_02 chunk 1/2: points=40 payload_bytes=7194 endpoint_deg=[64.18, 85.82, -47.69, -53.52, 88.15, 3.63]
+[INFO] [1792492631.128823634] [track1_grasp]: [depth] skip 3-Scissors: no valid depth at (138,278)
+[INFO] [1792492631.210862366] [track1_grasp]: [depth] skip 3-Scissors: no valid depth at (138,276)
+[INFO] [1792492631.601687502] [track1_grasp]: [depth] skip 3-Scissors: no valid depth at (129,272)
+[INFO] [1792492632.154366552] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (115,270)
+[INFO] [1792492632.239038406] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (129,274)
+[INFO] [1792492632.315419131] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (111,265)
+[INFO] [1792492632.726509099] [track1_grasp]: [depth] skip 5-Tomato_Soup: no valid depth at (95,267)
+[INFO] [1792492632.726843878] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (129,282)
+[INFO] [1792492632.810050776] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (133,288)
+[INFO] [1792492632.978792595] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (130,277)
+[INFO] [1792492633.720779832] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (133,267)
+[INFO] [1792492633.871882819] [track1_grasp]: [depth] skip 5-Tomato_Soup: no valid depth at (94,268)
+[INFO] [1792492637.326338488] [track1_grasp]: [motion:robotmove] sent continuous task_search_position_02 chunk 2/2: points=1 payload_bytes=267 endpoint_deg=[63.97, 85.73, -47.44, -53.36, 88.16, 3.43]
+[INFO] [1792492637.630332325] [track1_grasp]: [motion:linear] task_search_position_02: completed 0.080 m with 41 waypoint(s), max_joint_step=0.258 deg
+[INFO] [1792492637.813886346] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (113,261)
+[INFO] [1792492637.814203318] [track1_grasp]: [depth] skip 8-Plastic_Banana: no valid depth at (122,258)
+[INFO] [1792492638.431922147] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792492638.471018906] [track1_grasp]: [detect] frame 'realsense-005919': 2 detection(s), 8-Plastic_Banana conf=0.56, confirmation 1/2
+[INFO] [1792492638.521715412] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792492638.552834453] [track1_grasp]: [depth] skip 2-Starkist_Tuna: no valid depth at (82,278)
+[INFO] [1792492638.558011660] [track1_grasp]: [detect] frame 'realsense-005920': 2 detection(s), 8-Plastic_Banana conf=0.51, confirmation 2/2
+[INFO] [1792492638.558621860] [track1_grasp]: [scan] round 5/5: target confirmed at expected point 'pick_5'
+[INFO] [1792492638.558906779] [track1_grasp]: [select] selected '8-Plastic_Banana' conf=0.51 graspability=1.00: 8-Plastic_Banana confirmed in 2 consecutive frames
+[INFO] [1792492638.559398263] [track1_grasp]: [task_b_anchor_pose] pick_5: fixed high anchor xyz=(0.034196, 0.486713, 0.241453) rpy=(3.110701, 0.030298, -0.514942)
+[INFO] [1792492638.560144987] [track1_grasp]: [plan] pick_5: vertical grasp column locked; xy=(0.0342, 0.4867), straight_descent=0.0740 m, lateral=0.0000 m, rotation=0.0000 rad
+[INFO] [1792492638.560382420] [track1_grasp]: [plan] planned 6 waypoint(s)
+[INFO] [1792492638.732945708] [track1_grasp]: [motion:cartesian-precheck] target 1: 40 waypoint(s), planning_step=2.000 mm, max_joint_step=0.258 deg, max_joint_accel=0.018 deg, min_sigma=0.04427, axis_step_deg=0.229,0.093,0.258,0.161,0.006,0.229, axis_travel_deg=8.802,2.402,6.773,4.096,0.232,8.806
+[INFO] [1792492638.919063996] [track1_grasp]: [motion:cartesian-precheck] target 2: 37 waypoint(s), planning_step=2.000 mm, max_joint_step=0.485 deg, max_joint_accel=0.012 deg, min_sigma=0.05027, axis_step_deg=0.001,0.468,0.485,0.135,0.003,0.004, axis_travel_deg=0.003,15.954,13.618,2.417,0.008,0.005
+[INFO] [1792492639.107880700] [track1_grasp]: [motion:cartesian-precheck] target 3: 37 waypoint(s), planning_step=2.000 mm, max_joint_step=0.486 deg, max_joint_accel=0.035 deg, min_sigma=0.04989, axis_step_deg=0.002,0.468,0.486,0.131,0.004,0.001, axis_travel_deg=0.003,15.933,13.578,2.417,0.009,0.003
+[INFO] [1792492639.109422822] [track1_grasp]: [motion:cartesian-precheck] target 4: 0 waypoint(s), planning_step=2.000 mm, max_joint_step=0.000 deg, max_joint_accel=0.000 deg, min_sigma=0.04989, axis_step_deg=0.000,0.000,0.000,0.000,0.000,0.000, axis_travel_deg=0.000,0.000,0.000,0.000,0.000,0.000
+[INFO] [1792492639.289743017] [track1_grasp]: [motion:cartesian-precheck] target 5: 37 waypoint(s), planning_step=2.000 mm, max_joint_step=0.483 deg, max_joint_accel=0.041 deg, min_sigma=0.05027, axis_step_deg=0.002,0.468,0.483,0.135,0.005,0.001, axis_travel_deg=0.004,15.933,13.578,2.416,0.010,0.003
+[INFO] [1792492639.483703688] [track1_grasp]: [motion:cartesian-precheck] target 6: 37 waypoint(s), planning_step=2.000 mm, max_joint_step=0.486 deg, max_joint_accel=0.035 deg, min_sigma=0.04989, axis_step_deg=0.002,0.468,0.486,0.131,0.004,0.001, axis_travel_deg=0.003,15.933,13.578,2.417,0.009,0.003
+[INFO] [1792492639.484097825] [track1_grasp]: [motion:linear-precheck] validated 6 segment(s), 188 Cartesian waypoint(s), min_sigma=0.04406
+[INFO] [1792492639.484415984] [track1_grasp]: [plan] full-route precheck passed: 6 segment(s)
+[INFO] [1792492639.485052303] [track1_grasp]: [approach] move to pregrasp: xyz=(0.0342, 0.4867, 0.2415)
+[INFO] [1792492639.487398132] [track1_grasp]: [motion:robotmove] sent continuous pregrasp: points=40 payload_bytes=7206 endpoint_deg=[72.78, 88.13, -54.21, -57.45, 87.93, 12.23]
+[INFO] [1792492639.866864516] [track1_grasp]: [depth] skip 3-Scissors: no valid depth at (99,271)
+[INFO] [1792492641.432412357] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (483,389)
+[INFO] [1792492642.456302747] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (488,389)
+[INFO] [1792492642.601376145] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (485,389)
+[INFO] [1792492643.285072611] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (490,388)
+[INFO] [1792492643.363736245] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (487,389)
+[INFO] [1792492643.445423578] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (490,390)
+[INFO] [1792492643.522154515] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (489,389)
+[INFO] [1792492643.599892165] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (493,390)
+[INFO] [1792492643.677293848] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (492,389)
+[INFO] [1792492643.760918627] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (492,389)
+[INFO] [1792492643.847346292] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (494,389)
+[INFO] [1792492643.922611086] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (494,389)
+[INFO] [1792492643.996262529] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (493,389)
+[INFO] [1792492644.073563303] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (493,390)
+[INFO] [1792492644.323116330] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (490,389)
+[INFO] [1792492644.406248437] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (494,389)
+[INFO] [1792492644.489654778] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (490,389)
+[INFO] [1792492644.569574429] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (489,390)
+[INFO] [1792492644.724118994] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (491,389)
+[INFO] [1792492644.801139598] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (492,390)
+[INFO] [1792492644.877284078] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (488,389)
+[INFO] [1792492644.952158296] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (489,389)
+[INFO] [1792492644.952452712] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (95,374)
+[INFO] [1792492645.027789923] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (491,389)
+[INFO] [1792492645.109472507] [track1_grasp]: [depth] skip 4-Frenchs_Mustard: no valid depth at (350,256)
+[INFO] [1792492645.109817971] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (492,389)
+[INFO] [1792492645.195646120] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (484,388)
+[INFO] [1792492645.280336969] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (494,390)
+[INFO] [1792492645.366702901] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (493,389)
+[INFO] [1792492645.454575341] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (495,390)
+[INFO] [1792492645.624233647] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (492,389)
+[INFO] [1792492645.710268362] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (494,389)
+[INFO] [1792492645.796698401] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (496,389)
+[INFO] [1792492645.965335750] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (496,389)
+[INFO] [1792492646.049460323] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (497,389)
+[INFO] [1792492646.129250573] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (493,389)
+[INFO] [1792492646.209318619] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (497,389)
+[INFO] [1792492646.269561083] [track1_grasp]: [motion:linear] pregrasp: completed 0.080 m with 40 waypoint(s), max_joint_step=0.258 deg
+[INFO] [1792492646.269916044] [track1_grasp]: [grasp] move to grasp: xyz=(0.0342, 0.4867, 0.1675)
+[INFO] [1792492646.271762079] [track1_grasp]: [motion:robotmove] sent continuous grasp: points=37 payload_bytes=6655 endpoint_deg=[72.78, 104.08, -67.83, -55.12, 87.93, 12.23]
+[INFO] [1792492646.289212152] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (494,389)
+[INFO] [1792492646.590602546] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (497,389)
+[INFO] [1792492646.664846382] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (494,388)
+[INFO] [1792492646.737812833] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (494,389)
+[INFO] [1792492647.059796901] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (496,390)
+[INFO] [1792492647.482667063] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (495,389)
+[INFO] [1792492647.805719576] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (491,389)
+[INFO] [1792492647.882727122] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (490,390)
+[INFO] [1792492648.036706599] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (96,352)
+[INFO] [1792492648.362210598] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (97,333)
+[INFO] [1792492648.445397315] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (97,375)
+[INFO] [1792492648.445740404] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (495,389)
+[INFO] [1792492648.520228795] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (492,390)
+[INFO] [1792492648.520601563] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (97,366)
+[INFO] [1792492648.594698191] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (489,390)
+[INFO] [1792492648.679538623] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,362)
+[INFO] [1792492648.763316545] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,366)
+[INFO] [1792492648.917485967] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,367)
+[INFO] [1792492652.454765082] [track1_grasp]: [depth] skip 3-Scissors: no valid depth at (108,252)
+[INFO] [1792492653.194259282] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (112,252)
+[INFO] [1792492653.583799911] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (121,258)
+[INFO] [1792492653.733155397] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (135,256)
+[INFO] [1792492654.473471113] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (141,263)
+[INFO] [1792492654.558841018] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (141,257)
+[INFO] [1792492654.724059344] [track1_grasp]: [depth] skip 3-Scissors: no valid depth at (116,246)
+[INFO] [1792492654.848499891] [track1_grasp]: [motion:linear] grasp: completed 0.074 m with 37 waypoint(s), max_joint_step=0.485 deg
+[INFO] [1792492654.848955760] [track1_grasp]: [grasp] reached grasp pose; closing jaws
+[INFO] [1792492654.849389074] [track1_grasp]: [gripper:ms42dc_ros] close: dir=1 angle_wire=30000 speed_wire=100
+[INFO] [1792492655.121343821] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (116,251)
+[INFO] [1792492655.830701950] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (457,384)
+[INFO] [1792492656.445909934] [track1_grasp]: [depth] skip 3-Scissors: no valid depth at (113,249)
+[INFO] [1792492656.528042452] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (117,257)
+[INFO] [1792492657.160996113] [track1_grasp]: [verify_hold] checking whether the object is held
+[INFO] [1792492658.470801072] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (130,267)
+[INFO] [1792492658.618073091] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (138,263)
+[INFO] [1792492658.690373545] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (142,262)
+[INFO] [1792492658.871656528] [track1_grasp]: [verify_hold] jaws settled at 21.0 deg
+[INFO] [1792492658.872157510] [track1_grasp]: [lift] move to lift: xyz=(0.0342, 0.4867, 0.2415)
+[INFO] [1792492658.874079523] [track1_grasp]: [motion:robotmove] sent continuous lift: points=37 payload_bytes=6655 endpoint_deg=[72.78, 88.15, -54.25, -57.45, 87.93, 12.23]
+[INFO] [1792492658.908914376] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (144,264)
+[INFO] [1792492658.909338192] [track1_grasp]: [depth] skip 3-Scissors: no valid depth at (124,266)
+[INFO] [1792492659.205192856] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (143,259)
+[INFO] [1792492659.364926500] [track1_grasp]: [depth] skip 10-meat_can: no valid depth at (144,263)
+[INFO] [1792492667.368240819] [track1_grasp]: [motion:linear] lift: completed 0.074 m with 37 waypoint(s), max_joint_step=0.486 deg
+[INFO] [1792492667.368670571] [track1_grasp]: [lift] lift pose reached; holding for 2.0 s before return
+[INFO] [1792492669.371428287] [track1_grasp]: [transfer] move to transfer: xyz=(0.0342, 0.4867, 0.2415)
+[INFO] [1792492669.372106155] [track1_grasp]: [motion:linear] transfer: completed 0.000 m with 0 waypoint(s), max_joint_step=0.000 deg
+[INFO] [1792492669.372604763] [track1_grasp]: [release] move to release: xyz=(0.0342, 0.4867, 0.1675)
+[INFO] [1792492669.376198298] [track1_grasp]: [motion:robotmove] sent continuous release: points=37 payload_bytes=6652 endpoint_deg=[72.78, 104.08, -67.83, -55.12, 87.93, 12.23]
+[INFO] [1792492674.947741183] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (128,341)
+[INFO] [1792492677.881383567] [track1_grasp]: [motion:linear] release: completed 0.074 m with 37 waypoint(s), max_joint_step=0.483 deg
+[INFO] [1792492677.881731405] [track1_grasp]: [release] opening jaws to release the object
+[INFO] [1792492677.882472193] [track1_grasp]: [gripper:ms42dc_ros] open: dir=0 angle_wire=30000 speed_wire=100
+[INFO] [1792492679.576463686] [track1_grasp]: [depth] skip 3-Scissors: no valid depth at (127,257)
+[INFO] [1792492680.195820797] [track1_grasp]: [retreat] move to retreat: xyz=(0.0342, 0.4867, 0.2415)
+[INFO] [1792492680.199442824] [track1_grasp]: [motion:robotmove] sent continuous retreat: points=37 payload_bytes=6663 endpoint_deg=[72.78, 88.15, -54.25, -57.45, 87.93, 12.23]
+[INFO] [1792492680.372234047] [track1_grasp]: [depth] skip 3-Scissors: no valid depth at (119,257)
+[INFO] [1792492680.597754195] [track1_grasp]: [depth] skip 3-Scissors: no valid depth at (114,258)
+[INFO] [1792492680.746326155] [track1_grasp]: [depth] skip 3-Scissors: no valid depth at (109,254)
+[INFO] [1792492688.749863660] [track1_grasp]: [motion:linear] retreat: completed 0.074 m with 37 waypoint(s), max_joint_step=0.486 deg
+[INFO] [1792492688.752699787] [track1_grasp]: [done] pick_5: object returned at its pick point and arm retreated; all expected points completed
+[INFO] [1792492688.755626138] [track1_grasp]: [task_b_return_initial_pick_5] current_deg=[72.779, 88.15, -54.251, -57.451, 87.926, 12.231] target_deg=[82.657, 54.31, -32.193, -53.453, 84.446, -2.058] max_delta_deg=33.840 tolerance_deg=0.500
+[INFO] [1792492688.756204285] [track1_grasp]: [task_b_return_initial_pick_5] moving six axes together: dry_run=False estimated_steps=34 max_step_deg=1.000 total_abs_deg=[9.878, 33.84, 22.058, 3.998, 3.481, 14.288]
+[INFO] [1792492688.756752753] [track1_grasp]: [motion:robotmove] task_b_return_initial_pick_5: 34 step(s), max_delta=33.84 deg
+[INFO] [1792492688.761825490] [track1_grasp]: [motion:robotmove] sent continuous task_b_return_initial_pick_5: points=34 payload_bytes=6112 endpoint_deg=[82.66, 54.31, -32.19, -53.45, 84.45, -2.06]
+[INFO] [1792492700.534504069] [track1_grasp]: [task_b_return_initial_pick_5] verified residual_deg=0.010; pick_5 complete at the initial pose
+[INFO] [1792492700.534982495] [track1_grasp]: [run] requested=5 attempts=5 successes=5 rate=100.00%

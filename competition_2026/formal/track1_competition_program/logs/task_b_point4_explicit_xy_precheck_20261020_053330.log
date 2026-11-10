@@ -1,0 +1,16 @@
+[point4-explicit-xy-precheck] read-only; no /RobotMove or gripper command is published
+config=config/track1_task_b_final_20261020_live.yaml
+observation_deg=[66.769885, 93.322319, -80.589019, -75.774917, 87.317606, -3.217391]
+observation_xyz=[0.056673617, 0.417881069, 0.256334083]
+observation_rpy=[-3.11294114, 0.045264228, -0.34802971]
+grasp_xyz=(0.065803249, 0.443883453, 0.169903174)
+grasp_rpy=[3.083158245, 0.050086616, -0.347881105]
+observation_to_grasp_xy_offset_mm=27.559
+[joint-precheck] PASS initial_to_point4_observation steps=49 max_delta_deg=48.396 abs_delta_deg=[15.887, 39.012, 48.396, 22.322, 2.872, 1.16] xyz_bounds_min=[-0.061771, 0.417881, 0.256334] xyz_bounds_max=[0.056674, 0.443179, 0.430123]
+Traceback (most recent call last):
+  File "<stdin>", line 75, in <module>
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/planner.py", line 189, in plan
+    base_xyz = self.detection_to_base(detection, robot_state)
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/planner.py", line 86, in detection_to_base
+    raise ValueError("detection has neither base_xyz nor camera_xyz")
+ValueError: detection has neither base_xyz nor camera_xyz

@@ -1,0 +1,27 @@
+
+===== 无夹爪运动验证 =====
+配置：config/track1_live.yaml
+模式：真机运动（一次往返）
+参数：多轴协作 径向内收=0 mm 向上=5 mm
+夹爪：完全不调用，不会发出开合命令
+日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/arm_motion_check_20261019_232532.log
+
+[bridge] state=AutoReady fault_flag=0 xyz=(-0.0634, 0.5437, 0.1615)
+[INFO] [1792423533.477164427] [track1_arm_motion_check]: [start] EXECUTE no-gripper check: coordinated radial-in 0.0 mm + up 5.0 mm (5.0 mm) out-and-back, step=2.5 mm
+[INFO] [1792423533.477432757] [track1_arm_motion_check]: [robot] controller state=AutoReady; start_xyz=(-0.06344328646753064, 0.5437316883546875, 0.16152427290216115) joints_deg=[84.11, 90.47, -32.43, -35.54, 84.46, -2.05]
+[INFO] [1792423534.331625159] [track1_arm_motion_check]: [motion:cartesian-precheck] target 1: 3 waypoint(s), planning_step=2.000 mm, max_joint_step=0.395 deg, max_joint_accel=0.048 deg, min_sigma=0.03005, axis_step_deg=0.001,0.388,0.395,0.012,0.002,0.000, axis_travel_deg=0.001,1.132,1.116,0.020,0.002,0.000
+[INFO] [1792423535.167485646] [track1_arm_motion_check]: [motion:cartesian-precheck] target 2: 3 waypoint(s), planning_step=2.000 mm, max_joint_step=0.386 deg, max_joint_accel=0.071 deg, min_sigma=0.03037, axis_step_deg=0.002,0.384,0.386,0.011,0.005,0.001, axis_travel_deg=0.002,1.112,1.077,0.016,0.005,0.001
+[INFO] [1792423535.167726668] [track1_arm_motion_check]: [motion:linear-precheck] validated 2 segment(s), 6 Cartesian waypoint(s), min_sigma=0.03005
+[INFO] [1792423535.167957004] [track1_arm_motion_check]: [precheck] outbound=5.0 mm return=5.0 mm; all IK, joint limits and workspace checks passed
+[INFO] [1792423535.168154096] [track1_arm_motion_check]: [precheck] Joint1 travel=0.002 deg, max_step=0.002 deg
+[INFO] [1792423535.168593397] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_out_p001: joints=[84.11, 90.11, -32.09, -35.56, 84.46, -2.05] deg
+[INFO] [1792423535.519902449] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_out_p002: joints=[84.11, 89.73, -31.71, -35.56, 84.46, -2.05] deg
+[INFO] [1792423535.871175882] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_out_p003: joints=[84.11, 89.34, -31.31, -35.55, 84.46, -2.05] deg
+[INFO] [1792423536.222568045] [track1_arm_motion_check]: [motion:linear] no_gripper_out: completed 0.005 m with 3 waypoint(s), max_joint_step=0.395 deg
+[INFO] [1792423536.223128451] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_return_p001: joints=[84.11, 89.69, -31.63, -35.54, 84.47, -2.05] deg
+[INFO] [1792423536.574480245] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_return_p002: joints=[84.11, 90.07, -32.01, -35.54, 84.47, -2.05] deg
+[INFO] [1792423536.926039817] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_return_p003: joints=[84.11, 90.45, -32.39, -35.54, 84.47, -2.05] deg
+[INFO] [1792423537.277488971] [track1_arm_motion_check]: [motion:linear] no_gripper_return: completed 0.005 m with 3 waypoint(s), max_joint_step=0.386 deg
+[INFO] [1792423537.277912837] [track1_arm_motion_check]: [result] out-and-back complete; return error=0.03 mm; no gripper command was sent
+
+[完成] 无夹爪运动验证结束。

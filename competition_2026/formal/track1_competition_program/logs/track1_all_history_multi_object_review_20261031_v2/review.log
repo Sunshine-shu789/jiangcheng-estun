@@ -1,0 +1,163 @@
+Track 1 multi-object bbox review: http://127.0.0.1:9131/
+source: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_all_history_multi_object_review_20261031_v2
+review: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_all_history_multi_object_review_20261031_v2
+camera: closed; robot commands: disabled
+127.0.0.1 - - [31/Oct/2026 17:22:13] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/Oct/2026 17:22:13] "GET //status.json HTTP/1.1" 200 -
+127.0.0.1 - - [31/Oct/2026 17:22:13] "GET //status.json HTTP/1.1" 400 -
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 43644)
+127.0.0.1 - - [31/Oct/2026 17:22:13] "GET //status.json HTTP/1.1" 200 -
+127.0.0.1 - - [31/Oct/2026 17:22:13] "GET //status.json HTTP/1.1" 200 -
+127.0.0.1 - - [31/Oct/2026 17:22:13] "GET //status.json HTTP/1.1" 400 -
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 43656)
+127.0.0.1 - - [31/Oct/2026 17:22:13] "GET //status.json HTTP/1.1" 400 -
+127.0.0.1 - - [31/Oct/2026 17:22:13] "GET //status.json HTTP/1.1" 200 -
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 43662)
+127.0.0.1 - - [31/Oct/2026 17:22:13] "GET //status.json HTTP/1.1" 400 -
+127.0.0.1 - - [31/Oct/2026 17:22:13] "GET //status.json HTTP/1.1" 200 -
+----------------------------------------
+Traceback (most recent call last):
+Exception occurred during processing of request from ('127.0.0.1', 43666)
+Traceback (most recent call last):
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_all_history_bbox_review_v2/review_server.py", line 210, in do_GET
+    self.send_json(
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_all_history_bbox_review_v2/review_server.py", line 164, in send_json
+    self.wfile.write(body)
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/socketserver.py", line 826, in write
+    self._sock.sendall(b)
+Traceback (most recent call last):
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_all_history_bbox_review_v2/review_server.py", line 210, in do_GET
+    self.send_json(
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_all_history_bbox_review_v2/review_server.py", line 164, in send_json
+    self.wfile.write(body)
+BrokenPipeError: [Errno 32] Broken pipe
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_all_history_bbox_review_v2/review_server.py", line 210, in do_GET
+    self.send_json(
+  File "/usr/lib/python3.10/socketserver.py", line 826, in write
+    self._sock.sendall(b)
+
+During handling of the above exception, another exception occurred:
+
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_all_history_bbox_review_v2/review_server.py", line 164, in send_json
+    self.wfile.write(body)
+BrokenPipeError: [Errno 32] Broken pipe
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_all_history_bbox_review_v2/review_server.py", line 210, in do_GET
+    self.send_json(
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_all_history_bbox_review_v2/review_server.py", line 164, in send_json
+    self.wfile.write(body)
+  File "/usr/lib/python3.10/socketserver.py", line 826, in write
+    self._sock.sendall(b)
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/socketserver.py", line 826, in write
+    self._sock.sendall(b)
+BrokenPipeError: [Errno 32] Broken pipe
+
+During handling of the above exception, another exception occurred:
+
+BrokenPipeError: [Errno 32] Broken pipe
+
+During handling of the above exception, another exception occurred:
+
+
+During handling of the above exception, another exception occurred:
+
+  File "/usr/lib/python3.10/socketserver.py", line 683, in process_request_thread
+    self.finish_request(request, client_address)
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/socketserver.py", line 360, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/lib/python3.10/socketserver.py", line 747, in __init__
+    self.handle()
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/http/server.py", line 433, in handle
+    self.handle_one_request()
+  File "/usr/lib/python3.10/http/server.py", line 421, in handle_one_request
+    method()
+  File "/usr/lib/python3.10/socketserver.py", line 683, in process_request_thread
+    self.finish_request(request, client_address)
+Traceback (most recent call last):
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_all_history_bbox_review_v2/review_server.py", line 281, in do_GET
+    self.send_json(
+  File "/usr/lib/python3.10/socketserver.py", line 683, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/lib/python3.10/socketserver.py", line 683, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/lib/python3.10/socketserver.py", line 360, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_all_history_bbox_review_v2/review_server.py", line 163, in send_json
+    self.end_headers()
+  File "/usr/lib/python3.10/socketserver.py", line 360, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/lib/python3.10/socketserver.py", line 747, in __init__
+    self.handle()
+  File "/usr/lib/python3.10/http/server.py", line 433, in handle
+    self.handle_one_request()
+  File "/usr/lib/python3.10/http/server.py", line 535, in end_headers
+    self.flush_headers()
+  File "/usr/lib/python3.10/http/server.py", line 539, in flush_headers
+    self.wfile.write(b"".join(self._headers_buffer))
+  File "/usr/lib/python3.10/socketserver.py", line 360, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/lib/python3.10/http/server.py", line 421, in handle_one_request
+    method()
+  File "/usr/lib/python3.10/socketserver.py", line 747, in __init__
+    self.handle()
+  File "/usr/lib/python3.10/socketserver.py", line 826, in write
+    self._sock.sendall(b)
+  File "/usr/lib/python3.10/socketserver.py", line 747, in __init__
+    self.handle()
+  File "/usr/lib/python3.10/http/server.py", line 433, in handle
+    self.handle_one_request()
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_all_history_bbox_review_v2/review_server.py", line 281, in do_GET
+    self.send_json(
+BrokenPipeError: [Errno 32] Broken pipe
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_all_history_bbox_review_v2/review_server.py", line 163, in send_json
+    self.end_headers()
+  File "/usr/lib/python3.10/http/server.py", line 421, in handle_one_request
+    method()
+----------------------------------------
+  File "/usr/lib/python3.10/http/server.py", line 433, in handle
+    self.handle_one_request()
+  File "/usr/lib/python3.10/http/server.py", line 421, in handle_one_request
+    method()
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_all_history_bbox_review_v2/review_server.py", line 281, in do_GET
+    self.send_json(
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_all_history_bbox_review_v2/review_server.py", line 163, in send_json
+    self.end_headers()
+  File "/usr/lib/python3.10/http/server.py", line 535, in end_headers
+    self.flush_headers()
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_all_history_bbox_review_v2/review_server.py", line 281, in do_GET
+    self.send_json(
+  File "/usr/lib/python3.10/http/server.py", line 535, in end_headers
+    self.flush_headers()
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_all_history_bbox_review_v2/review_server.py", line 163, in send_json
+    self.end_headers()
+  File "/usr/lib/python3.10/http/server.py", line 539, in flush_headers
+    self.wfile.write(b"".join(self._headers_buffer))
+  File "/usr/lib/python3.10/socketserver.py", line 826, in write
+    self._sock.sendall(b)
+  File "/usr/lib/python3.10/http/server.py", line 539, in flush_headers
+    self.wfile.write(b"".join(self._headers_buffer))
+  File "/usr/lib/python3.10/socketserver.py", line 826, in write
+    self._sock.sendall(b)
+BrokenPipeError: [Errno 32] Broken pipe
+  File "/usr/lib/python3.10/http/server.py", line 535, in end_headers
+    self.flush_headers()
+  File "/usr/lib/python3.10/http/server.py", line 539, in flush_headers
+    self.wfile.write(b"".join(self._headers_buffer))
+BrokenPipeError: [Errno 32] Broken pipe
+  File "/usr/lib/python3.10/socketserver.py", line 826, in write
+    self._sock.sendall(b)
+----------------------------------------
+----------------------------------------
+BrokenPipeError: [Errno 32] Broken pipe
+----------------------------------------
+Track 1 multi-object bbox review: http://127.0.0.1:9131/
+source: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_all_history_multi_object_review_20261031_v2
+review: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_all_history_multi_object_review_20261031_v2
+camera: closed; robot commands: disabled
+127.0.0.1 - - [31/Oct/2026 17:27:35] "GET /status.json HTTP/1.1" 200 -

@@ -1,0 +1,19 @@
+
+===== 无夹爪运动验证 =====
+配置：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/track1_live.yaml
+模式：只预检查（不会运动）
+参数：轴=x 方向=auto 距离=5 mm
+夹爪：完全不调用，不会发出开合命令
+日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/arm_motion_check_20261019_220436.log
+
+[bridge] state=AutoReady fault_flag=0 xyz=(-0.1133, 0.3860, 0.5192)
+[INFO] [1792418677.842035152] [track1_arm_motion_check]: [start] DRY-RUN no-gripper check: base +x 5.0 mm out-and-back, step=2.5 mm
+[INFO] [1792418677.842307044] [track1_arm_motion_check]: [robot] controller state=AutoReady; start_xyz=(-0.11327864693374741, 0.3860106806991269, 0.5192250229215076) joints_deg=[90.0, 33.35, -6.69, -36.51, 87.06, -0.01]
+[INFO] [1792418685.675216972] [track1_arm_motion_check]: [motion:linear-precheck] validated 2 segment(s), 4 Cartesian waypoint(s)
+[INFO] [1792418685.675916292] [track1_arm_motion_check]: [precheck] outbound=5.0 mm return=5.0 mm; all IK, joint limits and workspace checks passed
+[INFO] [1792418685.676502818] [track1_arm_motion_check]: [motion:robotmove:dry-run-linear] no_gripper_out: distance=0.005 m waypoints=2 target_xyz=(-0.1082786469337474, 0.3860106806991269, 0.5192250229215076) v=0.010
+[INFO] [1792418685.677021669] [track1_arm_motion_check]: [motion:robotmove:dry-run-linear] no_gripper_return: distance=0.005 m waypoints=2 target_xyz=(-0.11327864693374741, 0.3860106806991269, 0.5192250229215076) v=0.010
+[INFO] [1792418685.677382608] [track1_arm_motion_check]: [result] dry-run complete; no motion was sent and gripper stayed untouched
+The following exception was never retrieved: cannot use Destroyable because destruction was requested
+
+[完成] 无夹爪运动验证结束。

@@ -1,0 +1,43 @@
+[INFO] [1792319817.437444446] [codroid_udp_bridge]: listening for RobotInfo on udp/9006, sending RobotMove to 192.168.101.100:9005
+[INFO] [1792319822.429650738] [codroid_udp_bridge]: rx=101 decoded=101 tx=0
+[INFO] [1792319827.429441450] [codroid_udp_bridge]: rx=201 decoded=201 tx=0
+[INFO] [1792319832.429479195] [codroid_udp_bridge]: rx=301 decoded=301 tx=0
+[INFO] [1792319833.077058727] [codroid_udp_bridge]: sent move to 192.168.101.100:9005: ['Joint1', 'Joint2', 'Joint3', 'Joint4', 'Joint5', 'Joint6'] -> [array('d', [1.567000086343954, 0.5842755011632506, -0.12320958904195214, -0.6420628929099378, 1.5178178417604076, -0.003560958239670568])]
+[INFO] [1792319834.332414431] [codroid_udp_bridge]: sent move to 192.168.101.100:9005: ['Joint1', 'Joint2', 'Joint3', 'Joint4', 'Joint5', 'Joint6'] -> [array('d', [1.5556283349218807, 0.5971508415688486, -0.1555191145801846, -0.6622358645719465, 1.512723346461979, -0.013728636097058359])]
+[INFO] [1792319835.538410835] [codroid_udp_bridge]: sent move to 192.168.101.100:9005: ['Joint1', 'Joint2', 'Joint3', 'Joint4', 'Joint5', 'Joint6'] -> [array('d', [1.5403908131043311, 0.6106063923071179, -0.19049804037909282, -0.684598408575348, 1.5058669867774603, -0.027357754555589146])]
+[INFO] [1792319836.844675741] [codroid_udp_bridge]: sent move to 192.168.101.100:9005: ['Joint1', 'Joint2', 'Joint3', 'Joint4', 'Joint5', 'Joint6'] -> [array('d', [1.5555841546721485, 0.6000817205418205, -0.1617331026763105, -0.665020544693817, 1.5126268716600098, -0.013734486050936936])]
+[INFO] [1792319837.429682026] [codroid_udp_bridge]: rx=401 decoded=401 tx=11
+[INFO] [1792319838.050575944] [codroid_udp_bridge]: sent move to 192.168.101.100:9005: ['Joint1', 'Joint2', 'Joint3', 'Joint4', 'Joint5', 'Joint6'] -> [array('d', [1.5669662271959197, 0.5872254479411474, -0.1294677301621555, -0.6450420735840687, 1.5177143711534993, -0.0035873397326176013])]
+Traceback (most recent call last):
+  File "/home/sunshine/codex/easton/ros2_ws/install/taskA_grasp/lib/python3.10/site-packages/taskA_grasp/nodes/udp_bridge.py", line 146, in main
+    rclpy.spin(node)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 229, in spin
+    executor.spin_once()
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 808, in spin_once
+    self._spin_once_impl(timeout_sec)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 797, in _spin_once_impl
+    handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 780, in wait_for_ready_callbacks
+    return next(self._cb_iter)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 681, in _wait_for_ready_callbacks
+    raise ExternalShutdownException()
+rclpy.executors.ExternalShutdownException
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/sunshine/codex/easton/ros2_ws/install/taskA_grasp/lib/python3.10/site-packages/taskA_grasp/nodes/udp_bridge.py", line 155, in <module>
+    main()
+  File "/home/sunshine/codex/easton/ros2_ws/install/taskA_grasp/lib/python3.10/site-packages/taskA_grasp/nodes/udp_bridge.py", line 151, in main
+    rclpy.shutdown()
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 130, in shutdown
+    _shutdown(context=context)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/utilities.py", line 58, in shutdown
+    return context.shutdown()
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 102, in shutdown
+    self.__context.shutdown()
+rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241

@@ -1,0 +1,20 @@
+[gripper:ms42dc_ros] control=/motor_control state=/motor_state id=1
+[final-preflight] robot: controller state=AutoReady; fault=False; joints_deg=[82.6577, 54.3102, -32.1933, -53.4526, 84.445, -2.0572]; tcp_xyz_m=(-0.064457, 0.430292, 0.433298); tcp_rpy_rad=(-2.88548, 0.084843, -0.069029)
+[final-preflight] /RobotMove bridge subscriber confirmed
+[final-preflight] gripper id=1 arrived=True angle=2158.8 deg speed=0.0 rad/s
+[targets] lower_safe=(-0.06445730196170793, 0.4302916064359883, 0.3)/(-2.885480042500998, 0.08484271061606345, -0.06902858309139741); align_low=(-0.063443253, 0.543732009, 0.3)/(-2.885480042500998, 0.08484271061606345, -0.06902858309139741); descend_rotate_to_above_release=(-0.063443253, 0.543732009, 0.211534092)/(3.082206718, 0.098641098, -0.072880619); release=(-0.063443253, 0.543732009, 0.161534092)/(3.082206718, 0.098641098, -0.072880619); retreat=(-0.063443253, 0.543732009, 0.211534092)/(3.082206718, 0.098641098, -0.072880619)
+[motion:cartesian-precheck] target 1: 144 waypoint(s), planning_step=2.000 mm, max_joint_step=0.498 deg, max_joint_accel=0.247 deg, min_sigma=0.02989, axis_step_deg=0.001,0.463,0.498,0.181,0.003,0.000, axis_travel_deg=0.003,35.922,48.572,12.660,0.007,0.002
+[motion:cartesian-precheck] target 2: 149 waypoint(s), planning_step=2.000 mm, max_joint_step=0.496 deg, max_joint_accel=0.246 deg, min_sigma=0.02779, axis_step_deg=0.017,0.177,0.496,0.338,0.005,0.017, axis_travel_deg=1.538,15.334,52.545,37.373,0.390,1.497
+[motion:cartesian-precheck] target 3: 53 waypoint(s), planning_step=2.000 mm, max_joint_step=0.494 deg, max_joint_accel=0.238 deg, min_sigma=0.01280, axis_step_deg=0.004,0.108,0.494,0.197,0.016,0.036, axis_travel_deg=0.084,3.115,14.301,4.928,0.367,1.493
+[motion:cartesian-precheck] target 4: 54 waypoint(s), planning_step=2.000 mm, max_joint_step=0.496 deg, max_joint_accel=0.242 deg, min_sigma=0.01327, axis_step_deg=0.002,0.475,0.496,0.174,0.005,0.001, axis_travel_deg=0.002,14.592,18.471,3.908,0.006,0.001
+[motion:cartesian-precheck] target 5: 55 waypoint(s), planning_step=2.000 mm, max_joint_step=0.495 deg, max_joint_accel=0.241 deg, min_sigma=0.01280, axis_step_deg=0.002,0.475,0.495,0.142,0.005,0.001, axis_travel_deg=0.002,14.592,18.471,3.942,0.005,0.001
+[motion:linear-precheck] validated 5 segment(s), 455 Cartesian waypoint(s), min_sigma=0.01280
+[final-preflight] PASS: segments=5 waypoints=455 min_sigma=0.012801 max_joint_step=0.498158 deg max_joint_accel=0.246912 deg
+[motion] executing four pre-checked inbound segments to the original release pose
+[ABORT] 失败并停止：RuntimeError: robot not ready before linear route 'lower_safe': no fresh RobotInfo
+SUMMARY_WRITTEN=logs/task_b_place_return_20261019_235609.md
+Traceback (most recent call last):
+  File "<stdin>", line 107, in <module>
+  File "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/motion.py", line 957, in execute_linear_route
+    raise RuntimeError(
+RuntimeError: robot not ready before linear route 'lower_safe': no fresh RobotInfo

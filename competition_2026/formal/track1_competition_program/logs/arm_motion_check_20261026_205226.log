@@ -1,0 +1,16 @@
+
+===== 无夹爪运动验证 =====
+配置：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/track1_live.yaml
+模式：只预检查（不会运动）
+参数：轴=z 方向=auto 距离=10 mm
+去程终点停留：0 秒
+夹爪：完全不调用，不会发出开合命令
+日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/arm_motion_check_20261026_205226.log
+
+[bridge] state=AutoReady fault_flag=0 xyz=(-0.0705, 0.4152, 0.4678)
+[INFO] [1793019148.949057242] [track1_arm_motion_check]: [start] DRY-RUN no-gripper check: base -z 10.0 mm out-and-back, hold=0.0 s, step=2.5 mm
+[INFO] [1793019148.950617357] [track1_arm_motion_check]: [robot] controller state=AutoReady; start_xyz=(-0.0704858077077205, 0.41520667945795997, 0.4678557836583433) joints_deg=[84.93, 43.24, -16.52, -46.17, 90.02, -11.26]
+[INFO] [1793019149.055051230] [track1_arm_motion_check]: [motion:ik-restart-selected] target 1 path waypoint: seed=10, damping=0.01, iterations=6, step=2.562 deg, pos_err=0.0020 mm, rot_err=0.000030 rad, min_sigma=0.017345
+[INFO] [1793019149.151012519] [track1_arm_motion_check]: [motion:ik-restart-selected] target 1 path waypoint: seed=10, damping=0.02, iterations=6, step=1.320 deg, pos_err=0.0022 mm, rot_err=0.000037 rad, min_sigma=0.016178
+[ERROR] [1793019149.243658860] [track1_arm_motion_check]: joint-step limit cannot be satisfied at the minimum spacing (0.671 deg > 0.500 deg) at target 1 path waypoint, depth=3
+错误：无夹爪运动验证异常退出，退出码=2。请查看日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/arm_motion_check_20261026_205226.log

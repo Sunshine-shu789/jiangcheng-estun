@@ -1,0 +1,94 @@
+
+===== 任务B 五点位拾放 =====
+配置：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/track1_task_b_resume2_20261020_live.yaml
+视觉后端：realsense_yolo
+模式：真机执行
+日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/task_B_20261020_030458.log
+
+夹爪 ROS 节点已在运行（PID=49232），不重复启动。
+机械臂状态桥接已在运行（PID=48121），不重复启动。
+[bridge] RobotInfo 已就绪：state=AutoReady fault_flag=0 xyz=(-0.0645, 0.4303, 0.4333)
+[INFO] [1792436699.747895114] [track1_grasp]: [camera] D405 started 640x480@15 fx=392.7 fy=391.7 cx=314.4 cy=246.7
+[INFO] [1792436699.755721796] [track1_grasp]: [gripper:ms42dc_ros] control=/motor_control state=/motor_state id=1
+[INFO] [1792436699.810979932] [track1_grasp]: [task_b_initial_pose] current_deg=[82.657, 54.31, -32.193, -53.451, 84.448, -2.059] target_deg=[82.657, 54.31, -32.193, -53.453, 84.446, -2.058] max_delta_deg=0.002 tolerance_deg=0.500
+[INFO] [1792436699.811205519] [track1_grasp]: [task_b_initial_pose] already inside tolerance; no joint motion command sent
+[INFO] [1792436699.812517486] [track1_grasp]: [task_b_observation_pose] pick_2: current_deg=[82.657, 54.31, -32.193, -53.451, 84.448, -2.059] target_deg=[91.406, 74.367, -18.644, -35.901, 87.641, -19.601] max_delta_deg=20.057 tolerance_deg=0.500
+[INFO] [1792436699.812734762] [track1_grasp]: [task_b_observation_pose] pick_2: moving six axes together: dry_run=False estimated_steps=21 max_step_deg=1.000 total_abs_deg=[8.749, 20.057, 13.55, 17.551, 3.194, 17.542]
+[INFO] [1792436699.812984095] [track1_grasp]: [motion:robotmove] task_b_observation_pick_2: 21 step(s), max_delta=20.06 deg
+[INFO] [1792436699.814604759] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_01: joints=[83.07, 55.26, -31.55, -52.62, 84.6, -2.89] deg
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+[INFO] [1792436700.316387482] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_02: joints=[83.49, 56.22, -30.9, -51.78, 84.75, -3.73] deg
+[INFO] [1792436700.818273500] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_03: joints=[83.91, 57.17, -30.26, -50.94, 84.9, -4.56] deg
+[INFO] [1792436701.320279435] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_04: joints=[84.32, 58.13, -29.61, -50.11, 85.06, -5.4] deg
+[INFO] [1792436702.018164960] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_05: joints=[84.74, 59.09, -28.97, -49.27, 85.21, -6.24] deg
+[INFO] [1792436702.554995596] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_06: joints=[85.16, 60.04, -28.32, -48.44, 85.36, -7.07] deg
+[INFO] [1792436702.571776896] [track1_grasp]: [yolo] loading /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/models/best.pt
+[INFO] [1792436702.607521754] [track1_grasp]: [vision:realsense_yolo] ready 640x480 rotate180=True anchor=top_center cx=324.6 cy=232.3 stabilizer=on
+[INFO] [1792436703.106971432] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_07: joints=[85.57, 61.0, -27.68, -47.6, 85.51, -7.91] deg
+[INFO] [1792436703.625656560] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_08: joints=[85.99, 61.95, -27.03, -46.77, 85.66, -8.74] deg
+[INFO] [1792436704.180579275] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_09: joints=[86.41, 62.91, -26.39, -45.93, 85.82, -9.58] deg
+[INFO] [1792436704.203219901] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (100,388)
+[INFO] [1792436704.733745973] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_10: joints=[86.82, 63.86, -25.74, -45.09, 85.97, -10.41] deg
+[INFO] [1792436705.198176233] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,389)
+[INFO] [1792436705.286541046] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_11: joints=[87.24, 64.82, -25.1, -44.26, 86.12, -11.25] deg
+[INFO] [1792436705.326802394] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,389)
+[INFO] [1792436705.398099768] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,389)
+[INFO] [1792436705.528612549] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,387)
+[INFO] [1792436705.662993553] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,386)
+[INFO] [1792436705.729161790] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (98,387)
+[INFO] [1792436705.789349596] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_12: joints=[87.66, 65.77, -24.45, -43.42, 86.27, -12.08] deg
+[INFO] [1792436705.797165593] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,387)
+[INFO] [1792436705.930054162] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,387)
+[INFO] [1792436706.066609113] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (97,388)
+[INFO] [1792436706.291515817] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_13: joints=[88.07, 66.73, -23.81, -42.59, 86.42, -12.92] deg
+[INFO] [1792436706.398175738] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (99,384)
+[INFO] [1792436706.796372460] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_14: joints=[88.49, 67.68, -23.16, -41.75, 86.58, -13.75] deg
+[INFO] [1792436707.264163967] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,384)
+[INFO] [1792436707.299067029] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_15: joints=[88.91, 68.64, -22.51, -40.92, 86.73, -14.59] deg
+[INFO] [1792436707.598635915] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,382)
+[INFO] [1792436707.666570855] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (103,383)
+[INFO] [1792436707.731192040] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,382)
+[INFO] [1792436707.731478179] [track1_grasp]: [depth] skip 3-Scissors: no valid depth at (101,382)
+[INFO] [1792436707.801215440] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_16: joints=[89.32, 69.59, -21.87, -40.08, 86.88, -15.42] deg
+[INFO] [1792436707.863150952] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,383)
+[INFO] [1792436708.303798403] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_17: joints=[89.74, 70.55, -21.22, -39.24, 87.03, -16.26] deg
+[INFO] [1792436708.800527976] [track1_grasp]: [depth] skip 3-Scissors: no valid depth at (101,384)
+[INFO] [1792436708.800831925] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (103,383)
+[INFO] [1792436708.806666318] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_18: joints=[90.16, 71.5, -20.58, -38.41, 87.19, -17.09] deg
+[INFO] [1792436709.072937372] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (103,380)
+[INFO] [1792436709.073234197] [track1_grasp]: [depth] skip 3-Scissors: no valid depth at (101,379)
+[INFO] [1792436709.196281234] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (105,381)
+[INFO] [1792436709.309056938] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_19: joints=[90.57, 72.46, -19.93, -37.57, 87.34, -17.93] deg
+[INFO] [1792436709.813531271] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_20: joints=[90.99, 73.41, -19.29, -36.74, 87.49, -18.77] deg
+[INFO] [1792436709.872031923] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,381)
+[INFO] [1792436709.872305002] [track1_grasp]: [depth] skip 3-Scissors: no valid depth at (101,382)
+[INFO] [1792436710.130517850] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,383)
+[INFO] [1792436710.265385648] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,384)
+[INFO] [1792436710.316132043] [track1_grasp]: [motion:robotmove] sent task_b_observation_pick_2_step_21: joints=[91.41, 74.37, -18.64, -35.9, 87.64, -19.6] deg
+[INFO] [1792436710.399307167] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (101,385)
+[INFO] [1792436710.464985049] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,384)
+[INFO] [1792436710.531114105] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (102,382)
+[INFO] [1792436710.798725621] [track1_grasp]: [depth] skip 7-Clamp: no valid depth at (104,383)
+[INFO] [1792436710.818091673] [track1_grasp]: [task_b_observation_pose] pick_2: verified residual_deg=0.016; visual search may start
+[INFO] [1792436710.818367127] [track1_grasp]: [scan] round 1/4: waiting for 8-Plastic_Banana at 'pick_2' xy=(-0.125, 0.522) within 0.080 m, completed_points_excluded=0 (wait attempt 1)
+[INFO] [1792436710.818728066] [track1_grasp]: [detect] observation 1/8: waiting for a fresh frame
+[INFO] [1792436710.820791594] [track1_grasp]: [pose] loaded camera transform from /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/camera_to_flange.d405_assumed.yaml
+[INFO] [1792436710.821200025] [track1_grasp]: [detect] frame 'realsense-000111': 1 detection(s), 8-Plastic_Banana conf=0.92, confirmation 1/2
+[INFO] [1792436710.871714897] [track1_grasp]: [detect] observation 2/8: waiting for a fresh frame
+[INFO] [1792436710.930475568] [track1_grasp]: [detect] frame 'realsense-000113': 1 detection(s), 8-Plastic_Banana conf=0.92, confirmation 2/2
+[INFO] [1792436710.930974234] [track1_grasp]: [scan] round 1/4: target confirmed at expected point 'pick_2'
+[INFO] [1792436710.931294806] [track1_grasp]: [select] selected '8-Plastic_Banana' conf=0.92 graspability=1.00: 8-Plastic_Banana confirmed in 2 consecutive frames
+[INFO] [1792436710.931768538] [track1_grasp]: [plan] planned 6 waypoint(s)
+[INFO] [1792436722.310870913] [track1_grasp]: [plan] full-route precheck rejected: near-singular posture at target 1 path waypoint: minimum weighted Jacobian singular value=0.009044 < 0.010000
+[INFO] [1792436722.312438149] [track1_grasp]: [run] requested=4 attempts=1 successes=0 rate=0.00%
+QObject::killTimer: Timers cannot be stopped from another thread
+QObject::~QObject: Timers cannot be stopped from another thread

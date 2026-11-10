@@ -1,0 +1,33 @@
+
+===== 无夹爪运动验证 =====
+配置：config/track1_task_b_floor230_20261019_223939.yaml
+模式：真机运动（一次往返）
+参数：多轴协作 径向内收=3 mm 向上=10 mm
+夹爪：完全不调用，不会发出开合命令
+日志：/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/arm_motion_check_20261019_230823.log
+
+[bridge] state=AutoReady fault_flag=0 xyz=(-0.0522, 0.4525, 0.2340)
+[INFO] [1792422505.247250487] [track1_arm_motion_check]: [start] EXECUTE no-gripper check: coordinated radial-in 3.0 mm + up 10.0 mm (10.4 mm) out-and-back, step=2.5 mm
+[INFO] [1792422505.247533065] [track1_arm_motion_check]: [robot] controller state=AutoReady; start_xyz=(-0.05218310798673788, 0.4524513021989342, 0.23401997611465977) joints_deg=[81.93, 95.83, -73.41, -66.27, 86.18, -2.05]
+[INFO] [1792422505.714520769] [track1_arm_motion_check]: [motion:cartesian-precheck] target 1: 6 waypoint(s), planning_step=2.000 mm, max_joint_step=0.329 deg, max_joint_accel=0.021 deg, min_sigma=0.06354, axis_step_deg=0.017,0.329,0.157,0.182,0.003,0.017, axis_travel_deg=0.101,1.947,0.873,1.069,0.005,0.100
+[INFO] [1792422506.169029950] [track1_arm_motion_check]: [motion:cartesian-precheck] target 2: 6 waypoint(s), planning_step=2.000 mm, max_joint_step=0.328 deg, max_joint_accel=0.032 deg, min_sigma=0.06362, axis_step_deg=0.019,0.328,0.154,0.185,0.005,0.017, axis_travel_deg=0.102,1.937,0.856,1.066,0.007,0.100
+[INFO] [1792422506.169266222] [track1_arm_motion_check]: [motion:linear-precheck] validated 2 segment(s), 12 Cartesian waypoint(s), min_sigma=0.06354
+[INFO] [1792422506.169509619] [track1_arm_motion_check]: [precheck] outbound=10.4 mm return=10.4 mm; all IK, joint limits and workspace checks passed
+[INFO] [1792422506.169743517] [track1_arm_motion_check]: [precheck] Joint1 travel=0.203 deg, max_step=0.019 deg
+[INFO] [1792422506.170161447] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_out_p001: joints=[81.91, 95.51, -73.29, -66.45, 86.18, -2.07] deg
+[INFO] [1792422506.521449127] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_out_p002: joints=[81.9, 95.19, -73.15, -66.63, 86.18, -2.08] deg
+[INFO] [1792422506.872737995] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_out_p003: joints=[81.88, 94.86, -73.0, -66.81, 86.18, -2.1] deg
+[INFO] [1792422507.224166964] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_out_p004: joints=[81.86, 94.54, -72.85, -66.99, 86.18, -2.12] deg
+[INFO] [1792422507.575688543] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_out_p005: joints=[81.85, 94.21, -72.7, -67.16, 86.18, -2.13] deg
+[INFO] [1792422507.927245740] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_out_p006: joints=[81.83, 93.88, -72.54, -67.34, 86.18, -2.15] deg
+[INFO] [1792422508.278693706] [track1_arm_motion_check]: [motion:linear] no_gripper_out: completed 0.010 m with 6 waypoint(s), max_joint_step=0.329 deg
+[INFO] [1792422508.279279045] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_return_p001: joints=[81.85, 94.19, -72.66, -67.17, 86.18, -2.14] deg
+[INFO] [1792422508.630751944] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_return_p002: joints=[81.86, 94.52, -72.81, -66.99, 86.18, -2.12] deg
+[INFO] [1792422508.982366132] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_return_p003: joints=[81.88, 94.85, -72.96, -66.82, 86.18, -2.1] deg
+[INFO] [1792422509.333823597] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_return_p004: joints=[81.9, 95.17, -73.11, -66.64, 86.19, -2.08] deg
+[INFO] [1792422509.685479340] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_return_p005: joints=[81.91, 95.5, -73.26, -66.45, 86.19, -2.07] deg
+[INFO] [1792422510.037086404] [track1_arm_motion_check]: [motion:robotmove] sent no_gripper_return_p006: joints=[81.93, 95.82, -73.4, -66.27, 86.19, -2.05] deg
+[INFO] [1792422510.388571177] [track1_arm_motion_check]: [motion:linear] no_gripper_return: completed 0.010 m with 6 waypoint(s), max_joint_step=0.328 deg
+[INFO] [1792422510.388938052] [track1_arm_motion_check]: [result] out-and-back complete; return error=0.02 mm; no gripper command was sent
+
+[完成] 无夹爪运动验证结束。

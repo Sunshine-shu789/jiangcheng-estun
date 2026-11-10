@@ -1,0 +1,22 @@
+[start] pick_4 observation alignment; log=/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/task_b_pick4_observation_align_20261106_203137.log
+[authorization] one move only; no gripper, no grasp, no retry
+[authorization-check] target=xyz=(0.031712, 0.421674, 0.256339) rpy=(-3.112935, 0.045258, -0.347986) distance=0.025243 m speed=0.120 m/s
+[preflight] state=AutoReady fault=False xyz=(0.056670, 0.417884, 0.256339) rpy=(-3.112936, 0.045246, -0.347999)
+[preflight] joints_deg=[66.771, 93.321, -80.587, -75.774, 87.319, -3.218]
+[preflight] expected-start error position=0.002 mm rotation=0.000018 rad
+[preflight] /RobotMove bridge subscriber confirmed
+[plan] full Cartesian IK/route/singularity precheck starting
+[motion:plan-timing] target 1: total_s=0.023, attempts=1, waypoints=13, planning_step_mm=2.000, max_joint_step=0.270 deg, max_joint_accel=0.003 deg, min_sigma=0.068631
+[motion:cartesian-precheck] target 1: 13 waypoint(s), planning_step=2.000 mm, max_joint_step=0.270 deg, max_joint_accel=0.003 deg, min_sigma=0.06863, axis_step_deg=0.270,0.005,0.035,0.046,0.008,0.270, axis_travel_deg=3.493,0.026,0.226,0.406,0.093,3.493
+[motion:linear-precheck] validated 1 segment(s), 13 Cartesian waypoint(s), min_sigma=0.06863, total_s=0.024
+[plan-pass] distance=0.025245 m waypoints=13 max_joint_step=0.270 deg max_joint_accel=0.003 deg min_sigma=0.068631
+[post-ik] fresh feedback position drift=0.007 mm rotation drift=0.000024 rad
+[motion] sending the single authorized 0.12 m/s observation move
+[motion:robotmove] sent continuous pick4_observation_align_once: points=13 payload_bytes=2669 joint_velocity=0.291 rad/s endpoint_deg=[70.26, 93.34, -80.36, -75.37, 87.41, 0.27]
+[motion:linear] pick4_observation_align_once: completed 0.025 m with 13 waypoint(s), cartesian_speed=0.120 m/s, speed_scale=1.00, joint_velocity=0.291 rad/s, max_joint_step=0.270 deg
+[final] state=AutoReady ready=True fault=False xyz=(0.031722, 0.421689, 0.256302) rpy=(-3.113069, 0.045258, -0.347759)
+[final] joints_deg=[70.264, 93.344, -80.355, -75.367, 87.413, 0.264]
+[final] target error position=0.041 mm rotation=0.000269 rad
+[success] pick_4 observation pose aligned; no grasp performed
+VERDICT=OBSERVATION_ALIGNED
+LOG=/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/logs/task_b_pick4_observation_align_20261106_203137.log

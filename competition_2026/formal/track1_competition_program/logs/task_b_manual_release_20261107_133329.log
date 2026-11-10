@@ -1,0 +1,21 @@
+[gripper:ms42dc] /dev/serial/by-id/usb-1a86_USB_Single_Serial_5CF0022496-if00 @ 115200 id=1 subdivide=32
+[gripper:ms42dc] stable arrival after 4 samples, angle=1978.8 deg, speed=0.00 rad/s
+[gripper:ms42dc] open: 7b 01 02 00 20 75 30 00 14 09 7d
+[gripper:ms42dc] no status reply
+[gripper:ms42dc] no status reply
+[gripper:ms42dc] ignoring pre-command arrival status; waiting for fresh motion
+[gripper:ms42dc] motion did not report a stable arrival before timeout
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/tools/gripper_bench.py", line 267, in <module>
+    raise SystemExit(main())
+  File "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/tools/gripper_bench.py", line 100, in main
+    gripper.open()
+  File "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/gripper.py", line 1111, in open
+    self._move(MS42DC_OPEN_DIR, GripperState.OPEN, "open")
+  File "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/app/track1_grasp/track1_grasp/gripper.py", line 1074, in _move
+    raise RuntimeError(
+RuntimeError: MS42DC did not report 到位标志 over the serial link; check controller power, cabling and /dev/motor_serial

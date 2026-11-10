@@ -1,0 +1,37 @@
+
+===== 任务A 十点位巡检 =====
+配置：/home/sunshine/Desktop/赛道一比赛程序/config/track1_live.yaml
+模式：十点位巡检安全试运行（机械臂不会运动，视觉持续刷新）
+日志：/home/sunshine/Desktop/赛道一比赛程序/logs/task_A_20261018_132621.log
+
+[INFO] [1792301182.174454770] [track1_grasp]: [camera] D405 started 640x480@15 fx=392.7 fy=391.7 cx=314.4 cy=246.7
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+[INFO] [1792301188.053894706] [track1_grasp]: [yolo] loading /home/sunshine/Desktop/赛道一比赛程序/models/best.pt
+[INFO] [1792301188.357844927] [track1_grasp]: [vision:realsense_yolo] ready 640x480 rotate180=True anchor=top_center cx=324.6 cy=232.3 stabilizer=on
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/sunshine/Desktop/赛道一比赛程序/app/track1_grasp/track1_grasp/nodes/track1_node.py", line 107, in <module>
+    raise SystemExit(main())
+  File "/home/sunshine/Desktop/赛道一比赛程序/app/track1_grasp/track1_grasp/nodes/track1_node.py", line 94, in main
+    raise error[0]
+  File "/home/sunshine/Desktop/赛道一比赛程序/app/track1_grasp/track1_grasp/nodes/track1_node.py", line 69, in worker
+    report = pipeline.run()
+  File "/home/sunshine/Desktop/赛道一比赛程序/app/track1_grasp/track1_grasp/vision_pipeline.py", line 55, in run
+    return self._run_patrol()
+  File "/home/sunshine/Desktop/赛道一比赛程序/app/track1_grasp/track1_grasp/vision_pipeline.py", line 96, in _run_patrol
+    raise RuntimeError("task A patrol needs a current robot pose")
+RuntimeError: task A patrol needs a current robot pose
+QObject::killTimer: Timers cannot be stopped from another thread
+QObject::~QObject: Timers cannot be stopped from another thread
