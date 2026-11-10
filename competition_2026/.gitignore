@@ -1,0 +1,34 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+build/
+install/
+log/
+
+# Release 分卷和本地临时归档不进入 Git
+*.part-*
+*.tar
+*.tar.gz
+*.tar.zst
+*.zip
+
+# 官方/第三方大资产
+*.STEP
+*.step
+*.stp
+*.stl
+*.STL
+*.dae
+*.obj
+*.ply
+*.ext4
+*.pt
+!models/best.pt
+!models/official/*.pt
+!models/yolo11s_backbone_40class_init_v10aug.pt
+!history/track1_migration_check/models/*.pt
