@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# Stop any Track 1 task or recognizer that can own the D405.
+
+set -o pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+LEGACY_LAUNCHER="${TRACK1_VISUAL_LAUNCHER:-/home/sunshine/codex/easton/taskA/camera_recognition.py}"
+GRAB_LAUNCHER="${TRACK1_GRAB_LAUNCHER:-/home/sunshine/.local/bin/track1_camera_recognition}"
+
+TASK_PID_FILE="$ROOT/state/task.pid"
+TASK_IS_RUNNING=0
+if [ -r "$TASK_PID_FILE" ]; then
+    task_pid="$(tr -d '[:space:]' < "$TASK_PID_FILE" 2>/dev/null || true)"
+    if [[ "$task_pid" =~ ^[0-9]+$ ]] && kill -0 "$task_pid" 2>/dev/null; then
+        task_cmd="$(tr '\0' ' ' < "/proc/$task_pid/cmdline" 2>/dev/null || true)"
+        if [[ "$task_cmd" == *track1_grasp.nodes.track1_node* ]]; then
+            TASK_IS_RUNNING=1
+        fi
+    fi
+fi
+
+if [ "$TASK_IS_RUNNING" = "1" ]; then
+    "$ROOT/bin/track1_task_runner" stop || true
+else
+    rm -f "$TASK_PID_FILE"
+fi
+
+if /usr/bin/pgrep -f 'track1_grasp.nodes.search_approach_node' >/dev/null 2>&1; then
+    [ -x "$GRAB_LAUNCHER" ] && "$GRAB_LAUNCHER" stop >/dev/null 2>&1 || true
+fi
+
+if /usr/bin/pgrep -f '/home/sunshine/codex/easton/taskA/live_camera_preview.py' >/dev/null 2>&1; then
+    [ -r "$LEGACY_LAUNCHER" ] && /usr/bin/python3 "$LEGACY_LAUNCHER" --stop >/dev/null 2>&1 || true
+fi
+
+exit 0

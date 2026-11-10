@@ -1,0 +1,72 @@
+# 机械臂腕部相机“搜索 + 靠近”可行性测试参数。
+# 默认 dry-run；只有命令行显式加 --execute 才会发布 RobotMove。
+
+robotmove_topic: RobotMove
+robotinfo_topic: RobotInfo
+robot_info_timeout_s: 2.0
+
+vision:
+  width: 640
+  height: 480
+  fps: 15
+  # 留空表示自动选择当前唯一 RealSense；固定序列号在换相机后会报 No device connected。
+  serial: ""
+  warmup_frames: 20
+  weights: /media/sunshine/新加卷/taskA/runs/yolo11s_real_ft_v24_brick_specialist_20261016/weights/best.pt
+  confidence: 0.35
+  imgsz: 640
+  device: cpu
+  target_class: "6-Foam_Brick"
+  depth_window: 5
+  anchor: center
+  # D405 当前为倒置安装，RGB 和深度必须一起旋转 180 度。
+  rotate_180: true
+  output_dir: /home/sunshine/arm_visual_probe/out
+  show: false
+
+servo:
+  # 相机到目标的期望观察距离。当前测试取 0.18 m。
+  desired_standoff_m: 0.18
+  min_depth_m: 0.12
+  center_tolerance_px: 35
+  depth_tolerance_m: 0.015
+  max_steps: 36
+  max_step_m: 0.005  # 首次实机用 5 mm
+  max_total_travel_m: 0.35
+  speed_mps: 0.01
+  # 笛卡尔轨迹速度数组必须是 [线速度(m/s), 角速度(rad/s)]。
+  angular_speed_rad_s: 0.10
+  lateral_gain: 0.8
+  forward_gain: 0.8
+  # 搜索时原地转腕，姿态变化可能比平移慢；必须同时等位置和姿态到位。
+  move_timeout_s: 60
+  position_tolerance_m: 0.003
+  orientation_tolerance_rad: 0.02  # 约 1.15 度
+  poll_period_s: 0.05
+  settle_s_after_move: 0.25
+  convergence_frames: 2
+
+  # R_tool_camera：把“旋转校正后的有效图像坐标系”变换到工具坐标系。
+  # 当前 D405 倒置安装；RGB/深度旋转 180 度后，单位阵表示：
+  # 图像 +X=工具 +X、图像 +Y=工具 +Y、光轴 +Z=工具 +Z。
+  # 实机若出现左右/上下反向，立即急停并修改此矩阵。
+  # 矩阵必须正交且 det=+1，程序启动时会检查。
+  camera_to_tool:
+    - [1.0, 0.0, 0.0]
+    - [0.0, 1.0, 0.0]
+    - [0.0, 0.0, 1.0]
+
+workspace:
+  min_xyz: [-0.40, -0.40, 0.05]
+  max_xyz: [0.40, 0.40, 0.80]
+  margin: 0.01
+
+search:
+  enabled: true
+  # 物品在腕部正下方时先只搜中轴线，避免腕部斜向姿态被控制器拒绝。
+  yaw_offsets_deg: [0]
+  # 正值表示把水平前视相机逐步转向世界坐标系的“下方”。
+  # 物品在机械臂正下方时，通常需要 40~80 度才能进入视野。
+  pitch_down_offsets_deg: [0, 20, 40, 60, 80]
+  settle_s: 0.8
+  observe_frames: 3

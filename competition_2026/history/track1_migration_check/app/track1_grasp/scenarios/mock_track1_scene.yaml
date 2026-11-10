@@ -1,0 +1,66 @@
+# Scripted observations used until the camera is mounted.  Each frame behaves
+# like one camera/detector result.  base_xyz is only for this mock scene; real
+# deployments use camera_xyz and camera-to-base calibration.
+frames:
+  - frame_id: mock_00_known_mug
+    detections:
+      - label: mug
+        instance_id: mug_1
+        confidence: 0.96
+        bbox: [120, 90, 230, 240]
+        depth_m: 0.41
+        camera_xyz: [-0.08, -0.12, 0.41]
+        base_xyz: [-0.16, -0.10, 0.035]
+        graspability: 1.0
+  - frame_id: mock_01_unseen_object
+    detections:
+      - label: object
+        instance_id: unseen_1
+        confidence: 0.82
+        bbox: [250, 100, 365, 245]
+        depth_m: 0.39
+        camera_xyz: [0.00, -0.10, 0.39]
+        base_xyz: [0.02, -0.08, 0.035]
+        graspability: 0.82
+        attributes:
+          detector_note: generic open-vocabulary object
+  - frame_id: mock_02_known_bowl
+    detections:
+      - label: bowl
+        instance_id: bowl_1
+        confidence: 0.91
+        bbox: [80, 160, 250, 330]
+        depth_m: 0.45
+        camera_xyz: [0.10, 0.00, 0.45]
+        base_xyz: [0.18, 0.05, 0.035]
+        graspability: 0.95
+  - frame_id: mock_03_known_book
+    detections:
+      - label: book
+        instance_id: book_1
+        confidence: 0.88
+        bbox: [330, 170, 500, 315]
+        depth_m: 0.43
+        camera_xyz: [-0.02, 0.13, 0.43]
+        base_xyz: [-0.05, 0.17, 0.035]
+        graspability: 0.90
+  - frame_id: mock_04_known_mug_second
+    detections:
+      - label: mug
+        instance_id: mug_2
+        confidence: 0.94
+        bbox: [200, 120, 310, 270]
+        depth_m: 0.40
+        camera_xyz: [-0.05, -0.05, 0.40]
+        base_xyz: [-0.03, -0.02, 0.035]
+        graspability: 0.98
+  - frame_id: mock_05_known_book_second
+    detections:
+      - label: book
+        instance_id: book_2
+        confidence: 0.90
+        bbox: [300, 200, 470, 330]
+        depth_m: 0.44
+        camera_xyz: [0.04, 0.10, 0.44]
+        base_xyz: [0.06, 0.12, 0.035]
+        graspability: 0.92

@@ -1,0 +1,358 @@
+#!/usr/bin/env bash
+# Shared launcher for Track 1 tasks A/B/C/D/E.
+# Each task has its own small executable in this bin/ directory.
+
+set -o pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+APP_DIR="$ROOT/app/track1_grasp"
+CONFIG="${TRACK1_CONFIG:-$ROOT/config/track1_live.yaml}"
+TASK_PYTHON="${TRACK1_PYTHON:-/media/sunshine/新加卷/taskA/venv/bin/python}"
+STATE_DIR="$ROOT/state"
+LOG_DIR="$ROOT/logs"
+LOCK_FILE="$STATE_DIR/task.lock"
+PID_FILE="$STATE_DIR/task.pid"
+TASK="${1:-}"
+CHILD_PID=""
+NO_PAUSE="${TRACK1_NO_PAUSE:-0}"
+NO_UI="${TRACK1_NO_UI:-0}"
+
+if [ $# -gt 0 ]; then
+    shift
+fi
+
+mkdir -p "$STATE_DIR" "$LOG_DIR"
+
+ui_enabled() {
+    [ "$NO_UI" != "1" ] && {
+        [ -n "${DISPLAY:-}" ] || [ -n "${WAYLAND_DISPLAY:-}" ]
+    }
+}
+
+notify() {
+    if ui_enabled && command -v notify-send >/dev/null 2>&1; then
+        notify-send --app-name="赛道一比赛程序" "${1:-赛道一比赛程序}" \
+            "${2:-}" >/dev/null 2>&1 || true
+    fi
+}
+
+show_error() {
+    local message="$1"
+    printf '错误：%s\n' "$message" >&2
+    notify "任务启动失败" "$message"
+    if ui_enabled && command -v zenity >/dev/null 2>&1; then
+        zenity --error --title="赛道一比赛程序" --text="$message" \
+            --width=620 >/dev/null 2>&1 || true
+    fi
+}
+
+task_title() {
+    case "$1" in
+        A) printf '任务A 视觉评测' ;;
+        B) printf '任务B 五点位拾放' ;;
+        C) printf '任务C 无序抓取' ;;
+        D) printf '任务D 未知物体抓取' ;;
+        E) printf '任务E 顺序抓取' ;;
+        *) printf '轨道一任务' ;;
+    esac
+}
+
+pid_is_task() {
+    local pid="$1"
+    [ -r "/proc/$pid/cmdline" ] || return 1
+    tr '\0' ' ' < "/proc/$pid/cmdline" 2>/dev/null \
+        | grep -q 'track1_grasp.nodes.track1_node'
+}
+
+read_task_pid() {
+    [ -r "$PID_FILE" ] || return 1
+    local pid
+    pid="$(tr -d '[:space:]' < "$PID_FILE" 2>/dev/null || true)"
+    [[ "$pid" =~ ^[0-9]+$ ]] || return 1
+    printf '%s\n' "$pid"
+}
+
+stop_current_task() {
+    local pid
+    if ! pid="$(read_task_pid)" || ! kill -0 "$pid" 2>/dev/null; then
+        rm -f "$PID_FILE"
+        printf '当前没有任务在运行。\n'
+        notify "赛道一比赛程序" "当前没有任务在运行"
+        return 0
+    fi
+
+    printf '正在停止任务 PID=%s...\n' "$pid"
+    kill -INT "$pid" 2>/dev/null || true
+    for _ in $(seq 1 50); do
+        kill -0 "$pid" 2>/dev/null || break
+        sleep 0.1
+    done
+    if kill -0 "$pid" 2>/dev/null; then
+        kill -TERM "$pid" 2>/dev/null || true
+        sleep 0.5
+    fi
+    if kill -0 "$pid" 2>/dev/null; then
+        kill -KILL "$pid" 2>/dev/null || true
+    fi
+    rm -f "$PID_FILE"
+    printf '任务已停止。\n'
+    notify "赛道一比赛程序" "任务已停止"
+}
+
+check_install() {
+    local failed=0
+    local path
+    for path in \
+        "$TASK_PYTHON" \
+        "$APP_DIR/track1_grasp/nodes/track1_node.py" \
+        "$CONFIG" \
+        "$ROOT/models/best.pt" \
+        /opt/ros/humble/setup.bash \
+        /home/sunshine/codex/easton/codroid_bridge/codroid_bridge/install/setup.bash \
+        /home/sunshine/codex/easton/ros2_ws/install/setup.bash; do
+        if [ ! -e "$path" ]; then
+            printf '缺少文件：%s\n' "$path" >&2
+            failed=1
+        fi
+    done
+    if [ ! -x "$TASK_PYTHON" ]; then
+        printf 'Python 不可执行：%s\n' "$TASK_PYTHON" >&2
+        failed=1
+    fi
+    return "$failed"
+}
+
+load_environment() {
+    # Third-party ROS setup scripts are not compatible with `set -u`.
+    source /opt/ros/humble/setup.bash || return 1
+    source /home/sunshine/codex/easton/codroid_bridge/codroid_bridge/install/setup.bash || return 1
+    source /home/sunshine/codex/easton/ros2_ws/install/setup.bash || return 1
+    export PYTHONPATH="$APP_DIR${PYTHONPATH:+:$PYTHONPATH}"
+    export PYTHONUNBUFFERED=1
+}
+
+verify_python_environment() {
+    "$TASK_PYTHON" - <<'PY'
+import rclpy
+import track1_grasp
+from codroid_msgs.msg import RobotInfo
+from taskA_grasp.detector import RealSenseStream, YoloDetector
+from track1_grasp.config import apply_mode, load_config
+import os
+
+config_path = os.environ["TRACK1_CHECK_CONFIG"]
+config = load_config(config_path)
+for mode in "ABCDE":
+    apply_mode(config, mode).validate()
+print("Python / ROS / YOLO / 五个任务配置检查通过")
+PY
+}
+
+stop_old_camera_programs() {
+    local old_pid_file="$HOME/.local/state/track1-camera-recognition/recognition.pid"
+    local old_pid=""
+    if [ -r "$old_pid_file" ]; then
+        old_pid="$(tr -d '[:space:]' < "$old_pid_file" 2>/dev/null || true)"
+    fi
+    if [[ "$old_pid" =~ ^[0-9]+$ ]] && kill -0 "$old_pid" 2>/dev/null; then
+        printf '检测到“抓取识别”正在占用相机，先停止它...\n'
+        kill -INT "$old_pid" 2>/dev/null || true
+        for _ in $(seq 1 30); do
+            kill -0 "$old_pid" 2>/dev/null || break
+            sleep 0.1
+        done
+    fi
+    if /usr/bin/pgrep -f '/home/sunshine/codex/easton/taskA/live_camera_preview.py' >/dev/null 2>&1; then
+        printf '检测到旧视觉预览正在占用相机，先停止它...\n'
+        /usr/bin/python3 /home/sunshine/codex/easton/taskA/camera_recognition.py --stop \
+            >/dev/null 2>&1 || true
+    fi
+}
+
+build_arguments() {
+    ARGS=(--config "$CONFIG" --task "$TASK")
+    case "$TASK" in
+        A)
+            ARGS+=(--frames "${TRACK1_TASK_A_FRAMES:-10}" --watch)
+            ;;
+        B)
+            ARGS+=(--max-picks "${TRACK1_TASK_B_PICKS:-5}")
+            ;;
+        C)
+            ARGS+=(--max-picks "${TRACK1_TASK_C_PICKS:-20}")
+            ;;
+        D)
+            ARGS+=(--max-picks "${TRACK1_TASK_D_PICKS:-20}")
+            ;;
+        E)
+            ARGS+=(--max-picks "${TRACK1_TASK_E_PICKS:-10}")
+            ;;
+    esac
+}
+
+confirm_real_motion() {
+    local title
+    title="$(task_title "$TASK")"
+    if [ "${TRACK1_CONFIRM:-0}" = "1" ]; then
+        return 0
+    fi
+    if ! ui_enabled || ! command -v zenity >/dev/null 2>&1; then
+        show_error "检测到真机运动配置，但没有可用的确认窗口。为避免误动作，任务未启动。"
+        return 1
+    fi
+    zenity --question \
+        --title="$title - 真机运动确认" \
+        --text="即将启动真实机械臂运动。\n\n请确认：\n1. 控制器为 AutoReady 且无故障\n2. 急停按钮可立即按下\n3. 工作区内无人\n4. 已完成手眼标定和夹爪检查\n\n是否开始任务？" \
+        --ok-label="开始任务" \
+        --cancel-label="取消" \
+        --width=560 >/dev/null 2>&1
+}
+
+cleanup() {
+    local recorded=""
+    recorded="$(read_task_pid 2>/dev/null || true)"
+    if [ -n "$CHILD_PID" ] && [ "$recorded" = "$CHILD_PID" ]; then
+        rm -f "$PID_FILE"
+    fi
+}
+
+forward_signal() {
+    if [ -n "$CHILD_PID" ] && kill -0 "$CHILD_PID" 2>/dev/null; then
+        kill -INT "$CHILD_PID" 2>/dev/null || true
+    fi
+}
+
+if [ "$TASK" = "stop" ]; then
+    stop_current_task
+    exit 0
+fi
+
+if [ "$TASK" = "check" ]; then
+    if ! check_install; then
+        show_error "程序文件不完整，请检查“赛道一比赛程序”文件夹。"
+        exit 1
+    fi
+    if [ ! -r "$CONFIG" ]; then
+        show_error "找不到配置文件：$CONFIG"
+        exit 1
+    fi
+    load_environment || {
+        show_error "ROS 2 环境加载失败。"
+        exit 1
+    }
+    export TRACK1_CHECK_CONFIG="$CONFIG"
+    verify_python_environment || {
+        show_error "Python、ROS、YOLO 或任务配置检查失败。"
+        exit 1
+    }
+    exit 0
+fi
+
+case "$TASK" in
+    A|B|C|D|E) ;;
+    *)
+        printf '用法：%s {A|B|C|D|E|stop|check} [--no-pause]\n' "$0" >&2
+        exit 2
+        ;;
+esac
+
+while [ $# -gt 0 ]; do
+    case "$1" in
+        --no-pause) NO_PAUSE=1 ;;
+        *) show_error "未知参数：$1"; exit 2 ;;
+    esac
+    shift
+done
+
+# Task A uses the legacy visual-recognition program. This guard prevents an old
+# shortcut or an accidental command from starting the new grasp vision runtime.
+if [ "$TASK" = "A" ]; then
+    printf '任务A固定使用旧版“视觉识别”，不启动抓取识别。\n'
+    exec "$ROOT/bin/run_task_a"
+fi
+
+if ! check_install; then
+    show_error "程序文件不完整，请检查“赛道一比赛程序”文件夹。"
+    exit 1
+fi
+
+exec 9>"$LOCK_FILE"
+if ! flock -n 9; then
+    show_error "已有任务正在运行，不能同时启动第二个任务。"
+    exit 1
+fi
+
+if ! load_environment; then
+    show_error "ROS 2 环境加载失败。"
+    exit 1
+fi
+
+export TRACK1_CHECK_CONFIG="$CONFIG"
+if ! verify_python_environment; then
+    show_error "运行环境检查失败，请查看终端输出。"
+    exit 1
+fi
+
+stop_old_camera_programs
+build_arguments
+
+EXEC_ARGS=()
+if [ "$TASK" != "A" ] && grep -Eq '^[[:space:]]*dry_run:[[:space:]]*false([[:space:]]|$)' "$CONFIG"; then
+    if ! confirm_real_motion; then
+        printf '已取消真机任务。\n'
+        exit 0
+    fi
+    EXEC_ARGS+=(--execute)
+fi
+
+STAMP="$(date '+%Y%m%d_%H%M%S')"
+LOG_FILE="$LOG_DIR/task_${TASK}_${STAMP}.log"
+TITLE="$(task_title "$TASK")"
+
+printf '\n===== %s =====\n' "$TITLE" | tee -a "$LOG_FILE"
+printf '配置：%s\n' "$CONFIG" | tee -a "$LOG_FILE"
+if [ "$TASK" = "A" ]; then
+    printf '模式：视觉评测，不控制机械臂\n' | tee -a "$LOG_FILE"
+elif grep -Eq '^[[:space:]]*dry_run:[[:space:]]*false([[:space:]]|$)' "$CONFIG"; then
+    printf '模式：真机执行\n' | tee -a "$LOG_FILE"
+    TITLE="$TITLE（真机）"
+else
+    printf '模式：安全试运行（机械臂不会运动）\n' | tee -a "$LOG_FILE"
+    TITLE="$TITLE（试运行）"
+fi
+printf '日志：%s\n\n' "$LOG_FILE" | tee -a "$LOG_FILE"
+notify "$TITLE" "任务正在启动"
+
+trap cleanup EXIT
+trap 'forward_signal; exit 130' INT
+trap 'forward_signal; exit 143' TERM
+trap 'forward_signal; exit 129' HUP
+
+"$TASK_PYTHON" -m track1_grasp.nodes.track1_node "${ARGS[@]}" "${EXEC_ARGS[@]}" \
+    > >(tee -a "$LOG_FILE") 2>&1 9>&- &
+CHILD_PID=$!
+printf '%s\n' "$CHILD_PID" > "$PID_FILE"
+
+STATUS=0
+wait "$CHILD_PID" || STATUS=$?
+cleanup
+CHILD_PID=""
+
+if [ "$STATUS" -eq 0 ]; then
+    printf '\n[完成] %s 已结束，日志：%s\n' "$TITLE" "$LOG_FILE"
+    notify "$TITLE" "任务已完成"
+elif [ "$STATUS" -eq 130 ] || [ "$STATUS" -eq 143 ]; then
+    printf '\n[停止] %s 已停止。\n' "$TITLE"
+    notify "$TITLE" "任务已停止"
+else
+    printf '\n[失败] %s 异常退出，退出码=%s\n' "$TITLE" "$STATUS" >&2
+    printf '日志：%s\n' "$LOG_FILE" >&2
+    notify "$TITLE" "任务异常退出，请查看日志"
+fi
+
+if [ "$NO_PAUSE" != "1" ] && [ -t 0 ]; then
+    printf '\n按回车键关闭窗口...\n'
+    read -r _ || true
+fi
+
+exit "$STATUS"

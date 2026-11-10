@@ -1,0 +1,705 @@
+#!/usr/bin/env bash
+# Shared launcher for Track 1 tasks A/B/C/D/E.
+# Each task has its own small executable in this bin/ directory.
+
+set -o pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+APP_DIR="$ROOT/app/track1_grasp"
+CONFIG="${TRACK1_CONFIG:-$ROOT/config/track1_live.yaml}"
+TASK_PYTHON="${TRACK1_PYTHON:-/usr/bin/python3}"
+TASK_SITE_PACKAGES="${TRACK1_SITE_PACKAGES:-/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages}"
+STATE_DIR="$ROOT/state"
+LOG_DIR="$ROOT/logs"
+LOCK_FILE="$STATE_DIR/task.lock"
+PID_FILE="$STATE_DIR/task.pid"
+TASK="${1:-}"
+CHILD_PID=""
+NO_PAUSE="${TRACK1_NO_PAUSE:-0}"
+NO_UI="${TRACK1_NO_UI:-0}"
+BRIDGE_PID=""
+BRIDGE_LOG=""
+BRIDGE_MODULE="taskA_grasp.nodes.udp_bridge"
+ROBOT_INFO_WAIT_S="${TRACK1_ROBOT_INFO_WAIT_S:-12}"
+MOTOR_PID=""
+MOTOR_LOG=""
+MOTOR_WAIT_S="${TRACK1_MOTOR_WAIT_S:-10}"
+MS42DC_ROS_SETUP="/home/sunshine/ms42dc_vendor_ws/install/setup.bash"
+
+if [ $# -gt 0 ]; then
+    shift
+fi
+
+mkdir -p "$STATE_DIR" "$LOG_DIR"
+
+ui_enabled() {
+    [ "$NO_UI" != "1" ] && {
+        [ -n "${DISPLAY:-}" ] || [ -n "${WAYLAND_DISPLAY:-}" ]
+    }
+}
+
+notify() {
+    if ui_enabled && command -v notify-send >/dev/null 2>&1; then
+        notify-send --app-name="赛道一比赛程序" "${1:-赛道一比赛程序}" \
+            "${2:-}" >/dev/null 2>&1 || true
+    fi
+}
+
+motion_uses_robot() {
+    awk '
+        /^motion:[[:space:]]*$/ { in_motion = 1; next }
+        /^[^[:space:]#]/ { in_motion = 0 }
+        in_motion && /^[[:space:]]+backend:[[:space:]]*robotmove([[:space:]]|$)/ {
+            found = 1
+        }
+        END { exit(found ? 0 : 1) }
+    ' "$CONFIG"
+}
+
+configured_gripper_backend() {
+    [ -r "$CONFIG" ] || return 0
+    awk '
+        /^[[:space:]]*#/ { next }
+        /^gripper:[[:space:]]*$/ { in_gripper = 1; next }
+        /^[^[:space:]#]/ { in_gripper = 0 }
+        in_gripper && /^[[:space:]]+backend:/ {
+            value = $0
+            sub(/^[[:space:]]+backend:[[:space:]]*/, "", value)
+            sub(/[[:space:]]*#.*$/, "", value)
+            gsub(/[[:space:]"]/, "", value)
+            print value
+            exit
+        }
+    ' "$CONFIG"
+}
+
+uses_ms42dc_ros() {
+    [ "$(configured_gripper_backend)" = "ms42dc_ros" ]
+}
+
+configured_vision_backend() {
+    [ -r "$CONFIG" ] || return 0
+    awk '
+        /^[[:space:]]*#/ { next }
+        /^vision:[[:space:]]*$/ { in_vision = 1; next }
+        /^[^[:space:]#]/ { in_vision = 0 }
+        in_vision && /^[[:space:]]+backend:/ {
+            value = $0
+            sub(/^[[:space:]]+backend:[[:space:]]*/, "", value)
+            sub(/[[:space:]]*#.*$/, "", value)
+            gsub(/[[:space:]"]/, "", value)
+            print value
+            exit
+        }
+    ' "$CONFIG"
+}
+
+uses_legacy_vision() {
+    [ "$(configured_vision_backend)" = "legacy_http" ]
+}
+
+find_running_bridge() {
+    local pid
+    for pid in $(/usr/bin/pgrep -f '[u]dp_bridge|[c]odroid_io[.]py' 2>/dev/null || true); do
+        [ "$pid" = "$$" ] && continue
+        [ -r "/proc/$pid/cmdline" ] || continue
+        if tr '\0' ' ' < "/proc/$pid/cmdline" 2>/dev/null \
+            | grep -Eq 'taskA_grasp.*udp_bridge|udp_bridge.*taskA_grasp|codroid_io[.]py'; then
+            printf '%s\n' "$pid"
+            return 0
+        fi
+    done
+    return 1
+}
+
+wait_for_robot_info() {
+    local timeout_s="$1"
+    "$TASK_PYTHON" - "$timeout_s" <<'PY'
+import math
+import sys
+import time
+
+import rclpy
+from codroid_msgs.msg import RobotInfo
+from rclpy.node import Node
+
+timeout_s = max(0.0, float(sys.argv[1]))
+received = []
+last_seen = []
+
+rclpy.init(args=[])
+node = Node("track1_robot_info_check")
+
+def on_info(msg):
+    last_seen[:] = [msg]
+    try:
+        positions = tuple(float(value) for value in msg.end_positions)
+        joints = tuple(float(value) for value in msg.joint_positions)
+    except (TypeError, ValueError):
+        return
+    state = str(msg.state)
+    fault_flag = int(msg.fault_flag)
+    if (
+        state == "AutoReady"
+        and fault_flag == 0
+        and len(positions) >= 6
+        and len(joints) >= 6
+        and all(math.isfinite(value) for value in positions)
+        and all(math.isfinite(value) for value in joints)
+    ):
+        received.append(msg)
+
+subscription = node.create_subscription(RobotInfo, "RobotInfo", on_info, 10)
+deadline = time.monotonic() + timeout_s
+try:
+    while time.monotonic() < deadline and rclpy.ok() and not received:
+        rclpy.spin_once(node, timeout_sec=min(0.2, max(0.01, deadline - time.monotonic())))
+finally:
+    node.destroy_subscription(subscription)
+    node.destroy_node()
+    if rclpy.ok():
+        rclpy.shutdown()
+
+if not received:
+    last = last_seen[-1] if last_seen else None
+    if last is None:
+        detail = "没有收到可用的 /RobotInfo"
+    else:
+        detail = (
+            f"最后状态 state={last.state}, fault_flag={last.fault_flag}, "
+            f"end_positions={len(last.end_positions)}, "
+            f"joint_positions={len(last.joint_positions)}"
+        )
+    print(
+        f"在 {timeout_s:.1f} 秒内没有收到满足条件的 /RobotInfo；"
+        f"需要 state=AutoReady、fault_flag=0、至少 6 项且全部为有限数。"
+        f" {detail}",
+        file=sys.stderr,
+    )
+    raise SystemExit(1)
+
+msg = received[-1]
+xyz = ", ".join(f"{float(value):.4f}" for value in msg.end_positions[:3])
+print(f"[bridge] RobotInfo 已就绪：state={msg.state} fault_flag={msg.fault_flag} xyz=({xyz})")
+PY
+}
+
+find_running_motor_node() {
+    local pid
+    for pid in $(/usr/bin/pgrep -f '/step_motor/lib/step_motor/motor_node' 2>/dev/null || true); do
+        [ "$pid" = "$$" ] && continue
+        [ -r "/proc/$pid/cmdline" ] || continue
+        if tr '\0' ' ' < "/proc/$pid/cmdline" 2>/dev/null \
+            | grep -q '/step_motor/lib/step_motor/motor_node'; then
+            printf '%s\n' "$pid"
+            return 0
+        fi
+    done
+    return 1
+}
+
+wait_for_motor_node() {
+    local pid="$1"
+    local deadline=$((SECONDS + MOTOR_WAIT_S))
+    while [ "$SECONDS" -lt "$deadline" ]; do
+        kill -0 "$pid" 2>/dev/null || return 1
+        if ros2 node list 2>/dev/null | grep -qx '/motor_node'; then
+            return 0
+        fi
+        sleep 0.2
+    done
+    return 1
+}
+
+stop_motor_node() {
+    [ -n "$MOTOR_PID" ] || return 0
+    if kill -0 "$MOTOR_PID" 2>/dev/null; then
+        printf '正在关闭本次任务启动的夹爪 ROS 节点...\n'
+        kill -TERM "$MOTOR_PID" 2>/dev/null || true
+        for _ in $(seq 1 30); do
+            kill -0 "$MOTOR_PID" 2>/dev/null || break
+            sleep 0.1
+        done
+        if kill -0 "$MOTOR_PID" 2>/dev/null; then
+            kill -KILL "$MOTOR_PID" 2>/dev/null || true
+        fi
+    fi
+    wait "$MOTOR_PID" 2>/dev/null || true
+    MOTOR_PID=""
+}
+
+ensure_motor_node() {
+    uses_ms42dc_ros || return 0
+
+    local existing_pid=""
+    existing_pid="$(find_running_motor_node || true)"
+    if [ -n "$existing_pid" ]; then
+        printf '夹爪 ROS 节点已在运行（PID=%s），不重复启动。\n' "$existing_pid" \
+            | tee -a "$LOG_FILE"
+        return 0
+    fi
+
+    MOTOR_LOG="$LOG_DIR/motor_node_${STAMP}.log"
+    printf '正在启动 MS42DC 夹爪 ROS 节点，日志：%s\n' "$MOTOR_LOG" \
+        | tee -a "$LOG_FILE"
+    ros2 run step_motor motor_node >"$MOTOR_LOG" 2>&1 9>&- &
+    MOTOR_PID=$!
+    if ! wait_for_motor_node "$MOTOR_PID"; then
+        printf '夹爪 ROS 节点启动失败或未出现在 ros2 node list 中。\n' \
+            | tee -a "$LOG_FILE"
+        tail -n 30 "$MOTOR_LOG" 2>/dev/null | tee -a "$LOG_FILE" || true
+        stop_motor_node
+        return 1
+    fi
+    if grep -q 'can not open serial port' "$MOTOR_LOG" 2>/dev/null; then
+        printf '夹爪 ROS 节点已启动，但无法打开 /dev/motor_serial。\n' \
+            | tee -a "$LOG_FILE"
+        tail -n 30 "$MOTOR_LOG" | tee -a "$LOG_FILE" || true
+        stop_motor_node
+        return 1
+    fi
+    printf '夹爪 ROS 节点已就绪（PID=%s）。\n' "$MOTOR_PID" | tee -a "$LOG_FILE"
+}
+
+stop_robot_bridge() {
+    [ -n "$BRIDGE_PID" ] || return 0
+    if kill -0 "$BRIDGE_PID" 2>/dev/null; then
+        printf '正在关闭本次任务启动的机械臂状态桥接...\n'
+        kill -TERM "$BRIDGE_PID" 2>/dev/null || true
+        for _ in $(seq 1 30); do
+            kill -0 "$BRIDGE_PID" 2>/dev/null || break
+            sleep 0.1
+        done
+        if kill -0 "$BRIDGE_PID" 2>/dev/null; then
+            kill -KILL "$BRIDGE_PID" 2>/dev/null || true
+        fi
+    fi
+    wait "$BRIDGE_PID" 2>/dev/null || true
+    BRIDGE_PID=""
+}
+
+ensure_robot_bridge() {
+    motion_uses_robot || return 0
+
+    local existing_pid=""
+    existing_pid="$(find_running_bridge || true)"
+    if [ -n "$existing_pid" ]; then
+        printf '机械臂状态桥接已在运行（PID=%s），不重复启动。\n' "$existing_pid" \
+            | tee -a "$LOG_FILE"
+    else
+        BRIDGE_LOG="$LOG_DIR/codroid_bridge_${STAMP}.log"
+        printf '正在启动机械臂状态桥接，日志：%s\n' "$BRIDGE_LOG" \
+            | tee -a "$LOG_FILE"
+        "$TASK_PYTHON" -m "$BRIDGE_MODULE" --ros-args \
+            -p "listen_port:=${TRACK1_BRIDGE_PORT:-9006}" \
+            -p "controller_host:=${TRACK1_CONTROLLER_HOST:-192.168.101.100}" \
+            -p "controller_port:=${TRACK1_CONTROLLER_PORT:-9005}" \
+            >"$BRIDGE_LOG" 2>&1 9>&- &
+        BRIDGE_PID=$!
+        sleep 0.5
+        if ! kill -0 "$BRIDGE_PID" 2>/dev/null; then
+            printf '机械臂状态桥接启动失败。\n' | tee -a "$LOG_FILE"
+            tail -n 30 "$BRIDGE_LOG" 2>/dev/null | tee -a "$LOG_FILE" || true
+            BRIDGE_PID=""
+            return 1
+        fi
+    fi
+
+    if wait_for_robot_info "$ROBOT_INFO_WAIT_S" 2>&1 | tee -a "$LOG_FILE"; then
+        return 0
+    fi
+    printf '未收到机械臂状态。请检查控制器已上电、处于 AutoReady，且\n' | tee -a "$LOG_FILE"
+    printf '控制器“设置 -> ROS”的目标 IP 指向本机 9006 端口。\n' | tee -a "$LOG_FILE"
+    if [ -n "$BRIDGE_LOG" ] && [ -r "$BRIDGE_LOG" ]; then
+        tail -n 20 "$BRIDGE_LOG" | tee -a "$LOG_FILE" || true
+    fi
+    return 1
+}
+
+show_error() {
+    local message="$1"
+    printf '错误：%s\n' "$message" >&2
+    notify "任务启动失败" "$message"
+    if ui_enabled && command -v zenity >/dev/null 2>&1; then
+        zenity --error --title="赛道一比赛程序" --text="$message" \
+            --width=620 >/dev/null 2>&1 || true
+    fi
+}
+
+task_title() {
+    case "$1" in
+        A) printf '任务A 十点位巡检' ;;
+        B) printf '任务B 五点位拾放' ;;
+        C) printf '任务C 无序抓取' ;;
+        D) printf '任务D 未知物体抓取' ;;
+        E) printf '任务E 顺序抓取' ;;
+        *) printf '轨道一任务' ;;
+    esac
+}
+
+pid_is_task() {
+    local pid="$1"
+    [ -r "/proc/$pid/cmdline" ] || return 1
+    tr '\0' ' ' < "/proc/$pid/cmdline" 2>/dev/null \
+        | grep -q 'track1_grasp.nodes.track1_node'
+}
+
+read_task_pid() {
+    [ -r "$PID_FILE" ] || return 1
+    local pid
+    pid="$(tr -d '[:space:]' < "$PID_FILE" 2>/dev/null || true)"
+    [[ "$pid" =~ ^[0-9]+$ ]] || return 1
+    printf '%s\n' "$pid"
+}
+
+stop_current_task() {
+    local pid
+    if ! pid="$(read_task_pid)" || ! kill -0 "$pid" 2>/dev/null; then
+        rm -f "$PID_FILE"
+        printf '当前没有任务在运行。\n'
+        notify "赛道一比赛程序" "当前没有任务在运行"
+        return 0
+    fi
+
+    printf '正在停止任务 PID=%s...\n' "$pid"
+    kill -INT "$pid" 2>/dev/null || true
+    for _ in $(seq 1 50); do
+        kill -0 "$pid" 2>/dev/null || break
+        sleep 0.1
+    done
+    if kill -0 "$pid" 2>/dev/null; then
+        kill -TERM "$pid" 2>/dev/null || true
+        sleep 0.5
+    fi
+    if kill -0 "$pid" 2>/dev/null; then
+        kill -KILL "$pid" 2>/dev/null || true
+    fi
+    rm -f "$PID_FILE"
+    printf '任务已停止。\n'
+    notify "赛道一比赛程序" "任务已停止"
+}
+
+check_install() {
+    local failed=0
+    local path
+    for path in \
+        "$TASK_PYTHON" \
+        "$APP_DIR/track1_grasp/nodes/track1_node.py" \
+        "$CONFIG" \
+        /opt/ros/humble/setup.bash \
+        /home/sunshine/codex/easton/codroid_bridge/codroid_bridge/install/setup.bash \
+        /home/sunshine/codex/easton/ros2_ws/install/setup.bash; do
+        if [ ! -e "$path" ]; then
+            printf '缺少文件：%s\n' "$path" >&2
+            failed=1
+        fi
+    done
+    # Task A consumes the old browser recognizer over HTTP and must not depend
+    # on the newer grab-recognition model.  B/C/D/E still require it.
+    if ! uses_legacy_vision && [ ! -e "$ROOT/models/best.pt" ]; then
+        printf '缺少文件：%s\n' "$ROOT/models/best.pt" >&2
+        failed=1
+    fi
+    if uses_ms42dc_ros; then
+        if [ ! -e "$MS42DC_ROS_SETUP" ]; then
+            printf '缺少文件：%s\n' "$MS42DC_ROS_SETUP" >&2
+            failed=1
+        fi
+        if [ ! -x "$MS42DC_ROS_SETUP" ] && [ ! -r "$MS42DC_ROS_SETUP" ]; then
+            printf '无法读取：%s\n' "$MS42DC_ROS_SETUP" >&2
+            failed=1
+        fi
+    fi
+    if [ ! -x "$TASK_PYTHON" ]; then
+        printf 'Python 不可执行：%s\n' "$TASK_PYTHON" >&2
+        failed=1
+    fi
+    return "$failed"
+}
+
+load_environment() {
+    # Third-party ROS setup scripts are not compatible with `set -u`.
+    source /opt/ros/humble/setup.bash || return 1
+    source /home/sunshine/codex/easton/codroid_bridge/codroid_bridge/install/setup.bash || return 1
+    source /home/sunshine/codex/easton/ros2_ws/install/setup.bash || return 1
+    if uses_ms42dc_ros; then
+        source "$MS42DC_ROS_SETUP" || return 1
+    fi
+    if [ -d "$TASK_SITE_PACKAGES" ]; then
+        export PYTHONPATH="$APP_DIR:$TASK_SITE_PACKAGES${PYTHONPATH:+:$PYTHONPATH}"
+    else
+        export PYTHONPATH="$APP_DIR${PYTHONPATH:+:$PYTHONPATH}"
+    fi
+    export PYTHONUNBUFFERED=1
+}
+
+verify_python_environment() {
+    "$TASK_PYTHON" - <<'PY'
+import rclpy
+import track1_grasp
+from codroid_msgs.msg import RobotInfo
+from track1_grasp.config import apply_mode, load_config
+import os
+
+config_path = os.environ["TRACK1_CHECK_CONFIG"]
+config = load_config(config_path)
+legacy_vision = config.vision.backend == "legacy_http"
+if config.gripper.backend == "ms42dc_ros":
+    from step_motor.msg import Motor
+if not legacy_vision:
+    # Import the direct camera/YOLO stack only for backends that need it.  Task
+    # A deliberately uses the old browser recognizer's HTTP status instead.
+    from taskA_grasp.detector import RealSenseStream, YoloDetector
+for mode in "ABCDE":
+    apply_mode(config, mode).validate()
+if legacy_vision:
+    print("Python / ROS / 五个任务配置检查通过（任务A使用旧视觉，未加载抓取识别模型）")
+else:
+    print("Python / ROS / YOLO / 五个任务配置检查通过")
+PY
+}
+
+stop_old_camera_programs() {
+    local keep_legacy="${1:-0}"
+    local old_pid_file="$HOME/.local/state/track1-camera-recognition/recognition.pid"
+    local old_pid=""
+    if [ -r "$old_pid_file" ]; then
+        old_pid="$(tr -d '[:space:]' < "$old_pid_file" 2>/dev/null || true)"
+    fi
+    if [[ "$old_pid" =~ ^[0-9]+$ ]] && kill -0 "$old_pid" 2>/dev/null; then
+        printf '检测到“抓取识别”正在占用相机，先停止它...\n'
+        kill -INT "$old_pid" 2>/dev/null || true
+        for _ in $(seq 1 30); do
+            kill -0 "$old_pid" 2>/dev/null || break
+            sleep 0.1
+        done
+    fi
+    if [ "$keep_legacy" != "1" ] \
+        && /usr/bin/pgrep -f '/home/sunshine/codex/easton/taskA/live_camera_preview.py' >/dev/null 2>&1; then
+        printf '检测到旧视觉预览正在占用相机，先停止它...\n'
+        /usr/bin/python3 /home/sunshine/codex/easton/taskA/camera_recognition.py --stop \
+            >/dev/null 2>&1 || true
+    fi
+}
+
+build_arguments() {
+    ARGS=(--config "$CONFIG" --task "$TASK")
+    case "$TASK" in
+        A)
+            ARGS+=(--frames "${TRACK1_TASK_A_FRAMES:-10}")
+            ;;
+        B)
+            ARGS+=(--max-picks "${TRACK1_TASK_B_PICKS:-5}")
+            ;;
+        C)
+            ARGS+=(--max-picks "${TRACK1_TASK_C_PICKS:-20}")
+            ;;
+        D)
+            ARGS+=(--max-picks "${TRACK1_TASK_D_PICKS:-20}")
+            ;;
+        E)
+            ARGS+=(--max-picks "${TRACK1_TASK_E_PICKS:-10}")
+            ;;
+    esac
+}
+
+confirm_real_motion() {
+    local title
+    title="$(task_title "$TASK")"
+    if [ "${TRACK1_CONFIRM:-0}" = "1" ]; then
+        return 0
+    fi
+    if ! ui_enabled || ! command -v zenity >/dev/null 2>&1; then
+        show_error "检测到真机运动配置，但没有可用的确认窗口。为避免误动作，任务未启动。"
+        return 1
+    fi
+    zenity --question \
+        --title="$title - 真机运动确认" \
+        --text="即将启动真实机械臂运动。\n\n请确认：\n1. 控制器为 AutoReady 且无故障\n2. 急停按钮可立即按下\n3. 工作区内无人\n4. 已完成手眼标定和夹爪检查\n\n是否开始任务？" \
+        --ok-label="开始任务" \
+        --cancel-label="取消" \
+        --width=560 >/dev/null 2>&1
+}
+
+cleanup() {
+    local recorded=""
+    recorded="$(read_task_pid 2>/dev/null || true)"
+    if [ -n "$CHILD_PID" ] && [ "$recorded" = "$CHILD_PID" ]; then
+        rm -f "$PID_FILE"
+    fi
+    stop_robot_bridge
+    stop_motor_node
+}
+
+forward_signal() {
+    if [ -n "$CHILD_PID" ] && kill -0 "$CHILD_PID" 2>/dev/null; then
+        kill -INT "$CHILD_PID" 2>/dev/null || true
+    fi
+}
+
+if [ "$TASK" = "stop" ]; then
+    stop_current_task
+    exit 0
+fi
+
+if [ "$TASK" = "check" ]; then
+    if ! check_install; then
+        show_error "程序文件不完整，请检查“赛道一比赛程序”文件夹。"
+        exit 1
+    fi
+    if [ ! -r "$CONFIG" ]; then
+        show_error "找不到配置文件：$CONFIG"
+        exit 1
+    fi
+    load_environment || {
+        show_error "ROS 2 环境加载失败。"
+        exit 1
+    }
+    export TRACK1_CHECK_CONFIG="$CONFIG"
+    verify_python_environment || {
+        show_error "Python、ROS、YOLO 或任务配置检查失败。"
+        exit 1
+    }
+    exit 0
+fi
+
+case "$TASK" in
+    A|B|C|D|E) ;;
+    *)
+        printf '用法：%s {A|B|C|D|E|stop|check} [--no-pause]\n' "$0" >&2
+        exit 2
+        ;;
+esac
+
+while [ $# -gt 0 ]; do
+    case "$1" in
+        --no-pause) NO_PAUSE=1 ;;
+        *) show_error "未知参数：$1"; exit 2 ;;
+    esac
+    shift
+done
+
+if ! check_install; then
+    show_error "程序文件不完整，请检查“赛道一比赛程序”文件夹。"
+    exit 1
+fi
+
+exec 9>"$LOCK_FILE"
+if ! flock -n 9; then
+    show_error "已有任务正在运行，不能同时启动第二个任务。"
+    exit 1
+fi
+
+if ! load_environment; then
+    show_error "ROS 2 环境加载失败。"
+    exit 1
+fi
+
+export TRACK1_CHECK_CONFIG="$CONFIG"
+if ! verify_python_environment; then
+    show_error "运行环境检查失败，请查看终端输出。"
+    exit 1
+fi
+
+if uses_legacy_vision; then
+    stop_old_camera_programs 1
+else
+    stop_old_camera_programs
+fi
+build_arguments
+
+STAMP="$(date '+%Y%m%d_%H%M%S')"
+LOG_FILE="$LOG_DIR/task_${TASK}_${STAMP}.log"
+TITLE="$(task_title "$TASK")"
+REAL_MOTION=0
+if grep -Eq '^[[:space:]]*dry_run:[[:space:]]*false([[:space:]]|$)' "$CONFIG"; then
+    REAL_MOTION=1
+fi
+
+EXEC_ARGS=()
+if [ "$REAL_MOTION" = "1" ]; then
+    if ! confirm_real_motion; then
+        printf '已取消真机任务。\n'
+        exit 0
+    fi
+    EXEC_ARGS+=(--execute)
+fi
+
+printf '\n===== %s =====\n' "$TITLE" | tee -a "$LOG_FILE"
+printf '配置：%s\n' "$CONFIG" | tee -a "$LOG_FILE"
+printf '视觉后端：%s\n' "$(configured_vision_backend)" | tee -a "$LOG_FILE"
+if [ "$TASK" = "A" ] && [ "$REAL_MOTION" = "1" ]; then
+    if uses_legacy_vision; then
+        printf '模式：十点位巡检（旧视觉识别 legacy_http，每段 >= 15 cm，真机运动，视觉持续刷新）\n' | tee -a "$LOG_FILE"
+    else
+        printf '模式：十点位巡检（每段 >= 15 cm，真机运动，视觉持续刷新）\n' | tee -a "$LOG_FILE"
+    fi
+    TITLE="$TITLE（真机）"
+elif [ "$TASK" = "A" ]; then
+    if uses_legacy_vision; then
+        printf '模式：十点位巡检安全试运行（旧视觉识别 legacy_http，机械臂不会运动，视觉持续刷新）\n' | tee -a "$LOG_FILE"
+    else
+        printf '模式：十点位巡检安全试运行（机械臂不会运动，视觉持续刷新）\n' | tee -a "$LOG_FILE"
+    fi
+    TITLE="$TITLE（试运行）"
+elif [ "$REAL_MOTION" = "1" ]; then
+    printf '模式：真机执行\n' | tee -a "$LOG_FILE"
+    TITLE="$TITLE（真机）"
+else
+    printf '模式：安全试运行（机械臂不会运动）\n' | tee -a "$LOG_FILE"
+    TITLE="$TITLE（试运行）"
+fi
+printf '日志：%s\n\n' "$LOG_FILE" | tee -a "$LOG_FILE"
+notify "$TITLE" "任务正在启动"
+
+trap cleanup EXIT
+trap 'forward_signal; exit 130' INT
+trap 'forward_signal; exit 143' TERM
+trap 'forward_signal; exit 129' HUP
+
+if ! ensure_motor_node; then
+    show_error "MS42DC 夹爪 ROS 节点启动失败。\n请检查夹爪供电、USB 线、/dev/motor_serial 和节点日志。\n夹爪日志：${MOTOR_LOG:-未生成}"
+    exit 1
+fi
+
+if ! ensure_robot_bridge; then
+    detail=""
+    if [ -n "$BRIDGE_LOG" ]; then
+        detail="\n桥接日志：$BRIDGE_LOG"
+    fi
+    show_error "无法获取机械臂状态 /RobotInfo，任务未启动。\n请确认控制器处于 AutoReady，并检查“设置 -> ROS”的目标 IP 和 9006 端口。${detail}"
+    exit 1
+fi
+
+"$TASK_PYTHON" -m track1_grasp.nodes.track1_node "${ARGS[@]}" "${EXEC_ARGS[@]}" \
+    > >(tee -a "$LOG_FILE") 2>&1 9>&- &
+CHILD_PID=$!
+printf '%s\n' "$CHILD_PID" > "$PID_FILE"
+
+STATUS=0
+wait "$CHILD_PID" || STATUS=$?
+cleanup
+CHILD_PID=""
+
+if [ "$STATUS" -eq 0 ]; then
+    printf '\n[完成] %s 已结束，日志：%s\n' "$TITLE" "$LOG_FILE"
+    notify "$TITLE" "任务已完成"
+elif [ "$STATUS" -eq 130 ] || [ "$STATUS" -eq 143 ]; then
+    printf '\n[停止] %s 已停止。\n' "$TITLE"
+    notify "$TITLE" "任务已停止"
+else
+    printf '\n[失败] %s 异常退出，退出码=%s\n' "$TITLE" "$STATUS" >&2
+    printf '日志：%s\n' "$LOG_FILE" >&2
+    if grep -Eq 'no fresh /RobotInfo|current robot pose|/RobotInfo' "$LOG_FILE"; then
+        show_error "机械臂状态 /RobotInfo 不可用，任务异常退出。\n请确认控制器 AutoReady，并检查“设置 -> ROS”的目标 IP 和 9006 端口。\n日志：$LOG_FILE"
+    else
+        show_error "任务异常退出。\n日志：$LOG_FILE"
+    fi
+fi
+
+if [ "$NO_PAUSE" != "1" ] && [ -t 0 ]; then
+    printf '\n按回车键关闭窗口...\n'
+    read -r _ || true
+fi
+
+exit "$STATUS"

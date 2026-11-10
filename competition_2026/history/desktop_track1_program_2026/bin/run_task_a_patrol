@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+# Task A ten-position patrol using the OLD browser recognizer.
+# It never starts the newer grab-recognition runtime or models/best.pt.
+
+set -o pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+export TRACK1_CONFIG="${TRACK1_TASK_A_CONFIG:-$ROOT/config/track1_task_a_legacy.yaml}"
+LEGACY_LAUNCHER="${TRACK1_VISUAL_LAUNCHER:-/home/sunshine/codex/easton/taskA/camera_recognition.py}"
+GRAB_LAUNCHER="${TRACK1_GRAB_LAUNCHER:-/home/sunshine/.local/bin/track1_camera_recognition}"
+GRAB_STATE="${XDG_STATE_HOME:-$HOME/.local/state}/track1-camera-recognition/recognition.pid"
+TASK_PID_FILE="$ROOT/state/task.pid"
+LEGACY_STATUS_URL="http://127.0.0.1:9100/status.json"
+
+show_error() {
+    local message="$1"
+    printf '错误：%s\n' "$message" >&2
+    if command -v notify-send >/dev/null 2>&1; then
+        notify-send --app-name="任务A 十点位巡检" "任务A 十点位巡检" "$message" \
+            >/dev/null 2>&1 || true
+    fi
+    if command -v zenity >/dev/null 2>&1; then
+        zenity --error --title="任务A 十点位巡检" --text="$message" \
+            --width=680 >/dev/null 2>&1 || true
+    fi
+}
+
+[ -r "$TRACK1_CONFIG" ] || {
+    show_error "找不到任务A旧视觉配置文件：$TRACK1_CONFIG"
+    exit 1
+}
+[ -r "$LEGACY_LAUNCHER" ] || {
+    show_error "找不到旧版视觉识别程序：$LEGACY_LAUNCHER"
+    exit 1
+}
+
+# Do not take the camera away from an already-running track task.
+if [ -r "$TASK_PID_FILE" ]; then
+    task_pid="$(tr -d '[:space:]' < "$TASK_PID_FILE" 2>/dev/null || true)"
+    if [[ "$task_pid" =~ ^[0-9]+$ ]] && kill -0 "$task_pid" 2>/dev/null; then
+        task_cmd="$(tr '\0' ' ' < "/proc/$task_pid/cmdline" 2>/dev/null || true)"
+        if [[ "$task_cmd" == *track1_grasp.nodes.track1_node* ]]; then
+            show_error "已有赛道任务正在运行。请先双击“停止当前任务”。"
+            exit 1
+        fi
+    fi
+fi
+
+# The D405 can only have one owner.  Release the newer grab recognizer, but
+# leave the old visual recognizer running because Task A consumes its status.
+if [ -s "$GRAB_STATE" ] && [ -x "$GRAB_LAUNCHER" ]; then
+    if ! "$GRAB_LAUNCHER" stop >/dev/null 2>&1; then
+        show_error "“抓取识别”仍在运行，无法释放相机。请先停止它再启动任务A。"
+        exit 1
+    fi
+fi
+
+# Older copies of the browser recognizer did not publish frameSequence.  The
+# patrol adapter would treat one unchanged status payload as many frames, so
+# restart that old process once and require the new sequence field.
+if ! /usr/bin/python3 - "$LEGACY_STATUS_URL" <<'PY'
+import json
+import sys
+import urllib.request
+
+try:
+    with urllib.request.urlopen(sys.argv[1], timeout=1.0) as response:
+        status = json.load(response)
+    sequence = int(status.get("frameSequence", 0))
+except Exception:
+    raise SystemExit(1)
+raise SystemExit(0 if status.get("ready") and sequence > 0 else 1)
+PY
+then
+    /usr/bin/python3 "$LEGACY_LAUNCHER" --stop >/dev/null 2>&1 || true
+fi
+
+# This starts the legacy model/camera if needed, or simply reopens its browser
+# page if it is already ready.  The browser stream remains live during motion.
+if ! /usr/bin/python3 "$LEGACY_LAUNCHER"; then
+    show_error "旧版“任务A 视觉识别”启动失败。请查看：$HOME/.local/state/task-a-camera-recognition/preview.log"
+    exit 1
+fi
+
+exec "$ROOT/bin/track1_task_runner" A "$@"

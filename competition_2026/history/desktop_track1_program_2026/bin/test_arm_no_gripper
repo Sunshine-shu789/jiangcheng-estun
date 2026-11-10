@@ -1,0 +1,261 @@
+#!/usr/bin/env bash
+# Supervised no-gripper motion check.
+#
+# This launcher never builds the gripper backend and never publishes a gripper
+# command.  It performs one short straight-line TCP move and the matching
+# return move, after the operator confirms that the robot is AutoReady,
+# fault-free, the emergency stop is reachable and the work area is clear.
+
+set -o pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+APP_DIR="$ROOT/app/track1_grasp"
+CONFIG="${TRACK1_MOTION_CHECK_CONFIG:-$ROOT/config/track1_live.yaml}"
+TASK_PYTHON="${TRACK1_PYTHON:-/usr/bin/python3}"
+TASK_SITE_PACKAGES="${TRACK1_SITE_PACKAGES:-/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages}"
+STATE_DIR="$ROOT/state"
+LOG_DIR="$ROOT/logs"
+LOCK_FILE="$STATE_DIR/task.lock"
+BRIDGE_MODULE="taskA_grasp.nodes.udp_bridge"
+BRIDGE_PID=""
+BRIDGE_LOG=""
+NO_PAUSE="${TRACK1_NO_PAUSE:-0}"
+DRY_RUN=0
+DISTANCE_MM="${TRACK1_MOTION_CHECK_DISTANCE_MM:-10}"
+AXIS="${TRACK1_MOTION_CHECK_AXIS:-x}"
+DIRECTION="${TRACK1_MOTION_CHECK_DIRECTION:-auto}"
+
+usage() {
+    cat <<'EOF'
+用法：test_arm_no_gripper [--dry-run] [--distance-mm N] [--axis x|y|z] [--direction auto|+|-]
+
+默认是 10 mm、沿基座 X 轴、自动选择工作空间余量较大的方向，完成一次
+直线往返。真实运动前会弹出确认窗口。--dry-run 只做 IK/工作空间预检查。
+本入口不会发送任何夹爪命令。
+EOF
+}
+
+while [ $# -gt 0 ]; do
+    case "$1" in
+        --help|-h) usage; exit 0 ;;
+        --dry-run) DRY_RUN=1; shift ;;
+        --distance-mm)
+            [ $# -ge 2 ] || { echo "缺少 --distance-mm 参数" >&2; exit 2; }
+            DISTANCE_MM="$2"; shift 2 ;;
+        --axis)
+            [ $# -ge 2 ] || { echo "缺少 --axis 参数" >&2; exit 2; }
+            AXIS="$2"; shift 2 ;;
+        --direction)
+            [ $# -ge 2 ] || { echo "缺少 --direction 参数" >&2; exit 2; }
+            DIRECTION="$2"; shift 2 ;;
+        --no-pause) NO_PAUSE=1; shift ;;
+        *) echo "未知参数：$1" >&2; usage >&2; exit 2 ;;
+    esac
+done
+
+case "$AXIS" in x|y|z) ;; *) echo "--axis 必须是 x、y 或 z" >&2; exit 2 ;; esac
+case "$DIRECTION" in auto|+|- ) ;; *) echo "--direction 必须是 auto、+ 或 -" >&2; exit 2 ;; esac
+if ! [[ "$DISTANCE_MM" =~ ^[0-9]+([.][0-9]+)?$ ]]; then
+    echo "--distance-mm 必须是正数" >&2
+    exit 2
+fi
+
+ui_enabled() {
+    [ -n "${DISPLAY:-}" ] || [ -n "${WAYLAND_DISPLAY:-}" ]
+}
+
+notify_error() {
+    local message="$1"
+    printf '错误：%s\n' "$message" >&2
+    if ui_enabled && command -v zenity >/dev/null 2>&1; then
+        zenity --error --title="无夹爪运动验证" --text="$message" \
+            --width=620 >/dev/null 2>&1 || true
+    fi
+}
+
+find_running_bridge() {
+    local pid
+    for pid in $(/usr/bin/pgrep -f '[u]dp_bridge|[c]odroid_io[.]py' 2>/dev/null || true); do
+        [ "$pid" = "$$" ] && continue
+        [ -r "/proc/$pid/cmdline" ] || continue
+        if tr '\0' ' ' < "/proc/$pid/cmdline" 2>/dev/null \
+            | grep -Eq 'taskA_grasp.*udp_bridge|udp_bridge.*taskA_grasp|codroid_io[.]py'; then
+            printf '%s\n' "$pid"
+            return 0
+        fi
+    done
+    return 1
+}
+
+wait_for_robot_info() {
+    local timeout_s="$1"
+    "$TASK_PYTHON" - "$timeout_s" <<'PY'
+import sys
+import time
+import rclpy
+from codroid_msgs.msg import RobotInfo
+from rclpy.node import Node
+
+timeout_s = max(0.0, float(sys.argv[1]))
+received = []
+rclpy.init(args=[])
+node = Node("track1_motion_check_robot_info")
+def callback(msg):
+    if len(msg.end_positions) >= 6 and len(msg.joint_positions) >= 6:
+        received.append(msg)
+sub = node.create_subscription(RobotInfo, "RobotInfo", callback, 10)
+deadline = time.monotonic() + timeout_s
+try:
+    while time.monotonic() < deadline and rclpy.ok() and not received:
+        rclpy.spin_once(node, timeout_sec=min(0.2, max(0.01, deadline - time.monotonic())))
+finally:
+    node.destroy_subscription(sub)
+    node.destroy_node()
+    if rclpy.ok():
+        rclpy.shutdown()
+if not received:
+    print(f"在 {timeout_s:.1f} 秒内没有收到包含位姿和关节的 /RobotInfo", file=sys.stderr)
+    raise SystemExit(1)
+msg = received[-1]
+xyz = ", ".join(f"{float(v):.4f}" for v in msg.end_positions[:3])
+print(f"[bridge] state={msg.state} fault_flag={msg.fault_flag} xyz=({xyz})")
+PY
+}
+
+stop_bridge() {
+    [ -n "$BRIDGE_PID" ] || return 0
+    if kill -0 "$BRIDGE_PID" 2>/dev/null; then
+        kill -TERM "$BRIDGE_PID" 2>/dev/null || true
+        for _ in $(seq 1 30); do
+            kill -0 "$BRIDGE_PID" 2>/dev/null || break
+            sleep 0.1
+        done
+        if kill -0 "$BRIDGE_PID" 2>/dev/null; then
+            kill -KILL "$BRIDGE_PID" 2>/dev/null || true
+        fi
+    fi
+    wait "$BRIDGE_PID" 2>/dev/null || true
+    BRIDGE_PID=""
+}
+
+cleanup() {
+    stop_bridge
+}
+
+ensure_environment() {
+    source /opt/ros/humble/setup.bash || return 1
+    source /home/sunshine/codex/easton/codroid_bridge/codroid_bridge/install/setup.bash || return 1
+    source /home/sunshine/codex/easton/ros2_ws/install/setup.bash || return 1
+    export PYTHONPATH="$APP_DIR:/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages${PYTHONPATH:+:$PYTHONPATH}"
+    export PYTHONUNBUFFERED=1
+}
+
+start_bridge() {
+    local existing
+    existing="$(find_running_bridge || true)"
+    if [ -n "$existing" ]; then
+        printf '[bridge] 已运行（PID=%s）\n' "$existing"
+        return 0
+    fi
+    BRIDGE_LOG="$LOG_DIR/codroid_bridge_motion_check_${STAMP}.log"
+    "$TASK_PYTHON" -m "$BRIDGE_MODULE" --ros-args \
+        -p "listen_port:=${TRACK1_BRIDGE_PORT:-9006}" \
+        -p "controller_host:=${TRACK1_CONTROLLER_HOST:-192.168.101.100}" \
+        -p "controller_port:=${TRACK1_CONTROLLER_PORT:-9005}" \
+        >"$BRIDGE_LOG" 2>&1 9>&- &
+    BRIDGE_PID=$!
+    sleep 0.5
+    if ! kill -0 "$BRIDGE_PID" 2>/dev/null; then
+        tail -n 30 "$BRIDGE_LOG" 2>/dev/null || true
+        BRIDGE_PID=""
+        return 1
+    fi
+    return 0
+}
+
+confirm_motion() {
+    if [ "$DRY_RUN" = "1" ] || [ "${TRACK1_CONFIRM:-0}" = "1" ]; then
+        return 0
+    fi
+    local text
+    text="即将执行一次无夹爪运动验证。\n\n方向：基座 ${AXIS} 轴（${DIRECTION}）\n距离：${DISTANCE_MM} mm\n动作：去程 + 返回，共一次\n\n请确认：\n1. 夹爪尚未安装或已断电\n2. 控制器为 AutoReady，无故障\n3. 急停按钮可立即按下\n4. 工作区内无人，运动方向没有障碍\n\n是否开始？"
+    if ui_enabled && command -v zenity >/dev/null 2>&1; then
+        zenity --question --title="无夹爪运动验证" --text="$text" \
+            --ok-label="开始验证" --cancel-label="取消" --width=560 \
+            >/dev/null 2>&1
+        return $?
+    fi
+    printf '\n%s\n输入 YES 继续：' "$text"
+    read -r answer
+    [ "$answer" = "YES" ]
+}
+
+mkdir -p "$STATE_DIR" "$LOG_DIR"
+STAMP="$(date '+%Y%m%d_%H%M%S')"
+LOG_FILE="$LOG_DIR/arm_motion_check_${STAMP}.log"
+exec > >(tee -a "$LOG_FILE") 2>&1
+trap cleanup EXIT INT TERM HUP
+
+if ! ensure_environment; then
+    notify_error "ROS 环境加载失败。"
+    exit 1
+fi
+if [ ! -x "$TASK_PYTHON" ] || [ ! -r "$APP_DIR/track1_grasp/nodes/arm_motion_check_node.py" ]; then
+    notify_error "找不到 Python 或无夹爪运动验证程序。"
+    exit 1
+fi
+if [ ! -r "$CONFIG" ]; then
+    notify_error "找不到配置：$CONFIG"
+    exit 1
+fi
+
+exec 9>"$LOCK_FILE"
+if ! flock -n 9; then
+    notify_error "已有任务正在运行，不能同时启动无夹爪验证。请先停止当前任务。"
+    exit 1
+fi
+
+printf '\n===== 无夹爪运动验证 =====\n'
+printf '配置：%s\n' "$CONFIG"
+printf '模式：%s\n' "$([ "$DRY_RUN" = "1" ] && echo '只预检查（不会运动）' || echo '真机运动（一次往返）')"
+printf '参数：轴=%s 方向=%s 距离=%s mm\n' "$AXIS" "$DIRECTION" "$DISTANCE_MM"
+printf '夹爪：完全不调用，不会发出开合命令\n'
+printf '日志：%s\n\n' "$LOG_FILE"
+
+if ! start_bridge; then
+    notify_error "机械臂状态桥接启动失败。"
+    exit 1
+fi
+if ! wait_for_robot_info "${TRACK1_ROBOT_INFO_WAIT_S:-12}"; then
+    notify_error "未收到 /RobotInfo。请确认控制器已上电并处于 AutoReady，且 ROS 目标地址为本机 9006。"
+    exit 1
+fi
+if ! confirm_motion; then
+    printf '已取消。\n'
+    exit 0
+fi
+
+EXEC_ARG=()
+[ "$DRY_RUN" = "1" ] || EXEC_ARG+=(--execute)
+"$TASK_PYTHON" -m track1_grasp.nodes.arm_motion_check_node \
+    --config "$CONFIG" \
+    --axis "$AXIS" \
+    --direction "$DIRECTION" \
+    --distance-mm "$DISTANCE_MM" \
+    --step-mm 2.5 \
+    "${EXEC_ARG[@]}"
+STATUS=$?
+
+if [ "$STATUS" -eq 0 ]; then
+    printf '\n[完成] 无夹爪运动验证结束。\n'
+elif [ "$STATUS" -eq 130 ] || [ "$STATUS" -eq 143 ]; then
+    printf '\n[停止] 无夹爪运动验证被中断。\n'
+else
+    notify_error "无夹爪运动验证异常退出，退出码=$STATUS。请查看日志：$LOG_FILE"
+fi
+
+if [ "$NO_PAUSE" != "1" ] && [ -t 0 ]; then
+    printf '\n按回车键关闭窗口...\n'
+    read -r _ || true
+fi
+exit "$STATUS"
