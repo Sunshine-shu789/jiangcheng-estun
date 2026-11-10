@@ -1,0 +1,27 @@
+created_at=2026-11-05T20:43:36+08:00
+completed_at=2026-11-05T20:54:29+08:00
+status=complete
+purpose=Task B/C/D default GPU-only inference with explicit start-up-only CPU emergency fallback
+source_root=/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序
+reason=Allow competition recovery if GPU is unavailable, without silent runtime CPU hot-switching
+policy.normal_device=gpu_only
+policy.emergency_device=cpu
+policy.emergency_scope=Task B/C/D only
+policy.runtime_hot_switch=false
+policy.yaml_cpu_emergency_ignored=true
+before_manifest=SHA256SUMS.before
+after_manifest=SHA256SUMS.after
+report=reports/task_bcd_emergency_cpu_20261105_205424.md
+report_sha256=2a9f8a2ab8faca85f3a9e57605954c3aa7caa24a9c0f8c513e16290cd5c79c56
+validation.full_test=982 passed in 113.20s
+validation.emergency_cpu_preflight=Task B/C/D passed
+validation.emergency_cpu_synthetic_inference=passed (predictor=cpu, params=175/CPU)
+validation.gpu_preflight=42 configs / 5 model sets passed on cuda:0
+safety.camera_opened=false
+safety.robot_bridge_started=false
+safety.robot_info_connected=false
+safety.pick_pipeline_constructed=false
+safety.motion_commands_published=false
+safety.gripper_commands_sent=false
+safety.motion_dry_run.task_b=true
+safety.gripper_backend.task_b=mock

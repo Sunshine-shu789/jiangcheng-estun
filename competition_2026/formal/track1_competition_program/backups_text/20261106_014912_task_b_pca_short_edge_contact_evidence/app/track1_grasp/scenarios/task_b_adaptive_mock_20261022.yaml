@@ -1,0 +1,97 @@
+# Five deterministic adaptive-inverse observations for OFFLINE Mock testing.
+#
+# Coordinate chain:
+#   T_flange_camera translation = (0, -0.065, 0) m
+#   Mock flange RPY = (pi, 0, 0)
+#   base_xyz = flange_xyz + (camera_x, 0.065 - camera_y, -camera_z)
+#
+# The first observation is taken at flange (0, 0, 0.30).  Every completed
+# pick-and-return leaves the Mock flange above the previous target at Z=0.246,
+# and every visual grasp Z is 0.166.  Thus camera Z is 0.134 for point 1 and
+# 0.080 for points 2-5.  camera_xyz and object_center_camera_xyz are identical
+# because this fixture targets the object centre directly.
+frames:
+  - frame_id: adaptive_mock_pick_1
+    detections:
+      - label: 8-Plastic_Banana
+        instance_id: adaptive_banana
+        confidence: 0.95
+        bbox: [220, 180, 360, 300]
+        depth_m: 0.134
+        camera_xyz: [-0.041246342, -0.425700096, 0.134]
+        object_center_camera_xyz: [-0.041246342, -0.425700096, 0.134]
+        major_axis_camera: [1.0, 0.0, 0.0]
+        minor_axis_camera: [0.0, 1.0, 0.0]
+        major_axis_length_m: 0.12
+        minor_axis_length_m: 0.04
+        pose_confidence: 0.95
+        graspability: 1.0
+        attributes: {held: false}
+
+  - frame_id: adaptive_mock_pick_2
+    detections:
+      - label: 8-Plastic_Banana
+        instance_id: adaptive_banana
+        confidence: 0.95
+        bbox: [220, 180, 360, 300]
+        depth_m: 0.080
+        camera_xyz: [-0.083637567, 0.033991382, 0.080]
+        object_center_camera_xyz: [-0.083637567, 0.033991382, 0.080]
+        major_axis_camera: [1.0, 0.0, 0.0]
+        minor_axis_camera: [0.0, 1.0, 0.0]
+        major_axis_length_m: 0.12
+        minor_axis_length_m: 0.04
+        pose_confidence: 0.95
+        graspability: 1.0
+        attributes: {held: false}
+
+  - frame_id: adaptive_mock_pick_3
+    detections:
+      - label: 8-Plastic_Banana
+        instance_id: adaptive_banana
+        confidence: 0.95
+        bbox: [220, 180, 360, 300]
+        depth_m: 0.080
+        camera_xyz: [0.016875231, 0.169000134, 0.080]
+        object_center_camera_xyz: [0.016875231, 0.169000134, 0.080]
+        major_axis_camera: [1.0, 0.0, 0.0]
+        minor_axis_camera: [0.0, 1.0, 0.0]
+        major_axis_length_m: 0.12
+        minor_axis_length_m: 0.04
+        pose_confidence: 0.95
+        graspability: 1.0
+        attributes: {held: false}
+
+  - frame_id: adaptive_mock_pick_4
+    detections:
+      - label: 8-Plastic_Banana
+        instance_id: adaptive_banana
+        confidence: 0.95
+        bbox: [220, 180, 360, 300]
+        depth_m: 0.080
+        camera_xyz: [0.164682295, 0.064827511, 0.080]
+        object_center_camera_xyz: [0.164682295, 0.064827511, 0.080]
+        major_axis_camera: [1.0, 0.0, 0.0]
+        minor_axis_camera: [0.0, 1.0, 0.0]
+        major_axis_length_m: 0.12
+        minor_axis_length_m: 0.04
+        pose_confidence: 0.95
+        graspability: 1.0
+        attributes: {held: false}
+
+  - frame_id: adaptive_mock_pick_5
+    detections:
+      - label: 8-Plastic_Banana
+        instance_id: adaptive_banana
+        confidence: 0.95
+        bbox: [220, 180, 360, 300]
+        depth_m: 0.080
+        camera_xyz: [-0.022477267, -0.003831667, 0.080]
+        object_center_camera_xyz: [-0.022477267, -0.003831667, 0.080]
+        major_axis_camera: [1.0, 0.0, 0.0]
+        minor_axis_camera: [0.0, 1.0, 0.0]
+        major_axis_length_m: 0.12
+        minor_axis_length_m: 0.04
+        pose_confidence: 0.95
+        graspability: 1.0
+        attributes: {held: false}

@@ -1,0 +1,68 @@
+schema_version: 1
+program: track1_capture_web
+description: '赛道一任务 C/D 后 30 类 RGB-D 自采网页；只读取 D405、运行 YOLO 并写数据集，不连接机器人。'
+
+paths:
+  project_root: '/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序'
+  app_root: '/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/app/track1_capture_web'
+  data_root: '/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_selfcollected_v1'
+  photos_root: '/media/sunshine/新加卷/赛道一_C_D自采照片'
+  annotation_root: '/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_selfcollected_v1/annotations'
+  class_map: '/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_selfcollected_v1/manifests/class_map.yaml'
+  models_root: '/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/models'
+  weights: '/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/models/best.pt'
+  logs: '/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/track1_capture_web'
+  state: '/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/state/track1_capture_web'
+
+runtime:
+  python_executable: '/usr/bin/python3'
+  venv_site_packages: '/media/sunshine/新加卷/taskA/venv/lib/python3.10/site-packages'
+  ensure_runtime: '/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/bin/ensure_runtime'
+
+camera:
+  device: 'auto'
+  width: 640
+  height: 480
+  fps: 15
+  rotate_degrees: 180
+  warmup_frames: 30
+  default_lighting_id: 'site_A'
+
+model:
+  enabled: true
+  device: 'cpu'
+  imgsz: 640
+  detection_scale: '1.0'
+  inference_conf: 0.05
+  display_conf: 0.10
+  iou: 0.60
+  max_det: 100
+  primary_classes: '0,1,2,3,4,5,6,7,8,9'
+  supported_class_count: 10
+  warning: '当前权重只识别前 10 类。11-40 类仍可采集，但必须手动选择正确标签。'
+
+server:
+  host: '127.0.0.1'
+  port: 9110
+  open_browser: true
+
+capture:
+  session_id_regex: '^[0-9A-Za-z][0-9A-Za-z._-]{0,63}$'
+  default_notes: ''
+  burst_default_count: 20
+  burst_default_interval_ms: 350
+  save_overlay_jpeg: true
+  # 2026-10-27 现场确认：只有一个 11L 收纳盒，不再采集 small_box/large_box。
+  scene_types:
+    # 2026-10-28 现场确认：不细分场景。所有照片只使用唯一的 11L 场景；
+    # 画面中没有待识别物品时，class_id=0（空箱/无目标负样本）。
+    box_11l:
+      label: '11L 收纳盒'
+      box_type: box_11l
+      description: '唯一采集场景；不再区分台面、空箱、杂物、靠壁或角度'
+
+safety:
+  robot_control: false
+  allow_ros_topics: false
+  allow_motion_commands: false
+  note: '本程序不得导入或启动机器人控制节点，不得发布 /RobotMove 或夹爪命令。'

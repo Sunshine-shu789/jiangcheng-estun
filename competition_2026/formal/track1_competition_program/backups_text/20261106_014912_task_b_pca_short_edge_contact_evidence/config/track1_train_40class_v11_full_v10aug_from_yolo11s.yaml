@@ -1,0 +1,130 @@
+schema_version: 1
+purpose: >-
+  赛道一 40 类 v11 全量重训：使用 v10 全量多物品人工复核 + 仅训练集离线增强数据，
+  从 YOLO11s COCO 通用预训练骨干/颈部和新初始化的 40 类检测头开始训练。
+  不 resume 旧 best/last，不继承旧 40 类分类头，不覆盖旧模型，不修改 Task A/B。
+dataset_yaml: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v10_all_multiclass_augmented_20261031/dataset.yaml
+dataset_audit_report: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/reports/track1_v10_dataset_independent_audit_latest.json
+dataset_audit_summary: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v10_all_multiclass_augmented_20261031/audit_summary.json
+base_weights: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/models/yolo11s_backbone_40class_init_v10aug.pt
+base_weights_report: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/reports/track1_v11_init_weight_latest.json
+output_root: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_train_40class_v11_full_v10aug_from_yolo11s
+preflight_report: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/reports/track1_training_preflight_v11_full_v10aug_latest.json
+post_train_report: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/reports/track1_training_v11_full_v10aug_post_train_latest.json
+run_name_prefix: track1_40class_v11
+expected:
+  nc: 40
+  classes:
+  - 1-Cheez-it
+  - 2-Starkist_Tuna
+  - 3-Scissors
+  - 4-Frenchs_Mustard
+  - 5-Tomato_Soup
+  - 6-Foam_Brick
+  - 7-Clamp
+  - 8-Plastic_Banana
+  - 9-Mug
+  - 10-meat_can
+  - 11-Padlock
+  - 12-Baseball
+  - 13-Bowl
+  - 14-Sleeve
+  - 15-Coca_cola_half
+  - 16-ICRA_Duckie
+  - 17-Eggs_Plush
+  - 18-Dice
+  - 19-Elmers_Glue
+  - 20-Scotch_Tape
+  - 21-Haribo_Golden_Bear
+  - 22-E27_Adapter
+  - 23-GU24_Adapter
+  - 24-Spoon
+  - 25-Flat_Screwdriver
+  - 26-Plastic_Strawberry
+  - 27-Coca_cola_full
+  - 28-Kong_Duck_Dog_Toy
+  - 29-Paper_Towels
+  - 30-Stabilo_OHPen
+  - 31-Plastic_White_Cup
+  - 32-Wine_Glass
+  - 33-Key
+  - 34-Nail
+  - 35-Book
+  - 36-Adjustable_Wrench
+  - 37-T-shirt
+  - 38-Jumbo_Pencil_Cup
+  - 39-Glove
+  - 40-Pringles
+  images:
+    train: 4248
+    val: 170
+  boxes:
+    train: 9924
+    val: 459
+  empty_labels:
+    train: 4
+    val: 1
+  source_images:
+    train: 1062
+    val: 170
+  augmented_images: 3186
+  source_multiobject_images: 321
+  source_multiobject_boxes: 1646
+  min_free_gb: 20
+  min_gpu_memory_gb: 6
+  old_model_sha256: 76b71ff7227eec9d26f5da0dec917d83e21dc3de1b92456645e9004dfa80de60
+  init_source_nc: 80
+  init_fresh_class_output_tensors: 6
+train:
+  epochs: 120
+  imgsz: 640
+  batch: 6
+  device: 0
+  workers: 4
+  cache: false
+  amp: true
+  pretrained: true
+  optimizer: AdamW
+  lr0: 0.001
+  lrf: 0.01
+  momentum: 0.9
+  weight_decay: 0.0005
+  warmup_epochs: 3.0
+  warmup_momentum: 0.8
+  warmup_bias_lr: 0.05
+  cos_lr: true
+  patience: 30
+  save: true
+  save_period: 10
+  val: true
+  plots: true
+  verbose: true
+  seed: 42
+  deterministic: true
+  close_mosaic: 0
+  # 离线增强已经是主增强来源，在线增强保持轻量，避免重复叠加造成过度变形。
+  mosaic: 0.0
+  mixup: 0.0
+  cutmix: 0.0
+  copy_paste: 0.0
+  degrees: 5.0
+  translate: 0.03
+  scale: 0.20
+  shear: 1.0
+  perspective: 0.0
+  flipud: 0.0
+  fliplr: 0.5
+  hsv_h: 0.010
+  hsv_s: 0.30
+  hsv_v: 0.20
+  multi_scale: 0.0
+  rect: false
+  fraction: 1.0
+  freeze: 0
+  cls_pw: 0.5
+  resume: false
+  exist_ok: false
+post_train:
+  final_validation_batch: 8
+  multiobject_val_prefix: multiobj__
+  require_all_40_classes_in_val: true

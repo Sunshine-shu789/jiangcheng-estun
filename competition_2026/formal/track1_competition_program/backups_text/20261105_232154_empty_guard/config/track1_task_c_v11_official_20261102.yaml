@@ -1,0 +1,638 @@
+# 赛道一 任务C 正式抓取程序配置（V11 40 类已知物体，2026-11-02 拆分）
+# - 独立入口：bin/run_task_c
+# - 只允许 target.known_classes 中的 40 个已知类别；unknown/object 一律拒绝。
+# - V11 权重已复制到 models/official，并启用加载前 SHA256 校验。
+# - 40 类顺序与 V11 模型完全一致，17-Eggs_Plush 和 26-Plastic_Strawberry 已启用。
+# - 本文件只服务任务C，不用于任务D；Task A/B 默认配置不变。
+# - 2026-11-01 已获操作员明确实机运动授权，并完成固定观察/放置位、最低
+#   抓取位、相机测距和 MS42DC 夹爪连接检查。启动仍须经过显式真机确认。
+task:
+  mode: C
+  # 兼容字段，仅为旧工具链保留。Task C/D 的 task_cd 清箱流程忽略此值。
+  # 每次普通抓取前在固定视角有限重拍并在看到候选后立即规划；未到周期性
+  # 清空检查时，无候选绝不换位扫描、绝不判空。每成功抓取 20 次后的下一轮
+  # 才做完整清空确认。
+  max_picks: 40
+  stop_on_error: false
+  sample_period_s: 0.2
+# 固定观察位由现场当前姿态只读采集（30 个 RobotInfo 样本，无 RobotMove）。
+# 固定放置位由现场当前姿态只读采集；操作员确认保持约 17 度倾斜释放。
+task_cd:
+  # 2026-11-05 现场诊断：固定观察位下的盒中心/内框几何与实际物品位置不一致，
+  # 旧实现又把完整夹爪包络按同一低高度检查，导致盒内正常目标在只读预检阶段
+  # 被误拒绝（香蕉、适配器、橡皮鸭、夹子）。按现场授权暂时关闭整个
+  # Task C/D 盒壁/盒边门禁；几何与 15 mm 参数保留，便于以后恢复。
+  # required=false 同时停用盒边平行姿态强制和盒内外完整包络检查。
+  # 其它 IK、关节限位、碰撞、CAD 开口、奇异值和工作空间门禁继续生效。
+  box_clearance:
+    required: false
+    geometry_validated: true
+    geometry_source: field_measured
+    center_xy_m: [-0.045, 0.530]
+    yaw_rad: 0.0
+    interior_size_m: [0.350, 0.200]
+    wall_clearance_m: 0.015
+    obstacle_clearance_m: 0.0
+    edge_align_band_m: 0.050
+    edge_parallel_required: true
+    wall_top_z_m: 0.120
+    gripper_footprint_flange_xy_m:
+    - [-0.031507, -0.058971]
+    - [0.031507, -0.058971]
+    - [0.031507, 0.058971]
+    - [-0.031507, 0.058971]
+    obstacles_m: []
+  enabled: true
+  # startup_direct_grasp 仅保留兼容旧配置；当前运行逻辑不再依赖它区分
+  # 首轮/后续：每次普通抓取都从固定位开始，看到候选立即进入完整安全预检。
+  # 固定位无候选仅允许有限重拍，不能换位扫描，也不能报告空箱。
+  startup_direct_grasp: true
+  # 每完成 20 次完整搬运（转移、释放、最终退避均成功）后的下一轮，
+  # 才执行一次固定位加全部换位视角的完整清空确认。
+  empty_check_interval_successes: 20
+  # 固定位单轮最多 3 次拍摄；第 1 帧看到候选就立即规划，不等待后续帧。
+  # 3 次均无候选时本轮安全阻塞，空箱状态仍未证明。
+  fixed_view_miss_retry_frames: 3
+  # 2026-11-05 实机：同一批不可执行目标被安全门禁稳定拒绝后，禁止快速空转
+  # 或把“未清空”误当成程序结束。连续 3 个固定位观察周期无新可执行候选时，
+  # 进入不结束程序的安全阻塞等待；每 5 秒仅在固定位重新观察，不打空抓、
+  # 不换位扫描、不判空箱。操作员更换/补充物品后，出现可执行候选即自动继续。
+  fixed_view_no_progress_cycles: 3
+  blocked_retry_period_s: 5.0
+  observation_pose_file: task_cd_observation_pose_20261101_194651.yaml
+  observation_pose_tolerance_deg: 0.5
+  return_to_observation_after_each_pick: true
+  place_pose_verified: true
+  exclude_completed_tracks: true
+  # 2026-11-03：YOLO 曾把夹爪本体识别为 10-meat_can。以下包络使用本帧捕获
+  # 的 flange->camera 与 flange->body 变换同时检查检测单点和点云中心；落在
+  # 夹爪本体包络内的结果在目标策略、预检、张爪和 Cartesian 运动之前剔除。
+  gripper_self_filter:
+    enabled: true
+    flange_to_body_xyz: [0.0, 0.0, 0.091751924]
+    flange_to_body_rpy: [0.0, -1.5707963267949, 0.0]
+    body_envelope_min: [-0.142, -0.109, -0.082]
+    body_envelope_max: [0.136, 0.109, 0.082]
+  # 收纳盒换位后不再要求人工重教固定观察位。换位视角只允许用于成功数
+  # 达到 20 的倍数后的周期完整清空确认，普通抓取轮绝不换位扫描。
+  relocation_scan:
+    enabled: true
+    # 2026-11-04 操作员要求恢复固定观察位作为唯一任务起点：进入固定观察位后
+    # 直接观察，不再先向前伸 0.11 m。固定视角一旦确认可抓物品，就立即进入
+    # 完整安全预检和抓取；放置位保持原标定坐标不变。
+    fast_forward_enabled: false
+    fast_forward_offset_xyz_m: [0.0, 0.11, 0.0]
+    fast_forward_settle_s: 0.2
+    fast_forward_observe_frames: 1
+    fast_forward_confirm_hits: 1
+    # 固定观察位每轮最多有限重拍，看到可抓候选立即规划；完整视角仅用于
+    # 每 20 次成功后的周期清空确认。
+    complete_box_before_planning: false
+    # 完整覆盖收纳盒：四向、四角和高位复查。每轮都必须完成固定位与
+    # 全部换位视角，任一视角失败都会中止且不会报告空箱。
+    # 2026-11-03 现场固定姿态只读预检：原 +Y 0.12 m 低于奇异值门限；
+    # 保持 0.01 门限不变，将 +Y 轴收到 0.11 m、正 Y 角点收到 0.075 m。
+    offsets_xyz_m:
+      - [-0.12, 0.0, 0.0]
+      - [0.12, 0.0, 0.0]
+      - [0.0, -0.12, 0.0]
+      - [0.0, 0.11, 0.0]
+      - [-0.085, -0.085, 0.0]
+      - [0.085, -0.085, 0.0]
+      - [-0.085, 0.075, 0.0]
+      - [0.085, 0.075, 0.0]
+      - [0.0, 0.0, 0.08]
+    settle_s: 0.15
+  # 普通空箱不是“一个视角没看到目标”。必须连续完成两轮整箱扫描，全部视角
+  # 成功、无任何普通物品证据，才允许 NO_TARGET。例外：第一轮完整扫描确认
+  # 只有四角小物品时，直接按空箱结束，不抓取该小物品。
+  empty_confirmation:
+    enabled: true
+    require_complete_full_scan: true
+    confirmation_rounds: 2
+    require_all_views_successful: true
+    reject_if_any_item_present: true
+  # 所有物品的夹爪闭合轴对齐 PCA 短轴，夹爪跨短边闭合。2026-11-02 实机失败复盘确认：
+  # 当前夹爪安装时钟约为 90°，实际张合轴对应工具 +X，而非 CAD 标称 +Y。
+  # 这里显式配置实际闭合轴，禁止继续按未经验证的安装方向猜测。
+  # PCA、置信度或水平投影任一无效时该候选被跳过，不张爪、不预检、不运动。
+  short_edge_grasp:
+    enabled: true
+    closure_axis_tool_xy: [1.0, 0.0]
+    geometry_policy:
+      enabled: true
+      allow_rim: true
+      allow_vertical_center: true
+      allow_horizontal_sidewall: false
+    # 垂直候选完整预检失败后，再尝试沿工具 Z 的有界倾斜接近；
+    # 正负对称倾角覆盖腕部分支差异，且任一候选仍须通过完整安全预检。
+    tilt_angles_deg: [15.0, -15.0, 30.0, -30.0]
+    tool_axis_approach_height_m: 0.08
+    # 每个几何抓取点最多做 5 个朝向的完整预检；中心点的 5 个变体失败后仍会
+    # 进入长轴端部兜底点，而不是无限尝试全部倾斜组合。
+    max_precheck_attempts_per_point: 5
+    # 先抓点云几何中心，保证夹爪落在物体中间，而不是 YOLO 的单像素检测锚点。
+    # 仅对下列带柄/长端物品，在中心候选的完整 IK、路由和安全预检失败后，
+    # 再尝试 PCA 长轴两端 ±30% 长轴长度的端部候选。端部是几何兜底点，
+    # 不是模型识别到的语义柄关键点；每个候选仍必须通过全部只读预检才会运动。
+    grasp_point_modes: [object_center, handle]
+    handle_grasp_labels:
+      - 3-Scissors
+      - 4-Frenchs_Mustard
+      - 7-Clamp
+      - 9-Mug
+      - 24-Spoon
+      - 25-Flat_Screwdriver
+      - 30-Stabilo_OHPen
+      - 36-Adjustable_Wrench
+    handle_offset_fraction: 0.30
+    min_pose_confidence: 0.50
+    require_validated_extrinsics: true
+    # 视觉 Z 是物体可见上表面，不是夹爪能包住物体的插入深度。2026-11-01
+    # 现场实测该收纳盒内整个水平范围都可安全到达最低夹爪尖 Z=0.000103 m；
+    # 所有 C/D 物品统一下探到此值，再按 PCA 短边方向闭合。该值不得低于
+    # motion.grasp_safety.minimum_grasp_tip_z_m，配置加载时会 fail-closed。
+    jaw_tip_z_m: 0.000103
+    pca:
+      min_valid_points: 200
+      min_depth_m: 0.08
+      max_depth_m: 1.20
+      trim_percentile: 5.0
+      # 圆形容器或矩形物体是否适合抓取由同帧几何策略决定；PCA 阶段先保留
+      # 轴向证据，不能在候选生成前用旧阈值误拒绝可测量的杯沿。
+      defer_axis_ratio_rejection: true
+      # 现场俯视点云受遮挡影响会低估长宽比；1.02 仅作为数值可辨识下限，
+      # 点数、置信度和水平投影无效时仍立即拒绝，不发力。
+      min_axis_ratio: 1.02
+      support_plane_required: false
+      # 2026-11-05 现场诊断：固定相机约 16 度俯视时，严格桌面采样 ROI
+      # 过窄，且重复检测框会遮蔽有效桌面像素。扩大采样范围但保留原有
+      # 法向阈值、300 点下限、RMS/内点率、组件共识、目标间隙和质量门限。
+      support_plane_scene_margin_x_px: 35
+      support_plane_scene_margin_y_px: 45
+      support_plane_min_local_normal_z: 0.99
+      support_plane_roi_far_min_local_normal_z: 0.97
+      support_plane_roi_far_depth_quantile: 0.80
+      support_plane_component_min_inlier_ratio: 0.70
+      support_plane_min_support_components: 5
+vision:
+  # 自适应中心优先：不设置固定“中间/四角”范围。每帧按目标相对分布
+  # 连续排序，越接近画面中心的越先抓；外围大物品照常抓取。只有相对同帧
+  # 明显偏小、且位于外围的杂物才剔除；只剩这类杂物时，在第一轮完整整箱
+  # 扫描成功后直接按空箱结束。
+  corner_small_object_filter:
+    enabled: true
+    mode: adaptive
+  backend: realsense_yolo
+  weights: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/models/official/track1_40class_v11_official_f43234a9.pt
+  min_confidence: 0.15
+  require_depth: true
+  camera_frame_id: camera_color_optical_frame
+  width: 640
+  height: 480
+  fps: 15
+  serial: ''
+  warmup_frames: 20
+  imgsz: 640
+  device: 0
+  depth_window: 5
+  target_class: ''
+  classes:
+  - 1-Cheez-it
+  - 2-Starkist_Tuna
+  - 3-Scissors
+  - 4-Frenchs_Mustard
+  - 5-Tomato_Soup
+  - 6-Foam_Brick
+  - 7-Clamp
+  - 8-Plastic_Banana
+  - 9-Mug
+  - 10-meat_can
+  - 11-Padlock
+  - 12-Baseball
+  - 13-Bowl
+  - 14-Sleeve
+  - 15-Coca_cola_half
+  - 16-ICRA_Duckie
+  - 17-Eggs_Plush
+  - 18-Dice
+  - 19-Elmers_Glue
+  - 20-Scotch_Tape
+  - 21-Haribo_Golden_Bear
+  - 22-E27_Adapter
+  - 23-GU24_Adapter
+  - 24-Spoon
+  - 25-Flat_Screwdriver
+  - 26-Plastic_Strawberry
+  - 27-Coca_cola_full
+  - 28-Kong_Duck_Dog_Toy
+  - 29-Paper_Towels
+  - 30-Stabilo_OHPen
+  - 31-Plastic_White_Cup
+  - 32-Wine_Glass
+  - 33-Key
+  - 34-Nail
+  - 35-Book
+  - 36-Adjustable_Wrench
+  - 37-T-shirt
+  - 38-Jumbo_Pencil_Cup
+  - 39-Glove
+  - 40-Pringles
+  anchor: top_center
+  rotate_180: true
+  output_dir: ../logs/vision
+  continuous: true
+  show: true
+  window_name: Track 1 - D405 + YOLO
+  preview_fps: 30
+  capture_timeout_s: 20.0
+  stale_after_s: 2.0
+  stabilizer:
+    enabled: true
+    inference_min_confidence: 0.1
+    # C/D 抓取不做抓前连续帧确认：首帧检测到可抓目标后立即进入规划。
+    # 稳定器仍负责生成 track ID，但首帧即发布可见目标。
+    confirm_hits: 1
+    max_misses: 3
+    match_iou: 0.2
+    confidence_alpha: 0.25
+    box_alpha: 0.55
+    depth_alpha: 0.25
+    duplicate_iou: 0.55
+    containment_ratio: 0.9
+    cross_class_iou: 0.4
+    cross_class_containment: 0.6
+    cross_class_conf_ratio: 1.5
+    # 清空模式必须保留同类别的多个独立实例。
+    max_per_class: 0
+    # unknown/object are physical instances, not mutually exclusive classes.
+    instance_tracking_labels:
+    - unknown
+    - object
+    class_switch_hits: 3
+    edge_margin_px: 8
+    edge_suppress_confidence: 0.55
+  # 任务C禁止未知物提议；任务模式门禁也会强制关闭。
+  unknown_proposer:
+    enabled: false
+    label: unknown
+    min_depth_m: 0.08
+    max_depth_m: 1.2
+    plane_max_samples: 18000
+    plane_ransac_iterations: 128
+    plane_ransac_threshold_m: 0.003
+    plane_min_inliers: 300
+    plane_min_inlier_ratio: 0.22
+    plane_max_rms_m: 0.006
+    plane_min_normal_z: 0.5
+    min_object_height_m: 0.008
+    max_object_height_m: 0.35
+    min_area_px: 400
+    max_area_ratio: 0.6
+    min_component_width_px: 12
+    min_component_height_px: 8
+    min_valid_ratio: 0.35
+    min_depth_points: 120
+    morph_open_px: 3
+    morph_close_px: 5
+    edge_margin_px: 2
+    max_proposals: 8
+    known_overlap_iou: 0.25
+    known_containment: 0.7
+    min_pose_confidence: 0.55
+    graspability_scale: 0.9
+    seed: 20261101
+  save_annotated: false
+  save_interval_s: 2.0
+  weights_sha256: f43234a94f1d71b24cb187082c18eb22fea84c88922c605df5f7b1a79ffcaaa6
+task_a:
+  iou_threshold: 0.75
+  ground_truth_file: ''
+  output_dir: ../logs/task_a_annotated
+  save_annotated: true
+  draw_labels: true
+  draw_ground_truth: true
+  max_frames: 0
+  min_positions: 10
+  patrol:
+    enabled: true
+    position_count: 10
+    min_move_distance_m: 0.15
+    stride_m: 0.2
+    linear_step_m: 0.01
+    settle_s: 0.8
+    axes:
+    - x
+    - y
+task_b:
+  place_poses_file: task_b_place_poses.yaml
+  rounds: 5
+  keep_same_target: true
+  place_names:
+  - corner_front_left
+  - corner_front_right
+  - corner_back_right
+  - corner_back_left
+  - centre
+target:
+  policy: known
+  known_classes:
+  - 1-Cheez-it
+  - 2-Starkist_Tuna
+  - 3-Scissors
+  - 4-Frenchs_Mustard
+  - 5-Tomato_Soup
+  - 6-Foam_Brick
+  - 7-Clamp
+  - 8-Plastic_Banana
+  - 9-Mug
+  - 10-meat_can
+  - 11-Padlock
+  - 12-Baseball
+  - 13-Bowl
+  - 14-Sleeve
+  - 15-Coca_cola_half
+  - 16-ICRA_Duckie
+  - 17-Eggs_Plush
+  - 18-Dice
+  - 19-Elmers_Glue
+  - 20-Scotch_Tape
+  - 21-Haribo_Golden_Bear
+  - 22-E27_Adapter
+  - 23-GU24_Adapter
+  - 24-Spoon
+  - 25-Flat_Screwdriver
+  - 26-Plastic_Strawberry
+  - 27-Coca_cola_full
+  - 28-Kong_Duck_Dog_Toy
+  - 29-Paper_Towels
+  - 30-Stabilo_OHPen
+  - 31-Plastic_White_Cup
+  - 32-Wine_Glass
+  - 33-Key
+  - 34-Nail
+  - 35-Book
+  - 36-Adjustable_Wrench
+  - 37-T-shirt
+  - 38-Jumbo_Pencil_Cup
+  - 39-Glove
+  - 40-Pringles
+  unknown_labels:
+  - unknown
+  - object
+  unknown_min_graspability: 0.65
+  max_attempts_per_target: 2
+  order:
+  - 1-Cheez-it
+  - 2-Starkist_Tuna
+  - 3-Scissors
+  - 4-Frenchs_Mustard
+  - 5-Tomato_Soup
+  - 6-Foam_Brick
+  - 7-Clamp
+  - 8-Plastic_Banana
+  - 9-Mug
+  - 10-meat_can
+  - 11-Padlock
+  - 12-Baseball
+  - 13-Bowl
+  - 14-Sleeve
+  - 15-Coca_cola_half
+  - 16-ICRA_Duckie
+  - 17-Eggs_Plush
+  - 18-Dice
+  - 19-Elmers_Glue
+  - 20-Scotch_Tape
+  - 21-Haribo_Golden_Bear
+  - 22-E27_Adapter
+  - 23-GU24_Adapter
+  - 24-Spoon
+  - 25-Flat_Screwdriver
+  - 26-Plastic_Strawberry
+  - 27-Coca_cola_full
+  - 28-Kong_Duck_Dog_Toy
+  - 29-Paper_Towels
+  - 30-Stabilo_OHPen
+  - 31-Plastic_White_Cup
+  - 32-Wine_Glass
+  - 33-Key
+  - 34-Nail
+  - 35-Book
+  - 36-Adjustable_Wrench
+  - 37-T-shirt
+  - 38-Jumbo_Pencil_Cup
+  - 39-Glove
+  - 40-Pringles
+pose:
+  camera_frame: flange
+  extrinsics_file: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/camera_to_flange.d405_calibrated_20261025.yaml
+  use_detection_base_xyz: false
+  fallback_camera_to_base: false
+  # 控制器 RobotInfo/RobotMove 使用法兰坐标；不能与 TCP 坐标混用。
+  robot_pose_frame: flange
+  # 从法兰原点到闭合夹爪最低尖端的偏移，单位为米。
+  # 0.165 m 来自现场装配标定，不是 MS42DC 官方成品尺寸。
+  gripper_tip_offset_flange_m: [0.0, 0.0, 0.165]
+motion:
+  backend: robotmove
+  dry_run: false
+  motion_mode: joint_ik
+  workspace_min:
+  - -0.80
+  - -0.80
+  - 0.02
+  workspace_max:
+  - 0.80
+  - 0.80
+  - 0.8
+  workspace_margin: 0.01
+  approach_height: 0.08
+  grasp_z_offset: 0.0
+  # 2026-11-02 C/D 操作目标：抬升后 D405 光学中心到收纳盒底部的直线距离
+  # 为 0.35 m。最低抓取位实测该距离为 0.179600 m；相机光轴接近竖直，
+  # 按同一姿态沿法兰 Z 上升 0.1706 m 后，该距离约为 0.3500 m。
+  # 因此这里不是垂直抬升 0.35 m；完整路径仍由既有 Z 安全包络约束。
+  lift_height: 0.1706
+  # C/D release target is the closed-jaw low point, not the controller flange.
+  # Planner converts jaw-tip XYZ to flange XYZ with the configured tool offset.
+  place_pose_frame: jaw_tip
+  # 2026-11-01 19:50 现场只读采集；操作员确认当前倾斜姿态就是释放姿态。
+  # XYZ 是闭合夹爪尖，姿态与控制器法兰 RPY 一致。
+  place_pose:
+  - 0.270377682201
+  - 0.335654065085
+  - 0.246477463808
+  - -2.84530955462
+  - 0.015450189026
+  - -0.92808733871
+  place_approach_height: 0.08
+  retreat_height: 0.08
+  # 2026-11-04 吞吐测试：相对最近实跑 75% 档的
+  # 0.0675 m/s 提高到 0.18 m/s，约 2.67 倍；视觉伺服速度独立保持。
+  speed_mps: 0.18
+  # 标量关节速度上限同步提高到 2.4 rad/s。J1-J3 的 URDF 上限为
+  # 2.617994 rad/s，因此实际命令仍保留约 8.3% 的模型余量。
+  joint_speed_rad_s: 2.4
+  joint_speed_safety_limit_rad_s: 2.4
+  orientation: fixed
+  fixed_rpy:
+  - 3.14159265
+  - 0.0
+  - 0.0
+  # C/D 抓取必须使用显式固定姿态；visual 目标点按夹爪尖解释。
+  grasp_rpy: [3.14159265, 0.0, 0.0]
+  grasp_safety:
+    enabled: true
+    require_flange_tip_offset: true
+    require_tool_down: true
+    # 抓取和抬升工具轴倾角受有界安全上限限制；放置段单独允许现场确认的倾斜姿态。
+    maximum_tool_tilt_deg: 30.0
+    maximum_place_tool_tilt_deg: 18.0
+    minimum_approach_height_m: 0.05
+    maximum_approach_height_m: 0.12
+    maximum_approach_xy_error_m: 0.001
+    # 2026-11-01 22:18 现场同步标定：操作员确认这是收纳盒内整个水平范围
+    # 都可安全到达的最低抓取高度。30 帧稳定 /RobotInfo 的夹爪尖实测 Z 为
+    # 0.000103 m；同一静止状态下 D405 到空盒底部深度中值为 0.179600 m。
+    minimum_grasp_flange_z_m: 0.164621
+    minimum_grasp_tip_z_m: 0.000103
+    minimum_route_flange_z_m: 0.164621
+    minimum_route_tip_z_m: 0.000103
+    # 2026-11-01 操作员明确要求：不设置“最高抓取点位”。这两个上限保持
+    # null；live 仍强制最低边界、路线包络、工具倾角、接近高度和机器人
+    # 关节/工作空间预检查。不得把当前临时姿态或推测值写成抓取上限。
+    maximum_grasp_flange_z_m: null
+    maximum_grasp_tip_z_m: null
+    # 以下值不是新示教点，而是由已确认的固定放置位和固定 8 cm 接近量推导：
+    # flange 0.404269299444 + 0.080000000000 = 0.484269299444 m；
+    # jaw-tip 0.246477463808 + 0.080000000000 = 0.326477463808 m。
+    maximum_route_flange_z_m: 0.4842692994444904
+    maximum_route_tip_z_m: 0.326477463808
+    # 扩大 Task C 的软件水平包络。该值不再把过去单个最低抓取姿态的
+    # 0.5846 m 当作整台六轴机械臂的全部工作区；实际可达性仍由逐点 IK、
+    # 关节限位、分支跳变、奇异值和完整路线预检共同约束。
+    maximum_horizontal_reach_m: 0.82
+  move_timeout_s: 30.0
+  position_tolerance_m: 0.003
+  poll_period_s: 0.05
+  robotmove_topic: RobotMove
+  robotinfo_topic: RobotInfo
+  robot_info_timeout_s: 2.0
+  joint_max_step_deg: 1.0
+  joint_tolerance_deg: 0.35
+  joint_start_tolerance_deg: 0.05
+  joint_limit_margin_deg: 2.0
+  joint_move_timeout_s: 8.0
+  joint_reject_timeout_s: 2.0
+  cartesian_step_m: 0.002
+  # 2026-11-02 只读预检：0.623° 在 0.5 mm 最小间距仍超过 0.6°；
+  # 0.25 mm 只提高路径分辨率，不改变 0.6° 步长、5° 分支跳变、
+  # 奇异值或 0.25° 离散加速度安全门禁。
+  cartesian_min_step_m: 0.00025
+  cartesian_orientation_step_deg: 1.0
+  cartesian_min_orientation_step_deg: 0.1
+  # 600 是单个内部规划块上限；长逻辑段可重叠分块，但整段仍受硬上限约束。
+  cartesian_max_waypoints: 600
+  cartesian_max_total_waypoints: 3200
+  # 2026-11-01 现场短边姿态预检：0.517°/0.520° 被 0.500° 误拒绝；
+  # 0.600° 仍低于控制器 joint_max_step_deg=1.000°，且加速度保护不变。
+  cartesian_joint_step_deg: 0.6
+  cartesian_joint_branch_jump_deg: 5.0
+  cartesian_joint_acceleration_limit_deg: 0.25
+  cartesian_min_jacobian_singular_value: 0.01
+  # 完整安全预检仍逐点执行；真正下发给控制器的轨迹只保留有界抽稀点，
+  # 首末点不变，相邻关节步长不超过 0.95°，跳过点的弦偏差不超过 0.15°。
+  trajectory_compression_enabled: true
+  trajectory_compression_max_joint_step_deg: 0.95
+  trajectory_compression_max_chord_deviation_deg: 0.15
+servo:
+  desired_standoff_m: 0.18
+  min_depth_m: 0.12
+  center_tolerance_px: 35
+  depth_tolerance_m: 0.015
+  max_steps: 36
+  max_step_m: 0.005
+  max_total_travel_m: 0.35
+  speed_mps: 0.01
+  lateral_gain: 0.8
+  forward_gain: 0.8
+  settle_s_after_move: 0.25
+  convergence_frames: 2
+  camera_to_tool:
+  - - 1.0
+    - 0.0
+    - 0.0
+  - - 0.0
+    - 1.0
+    - 0.0
+  - - 0.0
+    - 0.0
+    - 1.0
+search:
+  # 固定观察位清空模式：不离开观察位做搜索。
+  enabled: false
+  yaw_offsets_deg:
+  - 0
+  pitch_down_offsets_deg:
+  - 0
+  - 5
+  - 10
+  - 15
+  - 20
+  - 25
+  - 30
+  - 35
+  - 40
+  - 45
+  - 50
+  - 55
+  - 60
+  - 65
+  - 70
+  - 75
+  - 80
+  settle_s: 0.8
+  # 抓取前不等待第二帧：稳定器首帧发布候选，本层首帧立即返回并规划。
+  # 仍必须取得一帧有效深度与可执行几何；无有效候选时才进入空箱复核扫描。
+  observe_frames: 1
+  confirm_hits: 1
+  return_to_initial_on_miss: true
+gripper:
+  backend: ms42dc
+  serial_port: /dev/serial/by-id/usb-1a86_USB_Single_Serial_5CF0022496-if00
+  serial_baudrate: 115200
+  device_id: 1
+  subdivide: 32
+  motion_mode: 2
+  open_angle_deg: 1957.9
+  close_angle_deg: 1957.9
+  # 2026-11-02 实机复盘：2.0 rad/s 闭爪只用 0.28 s 就误报到位，
+  # 累计行程仅 205.7 deg，爪指尚未夹住物体。4.0 rad/s 已在空载台架
+  # 验证可走完全行程；行程证据不足时仍会 fail-closed，禁止抬臂。
+  speed_rad_s: 5.0
+  close_speed_rad_s: 4.0
+  status_timeout_s: 1.0
+  # 4.0 rad/s 走完约 1958 deg 理论约 8.6 s；25 s 覆盖启动与堵转判定。
+  motion_timeout_s: 25.0
+  invert_direction: false
+  # 物品尺寸不一致，MS42DC 返回角度又不是独立夹持/负载测量。固定空夹角
+  # 会把真实夹持误判为空夹，因此 C/D 正式流程禁用该门限；闭合是否覆盖
+  # 当前物体由 close_for_width 根据该物体的测得宽度和 CAD 行程证据判断。
+  hold_min_angle_deg: 0.0
+  require_feedback: true
+  settle_time_s: 0.3
+  arrival_stable_samples: 4
+  arrival_speed_tolerance_rad_s: 0.25
+  arrival_angle_tolerance_deg: 2.0
+  require_close_travel_evidence: true
+  close_travel_width_margin_m: 0.005
+  close_travel_tolerance_deg: 80.0
+  open_before_approach: true
+grasp_consensus:
+  enabled: false
+  report_file: ''
+  minimum_distinct_frames: 4
+  maximum_translation_tolerance_m: 0.025
+  maximum_jaw_rotation_tolerance_deg: 15.0
+  maximum_pose_translation_error_m: 0.025
+  maximum_pose_jaw_rotation_error_deg: 15.0

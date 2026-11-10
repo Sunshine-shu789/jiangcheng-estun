@@ -1,0 +1,16 @@
+# Ground-truth template for task A on real frames.
+#
+# Each entry pairs a frame with the labelled boxes the judge expects.  Point
+# task_a.ground_truth_file at your own copy.  Boxes are (x0, y0, x1, y1) in
+# pixels of the same image the network saw (mind any ROI crop).
+frames:
+  - frame_id: pos_01
+    image: pos_01.png
+    annotations:
+      - label: mug
+        bbox: [120, 90, 230, 240]
+  - frame_id: pos_02
+    image: pos_02.png
+    annotations:
+      - label: mug
+        bbox: [310, 110, 425, 265]

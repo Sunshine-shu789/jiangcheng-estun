@@ -1,0 +1,98 @@
+schema_version: 1
+purpose: 赛道一 40 类 YOLO v6：从已验收 v5 best 继续训练，新增自采并复核的 17 蛋形毛绒玩具和 26 塑料草莓；完整保留 v5 与前
+  10 类
+dataset_yaml: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v6/dataset.yaml
+base_weights: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_train_40class_v5/track1_40class_v5_20261029_234800/weights/best.pt
+output_root: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_train_40class_v6
+preflight_report: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/reports/track1_training_preflight_v6_latest.json
+expected:
+  nc: 40
+  source_nc: 40
+  empty_slots: []
+  images:
+    train: 439
+    val: 121
+  boxes: 828
+  review_records: 348
+  reviewed_with_boxes: 346
+  empty_review_records: 2
+  skipped_review_records: 0
+  postclass_boxes: 602
+  min_free_gb: 5
+  min_gpu_memory_gb: 6
+  front10_names:
+  - 1-Cheez-it
+  - 2-Starkist_Tuna
+  - 3-Scissors
+  - 4-Frenchs_Mustard
+  - 5-Tomato_Soup
+  - 6-Foam_Brick
+  - 7-Clamp
+  - 8-Plastic_Banana
+  - 9-Mug
+  - 10-meat_can
+  front10_images:
+    train: 75
+    val: 23
+  front10_boxes: 143
+  front10_review_records: 71
+  front10_empty_records: 0
+  front10_skipped_records: 0
+  official_front10_images_used: false
+  v6_base_checkpoint: v5_verified_best
+  v6_new_class_images:
+    17-Eggs_Plush: 45
+    26-Plastic_Strawberry: 38
+  v6_new_class_boxes:
+    train_class_17: 35
+    val_class_17: 10
+    train_class_26: 30
+    val_class_26: 8
+train:
+  epochs: 20
+  imgsz: 640
+  batch: 8
+  device: 0
+  workers: 4
+  cache: false
+  amp: true
+  pretrained: true
+  optimizer: AdamW
+  lr0: 8.0e-05
+  lrf: 0.01
+  momentum: 0.937
+  weight_decay: 0.0005
+  warmup_epochs: 0.5
+  warmup_momentum: 0.8
+  warmup_bias_lr: 0.02
+  cos_lr: true
+  patience: 6
+  save: true
+  save_period: 2
+  val: true
+  plots: true
+  verbose: true
+  seed: 42
+  deterministic: true
+  close_mosaic: 0
+  mosaic: 0.0
+  mixup: 0.0
+  copy_paste: 0.0
+  degrees: 3.0
+  translate: 0.05
+  scale: 0.2
+  shear: 1.0
+  perspective: 0.0
+  flipud: 0.0
+  fliplr: 0.5
+  hsv_h: 0.015
+  hsv_s: 0.5
+  hsv_v: 0.3
+  multi_scale: 0.0
+  rect: false
+  fraction: 1.0
+  freeze: 0
+cpu_profile:
+  batch: 2
+  workers: 2
+  amp: false

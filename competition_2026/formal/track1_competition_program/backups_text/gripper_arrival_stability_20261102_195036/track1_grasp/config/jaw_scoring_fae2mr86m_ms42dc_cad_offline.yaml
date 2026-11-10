@@ -1,0 +1,93 @@
+# Offline-only CAD jaw scoring for the FAE2MR86M-D / MS42DC gripper.
+#
+# This configuration is intentionally research/development status.  It uses
+# the STEP-derived open/closed jaw profile, but it does not authorize live
+# motion, a gripper command, or a claim of calibrated grasp success.
+schema_version: 1
+name: fae2mr86m_ms42dc_cad_offline_v1
+validated: false
+status: offline_research_only
+motion_authorized: false
+
+profile:
+  jaw_profile_file: robot_description/estun_s3_60_g2/config/fae2mr86m_ms42dc_jaw_profile.json
+  dimensions_file: robot_description/estun_s3_60_g2/config/fae2mr86m_ms42dc_dimensions.json
+  tcp_x_m: 0.050
+  installation_clocking_deg: 0
+  installation_clocking_status: unmeasured
+  shim_status: unmeasured
+
+scoring:
+  # The target cloud is used only for contact/cavity checks.  Obstacles are
+  # scored separately so a target point is never mislabeled as a collision.
+  contact_band_m: 0.007
+  reference_width_band_m: 0.012
+  penetration_skin_m: 0.0008
+  collision_skin_m: 0.0015
+  approach_distance_m: 0.035
+  min_inner_points: 12
+  min_contact_points_per_side: 4
+  max_target_penetration_points: 3
+  max_collision_points: 2
+  width_tolerance_m: 0.010
+  # A visible-cloud width is an independent fail-closed check.  Candidates are
+  # research-only when the width cannot be measured or disagrees with GraspNet.
+  require_measured_width: true
+  opening_reserve_m: 0.002
+  minimum_closure_margin_m: 0.001
+  desired_obstacle_clearance_m: 0.008
+  nms_translation_m: 0.025
+  nms_rotation_deg: 30.0
+  contact_weight: 0.30
+  width_weight: 0.20
+  engagement_weight: 0.15
+  penetration_weight: 0.10
+  obstacle_clearance_weight: 0.10
+  tolerance_weight: 0.10
+  opening_margin_weight: 0.05
+
+# GraspNet width is a reference/upper bound, not necessarily the physical
+# closing/contact opening.  Search within the visible-width tolerance while
+# retaining every contact, penetration, collision, clearance, and IK check.
+aperture_search:
+  enabled: true
+  step_m: 0.0005
+  max_trials: 96
+  minimum_extra_opening_m: 0.0005
+  # null means reuse scoring.width_tolerance_m (currently 0.010 m).
+  maximum_measured_delta_m: null
+
+notes:
+  - Candidate translation is a GraspNet surface seed/reference point, not grasp_tcp.
+  - GraspNet width is a reference/upper-bound opening; the selected CAD opening is checked separately.
+  - Finger contact depth depends on object width and remains unverified on hardware.
+  - The third-party GraspNet checkpoint has not been validated against this scene.
+
+world_clearance:
+  # Base-frame support plane.  The actual table/robot-base relationship still
+  # requires on-site verification before motion is enabled.
+  support_origin_base_m: [0.0, 0.0, 0.0]
+  support_normal_base: [0.0, 0.0, 1.0]
+  # Every sampled CAD finger/body point must remain at least this high above
+  # the support plane.  The TCP itself must also be inside workspace_min_z_m.
+  minimum_clearance_m: 0.020
+  # Absolute base-frame lower bound for the physical TCP.  This is deliberately
+  # independent of the estimated support-plane height and is never relaxed by
+  # plane estimation.
+  workspace_min_z_m: 0.020
+  finger_y_samples: 3
+
+  # Estimate the support surface from the local obstacle cloud in this frame.
+  # If the fit is not reliable, the offline tool fails closed rather than
+  # falling back to the old base-z=0 assumption.
+  support_plane_estimation:
+    enabled: true
+    local_xy_radius_m: 0.160
+    ransac_threshold_m: 0.002
+    ransac_iterations: 5000
+    max_fit_points: 30000
+    min_inliers: 300
+    min_inlier_ratio: 0.35
+    max_rms_m: 0.0035
+    min_normal_z: 0.80
+    seed: 20261030

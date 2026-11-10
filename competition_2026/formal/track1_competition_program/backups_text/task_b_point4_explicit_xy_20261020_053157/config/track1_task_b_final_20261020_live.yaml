@@ -1,0 +1,327 @@
+# Task B five-point FORMAL LIVE configuration, validated on 2026-10-20.
+#
+# This is the desktop-launcher configuration for the complete Task B run.
+# It uses the operator-captured observation windows, safe search views,
+# per-point grasp Z/RPY values, the real MS42DC gripper, and the validated
+# 0.06 m/s motion setting.  After each in-place pick-and-return the controller
+# first returns all six axes to the captured initial pose, then pauses so the
+# operator can move the banana to the next point.  After Enter, the next point
+# must still pass fresh visual confirmation before its motion cycle starts.
+
+task:
+  mode: B
+  max_picks: 5
+  stop_on_error: true
+  sample_period_s: 0.2
+
+vision:
+  # Direct RealSense + YOLO path.  The RGB/depth frames and principal point
+  # are rotated together because the D405 is mounted upside down.
+  backend: realsense_yolo
+  # Selected from same-scene, 30-frame comparisons: v21 best was correct in
+  # 30/30 frames (median confidence 0.93), while v23 best confused 7 frames
+  # with 10-meat_can.  Keep the model path explicit for reproducible tests.
+  weights: ../models/best.pt
+  min_confidence: 0.35
+  require_depth: true
+  camera_frame_id: camera_color_optical_frame
+  width: 640
+  height: 480
+  fps: 15
+  serial: ""                 # empty = select the currently connected D405
+  warmup_frames: 20
+  # 960 px is required for the vertically oriented point-3 banana: at 640
+  # the model repeatedly misclassified it as 4-Frenchs_Mustard. Live point-3
+  # validation at 960 px passed on 2026-10-20 05:21.
+  imgsz: 960
+  device: cpu
+  depth_window: 5
+  target_class: "8-Plastic_Banana"
+  classes:
+    - "1-Cheez-it"
+    - "2-Starkist_Tuna"
+    - "3-Scissors"
+    - "4-Frenchs_Mustard"
+    - "5-Tomato_Soup"
+    - "6-Foam_Brick"
+    - "7-Clamp"
+    - "8-Plastic_Banana"
+    - "9-Mug"
+    - "10-meat_can"
+  anchor: top_center
+  rotate_180: true
+  output_dir: ../logs/vision
+  # Continuous mode keeps D405 + YOLO running while the arm is moving.
+  # The preview is a separate GUI thread and shows boxes/depth/FPS/state.
+  continuous: true
+  show: true
+  window_name: "Track 1 - D405 + YOLO"
+  preview_fps: 30
+  # First capture includes D405 warm-up and YOLO cold start (about 8-9 s
+  # on the current CPU); later frames normally take 55-70 ms.
+  capture_timeout_s: 20.0
+  stale_after_s: 2.0
+  stabilizer:
+    enabled: true
+    inference_min_confidence: 0.10
+    confirm_hits: 3
+    max_misses: 3
+    match_iou: 0.20
+    confidence_alpha: 0.25
+    box_alpha: 0.55
+    depth_alpha: 0.25
+    duplicate_iou: 0.55
+    containment_ratio: 0.90
+    cross_class_iou: 0.40
+    cross_class_containment: 0.60
+    cross_class_conf_ratio: 1.50
+    max_per_class: 1
+    class_switch_hits: 3
+    edge_margin_px: 8
+    edge_suppress_confidence: 0.55
+  # Do not write every inference result to disk.  Press "s" in the preview
+  # window to save a snapshot, or enable this with a throttled interval.
+  save_annotated: false
+  save_interval_s: 2.0
+
+task_a:
+  iou_threshold: 0.75
+  ground_truth_file: ""
+  output_dir: ../logs/task_a_annotated
+  save_annotated: true
+  draw_labels: true
+  draw_ground_truth: true
+  max_frames: 0
+  min_positions: 10
+  # Task A competition workflow: visit ten TCP targets.  The route alternates
+  # between the two valid endpoints on one base-frame axis, so every commanded
+  # segment remains >= 15 cm and the camera stays live for the whole patrol.
+  patrol:
+    enabled: true
+    position_count: 10
+    min_move_distance_m: 0.15
+    stride_m: 0.20
+    linear_step_m: 0.01
+    settle_s: 0.8
+    axes: [x, y]
+
+task_b:
+  # Reuse the operator-approved six-joint startup posture.  It is checked before
+  # point 1 and restored after every completed pick-and-return cycle.
+  initial_pose_file: task_b_initial_pose_20261019_233355.yaml
+  initial_pose_tolerance_deg: 0.5
+  # Latest five observation poses captured read-only on 2026-10-20.  Reference
+  # Z is observation Z minus search.observation_clearance_m (0.20 m).
+  place_poses_file: task_b_place_poses_20261020.yaml
+  rounds: 5
+  return_to_pick: true
+  target_class: "8-Plastic_Banana"
+  keep_same_target: true
+  # The five tolerance windows overlap at points 1/5 and 4/5.  The planner now
+  # checks all five references and accepts only the nearest point with margin,
+  # so an object visible at a future point cannot start an early cycle.
+  pick_pose_tolerance_m: 0.08
+  point_assignment_margin_m: 0.01
+  # Zero means wait indefinitely for fresh visual confirmation at the next
+  # point.  A timeout must never cause motion or auto-advance.
+  next_point_timeout_s: 0.0
+  next_point_poll_s: 0.5
+  lift_hold_s: 2.0
+  # Required competition workflow: after each completed in-place pick-and-return,
+  # stop and wait for the operator to move the banana and press Enter.  The next
+  # point must then pass its own fresh visual-confirmation and route-precheck gates.
+  operator_pause_after_each_pick: true
+  place_names: [pick_1, pick_2, pick_3, pick_4, pick_5]
+  # Per-point grasp height in metres.  Point 3 and point 4 were re-taught by
+  # the operator on 2026-10-20 after their boxes moved too close to an edge.
+  point_grasp_z_m:
+    - 0.166534092
+    - 0.166534092
+    - 0.16218029524630417
+    - 0.169903173540
+    - 0.166454634
+  # Points 2, 3 and 4 descend straight down from their newly taught
+  # observation columns.  Visual detection still confirms the banana before
+  # planning, but live visual XY cannot shift these poses toward a box edge.
+  point_grasp_xy_from_observation: [false, true, true, true, false]
+  # These are operator-taught grasp orientations, retained by point and
+  # rechecked during the supervised point-by-point live validation.
+  point_grasp_rpy:
+    - [3.029562510, 0.069559687, -0.068061620]
+    - [3.093678813, 0.128615562, 0.224744345]
+    - [3.045178411, 0.059528589, -0.397915592]
+    - [3.083158245, 0.050086616, -0.347881105]
+    - [3.026471987, 0.054535204, -0.656420178]
+  # Operator-taught six-joint observation postures captured read-only on
+  # 2026-10-20.  The arm moves to the current point's posture before its first
+  # visual observation.  This prevents a long diagonal Cartesian approach from
+  # the high startup pose from crossing an ill-conditioned wrist configuration.
+  point_observation_joints_deg:
+    - [81.722065854, 83.401050762, -48.371075259, -55.140793165, 87.911188382, -3.395002883]
+    - [91.405846375, 74.366790849, -18.643502588, -35.900559036, 87.641336807, -19.600974643]
+    - [88.606279345, 94.897322912, -79.332457850, -73.643387215, 84.809611892, 21.237936864]
+    - [66.769885390, 93.322318979, -80.589018615, -75.774917104, 87.317606471, -3.217390651]
+    - [72.779312861, 88.137392207, -54.227518175, -57.451217024, 87.927919637, 12.231898069]
+  observation_pose_tolerance_deg: 0.5
+  # Competition workflow: release + retreat -> six-axis initial pose -> Enter.
+  return_to_initial_after_each_pick: true
+  return_to_initial_after_task: false
+
+target:
+  policy: any
+  known_classes:
+    - "1-Cheez-it"
+    - "2-Starkist_Tuna"
+    - "3-Scissors"
+    - "4-Frenchs_Mustard"
+    - "5-Tomato_Soup"
+    - "6-Foam_Brick"
+    - "7-Clamp"
+    - "8-Plastic_Banana"
+    - "9-Mug"
+    - "10-meat_can"
+  unknown_labels: [unknown, object]
+  unknown_min_graspability: 0.65
+  max_attempts_per_target: 1
+  # Exact detector labels in the published task-E order.  Update if the
+  # competition order differs.
+  order:
+    - "1-Cheez-it"
+    - "2-Starkist_Tuna"
+    - "3-Scissors"
+    - "4-Frenchs_Mustard"
+    - "5-Tomato_Soup"
+    - "6-Foam_Brick"
+    - "7-Clamp"
+    - "8-Plastic_Banana"
+    - "9-Mug"
+    - "10-meat_can"
+
+pose:
+  # Eye-in-hand camera.  The transform file is a temporary identity-rotation
+  # assumption, not a completed hand-eye calibration.
+  camera_frame: flange
+  extrinsics_file: camera_to_flange.d405_assumed.yaml
+  use_detection_base_xyz: false
+  fallback_camera_to_base: false
+
+motion:
+  backend: robotmove
+  dry_run: false
+  motion_mode: joint_ik
+  # Broad enough for the observed target at y about 0.50 m.  Small steps and
+  # max_total_travel remain the primary safety bounds.
+  workspace_min: [-0.65, -0.65, 0.02]
+  workspace_max: [0.65, 0.65, 0.80]
+  workspace_margin: 0.01
+  approach_height: 0.08
+  grasp_z_offset: 0.00
+  # Baseline only; every Task B point supplies its own verified/candidate Z and
+  # RPY override in task_b.point_grasp_z_m and point_grasp_rpy.
+  grasp_z_m: 0.161534092
+  grasp_rpy: [3.082206718, 0.098641098, -0.072880619]
+  # Keep the 0.08 m lift used by the successful single-point validations.
+  lift_height: 0.08
+  place_pose: [0.25, 0.25, 0.08, 3.14159265, 0.0, 0.0]
+  place_approach_height: 0.08
+  retreat_height: 0.08
+  # Operator-requested and field-validated task speed.
+  speed_mps: 0.06
+  orientation: current
+  fixed_rpy: [3.14159265, 0.0, 0.0]
+  move_timeout_s: 30.0
+  position_tolerance_m: 0.003
+  poll_period_s: 0.05
+  robotmove_topic: RobotMove
+  robotinfo_topic: RobotInfo
+  robot_info_timeout_s: 2.0
+  joint_max_step_deg: 1.0
+  joint_tolerance_deg: 0.35
+  joint_start_tolerance_deg: 0.05
+  joint_limit_margin_deg: 2.0
+  joint_move_timeout_s: 8.0
+  joint_reject_timeout_s: 2.0
+  # Every Task B Cartesian segment is pre-checked as a continuous six-axis IK
+  # path.  The per-axis step, acceleration proxy, branch-jump, joint-limit and
+  # Jacobian checks must all pass before the first waypoint is published.
+  # In joint_ik mode the controller is advanced point-to-point; spacing the
+  # path at 2 mm instead of 1 mm approximately halves command count while
+  # retaining all joint-step, acceleration, limit and Jacobian gates below.
+  cartesian_step_m: 0.002
+  cartesian_min_step_m: 0.0005
+  cartesian_orientation_step_deg: 1.0
+  cartesian_min_orientation_step_deg: 0.1
+  cartesian_max_waypoints: 600
+  cartesian_joint_step_deg: 0.5
+  cartesian_joint_branch_jump_deg: 5.0
+  cartesian_joint_acceleration_limit_deg: 0.25
+  cartesian_min_jacobian_singular_value: 0.01
+
+servo:
+  desired_standoff_m: 0.18
+  min_depth_m: 0.12
+  center_tolerance_px: 35
+  depth_tolerance_m: 0.015
+  max_steps: 36
+  max_step_m: 0.005      # first supervised test: 5 mm per servo iteration
+  max_total_travel_m: 0.35
+  speed_mps: 0.01
+  lateral_gain: 0.8
+  forward_gain: 0.8
+  settle_s_after_move: 0.25
+  convergence_frames: 2
+  # R_tool_camera after the RGB-D frame is rotated 180 degrees.  Verify signs
+  # under emergency-stop supervision; change this matrix, not the servo code.
+  camera_to_tool:
+    - [1.0, 0.0, 0.0]
+    - [0.0, 1.0, 0.0]
+    - [0.0, 0.0, 1.0]
+
+search:
+  enabled: true
+  # If the first camera observation does not confirm the banana, move the TCP
+  # to these safe viewpoints around the current expected pick point and look
+  # again after every move.  Offsets are [x, y] metres in the robot base frame;
+  # Z is the expected point height plus observation_clearance_m below.
+  # Keep these values conservative until the five real pick points, workspace
+  # limits and collision envelope have been measured on site.
+  # Cartesian search views verified safe for pick points 1-5.  Wider
+  # +/-0.10 m views entered near-singular regions on multiple points.
+  observation_offsets_xy_m:
+    - [0.00, 0.00]
+    - [0.08, 0.00]
+    - [0.00, -0.08]
+  observation_clearance_m: 0.20
+  yaw_offsets_deg: [0]
+  # Positive values rotate the current forward-looking camera toward world -Z.
+  pitch_down_offsets_deg: [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80]
+  settle_s: 0.8
+  # The detector can briefly switch class under the current view, so search
+  # and post-move checks look at several consecutive newest frames.
+  observe_frames: 8
+  # Require the same box/class in consecutive frames before sending a pick
+  # motion.  This is a second gate after the D405 detection stabilizer.
+  confirm_hits: 2
+  return_to_initial_on_miss: true
+
+gripper:
+  # Parameters match the successful field-validated MS42DC live runs.
+  backend: ms42dc_ros
+  motor_control_topic: /motor_control
+  motor_state_topic: /motor_state
+  device_id: 1
+  subdivide: 32
+  motion_mode: 2
+  open_dir: 0
+  close_dir: 1
+  open_angle_deg: 3000.0
+  close_angle_deg: 3000.0
+  speed_rad_s: 10.0
+  status_timeout_s: 1.0
+  motion_timeout_s: 8.0
+  ros_connect_timeout_s: 5.0
+  invert_direction: false
+  require_feedback: true
+  hold_min_angle_deg: 0.0
+  settle_time_s: 0.3
+  open_before_approach: true

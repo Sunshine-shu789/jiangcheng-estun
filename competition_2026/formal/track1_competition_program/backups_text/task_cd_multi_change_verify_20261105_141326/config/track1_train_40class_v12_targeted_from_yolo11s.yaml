@@ -1,0 +1,150 @@
+schema_version: 1
+purpose: >-
+  赛道一 40 类 v12 定向增强重训：纳入全部 72 张多物品人工复核图，
+  其中 58 张通过、14 张问题图各追加 3 张定向增强；使用从未复核的
+  72 张多物品物理隔离图作为新验证集，从通用的 40 类新检测头初始化权重
+  全量重训。不 resume v11，不覆盖旧模型，不修改 Task A/B。
+dataset_yaml: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v12_targeted_all_reviewed_20261101/dataset.yaml
+dataset_audit_report: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/reports/track1_v12_dataset_independent_audit_latest.json
+dataset_audit_summary: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v12_targeted_all_reviewed_20261101/audit_summary.json
+base_weights: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/models/yolo11s_backbone_40class_init_v10aug.pt
+base_weights_report: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/reports/track1_v11_init_weight_latest.json
+output_root: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_train_40class_v12_targeted_from_yolo11s
+preflight_report: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/reports/track1_training_preflight_v12_targeted_latest.json
+post_train_report: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/reports/track1_training_v12_targeted_post_train_latest.json
+run_name_prefix: track1_40class_v12_targeted
+expected:
+  nc: 40
+  classes:
+  - 1-Cheez-it
+  - 2-Starkist_Tuna
+  - 3-Scissors
+  - 4-Frenchs_Mustard
+  - 5-Tomato_Soup
+  - 6-Foam_Brick
+  - 7-Clamp
+  - 8-Plastic_Banana
+  - 9-Mug
+  - 10-meat_can
+  - 11-Padlock
+  - 12-Baseball
+  - 13-Bowl
+  - 14-Sleeve
+  - 15-Coca_cola_half
+  - 16-ICRA_Duckie
+  - 17-Eggs_Plush
+  - 18-Dice
+  - 19-Elmers_Glue
+  - 20-Scotch_Tape
+  - 21-Haribo_Golden_Bear
+  - 22-E27_Adapter
+  - 23-GU24_Adapter
+  - 24-Spoon
+  - 25-Flat_Screwdriver
+  - 26-Plastic_Strawberry
+  - 27-Coca_cola_full
+  - 28-Kong_Duck_Dog_Toy
+  - 29-Paper_Towels
+  - 30-Stabilo_OHPen
+  - 31-Plastic_White_Cup
+  - 32-Wine_Glass
+  - 33-Key
+  - 34-Nail
+  - 35-Book
+  - 36-Adjustable_Wrench
+  - 37-T-shirt
+  - 38-Jumbo_Pencil_Cup
+  - 39-Glove
+  - 40-Pringles
+  images:
+    train: 5180
+    val: 170
+  boxes:
+    train: 13230
+    val: 499
+  source_boxes:
+    train: 2441
+    val: 499
+  empty_labels:
+    train: 4
+    val: 1
+  source_images:
+    train: 1062
+    val: 170
+  source_multiobject_images: 321
+  source_multiobject_boxes: 1646
+  augmented_images: 4118
+  augmentation:
+    generic: 3186
+    focus: 890
+    issue: 42
+  reviewed_images: 72
+  review_status:
+    pass: 58
+    issue: 14
+  new_validation_images: 72
+  new_validation_min_class_boxes: 7
+  safe_candidate_count: 173
+  physical_components_cross_split: 0
+  dataset_yaml_sha256: 695901a48b5a7325183c0f0f170a039eba37f51ee73d66c466fa119ae7d020e2
+  source_manifest_sha256: 5145696eaed23acfead4b2ce3c87240958c0816657ffe38ac76b082f4918a7c9
+  augmentation_manifest_sha256: d5af371a185c4f3fe481a4de7abe99780447c07bf5655737fe9089ce6d378eab
+  min_free_gb: 20
+  min_gpu_memory_gb: 6
+  old_model_sha256: 76b71ff7227eec9d26f5da0dec917d83e21dc3de1b92456645e9004dfa80de60
+  init_source_nc: 80
+  init_fresh_class_output_tensors: 6
+train:
+  epochs: 120
+  imgsz: 640
+  batch: 6
+  device: 0
+  workers: 4
+  cache: false
+  amp: true
+  pretrained: true
+  optimizer: AdamW
+  lr0: 0.001
+  lrf: 0.01
+  momentum: 0.9
+  weight_decay: 0.0005
+  warmup_epochs: 3.0
+  warmup_momentum: 0.8
+  warmup_bias_lr: 0.05
+  cos_lr: true
+  patience: 30
+  save: true
+  save_period: 10
+  val: true
+  plots: true
+  verbose: true
+  seed: 20261101
+  deterministic: true
+  close_mosaic: 0
+  # 离线增强已是主增强来源；在线只保留轻量几何和颜色扰动。
+  mosaic: 0.0
+  mixup: 0.0
+  cutmix: 0.0
+  copy_paste: 0.0
+  degrees: 5.0
+  translate: 0.03
+  scale: 0.20
+  shear: 1.0
+  perspective: 0.0
+  flipud: 0.0
+  fliplr: 0.5
+  hsv_h: 0.010
+  hsv_s: 0.30
+  hsv_v: 0.20
+  multi_scale: 0.0
+  rect: false
+  fraction: 1.0
+  freeze: 0
+  cls_pw: 0.5
+  resume: false
+  exist_ok: false
+post_train:
+  final_validation_batch: 8
+  multiobject_val_prefix: multiobj__
+  multiobject_val_expected_images: 72
+  require_all_40_classes_in_val: true

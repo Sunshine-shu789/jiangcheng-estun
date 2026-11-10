@@ -1,0 +1,157 @@
+# Task B arbitrary-placement OFFLINE MOCK validation.
+#
+# This configuration intentionally contains no place_poses, place names,
+# per-point grasp overrides, or observation postures.  Every round is planned
+# from the current mock camera observation only.  It uses the 2026-10-25
+# calibrated D405 eye-in-hand transform and keeps the strict validated-
+# extrinsics gate enabled, while all hardware backends remain Mock and
+# motion.dry_run is true.
+
+task:
+  mode: B
+  max_picks: 5
+  stop_on_error: true
+  sample_period_s: 0.0
+
+vision:
+  backend: mock
+  scenario_file: ../app/track1_grasp/scenarios/task_b_arbitrary_mock_20261024.yaml
+  min_confidence: 0.35
+  require_depth: true
+  continuous: false
+  show: false
+  loop_scenario: false
+  capture_timeout_s: 2.0
+  first_frame_timeout_s: 2.0
+  stale_after_s: 2.0
+  stabilizer:
+    enabled: false
+    confirm_hits: 1
+    max_misses: 1
+
+task_b:
+  initial_pose_file: ""
+  rounds: 5
+  return_to_pick: true
+  target_class: "8-Plastic_Banana"
+  keep_same_target: true
+  next_point_timeout_s: 0.0
+  next_point_poll_s: 0.01
+  lift_hold_s: 0.0
+  operator_pause_after_each_pick: false
+  return_to_initial_after_each_pick: false
+  return_to_initial_after_task: false
+
+target:
+  policy: any
+  known_classes: ["8-Plastic_Banana"]
+  unknown_labels: [unknown, object]
+  unknown_min_graspability: 0.65
+  max_attempts_per_target: 1
+  order: ["8-Plastic_Banana"]
+
+pose:
+  camera_frame: flange
+  extrinsics_file: camera_to_flange.d405_calibrated_20261025.yaml
+  use_detection_base_xyz: false
+  fallback_camera_to_base: false
+  robot_pose_frame: flange
+  # Camera optical centre to flange is (0, -65, 0) mm.  The jaw-tip plane is
+  # 165 mm beyond the flange along flange +Z.  Planner converts the observed
+  # jaw-tip target to the flange pose by subtracting this rotated offset.
+  gripper_tip_offset_flange_m: [0.0, 0.0, 0.165]
+
+adaptive_inverse:
+  enabled: true
+  arbitrary_placement: true
+  # Strictly require the calibrated metadata even in the offline Mock chain.
+  require_validated_extrinsics: true
+  min_pose_confidence: 0.50
+  pca:
+    min_valid_points: 200
+    min_depth_m: 0.08
+    max_depth_m: 1.20
+    trim_percentile: 5.0
+    min_axis_ratio: 1.10
+    # Arbitrary-placement motion must have a measured support plane.  If the
+    # ring outside the object is dominated by the box walls, gripper or other
+    # clutter, the frame is rejected instead of commanding a fallback Z.
+    support_plane_required: true
+    support_plane_min_points: 300
+    support_plane_max_rms_m: 0.0035
+    support_plane_min_inlier_ratio: 0.35
+    support_plane_min_normal_z: 0.80
+    support_plane_depth_window_m: 0.012
+    support_plane_guard_dilation_px: 13
+    support_plane_ring_padding_ratio: 0.45
+    support_plane_ransac_threshold_m: 0.002
+    support_plane_ransac_iterations: 64
+    support_plane_max_samples: 30000
+  candidates:
+    # Stop at the first fully validated route below.  Keep enough candidates
+    # for the primary object-axis heading to try upright first, then two safe
+    # wrist tilts, followed by the most favourable alternative headings.
+    max_count: 5
+    yaw_offsets_deg: [0.0, 45.0, -45.0, 90.0, -90.0]
+    # Upright remains preferred.  A modest pitch tilt changes the wrist
+    # Jacobian near reach boundaries without changing the observed jaw-tip
+    # point.  These are general fallbacks, not coordinates for one placement.
+    pitch_offsets_deg: [0.0, -20.0, -16.0]
+    axis_alignment_offset_deg: 0.0
+    max_orientation_change_deg: 120.0
+    use_visual_grasp_z: true
+    # Keep the closed-jaw tip 2 mm above the fitted support plane to absorb
+    # depth quantisation and tabletop-fit error before live validation.
+    jaw_tip_clearance_m: 0.002
+    approach_height_m: 0.08
+  selection:
+    # Candidates are safety-ordered.  Planning latency matters during a live
+    # pick, so do not run lower-priority full IK routes after one has passed.
+    stop_after_first_valid: true
+    min_sigma_margin: 0.001
+    sigma_weight: 10.0
+    joint_travel_weight: 1.0
+    orientation_weight: 1.0
+
+motion:
+  backend: mock
+  dry_run: true
+  motion_mode: joint_ik
+  workspace_min: [-0.65, -0.65, 0.02]
+  workspace_max: [0.65, 0.65, 0.80]
+  workspace_margin: 0.01
+  approach_height: 0.08
+  grasp_z_offset: 0.0
+  # Accepted only as a taught orientation reference.  Object XY and Z always
+  # come from the current visual observation in arbitrary-placement mode.
+  grasp_z_m: null
+  grasp_rpy: [3.14159265, 0.0, 0.0]
+  lift_height: 0.08
+  place_approach_height: 0.08
+  retreat_height: 0.08
+  speed_mps: 0.12
+  joint_speed_rad_s: 0.6
+  joint_speed_safety_limit_rad_s: 0.7
+  orientation: fixed
+  fixed_rpy: [3.14159265, 0.0, 0.0]
+  cartesian_step_m: 0.002
+  cartesian_min_step_m: 0.0005
+  cartesian_orientation_step_deg: 1.0
+  cartesian_min_orientation_step_deg: 0.1
+  cartesian_max_waypoints: 600
+  cartesian_joint_step_deg: 0.5
+  cartesian_joint_branch_jump_deg: 5.0
+  cartesian_joint_acceleration_limit_deg: 0.25
+  cartesian_min_jacobian_singular_value: 0.01
+
+search:
+  # A missed observation stops without inventing a remembered search location.
+  enabled: false
+  observe_frames: 1
+  confirm_hits: 1
+  return_to_initial_on_miss: false
+
+gripper:
+  backend: mock
+  settle_time_s: 0.0
+  open_before_approach: true

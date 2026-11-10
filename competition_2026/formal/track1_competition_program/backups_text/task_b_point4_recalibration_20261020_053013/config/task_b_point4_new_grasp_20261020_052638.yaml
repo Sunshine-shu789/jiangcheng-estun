@@ -1,0 +1,106 @@
+schema_version: 1
+source_topic: /RobotInfo
+read_only_capture: true
+updated_at: '2026-10-20T05:28:48+08:00'
+captures:
+  pick_4_grasp:
+    captured_at: '2026-10-20T05:26:38+08:00'
+    capture_role: operator_manual_new_grasp_pose_candidate
+    runtime_ready: false
+    notes: User manually positioned the arm at the new point-4 grasp location. Recorded
+      by a 30-frame /RobotInfo read-only capture. No /RobotMove or gripper command
+      was sent. A separate safe high observation pose and configuration/route precheck
+      are still required.
+    stable_sample_count: 30
+    collection_duration_s: 1.46
+    controller_states:
+      Idle: 30
+    fault_flags:
+    - 0
+    joint_positions_rad:
+    - 1.16965387989
+    - 1.872745297272
+    - -1.410740589623
+    - -1.16987558796
+    - 1.523978928936
+    - -0.05615605755
+    joint_positions_deg:
+    - 67.016230809
+    - 107.300401637
+    - -80.829481773
+    - -67.028933745
+    - 87.317560695
+    - -3.217505092
+    tcp_xyz_m:
+    - 0.065803249086
+    - 0.443883453325
+    - 0.16990317354
+    tcp_rpy_rad:
+    - 3.083158245009
+    - 0.050086616429
+    - -0.34788110476
+    tcp_rpy_deg:
+    - 176.65195501
+    - 2.869751731
+    - -19.932119075
+    max_joint_spread_deg: 0.0006866452267644263
+    max_tcp_xyz_spread_mm: 0.007626087557000005
+    max_tcp_rpy_spread_deg: 0.0014818095505724216
+    read_only_capture_log: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/task_b_point4_new_grasp_readonly_20261020_052638.log
+    constraints:
+      requires_new_safe_high_observation_pose: false
+      approved_for_live_motion: false
+      new_observation_captured_at: '2026-10-20T05:28:48+08:00'
+  pick_4_observation:
+    captured_at: '2026-10-20T05:28:48+08:00'
+    capture_role: operator_manual_new_safe_high_observation_pose_candidate
+    runtime_ready: false
+    notes: User manually positioned the arm at the new point-4 high observation pose
+      above the newly taught grasp column. Recorded by a 30-frame /RobotInfo read-only
+      capture. No /RobotMove or gripper command was sent. Configuration update, full-route
+      precheck, camera confirmation and explicit live authorization are still required.
+    stable_sample_count: 30
+    collection_duration_s: 1.44
+    controller_states:
+      Idle: 30
+    fault_flags:
+    - 0
+    joint_positions_rad:
+    - 1.1653543412279999
+    - 1.6287817317839999
+    - -1.4065437157791032
+    - -1.322521793892
+    - 1.523979727884
+    - -0.05615406018
+    joint_positions_deg:
+    - 66.76988538961278
+    - 93.32231897923245
+    - -80.58901861479103
+    - -75.77491710408214
+    - 87.31760647124885
+    - -3.2173906508376358
+    tcp_xyz_m:
+    - 0.056673616879292385
+    - 0.4178810686519098
+    - 0.25633408349921
+    tcp_rpy_rad:
+    - -3.112941140161571
+    - 0.045264227595775544
+    - -0.3480297096888438
+    tcp_rpy_deg:
+    - -178.35838920390046
+    - 2.593449204157532
+    - -19.940633510334045
+    max_joint_spread_deg: 0.0006866452267648457
+    max_tcp_xyz_spread_mm: 0.008058958725076781
+    max_tcp_rpy_spread_deg: 0.0020897444640280965
+    read_only_capture_log: /media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/task_b_point4_new_observation_readonly_20261020_052848.log
+    constraints:
+      new_grasp_column:
+      - 0.065803249086
+      - 0.443883453325
+      captured_clearance_above_grasp_m: 0.08643090995920999
+      preferred_descent: vertical
+      requires_configuration_and_route_precheck: true
+      approved_for_live_motion: false
+calibration_status: candidate_pending_configuration_route_precheck

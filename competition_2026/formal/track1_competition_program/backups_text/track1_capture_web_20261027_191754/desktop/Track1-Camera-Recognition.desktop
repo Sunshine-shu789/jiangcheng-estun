@@ -1,0 +1,18 @@
+[Desktop Entry]
+X-Track1-Launcher=true
+Version=1.0
+Type=Application
+Name=抓取识别
+Comment=机械臂运动、靠近和夹取时持续实时观察；程序本身不运动机械臂
+Exec=/home/sunshine/.local/bin/track1_camera_recognition start
+TryExec=/home/sunshine/.local/bin/track1_camera_recognition
+Path=/home/sunshine
+Icon=camera-video
+Terminal=true
+Categories=Utility;
+StartupNotify=true
+Actions=Stop;
+
+[Desktop Action Stop]
+Name=停止抓取识别
+Exec=/home/sunshine/.local/bin/track1_camera_recognition stop

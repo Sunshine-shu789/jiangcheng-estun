@@ -1,0 +1,42 @@
+# Stand-alone bring-up configuration for the vendor step_motor ROS node.
+# This file never moves the robot arm.
+
+task:
+  mode: C
+  max_picks: 1
+  stop_on_error: false
+  sample_period_s: 0.2
+
+vision:
+  backend: mock
+  scenario_file: ../app/track1_grasp/scenarios/mock_track1_scene.yaml
+
+motion:
+  backend: mock
+  dry_run: true
+
+gripper:
+  # The vendor motor_node owns /dev/motor_serial.  This backend must not open
+  # the serial port itself.
+  backend: ms42dc_ros
+  motor_control_topic: /motor_control
+  motor_state_topic: /motor_state
+  device_id: 1
+  subdivide: 32
+  motion_mode: 2              # relative angle; message angle = degrees * 10
+  open_dir: 0
+  close_dir: 1
+  open_angle_deg: 3000.0      # matches the manual's 30000 wire example
+  close_angle_deg: 3000.0
+  speed_rad_s: 20.0           # message speed = rad/s * 10 => 200
+  status_timeout_s: 1.0
+  motion_timeout_s: 8.0
+  ros_connect_timeout_s: 5.0
+  invert_direction: false     # set true if open really closes
+  # During bring-up this deliberately fails instead of pretending a silent
+  # controller has completed the motion.  Set false only for supervised
+  # direction tests with no object between the fingers.
+  require_feedback: true
+  hold_min_angle_deg: 0.0     # set after measuring an empty close
+  settle_time_s: 0.3
+  open_before_approach: true

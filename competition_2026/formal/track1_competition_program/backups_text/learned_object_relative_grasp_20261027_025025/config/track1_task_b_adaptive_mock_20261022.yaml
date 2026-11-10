@@ -1,0 +1,130 @@
+# Task B adaptive-inverse five-point OFFLINE MOCK validation.
+#
+# Safety: this file is intentionally Mock-only.  It must not be used as a live
+# competition entry.  Running it exercises vision ingestion, adaptive candidate
+# generation, full-route precheck, Mock motion, and Mock gripper transitions
+# without opening ROS, a camera, the robot, or the real gripper.
+
+task:
+  mode: B
+  max_picks: 5
+  stop_on_error: true
+  sample_period_s: 0.0
+
+vision:
+  backend: mock
+  scenario_file: ../app/track1_grasp/scenarios/task_b_adaptive_mock_20261022.yaml
+  min_confidence: 0.35
+  require_depth: true
+  continuous: false
+  show: false
+  loop_scenario: false
+  capture_timeout_s: 2.0
+  first_frame_timeout_s: 2.0
+  stale_after_s: 2.0
+  stabilizer:
+    enabled: false
+    confirm_hits: 1
+    max_misses: 1
+
+task_b:
+  place_poses_file: task_b_place_poses_20261020.yaml
+  rounds: 5
+  return_to_pick: true
+  target_class: "8-Plastic_Banana"
+  keep_same_target: true
+  pick_pose_tolerance_m: 0.08
+  point_assignment_margin_m: 0.01
+  next_point_timeout_s: 1.0
+  next_point_poll_s: 0.01
+  lift_hold_s: 0.0
+  operator_pause_after_each_pick: false
+  place_names: [pick_1, pick_2, pick_3, pick_4, pick_5]
+  return_to_initial_after_each_pick: false
+  return_to_initial_after_task: false
+
+target:
+  policy: any
+  known_classes: ["8-Plastic_Banana"]
+  unknown_labels: [unknown, object]
+  unknown_min_graspability: 0.65
+  max_attempts_per_target: 1
+  order: ["8-Plastic_Banana"]
+
+pose:
+  camera_frame: flange
+  extrinsics_file: camera_to_flange.d405_assumed.yaml
+  use_detection_base_xyz: false
+  fallback_camera_to_base: false
+  robot_pose_frame: flange
+  # Camera optical centre to flange is (0, -65, 0) mm.  The jaw-tip plane is
+  # 165 mm beyond the flange along flange +Z.  Planner converts the observed
+  # jaw-tip target to the flange pose by subtracting this rotated offset.
+  gripper_tip_offset_flange_m: [0.0, 0.0, 0.165]
+
+adaptive_inverse:
+  enabled: true
+  # The assumed extrinsic rotation is intentionally unvalidated.  This flag is
+  # safe only for the offline Mock chain and remains false in the formal Live
+  # configuration.
+  require_validated_extrinsics: false
+  min_pose_confidence: 0.50
+  pca:
+    min_valid_points: 200
+    min_depth_m: 0.08
+    max_depth_m: 1.20
+    trim_percentile: 5.0
+    min_axis_ratio: 1.10
+  candidates:
+    max_count: 5
+    yaw_offsets_deg: [0.0, 45.0, -45.0, 90.0, -90.0]
+    axis_alignment_offset_deg: 0.0
+    max_orientation_change_deg: 120.0
+    use_visual_grasp_z: true
+    jaw_tip_clearance_m: 0.002
+    approach_height_m: 0.08
+  selection:
+    min_sigma_margin: 0.001
+    sigma_weight: 10.0
+    joint_travel_weight: 1.0
+    orientation_weight: 1.0
+
+motion:
+  backend: mock
+  dry_run: true
+  motion_mode: joint_ik
+  workspace_min: [-0.65, -0.65, 0.02]
+  workspace_max: [0.65, 0.65, 0.80]
+  workspace_margin: 0.01
+  approach_height: 0.08
+  grasp_z_offset: 0.0
+  grasp_z_m: 0.166
+  grasp_rpy: [3.14159265, 0.0, 0.0]
+  lift_height: 0.08
+  place_approach_height: 0.08
+  retreat_height: 0.08
+  speed_mps: 0.12
+  joint_speed_rad_s: 0.6
+  joint_speed_safety_limit_rad_s: 0.7
+  orientation: fixed
+  fixed_rpy: [3.14159265, 0.0, 0.0]
+  cartesian_step_m: 0.002
+  cartesian_min_step_m: 0.0005
+  cartesian_orientation_step_deg: 1.0
+  cartesian_min_orientation_step_deg: 0.1
+  cartesian_max_waypoints: 600
+  cartesian_joint_step_deg: 0.5
+  cartesian_joint_branch_jump_deg: 5.0
+  cartesian_joint_acceleration_limit_deg: 0.25
+  cartesian_min_jacobian_singular_value: 0.01
+
+search:
+  enabled: false
+  observe_frames: 1
+  confirm_hits: 1
+  return_to_initial_on_miss: false
+
+gripper:
+  backend: mock
+  settle_time_s: 0.0
+  open_before_approach: true

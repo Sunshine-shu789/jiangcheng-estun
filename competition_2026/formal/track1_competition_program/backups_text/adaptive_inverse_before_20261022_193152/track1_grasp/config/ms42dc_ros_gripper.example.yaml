@@ -1,0 +1,42 @@
+# Stand-alone gripper bring-up config for the vendor ROS 2 driver.
+#
+# Source both ROS environments and start the vendor node first:
+#   source /home/sunshine/ms42dc_vendor_ws/install/setup.bash
+#   ros2 run step_motor motor_node
+#
+# Then, from app/track1_grasp:
+#   python3 -m track1_grasp.tools.gripper_bench status \
+#     --config config/ms42dc_ros_gripper.example.yaml
+
+task:
+  mode: C
+  max_picks: 1
+
+vision:
+  backend: mock
+  scenario_file: ../scenarios/mock_track1_scene.yaml
+
+motion:
+  backend: mock
+  dry_run: true
+
+gripper:
+  backend: ms42dc_ros
+  motor_control_topic: /motor_control
+  motor_state_topic: /motor_state
+  device_id: 1
+  subdivide: 32
+  motion_mode: 2
+  open_dir: 0
+  close_dir: 1
+  open_angle_deg: 3000.0
+  close_angle_deg: 3000.0
+  speed_rad_s: 20.0
+  status_timeout_s: 1.0
+  motion_timeout_s: 8.0
+  ros_connect_timeout_s: 5.0
+  invert_direction: false
+  require_feedback: true
+  hold_min_angle_deg: 0.0
+  settle_time_s: 0.3
+  open_before_approach: true

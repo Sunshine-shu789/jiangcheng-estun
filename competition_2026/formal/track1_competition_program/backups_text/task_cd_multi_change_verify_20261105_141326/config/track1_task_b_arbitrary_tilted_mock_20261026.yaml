@@ -1,0 +1,214 @@
+# Task B arbitrary-placement OFFLINE MOCK validation with tool-axis tilt.
+#
+# This configuration intentionally contains no place_poses, place names,
+# per-point grasp overrides, observation joints, or remembered target XY/Z.
+# Every round is planned from the current mock camera observation only.  The
+# tilted candidates are generic IK fallbacks: they choose a different approach
+# direction for the current visual target without changing its observed jaw-tip
+# point.  All IK, joint-limit, singularity, acceleration and collision gates
+# remain fail-closed, while hardware backends stay Mock and dry_run is true.
+
+task:
+  mode: B
+  max_picks: 5
+  stop_on_error: true
+  sample_period_s: 0.0
+
+vision:
+  backend: mock
+  scenario_file: ../app/track1_grasp/scenarios/task_b_arbitrary_mock_20261024.yaml
+  min_confidence: 0.35
+  require_depth: true
+  continuous: false
+  show: false
+  loop_scenario: false
+  capture_timeout_s: 2.0
+  first_frame_timeout_s: 2.0
+  stale_after_s: 2.0
+  stabilizer:
+    enabled: false
+    confirm_hits: 1
+    max_misses: 1
+
+task_b:
+  initial_pose_file: ""
+  rounds: 5
+  return_to_pick: true
+  target_class: "8-Plastic_Banana"
+  keep_same_target: true
+  next_point_timeout_s: 0.0
+  next_point_poll_s: 0.01
+  lift_hold_s: 0.0
+  operator_pause_after_each_pick: false
+  return_to_initial_after_each_pick: false
+  return_to_initial_after_task: false
+
+target:
+  policy: any
+  known_classes: ["8-Plastic_Banana"]
+  unknown_labels: [unknown, object]
+  unknown_min_graspability: 0.65
+  max_attempts_per_target: 1
+  order: ["8-Plastic_Banana"]
+
+pose:
+  camera_frame: flange
+  extrinsics_file: camera_to_flange.d405_calibrated_20261025.yaml
+  use_detection_base_xyz: false
+  fallback_camera_to_base: false
+  robot_pose_frame: flange
+  # Camera optical centre to flange is (0, -65, 0) mm.  The jaw-tip plane is
+  # 165 mm beyond the flange along flange +Z.  Planner converts the observed
+  # jaw-tip target to the flange pose by subtracting this rotated offset.
+  gripper_tip_offset_flange_m: [0.0, 0.0, 0.165]
+
+adaptive_inverse:
+  enabled: true
+  arbitrary_placement: true
+  # Explicit opt-in to a non-vertical approach direction.  The planner derives
+  # every target from the current RGB-D frame; no target pose is remembered.
+  tilted_visual_grasp: true
+  # Strictly require the calibrated metadata even in the offline Mock chain.
+  require_validated_extrinsics: true
+  min_pose_confidence: 0.50
+  pca:
+    min_valid_points: 200
+    min_depth_m: 0.08
+    max_depth_m: 1.20
+    trim_percentile: 5.0
+    min_axis_ratio: 1.10
+    # Arbitrary-placement motion must have a measured support plane.  If the
+    # ring outside the object is dominated by the box walls, gripper or other
+    # clutter, the frame is rejected instead of commanding a fallback Z.
+    support_plane_required: true
+    support_plane_min_points: 300
+    support_plane_max_rms_m: 0.0035
+    support_plane_min_inlier_ratio: 0.35
+    support_plane_min_normal_z: 0.80
+    support_plane_depth_window_m: 0.012
+    support_plane_guard_dilation_px: 13
+    support_plane_ring_padding_ratio: 0.45
+    support_plane_ransac_threshold_m: 0.002
+    support_plane_ransac_iterations: 64
+    support_plane_max_samples: 30000
+  candidates:
+    # Try every configured heading/tilt pair.  The first pair whose complete
+    # six-segment route passes every gate wins, so healthy vertical or mildly
+    # tilted candidates still terminate planning early.
+    max_count: 35
+    yaw_offsets_deg: [0.0, 45.0, -45.0, 90.0, -90.0]
+    # Symmetric tool-axis fallbacks are required: a one-sided list can solve
+    # one random heading while making the opposite heading less reachable.
+    # -20/+20 degrees are the primary fallbacks validated by the prior matrix;
+    # -30/+30 cover the boundary rows, and -16/+16 bridge the gap before the
+    # strictly vertical candidate.  The tool Z axis must still point downward.
+    pitch_offsets_deg: [-20.0, 20.0, -30.0, 30.0, -16.0, 16.0, 0.0]
+    axis_alignment_offset_deg: 0.0
+    # Allow the combined heading/tilt fallback needed for edge rows while
+    # retaining an explicit bounded orientation envelope.
+    max_orientation_change_deg: 180.0
+    use_visual_grasp_z: true
+    # Keep the closed-jaw tip 2 mm above the fitted support plane to absorb
+    # depth quantisation and tabletop-fit error before live validation.
+    jaw_tip_clearance_m: 0.002
+    approach_height_m: 0.08
+  selection:
+    # Candidates are safety-ordered.  Planning latency matters during a live
+    # pick, so do not run lower-priority full IK routes after one has passed.
+    stop_after_first_valid: true
+    min_sigma_margin: 0.001
+    sigma_weight: 10.0
+    joint_travel_weight: 1.0
+    orientation_weight: 1.0
+  box_clearance:
+    # SYNTHETIC OFFLINE GEOMETRY ONLY.  These dimensions and obstacle shapes
+    # exist to exercise the fail-closed planner against every position in the
+    # Mock scenario.  They are not measurements from the competition bin and
+    # must never be copied into a real-hardware configuration.
+    required: true
+    geometry_validated: true
+    geometry_source: offline_mock_synthetic_test_only
+    center_xy_m: [0.0, 0.10]
+    yaw_rad: 0.0
+    interior_size_m: [1.40, 1.40]
+    wall_clearance_m: 0.08
+    obstacle_clearance_m: 0.02
+    # Candidate CAD reference only, with the 118 mm assembly X mapped to
+    # flange X and the 63 mm assembly Z mapped to flange Y.  This is deliberately
+    # conservative for the synthetic gate; it is not a field calibration.
+    gripper_footprint_flange_xy_m:
+    - [-0.059, -0.0315]
+    - [0.059, -0.0315]
+    - [0.059, 0.0315]
+    - [-0.059, 0.0315]
+    # Each L corner is split into two convex rectangles because concave
+    # polygons are intentionally rejected by the collision validator.
+    obstacles_m:
+    - name: northwest_L_long_leg
+      vertices_m: [[0.58, 0.52], [0.70, 0.52], [0.70, 0.70], [0.58, 0.70]]
+    - name: northwest_L_short_leg
+      vertices_m: [[0.45, 0.52], [0.70, 0.52], [0.70, 0.59], [0.45, 0.59]]
+    - name: northeast_L_long_leg
+      vertices_m: [[-0.70, 0.52], [-0.58, 0.52], [-0.58, 0.70], [-0.70, 0.70]]
+    - name: northeast_L_short_leg
+      vertices_m: [[-0.70, 0.52], [-0.45, 0.52], [-0.45, 0.59], [-0.70, 0.59]]
+    - name: southwest_L_long_leg
+      vertices_m: [[0.58, -0.70], [0.70, -0.70], [0.70, -0.52], [0.58, -0.52]]
+    - name: southwest_L_short_leg
+      vertices_m: [[0.45, -0.59], [0.70, -0.59], [0.70, -0.52], [0.45, -0.52]]
+    - name: southeast_L_long_leg
+      vertices_m: [[-0.70, -0.70], [-0.58, -0.70], [-0.58, -0.52], [-0.70, -0.52]]
+    - name: southeast_L_short_leg
+      vertices_m: [[-0.70, -0.59], [-0.45, -0.59], [-0.45, -0.52], [-0.70, -0.52]]
+    - name: north_edge_boss
+      vertices_m: [[-0.15, 0.61], [0.15, 0.61], [0.15, 0.70], [-0.15, 0.70]]
+    - name: south_edge_boss
+      vertices_m: [[-0.15, -0.70], [0.15, -0.70], [0.15, -0.61], [-0.15, -0.61]]
+
+motion:
+  backend: mock
+  dry_run: true
+  motion_mode: joint_ik
+  workspace_min: [-0.65, -0.65, 0.02]
+  workspace_max: [0.65, 0.65, 0.80]
+  workspace_margin: 0.01
+  approach_height: 0.08
+  grasp_z_offset: 0.0
+  # Accepted only as a taught orientation reference.  Object XY and Z always
+  # come from the current visual observation in arbitrary-placement mode.
+  grasp_z_m: null
+  grasp_rpy: [3.14159265, 0.0, 0.0]
+  lift_height: 0.08
+  place_approach_height: 0.08
+  retreat_height: 0.08
+  speed_mps: 0.12
+  joint_speed_rad_s: 0.6
+  joint_speed_safety_limit_rad_s: 0.7
+  orientation: fixed
+  fixed_rpy: [3.14159265, 0.0, 0.0]
+  cartesian_step_m: 0.002
+  cartesian_min_step_m: 0.0005
+  cartesian_orientation_step_deg: 1.0
+  cartesian_min_orientation_step_deg: 0.1
+  cartesian_max_waypoints: 600
+  cartesian_joint_step_deg: 0.5
+  cartesian_joint_branch_jump_deg: 5.0
+  cartesian_joint_acceleration_limit_deg: 0.25
+  cartesian_min_jacobian_singular_value: 0.01
+
+search:
+  # If the complete initial observation misses, lift the camera 20 mm
+  # relative to the current TCP while preserving the live observation
+  # orientation.  The outbound and exact return paths are pre-checked before
+  # any motion, and no object XY is retained or reused.
+  enabled: true
+  arbitrary_observation_offsets_xyz_m:
+  - [0.0, 0.0, 0.020]
+  observe_frames: 1
+  confirm_hits: 1
+  return_to_initial_on_miss: true
+
+gripper:
+  backend: mock
+  settle_time_s: 0.0
+  open_before_approach: true

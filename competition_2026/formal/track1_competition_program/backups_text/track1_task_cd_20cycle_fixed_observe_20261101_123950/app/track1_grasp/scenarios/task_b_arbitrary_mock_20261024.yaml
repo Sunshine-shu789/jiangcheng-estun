@@ -1,0 +1,102 @@
+# Task B arbitrary-placement OFFLINE MOCK observations.
+#
+# The target geometry below is fixed in the robot base frame so every capture
+# can be projected through the *current* flange pose and calibrated eye-in-hand
+# transform.  This is essential after a tilted grasp: a static camera-frame XY
+# would otherwise be reused with a different wrist orientation and move the
+# same object underneath the table.
+#
+# These five deterministic poses are an offline regression scenario only.  The
+# production planner never reads this file and never stores their coordinates;
+# it always transforms the current camera observation through live robot state.
+# A separate seeded random matrix exercises positions and headings beyond this
+# fixed batch.
+frames:
+  - frame_id: arbitrary_round_1
+    detections:
+      # A high-confidence wrong class must be filtered out before selection.
+      - label: 9-Metal_Screwdriver
+        instance_id: arbitrary_decoy
+        confidence: 0.99
+        bbox: [40, 80, 180, 260]
+        world_xyz: [-0.230000, 0.160000, -0.038478]
+        world_major_axis: [1.0, 0.0, 0.0]
+        world_minor_axis: [0.0, 1.0, 0.0]
+        major_axis_length_m: 0.16
+        minor_axis_length_m: 0.04
+        pose_confidence: 0.99
+        graspability: 1.0
+        attributes: {held: false}
+
+      - label: 8-Plastic_Banana
+        instance_id: arbitrary_banana_round_1
+        confidence: 0.95
+        bbox: [220, 180, 360, 300]
+        world_xyz: [0.124373, 0.420973, -0.038478]
+        world_major_axis: [1.0, 0.0, 0.0]
+        world_minor_axis: [0.0, 1.0, 0.0]
+        major_axis_length_m: 0.12
+        minor_axis_length_m: 0.04
+        pose_confidence: 0.95
+        graspability: 1.0
+        attributes: {held: false}
+
+  - frame_id: arbitrary_round_2
+    detections:
+      - label: 8-Plastic_Banana
+        instance_id: arbitrary_banana_round_2
+        confidence: 0.94
+        bbox: [230, 170, 370, 300]
+        world_xyz: [-0.085000, 0.502000, -0.038478]
+        world_major_axis: [0.816513, 0.571729, 0.080199]
+        world_minor_axis: [-0.573576, 0.819152, 0.0]
+        major_axis_length_m: 0.13
+        minor_axis_length_m: 0.038
+        pose_confidence: 0.94
+        graspability: 1.0
+        attributes: {held: false}
+
+  - frame_id: arbitrary_round_3
+    detections:
+      - label: 8-Plastic_Banana
+        instance_id: arbitrary_banana_round_3
+        confidence: 0.93
+        bbox: [190, 210, 350, 300]
+        world_xyz: [0.035000, 0.583000, -0.038478]
+        world_major_axis: [0.572862, -0.818132, -0.049896]
+        world_minor_axis: [0.819152, 0.573576, 0.0]
+        major_axis_length_m: 0.11
+        minor_axis_length_m: 0.042
+        pose_confidence: 0.93
+        graspability: 1.0
+        attributes: {held: false}
+
+  - frame_id: arbitrary_round_4
+    detections:
+      - label: 8-Plastic_Banana
+        instance_id: arbitrary_banana_round_4
+        confidence: 0.92
+        bbox: [240, 190, 390, 290]
+        world_xyz: [-0.125000, 0.612000, -0.038478]
+        world_major_axis: [0.258611, 0.965148, 0.040132]
+        world_minor_axis: [-0.965926, 0.258819, 0.0]
+        major_axis_length_m: 0.14
+        minor_axis_length_m: 0.040
+        pose_confidence: 0.92
+        graspability: 1.0
+        attributes: {held: false}
+
+  - frame_id: arbitrary_round_5
+    detections:
+      - label: 8-Plastic_Banana
+        instance_id: arbitrary_banana_round_5
+        confidence: 0.91
+        bbox: [210, 160, 355, 305]
+        world_xyz: [0.075000, 0.455000, -0.038478]
+        world_major_axis: [-0.572567, -0.817710, -0.059306]
+        world_minor_axis: [0.819152, -0.573576, 0.0]
+        major_axis_length_m: 0.125
+        minor_axis_length_m: 0.039
+        pose_confidence: 0.91
+        graspability: 1.0
+        attributes: {held: false}

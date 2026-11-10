@@ -1,0 +1,89 @@
+schema_version: 1
+title: '赛道一已有照片多物品 bbox 复核'
+description: >-
+  一张图允许多个类别和同类多个实例。采集类别只是提示，不是本图唯一标签。
+  本程序不打开相机、不导入 ROS、不控制机器人。
+
+paths:
+  project_root: '/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序'
+  source_root: '/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_selfcollected_v3_no_scene_taxonomy'
+  review_root: '/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_postclasses_bbox_review_v1'
+  export_root: '/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_postclasses_bbox_export_v1'
+  class_map: '/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_selfcollected_v1/manifests/class_map.yaml'
+  world_weights: '/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/models/yolov8s-worldv2.pt'
+
+candidate_generation:
+  # 这些参数只生成“人工候选框”，不能直接作为训练标签。
+  min_depth_m: 0.15
+  max_depth_m: 1.50
+  plane_threshold_m: 0.006
+  object_min_height_m: 0.008
+  object_max_height_m: 0.40
+  depth_sample_step: 8
+  ransac_iterations: 500
+  ransac_seed: 20261028
+  min_component_pixels: 80
+  morph_kernel: 5
+  keep_border_components: true
+  world_conf: 0.01
+  world_iou: 0.45
+  world_imgsz: 640
+  world_device: 'cpu'
+  world_max_det: 100
+
+# YOLO-World 只用于界面提示。所有类别都保留提示词，避免同框混入前 10 类时漏掉框选入口。
+world_prompts:
+  1: 'Cheez-It cracker box'
+  2: 'StarKist tuna can'
+  3: 'scissors'
+  4: "French's mustard bottle"
+  5: 'tomato soup can'
+  6: 'foam brick'
+  7: 'clamp'
+  8: 'plastic banana toy'
+  9: 'mug'
+  10: 'canned meat'
+  11: 'padlock'
+  12: 'baseball ball'
+  13: 'bowl'
+  14: 'shirt sleeve'
+  15: 'half-full Coca-Cola bottle'
+  16: 'ICRA rubber duck toy'
+  17: 'egg shaped plush toy'
+  18: 'dice'
+  19: 'Elmer glue bottle'
+  20: 'Scotch transparent tape'
+  21: 'Haribo gummy bear bag'
+  22: 'E27 light bulb adapter'
+  23: 'GU24 light bulb adapter'
+  24: 'spoon'
+  25: 'flathead screwdriver'
+  26: 'plastic strawberry toy'
+  27: 'full Coca-Cola bottle'
+  28: 'Kong duck dog toy'
+  29: 'paper towel roll'
+  30: 'Stabilo highlighter pen'
+  31: 'plastic white cup'
+  32: 'wine glass'
+  33: 'key'
+  34: 'nail'
+  35: 'book'
+  36: 'adjustable wrench'
+  37: 'T-shirt'
+  38: 'jumbo pencil cup'
+  39: 'glove'
+  40: 'Pringles can'
+
+review_policy:
+  label_all_visible_known_objects: true
+  allow_multiple_classes_per_image: true
+  allow_multiple_instances_per_class: true
+  empty_background_uses_empty_label_file: true
+  background_is_not_a_yolo_class: true
+  missing_spots_class_ids: [17, 26]
+  expected_known_class_count: 38
+
+safety:
+  camera: false
+  robot_control: false
+  ros: false

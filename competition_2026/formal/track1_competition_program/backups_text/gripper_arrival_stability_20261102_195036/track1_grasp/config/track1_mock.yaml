@@ -1,0 +1,107 @@
+# Track 1 (赛道一) hardware-free configuration.
+#
+#   PYTHONPATH=. python3 -m track1_grasp.nodes.mock_demo --config config/track1_mock.yaml --mode A
+#
+# A : detection + annotation + IoU over ten positions of the same object.
+# B : the target is confirmed at five points, picked and returned in place.
+# C : unordered bin clearing of known classes only.
+# D : unordered bin clearing including class-agnostic unseen objects.
+# E : bin clearing in the published order (target.order / order_file).
+
+task:
+  mode: C
+  max_picks: 4
+  stop_on_error: false
+  sample_period_s: 0.2
+
+vision:
+  backend: mock
+  scenario_file: ../scenarios/mock_track1_scene.yaml
+  scenario_files:
+    A: ../scenarios/mock_task_a_scene.yaml
+    B: ../scenarios/mock_task_b_scene.yaml
+    C: ../scenarios/mock_task_c_scene.yaml
+    D: ../scenarios/mock_task_d_scene.yaml
+  min_confidence: 0.35
+  require_depth: true
+  loop_scenario: false
+
+task_a:
+  iou_threshold: 0.75
+  # ground_truth_file: ../scenarios/task_a_ground_truth.example.yaml
+  output_dir: /tmp/track1_annotated
+  save_annotated: false
+  draw_labels: true
+  draw_ground_truth: true
+  max_frames: 0
+  min_positions: 10
+
+task_b:
+  place_poses_file: task_b_place_poses.example.yaml
+  rounds: 5
+  return_to_pick: true
+  target_class: "8-Plastic_Banana"
+  pick_pose_tolerance_m: 0.08
+  next_point_timeout_s: 5.0
+  next_point_poll_s: 0.05
+  keep_same_target: true
+  place_names: [pick_1, pick_2, pick_3, pick_4, pick_5]
+
+# Scripted mock frames are one observation each.  The live configuration uses
+# a larger window and requires consecutive detections before moving.
+search:
+  enabled: false
+  observe_frames: 1
+  confirm_hits: 1
+
+target:
+  policy: known
+  known_classes: [mug, bowl, book]
+  unknown_labels: [unknown, object]
+  unknown_min_graspability: 0.65
+  max_attempts_per_target: 2
+  order: [mug, object, bowl, book]
+
+pose:
+  camera_frame: base
+  use_detection_base_xyz: true
+  fallback_camera_to_base: false
+
+motion:
+  backend: mock
+  dry_run: true
+  workspace_min: [-0.45, -0.45, 0.00]
+  workspace_max: [0.45, 0.45, 0.60]
+  workspace_margin: 0.01
+  approach_height: 0.08
+  grasp_z_offset: 0.00
+  lift_height: 0.12
+  place_pose: [0.25, 0.25, 0.08, 3.14159265, 0.0, 0.0]
+  place_approach_height: 0.08
+  retreat_height: 0.08
+  speed_mps: 0.05
+  orientation: fixed
+  fixed_rpy: [3.14159265, 0.0, 0.0]
+  move_timeout_s: 10.0
+  position_tolerance_m: 0.003
+  poll_period_s: 0.05
+  robotmove_topic: RobotMove
+  robotinfo_topic: RobotInfo
+
+gripper:
+  backend: mock
+  settle_time_s: 0.1
+  open_before_approach: true
+
+# Per-scene GraspNet multi-frame consensus gate.  Disabled by default because
+# a report generated for one scene/object must never be reused as evidence for
+# a different scene.  When enabled, validation requires Task C/D, dry-run
+# motion, mock gripper and search.enabled=false.
+grasp_consensus:
+  enabled: false
+  report_file: ""
+  minimum_distinct_frames: 4
+  maximum_translation_tolerance_m: 0.025
+  maximum_jaw_rotation_tolerance_deg: 15.0
+  maximum_pose_translation_error_m: 0.025
+  maximum_pose_jaw_rotation_error_deg: 15.0

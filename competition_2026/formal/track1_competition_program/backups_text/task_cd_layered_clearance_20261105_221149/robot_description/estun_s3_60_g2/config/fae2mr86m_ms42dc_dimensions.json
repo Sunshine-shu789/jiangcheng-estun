@@ -1,0 +1,339 @@
+{
+  "schema_version": 1,
+  "generated_utc": "2026-10-29T11:08:38.812913+00:00",
+  "status": "visual_confirmed_cad_not_measured",
+  "model": {
+    "name": "FAE2MR86M-D",
+    "description": "WHEELTEC FAE two-finger electric flexible gripper, silicone pads, MS42DC controller",
+    "configuration": "2-finger electric, with silicone, integrated controller"
+  },
+  "source": {
+    "step_path": "/media/sunshine/\u65b0\u52a0\u5377/\u722a\u5b50/\u4e09\u7ef4\u6a21\u578b/FAE\u67d4\u6027\u673a\u68b0\u722a\uff08\u5ba2\u6237\u56fe\uff09/FAE\u67d4\u6027\u673a\u68b0\u722a-\u4e09\u7ef4\u6a21\u578b-202407\u66f4\u65b0/FAE\u7535\u52a8\u67d4\u6027\u673a\u68b0\u722a+\u7535\u63a7/+\u7535\u63a7-2\u6307\u7535\u52a8-\u5e26\u7845\u80f6-FAE2MR86M-D.STEP",
+    "step_sha256": "cc741bfeae3200598ffaed9b9a15ce9891f527f534ae668febdceca3a14b24ee",
+    "step_size_bytes": 2250771,
+    "cad_parser": "CadQuery",
+    "cad_parser_version": "2.7.0",
+    "step_tolerance_mm": 0.12,
+    "angular_tolerance_rad": 0.18,
+    "surface_sample_spacing_mm": 0.45
+  },
+  "coordinate_system": {
+    "name": "fae2mr86m_gripper_local",
+    "units": "m",
+    "origin_cad_mm": [
+      49.334103035900235,
+      61.42859503258248,
+      49.874070471332516
+    ],
+    "local_x": "approach direction, toward fingertips",
+    "local_y": "jaw-opening axis, right finger negative, left finger positive",
+    "local_z": "finger height axis, +Z up in CAD",
+    "rotation_local_from_cad": [
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        -1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1
+      ]
+    ]
+  },
+  "assembly_bbox_local_m": {
+    "min": [
+      -0.0917519242201835,
+      -0.058970610630215636,
+      -0.03150665426204577
+    ],
+    "max": [
+      0.08639063783636265,
+      0.0589706106301841,
+      0.03150665426204577
+    ],
+    "span": [
+      0.17814256205654616,
+      0.11794122126039974,
+      0.06301330852409154
+    ]
+  },
+  "finger_geometry": {
+    "length_m": 0.086391,
+    "height_m": 0.020714,
+    "left_fixed_pivot_local_m": [
+      0.036,
+      -0.00374526995813612
+    ],
+    "right_fixed_pivot_local_m": [
+      -0.03599999999999999,
+      -0.00374526995813612
+    ],
+    "left_mount_pivot_local_m": [
+      0.021857392035900234,
+      0.001253393967417523
+    ],
+    "right_mount_pivot_local_m": [
+      -0.02185739196409977,
+      0.001253393967417523
+    ],
+    "left_slider_pin_local_m": [
+      0.018000000035900236,
+      -0.012204709032582478
+    ],
+    "right_slider_pin_local_m": [
+      -0.017999999964099764,
+      -0.012204709032582478
+    ],
+    "link_lengths_m": [
+      0.015,
+      0.014
+    ],
+    "mount_half_angle_deg": 19.465808079617766,
+    "total_mount_rotation_deg": 38.93161615923553,
+    "lead_screw_pitch_m": 0.002,
+    "nominal_slider_travel_m": 0.01,
+    "measured_empty_cycle_travel_deg": 1797.2,
+    "measured_empty_cycle_turns": 4.992,
+    "measured_empty_cycle_slider_travel_m": 0.009984
+  },
+  "jaw_profile": {
+    "units": "m",
+    "bin_size_m": 0.002,
+    "depth_definition": "distance from finger root toward fingertip along +X",
+    "open_max_opening_m": 0.105497,
+    "open_at_2mm_root_m": 0.077973,
+    "open_min_after_root_m": 0.039337,
+    "open_at_tip_m": 0.105497,
+    "closed_root_opening_m": 0.027673,
+    "profile_file": "jaw_profile.json"
+  },
+  "derived_assets": {
+    "open_state_stl": "fae2mr86m_ms42dc_open_simplified.stl",
+    "open_state_stl_sha256": "40d49ac02983ce3e99902014c837d3af4495ef8cfa3ac85a71d13b18d94e5bdc",
+    "open_state_stl_size_bytes": 4437184,
+    "open_state_stl_units": "m"
+  },
+  "solids": [
+    {
+      "index": 0,
+      "name": "motor_and_body_shell",
+      "bbox_min_m": [
+        -0.07224609873329567,
+        -0.02100082877515828,
+        -0.02100082877515828
+      ],
+      "bbox_max_m": [
+        -0.0022440020144480185,
+        0.02100082877515828,
+        0.02100082877515828
+      ],
+      "bbox_span_m": [
+        0.07000209671884765,
+        0.04200165755031656,
+        0.04200165755031656
+      ]
+    },
+    {
+      "index": 1,
+      "name": "finger_fixed_frame",
+      "bbox_min_m": [
+        -0.03174785653082795,
+        -0.04000126794368187,
+        -0.021000537265097367
+      ],
+      "bbox_max_m": [
+        0.0002548300418701088,
+        0.04000126794368187,
+        0.021000537265097367
+      ],
+      "bbox_span_m": [
+        0.03200268657269806,
+        0.08000253588736374,
+        0.042001074530194735
+      ]
+    },
+    {
+      "index": 2,
+      "name": "right_finger",
+      "bbox_min_m": [
+        -1.1408276939100996e-07,
+        -0.058970610630215636,
+        -0.010357344224934544
+      ],
+      "bbox_max_m": [
+        0.08639063783636265,
+        -0.019668396432228705,
+        0.010357344224945905
+      ],
+      "bbox_span_m": [
+        0.08639075191913204,
+        0.039302214197986934,
+        0.020714688449880447
+      ]
+    },
+    {
+      "index": 3,
+      "name": "right_finger_mount",
+      "bbox_min_m": [
+        -0.010464835418551522,
+        -0.051631274849304375,
+        -0.011400537978900144
+      ],
+      "bbox_max_m": [
+        0.018519788137388755,
+        -0.01685692185428957,
+        0.011400537978914355
+      ],
+      "bbox_span_m": [
+        0.028984623555940277,
+        0.0347743529950148,
+        0.0228010759578145
+      ]
+    },
+    {
+      "index": 4,
+      "name": "left_finger",
+      "bbox_min_m": [
+        -1.1408277617245327e-07,
+        0.019668396432218387,
+        -0.010357344224926372
+      ],
+      "bbox_max_m": [
+        0.08639063783633957,
+        0.0589706106301841,
+        0.010357344224925952
+      ],
+      "bbox_span_m": [
+        0.08639075191911574,
+        0.039302214197965715,
+        0.020714688449852324
+      ]
+    },
+    {
+      "index": 5,
+      "name": "left_finger_mount",
+      "bbox_min_m": [
+        -0.0104648354185418,
+        0.01685692185426954,
+        -0.011400537978911203
+      ],
+      "bbox_max_m": [
+        0.018519788137372158,
+        0.051631274849272976,
+        0.01140053797890765
+      ],
+      "bbox_span_m": [
+        0.028984623555913958,
+        0.034774352995003435,
+        0.022801075957818853
+      ]
+    },
+    {
+      "index": 6,
+      "name": "central_drive_block",
+      "bbox_min_m": [
+        -0.016207753969721614,
+        -0.022000100000013113,
+        -0.011001543281212812
+      ],
+      "bbox_max_m": [
+        -0.005203761805731949,
+        0.022000100000013113,
+        0.011000100000009049
+      ],
+      "bbox_span_m": [
+        0.011003992163989664,
+        0.044000200000026225,
+        0.02200164328122186
+      ]
+    },
+    {
+      "index": 7,
+      "name": "right_link",
+      "bbox_min_m": [
+        -0.0162056221027852,
+        0.013998967683068185,
+        -0.009201267943695097
+      ],
+      "bbox_max_m": [
+        0.005254426372709121,
+        0.025858305642721586,
+        0.009201267943695097
+      ],
+      "bbox_span_m": [
+        0.02146004847549432,
+        0.011859337959653401,
+        0.018402535887390194
+      ]
+    },
+    {
+      "index": 8,
+      "name": "left_link",
+      "bbox_min_m": [
+        -0.01620562210279777,
+        -0.025858305642735554,
+        -0.009201267943699897
+      ],
+      "bbox_max_m": [
+        0.005254426372713661,
+        -0.013998967683091144,
+        0.009201267943699897
+      ],
+      "bbox_span_m": [
+        0.02146004847551143,
+        0.01185933795964441,
+        0.018402535887399794
+      ]
+    },
+    {
+      "index": 9,
+      "name": "rear_electronics_plate",
+      "bbox_min_m": [
+        -0.0917519242201835,
+        -0.031500100000006,
+        -0.03150665426204577
+      ],
+      "bbox_max_m": [
+        -0.08573861569608701,
+        0.031500100000006,
+        0.03150665426204577
+      ],
+      "bbox_span_m": [
+        0.006013308524096483,
+        0.063000200000012,
+        0.06301330852409154
+      ]
+    },
+    {
+      "index": 10,
+      "name": "rear_motor_and_electronics",
+      "bbox_min_m": [
+        -0.08575643131670262,
+        -0.021000324598616036,
+        -0.021000311536150857
+      ],
+      "bbox_max_m": [
+        -0.07224472613952876,
+        0.021000324598616865,
+        0.021000311536150857
+      ],
+      "bbox_span_m": [
+        0.013511705177173858,
+        0.0420006491972329,
+        0.042000623072301714
+      ]
+    }
+  ],
+  "notes": [
+    "The STEP has been visually matched to the red/cyan stepped silicone fingers on the real gripper.",
+    "CAD dimensions do not replace real jaw-width calibration, force/silicone compliance tests, or camera extrinsics.",
+    "The jaw opening is V-shaped: a single fixed maximum opening is invalid.",
+    "The closed profile is geometric and may overlap beyond first finger contact; opening is clamped to zero after overlap."
+  ]
+}

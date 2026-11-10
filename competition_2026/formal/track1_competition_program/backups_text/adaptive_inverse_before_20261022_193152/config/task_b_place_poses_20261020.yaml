@@ -1,0 +1,35 @@
+# Task B five-point reference windows, recalibrated on 2026-10-20.
+#
+# Source: operator manually positioned the arm at each observation pose.
+# The poses were captured read-only from /RobotInfo; no /RobotMove or gripper
+# command was sent during capture.
+#
+# Each reference Z is the captured observation TCP Z minus
+# search.observation_clearance_m (0.20 m).  This lets the search stage recreate
+# the operator's recorded observation height while still treating the entry as
+# an expected pick-point window.  The release pose is never taken from this
+# file: Task B releases at the observed grasp XY for an in-place return.
+places:
+  - name: pick_1
+    pose: [-0.041246342, 0.490700096, 0.061723375,
+           3.140775316, 0.036569088, -0.085292909]
+  - name: pick_2
+    # Revision 2: user repositioned the arm and requested a fresh capture.
+    pose: [-0.124883909, 0.521708714, 0.041215741,
+           3.128682245, 0.048279523, 0.365742993]
+  - name: pick_3
+    # Revision 3: operator re-taught the grasp and its safe high observation
+    # pose after the box moved.  Z below is observation Z - 0.20 m.
+    pose: [-0.108008678, 0.417708580, 0.045881209,
+           3.121623950, 0.089438126, -0.395264198]
+  - name: pick_4
+    # Revision 2: operator re-taught the new point-4 grasp and safe high
+    # observation pose after the box moved too close to the previous column.
+    # Z is observation Z - 0.20 m.  The task config separately pins the
+    # taught grasp XY so the low approach does not inherit the observation
+    # pose's approximate 28 mm horizontal offset.
+    pose: [0.056673616879, 0.417881068652, 0.056334083499,
+           -3.112941140162, 0.045264227596, -0.348029709689]
+  - name: pick_5
+    pose: [0.034196350, 0.486712736, 0.041453195,
+           3.110701196, 0.030297997, -0.514942255]
