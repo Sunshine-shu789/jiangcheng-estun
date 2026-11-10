@@ -1,0 +1,107 @@
+{
+  "date": "2026-10-31",
+  "scope": "MS42DC gripper bench calibration only",
+  "robot_connected": false,
+  "robot_motion_commanded": false,
+  "device": {
+    "usb_id": "1a86:55d4 USB Single Serial",
+    "stable_path": "/dev/serial/by-id/usb-1a86_USB_Single_Serial_5CF0022496-if00",
+    "baudrate": 115200,
+    "device_id": 1,
+    "subdivide": 32,
+    "motion_mode": "relative",
+    "open_direction": 0,
+    "close_direction": 1
+  },
+  "measurements": {
+    "short_90_deg_cycles": {
+      "baseline_open_deg": [
+        20.9,
+        21.0,
+        21.0
+      ],
+      "closed_deg": [
+        109.7,
+        109.8,
+        109.8
+      ],
+      "reopened_deg": [
+        21.0,
+        21.0,
+        20.9
+      ],
+      "final_open_deg": 20.9
+    },
+    "travel_probe": {
+      "probe_deg": 3600.0,
+      "speed_rad_s": 4.0,
+      "open_hard_stop_deg": 20.9,
+      "close_hard_stop_deg": 1978.8,
+      "measured_travel_deg": 1957.9,
+      "measured_travel_turns": 5.44,
+      "nearest_shipped_firmware_turns": 5.5
+    },
+    "full_cycles_empty": {
+      "cycles": 3,
+      "speed_rad_s": 4.0,
+      "closed_deg": [
+        1978.7,
+        1978.6,
+        1978.5
+      ],
+      "opened_deg": [
+        21.8,
+        21.7,
+        21.5
+      ],
+      "final_open_deg": 21.5
+    },
+    "empty_hold_gate_check": {
+      "closed_deg": 1978.4,
+      "hold_min_angle_deg": 1950.0,
+      "empty_close_rejected": true,
+      "final_open_deg": 21.4
+    }
+  },
+  "applied_config": {
+    "file": "app/track1_grasp/config/ms42dc_bench_live.yaml",
+    "open_angle_deg": 1957.9,
+    "close_angle_deg": 1957.9,
+    "speed_rad_s": 5.0,
+    "status_timeout_s": 1.0,
+    "motion_timeout_s": 15.0,
+    "hold_min_angle_deg": 1950.0,
+    "require_feedback": true,
+    "settle_time_s": 0.3,
+    "ros_test_config": {
+      "file": "config/ms42dc_ros_test.yaml",
+      "backend": "ms42dc_ros",
+      "dry_run": true,
+      "open_angle_deg": 1957.9,
+      "close_angle_deg": 1957.9,
+      "speed_rad_s": 5.0,
+      "motion_timeout_s": 15.0,
+      "hold_min_angle_deg": 1950.0,
+      "require_feedback": true,
+      "hardware_exercised_in_this_run": false
+    }
+  },
+  "verification": {
+    "targeted_tests_passed": 105,
+    "empty_close_correctly_rejected": true,
+    "final_status_arrived": true,
+    "final_angle_deg": 21.4
+  },
+  "remaining_before_real_grasp": [
+    "Insert a known competition object between the clear, stationary fingers and repeat the close test to validate the hold-angle separation.",
+    "Mount the gripper on the flange and check USB cable strain relief and connector retention.",
+    "Keep arm motion disabled until the arm/HMI link, TCP/flange calibration, workspace limits and hand-eye transform are verified."
+  ],
+  "logs": [
+    "logs/ms42dc_repeat90_20261031_234546.log",
+    "logs/ms42dc_travel_measure_20261031_234625.log",
+    "logs/ms42dc_full_open_after_measure_20261031_234647.log",
+    "logs/ms42dc_full_travel_repeat_20261031_234723.log",
+    "logs/ms42dc_empty_hold_gate_20261031_234952.log"
+  ]
+}

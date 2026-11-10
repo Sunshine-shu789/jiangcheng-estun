@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "kind": "track1_grasp_consensus_gate_offline_validation",
+  "generated_at": "2026-10-31T12:47:31+08:00",
+  "status": "offline_gate_validated_no_motion_authorization",
+  "scope": "Task C/D offline dry-run consensus gate",
+  "full_test_result": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=\"$PWD:${PYTHONPATH:-}\" python3 -m pytest -q",
+    "passed": 556,
+    "duration_s": 47.95,
+    "result": "passed"
+  },
+  "safety": {
+    "offline_only": true,
+    "motion_attempted": false,
+    "hardware_connected": false,
+    "motion_authorized": false,
+    "quality_validated": false
+  },
+  "default_config_state": {
+    "app/track1_grasp/config/track1_mock.yaml": {
+      "enabled": false
+    },
+    "config/track1_task_cd_38class_safe_20261029.yaml": {
+      "enabled": false
+    }
+  },
+  "reference_consensus_evaluation": {
+    "report_path": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/reports/track1_graspnet_aperture_multiframe_20261031/diagnostics/consensus/consensus.json",
+    "report_sha256": "39a58f5bd2d27eae27e3f82929b32608a4a2a4656f0fe222ce4e522958f43db8",
+    "cluster_id": "consensus_001",
+    "representative_candidate": "frame_19/graspnet_00050",
+    "distinct_frame_count": 5,
+    "maximum_pairwise_translation_m": 0.02138502932071143,
+    "maximum_pairwise_jaw_rotation_deg": 0.0,
+    "evaluated_at_representative_pose": true,
+    "accepted_by_runtime_gate": true,
+    "pose_translation_error_m": 0.0,
+    "pose_jaw_rotation_error_deg": 0.0,
+    "offline_only": true,
+    "motion_authorized": false,
+    "quality_validated": false
+  },
+  "changed_files_sha256": {
+    "app/track1_grasp/track1_grasp/config.py": "733657e0852dc7808e252edad9e2e1c3e1cef9bbed96a25b7f08df6758931479",
+    "app/track1_grasp/track1_grasp/factory.py": "3276c6795d00d06ffefda2e7c97baea6b1c447f79c81a8dcb488a900d35b7080",
+    "app/track1_grasp/track1_grasp/grasp_consensus_gate.py": "5ac3e1f86526676c42768f5223e94b34123fd9dd493658e0bcf3297cb4064527",
+    "app/track1_grasp/track1_grasp/pipeline.py": "42b7ac9687e4a5bb548129204a8ce2f5f1e506951a72fcd5d8d04b3a6baae3ea",
+    "app/track1_grasp/test/test_config.py": "1166306c5f191cf17e2b45615ba433fd4033d07cb9452661947fceb371eed8cb",
+    "app/track1_grasp/test/test_grasp_consensus_gate.py": "070b79403ce571a9b2298585beea131be61274ce7633e46bbd102a2e54255b51",
+    "app/track1_grasp/README.md": "88c1c2782916f7a944110cf32dccd0ce90e67e05ed73d4b8f68edb6366199633",
+    "app/track1_grasp/config/track1_mock.yaml": "18a1e9185335944c9137e608e9277322338e858cb27137d37272119523ada912",
+    "config/track1_task_cd_38class_safe_20261029.yaml": "ceee20a6ad20bab5d15a9b26b3e7552251d13b98f26bcd152fb710ef942c68b5"
+  },
+  "notes": [
+    "The gate is disabled by default and must be bound to a report for the same scene and object.",
+    "Offline pose consensus is not a grasp-success probability or hardware authorization.",
+    "The existing report covers one scene and has quality_validated=false, so it must not be treated as 38-class live evidence.",
+    "No physical robot, controller, camera or gripper was connected for this validation."
+  ]
+}

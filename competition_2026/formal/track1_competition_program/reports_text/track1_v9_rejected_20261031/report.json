@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-31T09:54:25+08:00",
+  "candidate": "v9_hardneg",
+  "decision": "rejected",
+  "deployable": false,
+  "production_model_replaced": false,
+  "candidate_weights_sha256": "0cf17201d07931507a0576ff7ad79daf981146a099b65b1fcfa3e65ed84815ee",
+  "production_weights_sha256": "76b71ff7227eec9d26f5da0dec917d83e21dc3de1b92456645e9004dfa80de60",
+  "post_train_audit_accepted": true,
+  "offline_acceptance": {
+    "front10_core_ok": true,
+    "new2_core_ok": false,
+    "strict_zero_error_ok": false,
+    "front10_ap50_drop_ok": true,
+    "new2_ap50_threshold_ok": true,
+    "gt": 43,
+    "tp": 38,
+    "fp": 16,
+    "gt_level_errors": 5,
+    "overlap_warnings": 12,
+    "eggs": {
+      "gt": 10,
+      "tp": 5,
+      "fn": 5,
+      "fp": 8,
+      "recall": 0.5,
+      "status": "FAIL"
+    },
+    "strawberry": {
+      "gt": 8,
+      "tp": 8,
+      "fn": 0,
+      "fp": 6,
+      "recall": 1.0,
+      "status": "CAUTION"
+    }
+  },
+  "blocking_findings": [
+    "Five green-front Eggs validation images were missed at conf=0.15: 001603-001607.",
+    "Meat can 001535 was simultaneously predicted as Eggs at score 0.94076 with IoU 0.8924.",
+    "Meat can 001551 was simultaneously predicted as Eggs at score 0.85001 with IoU 0.9276."
+  ],
+  "evidence_root": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/reports/track1_v9_offline_acceptance_20261031"
+}

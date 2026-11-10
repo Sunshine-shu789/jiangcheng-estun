@@ -1,0 +1,393 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-11-01T03:16:13+08:00",
+  "config": "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/config/track1_train_40class_v12_targeted_from_yolo11s.yaml",
+  "dataset_yaml": "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v12_targeted_all_reviewed_20261101/dataset.yaml",
+  "base_weights": "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/models/yolo11s_backbone_40class_init_v10aug.pt",
+  "base_weights_sha256": "53064fab768d39348f569e8b0ab7ba5dc38c40894e9f5c8077f3cd5399f02e68",
+  "output_root": "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_train_40class_v12_targeted_from_yolo11s",
+  "checks": {
+    "dataset_yaml_exists": {
+      "ok": true,
+      "detail": "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v12_targeted_all_reviewed_20261101/dataset.yaml"
+    },
+    "audit_report_exists": {
+      "ok": true,
+      "detail": "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/reports/track1_v12_dataset_independent_audit_latest.json"
+    },
+    "audit_summary_exists": {
+      "ok": true,
+      "detail": "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v12_targeted_all_reviewed_20261101/audit_summary.json"
+    },
+    "dataset_on_data_volume": {
+      "ok": true,
+      "detail": "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v12_targeted_all_reviewed_20261101"
+    },
+    "complete_marker": {
+      "ok": true,
+      "detail": "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v12_targeted_all_reviewed_20261101/.complete"
+    },
+    "augmentation_policy": {
+      "ok": true,
+      "detail": "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v12_targeted_all_reviewed_20261101/augmentation_policy.yaml"
+    },
+    "class_count": {
+      "ok": true,
+      "detail": {
+        "nc": 40,
+        "names": 40
+      }
+    },
+    "class_catalog_exact": {
+      "ok": true,
+      "detail": {
+        "actual_sha256": "74923c86c4337f4dbd35d300bb6b283ebadc5af818c2ee505ccec7167624cfe7"
+      }
+    },
+    "dataset_yaml_root": {
+      "ok": true,
+      "detail": "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v12_targeted_all_reviewed_20261101"
+    },
+    "dataset_yaml_split_paths": {
+      "ok": true,
+      "detail": {
+        "train": "images/train",
+        "val": "images/val"
+      }
+    },
+    "dataset_yaml_pinned_sha256": {
+      "ok": true,
+      "detail": "695901a48b5a7325183c0f0f170a039eba37f51ee73d66c466fa119ae7d020e2"
+    },
+    "independent_audit_passed": {
+      "ok": true,
+      "detail": {
+        "passed": true,
+        "training_ready": true,
+        "errors": []
+      }
+    },
+    "independent_audit_all_checks": {
+      "ok": true,
+      "detail": {
+        "checks": 4993,
+        "failed": []
+      }
+    },
+    "independent_audit_role": {
+      "ok": true,
+      "detail": {
+        "role": "independent_scan_not_builder_summary",
+        "schema_version": 12
+      }
+    },
+    "audit_dataset_root": {
+      "ok": true,
+      "detail": {
+        "dataset_root": "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v12_targeted_all_reviewed_20261101",
+        "dataset_yaml": "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v12_targeted_all_reviewed_20261101/dataset.yaml"
+      }
+    },
+    "independent_audit_metrics_exact": {
+      "ok": true,
+      "detail": {}
+    },
+    "audit_per_class_box_counts_complete": {
+      "ok": true,
+      "detail": {
+        "train": 40,
+        "val": 40
+      }
+    },
+    "new_validation_40_class_coverage": {
+      "ok": true,
+      "detail": {
+        "classes": 40,
+        "minimum": 7
+      }
+    },
+    "source_manifest_pinned_sha256": {
+      "ok": true,
+      "detail": {
+        "actual": "5145696eaed23acfead4b2ce3c87240958c0816657ffe38ac76b082f4918a7c9",
+        "audit": "5145696eaed23acfead4b2ce3c87240958c0816657ffe38ac76b082f4918a7c9"
+      }
+    },
+    "augmentation_manifest_pinned_sha256": {
+      "ok": true,
+      "detail": {
+        "actual": "d5af371a185c4f3fe481a4de7abe99780447c07bf5655737fe9089ce6d378eab",
+        "audit": "d5af371a185c4f3fe481a4de7abe99780447c07bf5655737fe9089ce6d378eab"
+      }
+    },
+    "manifest_record_counts": {
+      "ok": true,
+      "detail": {
+        "source": 1232,
+        "augmentation": 4118
+      }
+    },
+    "builder_class_catalog_exact": {
+      "ok": true,
+      "detail": 40
+    },
+    "builder_training_ready": {
+      "ok": true,
+      "detail": {
+        "training_ready": true,
+        "training_started": false,
+        "model_modified": false,
+        "task_a_b_modified": false
+      }
+    },
+    "builder_core_counts": {
+      "ok": true,
+      "detail": {
+        "expected": {
+          "images": {
+            "train": 5180,
+            "val": 170
+          },
+          "boxes": {
+            "train": 13230,
+            "val": 499
+          },
+          "empty_labels": {
+            "train": 4,
+            "val": 1
+          },
+          "source_images": {
+            "train": 1062,
+            "val": 170
+          },
+          "source_boxes": {
+            "train": 2441,
+            "val": 499
+          },
+          "augmentation": {
+            "generic_images": 3186,
+            "focus_images": 890,
+            "issue_images": 42,
+            "total_images": 4118,
+            "validation_untouched": true
+          }
+        },
+        "actual": {
+          "images": {
+            "train": 5180,
+            "val": 170
+          },
+          "boxes": {
+            "train": 13230,
+            "val": 499
+          },
+          "empty_labels": {
+            "train": 4,
+            "val": 1
+          },
+          "source_images": {
+            "train": 1062,
+            "val": 170
+          },
+          "source_boxes": {
+            "train": 2441,
+            "val": 499
+          },
+          "augmentation": {
+            "generic_images": 3186,
+            "focus_images": 890,
+            "issue_images": 42,
+            "total_images": 4118,
+            "validation_untouched": true
+          }
+        }
+      }
+    },
+    "train_filesystem_pairing": {
+      "ok": true,
+      "detail": {
+        "images": 5180,
+        "labels": 5180,
+        "source": 1062,
+        "missing_labels": 0,
+        "extra_labels": 0,
+        "augmented": 4118,
+        "multiobject": null
+      }
+    },
+    "train_source_count": {
+      "ok": true,
+      "detail": 1062
+    },
+    "train_augmentation_policy": {
+      "ok": true,
+      "detail": 4118
+    },
+    "val_filesystem_pairing": {
+      "ok": true,
+      "detail": {
+        "images": 170,
+        "labels": 170,
+        "source": 170,
+        "missing_labels": 0,
+        "extra_labels": 0,
+        "augmented": 0,
+        "multiobject": 72
+      }
+    },
+    "val_source_count": {
+      "ok": true,
+      "detail": 170
+    },
+    "val_augmentation_policy": {
+      "ok": true,
+      "detail": 0
+    },
+    "new_validation_prefix_count": {
+      "ok": true,
+      "detail": {
+        "images": 170,
+        "labels": 170,
+        "source": 170,
+        "missing_labels": 0,
+        "extra_labels": 0,
+        "augmented": 0,
+        "multiobject": 72
+      }
+    },
+    "base_weights_exists": {
+      "ok": true,
+      "detail": "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/models/yolo11s_backbone_40class_init_v10aug.pt"
+    },
+    "base_weights_report_exists": {
+      "ok": true,
+      "detail": "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/reports/track1_v11_init_weight_latest.json"
+    },
+    "init_report_passed": {
+      "ok": true,
+      "detail": true
+    },
+    "init_weights_sha256": {
+      "ok": true,
+      "detail": "53064fab768d39348f569e8b0ab7ba5dc38c40894e9f5c8077f3cd5399f02e68"
+    },
+    "init_source_nc_80": {
+      "ok": true,
+      "detail": 80
+    },
+    "init_target_nc_40": {
+      "ok": true,
+      "detail": 40
+    },
+    "init_classes_exact": {
+      "ok": true,
+      "detail": 40
+    },
+    "init_detection_head_fresh": {
+      "ok": true,
+      "detail": {
+        "fresh_tensors": 6,
+        "coco_reused": false
+      }
+    },
+    "init_report_forward_ok": {
+      "ok": true,
+      "detail": true
+    },
+    "old_model_unchanged": {
+      "ok": true,
+      "detail": "76b71ff7227eec9d26f5da0dec917d83e21dc3de1b92456645e9004dfa80de60"
+    },
+    "new_weight_not_old_model": {
+      "ok": true,
+      "detail": "53064fab768d39348f569e8b0ab7ba5dc38c40894e9f5c8077f3cd5399f02e68"
+    },
+    "init_load_40_classes": {
+      "ok": true,
+      "detail": {
+        "nc": 40,
+        "names": 40
+      }
+    },
+    "free_space": {
+      "ok": true,
+      "detail": {
+        "free_gb": 361.38,
+        "minimum_gb": 20
+      }
+    },
+    "torch_version": {
+      "ok": true,
+      "detail": "2.14.0+cu130"
+    },
+    "cuda_available": {
+      "ok": true,
+      "detail": true
+    },
+    "gpu_memory": {
+      "ok": true,
+      "detail": {
+        "name": "NVIDIA GeForce RTX 5060 Laptop GPU",
+        "capability": "12.0",
+        "total_gb": 7.5,
+        "free_gb": 7.01
+      }
+    },
+    "cuda_compute_probe": {
+      "ok": true,
+      "detail": {
+        "name": "NVIDIA GeForce RTX 5060 Laptop GPU",
+        "capability": "12.0",
+        "total_gb": 7.5,
+        "free_gb": 7.01
+      }
+    },
+    "amp_requested": {
+      "ok": true,
+      "detail": true
+    },
+    "ultralytics_version": {
+      "ok": true,
+      "detail": "8.4.155"
+    },
+    "nvidia_smi": {
+      "ok": true,
+      "detail": "NVIDIA GeForce RTX 5060 Laptop GPU, 8151 MiB, 7155 MiB"
+    },
+    "training_contract_exact": {
+      "ok": true,
+      "detail": {}
+    },
+    "post_train_contract_exact": {
+      "ok": true,
+      "detail": {}
+    },
+    "output_on_data_volume": {
+      "ok": true,
+      "detail": "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_train_40class_v12_targeted_from_yolo11s"
+    },
+    "post_report_on_data_volume": {
+      "ok": true,
+      "detail": "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/reports/track1_training_v12_targeted_post_train_latest.json"
+    },
+    "fresh_training_only": {
+      "ok": true,
+      "detail": {
+        "resume": false
+      }
+    },
+    "weights_not_old_model": {
+      "ok": true,
+      "detail": "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/models/yolo11s_backbone_40class_init_v10aug.pt"
+    },
+    "output_root_namespace": {
+      "ok": true,
+      "detail": "/media/sunshine/新加卷1/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_train_40class_v12_targeted_from_yolo11s"
+    }
+  },
+  "blockers": [],
+  "ready": true,
+  "training_started": false,
+  "old_models_modified": false,
+  "task_a_b_modified": false
+}

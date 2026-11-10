@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-31T13:02:29+08:00",
+  "scope": "Task C/D offline multi-frame grasp consensus readiness inventory",
+  "status": "inventory_complete_requires_per_scene_evidence",
+  "scene_count": 2,
+  "accepted_scene_count": 1,
+  "failed_closed_scene_count": 1,
+  "global_safety": {
+    "offline_only": true,
+    "motion_attempted": false,
+    "hardware_connected": false,
+    "motion_authorized": false,
+    "quality_validated": false
+  },
+  "scenes": [
+    {
+      "scene_id": "aperture_multiframe_20261031",
+      "batch_root": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/offline_graspnet_aperture_multiframe_20261031_120309",
+      "consensus_report": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/reports/track1_graspnet_aperture_multiframe_20261031/diagnostics/consensus/consensus.json",
+      "report_sha256": "39a58f5bd2d27eae27e3f82929b32608a4a2a4656f0fe222ce4e522958f43db8",
+      "status": "consensus_available_offline_only",
+      "input_valid": true,
+      "consensus_reached": true,
+      "frames_discovered": 20,
+      "eligible_candidates": 8,
+      "accepted_clusters": 1,
+      "maximum_distinct_frames_in_cluster": 5,
+      "offline_only": true,
+      "motion_attempted": false,
+      "hardware_connected": false,
+      "motion_authorized": false,
+      "quality_validated": false
+    },
+    {
+      "scene_id": "offline_multiframe_20261031",
+      "batch_root": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/logs/offline_multiframe_20261031",
+      "consensus_report": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/reports/track1_offline_multiframe_consensus_20261031/diagnostics/consensus/consensus.json",
+      "report_sha256": "e5eb50980047bdb29b010a76a89b6c4cebc032f4f0f21d842bb3e7ade725b92f",
+      "status": "no_consensus_fail_closed",
+      "input_valid": true,
+      "consensus_reached": false,
+      "frames_discovered": 20,
+      "eligible_candidates": 0,
+      "accepted_clusters": 0,
+      "maximum_distinct_frames_in_cluster": 0,
+      "offline_only": true,
+      "motion_attempted": false,
+      "hardware_connected": false,
+      "motion_authorized": false,
+      "quality_validated": false
+    }
+  ],
+  "next_required": [
+    "Generate a separate consensus report from multi-frame captures for every actual Task C/D scene and object.",
+    "Bind each accepted report to the matching dry-run planning pose and reject scene/report mismatches.",
+    "Do not enable grasp_consensus or real motion until field TCP/frame, hand-eye, workspace, joint-limit and gripper-threshold validation is complete."
+  ]
+}

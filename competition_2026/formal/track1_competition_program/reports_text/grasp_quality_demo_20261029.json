@@ -1,0 +1,386 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-29T05:37:28.720199+00:00",
+  "mode": "offline_read_only",
+  "advisory": "Ranking score is not a calibrated probability of grasp success. This report cannot authorize live robot motion.",
+  "config": {
+    "name": "ms42dc_estimated_offline_v1",
+    "validated": false,
+    "gripper": {
+      "max_opening_m": 0.14,
+      "min_opening_m": 0.005,
+      "finger_length_m": 0.05,
+      "finger_thickness_m": 0.01,
+      "finger_height_m": 0.025,
+      "palm_length_m": 0.025,
+      "palm_height_m": 0.035,
+      "approach_distance_m": 0.05,
+      "contact_band_m": 0.008,
+      "collision_skin_m": 0.001,
+      "closure_clearance_m": 0.002,
+      "opening_reserve_m": 0.005
+    },
+    "scoring": {
+      "voxel_size_m": 0.002,
+      "collision_iou_threshold": 0.01,
+      "collision_voxel_hits": 1,
+      "target_penetration_iou_threshold": 0.01,
+      "target_penetration_voxel_hits": 3,
+      "min_inner_points": 8,
+      "min_contact_points": 3,
+      "width_tolerance_m": 0.008,
+      "good_tolerance_m": 0.02,
+      "desired_obstacle_clearance_m": 0.008,
+      "nms_translation_m": 0.03,
+      "nms_rotation_deg": 30.0,
+      "max_results": 50,
+      "contact_weight": 0.3,
+      "width_weight": 0.2,
+      "engagement_weight": 0.15,
+      "collision_weight": 0.15,
+      "obstacle_clearance_weight": 0.1,
+      "tolerance_weight": 0.05,
+      "opening_margin_weight": 0.05
+    }
+  },
+  "input_summary": {
+    "candidate_count": 5,
+    "target_points": 2950,
+    "obstacle_points": 1
+  },
+  "counts": {
+    "candidates": 5,
+    "feasible": 2,
+    "infeasible": 3,
+    "selected_after_nms": 1,
+    "suppressed_by_nms": 1
+  },
+  "selected": [
+    {
+      "rank": 1,
+      "candidate": {
+        "candidate_id": "demo_good",
+        "translation_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "width_m": 0.064,
+        "height_m": 0.06,
+        "depth_m": 0.05,
+        "tolerance_m": 0.02,
+        "network_score": 0.95,
+        "object_id": -1,
+        "metadata": {}
+      },
+      "feasible": true,
+      "quality": 0.966346646895269,
+      "collision_iou": 0.0,
+      "left_finger_iou": 0.0,
+      "right_finger_iou": 0.0,
+      "palm_iou": 0.0,
+      "approach_iou": 0.0,
+      "collision_voxels": 0,
+      "target_penetration_iou": 0.0,
+      "target_penetration_voxels": 0,
+      "inner_points": 2950,
+      "empty_ratio": 0.0,
+      "contact_left_points": 677,
+      "contact_right_points": 677,
+      "antipodal_score": 1.0,
+      "measured_width_m": 0.06,
+      "width_error_m": 0.0020000000000000018,
+      "opening_margin_m": 0.07600000000000001,
+      "obstacle_clearance_m": 0.0058,
+      "reason_codes": [],
+      "reasons": []
+    }
+  ],
+  "suppressed": [
+    {
+      "candidate_id": "demo_duplicate",
+      "kept_candidate_id": "demo_good",
+      "translation_distance_m": 0.004,
+      "rotation_difference_rad": 0.0
+    }
+  ],
+  "results": [
+    {
+      "rank": 1,
+      "candidate": {
+        "candidate_id": "demo_good",
+        "translation_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "width_m": 0.064,
+        "height_m": 0.06,
+        "depth_m": 0.05,
+        "tolerance_m": 0.02,
+        "network_score": 0.95,
+        "object_id": -1,
+        "metadata": {}
+      },
+      "feasible": true,
+      "quality": 0.966346646895269,
+      "collision_iou": 0.0,
+      "left_finger_iou": 0.0,
+      "right_finger_iou": 0.0,
+      "palm_iou": 0.0,
+      "approach_iou": 0.0,
+      "collision_voxels": 0,
+      "target_penetration_iou": 0.0,
+      "target_penetration_voxels": 0,
+      "inner_points": 2950,
+      "empty_ratio": 0.0,
+      "contact_left_points": 677,
+      "contact_right_points": 677,
+      "antipodal_score": 1.0,
+      "measured_width_m": 0.06,
+      "width_error_m": 0.0020000000000000018,
+      "opening_margin_m": 0.07600000000000001,
+      "obstacle_clearance_m": 0.0058,
+      "reason_codes": [],
+      "reasons": []
+    },
+    {
+      "rank": 2,
+      "candidate": {
+        "candidate_id": "demo_duplicate",
+        "translation_m": [
+          0.004,
+          0.0,
+          0.0
+        ],
+        "rotation": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "width_m": 0.066,
+        "height_m": 0.06,
+        "depth_m": 0.05,
+        "tolerance_m": 0.015,
+        "network_score": 0.9,
+        "object_id": -1,
+        "metadata": {}
+      },
+      "feasible": true,
+      "quality": 0.9146936198079086,
+      "collision_iou": 0.0,
+      "left_finger_iou": 0.0,
+      "right_finger_iou": 0.0,
+      "palm_iou": 0.0,
+      "approach_iou": 0.0,
+      "collision_voxels": 0,
+      "target_penetration_iou": 0.0,
+      "target_penetration_voxels": 0,
+      "inner_points": 2950,
+      "empty_ratio": 0.0,
+      "contact_left_points": 677,
+      "contact_right_points": 593,
+      "antipodal_score": 0.9689807976366323,
+      "measured_width_m": 0.06,
+      "width_error_m": 0.0040000000000000036,
+      "opening_margin_m": 0.07400000000000001,
+      "obstacle_clearance_m": 0.004799999999999999,
+      "reason_codes": [],
+      "reasons": []
+    },
+    {
+      "rank": 3,
+      "candidate": {
+        "candidate_id": "demo_collision",
+        "translation_m": [
+          0.0,
+          -0.004,
+          0.0
+        ],
+        "rotation": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "width_m": 0.0678,
+        "height_m": 0.06,
+        "depth_m": 0.05,
+        "tolerance_m": 0.012,
+        "network_score": 0.85,
+        "object_id": -1,
+        "metadata": {}
+      },
+      "feasible": false,
+      "quality": 0.0,
+      "collision_iou": 1.7237664296487824e-05,
+      "left_finger_iou": 0.0002666666666666666,
+      "right_finger_iou": 0.0,
+      "palm_iou": 0.0,
+      "approach_iou": 0.0,
+      "collision_voxels": 1,
+      "target_penetration_iou": 0.0,
+      "target_penetration_voxels": 0,
+      "inner_points": 2441,
+      "empty_ratio": 0.0,
+      "contact_left_points": 509,
+      "contact_right_points": 761,
+      "antipodal_score": 0.9172141918528253,
+      "measured_width_m": 0.06,
+      "width_error_m": 0.0058,
+      "opening_margin_m": 0.07220000000000001,
+      "obstacle_clearance_m": 0.0,
+      "reason_codes": [
+        "left_finger_collision"
+      ],
+      "reasons": [
+        "left_finger collision: 1 voxel(s), IoU=0.0003"
+      ]
+    },
+    {
+      "rank": 4,
+      "candidate": {
+        "candidate_id": "demo_narrow",
+        "translation_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "width_m": 0.055,
+        "height_m": 0.06,
+        "depth_m": 0.05,
+        "tolerance_m": 0.01,
+        "network_score": 0.8,
+        "object_id": -1,
+        "metadata": {}
+      },
+      "feasible": false,
+      "quality": 0.0,
+      "collision_iou": 0.0,
+      "left_finger_iou": 0.0,
+      "right_finger_iou": 0.0,
+      "palm_iou": 0.0,
+      "approach_iou": 0.0,
+      "collision_voxels": 0,
+      "target_penetration_iou": 0.01700369003690037,
+      "target_penetration_voxels": 864,
+      "inner_points": 1932,
+      "empty_ratio": 0.0,
+      "contact_left_points": 845,
+      "contact_right_points": 845,
+      "antipodal_score": 1.0,
+      "measured_width_m": 0.06,
+      "width_error_m": -0.006999999999999999,
+      "opening_margin_m": 0.08500000000000002,
+      "obstacle_clearance_m": 0.010300000000000004,
+      "reason_codes": [
+        "target_penetration"
+      ],
+      "reasons": [
+        "target points penetrate the gripper envelope: 864 voxel(s), IoU=0.0170"
+      ]
+    },
+    {
+      "rank": 5,
+      "candidate": {
+        "candidate_id": "demo_empty",
+        "translation_m": [
+          0.0,
+          0.12,
+          0.0
+        ],
+        "rotation": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "width_m": 0.064,
+        "height_m": 0.06,
+        "depth_m": 0.05,
+        "tolerance_m": 0.01,
+        "network_score": 0.75,
+        "object_id": -1,
+        "metadata": {}
+      },
+      "feasible": false,
+      "quality": 0.0,
+      "collision_iou": 0.0,
+      "left_finger_iou": 0.0,
+      "right_finger_iou": 0.0,
+      "palm_iou": 0.0,
+      "approach_iou": 0.0,
+      "collision_voxels": 0,
+      "target_penetration_iou": 0.0,
+      "target_penetration_voxels": 0,
+      "inner_points": 0,
+      "empty_ratio": 1.0,
+      "contact_left_points": 0,
+      "contact_right_points": 0,
+      "antipodal_score": 0.0,
+      "measured_width_m": null,
+      "width_error_m": null,
+      "opening_margin_m": 0.07600000000000001,
+      "obstacle_clearance_m": 0.1258,
+      "reason_codes": [
+        "empty_grasp",
+        "missing_left_contact",
+        "missing_right_contact"
+      ],
+      "reasons": [
+        "jaw cavity contains 0 target point(s); need 8",
+        "left jaw contact has 0 point(s); need 3",
+        "right jaw contact has 0 point(s); need 3"
+      ]
+    }
+  ]
+}

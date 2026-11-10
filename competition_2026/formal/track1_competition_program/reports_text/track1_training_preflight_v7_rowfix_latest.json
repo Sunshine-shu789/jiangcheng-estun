@@ -1,0 +1,689 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-31T01:34:44+08:00",
+  "config_path": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/config/track1_train_40class_v7.yaml",
+  "training_started": false,
+  "scope": "仅训练前预检；默认不会启动训练",
+  "dataset": {
+    "ready": true,
+    "dataset_root": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v7_oversample_new2",
+    "dataset_yaml": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v7_oversample_new2/dataset.yaml",
+    "dataset_yaml_sha256": "a8fafe1220e2257db7c1d8cd50cc00c91b3138efbd0cd409a6a31f8645004ac2",
+    "audit_path": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v7_oversample_new2/audit_summary.json",
+    "audit_training_ready": true,
+    "audit_training_started": false,
+    "review": {
+      "ready": true,
+      "review_audit_path": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_postclasses_bbox_export_v1/audit_summary.json",
+      "reviewed": 348,
+      "with_boxes": 346,
+      "empty": 2,
+      "skipped": 0,
+      "boxes": 602,
+      "errors": []
+    },
+    "images": {
+      "train": 634,
+      "val": 121
+    },
+    "empty_labels": {
+      "train": 1,
+      "val": 1
+    },
+    "boxes": 1023,
+    "class_counts": {
+      "train": {
+        "0": 5,
+        "1": 10,
+        "2": 18,
+        "3": 5,
+        "4": 34,
+        "5": 7,
+        "6": 6,
+        "7": 4,
+        "8": 6,
+        "9": 23,
+        "10": 7,
+        "11": 10,
+        "12": 14,
+        "13": 7,
+        "14": 17,
+        "15": 17,
+        "16": 140,
+        "17": 12,
+        "18": 40,
+        "19": 7,
+        "20": 13,
+        "21": 27,
+        "22": 30,
+        "23": 45,
+        "24": 34,
+        "25": 120,
+        "26": 18,
+        "27": 55,
+        "28": 7,
+        "29": 15,
+        "30": 11,
+        "31": 8,
+        "32": 7,
+        "33": 6,
+        "34": 12,
+        "35": 10,
+        "36": 6,
+        "37": 15,
+        "38": 8,
+        "39": 13
+      },
+      "val": {
+        "0": 2,
+        "1": 3,
+        "2": 3,
+        "3": 2,
+        "4": 4,
+        "5": 2,
+        "6": 2,
+        "7": 2,
+        "8": 1,
+        "9": 4,
+        "10": 3,
+        "11": 3,
+        "12": 3,
+        "13": 2,
+        "14": 4,
+        "15": 4,
+        "16": 10,
+        "17": 3,
+        "18": 10,
+        "19": 2,
+        "20": 4,
+        "21": 9,
+        "22": 7,
+        "23": 13,
+        "24": 9,
+        "25": 8,
+        "26": 5,
+        "27": 14,
+        "28": 3,
+        "29": 5,
+        "30": 4,
+        "31": 3,
+        "32": 2,
+        "33": 2,
+        "34": 3,
+        "35": 2,
+        "36": 2,
+        "37": 4,
+        "38": 2,
+        "39": 4
+      }
+    },
+    "empty_slots_indices": [],
+    "empty_slots_official_ids": [],
+    "checks": {
+      "dataset_yaml_readable": {
+        "ok": true,
+        "detail": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v7_oversample_new2/dataset.yaml"
+      },
+      "dataset_root_matches_yaml": {
+        "ok": true,
+        "detail": {
+          "yaml_path": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v7_oversample_new2",
+          "actual_root": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v7_oversample_new2"
+        }
+      },
+      "nc_matches_expected": {
+        "ok": true,
+        "detail": {
+          "expected": 40,
+          "actual": 40
+        }
+      },
+      "names_count_matches_nc": {
+        "ok": true,
+        "detail": {
+          "expected": 40,
+          "actual": 40
+        }
+      },
+      "front10_names_preserved": {
+        "ok": true,
+        "detail": [
+          "1-Cheez-it",
+          "2-Starkist_Tuna",
+          "3-Scissors",
+          "4-Frenchs_Mustard",
+          "5-Tomato_Soup",
+          "6-Foam_Brick",
+          "7-Clamp",
+          "8-Plastic_Banana",
+          "9-Mug",
+          "10-meat_can"
+        ]
+      },
+      "merged_audit_training_ready": {
+        "ok": true,
+        "detail": {
+          "audit_path": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/datasets/track1_training_merged_v7_oversample_new2/audit_summary.json",
+          "training_ready": true,
+          "training_started": false
+        }
+      },
+      "merged_audit_all_checks_true": {
+        "ok": true,
+        "detail": {
+          "source_v6_complete": true,
+          "all_links_inside_data_volume": true,
+          "train_val_disjoint_from_v6": true,
+          "target_classes_train_only_oversampled": true,
+          "validation_not_oversampled": true
+        }
+      },
+      "review_348_complete": {
+        "ok": true,
+        "detail": {
+          "reviewed": 348,
+          "with_boxes": 346,
+          "empty": 2,
+          "skipped": 0,
+          "errors": []
+        }
+      },
+      "ultralytics_dataset_check": {
+        "ok": true,
+        "detail": {
+          "nc": 40,
+          "names": 40
+        }
+      },
+      "train_image_count": {
+        "ok": true,
+        "detail": {
+          "expected": 634,
+          "actual": 634
+        }
+      },
+      "train_all_38_active_classes_present": {
+        "ok": true,
+        "detail": {
+          "missing": [],
+          "covered": 40
+        }
+      },
+      "train_front10_present": {
+        "ok": true,
+        "detail": {
+          "missing": [],
+          "counts": {
+            "0": 5,
+            "1": 10,
+            "2": 18,
+            "3": 5,
+            "4": 34,
+            "5": 7,
+            "6": 6,
+            "7": 4,
+            "8": 6,
+            "9": 23
+          }
+        }
+      },
+      "train_empty_slots_17_26": {
+        "ok": true,
+        "detail": {
+          "empty_slots": [],
+          "unexpectedly_labeled": []
+        }
+      },
+      "val_image_count": {
+        "ok": true,
+        "detail": {
+          "expected": 121,
+          "actual": 121
+        }
+      },
+      "val_all_38_active_classes_present": {
+        "ok": true,
+        "detail": {
+          "missing": [],
+          "covered": 40
+        }
+      },
+      "val_front10_present": {
+        "ok": true,
+        "detail": {
+          "missing": [],
+          "counts": {
+            "0": 2,
+            "1": 3,
+            "2": 3,
+            "3": 2,
+            "4": 4,
+            "5": 2,
+            "6": 2,
+            "7": 2,
+            "8": 1,
+            "9": 4
+          }
+        }
+      },
+      "val_empty_slots_17_26": {
+        "ok": true,
+        "detail": {
+          "empty_slots": [],
+          "unexpectedly_labeled": []
+        }
+      },
+      "total_box_count": {
+        "ok": true,
+        "detail": {
+          "expected": 1023,
+          "actual": 1023
+        }
+      },
+      "image_decode_sample": {
+        "ok": true,
+        "detail": {
+          "mode": "sample",
+          "decoded": 64,
+          "errors": []
+        }
+      }
+    },
+    "warnings": [],
+    "errors": [],
+    "error_count": 0
+  },
+  "weights": {
+    "ready": true,
+    "weights_path": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_train_40class_v6/track1_40class_v6_20261030_211420/weights/best.pt",
+    "weights_sha256": "1478a4717413fb2f84e481441e40600b4ff9805b5b3f93790ac071b09cbd78c1",
+    "source_nc": 40,
+    "target_nc": 40,
+    "source_names": [
+      "1-Cheez-it",
+      "2-Starkist_Tuna",
+      "3-Scissors",
+      "4-Frenchs_Mustard",
+      "5-Tomato_Soup",
+      "6-Foam_Brick",
+      "7-Clamp",
+      "8-Plastic_Banana",
+      "9-Mug",
+      "10-meat_can",
+      "11-Padlock",
+      "12-Baseball",
+      "13-Bowl",
+      "14-Sleeve",
+      "15-Coca_cola_half",
+      "16-ICRA_Duckie",
+      "17-Eggs_Plush",
+      "18-Dice",
+      "19-Elmers_Glue",
+      "20-Scotch_Tape",
+      "21-Haribo_Golden_Bear",
+      "22-E27_Adapter",
+      "23-GU24_Adapter",
+      "24-Spoon",
+      "25-Flat_Screwdriver",
+      "26-Plastic_Strawberry",
+      "27-Coca_cola_full",
+      "28-Kong_Duck_Dog_Toy",
+      "29-Paper_Towels",
+      "30-Stabilo_OHPen",
+      "31-Plastic_White_Cup",
+      "32-Wine_Glass",
+      "33-Key",
+      "34-Nail",
+      "35-Book",
+      "36-Adjustable_Wrench",
+      "37-T-shirt",
+      "38-Jumbo_Pencil_Cup",
+      "39-Glove",
+      "40-Pringles"
+    ],
+    "front10_rows_transferred": true,
+    "checks": {
+      "weights_exist": {
+        "ok": true,
+        "detail": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_train_40class_v6/track1_40class_v6_20261030_211420/weights/best.pt"
+      },
+      "source_nc_10": {
+        "ok": true,
+        "detail": {
+          "expected": 40,
+          "actual": 40
+        }
+      },
+      "source_front10_names_match_dataset": {
+        "ok": true,
+        "detail": [
+          "1-Cheez-it",
+          "2-Starkist_Tuna",
+          "3-Scissors",
+          "4-Frenchs_Mustard",
+          "5-Tomato_Soup",
+          "6-Foam_Brick",
+          "7-Clamp",
+          "8-Plastic_Banana",
+          "9-Mug",
+          "10-meat_can"
+        ]
+      },
+      "source_weights_unfused": {
+        "ok": true,
+        "detail": {
+          "fused": false
+        }
+      },
+      "expanded_head_nc_40": {
+        "ok": true,
+        "detail": {
+          "expected": 40,
+          "actual": 40
+        }
+      },
+      "front10_head_rows_transferred": {
+        "ok": true,
+        "detail": [
+          {
+            "level": 0,
+            "source_out_channels": 40,
+            "target_out_channels": 40,
+            "front10_bias_equal": true,
+            "front10_weight_equal": true,
+            "new_rows_initialized": true
+          },
+          {
+            "level": 1,
+            "source_out_channels": 40,
+            "target_out_channels": 40,
+            "front10_bias_equal": true,
+            "front10_weight_equal": true,
+            "new_rows_initialized": true
+          },
+          {
+            "level": 2,
+            "source_out_channels": 40,
+            "target_out_channels": 40,
+            "front10_bias_equal": true,
+            "front10_weight_equal": true,
+            "new_rows_initialized": true
+          }
+        ]
+      },
+      "new_class_rows_initialized": {
+        "ok": true,
+        "detail": {
+          "new_rows": 0
+        }
+      }
+    },
+    "errors": [],
+    "class_head_levels": [
+      {
+        "level": 0,
+        "source_out_channels": 40,
+        "target_out_channels": 40,
+        "front10_bias_equal": true,
+        "front10_weight_equal": true,
+        "new_rows_initialized": true
+      },
+      {
+        "level": 1,
+        "source_out_channels": 40,
+        "target_out_channels": 40,
+        "front10_bias_equal": true,
+        "front10_weight_equal": true,
+        "new_rows_initialized": true
+      },
+      {
+        "level": 2,
+        "source_out_channels": 40,
+        "target_out_channels": 40,
+        "front10_bias_equal": true,
+        "front10_weight_equal": true,
+        "new_rows_initialized": true
+      }
+    ],
+    "torch_version": "2.14.0+cu130",
+    "torch_cuda_build": "13.0",
+    "ultralytics_version": "8.4.155",
+    "parameter_count_source": 9443272,
+    "parameter_count_target": 9443272
+  },
+  "row_finetune": {
+    "enabled": true,
+    "ready": true,
+    "checks": {
+      "class_indices_match_expected": {
+        "ok": true,
+        "detail": {
+          "classes": [
+            16,
+            25
+          ],
+          "expected": [
+            16,
+            25
+          ]
+        }
+      },
+      "zero_weight_decay_for_masked_rows": {
+        "ok": true,
+        "detail": {
+          "require_zero_weight_decay": true,
+          "weight_decay": 0.0
+        }
+      },
+      "freeze_all_other_parameters": {
+        "ok": true,
+        "detail": true
+      },
+      "mask_unselected_class_rows": {
+        "ok": true,
+        "detail": true
+      },
+      "keep_batch_norm_eval": {
+        "ok": true,
+        "detail": true
+      },
+      "class_names_match": {
+        "ok": true,
+        "detail": {
+          "resolved": {
+            "16": "17-Eggs_Plush",
+            "25": "26-Plastic_Strawberry"
+          },
+          "expected": [
+            "17-Eggs_Plush",
+            "26-Plastic_Strawberry"
+          ]
+        }
+      },
+      "three_classification_levels_present": {
+        "ok": true,
+        "detail": [
+          {
+            "level": 0,
+            "weight_shape": [
+              40,
+              128,
+              1,
+              1
+            ],
+            "bias_shape": [
+              40
+            ],
+            "weight_rows_ok": true,
+            "bias_rows_ok": true,
+            "target_bias_nonzero": true
+          },
+          {
+            "level": 1,
+            "weight_shape": [
+              40,
+              128,
+              1,
+              1
+            ],
+            "bias_shape": [
+              40
+            ],
+            "weight_rows_ok": true,
+            "bias_rows_ok": true,
+            "target_bias_nonzero": true
+          },
+          {
+            "level": 2,
+            "weight_shape": [
+              40,
+              128,
+              1,
+              1
+            ],
+            "bias_shape": [
+              40
+            ],
+            "weight_rows_ok": true,
+            "bias_rows_ok": true,
+            "target_bias_nonzero": true
+          }
+        ]
+      }
+    },
+    "errors": [],
+    "levels": [
+      {
+        "level": 0,
+        "weight_shape": [
+          40,
+          128,
+          1,
+          1
+        ],
+        "bias_shape": [
+          40
+        ],
+        "weight_rows_ok": true,
+        "bias_rows_ok": true,
+        "target_bias_nonzero": true
+      },
+      {
+        "level": 1,
+        "weight_shape": [
+          40,
+          128,
+          1,
+          1
+        ],
+        "bias_shape": [
+          40
+        ],
+        "weight_rows_ok": true,
+        "bias_rows_ok": true,
+        "target_bias_nonzero": true
+      },
+      {
+        "level": 2,
+        "weight_shape": [
+          40,
+          128,
+          1,
+          1
+        ],
+        "bias_shape": [
+          40
+        ],
+        "weight_rows_ok": true,
+        "bias_rows_ok": true,
+        "target_bias_nonzero": true
+      }
+    ]
+  },
+  "storage": {
+    "ready": true,
+    "data_root": "/media/sunshine/新加卷",
+    "output_root": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_train_40class_v7_rowfix",
+    "report_path": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/reports/track1_training_preflight_v7_rowfix_latest.json",
+    "free_gb": 369.16,
+    "minimum_free_gb": 5.0,
+    "writable": true,
+    "checks": {
+      "output_on_data_volume": {
+        "ok": true,
+        "detail": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_train_40class_v7_rowfix"
+      },
+      "report_on_data_volume": {
+        "ok": true,
+        "detail": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/reports/track1_training_preflight_v7_rowfix_latest.json"
+      },
+      "free_space": {
+        "ok": true,
+        "detail": {
+          "free_gb": 369.16,
+          "minimum_gb": 5.0
+        }
+      },
+      "data_volume_writable": {
+        "ok": true,
+        "detail": "/media/sunshine/新加卷/埃斯顿比赛_2026/赛道一比赛程序/runs/track1_train_40class_v7_rowfix"
+      }
+    },
+    "errors": []
+  },
+  "runtime": {
+    "ready": true,
+    "allow_cpu": false,
+    "gpu_required": true,
+    "gpu_ready": true,
+    "torch_cuda_available": true,
+    "torch_cuda_device_count": 1,
+    "gpu_memory_gb": 7.5,
+    "nvidia_smi_ok": true,
+    "nvidia_smi": {
+      "returncode": 0,
+      "stdout": "NVIDIA GeForce RTX 5060 Laptop GPU, 595.99.02, 8151 MiB",
+      "stderr": ""
+    },
+    "kernel_driver_version": "NVRM version: NVIDIA UNIX Open Kernel Module for x86_64  595.99.02  Release Build  (dvs-builder@U22-I3-AF05-06-2)  Wed Aug 26 05:20:50 UTC 2026\nGCC version:  gcc version 12.3.0 (Ubuntu 12.3.0-1ubuntu1~22.04.3)",
+    "checks": {
+      "torch_cuda_available": {
+        "ok": true,
+        "detail": {
+          "available": true,
+          "device_count": 1,
+          "torch": "2.14.0+cu130",
+          "cuda_build": "13.0"
+        }
+      },
+      "nvidia_smi": {
+        "ok": true,
+        "detail": {
+          "returncode": 0,
+          "stdout": "NVIDIA GeForce RTX 5060 Laptop GPU, 595.99.02, 8151 MiB",
+          "stderr": ""
+        }
+      },
+      "gpu_memory_sufficient": {
+        "ok": true,
+        "detail": {
+          "required_gb": 6.0,
+          "actual_gb": 7.5
+        }
+      }
+    },
+    "errors": [],
+    "warnings": [],
+    "torch_version": "2.14.0+cu130",
+    "torch_cuda_build": "13.0",
+    "gpu_name": "NVIDIA GeForce RTX 5060 Laptop GPU",
+    "gpu_capability": "12.0"
+  },
+  "overall": {
+    "preparation_ready": true,
+    "runtime_ready": true,
+    "gpu_ready": true,
+    "can_start_training": true,
+    "blockers": []
+  }
+}
